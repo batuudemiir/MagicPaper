@@ -373,7 +373,7 @@ enum MP {
 
         var background: Color {
             switch self {
-            case .light: return MPColor.readerDayBackground
+            case .light: return Palette.kagit0
             case .cream: return Palette.krem100
             case .sepia: return MPColor.readerSepiaBackground
             case .dusk:  return Palette.aksam700
@@ -418,10 +418,9 @@ enum MP {
 
         /// Kitap sayfasının kendi yüzeyi.
         ///
-        /// `background` ile aynı değil ve olmamalı: `background` gündüz modunda
-        /// saf beyazdır (`kagit0`), beyaz ise kağıt değildir. Okuyucu bunu
-        /// kullanır, `MPStoryPDF`'in bastığı kağıt rengiyle aynı tonu
-        /// (`kagit100`) tutar.
+        /// Gündüz beyazdır; sıcak kâğıt isteyen okur Krem ya da Sepya'yı
+        /// seçebilir. Diğer temalar ve kayıtlı tema tercihleri değişmez.
+        /// Baskı kâğıdının tonu okuyucudan bağımsızdır.
         var paper: Color { background }
 
         /// Cilt payı — sayfanın iç kenarındaki ince gölge.

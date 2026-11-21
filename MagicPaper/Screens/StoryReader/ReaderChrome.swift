@@ -61,6 +61,8 @@ struct ReaderChrome: View {
     /// Kaydırırken parmağın altındaki sayfa; kaydırılmıyorsa `nil`.
     @State private var scrubPage: Int?
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.verticalSizeClass) private var verticalClass
 
     var body: some View {
         VStack(spacing: 0) {
@@ -73,10 +75,16 @@ struct ReaderChrome: View {
                     HStack(spacing: 0) {
                         iconButton(symbol: isFavorite ? "heart.fill" : "heart",
                                    label: isFavorite ? "Favorilerden çıkar" : "Favorilere ekle",
-                                   tint: isFavorite ? MPColor.brandPink : theme.foreground,
+                                   tint: isFavorite ? theme.highlight : theme.foreground,
                                    action: onToggleFavorite)
-                        iconButton(symbol: "textformat", label: "Okuma ayarları",
-                                   tint: theme.foreground, action: onOpenSettings)
+                        Button(action: onOpenSettings) {
+                            Text("Aa").font(MP.F.bodyLG(.heavy))
+                                .foregroundStyle(theme.foreground)
+                                .frame(minWidth: MP.S.tapMin, minHeight: MP.S.tapMin)
+                                .contentShape(Rectangle())
+                        }
+                        .buttonStyle(MPPressStyle(.highlight))
+                        .accessibilityLabel("Okuma ayarları")
                     }
                     .padding(.horizontal, MP.S.x1)
                     .mpGlassSurface(in: Capsule(style: .continuous))
@@ -152,42 +160,56 @@ struct ReaderChrome: View {
 
     // MARK: - Alt çubuk
 
-    /// 23 · Okuyucu alt çubuğu: önceki · (sayfa, sesli oku, ilerleme) · sonraki.
+    /// Full-width position/speech row above navigation and the seek line.
     private func controlBar(_ label: String) -> some View {
-        HStack(spacing: MPSpacing.xxs) {
-            navButton(symbol: "chevron.left", label: "Önceki sayfa", enabled: canGoPrevious, action: onPrevious)
-            VStack(spacing: MPSpacing.xxs) {
-                HStack(spacing: MPSpacing.xs) {
-                    Text(scrubPage.map { "Sayfa \($0 + 1)" } ?? label)
-                        .mpText(.footnote).fontWeight(.heavy)
-                        .foregroundStyle(theme.muted)
-                        .lineLimit(1)
-                    Spacer(minLength: MPSpacing.xs)
+        VStack(spacing: MP.S.x1) {
+            if typeSize.isAccessibilitySize && verticalClass != .compact {
+                VStack(alignment: .leading, spacing: 0) {
+                    positionLabel(label)
                     speechButton
                 }
-                progressLine(label)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(minHeight: MP.S.tapMin * 3)
+            } else {
+                HStack(spacing: MP.S.x2) {
+                    positionLabel(label)
+                    Spacer(minLength: MP.S.x2)
+                    speechButton
+                }
+                .frame(minHeight: typeSize.isAccessibilitySize ? MPSize.minTouchHero : MP.S.tapMin)
             }
-            navButton(symbol: isLastPage ? "flag.checkered" : "chevron.right",
-                      label: isLastPage ? "Masalı bitir" : "Sonraki sayfa",
-                      enabled: canGoNext, action: onNext)
+            HStack(spacing: MP.S.x2) {
+                navButton(symbol: "chevron.left", label: "Önceki sayfa",
+                          enabled: canGoPrevious, action: onPrevious)
+                progressLine(label)
+                navButton(symbol: isLastPage ? "flag.checkered" : "chevron.right",
+                          label: isLastPage ? "Masalı bitir" : "Sonraki sayfa",
+                          enabled: canGoNext, action: onNext)
+            }
         }
-        .padding(.horizontal, MPSpacing.xs)
-        .padding(.vertical, MPSpacing.xxs)
-        // Kapsül değil: en büyük yazı boyutunda çubuk uzarsa hap gibi şişmesin.
+        .padding(.horizontal, MP.S.x3)
+        .padding(.vertical, MP.S.x2)
         .mpGlassSurface(in: RoundedRectangle(cornerRadius: MPRadius.hero, style: .continuous))
         .padding(.horizontal, MPSpacing.sm)
+    }
+
+    private func positionLabel(_ label: String) -> some View {
+        Text(scrubPage.map { "Sayfa \($0 + 1)" } ?? label)
+            .mpText(.footnote).fontWeight(.heavy)
+            .foregroundStyle(theme.muted)
+            .fixedSize(horizontal: false, vertical: true)
     }
 
     private var speechButton: some View {
         Button(action: onToggleSpeech) {
             HStack(spacing: MPSpacing.xxs) {
-                MPIcon(isSpeaking ? "pause.fill" : (familyVoice ? "heart.fill" : "play.fill"), size: MP.G.md, weight: .bold)
+                MPIcon(isSpeaking ? "pause.fill" : (familyVoice ? "heart.fill" : "play.fill"), size: MP.G.md, weight: .bold, symbolOnly: true)
                 Text(isSpeaking ? "Duraklat" : (familyVoice ? "Ailenin sesi" : "Sesli oku"))
                     .mpText(.footnote).fontWeight(.heavy)
-                    .lineLimit(1)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .foregroundStyle(theme.highlight)
-            .frame(minHeight: MPSize.minTouchHero)
+            .frame(minHeight: MP.S.tapMin)
             .contentShape(Rectangle())
         }
         .buttonStyle(MPPressStyle(.highlight))
@@ -199,18 +221,20 @@ struct ReaderChrome: View {
     private func progressLine(_ label: String) -> some View {
         GeometryReader { geo in
             let count = max(pagePreviews.count, 1)
-            let shown = scrubPage.map { Double($0 + 1) / Double(count) } ?? progress
+            let selected = scrubPage ?? pageIndex ?? 0
+            let shown = ReaderPageLayout.seekFraction(page: selected, count: count)
             Capsule().fill(theme.muted.opacity(0.25))
-                .frame(height: scrubPage == nil ? MP.S.x1 : MP.S.x2)
+                .frame(height: MP.S.x1)
                 .overlay(alignment: .leading) {
-                    Capsule().fill(theme.highlight)
-                        .frame(width: max(MP.S.x2, geo.size.width * shown))
+                    Circle().fill(theme.highlight)
+                        .frame(width: MP.S.x5, height: MP.S.x5)
+                        .offset(x: max(0, geo.size.width - MP.S.x5) * shown)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .contentShape(Rectangle())
                 .gesture(scrubGesture(width: geo.size.width))
         }
-        .frame(height: MP.S.x6)
+        .frame(height: MP.S.tapMin)
         .accessibilityElement()
         .accessibilityLabel("Sayfa")
         .accessibilityValue(label)
@@ -278,7 +302,7 @@ struct ReaderChrome: View {
 
     private func navButton(symbol: String, label: String, enabled: Bool, action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            MPIcon(symbol, size: 24, weight: .bold)
+            MPIcon(symbol, size: MP.G.lg, weight: .bold)
                 .foregroundStyle(enabled ? theme.foreground : theme.muted.opacity(0.45))
                 // Vizyon planı düzen 9: geri ve ileri 64 pt, okul öncesi parmağı için.
                 .frame(width: MPSize.minTouchHero, height: MPSize.minTouchHero)

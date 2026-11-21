@@ -19,6 +19,9 @@ struct SeriesEndingSection: View {
         switch series.endingState(for: story, atEnd: true) {
         case .none:
             EmptyView()
+        case .offer where !app.isUnlocked(.seriesStories):
+            // E7: seri abonelikle. Okuyucunun içinde satış yok, teklif görünmez.
+            EmptyView()
         case .offer:
             VStack(alignment: .leading, spacing: MP.S.x3) {
                 Text(SeriesCopy.continueHint)
@@ -77,6 +80,7 @@ struct SeriesEndingSection: View {
     }
 
     private func start() {
+        guard app.isUnlocked(.seriesStories) else { return }
         do {
             try series.startSeries(from: story, readToEnd: true)
             MPHaptics.success()

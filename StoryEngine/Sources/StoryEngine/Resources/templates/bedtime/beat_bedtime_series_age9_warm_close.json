@@ -12,6 +12,8 @@
   "variants": [
     {
       "id": "b9swc_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}} yine sessizdi. {{child.name}} yorganını çenesine kadar çekti ve önce {{keepsake.name}}'i, sonra bu akşamı düşündü. İkisi yan yana durunca bir hikâyenin iki sayfası gibi göründüler. Pencerede küçük bir nefes inip kalkıyordu; {{child.name}}'in gözleri kendiliğinden, usulca kapandı.",
       "requiredSlots": [
         "child.name",
@@ -26,6 +28,8 @@
     },
     {
       "id": "b9swc_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Pencerede {{companion.name}} usulca kıvrıldı. {{child.name}} {{setting.name}}'da yorganın altına iyice gömüldü. Lamba kısıktı, oda sıcaktı, ve dışarıdaki ay her şeyi yerli yerinde gördüğü için memnun görünüyordu. Uyku yavaşça, kimseyi acele ettirmeden geldi.",
       "requiredSlots": [
         "child.name",
@@ -40,6 +44,8 @@
     },
     {
       "id": "b9swc_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'da her şey yerli yerindeydi: {{companion.name}} pencerede, {{child.name}} yatağında. Günün hesabı çoktan kapanmıştı; geriye tek bir iş kalıyordu, onu da uyku halledecekti. {{child.name}} bir süre ay ışığını izledi, sonra usulca uykuya daldı.",
       "requiredSlots": [
         "child.name",
@@ -54,6 +60,8 @@
     },
     {
       "id": "b9swc_sib_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'da yan yana uzandı. Pencerede {{companion.name}} uyuyordu. İkisi bir süre bu akşamı fısıldaştı, kimin daha çok şaşırdığını tartıştı; sonra sesleri yavaşça kesildi ve oda sessizliğe teslim oldu.",
       "requiredSlots": [
         "child.name",
@@ -72,6 +80,8 @@
     },
     {
       "id": "b9swc_sib_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}} sessizdi. Kardeşi {{family.name}} çoktan uyumuştu, bir eli yorganın dışında. {{child.name}} onu usulca içeri koydu, yorganını düzeltti, sonra kendi yastığına döndü. Pencerede her şey yerli yerindeydi; {{child.name}} gözlerini kapadı ve bu akşamı, yarım bir gülümsemeyle, uykusuna götürdü.",
       "requiredSlots": [
         "child.name",
@@ -89,6 +99,8 @@
     },
     {
       "id": "b9swc_fr_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}, {"subject": "setting", "presence": "present", "states": ["night"]}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'da bu gece iki yorgan, iki yastık vardı. {{child.name}} ile arkadaşı {{family.name}} son bir kez pencereye baktılar: {{companion.name}} uyuyordu. \"Her şey tamam,\" diye fısıldadı {{child.name}}. Sonra ikisi de, birbirinden habersiz, aynı anda uykuya daldı.",
       "requiredSlots": [
         "child.name",
@@ -107,6 +119,8 @@
     },
     {
       "id": "b9swc_fr_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Arkadaşı {{family.name}} esnedi, ardından {{child.name}} esnedi; esneme bulaşıcıydı, bunu ikisi de biliyordu. {{setting.name}}'da lamba söndü, ay ışığı içeri doldu. Bir süre daha fısıldaşmayı denediler, ama kelimeler giderek seyreldi, ve sonunda ikisi aynı anda uykuya daldı.",
       "requiredSlots": [
         "child.name",
@@ -124,6 +138,8 @@
     },
     {
       "id": "b9swc_an_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Ayakucunda {{family.possessive}} {{family.name}} derin derin uyuyordu, arada bir rüyasında bir şey kovalar gibi kıpırdayarak. {{child.name}} {{setting.name}}'da yorganını çekti ve pencereye son bir kez baktı; {{companion.name}} uyuyordu. Sonra gözlerini usulca kapadı.",
       "requiredSlots": [
         "child.name",
@@ -143,6 +159,8 @@
     },
     {
       "id": "b9swc_an_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}} sakindi. {{child.name}}, {{family.possessive}} {{family.name}}'ın sıcaklığını ayaklarında hissederek yorganına gömüldü. Pencerede {{companion.name}} çoktan uyumuştu. Bu akşam herkes bir yere sığmıştı; {{child.name}} bunu düşünerek gülümsedi ve usulca uykuya daldı.",
       "requiredSlots": [
         "child.name",
@@ -162,6 +180,8 @@
     },
     {
       "id": "b9swc_im_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} hayali arkadaşı {{family.name}}'a iyi geceler diledi; bu, her gecenin değişmeyen son cümlesiydi. {{setting.name}}'da lamba söndü, pencerede {{companion.name}} uyuyordu. {{child.name}} bir süre ay ışığının tavanda çizdiği şekilleri izledi, sonra gözlerini usulca kapadı.",
       "requiredSlots": [
         "child.name",
@@ -180,6 +200,8 @@
     },
     {
       "id": "b9swc_im_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Hayali arkadaşı {{family.name}} esnedi; en azından {{child.name}} öyle olduğuna karar verdi, ve bu ona da uyku vaktini hatırlattı. {{setting.name}} sessizdi, yorgan sıcaktı, pencerede her şey yerli yerindeydi. Gözleri kendiliğinden, hiç acele etmeden kapandı.",
       "requiredSlots": [
         "child.name",
@@ -188,6 +210,166 @@
       ],
       "move": "h4_b9swc_im_02",
       "lengthClass": "solo",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "b9swc_h5_sib_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "Kardeşi {{family.name}} uykusunda gülümsüyordu. {{child.name}} bu gülümsemenin bu geceye ait olduğunu düşündü ve bundan memnun oldu. Pencereye son bir kez baktı: {{companion.name}} uyuyordu. {{setting.name}} sessizdi. {{child.name}} yorganını düzeltti ve gözlerini usulca kapadı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b9swc_h5_sib_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{child.name}} kardeşi {{family.name}}'ın elini bir an tuttu, sonra bıraktı. Bu akşam birlikte sabretmiş, birlikte beklemişlerdi; bu da bir çeşit yolculuktu. {{setting.name}}'da lamba söndü. Pencerede {{companion.name}} dinleniyordu. Gece yerli yerindeydi ve uyku sessizce geldi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b9swc_h5_fr_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "Arkadaşı {{family.name}} çoktan uykuya dalmıştı; hiç uyumayacağına dair verdiği söz de onunla birlikte uyumuştu. {{child.name}} pencerede uyuyan {{companion.name}}'e baktı ve gülümsedi. {{setting.name}} sakindi. Sonra onun da gözleri kapandı ve gece, iki yastığa eşit bölündü.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b9swc_h5_fr_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} birbirine iyi geceler dedi. {{family.name}} bu akşamı hiç unutmayacağını fısıldadı; {{child.name}} buna inandı. {{setting.name}} karardı. Pencerede {{companion.name}} uyuyordu ve odada üç sakin nefes vardı, her biri kendi ritminde.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b9swc_h5_an_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{family.possessive}} {{family.name}} {{child.name}}'in yanında derin derin uyuyordu. Pencerede {{companion.name}} dinleniyordu. {{child.name}} ikisine de baktı: bu evde dostlar çoğalmıştı ve herkes bir yere sığmıştı. {{setting.name}}'da lamba söndü. {{child.name}} gözlerini usulca kapadı.",
+      "requiredSlots": [
+        "family.possessive",
+        "family.name",
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b9swc_h5_an_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{child.name}} yorganını çekti. {{family.possessive}} {{family.name}} sessizce uyuyordu, arada bir kıpırdayarak. {{setting.name}} sıcacıktı ve pencerede her şey yerli yerindeydi. {{child.name}} bu akşamı aklından bir kez daha geçirdi, en güzel anını seçti ve onu da yanına alarak uykuya daldı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b9swc_h5_im_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "Hayali arkadaşı {{family.name}} pencerenin yanında nöbet tutuyordu; bu görevi kendisi istemişti. {{child.name}} ona ve uyuyan {{companion.name}}'e iyi geceler dedi. {{family.name}} ciddi ciddi başını salladı. {{setting.name}} sessizdi. {{child.name}} nöbetçisine güvendi ve gözlerini kapadı.",
+      "requiredSlots": [
+        "family.name",
+        "child.name",
+        "companion.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "b9swc_h5_im_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{child.name}}, hayali arkadaşı {{family.name}} ile bu akşamı fısıltıyla andı: pencere, misafir, uzun ve sakin bir bekleyiş. {{family.name}} hiçbir ayrıntıyı unutmamıştı. Sonra ikisi de sustu. {{setting.name}}'da lamba söndü ve uyku, kimseyi rahatsız etmeden, usulca geldi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9swc_im_02",
       "settingTraits": [
         "isRestingPlace"
       ],

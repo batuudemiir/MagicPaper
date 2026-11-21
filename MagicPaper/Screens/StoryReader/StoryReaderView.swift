@@ -15,6 +15,8 @@ struct StoryReaderView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.verticalSizeClass) private var verticalClass
 
     @StateObject private var model: StoryReaderModel
     /// Bu açılışın okuma kaydı (FAZ 14).
@@ -121,7 +123,6 @@ struct StoryReaderView: View {
             .zIndex(1)
         }
         .background(theme.paper.ignoresSafeArea())
-        .dynamicTypeSize(...DynamicTypeSize.accessibility3)
         .animation(MP.M.gated(MP.M.easeOut), value: model.controlsVisible)
         .animation(MP.M.gated(MP.M.base), value: theme)
         .statusBarHidden(!model.controlsVisible)
@@ -143,7 +144,7 @@ struct StoryReaderView: View {
                         // "Meraklı parmak": rozet masal sonunda verilir.
                         .onAppear { markWordCardOpened() }
                         .padding(.horizontal, MPSpacing.screenH)
-                        .padding(.bottom, model.controlsVisible ? MP.S.x10 + MP.S.x6 : MPSpacing.xxl)
+                        .padding(.bottom, model.controlsVisible ? ReaderPageLayout.bottomChromeClearance(accessibility: typeSize.isAccessibilitySize, compactHeight: verticalClass == .compact) : MPSpacing.xxl)
                 }
                 .transition(reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity))
                 .zIndex(2)
@@ -182,9 +183,11 @@ struct StoryReaderView: View {
         }
         .sheet(isPresented: $showReaderSettings, onDismiss: scheduleAutoHide) {
             ReaderSettingsSheet(hasFamilyVoice: MPNarration.isAvailable(for: story.id),
+                                textLayout: model.story.textLayout,
                                 onClose: { showReaderSettings = false })
                 .environmentObject(app)
                 .environmentObject(settings)
+                .preferredColorScheme(theme.isDark ? .dark : .light)
         }
         // VoiceOver kaydırma jestini tüketir; sayfa çevirme yine de çalışmalı.
         .accessibilityScrollAction { edge in
@@ -238,17 +241,9 @@ struct StoryReaderView: View {
             }
         )
         .environmentObject(app)
-        // Tavan AX3.
-        //
-        // Sistemin yazı boyutu `MP.ReadSize`'ın üstüne çarpan olarak biniyor,
-        // yani en büyük okuma boyutu AX5 ile birleştiğinde sayfada satır başına
-        // dört kelime kalıyor ve sayfa sayfa olmaktan çıkıyor. Metin
-        // kaybolmuyor — sütun kaydırılabiliyor — ama kitap görüntüsü bitiyor.
-        // AX3'te hem ölçek gerçekten büyük hem sayfa hâlâ sayfa.
-        //
-        // Ortam değerleri `UIHostingController`'a kendiliğinden geçmediği için
-        // okuyucunun gövdesine değil, yaprağın kendisine uygulanıyor.
-        .dynamicTypeSize(...DynamicTypeSize.accessibility3)
+        // UIKit page hosts receive the reader's current accessibility environment.
+        .environment(\.dynamicTypeSize, typeSize)
+        .environment(\.verticalSizeClass, verticalClass)
     }
 
     // MARK: - Yaşam döngüsü
@@ -507,10 +502,12 @@ struct StoryReaderView: View {
     }
 
     /// Sayfayı sesli okur; kayıt ailenin sesiyse rozet için not edilir.
+    /// Ailenin sesi yoksa masalın stüdyo seslendirmesi, o da yoksa cihazın anlatıcısı.
     private func speakPage(_ text: String) {
-        let recording = familyRecording
-        speech.speak(text, recording: recording)
-        if recording != nil { heardFamilyVoice = true }
+        let family = familyRecording
+        let studio = family == nil ? model.currentPage.flatMap { MPNarration.audio(story.id, page: $0.index) } : nil
+        speech.speak(text, recording: family ?? studio)
+        if family != nil { heardFamilyVoice = true }
     }
 
     private func markWordCardOpened() {
@@ -527,7 +524,7 @@ struct StoryReaderView: View {
 
     /// Kart ve düğme, kontroller görünürken alt çubuğun üstünde durur.
     private var talkBottomInset: CGFloat {
-        model.controlsVisible ? MP.S.x10 + MP.S.x6 : MPSpacing.xxl
+        model.controlsVisible ? ReaderPageLayout.bottomChromeClearance(accessibility: typeSize.isAccessibilitySize, compactHeight: verticalClass == .compact) : MPSpacing.xxl
     }
 
     private func openTalk() {

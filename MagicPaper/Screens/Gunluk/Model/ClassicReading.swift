@@ -15,8 +15,14 @@ enum ClassicReading {
         childName: String,
         savedPage: Int?
     ) -> Story {
-        let pages = tale.text(narration).pages.map {
-            StoryPage(title: "", text: $0, imagePrompt: "")
+        let text = tale.text(narration)
+        let pages = text.pages.enumerated().map { index, content in
+            var page = StoryPage(title: "", text: content, imagePrompt: "")
+            if let illustration = text.illustration(at: index) {
+                page.imageFileName = "asset:" + illustration.asset
+                page.art = StoryPageArt(role: "scene", altText: illustration.altText, sourceID: tale.slug)
+            }
+            return page
         }
         var story = Story(
             id: tale.id, title: tale.title, childName: childName, childProfileID: childID,

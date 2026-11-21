@@ -4,7 +4,8 @@
   "locale": "tr",
   "ageBand": "7-8",
   "lengthClasses": {
-    "solo": "18-38 words — sayfa 6 hiç paylaşılmaz (H2)"
+    "solo": "18-38 words — sayfa 6 hiç paylaşılmaz (H2)",
+    "paired": "10-16 words — sayfa 6, companion_offers ile paylaşılır (H2b)"
   },
   "editorialNote": "H2 (18 Kasım 2026): öğrenme modu. Taslak, Batuhan okuyacak.",
   "variants": [
@@ -19,6 +20,8 @@
     },
     {
       "id": "a7_pw_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} günleri saydı. Bir, iki, üç... Dördüncü gün bir şey fark etti: {{companion.name}} dün olduğundan biraz daha iyi görünüyordu. Beklemek işe yarıyordu, yavaş yavaş da olsa.",
       "requiredSlots": [
         "child.name",
@@ -38,6 +41,8 @@
     },
     {
       "id": "a7_pw_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Beklemek de bir işti, belki en zoru. {{child.name}} her sabah geldi, baktı ve sessizce oturdu. Bir sabah {{companion.name}} başını kaldırdı ve ona baktı. İşte, zamanı geliyordu.",
       "requiredSlots": [
         "child.name",
@@ -45,6 +50,44 @@
       ],
       "move": "h2_a7_pw_04",
       "lengthClass": "solo"
+    },
+    {
+      "id": "a7_pw_j_01",
+      "text": "{{child.name}} sabırla bekledi; arada bir baktı, ama bir kez bile kurcalamadı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2b_a7_pw_j_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "a7_pw_j_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "İkisi yan yana oturup beklediler; {{companion.name}} bu arada işine devam etti.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a7_pw_j_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "a7_pw_j_03",
+      "text": "Zaman yavaş geçti, ama {{child.name}} bu kez beklemenin de bir iş olduğunu biliyordu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "h2b_a7_pw_j_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "a7_pw_j_tp_01",
+      "text": "{{child.name}} elini kucağına koydu ve bekledi; iş, kendi zamanında bitecekti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_a7_pw_j_tp_01",
+      "lengthClass": "paired"
     }
   ]
 }

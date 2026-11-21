@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "sap_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yavaşça yaklaştı. Acele etmedi, onu ürkütmek istemiyordu. {{companion.name}} hemen arkasından geldi, o da çok sessizdi. İkisi yan yana durdu.",
       "words": ["w56_urkutmek"],
       "requiredSlots": [
@@ -31,6 +33,8 @@
     },
     {
       "id": "sap_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} birkaç adım atıp çömeldi. {{companion.name}} hemen yanına oturdu. İkisi bir süre hiç konuşmadan baktı. Her şey çok sessizdi.",
       "words": ["w56_comelmek"],
       "requiredSlots": [
@@ -42,6 +46,8 @@
     },
     {
       "id": "sap_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Yavaş olalım,\" dedi {{companion.name}}. {{child.name}} başını salladı ve adım adım yaklaştı. Artık çok yakınındaydı. Bir süre hiç kıpırdamadan bekledi.",
       "requiredSlots": [
         "companion.name",

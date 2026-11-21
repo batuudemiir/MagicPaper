@@ -20,6 +20,8 @@
     },
     {
       "id": "bx7_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} sesleri {{companion.name}}'e tek tek tanıttı: bu, saatin sabırlı tik takı; bu, perdeyle oynayan rüzgâr; bu da mutfakta uyuyan buzdolabının uzun vınlaması. Adı konan her ses biraz daha küçüldü.",
       "requiredSlots": [
         "child.name",
@@ -35,6 +37,15 @@
         "child.name"
       ],
       "move": "h3_bx7_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "bx7_tp_01",
+      "text": "{{child.name}} başını yastığa koydu ve kulak verdi. Uzakta bir kapı usulca kapandı, musluktan tek bir damla düştü, saat tik tak etti. Her sesin bir adı vardı ve hepsi tanıdıktı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_bx7_tp_01",
       "lengthClass": "solo"
     }
   ]

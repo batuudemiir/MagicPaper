@@ -36,6 +36,11 @@ enum ClassicShelf: String, Codable, CaseIterable, Identifiable {
         }
     }
 
+    /// Masallar'daki bölüm başlığında yazının yerine duran logo; VoiceOver `title`'ı okur.
+    var titleArt: Image? {
+        self == .orijinal ? Image("Brand/originalsLogo") : nil
+    }
+
     /// Günlük'teki kısa çip adı.
     var chipTitle: String {
         switch self {
@@ -63,8 +68,8 @@ enum ClassicShelf: String, Codable, CaseIterable, Identifiable {
 
     /// Bu raflar kataloğa yazılmaz; masalın başka alanlarından çıkarılır.
     /// "Seriler" seri olmaktan, "5 dakikalık" süreden, "MagicPaper Original"
-    /// uzaktan akıştan. "Sesli" için henüz seslendirilmiş masal yok, bu
-    /// yüzden hep boş ve gizli.
+    /// uzaktan akıştan. "Sesli" uygulamayla gelen stüdyo seslendirmesinden
+    /// (`MPStudioNarration`); seslendirilmiş masal yoksa boş ve gizli.
     var isDerived: Bool { self == .seriler || self == .besDakika || self == .sesli || self == .orijinal }
 }
 
@@ -88,6 +93,17 @@ enum ClassicNarration: String, Codable, CaseIterable {
 /// Bir anlatımın sayfaları. Her öğe bir sayfa; paragraflar boş satırla ayrılır.
 struct ClassicText: Codable, Equatable {
     var pages: [String]
+    /// Eski kataloglarda yoktur. Sıra ve uzunluk metin sayfalarıyla birebir eşleşir.
+    var illustrations: [ClassicPageIllustration]? = nil
+
+    func illustration(at index: Int) -> ClassicPageIllustration? {
+        guard let illustrations, illustrations.count == pages.count,
+              illustrations.indices.contains(index) else { return nil }
+        let illustration = illustrations[index]
+        guard !illustration.asset.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+              !illustration.altText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
+        return illustration
+    }
 }
 
 struct ClassicTale: Codable, Identifiable, Equatable {

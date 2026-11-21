@@ -45,6 +45,8 @@
     },
     {
       "id": "a9_ob_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} bir an durdu ve itiraf etti: hatırladığı şey, sandığı kadar net değildi. Belki burada, belki biraz ötedeydi. {{child.name}} başını salladı. Bulanık bir hatıra, hiç hatıra olmamasından iyiydi, ama işi epey zorlaştırıyordu.",
       "requiredSlots": [
         "companion.name",
@@ -119,6 +121,13 @@
       "settingTraits": [
         "showsTraces"
       ]
+    },
+    {
+      "id": "a9_ob_tp_01",
+      "text": "Ama iş göründüğü kadar kolay değildi. Bir yerde mutlaka takılacaklardı; o yeri geçmekse sabır ve birkaç deneme isteyecekti.",
+      "requiredSlots": [],
+      "lengthClass": "paired",
+      "move": "tp_a9_ob_tp_01"
     }
   ]
 }

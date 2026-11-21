@@ -6,8 +6,8 @@ import StoryEngine
 //
 // Aynı iki soru, aynı sıra: "Nasıl bir masal olsun?" ve "Kim gelsin?". Fark
 // seçimin biçiminde: okuyamayan çocuk büyük resme dokunur ve dokunuş adımı
-// geçer. Alt satır, konu çipi, "Masalı yaz" düğmesi yok; konuyu ve seçilmeyen
-// her şeyi MagicPaper seçer. Kurallar (`StoryCreationSteps`, aday süzme,
+// geçer. Alt satır ve "Masalı yaz" düğmesi yok; konu kendi adımında
+// (`TopicStep`, iki kademede ortak), seçilmeyen her şeyi MagicPaper seçer. Kurallar (`StoryCreationSteps`, aday süzme,
 // Masal ailem ilişkileri) okuyan çocuğun adımlarıyla ortak.
 
 /// Büyük resimli seçim karosu: simge, altında tek kısa ad.
@@ -94,6 +94,8 @@ struct LittleModeStep: View {
 struct LittleCompanionStep: View {
     var mode: StoryMode? = nil
     var age: Int? = nil
+    /// Konu adımında seçilen konu (19 Kasım 2026); `nil` ise MagicPaper seçer.
+    var topicID: String? = nil
     var source: any StoryChoiceSource = StoryChoiceSources.current
     var familyCharacters: [FamilyCharacter] = []
     var availableRelations: Set<FamilyRelationKind> = []
@@ -106,9 +108,9 @@ struct LittleCompanionStep: View {
     private static let shownCompanions = 3
     private static let shownFamily = 2
 
-    /// Konu seçilmediği için adaylar yalnızca moda ve yaşa göre süzülür.
+    /// Adaylar moda, yaşa ve (seçildiyse) konuya göre süzülür.
     private var candidates: [CompanionChoice] {
-        Array(source.companionChoices(forIdeaID: nil, mode: mode, age: age, topicID: nil, family: nil)
+        Array(source.companionChoices(forIdeaID: nil, mode: mode, age: age, topicID: topicID, family: nil)
             .prefix(Self.shownCompanions))
     }
 

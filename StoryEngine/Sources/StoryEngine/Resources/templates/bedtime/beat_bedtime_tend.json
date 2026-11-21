@@ -12,6 +12,8 @@
   "variants": [
     {
       "id": "bt_td_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} lambayı kıstı, perdeyi yarıya çekti. Tam her şey sustu ki küçük bir \"hık!\" duyuldu. {{companion.name}} hıçkırıyordu! İkisi de kıkır kıkır güldü.",
       "requiredSlots": [
         "child.name",
@@ -25,6 +27,8 @@
     },
     {
       "id": "bt_td_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} en yumuşak sesiyle bir ninni söyledi. Ninninin ortasında kendisi kocaman esneyiverdi. {{companion.name}} buna öyle güldü ki, ikisinin de gözleri yaşardı.",
       "requiredSlots": [
         "child.name",
@@ -38,6 +42,8 @@
     },
     {
       "id": "bt_td_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} pencerenin kenarına yumuşak bir yastık koydu. {{companion.name}} yastığa yerleşti ve hapşırdı: hapşu! Yastıktan küçük bir tüy havalandı. İkisi de gülmemek için ağızlarını kapattı.",
       "requiredSlots": [
         "child.name",
@@ -54,6 +60,8 @@
     },
     {
       "id": "bt_td_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} pencereyi biraz araladı ve tatlı bir şarkı mırıldandı. Şarkının sonunda {{companion.name}} küçük bir mırıltıyla eşlik etti. Bu hiç beklenmedik, çok tatlı bir sürprizdi.",
       "requiredSlots": [
         "child.name",
@@ -67,6 +75,8 @@
     },
     {
       "id": "bt5l_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Sonra {{companion.name}}'in yanına uzandı ve sesleri bir kez daha, daha yavaş saydı.",
       "requiredSlots": [
         "companion.name"
@@ -79,6 +89,8 @@
     },
     {
       "id": "bt5l_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yorganın ucunu {{companion.name}}'in üstüne örttü. \"Hepsi bizim sesimiz,\" dedi.",
       "requiredSlots": [
         "child.name",
@@ -92,12 +104,29 @@
     },
     {
       "id": "bt5l_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Artık hepsini tanıyorsun,\" dedi {{child.name}} ve {{companion.name}}'i yumuşacık bir elle usulca sıvazladı.",
       "requiredSlots": [
         "child.name",
         "companion.name"
       ],
       "move": "h3_bt5l_03",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "examine"
+      ]
+    },
+    {
+      "id": "bt5l_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{child.name}} {{companion.name}}'e sokuldu ve tanıdık sesleri bir kez daha, fısıltıyla saydı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_bt5l_tp_01",
       "lengthClass": "paired",
       "afterBeat": [
         "examine"

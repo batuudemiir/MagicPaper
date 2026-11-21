@@ -114,6 +114,8 @@
     },
     {
       "id": "a9_fb_10",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bir fikrim var,\" dedi {{child.name}}, \"ama henüz yarım.\" {{companion.name}} merakla baktı. {{child.name}} fikri yüksek sesle söyledi: belki ipucu ileride değil, geride bir yerdeydi. Söyleyince fikir biraz büyüdü. Yine de emin olmak için bir şeye daha bakması gerekiyordu.",
       "requiredSlots": [
         "child.name",
@@ -148,6 +150,8 @@
     },
     {
       "id": "a9_fb_13",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} bir şey demedi, {{child.name}} bir süre sustu. Sonra yavaşça başını kaldırdı. Aklına bir ihtimal gelmişti: belki iz kaybolmamıştı, yalnızca beklemedikleri bir yere sapmıştı. Doğru muydu, bilmiyordu. Ama denemeye değecek kadar ilginçti.",
       "requiredSlots": [
         "companion.name",
@@ -179,6 +183,46 @@
       "lengthClass": "solo",
       "move": "age9_a9_fb_15",
       "register": "tentative"
+    },
+    {
+      "id": "a9_fb_h5_c_01",
+      "text": "{{child.name}} bir kez daha baktı ve içinde hiçbir soru kalmadı. \"Bunu biri bilerek bıraktı,\" dedi kendi kendine. \"Hem de dün gece.\" Bu düşünce o kadar sağlamdı ki üstüne bir duvar kurulabilirdi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_age9_fb_certain",
+      "register": "certain"
+    },
+    {
+      "id": "a9_fb_h5_c_02",
+      "text": "{{child.name}} parmaklarıyla saydı: bir, iki, üç işaret. Hepsi aynı yöne bakıyordu. \"Biri buradan geçmiş ve bir şey taşıyormuş,\" diye karar verdi. Bunu söylerken sesi, okulda doğru cevabı bilen birinin sesi gibiydi.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_age9_fb_certain",
+      "register": "certain"
+    },
+    {
+      "id": "a9_fb_h5_c_03",
+      "text": "Bir süre kimseye bir şey söylemedi {{child.name}}, çünkü söylemesine gerek yoktu. Ne olduğunu biliyordu: burası bir saklanma yeriydi ve sahibi akşam dönecekti. Bunu bir kitaba yazsa altına imzasını atardı, hem de kocaman harflerle.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_age9_fb_certain",
+      "register": "certain"
+    },
+    {
+      "id": "a9_fb_h5_c_04",
+      "text": "{{child.name}} doğruldu ve elindeki tozu silkeledi. Cevap ortadaydı, en azından ona öyle geliyordu: rüzgâr değildi bu, birinin işiydi. İçinde \"ya değilse\" diyen bir ses yoktu; olsa bile o gün susmayı seçmişti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_age9_fb_certain",
+      "register": "certain"
     }
   ]
 }

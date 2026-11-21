@@ -72,7 +72,10 @@ final class UsageLearningTests: XCTestCase {
         let story = try OfflineStoryComposer().compose(catalog: catalog(), intent: intent)
         // 13 Kasım 2026: 9-10 havuza girince referans kitap değişti.
         // 14 Kasım 2026: 5-6 havuzu büyüyünce üç satırı değişti.
-        XCTAssertEqual(story.fingerprint, "71ed541c151ded40")
+        // 20 Kasım 2026: yeni dünyaların mekânları referans kitabı değiştirdi
+        // (yaşsız niyet bütün bantları gezer; geçmiş verilmez, satır penceresi
+        // etkisiz).
+        XCTAssertEqual(story.fingerprint, "3d18e46007132ed4")
     }
 
     func testANeutralUsageArgumentKeepsEveryWeight() {
@@ -366,7 +369,7 @@ final class UsageLearningTests: XCTestCase {
             catalog, blueprints: catalog.blueprints.map { $0.id == target.id ? heavier : $0 })
 
         func leads(_ catalog: ContentCatalog) throws -> Int {
-            try (0..<200).filter { index in
+            try (0..<600).filter { index in  // 20 Kasım 2026: yeni dünyalarla 200 seed 10-10 berabere kaldı
                 try selector.ranked(
                     catalog: catalog,
                     intent: OfflineStoryIntent(childName: "Can", seed: "agg-\(index)", ageBand: b56)

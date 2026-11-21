@@ -18,6 +18,8 @@
   "variants": [
     {
       "id": "a9_mc_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Yakından kibar bir öksürük geldi. {{companion.name}} adlı {{companion.type}}, burayı her gün dolaşan biriydi. \"Ezberimde olmayan bir şey,\" dedi. \"Bunu hiç sevmem, ama merak ederim.\"",
       "requiredSlots": [
         "companion.name",
@@ -31,6 +33,8 @@
     },
     {
       "id": "a9_mc_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "\"Bu da nereden çıktı?\" dedi bir ses, {{child.name}}'in aklından geçeni aynen söyleyerek. Ses, {{companion.name}} adında kendinden emin bir {{companion.type}}'a aitti.",
       "requiredSlots": [
         "child.name",
@@ -45,6 +49,8 @@
     },
     {
       "id": "a9_mc_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} oraya {{child.name}}'den önce gelmişti ve bunu belli etmekten hoşlanıyordu. \"Ben buranın müdavimiyim,\" dedi bu {{companion.type}}, \"ama bunu ilk kez görüyorum.\"",
       "requiredSlots": [
         "companion.name",
@@ -59,6 +65,8 @@
     },
     {
       "id": "a9_mc_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Bir {{companion.type}} yan tarafta durmuş, başını iki yana eğerek aynı şeye bakıyordu. \"Ben {{companion.name}},\" dedi. \"Her gün buradan geçerim; bugüne kadar hep aynı şeyi görürdüm.\"",
       "requiredSlots": [
         "companion.type",
@@ -72,6 +80,8 @@
     },
     {
       "id": "a9_mc_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Köşeden biri önce yarısıyla göründü. Öbür yarısı gelmekte epey nazlandı. Sonunda {{companion.name}} adlı {{companion.type}} tamamıyla ortaya çıktı ve özür diler gibi baktı.",
       "requiredSlots": [
         "companion.name",
@@ -85,6 +95,8 @@
     },
     {
       "id": "a9_mc_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "\"Ben bir şey demedim,\" dedi biri, {{child.name}} daha bir şey sormadan. Sesin sahibi {{companion.name}} adlı çekingen bir {{companion.type}}; bir süredir bu tuhaflığı uzaktan izliyormuş.",
       "requiredSlots": [
         "child.name",
@@ -99,6 +111,8 @@
     },
     {
       "id": "a9_mc_07",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} selam verince {{companion.name}} adlı {{companion.type}} öyle irkildi ki ikisi de güldü. \"Kusura bakma,\" dedi {{companion.name}}. \"Biri benimle konuşunca hep böyle olurum, sonra geçer.\"",
       "requiredSlots": [
         "child.name",
@@ -113,6 +127,8 @@
     },
     {
       "id": "a9_mc_08",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Yakında biri, sorusunu sormaya cesaret edemeyen birinin sessizliğiyle bekliyordu. {{child.name}} önce davrandı: \"Merhaba.\" {{companion.name}} adlı {{companion.type}} rahatlayarak karşılık verdi; ilk kelime hep en zoruydu.",
       "requiredSlots": [
         "child.name",
@@ -127,6 +143,8 @@
     },
     {
       "id": "a9_mc_09",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} adlı {{companion.type}} hiç acele etmeyen biriydi; acele edenleri de bir bakışta yavaşlatırdı. \"Merak güzel şey,\" dedi. \"Ama oturarak da merak edilir.\"",
       "requiredSlots": [
         "companion.name",
@@ -140,6 +158,8 @@
     },
     {
       "id": "a9_mc_10",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Yanına biri sessizce oturdu: {{companion.name}}, ağırbaşlı bir {{companion.type}}. Bir süre ikisi de konuşmadan baktı. {{child.name}} fark etti ki sessizlikte düşünceleri daha düzgün sıraya giriyordu.",
       "requiredSlots": [
         "companion.name",
@@ -154,6 +174,8 @@
     },
     {
       "id": "a9_mc_11",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "\"Telaşlanma, tuhaf şeyler beklemeyi bilir,\" dedi {{companion.name}} adlı yaşlı bir {{companion.type}}. \"Ben burada çok tuhaflık gördüm. Hepsi, sakin bakana sonunda kendini anlattı.\"",
       "requiredSlots": [
         "companion.name",
@@ -167,6 +189,8 @@
     },
     {
       "id": "a9_mc_12",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}}'in yanında usulca bir {{companion.type}} belirdi. Adının {{companion.name}} olduğunu söyledi; sesi ılık bir battaniye gibiydi. {{child.name}}, farkına varmadan omuzlarını gevşetti.",
       "requiredSlots": [
         "child.name",
@@ -181,6 +205,8 @@
     },
     {
       "id": "a9_mc_13",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Biri yere eğilmiş, bir şeyi arıyor ve kendi kendine söyleniyordu: \"Buradaydı, buradaydı...\" {{child.name}} yaklaşınca {{companion.name}} adlı {{companion.type}} başını kaldırdı.",
       "requiredSlots": [
         "child.name",
@@ -195,6 +221,8 @@
     },
     {
       "id": "a9_mc_14",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}}'in dikkatini bir {{companion.type}} çekti: {{companion.name}}, aynı köşeye üçüncü kez bakıyordu. Orada da bulamayınca iç çekti ve dördüncü bakışa hazırlandı.",
       "requiredSlots": [
         "child.name",
@@ -209,6 +237,8 @@
     },
     {
       "id": "a9_mc_15",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "\"Kayıp bir şeye benzer bir şey gördün mü?\" diye sordu {{companion.name}} adlı {{companion.type}}. Sonra sorusunun ne kadar belirsiz olduğunu fark edip kendine güldü.",
       "requiredSlots": [
         "companion.name",
@@ -222,6 +252,8 @@
     },
     {
       "id": "a9_mc_16",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}}, bir {{companion.type}}, olduğu yerde oturmuş, etrafa hesap yapar gibi bakıyordu. Bir şeyi eksikti ve bu eksik, yüzünü epey ciddileştirmişti.",
       "requiredSlots": [
         "companion.name",
@@ -235,6 +267,8 @@
     },
     {
       "id": "a9_mc_h2_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Bir kenarda {{companion.name}} adında küçük bir {{companion.type}} oturuyordu. Yorgundu, bu belliydi; ama {{child.name}}'i görünce kaçmadı, yalnızca başını biraz eğdi. {{child.name}} ona yaklaşmadan önce durdu ve bekledi, çünkü güvenin acele ile kazanılmadığını bir yerden biliyordu.",
       "requiredSlots": [
         "child.name",
@@ -249,6 +283,8 @@
     },
     {
       "id": "a9_mc_h2_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} önce bir kıpırtı gördü, sonra kıpırtının sahibini: {{companion.name}} adında minicik bir {{companion.type}}. Kendi başının çaresine bakmaya çalışıyordu ama pek başaramıyordu. {{child.name}} yanına çömeldi ve sesini alçaltarak merhaba dedi; {{companion.name}} biraz düşündü, sonra o da merhaba dedi.",
       "requiredSlots": [
         "child.name",
@@ -263,6 +299,8 @@
     },
     {
       "id": "a9_mc_h2_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Orada biri vardı: {{companion.name}}, küçük ve biraz üşümüş bir {{companion.type}}. Etrafına sessizce bakıyor, sanki birinin gelmesini bekliyordu. {{child.name}} onun gözlerinde bir soru gördü. Cevabı henüz bilmiyordu, ama soruyu duymazdan gelmeyeceğini biliyordu.",
       "requiredSlots": [
         "child.name",
@@ -273,6 +311,98 @@
       "lengthClass": "solo",
       "castRoles": [
         "needsCare"
+      ]
+    },
+    {
+      "id": "a9_mc_j_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
+      "text": "{{child.name}} bu sorunun cevabını kendi başına bulamayacağını anladı ve kimin bileceğini düşündü. Aklına ilk {{companion.name}} geldi. Onun çalıştığı yere gitti, kapıda durup selam verdi. {{companion.name}} elindeki işi bir kenara bıraktı ve gülümseyerek, acele etmeden onu dinledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_mc_j_01",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a9_mc_j_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
+      "text": "{{companion.name}}'i köyde herkes tanırdı; işini iyi yapan, soruları geri çevirmeyen biri olarak. {{child.name}} bulduğu şeyi ona götürdü ve ne gördüğünü baştan sona anlattı. {{companion.name}} eğilip dikkatle baktı, sonra kısa bir süre sessizce düşündü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_mc_j_02",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a9_mc_j_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
+      "text": "{{child.name}} {{companion.name}}'in çalıştığı yere uğradı. İçerisi tanıdık seslerle doluydu: bir şeylerin yerine konduğu, bir işin sırayla yapıldığı sesler. {{companion.name}} onu görünce başıyla selam verdi; {{child.name}} işin bitmesini sabırla, sessizce bekledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a9_mc_j_03",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "a9_mc_h2_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
+      "text": "Yolun kıyısında {{companion.name}} adında küçük bir {{companion.type}} duruyordu. Bir yeri ağrıyor gibiydi; arada bir kıpırdıyor, sonra yine hareketsiz kalıyordu. {{child.name}} acele etmedi. Önce biraz uzağa oturdu, sonra yumuşak bir sesle selam verdi ve {{companion.name}}'in kendisine bakmasını bekledi.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type",
+        "child.name"
+      ],
+      "move": "tp_a9_mc_h2_tp_01",
+      "lengthClass": "solo",
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "id": "a9_mc_j_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
+      "text": "{{child.name}} bu işi en iyi kimin bileceğini düşündü ve {{companion.name}}'e gitmeye karar verdi. Yanına vardığında {{companion.name}} işinin başındaydı; onu görünce elindekini bıraktı. {{child.name}} gördüğünü anlattı. {{companion.name}} sözünü hiç kesmeden dinledi, sonra başıyla devam etmesini işaret etti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_a9_mc_j_tp_01",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
       ]
     }
   ]

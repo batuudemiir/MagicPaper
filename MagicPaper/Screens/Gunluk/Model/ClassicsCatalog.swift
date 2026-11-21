@@ -86,7 +86,8 @@ struct ClassicsCatalog: Equatable {
         case .besDakika:
             onShelf = standaloneTales.filter { $0.minutes <= 5 }.map(ClassicItem.tale)
         case .sesli:
-            onShelf = []
+            // Stüdyo seslendirmesi uygulamayla gelen masallar (20 Kasım 2026).
+            onShelf = standaloneTales.filter { MPStudioNarration.exists($0.id) }.map(ClassicItem.tale)
         case .orijinal:
             // Uygulamayla gelen MagicPaper Original masalları (13 Kasım 2026); raf kaynaktan türer.
             onShelf = standaloneTales.filter { $0.origin == .orijinal }.map(ClassicItem.tale)
@@ -278,7 +279,7 @@ extension ClassicsCatalog {
             if tale.isEpisode {
                 if tale.episode == nil { flag(s, "bölüm numarası yok") }
                 if let sid = tale.seriesID, series(sid) == nil { flag(s, "serisi katalogda yok") }
-            } else if tale.shelves.isEmpty {
+            } else if tale.shelves.isEmpty && tale.origin != .orijinal {
                 flag(s, "hiçbir rafta değil")
             }
         }

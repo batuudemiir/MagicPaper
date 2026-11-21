@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "scm_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Hadi götürelim,\" dedi {{child.name}} hiç duraksamadan. {{companion.name}} sevinçle önden yürüdü. Yol kısaydı, ama dikkat istiyordu. {{child.name}} onu nazikçe tuttu.",
       "requiredSlots": [
         "child.name",
@@ -21,6 +23,8 @@
     },
     {
       "id": "scm_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} kararını verdi: onu yerine götürecekti. Ne kadar sürerse sürsün, yarıda bırakmayacaktı. {{companion.name}} hemen yanına geldi, o da yardım edecekti.",
       "requiredSlots": [
         "child.name",
@@ -31,6 +35,8 @@
     },
     {
       "id": "scm_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} derin bir nefes aldı ve ayağa kalktı. \"Tamam,\" dedi. \"Onu evine birlikte götürelim.\" {{companion.name}} sevinçle başını salladı, hazırdı.",
       "requiredSlots": [
         "child.name",
@@ -41,6 +47,8 @@
     },
     {
       "id": "scm_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Bir şeyin yerinde olmaması {{child.name}}'i rahatsız ediyordu. Onu yerine götürmeye karar verdi. {{companion.name}} yolu gösterecekti, çünkü burayı çok iyi biliyordu.",
       "requiredSlots": [
         "child.name",

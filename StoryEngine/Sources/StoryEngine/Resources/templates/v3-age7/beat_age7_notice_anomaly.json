@@ -10,6 +10,8 @@
   "variants": [
     {
       "id": "a7_na_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} o gün {{setting.name}}'a kitap okumak için gelmişti. Üç sayfa okudu, dördüncüde durdu. Dikkati kitaptan kaydı, çünkü {{discovery.name}} dün orada değildi. Bundan emindi.",
       "requiredSlots": [
         "child.name",
@@ -21,6 +23,8 @@
     },
     {
       "id": "a7_na_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "Her şeyi aklına not eden bir çocuktu {{child.name}}. {{setting.name}}'da hangi taşın nerede durduğunu bile bilirdi. Bu yüzden {{discovery.name}} onu hemen düşündürdü. Bu, listesinde yoktu.",
       "requiredSlots": [
         "child.name",
@@ -32,6 +36,8 @@
     },
     {
       "id": "a7_na_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} {{setting.name}}'da bir saattir sıkılıyordu. Sıkılmak bile sıkıcı gelmeye başlamıştı. Tam eve dönecekti ki {{discovery.name}} dikkatini çekti. Sıkıntısı bir anda uçup gitti.",
       "requiredSlots": [
         "child.name",
@@ -43,6 +49,8 @@
     },
     {
       "id": "a7_na_04",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{setting.name}} her zamanki kadar sessizdi. {{child.name}} ise her zamanki kadar meraklıydı. Bu yüzden {{discovery.name}} onun dikkatinden kaçmadı. Kimse fark etmemişti, ama o fark etti.",
       "requiredSlots": [
         "setting.name",
@@ -54,6 +62,8 @@
     },
     {
       "id": "a7_na_05",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} bir şeyi sormadan önce hep iki kez düşünürdü. Ama {{setting.name}}'da {{discovery.name}} ile karşılaşınca düşünmeyi unuttu. Olduğu yerde kalakaldı. Bu da neydi şimdi?",
       "requiredSlots": [
         "child.name",
@@ -65,6 +75,8 @@
     },
     {
       "id": "a7_na_06",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "Bir bilmece gibiydi. {{child.name}} {{setting.name}}'da her gün aynı yoldan geçerdi ve her şeyi ezbere bilirdi. Bugün ezberinde olmayan bir şey vardı: {{discovery.name}}.",
       "requiredSlots": [
         "child.name",
@@ -76,6 +88,8 @@
     },
     {
       "id": "a7_na_07",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} gözlerini kısıp baktı, sonra bir daha baktı. Gözleri ona oyun oynamıyordu. {{setting.name}}'da, yolun tam kenarında {{discovery.name}} duruyordu. Bunun bir açıklaması olmalıydı.",
       "requiredSlots": [
         "child.name",
@@ -90,6 +104,8 @@
     },
     {
       "id": "a7_na_08",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} {{setting.name}}'da yürürken kulağı bir şeye takıldı. Rüzgâr değildi, bundan emindi; rüzgârın sesini iyi tanırdı. Bu başka bir şeydi: {{discovery.name}}.",
       "requiredSlots": [
         "child.name",
@@ -104,6 +120,8 @@
     },
     {
       "id": "a7_na_09",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'a erkenden geldiler. {{family.name}} her zamanki gibi bin tane soru soruyordu. Sonra {{child.name}} durdu ve parmağını dudağına götürdü. Bir şey değişmişti.",
       "requiredSlots": [
         "child.name",
@@ -119,6 +137,8 @@
     },
     {
       "id": "a7_na_10",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "Kardeşi {{family.name}} önden koşturuyor, {{child.name}} arkadan yetişmeye çalışıyordu. Sonra yavaşladı. {{setting.name}}'da bir şey yerinde değildi ve {{family.name}} bunu hiç fark etmemişti.",
       "requiredSlots": [
         "family.name",
@@ -134,6 +154,8 @@
     },
     {
       "id": "a7_na_11",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da zıplama yarışı yapıyordu. Üçüncü zıplayıştan sonra {{child.name}} durdu ve dikkat kesildi. Yarış orada unutuldu, çünkü bir şey tuhaftı.",
       "requiredSlots": [
         "child.name",
@@ -149,6 +171,8 @@
     },
     {
       "id": "a7_na_12",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{child.name}}'in arkadaşı {{family.name}} o gün {{setting.name}}'a bir dürbünle gelmişti. Dürbünle her şeye bakıyordu, en yakındakine bile. Tuhaf olan şeyi ise dürbünsüz fark eden {{child.name}} oldu.",
       "requiredSlots": [
         "child.name",
@@ -164,6 +188,8 @@
     },
     {
       "id": "a7_na_13",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} çıkmadan önce {{family.possessive}} {{family.name}}'a durumu anlattı: \"Bugün keşif günü.\" {{family.name}} pek ilgilenmedi. Ama {{setting.name}}'da gerçekten keşfedilecek bir şey vardı.",
       "requiredSlots": [
         "child.name",
@@ -180,6 +206,8 @@
     },
     {
       "id": "a7_na_14",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{family.possessive}} {{family.name}} bütün sabah {{child.name}}'in peşinden ayrılmadı. {{setting.name}}'a varınca ikisi aynı anda durdu. Demek ki tuhaflığı hisseden yalnızca {{child.name}} değildi.",
       "requiredSlots": [
         "family.possessive",
@@ -196,6 +224,8 @@
     },
     {
       "id": "a7_na_15",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{child.name}}'in hayali arkadaşı {{family.name}} her şeyi bildiğini söylerdi. O da ona inanıyormuş gibi yapardı. O gün {{setting.name}}'da öyle bir şey vardı ki {{family.name}} bile şaşırdı.",
       "requiredSlots": [
         "child.name",
@@ -211,6 +241,8 @@
     },
     {
       "id": "a7_na_16",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} yolda hayali arkadaşı {{family.name}} ile tartışıyordu. Bulutlar mı daha hızlıydı, kaplumbağalar mı? Sonra ikisi birden sustu. {{setting.name}}'da bir şey tuhaftı.",
       "requiredSlots": [
         "child.name",
@@ -223,6 +255,295 @@
         "imaginary"
       ],
       "visualScene": "child arguing cheerfully with the air, then falling silent"
+    },
+    {
+      "id": "a7_na_h5_sib_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} kardeşi {{family.name}}'a {{setting.name}}'ı gezdiriyordu. {{family.name}} her şeyi soruyor, {{child.name}} her şeyi biliyordu. Ama bir noktada {{child.name}} sustu; orada bilmediği bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_sib_01",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "child guiding a younger sibling, then falling silent"
+    },
+    {
+      "id": "a7_na_h5_sib_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'da adım sayarak yürüyordu. Kırk ikinci adımda {{child.name}} durdu. {{family.name}} saymaya devam etti, ama {{child.name}} başka bir şeye bakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_sib_02",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two children counting steps, one stopping"
+    },
+    {
+      "id": "a7_na_h5_fr_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da gizli bir işaret dili uyduruyordu. Üçüncü işarette {{child.name}} elini indirdi. Az ilerideki bir şey, işaretlerden çok daha ilginçti.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_fr_01",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends making hand signs, one lowering a hand"
+    },
+    {
+      "id": "a7_na_h5_fr_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}}, arkadaşı {{family.name}} ile {{setting.name}}'ın haritasını çiziyordu. Haritada her şey vardı, bir şey hariç. {{child.name}} o şeyi şimdi, tam karşısında görüyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_fr_02",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two friends drawing a map, one looking up"
+    },
+    {
+      "id": "a7_na_h5_an_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} {{family.possessive}} {{family.name}} ile {{setting.name}}'da yavaşça yürüyordu. {{family.name}} bir yerde durdu ve oradan ayrılmak istemedi. {{child.name}} eğilip baktı. Dün orada olmayan bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_an_01",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child and pet walking, the pet refusing to move on"
+    },
+    {
+      "id": "a7_na_h5_an_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} sabah {{family.possessive}} {{family.name}}'a kahvaltısını verdi ve {{setting.name}}'a çıktı. Her şey her günkü gibi görünüyordu. Ama birkaç adım sonra {{child.name}} yavaşladı. Bir şey eksikti, ya da fazlaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_an_02",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "child feeding a pet, then walking out and slowing down"
+    },
+    {
+      "id": "a7_na_h5_im_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile {{setting.name}}'da bir şarkı uyduruyordu. Şarkının ikinci kıtası yarım kaldı. {{child.name}} gördüğü şeyi önce {{family.name}}'a gösterdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_im_01",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child singing, then pointing, a faint soft shape beside them"
+    },
+    {
+      "id": "a7_na_h5_im_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} yolda hayali arkadaşı {{family.name}} ile bir bilmece çözmeye çalışıyordu. Cevap tam dilinin ucundaydı ki {{setting.name}}'a vardılar. Orada bilmeceden daha zor bir soru duruyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_a7_na_im_02",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "child thinking hard, a faint soft shape beside them"
+    },
+    {
+      "id": "w_ct_na78_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} şehirde kaybolmamak için bir yöntem bulmuştu: her köşede bir şeyi aklına yazıyordu. Kırmızı kapı, simitçi, mavi tabela. Yöntem {{setting.name}}'a kadar harika işledi. Orada listeye hiç uymayan bir şey gördü: {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_landmark_list_breaks",
+      "settingTags": [
+        "city"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_ct_na78_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "Şehirde herkes bir yere yetişiyordu: insanlar, tramvaylar, güvercinler bile. {{child.name}} ise bir bankta oturmuş, hepsini izliyordu. İzlemek de bir iştir, diye düşündü. Tam o sırada {{discovery.name}} dikkatini çekti. Demek ki izlenecek daha çok şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_watching_the_city",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_na78_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} bu şehre geleli daha bir gün olmuştu. Yine de {{setting.name}}'ı ezberlemeye çoktan başlamıştı. Oysa o sabah ezberde olmayan bir şey vardı. {{discovery.name}}, sanki onu bekliyordu.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_memorising_a_new_place",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_cn_na78_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} bu ülkenin dilinden yalnızca üç sözcük biliyordu: merhaba, teşekkürler ve bir de ekmek. Şaşırtıcı biçimde bunlar epey işe yarıyordu. {{setting.name}}'da dolaşırken dördüncü bir sözcüğe ihtiyaç duydu, çünkü {{discovery.name}} dikkatini çekmişti.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_three_words_enough",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_na78_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "Bu ülkede akşam yemeği çok geç yeniyordu, neredeyse yatma saatinde. {{child.name}} buna alışmaya çalışırken {{setting.name}}'da bir şey fark etti: {{discovery.name}}. Demek ki burada saatlerden daha ilginç şeyler de vardı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_late_dinner_country",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_na78_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} uzak ülkeye gelmeden önce her şeyin çok farklı olacağını düşünmüştü. Oysa çocuklar burada da top oynuyor, kediler burada da güneşleniyordu. Farklı olan küçük şeylerdi. Mesela {{setting.name}}'da gözüne çarpan {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_same_but_small_differences",
+      "settingTags": [
+        "country"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_hs_na78_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} tarihi biraz sıkıcı bulurdu: tarihler, adlar, bir sürü kral. Ama {{setting.name}}'da öyle değildi. Burada tarih, dokunulabilen taşlardan ve gerçek insanların izlerinden oluşuyordu. Tam bunu düşünürken {{discovery.name}} dikkatini çekti.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_history_not_boring_here",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_na78_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "Rehber güzel bir şey söylemişti: buradaki her şeyin bir zamanlar bir sahibi vardı. {{child.name}} bunu çok sevdi. Demek ki her eşya, aslında bir insanın hikâyesiydi. Tam o sırada {{discovery.name}} gözüne çarptı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_everything_had_an_owner",
+      "settingTags": [
+        "history"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_hs_na78_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} {{setting.name}}'da bir oyun uydurmuştu: gözlerini kapayıp yüzlerce yıl önceyi hayal ediyordu. Kalabalığı, sesleri, giysileri. Gözlerini açtığında her şey yine bugündü, bir şey dışında: {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_imagining_long_ago",
+      "settingTags": [
+        "history"
+      ]
     }
   ]
 }

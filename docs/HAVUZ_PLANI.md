@@ -206,9 +206,37 @@ Beklenen kapsam (Python yaklaşığı): her bant × mod hücresinde seri devamı
 
 Açık: 3-4 macera ve öğrenme bölümlerinin son sayfası var olan `age3` `warm_close` satırlarını da çekebilir; bunlardan biri ("… Uyudu.") uyku diliyle bitiyor. Ayırmak var olan kayda kapı eklemeyi gerektirir, yapılmadı. 3-4'te s.4 (`persist`, `ask_for_help`) yalnızca `paired` satır buluyor; sayfa kısa kalır.
 
-### H5
+### H2b uygulama planı (19 Kasım 2026, "tümünü yap")
 
-Cümle tekrarı ölçümü ve ince satır havuzlarını kalınlaştırma. Ayrıntı başladığında buraya yazılır.
+- 7-8 ve 9-10'a üçer `jobs` blueprint'i, üç ayrı mekanizma (`editorialName` " - " sonrası), `learning` modunda, gergin sayfa yok. Mekân Minik Köy ve Pazar Yeri; yol arkadaşı fırıncı, postacı, öğretmen.
+- Satırlar o bandın v3-age7 / v3-age9 dosyalarına, sona ekleme; insan yol arkadaşı kapısıyla (`natureRequire: person`, gerekirse `occupationRequire`).
+- Meslek olguları 7-10'a açılır (NASA olgularında olduğu gibi `ageRange` genişletmesi, metin değişmez). Bu, plandaki "ayrı onay" maddesidir; "tümünü yap" ile açıldı, Batuhan okuyunca geri alınabilir.
+- Hedef: 7-8 ve 9-10'da en korumacı ayarda Meslekler konusu görünür. `CoverageReportTests` bunu kilitler.
+
+**Uygulanan (19 Kasım 2026).** Altı `jobs` blueprint'i (`learning`, `nature: person`, gergin sayfa yok): 7-8 ve 9-10'a üçer, mekanizmalar `seekingKnowledge` (çocuk işini bilene sorar, `ask_for_help`), `patientObservation` (iş zamanını bekler, `companion_offers` + `patient_wait`), `helpingAtWork` (bulunan bir şeyin sahibini birlikte ararlar, `appeal`, `cooperative_effort`). 67 satır (`move: "h2b_…"`): 7-8 ve 9-10'a birer yeni `ask_for_help` dosyası, var olan dosyalara sona ekleme. Zanaat satırları yalnızca `ask_for_help`'te ve `occupationRequire` + `natureRequire: person` ile mesleğine bağlı, her meslekte dörder (`JobsTopicTests` kuralı); öbür sayfalardaki insan satırları mesleksiz (`natureRequire: person`); insanla tanışma satırları `natureRequire: person` ve `solo` sınıfında, böylece eski `paired` tanışma satırları (yol arkadaşının çocuğa yaklaştığı) insana gitmiyor. Üç meslek olgusu `bands` 5-10'a açıldı. Python yaklaşığı: 7-8 ve 9-10'da Meslekler görünür; iki meslek şekli bilim keşfini de bağladığı için Bilim de bu iki bantta üç mekanizmaya ulaştı.
+
+### Sporlar (19 Kasım 2026, "tümünü yap")
+
+İlke 7 (yarış ve sıralama yok) burada da geçerli: spor **hareket oyunu** olarak yazılır. Kazanan, kaybeden, skor, rekor, "en hızlı" yok. Bedenin ne yaptığını keşfetmek, birlikte denemek, bir şeyi ilk kez becermek.
+
+- İçerik, sona ekleme: en az iki `sports` etiketli yol arkadaşı (biri insan: ör. yüzme ya da jimnastik öğretmeni; biri hayvan: ör. zıplamayı seven bir keçi) ve en az üç `sports` etiketli keşif nesnesi (top, atlama ipi, uçurtma gibi). Var olan kayıtlara etiket eklenmez.
+- Mekân: var olan açık alanlar (bahçe, çayır, park benzeri) kullanılır; gerekirse bir yeni mekân.
+- Blueprint: dört bantta da `learning` modunda en az üç `sports` blueprint'i, üç ayrı mekanizma (konu kapısı ≥3). Gergin sayfa yok.
+- Spor olguları gerekirse `facts`'e: doğru, sade, kaynaklı (ör. "Kalp koşarken daha hızlı atar"). "hızlı" kelimesi yalnızca olgu içinde, masal anlatısında hız övülmez.
+- Hedef: dört bantta en korumacı ayarda Sporlar konusu görünür; `CoverageReportTests` kilitler.
+
+**Uygulanan (19 Kasım 2026).** Köy Çayırı (yeni mekân), Beden Öğretmeni Defne (`coach`, insan) ve keçi Zıpzıp, üç nesne (top, atlama ipi, kâğıt uçurtma), her banta üç `sports` blueprint'i (`learning`, gergin sayfa yok), 83 satır, sona ekleme. Defne dördüncü meslek olduğu için zanaat beat'lerinde dörder satırı var ve editoryal bir olgu (`fact_coach_shows_slowly`, 5-10) aldı; `JobsTopicTests`'teki iki "tam 3" "en az 3" oldu. `CoverageReportTests` Sporlar'ı dört bantta kilitler. Python yaklaşığı: dört bantta görünür; testler plan sonunda.
+
+### H5: Tekrar ölçümü ve ince havuzlar
+
+Derleme yapılamadığı için ölçüm Python yaklaşığıyla: her bant × beat × ark için kapılardan (bant, ark, rol, uzunluk sınıfı, `afterClosing`, `afterBeat`, aile ilişkisi) geçen satır sayısı. Rapor `docs/HAVUZ_RAPORU.md`'ye yazılır (tablo + en ince 20 havuz).
+
+- Bir masalın bir sayfasını dolduran havuz 3 satırın altındaysa, en az 4'e çıkarılır (sona ekleme).
+- Aynı bandda iki ayrı beat dosyasında birebir aynı cümle varsa raporlanır, silinmez.
+- Bilinen kusurlar raporda listelenir, değiştirilmez: 7-8 `a7_na_02`'deki "hemen", 3-4 `swc3_fam_sib_03`'teki "hemen", ad yuvasından sonra "de/da" bağlacı olan iki eski satır. Bunlar mevcut kayıt; Batuhan karar verir.
+- Motorun içindeki ölçüm (`CoverageReport`'a satır sayısı) derleme açılınca eklenir.
+
+**Uygulanan (19 Kasım 2026).** Ölçüm Python yaklaşığıyla yapıldı (`docs/HAVUZ_RAPORU.md`): `plan`, `templates` ve `pool` taklit edildi; ulaşılabilir her blueprint sayfası, bağlayıcının kabul ettiği her yol arkadaşı rolü, dört Masal ailem ilişkisi ve iki güvenlik ayarı (en korumacı, filtresiz) dolaşıldı. 556 havuzun 141'i 3 satırın altındaydı (12'si tek satır); 124'ü ilişki başına iki satırla yazılmış aile anı havuzu, 17'si `afterBeat` ya da rol kapılı. 141 havuzun hepsi 4'e çıktı: 294 satır, yalnızca sona ekleme (`_h5_` kimlikli, `move: "h5_…"`), 222'si tek seferlik katmanda (`recordCounts["variants"]` 1869 → 2091), 72'si seri katmanında; 260'ı Masal ailem satırı (tek seferlik katmanda 196, `FamilyCastTests` 172 → 368). Aynı bantta iki beat dosyasında 17 birebir aynı cümle bulundu, raporlandı, silinmedi; H5 satırlarından tekrar yok. Bilinen kusurlar ("hemen" geçen `a7_na_02` ve `swc3_fam_sib_03`, yuvadan sonra "de/da") değiştirilmedi, listelendi; korpustaki öbür "hemen" ve "hızlı" satırları da listede. Yapılmadı: üç satırlık 102 havuz (kural "3'ün altı"), içerik uyumu (esneyen kapı) yüzünden 3'ün altına düşen 11 uyku ve seri havuzu, seri boyunca kullanılan satırdan kaçınmanın ölçümü, özel gün ve hatırlama satırları, motorun içindeki ölçüm. Testler çalıştırılmadı.
 
 ## Kurallar
 

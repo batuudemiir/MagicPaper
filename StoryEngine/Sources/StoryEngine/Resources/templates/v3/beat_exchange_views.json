@@ -10,6 +10,8 @@
   "variants": [
     {
       "id": "ev_s_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} anlattı, {{companion.name}} anlattı. İkisi de aynı şeyi başka yerden görmüştü. Anlayınca ikisi de güldü. Meğer kavga edecek bir şey yokmuş.",
       "requiredSlots": [
         "child.name",
@@ -48,6 +50,8 @@
     },
     {
       "id": "ev_s_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} kendi gördüğünü anlattı. {{child.name}} dinledi ve kafasındaki resim tamamen değişti. Kimse yanılmamıştı aslında. Sadece farklı yerlerden bakmışlardı.",
       "words": [
         "w56_yanilmak"
@@ -65,6 +69,8 @@
     },
     {
       "id": "ev_s_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "İki taraf da eksik bakmıştı. {{child.name}} ile {{companion.name}} parçalarını birleştirince ortaya bambaşka bir şey çıktı. İkisi de doğruymuş, ikisi de yarımmış.",
       "requiredSlots": [
         "child.name",
@@ -92,6 +98,8 @@
     },
     {
       "id": "ev_s_07",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "İkisinin de elinde yarım bir hikâye vardı. {{child.name}} ile {{companion.name}} yarımları yan yana koydu. Tam olunca kimsenin suçu kalmadı ortada.",
       "requiredSlots": [
         "child.name",
@@ -106,6 +114,8 @@
     },
     {
       "id": "ev_s_08",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Ben seni yanlış anlamışım,\" dedi {{child.name}}. {{companion.name}} tam o anda aynı sözü söyledi. İkisi birden söyleyince gülüştüler. Yanlış anlamak iki kişilik bir işmiş.",
       "requiredSlots": [
         "child.name",
@@ -120,6 +130,8 @@
     },
     {
       "id": "ev_s_bk_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} o an gördüğünü anlattı, {{companion.name}} hamurdan bildiğini. İkisi de doğruydu. Yan yana koyunca tek bir cevap çıktı.",
       "requiredSlots": [
         "child.name",
@@ -136,6 +148,8 @@
     },
     {
       "id": "ev_s_bk_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Ben buradan öyle gördüm,\" dedi {{child.name}}. \"Ben de fırının önünden böyle,\" dedi {{companion.name}}. İki yarım bir bütün etti.",
       "requiredSlots": [
         "child.name",
@@ -152,6 +166,8 @@
     },
     {
       "id": "ev_s_bk_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} her sabahı anlattı, {{child.name}} yalnızca bu sabahı. İkisi de eksikti, ikisi de haklıydı. Birbirini dinleyince ikisi birden anladı.",
       "requiredSlots": [
         "child.name",
@@ -168,6 +184,8 @@
     },
     {
       "id": "ev_s_bk_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} önce dinledi, sonra kendi gözüyle gördüğünü anlattı. {{companion.name}} elini önlüğünde sildi. \"Bunu hiç böyle düşünmemiştim,\" dedi. İkisi güldü.",
       "requiredSlots": [
         "child.name",
@@ -184,6 +202,8 @@
     },
     {
       "id": "ev_s_pm_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} kapının önünden gördüğünü anlattı, {{companion.name}} sokağın öbür ucundan. Aynı şeyi iki yerden görmüşlerdi. İkisi yarımdı, birlikte tamdı.",
       "requiredSlots": [
         "child.name",
@@ -200,6 +220,8 @@
     },
     {
       "id": "ev_s_pm_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bu köyün bütün sokaklarını bilirim,\" dedi {{companion.name}}, \"ama bunu hiç görmemiştim.\" {{child.name}} gülümsedi. Biri yolu biliyordu, biri o anı.",
       "requiredSlots": [
         "child.name",
@@ -216,6 +238,8 @@
     },
     {
       "id": "ev_s_pm_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} anlattı, {{child.name}} hiç sözünü kesmeden dinledi. Sonra {{child.name}} anlattı ve {{companion.name}} dinledi. İkisinin bildiği eksikti, ikisi birden tamamlandı.",
       "requiredSlots": [
         "child.name",
@@ -232,6 +256,8 @@
     },
     {
       "id": "ev_s_pm_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} \"Sen buradan her gün geçiyorsun,\" dedi. \"Sen bugün durup baktın,\" dedi {{companion.name}}. Cevap ikisinin tam ortasında duruyordu.",
       "requiredSlots": [
         "child.name",
@@ -248,6 +274,8 @@
     },
     {
       "id": "ev_s_tc_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} sorusunu baştan anlattı, {{companion.name}} kitaptan bildiğini. Birbirini dikkatle dinlediler. İkisi de yanılmamıştı; ikisi de yalnızca yarısını görmüştü.",
       "requiredSlots": [
         "child.name",
@@ -264,6 +292,8 @@
     },
     {
       "id": "ev_s_tc_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} \"Ben bunu kitapta okudum,\" dedi. \"Ben dışarıda, kendi gözümle gördüm,\" dedi {{child.name}}. İkisi yan yana gelince cevap ortaya çıktı.",
       "requiredSlots": [
         "child.name",
@@ -280,6 +310,8 @@
     },
     {
       "id": "ev_s_tc_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} uzun uzun dinledi, sonra kendi düşüncesini söyledi. {{companion.name}} defterini açıp bir şey yazdı. \"Bunu bugün senden öğrendim,\" dedi.",
       "requiredSlots": [
         "child.name",
@@ -296,6 +328,8 @@
     },
     {
       "id": "ev_s_tc_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "İkisi sırayla konuştu, kimse sözünü kesmedi. {{child.name}} bir yarısını biliyordu, {{companion.name}} öbür yarısını. Kimse haklı çıkmaya çalışmadı, ikisi anlamaya çalıştı.",
       "requiredSlots": [
         "child.name",
@@ -308,6 +342,77 @@
       ],
       "occupationRequire": [
         "teacher"
+      ]
+    },
+    {
+      "id": "s56_ev_ch_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} aynı şeye başka bir yerden baktı: \"Ben her gün çocukların koşuşunu izlerim,\" dedi. \"Senin gördüğün yarısı; öbür yarısını ben görüyorum.\" İkisinin gördüğü birleşince resim tamamlandı.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "spor_s56_ev_ch_01",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s56_ev_ch_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "\"Sen önünden bakıyorsun, ben yanından,\" dedi {{companion.name}}. Beden öğretmeni hareketleri hep yandan izlerdi. {{child.name}} onun gördüğünü dinleyince kendi gördüğünün eksik kalan yerini fark etti.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_ev_ch_02",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s56_ev_ch_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "\"Benim gördüğüm başka,\" dedi {{companion.name}}. \"Sen hareketin kendisine bakıyorsun; ben ise ondan önceki adıma.\" {{child.name}} onun baktığı yerden bakınca resmin öbür yarısını gördü.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_ev_ch_03",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s56_ev_ch_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} çömelip {{child.name}}'in hizasına indi. \"Buradan bak,\" dedi. Aşağıdan bakınca her şey bambaşka görünüyordu. İki bakış birleşince sorunun cevabı ortaya çıktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_ev_ch_04",
+      "lengthClass": "solo",
+      "occupationRequire": [
+        "coach"
+      ],
+      "natureRequire": [
+        "person"
       ]
     }
   ]

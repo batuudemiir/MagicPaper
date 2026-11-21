@@ -12,6 +12,8 @@
   "variants": [
     {
       "id": "bt3_td_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} lambayı kıstı. Sonra küçük bir \"hık!\" duyuldu. {{companion.name}} hıçkırıyordu! İkisi de güldü.",
       "requiredSlots": [
         "child.name",
@@ -25,6 +27,8 @@
     },
     {
       "id": "bt3_td_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bir ninni söyledi. Ninninin ortasında kendisi esnedi. {{companion.name}} kıkır kıkır güldü.",
       "requiredSlots": [
         "child.name",
@@ -38,6 +42,8 @@
     },
     {
       "id": "bt3_td_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} pencereye minik bir yastık koydu. {{companion.name}} yastığa oturup hapşırdı: hapşu! İkisi de gülümsedi.",
       "requiredSlots": [
         "child.name",
@@ -51,6 +57,8 @@
     },
     {
       "id": "bt3_td_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} perdeyi yarıya çekti. {{companion.name}} kocaman esnedi, sonra güldü. Bu çok komikti!",
       "requiredSlots": [
         "child.name",
@@ -64,6 +72,8 @@
     },
     {
       "id": "bt3l_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Sonra {{companion.name}}'in kulağına fısıldadı: \"Bunlar evin sesleri.\"",
       "requiredSlots": [
         "companion.name"
@@ -76,6 +86,8 @@
     },
     {
       "id": "bt3l_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} her sesi tek tek söyledi. {{companion.name}} dinledi.",
       "requiredSlots": [
         "child.name",
@@ -133,6 +145,33 @@
       "lengthClass": "paired",
       "afterBeat": [
         "companion_offers"
+      ]
+    },
+    {
+      "id": "bt3c_tp_01",
+      "text": "{{child.name}} günü tek tek saydı: sabah, öğle, akşam.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_bt3c_tp_01",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "companion_offers"
+      ]
+    },
+    {
+      "id": "bt3l_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{child.name}} sesleri {{companion.name}}'e usulca saydı. Hepsi tanıdıktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_bt3l_tp_01",
+      "lengthClass": "paired",
+      "afterBeat": [
+        "examine"
       ]
     }
   ]

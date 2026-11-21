@@ -10,6 +10,8 @@
   "variants": [
     {
       "id": "a9_tc_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} durumu tarttı. Bu, bir öğleden sonrada bitecek bir iş değildi; günler sürecekti, belki de bir hafta. Yine de kararını verdi ve yüksek sesle söyledi, sözün daha sağlam durması için: \"{{companion.name}} iyileşene kadar ona ben bakacağım.\"",
       "requiredSlots": [
         "child.name",
@@ -29,12 +31,26 @@
     },
     {
       "id": "a9_tc_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bir an geri adım atmayı düşündü; sorumluluk, uzaktan bakınca sandığından daha ağırdı. Sonra {{companion.name}}'e baktı ve düşüncesi kendiliğinden netleşti. \"Tamam,\" dedi. \"Bundan sonra bu iş benim işim. Ama nasıl yapılacağını da birlikte öğreneceğiz.\"",
       "requiredSlots": [
         "child.name",
         "companion.name"
       ],
       "move": "h2_a9_tc_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "a9_tc_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{child.name}} bir süre sessizce düşündü. Bu iş birkaç dakikada bitmeyecekti; her gün gelmek, bakmak, beklemek gerekecekti. Yine de {{companion.name}}'e baktığında kararını vermişti bile. \"Sana ben bakacağım,\" dedi sakin bir sesle. \"Her gün buradayım, sen iyileşene kadar.\"",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "tp_a9_tc_tp_01",
       "lengthClass": "solo"
     }
   ]

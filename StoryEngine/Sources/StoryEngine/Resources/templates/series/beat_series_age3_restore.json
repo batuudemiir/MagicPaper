@@ -25,6 +25,8 @@
     },
     {
       "id": "srs3_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} sevinçle {{child.name}}'e baktı. Başarmışlardı.",
       "requiredSlots": [
         "companion.name",
@@ -52,6 +54,8 @@
     },
     {
       "id": "srs3_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile {{companion.name}} el çırptı. Her şey tamamdı.",
       "requiredSlots": [
         "child.name",

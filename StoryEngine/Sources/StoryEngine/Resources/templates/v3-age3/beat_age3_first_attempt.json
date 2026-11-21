@@ -4,7 +4,8 @@
   "locale": "tr",
   "ageBand": "3-4",
   "lengthClasses": {
-    "paired": "5-12 words — sayfa 4 çözüm beat'i ile paylaşılır"
+    "paired": "5-12 words — sayfa 4 çözüm beat'i ile paylaşılır",
+    "solo": "10-24 words — sayfa 3 yalnız (Sporlar)"
   },
   "editorialNote": "H1 (17 Kasım 2026): sakin macera. Taslak, Batuhan okuyacak.",
   "variants": [
@@ -39,6 +40,51 @@
       "requiredSlots": [],
       "move": "h1_fa3h_04",
       "lengthClass": "paired"
+    },
+    {
+      "id": "s34_fa_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{child.name}} {{discovery.name}}'i aldı ve koştu. Ama rüzgâr yoktu. Oyun pek olmadı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "spor_s34_fa_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_fa_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "Önce {{companion.name}} zıpladı, sonra {{child.name}}. Ama bir şey eksikti. Rüzgâr esmiyordu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s34_fa_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_fa_03",
+      "text": "{{child.name}} bir kez denedi, iki kez denedi. Hava çok durgundu, hiç kıpırtı yoktu.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "spor_s34_fa_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_fa_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} koştu, {{child.name}} arkasından koştu. Ama hava kıpırdamıyordu. Oyun bir türlü başlamadı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_s34_fa_tp_01",
+      "lengthClass": "solo"
     }
   ]
 }

@@ -120,9 +120,17 @@ struct ReaderPage: Equatable {
     var scene: ResolvedScene? = nil
     /// Sayfanın yeni kelimeleri (FAZ 17). Eski masallarda boş.
     var words: [StoryWord] = []
+    var art: StoryPageArt? = nil
+    var reading: StoryPageReading? = nil
+
+    var composition: ReaderPageComposition {
+        if scene != nil { return .scene }
+        guard imageRef != nil || art?.isBundledSpot == true else { return .text }
+        return art?.isSpot == true ? .spot : .scene
+    }
 
     /// Sayfada çizim var mı — dosyadan ya da hazır sahneden.
-    var hasIllustration: Bool { imageRef != nil || scene != nil }
+    var hasIllustration: Bool { imageRef != nil || scene != nil || art?.isBundledSpot == true }
 
     /// Sayfanın tamamı, tek parça. VoiceOver sayfayı dört parça hâlinde değil,
     /// sürekli bir metin olarak okusun diye.
@@ -148,17 +156,22 @@ extension ReaderStory {
         let textOnly = story.opensAsTextOnly
         let pages = story.pages.enumerated().map { index, page in
             let scene = textOnly ? nil : ResolvedScene.resolve(page.scene, illustration: story.illustration)
+            let art = textOnly ? nil : page.art
+            let invalidBundlePin = art?.hasBundledMetadata == true && art?.isBundledSpot != true
+            let imageRef = textOnly || invalidBundlePin ? nil : ReaderStory.imageRef(for: page)
             return ReaderPage(
                 index: index,
                 title: page.title,
                 paragraphs: ReaderStory.paragraphs(of: page.text),
-                imageRef: textOnly ? nil : ReaderStory.imageRef(for: page),
+                imageRef: imageRef,
                 // Hazır sahnenin Türkçe tarifi; `visualScene` İngilizce olduğu
                 // için hiçbir zaman okunmaz (aşağıdaki `imageLabel`).
-                imageLabel: textOnly ? nil : (scene?.altText ?? ReaderStory.imageLabel(for: page, in: story, at: index)),
+                imageLabel: scene?.altText ?? (imageRef == nil && art?.isBundledSpot != true ? nil : (art?.description ?? ReaderStory.imageLabel(for: page, in: story, at: index))),
                 sceneHint: page.imagePrompt,
                 scene: scene,
-                words: page.words ?? []
+                words: page.words ?? [],
+                art: art,
+                reading: page.reading
             )
         }
 

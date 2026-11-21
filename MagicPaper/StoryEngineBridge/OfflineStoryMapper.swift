@@ -27,7 +27,8 @@ enum OfflineStoryMapper {
         subOption: String? = nil,
         familyCharacter: FamilyCharacter? = nil,
         series: (id: UUID, episode: Int)? = nil,
-        occasion: OccasionRequest? = nil
+        occasion: OccasionRequest? = nil,
+        spotCatalog: StorySpotCatalog? = .bundled
     ) -> MagicPaper.Story {
         var story = MagicPaper.Story(
             title: composed.title,
@@ -71,7 +72,7 @@ enum OfflineStoryMapper {
         story.fact = composed.fact.map {
             StoryFact(statement: $0.statement, sourceName: $0.sourceName, sourceURL: $0.sourceURL)
         }
-        return story
+        return StorySpotBinder.bind(story, composed: composed, catalog: spotCatalog)
     }
 
     static func appPage(from page: ComposedPage) -> MagicPaper.StoryPage {
@@ -86,6 +87,9 @@ enum OfflineStoryMapper {
             // what a later illustration pass would build a prompt from.
             imagePrompt: page.visualScene
         )
+        appPage.reading = StoryPageReading(role: page.role.rawValue, refrain: page.refrain)
+        // Kaynak izi sayfanın son hâliyle (hatırlama dahil) saklanır.
+        appPage.provenance = StoryPageProvenance(engine: page.provenance)
         let words = storyWords(page.words, in: page.text)
         appPage.words = words.isEmpty ? nil : words
         return appPage

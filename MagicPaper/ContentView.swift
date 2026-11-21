@@ -281,6 +281,8 @@ struct ContentView: View {
             AccountSignOutSheet(onClose: { app.router.sheet = nil })
         case .reminder:
             ReminderSheet(childName: profileManager.currentProfile?.name ?? "")
+        case .locked(let capability):
+            MPLockedSheet(capability: capability)
         }
     }
 }

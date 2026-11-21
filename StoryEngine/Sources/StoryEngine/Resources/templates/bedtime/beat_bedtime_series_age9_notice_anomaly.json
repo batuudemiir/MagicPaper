@@ -12,6 +12,8 @@
   "variants": [
     {
       "id": "b9sn_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "Pencerenin önünde bu akşam yeni bir şey vardı: {{discovery.name}}. {{child.name}} gözlerini kısıp baktı ve bir an onun gerçekten orada olup olmadığından emin olmaya çalıştı. Oradaydı. Geçen akşam yoktu; bunu, odasının her köşesini ezbere bilen biri olarak kesinlikle söyleyebilirdi.",
       "requiredSlots": [
         "child.name",
@@ -28,6 +30,8 @@
     },
     {
       "id": "b9sn_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} kulak verdi. Odanın tanıdık seslerinin arasına yeni biri karışmıştı: pencerenin dışından, çok usul ve çok yakından {{discovery.name}} geliyordu. {{companion.name}} başını o yana çevirdi. İkisi, gecenin bu saatine yakışır bir sessizlikle, dinlemeye başladı.",
       "requiredSlots": [
         "child.name",
@@ -45,6 +49,8 @@
     },
     {
       "id": "b9sn_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{companion.name}} bu akşam pencereye bir şey getirmişti, ya da bir şey onunla birlikte gelmişti; {{child.name}} ilk bakışta karar veremedi. Yorganın ucundan dikkatle baktı: {{discovery.name}}. Küçüktü, biraz yorgun görünüyordu, ve belli ki bu gece biraz ilgiye ihtiyacı vardı.",
       "requiredSlots": [
         "child.name",

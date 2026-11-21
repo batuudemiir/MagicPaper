@@ -24,6 +24,10 @@ public struct ComposedPage: Sendable, Hashable {
     /// The declared refrain this page ends with, as it appears at the end of
     /// `text`. Nil on every page of a blueprint without one.
     public var refrain: String? = nil
+    public var authoredSourceFingerprint: String? = nil
+    /// Metni oluşturan parçalar, kuruluş sırasıyla (20 Kasım 2026). Boş: bu
+    /// alandan önce kurulan sayfa.
+    public var provenance: [PageSourcePart] = []
 }
 
 /// A finished offline draft — text only. No images, no persistence, no IDs the
@@ -213,6 +217,8 @@ public struct OfflineStoryComposer: Sendable {
         var sentences: [String] = []
         var scenes: [String] = []
         var variantIDs: [ContentID] = []
+        var authoredSources: [AuthoredSourceFingerprint.Source] = []
+        var provenance: [PageSourcePart] = []
         var missing: [String] = []
         var unrecognised: [String] = []
         var words: [PageWord] = []
@@ -223,7 +229,13 @@ public struct OfflineStoryComposer: Sendable {
             // A declared refrain closes its page, after the beat's own lines,
             // so the listener hears the story first and then the line to join.
             let refrain = blueprint.refrain?.text(onPage: currentPage)
-            if let refrain { sentences.append(refrain) }
+            if let refrain, let spec = blueprint.refrain {
+                sentences.append(refrain)
+                let field = currentPage == spec.finalPage ? "finalLine" : "line"
+                provenance.append(PageSourcePart(
+                    kind: .refrain, sourceID: "\(blueprint.id.rawValue)#refrain.\(field)",
+                    sourceTextDigest: PageSourcePart.digest(refrain)))
+            }
             pages.append(ComposedPage(
                 pageNumber: currentPage,
                 role: page.role,
@@ -235,10 +247,12 @@ public struct OfflineStoryComposer: Sendable {
                 missingSlots: missing,
                 unrecognisedSuffixes: unrecognised,
                 words: words,
-                refrain: refrain
+                refrain: refrain,
+                authoredSourceFingerprint: AuthoredSourceFingerprint.make(sources: authoredSources, discovery: content.discovery),
+                provenance: provenance
             ))
             sentences = []; scenes = []; variantIDs = []; missing = []; unrecognised = []
-            words = []; pageLength = 0
+            words = []; authoredSources = []; provenance = []; pageLength = 0
         }
 
         for step in try Self.plan(blueprint) {
@@ -319,6 +333,18 @@ public struct OfflineStoryComposer: Sendable {
             sentences.append(rendered.text)
             if !variant.visualScene.isEmpty { scenes.append(variant.visualScene) }
             variantIDs.append(variant.id)
+            authoredSources.append(.init(templateID: template.id.rawValue, variantID: variant.id.rawValue, text: variant.text))
+            var contexts: [String] = []
+            if variant.isFamilyLine { contexts.append("family") }
+            if !occasionLines.isEmpty { contexts.append("occasion") }
+            if episode != nil { contexts.append("series") }
+            if variant.isWorldLine(for: content.setting) { contexts.append("world") }
+            provenance.append(PageSourcePart(
+                kind: .beatLine, sourceID: variant.id.rawValue,
+                sourceTextDigest: PageSourcePart.digest(variant.text),
+                templateID: template.id.rawValue, beat: step.beat, contexts: contexts,
+                visual: variant.visual.map { ResolvedVisual.resolve($0, content: content) },
+                visualReview: variant.visual == nil ? nil : variant.visualReview))
             missing += rendered.missingSlots
             unrecognised += rendered.unrecognisedSuffixes
         }
@@ -342,7 +368,8 @@ public struct OfflineStoryComposer: Sendable {
            let recall = RecallComposer.line(
                history: history, content: content, catalog: catalog, band: blueprint.ageRange,
                slots: slots, recent: recentVariants, seed: storySeed) {
-            pages[0] = first.appendingRecall(id: recall.id, text: recall.text)
+            let authored = catalog.recallLines.first { $0.id == recall.id }?.text ?? recall.text
+            pages[0] = first.appendingRecall(id: recall.id, text: recall.text, authoredText: authored)
             recallLineID = recall.id
         }
 
@@ -601,12 +628,18 @@ public struct OfflineStoryComposer: Sendable {
             family: family, familyMoment: familyMoment, calmEnding: calmEnding,
             safety: safety)
 
+        // Dünya satırı (19 Kasım 2026): mekânın dünyası için yazılmış satır
+        // varsa seçim onlardan yapılır. Havuz (`pool`) aynı kalır, ince sayfa
+        // ölçümü değişmez; bugün hiçbir satır dünya bildirmediği için eski
+        // masallar bit bit aynı.
+        let world = pool.filter { $0.isWorldLine(for: content.setting) }
+        var choices = world.isEmpty ? pool : world
+
         // An episode prefers a line the series has not used yet: the child
         // hears these books in a row, and the second "Bak," dedi is noticed.
-        var choices = pool
         if let episode {
-            let fresh = pool.filter { !episode.avoiding.contains($0.id) }
-            choices = fresh.isEmpty ? pool : fresh
+            let fresh = choices.filter { !episode.avoiding.contains($0.id) }
+            choices = fresh.isEmpty ? choices : fresh
         }
 
         // D2: çocuğun son masallarında geçen satır soğur. Geçmiş yoksa seçim
@@ -718,6 +751,14 @@ public struct OfflineStoryComposer: Sendable {
                 beat: beat, page: page)
         }
 
+        // 0i. Hangi **dünyanın** satırı (19 Kasım 2026). **Esnemiyor**, 0g
+        //     ile aynı sebeple: "tramvay sesi" ormanda saçma bir sayfa.
+        let byWorld = byOccupation.filter { $0.suits(world: content.setting) }
+        guard !byWorld.isEmpty else {
+            throw OfflineSelectionError.noVariantSatisfying(
+                constraint: "a line for this setting's world", beat: beat, page: page)
+        }
+
         // 0a. The Masal ailem character. **Does not degrade**, in either
         //     direction. On a family moment the character must be there: a
         //     story that opens with the child's sister and never mentions her
@@ -726,13 +767,13 @@ public struct OfflineStoryComposer: Sendable {
         //     which is what keeps every story written before FAZ 11 the same.
         let byFamily: [CatalogVariant]
         if familyMoment, let family {
-            byFamily = byOccupation.filter { $0.isFamilyLine && $0.suits(family: family) }
+            byFamily = byWorld.filter { $0.isFamilyLine && $0.suits(family: family) }
             guard !byFamily.isEmpty else {
                 throw OfflineSelectionError.noVariantForFamily(
                     relation: family, beat: beat, page: page)
             }
         } else {
-            byFamily = byOccupation.filter { !$0.isFamilyLine }
+            byFamily = byWorld.filter { !$0.isFamilyLine }
             guard !byFamily.isEmpty else {
                 throw OfflineSelectionError.noVariantForRole(
                     role: content.castRole, beat: beat, page: page)

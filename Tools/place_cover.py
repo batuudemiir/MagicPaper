@@ -6,7 +6,8 @@
 Görsel (PNG, JPEG, WebP, HEIC) ortadan 3:4'e kırpılır, 1125 × 1500 JPEG olarak
 Content/Originals/drafts/<slug>/cover.jpg'ye yazılır. Taslak yoksa published/<slug>/ denenir
 (yayımlanmış bir masalın kapağını değiştirmek için; sonra katalog derleyicisi yeniden çalıştırılır).
-Yalnız macOS sips; ağ yok.
+Ardından `stamp_originals_logo.py` MagicPaper Originals logosunu kapağın üstüne basar (19 Kasım 2026).
+Kırpma macOS sips ile, logo Pillow ile; ağ yok.
 """
 
 import pathlib
@@ -63,7 +64,9 @@ def main(argv):
     dst = folder / "cover.jpg"
     place(src, dst)
     print(f"Kapak yazıldı: {dst.relative_to(ROOT)} ({dst.stat().st_size // 1024} KB, {WIDTH} × {HEIGHT})")
-    return 0
+    # Her Original kapağı MagicPaper Originals logosunu taşır (karar: 19 Kasım 2026, Batuhan).
+    stamp = subprocess.run([sys.executable, str(ROOT / "Tools" / "stamp_originals_logo.py"), str(dst)])
+    return stamp.returncode
 
 
 if __name__ == "__main__":

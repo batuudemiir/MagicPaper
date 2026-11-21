@@ -73,17 +73,18 @@ final class TopicMechanismTests: XCTestCase {
     ///
     /// Örnek 17 Kasım 2026'ya kadar "Denizin altı"ydı (iki mekanizma). H1'in
     /// sakin macera şekilleri onu üçün üstüne taşıdı ve konu canlı listeye
-    /// girdi (`StoryTopicTests.testWhichTopicsAreLiveToday`). Bugünün örneği
-    /// "Yeni bir ülke": hiçbir mekân `country` taşımıyor, mekanizma sıfır.
+    /// girdi (`StoryTopicTests.testWhichTopicsAreLiveToday`). Sonra "Yeni bir
+    /// ülke" oldu; 19 Kasım 2026'da yeni dünyalarla canlandı. Bugünün örneği
+    /// 3-4'te "Meslekler": o bantta meslek olay örgüsü yok, mekanizma sıfır.
     func testAThinTopicIsDefinedButNotOffered() throws {
-        let band = AgeBand(lowerBound: 5, upperBound: 6)
-        let country = try XCTUnwrap(
-            catalog.storyTopics.first { $0.id.rawValue == "topic_adventure_country" },
+        let band = AgeBand(lowerBound: 3, upperBound: 4)
+        let jobs = try XCTUnwrap(
+            catalog.storyTopics.first { $0.id.rawValue == "topic_learning_jobs" },
             "konu katalogdan silinmiş olabilir")
-        let found = mechanisms(of: country, .adventure, band)
-        XCTAssertEqual(found.count, 0, "Yeni bir ülke artık \(found.sorted()) kuruyor; "
+        let found = mechanisms(of: jobs, .learning, band)
+        XCTAssertEqual(found.count, 0, "Meslekler 3-4'te artık \(found.sorted()) kuruyor; "
                        + "üçe çıktıysa konu canlı listeye alınmalı")
-        XCTAssertFalse(offeredTopics(.adventure, band).contains(country))
+        XCTAssertFalse(offeredTopics(.learning, band).contains(jobs))
     }
 
     // MARK: - Hazine avı
@@ -136,13 +137,13 @@ final class TopicMechanismTests: XCTestCase {
                                     "50 seed yalnızca \(mechanisms.sorted()) üretti")
     }
 
-    /// 3-4'te teklif edilmiyor, ve sebebi konu değil: o bantta macera modunun
-    /// hiç içeriği yok. Konu bantta içerik yazıldığı gün kendiliğinden görünür.
-    func testTreasureIsNotOfferedAtThreeFourBecauseAdventureIsEmptyThere() {
+    /// 3-4 macera H1'de (17 Kasım 2026) içeriğe kavuştu; "Hazine avı" o
+    /// bantta da teklif ediliyor. Önceden bu test bandın boş olduğunu iddia
+    /// ediyordu ve H1'den beri bayattı (20 Kasım 2026'da düzeltildi).
+    func testTreasureIsOfferedAtThreeFourNowThatAdventureHasShapesThere() {
         let band = AgeBand(lowerBound: 3, upperBound: 4)
-        XCTAssertTrue(offeredTopics(.adventure, band).isEmpty)
         let (candidates, _) = selector.admissible(catalog: catalog, intent: intent(.adventure, band))
-        XCTAssertTrue(candidates.isEmpty,
-                      "3-4 macera artık blueprint buluyor: konu kapısı yeniden ölçülmeli")
+        XCTAssertFalse(candidates.isEmpty)
+        XCTAssertTrue(offeredTopics(.adventure, band).contains { $0.id.rawValue == "topic_adventure_treasure" })
     }
 }

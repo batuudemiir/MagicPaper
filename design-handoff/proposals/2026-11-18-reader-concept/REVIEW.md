@@ -22,3 +22,7 @@ Ayrı önceki karakter denemesi (`2026-11-18-character-comparison`) de taslak ol
 ## Doğrulama ve sınırlar
 
 HTML/JS sözdizimi, gömülü görsel yerleri ve dosya boyutu kontrol edildi. Mevcut resimler önceki araç çıktılarında incelendi. Yeni görsel üretilmedi. Tarayıcı otomasyon aracı bu oturumda başlatılamadı; önizlemenin tarayıcı ekran görüntüsü/ölçüm matrisi alınmadı. Uygulama kodu/Assets/motor/içerik değiştirilmedi; app build, test ve simülatör çalıştırılmadı. Tasarım beğenildikten sonra uygulama planı ve gerçek cihaz boyutu/erişilebilirlik doğrulaması gerekir.
+
+## Uygulama onayı · 18 Kasım 2026
+
+Kullanıcı önizlemeyi onaylayıp kodlamayı istedi. Sahne/spot/metin kompozisyonları, beyaz Gündüz ve canlı yazı örneği uygulandı. Görselsiz sayfada üstten başlayan kaydırılabilir metin var; eksik resim dosyası metin düzenine döner. Örnek kız/filiz çizimleri gerçek masallara atanmadı. Son doğrulama ve sınırlar `docs/READER_LAYOUT_2026-11-18.md` içinde.

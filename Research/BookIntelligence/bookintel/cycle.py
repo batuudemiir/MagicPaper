@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from . import analyze, confidence, exchange, experiments, gaps, htmlpage, learning, runs
+from . import analyze, confidence, craft, exchange, experiments, gaps, htmlpage, learning, runs
 from .store import Store, write_if_changed
 
 
@@ -38,6 +38,7 @@ def run(store: Store) -> dict:
     report["gaps"] = gaps.gaps(store)
     report["learning"] = learning.summary(store, since=_last_week(store, report["date"]))
     exchange.write_docs(store)
+    report["craft"] = craft.write(store)
     report["path"] = str(write_weekly(store, report))
     return report
 

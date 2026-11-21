@@ -5,11 +5,14 @@
   "ageBand": "5-6",
   "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 3, always beside meet_companion. The need is stated PLAINLY and ONCE, by the companion, in its own words. No pleading, no tears, no distress — it is a small problem stated by someone small, and that is what keeps the page safe for a five-year-old (catalog §2.3). Band is 8-14 because meet_companion is a long partner.",
   "lengthClasses": {
-    "paired": "8-14 words — always beside meet_companion (4 of 4)"
+    "paired": "8-14 words — always beside meet_companion (4 of 4)",
+    "solo": "18-38 words — sayfa 3 yalnız (Sporlar)"
   },
   "variants": [
     {
       "id": "ra_p_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Yardım eder misin?\" dedi {{companion.name}}. Sesi sakindi ama umutluydu.",
       "requiredSlots": [
         "companion.name"
@@ -19,6 +22,8 @@
     },
     {
       "id": "ra_p_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} tek bir şey istedi. \"Eve dönmem lazım,\" dedi.",
       "requiredSlots": [
         "companion.name"
@@ -28,6 +33,8 @@
     },
     {
       "id": "ra_p_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bir şeyimi kaybettim,\" dedi {{companion.name}}. Ağlamadı, sadece söyledi.",
       "requiredSlots": [
         "companion.name"
@@ -37,6 +44,8 @@
     },
     {
       "id": "ra_p_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} ne istediğini kısaca anlattı. Tek başına yapamıyordu, o kadar.",
       "requiredSlots": [
         "companion.name"
@@ -46,6 +55,8 @@
     },
     {
       "id": "ra_p_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Benimle gelir misin?\" diye sordu {{companion.name}}. Israr etmedi, bekledi.",
       "requiredSlots": [
         "companion.name"
@@ -55,6 +66,8 @@
     },
     {
       "id": "ra_p_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} derdini anlattı. Uzun sürmedi, birkaç kelimeyle bitti.",
       "requiredSlots": [
         "companion.name"
@@ -64,6 +77,8 @@
     },
     {
       "id": "ra_p_07",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Sensiz olmuyor,\" dedi {{companion.name}}. Bunu hiç utanmadan söyledi.",
       "requiredSlots": [
         "companion.name"
@@ -73,6 +88,8 @@
     },
     {
       "id": "ra_p_08",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} yavaşça anlattı derdini. {{child.name}} sonuna kadar dinledi.",
       "requiredSlots": [
         "companion.name",
@@ -83,6 +100,8 @@
     },
     {
       "id": "ra_p_09",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bunu taşıyamıyorum,\" dedi {{companion.name}}. \"Bir el atar mısın?\"",
       "requiredSlots": [
         "companion.name"
@@ -92,6 +111,8 @@
     },
     {
       "id": "ra_p_10",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Oraya uzanamıyorum,\" dedi {{companion.name}}. Sesinde ne telaş vardı ne şikâyet.",
       "requiredSlots": [
         "companion.name"
@@ -101,6 +122,8 @@
     },
     {
       "id": "ra_p_11",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"{{child.name}}, bir dakikan var mı?\" diye sordu {{companion.name}}. Sonra derdini söyledi.",
       "requiredSlots": [
         "child.name",
@@ -111,12 +134,62 @@
     },
     {
       "id": "ra_p_12",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bir şey takıldı, çıkaramıyorum,\" dedi {{companion.name}}. Bir kez söyledi, yeterdi.",
       "requiredSlots": [
         "companion.name"
       ],
       "lengthClass": "paired",
       "move": "something_stuck_said_once"
+    },
+    {
+      "id": "s56_ra_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} {{discovery.name}}'i burnuyla {{child.name}}'e doğru itti. \"Bu oyun iki kişilik,\" dedi. \"Tek başıma bir türlü olmuyor. Bana katılır mısın?\" Gözlerinde kocaman bir rica vardı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "spor_s56_ra_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s56_ra_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} yerinde sekip duruyordu. \"Bir oyun biliyorum,\" dedi, \"ama biri tutmalı, biri zıplamalı. Sen tutar mısın, ya da sen mi zıplarsın?\" Seçimi {{child.name}} yapacaktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_ra_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s56_ra_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "\"Benimle oynar mısın?\" diye sordu {{companion.name}}. Çayırda tek başına koşup durmaktan sıkılmıştı. Oyun, birlikte oynanınca daha güzeldi; bunu ikisi de biliyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "spor_s56_ra_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s56_ra_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} {{child.name}}'in yanına gelip durdu. \"Bu oyunu tek başıma oynamaya çalışıyorum,\" dedi, \"ama hep yarım kalıyor. Sen başlatsan, ben devam etsem olur mu?\"",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_s56_ra_tp_01",
+      "lengthClass": "solo"
     }
   ]
 }

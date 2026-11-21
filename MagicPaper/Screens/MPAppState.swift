@@ -199,6 +199,14 @@ final class MPAppState: ObservableObject {
 
     /// Bir Günlük masalını okuyucuda açar: seçili anlatımla, kaldığı yerden.
     func readClassic(_ tale: ClassicTale, listen: Bool = false, progress: ClassicProgressStore = .shared) {
+        // Vitrin ücretsiz, bütün klasikler abonelikle (20 Kasım 2026).
+        let showcase = ClassicsLibrary.shared.isInFreeShowcase(tale.id)
+        unlock(.classicLibrary, usage: .classic(inShowcase: showcase)) { [self] in
+            openClassic(tale, listen: listen, progress: progress)
+        }
+    }
+
+    private func openClassic(_ tale: ClassicTale, listen: Bool, progress: ClassicProgressStore) {
         let narration = progress.narration(for: tale.id)
         let pageCount = tale.text(narration).pages.count
         progress.markOpened(tale.id, pageCount: pageCount, narration: narration)
@@ -214,6 +222,14 @@ final class MPAppState: ObservableObject {
 
     /// Günlük akışın kendi masalı (FAZ 15), Günlük'ün okuyucusunda.
     func readOriginal(_ daily: DailyStory, progress: ClassicProgressStore = .shared) {
+        // Uyku vakti rafındaki Original ücretsiz, gerisi abonelikle (20 Kasım 2026).
+        let showcase = ClassicsLibrary.shared.isInFreeShowcase(daily.id)
+        unlock(.classicLibrary, usage: .classic(inShowcase: showcase)) { [self] in
+            openOriginal(daily, progress: progress)
+        }
+    }
+
+    private func openOriginal(_ daily: DailyStory, progress: ClassicProgressStore) {
         let child = ProfileManager.shared.currentProfile
         let draft = ClassicReading.story(for: daily, childID: child?.id, childName: "", savedPage: nil)
         progress.markOpened(daily.id, pageCount: draft.pages.count, narration: .soft)
@@ -255,13 +271,52 @@ final class MPAppState: ObservableObject {
             showToast(FamilyCopy.readOnly, symbol: "book")
             return
         }
-        creationPreset = mode
-        creationFamilyID = family
-        showStoryCreation = true
+        // E7: ücretsizde günde bir masal; Masal ailem'den açılan masal abonelikle.
+        let open = { [self] in
+            creationPreset = mode
+            creationFamilyID = family
+            showStoryCreation = true
+        }
+        unlock(.unlimitedTextStories) { [self] in
+            guard let family else { open(); return }
+            // Ücretsiz pay: Masal ailem'in ilk kişisi (20 Kasım 2026).
+            unlock(.familyCast, usage: .using(position: familyPosition(of: family)), then: open)
+        }
     }
 
     func openPaywall() {
         showPaywall = true
+    }
+
+    // MARK: - Yetki kapısı (E7)
+
+    /// Tek kapı: izin varsa iş çalışır. Yoksa çocuk alanında sakin kilit
+    /// penceresi (satış ebeveyn kapısının arkasında), ebeveyn odasında paywall.
+    /// Kararı yalnızca `EntitlementPolicy` verir.
+    func unlock(_ capability: Capability, usage: EntitlementUsage = .plain,
+                then action: @escaping () -> Void) {
+        if isUnlocked(capability, usage: usage) { action(); return }
+        if router.isParentMode {
+            openPaywall()
+        } else if router.sheet == nil {
+            router.sheet = .locked(capability)
+        } else {
+            // Açık bir sheet'in üstüne modal açılmaz: önce o kapanır.
+            router.closeSheet { [weak self] in self?.router.sheet = .locked(capability) }
+        }
+    }
+
+    /// Çocuğun Masal ailem'inde bu kişinin sırası (eklenme sırasıyla, 0'dan).
+    /// Ücretsiz pay ilk kişiyi kapsar; bulunamayan kişi sona düşer.
+    func familyPosition(of characterID: UUID) -> Int {
+        guard let child = ProfileManager.shared.currentProfile else { return .max }
+        let characters = FamilyCharacterStore().characters(for: child.id)
+        return characters.firstIndex { $0.id == characterID } ?? .max
+    }
+
+    /// Görünümün kilit glifi için: karar değil, gösterim.
+    func isUnlocked(_ capability: Capability, usage: EntitlementUsage = .plain) -> Bool {
+        LiveEntitlementService.shared.evaluate(capability, usage: usage).isAllowed
     }
 
 }

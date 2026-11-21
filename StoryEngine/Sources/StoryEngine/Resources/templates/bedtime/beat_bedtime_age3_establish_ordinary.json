@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "bt3_eo_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{setting.name}}'da yatağına girdi. Yorganı sıcacıktı. Ay pencereden bakıyordu.",
       "requiredSlots": [
         "child.name",
@@ -27,6 +29,8 @@
     },
     {
       "id": "bt3_eo_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Uyku saati geldi. {{child.name}} {{setting.name}}'daki yatağına uzandı. Yorganını çenesine çekti.",
       "requiredSlots": [
         "child.name",
@@ -40,6 +44,8 @@
     },
     {
       "id": "bt3_eo_03",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'da lamba yumuşacık yanıyordu. {{child.name}} yastığına başını koydu. Her şey sessizdi.",
       "requiredSlots": [
         "setting.name",
@@ -53,6 +59,8 @@
     },
     {
       "id": "bt3_eo_04",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yorganına sarındı. {{setting.name}}'da uyku saatiydi. Ay pencereden bakıyordu.",
       "requiredSlots": [
         "child.name",
@@ -66,6 +74,8 @@
     },
     {
       "id": "bt3_eo_fs_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yatağına girdi. Kardeşi {{family.name}} yan yatakta esniyordu. {{setting.name}} sessizdi.",
       "requiredSlots": [
         "child.name",
@@ -83,6 +93,8 @@
     },
     {
       "id": "bt3_eo_fs_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile kardeşi {{family.name}} yorganlarına girdi. {{setting.name}}'da uyku saatiydi.",
       "requiredSlots": [
         "child.name",
@@ -100,6 +112,8 @@
     },
     {
       "id": "bt3_eo_ff_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} çok sevinçliydi. Arkadaşı {{family.name}} yatıya kalmıştı. {{setting.name}} sessizdi.",
       "requiredSlots": [
         "child.name",
@@ -117,6 +131,8 @@
     },
     {
       "id": "bt3_eo_ff_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yatağına uzandı. Arkadaşı {{family.name}} yanındaydı. {{setting.name}}'da lamba yanıyordu.",
       "requiredSlots": [
         "child.name",
@@ -134,6 +150,8 @@
     },
     {
       "id": "bt3_eo_fa_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yatağına girdi. Ayakucuna {{family.possessive}} {{family.name}} kıvrıldı. {{setting.name}} sessizdi.",
       "requiredSlots": [
         "child.name",
@@ -169,6 +187,8 @@
     },
     {
       "id": "bt3_eo_fi_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yatağına uzandı. Hayali arkadaşı {{family.name}} pencerenin yanındaydı. {{setting.name}} sessizdi.",
       "requiredSlots": [
         "child.name",
@@ -186,6 +206,8 @@
     },
     {
       "id": "bt3_eo_fi_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}}, hayali arkadaşı {{family.name}}'a yumuşacık gülümsedi. {{setting.name}}'da uyku saati gelmişti.",
       "requiredSlots": [
         "child.name",
@@ -194,6 +216,145 @@
       ],
       "lengthClass": "solo",
       "move": "bt3_eo_imaginary_smile",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt3_eo_h5_sib_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{child.name}} pijamasını giydi. Kardeşi {{family.name}} yastığını düzeltiyordu. {{setting.name}}'da lamba kısıktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_eo_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt3_eo_h5_sib_02",
+      "text": "{{child.name}} ile kardeşi {{family.name}} dişlerini fırçaladı. Sonra yataklarına girdiler. Ay pencereden bakıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_eo_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "bt3_eo_h5_fr_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{child.name}} yastığını arkadaşı {{family.name}} ile paylaştı. İkisi de pijamalıydı. {{setting.name}} sessizdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_eo_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt3_eo_h5_fr_02",
+      "text": "{{child.name}}, arkadaşı {{family.name}}'a minik bir şarkı söyledi. İkisi de esnedi. Lamba yumuşacık yanıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_eo_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "bt3_eo_h5_an_01",
+      "text": "{{child.name}} yorganı açtı. {{family.possessive}} {{family.name}} yatağın yanında uyukluyordu. Lamba kısıldı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_eo_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt3_eo_h5_an_02",
+      "text": "{{child.name}} yastığına uzandı. Yanında {{family.possessive}} {{family.name}} gözlerini yumdu. Oda sıcacıktı. Gece başlıyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_eo_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "bt3_eo_h5_im_01",
+      "text": "{{child.name}} yorganına girdi. Hayali arkadaşı {{family.name}} yastığın yanına oturdu. Lamba kısıktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_eo_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "bt3_eo_h5_im_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile yıldızları saydı. Üçe gelince esnedi. {{setting.name}} sessizdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_bt3_eo_im_02",
       "settingTraits": [
         "isRestingPlace"
       ],

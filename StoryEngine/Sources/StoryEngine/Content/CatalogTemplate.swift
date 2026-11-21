@@ -161,6 +161,23 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
     /// sentence, so the text stays plain prose for every other check.
     public let words: [ContentID]
 
+    /// Bu satırın yazıldığı **dünya(lar)** (19 Kasım 2026): mekânın içerik
+    /// etiketi (`tags`: `city`, `country`, `history`). İlgi etiketi
+    /// (`interests`) değil: o çocuğun tercihine bağlanır, ilgiler yeniden
+    /// etiketlenince masal değişmemeli (`InterestScoringTests`).
+    ///
+    /// `natureRequire` ile aynı sertlikte: "tramvay sesi" satırı ormanda daha
+    /// zayıf bir sayfa değil, başka bir masalın sayfası. Boş küme dünyaya
+    /// bakmıyor demek; bugünkü bütün satırlar böyle. Kendi dünyasında satır
+    /// seçimde öne alınır (`OfflineStoryComposer.chooseVariant`).
+    public let settingTags: Set<ContentTag>
+
+    /// Satırın görsel anlamı (20 Kasım 2026; `VisualMention`). `nil`: henüz
+    /// bakılmadı. Boş liste: bakıldı, görünen bir öğe yok.
+    public let visual: [VisualMention]?
+    /// Etiketin kaynağı; `visual` yokken anlamsız.
+    public let visualReview: VisualReview?
+
     private enum CodingKeys: String, CodingKey, CaseIterable {
         case id, text, visualScene, requiredSlots, stateRequirements, stateChanges
         case lengthClass, move, afterBeat, settingTraits, discoveryTraits
@@ -169,6 +186,8 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
         case conflictKinds, afterClosing, afterState
         case familyRelations
         case topics, words
+        case settingTags
+        case visual, visualReview
     }
 
     /// Every key this type actually reads.
@@ -214,6 +233,9 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
         familyRelations = try container.decodeIfPresent(Set<FamilyRelationKind>.self, forKey: .familyRelations) ?? []
         topics = try container.decodeIfPresent(Set<SafetyTopic>.self, forKey: .topics) ?? []
         words = try container.decodeIfPresent([ContentID].self, forKey: .words) ?? []
+        settingTags = try container.decodeIfPresent(Set<ContentTag>.self, forKey: .settingTags) ?? []
+        visual = try container.decodeIfPresent([VisualMention].self, forKey: .visual)
+        visualReview = try container.decodeIfPresent(VisualReview.self, forKey: .visualReview)
     }
 
     /// Whether this line is the right shape for how the story's conflict works.
@@ -244,6 +266,17 @@ public struct CatalogVariant: Codable, Sendable, Hashable, Identifiable {
     /// `natureRequire`.
     public func suits(nature: CompanionNature) -> Bool {
         natureRequire.isEmpty || natureRequire.contains(nature)
+    }
+
+    /// Bu satır bu mekânın dünyasında okunabilir mi? Esnemiyor; bkz.
+    /// `settingTags`.
+    public func suits(world setting: CatalogSetting) -> Bool {
+        settingTags.isEmpty || !settingTags.isDisjoint(with: setting.tags)
+    }
+
+    /// Bu mekânın dünyası için yazılmış bir satır mı (seçimde öne alınır).
+    public func isWorldLine(for setting: CatalogSetting) -> Bool {
+        !settingTags.isEmpty && suits(world: setting)
     }
 
     /// Bu satır bu mesleğin satırı mı?

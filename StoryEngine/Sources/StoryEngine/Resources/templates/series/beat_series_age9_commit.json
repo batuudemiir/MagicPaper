@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "s9cm_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bir an düşündü. Yol uzun olabilirdi ve her adım dikkat isteyecekti; yine de karar vermesi zor olmadı. Bunu evine kendisi götürecekti, yolu ise {{companion.name}} gösterecekti. İşi paylaşınca, zor görünen şeyler hep biraz küçülüyordu.",
       "requiredSlots": [
         "child.name",
@@ -31,6 +33,8 @@
     },
     {
       "id": "s9cm_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} kollarını sıvadı. Bu iş acele kaldırmazdı, bunu biliyordu. Önce nasıl taşıyacağını düşündü, sonra yolun en dar yerini sordu, en sonunda da derin bir nefes alıp {{companion.name}}'e döndü: \"Hazırım. Sen önden git, ben arkandan geliyorum.\"",
       "requiredSlots": [
         "child.name",

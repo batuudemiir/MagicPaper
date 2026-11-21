@@ -2,7 +2,7 @@
 
 MagicPaper Original dünya kitabı. Seçen: Batuhan, 12 Kasım 2026 (world-proposals.md, Öneri 3).
 Kanon: karakter adları, görünüşleri ve kapak stili kapaklarda değişmez. Kimse ölmez, kimse cezalandırılmaz,
-korku kısa sürer. Ragi bu dünyanın karakteri değildir; okuyan çocuğun adı hiçbir masalda geçmez.
+korku kısa sürer. Ragi ana kadronun karakteri değildir; 20 Kasım 2026 Batuhan kararıyla iç sayfa çizimlerinde sessiz bir konuk olabilir. Metindeki olayları ya da ana karakterlerin rolünü değiştirmez. Okuyan çocuğun adı hiçbir masalda geçmez.
 
 ## Mekân
 
@@ -83,3 +83,18 @@ Composition: the small stone station and rails curving into the mountain as a re
 generous dark sky with a few stars at the top, the main character clearly silhouetted against light.
 Visible brush texture and slightly simplified shapes. No text, no letters, no logos, no
 photorealism, no glossy 3D, no digital gradients.
+
+## İç sayfa ve kapak çizim dili (20 Kasım 2026)
+
+Batuhan’ın paylaştığı MagicPaper görseli ana referanstır: `brand/interior-style-reference.png`.
+Sade yuvarlatılmış biçimler, düz boyalı renk alanları, hafif kuru guaj ve kâğıt dokusu, sıcak ve
+okunaklı yüz ifadeleri. Ayrıntılı gerçekçi kürk, sinematik ışık, parlak üç boyutlu görünüş yok.
+Mor ana renk değildir; gündüzde karlı beyaz, serin mavi ve doğal yeşiller; uyku sahnelerinde sakin
+mavi ve yumuşak sıcak tonlar kullanılır. Karakterlerin yukarıdaki kimlik ve aksesuarları korunur.
+Bu karar önceki ayrıntılı vintage kapak stilinin önüne geçer; iki yayımlanmış masalın kapakları
+iç sayfalarla aynı çizim diline alınır. Kapak ve iç sayfa resimlerinde yazı/rakam/logo bulunmaz.
+
+İç sayfalar metinle birebir aynı sırada `published/<slug>/illustrations/page-NN.jpg` altında;
+Türkçe açıklamalar ve kullanılan tam promptlar `illustrations.json` içindedir. Atkının çıkarıldığı
+sayfalarda boyunda ikinci atkı çizilmez. Kar tanesi odaklı çizimlerde altı ana kol ayrı ayrı
+sayılabilir olmalıdır. Ragi bu ilk sette ninni 3/5 ve kar tanesi 1. sayfada ikincil konuktur.

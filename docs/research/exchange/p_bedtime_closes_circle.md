@@ -1,8 +1,8 @@
 # p_bedtime_closes_circle
 
-**Status:** decided · **Target:** `beat_sequences` · claim `c_bedtime_closes_circle` (LOW, 4/6 works)
+**Status:** decided · **Target:** `beat_sequences` · claim `c_bedtime_closes_circle` (LOW, 7/9 works)
 
-> In 4 of 6 analysed books framed by bedtime or sleep, the last page returns to the opening place (the bed or bedroom, or the same mother and moon) at low intensity (0-2 of 5) after a peak earlier in the book (Good Night, Monu; Bathtub Safari; Zuko and the crying tap; Goodnight, Tinku!); Bohlale's adventure ends on a high payoff (4 of 5) and Kottavi Raja ends calm but in a different place (the whole city asleep), after a late second peak.
+> In 6 of 8 analysed books framed by bedtime or sleep, the last page returns to the opening place or image at low intensity (0-2 of 5) after a peak earlier in the book (Good Night, Monu; Bathtub Safari; Zuko and the crying tap; Goodnight, Tinku!; A House for Mouse; Clever Pig); Bohlale's adventure ends on a high payoff (4 of 5) and Kottavi Raja ends calm but in a different place, after a late second peak.
 
 - Current: bedtime mode shares beat sequences with the other modes; m004 already keeps hooks out of its last third
 - Suggested: For bedtime blueprints only: place the emotional peak no later than about two thirds through, and let the final page return to the opening setting (bed, room, window) at the lowest intensity of the story.

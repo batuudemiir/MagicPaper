@@ -1,4 +1,5 @@
 import XCTest
+import SwiftUI
 @testable import MagicPaper
 
 /// Masal metninin sayfada dizilişi (21 Ekim 2026): yaş bandı, nefes satırları,
@@ -75,5 +76,18 @@ final class ReaderTextTests: XCTestCase {
         XCTAssertTrue(ReaderText.isDialogue("\u{201C}Gerçekten mi?\u{201D} dedi Deniz."))
         XCTAssertTrue(ReaderText.isDialogue("— Gel buraya!"))
         XCTAssertFalse(ReaderText.isDialogue("Deniz gülümsedi."))
+    }
+
+    func testNameUsesHeavyNunitoWithoutChangingBodyOrSoundTypography() throws {
+        let text = "İREM gülümsedi, pıt diye duydu."
+        let styled = ReaderWords.attributed(text, words: [], size: 26, ink: .primary,
+                                            highlight: .purple, childName: "İrem")
+        let name = try XCTUnwrap(styled.range(of: "İREM"))
+        let body = try XCTUnwrap(styled.range(of: "gülümsedi"))
+        let sound = try XCTUnwrap(styled.range(of: "pıt"))
+        XCTAssertEqual(styled[name].font, MP.F.read(26).weight(.heavy))
+        XCTAssertEqual(styled[name].foregroundColor, .purple)
+        XCTAssertEqual(styled[body].font, MP.F.read(26))
+        XCTAssertEqual(styled[sound].font, MP.F.sound(26))
     }
 }

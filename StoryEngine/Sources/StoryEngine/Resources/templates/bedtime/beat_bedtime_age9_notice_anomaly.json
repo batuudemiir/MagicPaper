@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "b9_na_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "Tam gözleri kapanmak üzereydi ki pencerenin önünden {{discovery.name}} geldi. {{child.name}} kıpırdamadan dinledi. Ses küçüktü, biraz da beceriksizdi; uykusu gelmiş ama yerini bir türlü beğenmeyen birinin sesiydi. {{child.name}} bu sesi tanıyordu. Kendisi de bazı geceler yastığına tam böyle söylenirdi.",
       "requiredSlots": [
         "discovery.name",
@@ -27,6 +29,8 @@
     },
     {
       "id": "b9_na_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} uykuyla uyanıklık arasındaki o ince çizgide yürüyordu. O sırada pencerenin önünden {{discovery.name}} duyuldu. Bir kez, kısa bir ara, sonra bir kez daha. Ses telaşsızdı, kibardı. Bu kadar düzenli bir ses, birinin usulca bir şey söylemeye çalıştığını düşündürüyordu.",
       "requiredSlots": [
         "child.name",
@@ -43,6 +47,8 @@
     },
     {
       "id": "b9_na_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{setting.name}} öyle sessizdi ki pencereden gelen {{discovery.name}} kolayca duyuldu. {{child.name}} başını yastıktan biraz kaldırdı. Ses telaşlı değildi, tam tersine yumuşacıktı. Uykusu gelmiş ama bir türlü uyuyamayan birinin sesine benziyordu. Bu sesi duyan herkes, sahibine bir yastık uzatmak isterdi.",
       "requiredSlots": [
         "setting.name",
@@ -60,6 +66,8 @@
     },
     {
       "id": "b9_na_04",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} koyun saymaya başlamıştı. On birinci koyun çitin üstünden atlarken pencereden {{discovery.name}} geldi. Koyun havada kaldı, {{child.name}} dinlemeye koyuldu. Bu ses bütün sürüden daha ilginçti. Koyunlar nasılsa bekleyebilirdi. Onlar beklemeye alışkındı; çitin önünde sıraya girip yünlerini düzelterek sabırla dururlardı.",
       "requiredSlots": [
         "child.name",
@@ -76,6 +84,8 @@
     },
     {
       "id": "b9_na_05",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "Pencereden {{discovery.name}} geliyordu. {{child.name}} önce bir rüyaya başladığını sandı, ama rüyalar genellikle bu kadar ısrarcı olmazdı. Ses kesildi, sonra yeniden başladı. Minicik, uykulu ve biraz da sitemkârdı. Sanki gece birinin yastığını ters çevirmiş, o da bunu nazikçe şikâyet ediyordu.",
       "requiredSlots": [
         "discovery.name",
@@ -92,6 +102,8 @@
     },
     {
       "id": "b9_na_06",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} yorganın altından bir kulağını çıkardı. Pencerenin önünden {{discovery.name}} duyuluyordu. Bu saatte duyulan seslerin çoğu ya rüzgârdı ya da kaloriferdi. Ama rüzgâr iç çekmezdi, kalorifer de kendi kendine mırıldanmazdı. Bu ses ise ikisini de yapıyordu, hem de pek kibarca.",
       "requiredSlots": [
         "child.name",
@@ -108,6 +120,8 @@
     },
     {
       "id": "b9_na_07",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "Perde hafifçe kıpırdadı ve pencerenin önünden {{discovery.name}} geldi. {{child.name}} gözlerini açmadan gülümsedi. Ses o kadar küçüktü ki duymak için kulak değil, sabır gerekiyordu. Sonra bir kez daha geldi, aynı küçüklükte. Odada uyumaya çalışan tek kişi kendisi değildi galiba.",
       "requiredSlots": [
         "discovery.name",
@@ -124,6 +138,8 @@
     },
     {
       "id": "b9_na_08",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{setting.name}}'da saat tıkırdıyor, perde ara sıra kıpırdıyordu. {{child.name}} bu iki sese çoktan alışmıştı. Ama şimdi pencerenin önünden üçüncü bir ses geliyordu: {{discovery.name}}. Yeni ses ötekilerden daha yumuşaktı. Sanki odanın gece korosuna geç kalmış, utangaç ve uykulu bir üye usulca katılmıştı.",
       "requiredSlots": [
         "setting.name",
@@ -141,6 +157,8 @@
     },
     {
       "id": "b9_na_09",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} tam uyuyacaktı ki kardeşi {{family.name}} fısıldadı: \"Duydun mu?\" Pencereden {{discovery.name}} geliyordu. İkisi de başlarını yorgandan çıkarıp dinledi. Ses küçüktü ve kararsızdı, sanki o da yerini bir türlü beğenmiyordu. {{child.name}} bu durumu iyi tanıyordu; bazı geceler kendisi de yastığıyla pazarlık ederdi.",
       "requiredSlots": [
         "child.name",
@@ -161,6 +179,8 @@
     },
     {
       "id": "b9_na_10",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} ile kardeşi {{family.name}} yatmıştı ve {{family.name}} çoktan uyuklamaya başlamıştı. {{child.name}} ise pencereden gelen {{discovery.name}} yüzünden gözlerini açtı. {{family.name}}'ı uyandırmamak için kıpırdamadan dinledi. Ses tatlıydı, biraz da beceriksizdi. Uykusu gelmiş ama yerleşememiş birinin sesi gibiydi.",
       "requiredSlots": [
         "child.name",
@@ -181,6 +201,8 @@
     },
     {
       "id": "b9_na_11",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} ile arkadaşı {{family.name}} fısıltıyla konuşuyordu ki ikisi aynı anda sustu. Pencereden {{discovery.name}} geliyordu. Birbirlerine baktılar. {{family.name}} kaşlarını kaldırdı, {{child.name}} omuz silkti; ikisinin de bir açıklaması yoktu. Sonra yorganlarına biraz daha gömülüp dinlediler, merakla ve keyifle.",
       "requiredSlots": [
         "child.name",
@@ -201,6 +223,8 @@
     },
     {
       "id": "b9_na_12",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "{{child.name}}'in arkadaşı {{family.name}} \"Bu ne sesi?\" diye fısıldadı. {{child.name}} dinledi. Pencerenin önünden {{discovery.name}} geliyordu, minicik ve tatlı. {{family.name}} bir tahminde bulundu, {{child.name}} bir başkasında. İkisi de emin değildi, ama tahmin yürütmek uyumaktan çok daha eğlenceliydi.",
       "requiredSlots": [
         "child.name",
@@ -224,6 +248,8 @@
     },
     {
       "id": "b9_na_13",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} fark etti ki {{family.possessive}} {{family.name}} başını kaldırmış, kulak kabartmıştı. Sebebi çok geçmeden anlaşıldı: pencereden {{discovery.name}} geliyordu. {{child.name}} kıpırdamadan dinledi. Ses küçüktü ve sakindi. {{family.name}} bir süre dinledi, sonra {{child.name}}'e baktı; sanki açıklamayı ondan bekliyordu.",
       "requiredSlots": [
         "child.name",
@@ -245,6 +271,8 @@
     },
     {
       "id": "b9_na_14",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "{{child.name}}, {{family.possessive}} {{family.name}}'ı okşarken bir ses duydu. Pencerenin önünden {{discovery.name}} geliyordu. {{family.name}} bile duymuştu; başını pencereye çevirmiş, öyle kalmıştı. {{child.name}} gülümsedi. Evde bu saatte uyanık olan tek kişinin kendisi olduğunu sanıyordu, oysa ortada küçük bir kalabalık vardı.",
       "requiredSlots": [
         "child.name",
@@ -266,6 +294,8 @@
     },
     {
       "id": "b9_na_15",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "{{child.name}}'in hayali arkadaşı {{family.name}} pencereyi işaret etti. {{child.name}} dikkatle dinleyince duydu: pencerenin önünden minicik {{discovery.name}} geliyordu. {{family.name}} çok bilmiş bir tavırla başını salladı, sanki sesi kendisi ayarlamış gibi. {{child.name}} bunu ona söylemedi. Bazı şeyler söylenmeden bilinirdi.",
       "requiredSlots": [
         "child.name",
@@ -286,6 +316,8 @@
     },
     {
       "id": "b9_na_16",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
       "text": "{{child.name}} hayali arkadaşı {{family.name}}'a iyi geceler diyordu. Tam o sırada pencereden {{discovery.name}} geldi. {{family.name}} merakla pencereye döndü, {{child.name}} yavaşça doğruldu. İkisi bir süre hiç konuşmadı. Ses ne bir şey istiyordu ne de bir yere gidiyordu; sadece oradaydı.",
       "requiredSlots": [
         "child.name",
@@ -294,6 +326,185 @@
       ],
       "lengthClass": "solo",
       "move": "age9_b9_na_16",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "b9_na_h5_sib_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} uykuya dalmak üzereydi ki kardeşi {{family.name}} yatağında doğruldu ve parmağını dudağına götürdü. Pencereden {{discovery.name}} geliyordu. İkisi kıpırdamadan dinlediler. Ses küçüktü, ama bu sessiz odada kolayca duyuluyordu. {{child.name}} kardeşine yavaşça başını salladı: evet, o da duymuştu.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_sib_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b9_na_h5_sib_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}}, kardeşi {{family.name}}'ın sorusunu cevaplamaya hazırlanıyordu ki ikisi aynı anda sustu. Pencerenin önünden {{discovery.name}} geliyordu. Soru da cevap da bir süre bekleyebilirdi. İkisi yorganlarına biraz daha gömüldü ve dinlediler, merakla ama acele etmeden.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_sib_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "sibling"
+      ]
+    },
+    {
+      "id": "b9_na_h5_fr_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} el fenerini söndürmüştü. Yorganın altında arkadaşı {{family.name}}'ın fısıltısı duyuldu: \"Dinle.\" Pencereden {{discovery.name}} geliyordu. İkisi yorganın altından başlarını çıkardı. {{family.name}} bir tahminde bulundu, {{child.name}} başka bir tahminde. Ama ikisi de aynı fikirdeydi: ses tatlıydı ve yakındaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_fr_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b9_na_h5_fr_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} gece boyunca uyanık kalma planlarını gözden geçiriyorlardı. Planın ilk maddesi daha tamamlanmadan pencerenin önünden {{discovery.name}} geldi. İkisi de sustu. Plan unutuldu, çünkü dinlemek planlamaktan çok daha ilginçti. {{setting.name}} sessizdi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name",
+        "setting.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_fr_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "friend"
+      ]
+    },
+    {
+      "id": "b9_na_h5_an_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} yorganını çekiyordu ki {{family.possessive}} {{family.name}} kıpırdadı ve pencereye döndü. {{child.name}} kulak verdi: pencereden {{discovery.name}} geliyordu. Ses küçük ve sakindi, telaşlı hiçbir yanı yoktu. {{family.name}} bir süre dinledi, sonra {{child.name}}'e baktı; ikisi aynı şeyi merak ediyordu.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_an_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b9_na_h5_an_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}}, {{family.possessive}} {{family.name}}'ın sakin nefesini dinleyerek uykuya dalıyordu. Sonra bu nefese başka bir ses karıştı: pencerenin önünden {{discovery.name}} geliyordu. {{child.name}} gözlerini açtı. {{family.name}} uyanmıştı ve o tarafa bakıyordu. Gece, beklenmedik bir misafir getirmişti.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_an_02",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "animal"
+      ]
+    },
+    {
+      "id": "b9_na_h5_im_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} gözlerini kapamıştı ki hayali arkadaşı {{family.name}} kulağına eğildi: \"Bir misafirimiz var.\" {{child.name}} önce inanmadı; {{family.name}} bazen şaka yapardı. Ama pencereden {{discovery.name}} geliyordu, gerçekten. {{child.name}} yavaşça doğruldu. Bu kez {{family.name}} haklıydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_im_01",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "discoveryTraits": [
+        "isAudible"
+      ],
+      "familyRelations": [
+        "imaginary"
+      ]
+    },
+    {
+      "id": "b9_na_h5_im_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile yıldızları sayıyordu. On ikiye gelmişlerdi ve {{family.name}} on üçüncüyü gördüğünü iddia ediyordu. Tartışma uzamadan pencerenin önünden {{discovery.name}} geldi. İkisi de sustu. Yıldızlar bekleyebilirdi; bu ses beklemeyecek gibiydi.",
+      "requiredSlots": [
+        "child.name",
+        "family.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_b9_na_im_02",
       "settingTraits": [
         "isRestingPlace"
       ],

@@ -4,12 +4,15 @@
   "locale": "tr",
   "ageBand": "7-8",
   "lengthClasses": {
-    "solo": "18-38 words — sayfa 6 hiç paylaşılmaz"
+    "solo": "18-38 words — sayfa 6 hiç paylaşılmaz",
+    "paired": "10-16 words — sayfa 6, persist ile paylaşılır (Sporlar)"
   },
   "editorialNote": "H1 (17 Kasım 2026): sakin macera. Taslak, Batuhan okuyacak.",
   "variants": [
     {
       "id": "a7_ce_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile {{companion.name}} işi bölüştü. Biri önü gözledi, öbürü arkayı kolladı. Tek başına zor görünen şey, iki kişi olunca adım adım ilerledi.",
       "requiredSlots": [
         "child.name",
@@ -20,6 +23,8 @@
     },
     {
       "id": "a7_ce_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "\"Sen şuradan tut, ben buradan,\" dedi {{child.name}}. {{companion.name}} başını salladı. Birlikte yavaş ama emin adımlarla ilerlediler, her adımda biraz daha yaklaştılar.",
       "requiredSlots": [
         "child.name",
@@ -30,6 +35,8 @@
     },
     {
       "id": "a7_ce_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} bir plan yaptı ve {{companion.name}}'e anlattı. Planın yarısı onundu, yarısı {{companion.name}}'in. İkisi kendi payını yapınca yol açılmaya başladı.",
       "requiredSlots": [
         "child.name",
@@ -40,6 +47,8 @@
     },
     {
       "id": "a7_ce_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "Birlikte denediler. {{companion.name}} yol gösterdi, {{child.name}} dikkatle izledi. Bir süre sonra ikisi aynı anda gülümsedi, çünkü işe yarıyordu.",
       "requiredSlots": [
         "child.name",
@@ -50,6 +59,8 @@
     },
     {
       "id": "a7_ce_h2_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "\"Sen bana yolu göster, ben de uzanayım,\" dedi {{child.name}}. {{companion.name}} nereye bakılacağını biliyordu, {{child.name}} ise oraya nasıl uzanılacağını. İkisi birleşince eksik bir şey kalmadı.",
       "requiredSlots": [
         "child.name",
@@ -63,6 +74,8 @@
     },
     {
       "id": "a7_ce_h2_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} ne yapılması gerektiğini anlattı, {{child.name}} dikkatle dinledi. Sonra işi paylaştılar: biri tuttu, öbürü itti. Yavaş yavaş, birbirlerini bekleyerek ilerlediler.",
       "requiredSlots": [
         "child.name",
@@ -76,6 +89,8 @@
     },
     {
       "id": "a7_ce_h2_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} tek başına denediğinde olmamıştı. Bu kez {{companion.name}}'e döndü: \"Birlikte deneyelim mi?\" {{companion.name}} başını salladı. İkisi aynı anda başladılar ve bu kez iş ilerledi.",
       "requiredSlots": [
         "child.name",
@@ -86,6 +101,89 @@
       "castRoles": [
         "needsCare"
       ]
+    },
+    {
+      "id": "a7_ce_j_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
+      "text": "İşi bölüştüler: {{companion.name}} bugün kimlerin buradan geçtiğini sırayla saydı, {{child.name}} ise o kapıları tek tek çaldı. Birinin hafızası ile öbürünün ayakları birleşince sahibini bulmak çok kolaylaştı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ce_j_01",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ce_j_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} köyde kimin nerede oturduğunu bir bir anlattı, {{child.name}} ise bulduklarına uyan ipuçlarını aradı. Biri adresleri biliyordu, öbürü dikkatle bakıyordu; birlikte yürüyünce sahibinin izine düştüler.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ce_j_02",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ce_j_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} o sabah buraya kimlerin uğradığını sırayla yazdı, {{child.name}} ise listedeki her isme tek tek sordu. Düzen ile sabır birleşince sahibi kısa sürede bulundu.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "h2b_a7_ce_j_03",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s78_ce_01",
+      "text": "Biri ritmi tuttu, öbürü zıpladı; sonra hiç konuşmadan yer değiştirdiler.",
+      "requiredSlots": [],
+      "move": "spor_s78_ce_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s78_ce_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
+      "text": "{{child.name}} sayıyı söyledi, {{companion.name}} adımı attı; birlikte bir düzen kurdular.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s78_ce_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s78_ce_03",
+      "text": "Tek başına olmayan şey, ikisi aynı anda başlayınca kendiliğinden yürümeye başladı.",
+      "requiredSlots": [],
+      "move": "spor_s78_ce_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s78_ce_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} saydı, {{child.name}} zıpladı; sonra sırayı değiştirdiler ve aynı ritimle yeniden başladılar.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_s78_ce_tp_01",
+      "lengthClass": "paired"
     }
   ]
 }

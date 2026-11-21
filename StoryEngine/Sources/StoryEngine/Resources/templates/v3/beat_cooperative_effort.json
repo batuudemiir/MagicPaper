@@ -5,11 +5,14 @@
   "ageBand": "5-6",
   "editorialNote": "Preconditions and productions for this beat live in StoryBeat (Sources/StoryEngine/Domain) — the engine is the single source. Page 6, Family III-1. TWO contributions, both necessary and both visible on the page. The child's half must include a CHOICE or an IDEA, never only labour — 'child = body, companion = directions' satisfies the letter of the agency rule and inverts its spirit (catalog §2.3). If either could have managed alone, the obstacle on page 4 is wrong, not this page. Pool raised from five to eight: with five, two books of the same blueprint shared this page about 20% of the time — the thinnest supply in the corpus, on the page that most defines the blueprint. Eight brings it to 12.5%, matching page 7.",
   "lengthClasses": {
-    "solo": "18-38 words — page 6 is never shared"
+    "solo": "18-38 words — page 6 is never shared",
+    "paired": "10-16 words — sayfa 6, persist ile paylaşılır (Sporlar)"
   },
   "variants": [
     {
       "id": "ce_s_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} nasıl yapılacağını buldu, {{companion.name}} ise yapabildiği yeri yaptı. İkisi aynı anda çalıştı. Ancak öyle oldu, başka türlü olmazdı.",
       "requiredSlots": [
         "child.name",
@@ -20,6 +23,8 @@
     },
     {
       "id": "ce_s_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "\"Sen şuradan, ben buradan,\" dedi {{child.name}}. {{companion.name}} başını salladı. Böyle bölüşünce iş birden kolaylaştı, ikisi de şaşırdı. Kimse tek başına yapamazdı bunu.",
       "words": ["w56_bolusmek"],
       "requiredSlots": [
@@ -31,6 +36,8 @@
     },
     {
       "id": "ce_s_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{child.name}}'in aklı, {{companion.name}}'in çevikliği. İkisi bir araya gelince olmayacak iş kalmadı. Birlikte çektiler, birlikte başardılar. Ne biri eksik olurdu, ne öteki.",
       "requiredSlots": [
         "child.name",
@@ -41,6 +48,8 @@
     },
     {
       "id": "ce_s_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "Tek başına olmuyordu, {{child.name}} bunu görmüştü. Yerini değiştirdi, {{companion.name}}'i çağırdı ve ikisi birden denedi. Bu kez oldu. İkisi birden olunca oldu işte.",
       "requiredSlots": [
         "child.name",
@@ -51,6 +60,8 @@
     },
     {
       "id": "ce_s_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} planı yaptı, {{companion.name}} uyguladı. Ya da tam tersi oldu. Sonunda ikisi de kimin ne yaptığını hatırlamıyordu bile.",
       "requiredSlots": [
         "child.name",
@@ -61,6 +72,8 @@
     },
     {
       "id": "ce_s_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} hangi taraftan tutulacağını söyledi, {{companion.name}} hemen oradan tuttu. İkisi aynı anda asıldı. Tek bir kişi olsa hiç kıpırdamazdı, ikisi olunca kıpırdadı.",
       "requiredSlots": [
         "child.name",
@@ -71,6 +84,8 @@
     },
     {
       "id": "ce_s_07",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "\"Bir fikrim var,\" dedi {{child.name}} ve anlattı. {{companion.name}} dinledi, sonra kendi bildiği bir şeyi ekledi. İki fikir birleşince iş tamam oldu.",
       "requiredSlots": [
         "child.name",
@@ -81,6 +96,8 @@
     },
     {
       "id": "ce_s_08",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} sırayı belirledi: önce şu, sonra bu. {{companion.name}} sırayı bozmadan yaptı. Doğru sıra olmasa hiçbiri işe yaramazdı. İkisi de bunu biliyordu.",
       "requiredSlots": [
         "child.name",
@@ -91,6 +108,8 @@
     },
     {
       "id": "ce_s_09",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} bir yol fark etti ama oraya sığmıyordu. {{companion.name}} sığıyordu ama yolu görmemişti. {{child.name}} gösterdi, {{companion.name}} girdi. Biri bulmasa, öbürü giremese olmazdı.",
       "requiredSlots": [
         "child.name",
@@ -101,6 +120,8 @@
     },
     {
       "id": "ce_s_10",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} tutuyordu ama nereye çekeceğini bilmiyordu. {{child.name}} biraz düşündü, sonra \"Yukarı değil, yana,\" dedi. Yana çektiler. İkisinden biri eksik olsa yerinden oynamazdı.",
       "requiredSlots": [
         "companion.name",
@@ -111,6 +132,8 @@
     },
     {
       "id": "ce_s_11",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "\"Üç deyince birlikte,\" dedi {{child.name}}. Saymak onun fikriydi. {{companion.name}} bekledi, üçte o da itti. Ayrı ayrı itseler bir şey olmazdı, aynı anda itince oldu.",
       "requiredSlots": [
         "child.name",
@@ -121,6 +144,8 @@
     },
     {
       "id": "ce_s_12",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} bir ip buldu ama ne yapacağını bilmiyordu. {{child.name}} ipe baktı ve aklına bir fikir geldi. İpi bağladılar, iki uçtan birlikte çektiler. Biri ipi bulmuştu, öteki ne işe yarayacağını.",
       "requiredSlots": [
         "companion.name",
@@ -128,6 +153,44 @@
       ],
       "lengthClass": "solo",
       "move": "found_rope_found_use"
+    },
+    {
+      "id": "s56_ce_01",
+      "text": "Biri ritmi tuttu, öbürü zıpladı; sonra hiç konuşmadan yer değiştirdiler.",
+      "requiredSlots": [],
+      "move": "spor_s56_ce_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s56_ce_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
+      "text": "{{child.name}} sayıyı söyledi, {{companion.name}} adımı attı; birlikte bir düzen kurdular.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s56_ce_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s56_ce_03",
+      "text": "Tek başına olmayan şey, ikisi aynı anda başlayınca kendiliğinden yürümeye başladı.",
+      "requiredSlots": [],
+      "move": "spor_s56_ce_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s56_ce_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} saydı, {{child.name}} zıpladı; sonra yer değiştirip aynı ritimle yeniden başladılar.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_s56_ce_tp_01",
+      "lengthClass": "paired"
     }
   ]
 }

@@ -66,8 +66,10 @@ struct ProfileHubView: View {
                     MPRowDivider(area: .parent)
                     ParentRowButton(systemImage: "book.closed", tone: .lav, title: "Kitap yap",
                                     subtitle: "Masallardan basılabilir bir PDF") {
-                        profileManager.switchProfile(to: profile)
-                        app.router.parentRoute = .bookExport
+                        app.unlock(.pdfBook) {
+                            profileManager.switchProfile(to: profile)
+                            app.router.parentRoute = .bookExport
+                        }
                     }
                 }
 

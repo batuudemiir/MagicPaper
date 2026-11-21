@@ -5,11 +5,14 @@
   "ageBand": "3-4",
   "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
   "lengthClasses": {
-    "paired": "5-12 words — sayfa 2 meet_companion ile paylaşılır"
+    "paired": "5-12 words — sayfa 2 meet_companion ile paylaşılır",
+    "solo": "10-24 words — sayfa 2 yalnız (Sporlar)"
   },
   "variants": [
     {
       "id": "ra3_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Üşüdüm,\" dedi {{companion.name}}. Sesi çok yavaştı.",
       "requiredSlots": [
         "companion.name"
@@ -19,6 +22,8 @@
     },
     {
       "id": "ra3_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Yardım eder misin?\" diye sordu {{companion.name}}.",
       "requiredSlots": [
         "companion.name"
@@ -28,6 +33,8 @@
     },
     {
       "id": "ra3_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} çok yorgundu. Tek başınaydı.",
       "topics": [
         "alone"
@@ -40,6 +47,8 @@
     },
     {
       "id": "ra3_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bir şeyim var,\" dedi {{companion.name}}. Ağlamadı.",
       "requiredSlots": [
         "companion.name"
@@ -49,6 +58,8 @@
     },
     {
       "id": "ra3_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} yaklaştı. \"Yanımda kalır mısın?\" dedi.",
       "move": "asks_to_stay",
       "lengthClass": "paired",
@@ -58,6 +69,8 @@
     },
     {
       "id": "ra3_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Çok susadım,\" dedi {{companion.name}}. Sonra yutkundu.",
       "move": "thirsty",
       "lengthClass": "paired",
@@ -67,6 +80,8 @@
     },
     {
       "id": "ra3_07",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} hiçbir şey demedi. Sadece sokuldu.",
       "move": "nestles_without_words",
       "lengthClass": "paired",
@@ -76,12 +91,59 @@
     },
     {
       "id": "ra3_08",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Biraz dinlenmem lazım,\" dedi {{companion.name}}. Gözleri kapanıyordu.",
       "move": "needs_rest",
       "lengthClass": "paired",
       "requiredSlots": [
         "companion.name"
       ]
+    },
+    {
+      "id": "s34_ra_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} {{discovery.name}}'i burnuyla itti. \"Benimle oynar mısın?\" dedi. Gözleri parlıyordu.",
+      "requiredSlots": [
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "spor_s34_ra_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_ra_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "\"Bu oyun iki kişilik,\" dedi {{companion.name}}. \"Tek başıma olmuyor. Bana katılır mısın?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "spor_s34_ra_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_ra_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} yerinde sekti, sekti. \"Haydi, sen de gel!\" dedi. Birlikte oynamak istiyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "spor_s34_ra_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s34_ra_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "\"Gel, birlikte oynayalım,\" dedi {{companion.name}}. \"Tek başıma hiç tadı yok.\" Sonra bekledi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "tp_s34_ra_tp_01",
+      "lengthClass": "solo"
     }
   ]
 }

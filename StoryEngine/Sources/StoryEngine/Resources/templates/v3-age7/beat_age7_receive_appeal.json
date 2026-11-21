@@ -5,11 +5,14 @@
   "ageBand": "7-8",
   "editorialNote": "7-8 bandı (Faz 10, 11 Kasım 2026). Uzunluk ve cümle sınırı 5-6 ile aynı (AgeBand: sayfa 18-38 kelime, cümle en çok 14); fark seste. Çocuk kendi akıl yürütmesini cümleye döker ('demek ki', 'oysa', 'çünkü'), küçük bir mizah taşır, yanılgısına ilk o güler. Yol arkadaşı yardım eder ama çözmez; kimse çocuğu övmez. Sayfa 3. İhtiyaç bir kez, sade ve sakin söylenir; yalvarma, gözyaşı yok.",
   "lengthClasses": {
-    "paired": "8-14 words — always beside meet_companion"
+    "paired": "8-14 words — always beside meet_companion",
+    "solo": "18-38 words — sayfa 3 yalnız (Sporlar)"
   },
   "variants": [
     {
       "id": "a7_ra_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bir şeyimi kaybettim,\" dedi {{companion.name}}. \"Yardım eder misin?\"",
       "requiredSlots": [
         "companion.name"
@@ -19,6 +22,8 @@
     },
     {
       "id": "a7_ra_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} sakin bir sesle anlattı: \"Aradığımı bulamıyorum. Benimle bakar mısın?\"",
       "requiredSlots": [
         "companion.name"
@@ -28,6 +33,8 @@
     },
     {
       "id": "a7_ra_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Yalnız arayınca hiç bulamıyorum,\" dedi {{companion.name}}. \"İkimiz belki buluruz.\"",
       "requiredSlots": [
         "companion.name"
@@ -37,6 +44,8 @@
     },
     {
       "id": "a7_ra_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} ona baktı ve basitçe sordu: \"Bana yardım edebilir misin?\"",
       "requiredSlots": [
         "companion.name"
@@ -46,6 +55,8 @@
     },
     {
       "id": "a7_ra_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bunu tek başıma çözemedim,\" dedi {{companion.name}}. \"Sen benden iyi bakıyorsun.\"",
       "requiredSlots": [
         "companion.name"
@@ -55,6 +66,8 @@
     },
     {
       "id": "a7_ra_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Dört göz iki gözden iyi görür,\" dedi {{companion.name}}. \"Kaybettiğimi birlikte arar mıyız?\"",
       "lengthClass": "paired",
       "move": "age7_a7_ra_06",
@@ -64,6 +77,8 @@
     },
     {
       "id": "a7_ra_07",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} kısaca anlattı: \"Dün buradaydı, bugün yok. Bir göz atar mısın?\"",
       "lengthClass": "paired",
       "move": "age7_a7_ra_07_here_yesterday",
@@ -73,6 +88,8 @@
     },
     {
       "id": "a7_ra_08",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Ben yukarılara bakarım, sen aşağılara,\" dedi {{companion.name}}. \"Olur mu?\"",
       "requiredSlots": [
         "companion.name"
@@ -82,6 +99,8 @@
     },
     {
       "id": "a7_ra_09",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Her yere baktım sandım,\" dedi {{companion.name}}. \"Meğer hep aynı yere bakmışım. Gelir misin?\"",
       "requiredSlots": [
         "companion.name"
@@ -91,6 +110,8 @@
     },
     {
       "id": "a7_ra_10",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} elindeki boş kutuyu gösterdi. \"İçindeki yok. Birlikte arayalım mı?\"",
       "requiredSlots": [
         "companion.name"
@@ -100,6 +121,8 @@
     },
     {
       "id": "a7_ra_11",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Aradığım şey küçük ama benim için önemli,\" dedi {{companion.name}}. \"Bakar mısın?\"",
       "requiredSlots": [
         "companion.name"
@@ -109,12 +132,104 @@
     },
     {
       "id": "a7_ra_12",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} biraz düşündü, sonra sordu: \"Bugün bir arkadaşa ihtiyacım var. Sen olur musun?\"",
       "requiredSlots": [
         "companion.name"
       ],
       "lengthClass": "paired",
       "move": "age7_a7_ra_12"
+    },
+    {
+      "id": "a7_ra_j_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "\"Bunu biri buralarda unutmuş,\" dedi {{companion.name}}. \"Sahibini bulmama yardım eder misin?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a7_ra_j_01",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ra_j_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "\"Bunu yolda buldum,\" dedi {{companion.name}}. \"Sahibine ulaştırmama yardım eder misin?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a7_ra_j_02",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "a7_ra_j_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "\"Bunun mutlaka bir sahibi var,\" dedi {{companion.name}}. \"Birlikte arayıp bulalım mı?\"",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "h2b_a7_ra_j_03",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "person"
+      ]
+    },
+    {
+      "id": "s78_ra_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} {{discovery.name}}'i burnuyla {{child.name}}'e doğru itti. \"Bu oyun iki kişilik,\" dedi. \"Tek başıma bir türlü olmuyor. Bana katılır mısın?\" Gözlerinde kocaman bir rica vardı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "discovery.name"
+      ],
+      "move": "spor_s78_ra_01",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s78_ra_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} yerinde sekip duruyordu. \"Bir oyun biliyorum,\" dedi, \"ama biri tutmalı, biri zıplamalı. Sen tutar mısın, ya da sen mi zıplarsın?\" Seçimi {{child.name}} yapacaktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "move": "spor_s78_ra_02",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s78_ra_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "\"Benimle oynar mısın?\" diye sordu {{companion.name}}. Çayırda tek başına koşup durmaktan sıkılmıştı. Oyun, birlikte oynanınca daha güzeldi; bunu ikisi de biliyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "spor_s78_ra_03",
+      "lengthClass": "solo"
+    },
+    {
+      "id": "s78_ra_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{companion.name}} {{child.name}}'in yanına gelip durdu. \"Bu oyunu tek başıma oynamaya çalışıyorum,\" dedi, \"ama hep yarım kalıyor. Sen başlatsan, ben devam etsem olur mu?\" Sesi umutluydu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "move": "tp_s78_ra_tp_01",
+      "lengthClass": "solo"
     }
   ]
 }

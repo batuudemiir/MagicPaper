@@ -26,10 +26,25 @@ struct StoryPageView: View {
     let showsFolio: Bool
     /// Masalın dünya rengi.
     let accent: Color
-    /// Masalın dünya işareti — iPad açık kitabın resimsiz sol sayfası bunu kullanır.
+    /// Masalın dünya işareti; çağıranların ortak sunum sözleşmesinde kalır.
     let symbol: String
     @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.verticalSizeClass) private var verticalClass
     @Environment(\.horizontalSizeClass) private var sizeClass
+    @State private var unavailableImageRef: String?
+
+    private var illustrationKey: String? {
+        page.imageRef ?? (page.art?.isBundledSpot == true ? page.art?.assetDigest : nil)
+    }
+
+    private var composition: ReaderPageComposition {
+        if page.scene == nil, let key = illustrationKey, unavailableImageRef == key { return .text }
+        return page.composition
+    }
+
+    private var bottomClearance: CGFloat {
+        ReaderPageLayout.bottomChromeClearance(accessibility: typeSize.isAccessibilitySize, compactHeight: verticalClass == .compact)
+    }
 
     var body: some View {
         ZStack {
@@ -42,10 +57,13 @@ struct StoryPageView: View {
                 // Çizim kenardan kenara ve sayfanın en üstünden başlar; cam
                 // kontroller onun üstünde yüzer. Metin kenar boşluğunda kalır.
                 VStack(spacing: 0) {
-                    if page.hasIllustration {
+                    if composition == .scene {
                         illustration(in: geo)
                             .overlay(alignment: .bottom) { PaperLip(theme: theme) }
                         Spacer(minLength: MP.S.x6)
+                    }
+                    if composition == .spot {
+                        spotHeader(in: geo)
                     }
                     textColumn(in: geo)
                         .padding(.horizontal, StoryPageView.gutter)
@@ -53,8 +71,8 @@ struct StoryPageView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 // Resimsiz sayfada metin üst denetimlerin (kapat, kalp, Aa)
                 // altından başlar; en büyük yazı boyutunda kapatın altına akmaz.
-                .padding(.top, page.hasIllustration ? 0 : MP.S.navBarHeight)
-                .padding(.bottom, MP.S.x7)
+                .padding(.top, composition == .scene ? 0 : MP.S.navBarHeight + MP.S.x6)
+                .padding(.bottom, bottomClearance)
                 }
             }
 
@@ -91,29 +109,46 @@ struct StoryPageView: View {
     }
 
     /// Hazır sahnenin yüksekliği (B2): sütun genişliğinde 4:3, ama hiçbir
-    /// zaman kullanılabilir yüksekliğin %55'inden fazla değil. Kare kutuyu
+    /// zaman normal yazıda kullanılabilir yüksekliğin %40'ından fazla değil. Kare kutuyu
     /// doldurmaz; metne yer bırakır (docs/B2_SCENE_LIBRARY_PLAN.md §5.2).
     private func sceneHeight(in geo: GeometryProxy) -> CGFloat {
-        min(geo.size.width / StorySceneView.aspectRatio, geo.size.height * 0.55)
+        ReaderPageLayout.sceneHeight(width: geo.size.width, height: geo.size.height,
+                                     readPoints: readSize.points, accessibility: typeSize.isAccessibilitySize)
     }
 
 
     @ViewBuilder
     private func fileIllustration(in geo: GeometryProxy) -> some View {
-        // §8'in hedefi kullanılabilir yüksekliğin %45–55'i. Hedef, katı kural
-        // değil: yazı boyutu büyüdükçe önce çizim yer verir, çünkü §14 hiçbir
-        // durumda okunabilirliğin feda edilmemesini söylüyor.
-        let height = min(max(geo.size.height * 0.50, geo.size.height * 0.34),
-                         geo.size.height * 0.55)
+        let height = sceneHeight(in: geo)
 
         PageIllustration(
             fileName: page.imageRef ?? "",
             label: page.imageLabel,
             theme: theme,
-            bleeds: true
+            art: page.art,
+            bleeds: true,
+            onUnavailable: { unavailableImageRef = illustrationKey }
         )
         .frame(height: height)
         .clipped()
+    }
+
+    @ViewBuilder
+    private func spotHeader(in geo: GeometryProxy) -> some View {
+        let top = MP.S.navBarHeight + MP.S.x6
+        let size = ReaderPageLayout.spotHeaderSize(
+            width: max(0, geo.size.width - StoryPageView.gutter * 2),
+            pageHeight: geo.size.height,
+            contentHeight: max(0, geo.size.height - top - bottomClearance),
+            accessibility: typeSize.isAccessibilitySize)
+        if size.height > 0 {
+            PageIllustration(fileName: page.imageRef ?? "", label: page.imageLabel, theme: theme,
+                             art: page.art, bleeds: false,
+                             onUnavailable: { unavailableImageRef = illustrationKey })
+                .frame(width: size.width, height: size.height)
+                .frame(maxWidth: .infinity)
+                .padding(.bottom, MP.S.x6)
+        }
     }
 
     // MARK: - 27 · iPad yatay açık kitap
@@ -122,7 +157,8 @@ struct StoryPageView: View {
     /// solda resim, sağda metin, ortada sırt gölgesi. En büyük yazı
     /// boyutlarında metin tüm genişliği alır.
     private func isSpread(_ geo: GeometryProxy) -> Bool {
-        sizeClass == .regular && geo.size.width > geo.size.height * 1.15 && !typeSize.isAccessibilitySize
+        composition == .scene && sizeClass == .regular
+            && geo.size.width > geo.size.height * 1.15 && !typeSize.isAccessibilitySize
     }
 
     private func spread(in geo: GeometryProxy) -> some View {
@@ -133,10 +169,10 @@ struct StoryPageView: View {
                 .clipped()
                 .accessibilityHidden(page.imageLabel == nil)
             GeometryReader { right in
-                textColumn(in: right, reservesArt: false)
+                textColumn(in: right)
                     .padding(.horizontal, StoryPageView.gutter + MP.S.x4)
                     .padding(.top, MP.S.navBarHeight)
-                    .padding(.bottom, MP.S.x7)
+                    .padding(.bottom, bottomClearance)
             }
             .frame(width: half, height: geo.size.height)
             // Kitabın sırtı: kâğıt gölgelemesi (malzeme taklidi).
@@ -150,22 +186,16 @@ struct StoryPageView: View {
         }
     }
 
-    /// Sol sayfa: masalın resmi; resimsiz masalda dünyanın işareti, dünya
-    /// renginde bir kapak sanatı gibi.
+    /// Açık kitabın sol sayfası yalnızca gerçek bir sahne taşır.
     @ViewBuilder
     private var spreadArt: some View {
         if let scene = page.scene {
             StorySceneView(scene: scene)
                 .aspectRatio(StorySceneView.aspectRatio, contentMode: .fill)
         } else if let file = page.imageRef {
-            PageIllustration(fileName: file, label: page.imageLabel, theme: theme)
-        } else {
-            ZStack {
-                LinearGradient(colors: [accent.opacity(0.22), accent.opacity(0.55)],
-                               startPoint: .top, endPoint: .bottom)
-                MPIcon(symbol, size: 120, weight: .light)
-                    .foregroundStyle(.white.opacity(0.9))
-            }
+            PageIllustration(fileName: file, label: page.imageLabel, theme: theme,
+                             onUnavailable: { unavailableImageRef = illustrationKey })
+
         }
     }
 
@@ -180,7 +210,8 @@ struct StoryPageView: View {
     /// `.basedOnSize` içerik sığdığında sekmeyi de kapatır, yani sığan sayfa
     /// sabit bir sayfa gibi davranır.
     ///
-    /// Sığan metin optik olarak ortalanır; sığmayan metin yukarıdan akar.
+    /// Sığan metin kullanılabilir okuma alanında dikey ortalanır;
+    /// uzun metin aynı sütunda baştan kaydırılabilir.
     /// Yeni kelimenin rengi: okuma temasının kahraman adı tonu (teslimde
     /// `reader.*.heroName`), üç temada da kâğıda karşı okunur.
     private var wordHighlight: Color { theme.highlight }
@@ -190,47 +221,125 @@ struct StoryPageView: View {
     /// kadar kısaydı, bu yüzden kısa metin bile her zaman biraz taşıyor ve
     /// parmakla yukarı aşağı oynuyordu (21 Ekim 2026). Sığan metin artık
     /// kıpırdamaz; kaydırma yalnızca gerçekten sığmayan eski uzun sayfalarda.
-    private func textColumn(in geo: GeometryProxy, reservesArt: Bool = true) -> some View {
+    private func textColumn(in geo: GeometryProxy) -> some View {
         GeometryReader { viewport in
-            textScroll(minHeight: viewport.size.height,
-                       topAligned: reservesArt && page.hasIllustration)
+            textScroll(available: viewport.size)
         }
     }
 
-    private func textScroll(minHeight available: CGFloat, topAligned: Bool) -> some View {
+    private func textScroll(available: CGSize) -> some View {
         ScrollView(.vertical) {
-            VStack(alignment: .leading, spacing: readSize.points * 0.55) {
-                if !page.title.isEmpty {
-                    Text(page.title)
-                        .font(MP.F.displaySM())
-                        .mpTightTracking(21)
-                        .foregroundStyle(theme.foreground)
-                        .padding(.bottom, MP.S.x1)
-                }
-
-                switch layout {
-                case .breath: breathLines
-                case .paragraphs: paragraphs
-                }
-            }
+            narrative(available: available)
             .frame(maxWidth: measure, alignment: .leading)
             .frame(maxWidth: .infinity, alignment: .leading)
-            // Sığdığında ortalanır, taştığında yukarıdan başlar.
-            .frame(minHeight: max(available, 0),
-                   alignment: topAligned ? .top : .center)
-            // Sayfa VoiceOver için tek parça: dört ayrı parça yerine sürekli
-            // metin.
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel(page.spokenText)
-            .accessibilityAddTraits(.isStaticText)
-            .accessibilityTextContentType(.narrative)
-            .modifier(WordActions(words: ReaderWords.words(in: page.paragraphs, from: page.words)))
-            .environment(\.openURL, OpenURLAction { url in
-                ReaderWordSelection.shared.handle(url, in: page.words)
-            })
+            .frame(minHeight: max(available.height, 0), alignment: .center)
         }
         .scrollBounceBehavior(.basedOnSize)
         .scrollIndicators(.hidden)
+    }
+
+    private func narrative(available: CGSize) -> some View {
+        let blocks = rhythmBlocks(available: available)
+        return Group {
+            if let blocks {
+                rhythmNarrative(blocks, available: available)
+            } else {
+                legacyNarrative
+            }
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(page.spokenText)
+        .accessibilityAddTraits(.isStaticText)
+        .accessibilityTextContentType(.narrative)
+        .modifier(WordActions(words: ReaderWords.words(in: page.paragraphs, from: page.words)))
+        .environment(\.openURL, OpenURLAction { url in
+            ReaderWordSelection.shared.handle(url, in: page.words)
+        })
+    }
+
+    private var legacyNarrative: some View {
+        VStack(alignment: .leading, spacing: readSize.points * 0.55) {
+            if !page.title.isEmpty {
+                Text(page.title)
+                    .font(MP.F.displaySM())
+                    .mpTightTracking(21)
+                    .foregroundStyle(theme.foreground)
+                    .padding(.bottom, MP.S.x1)
+            }
+            switch layout {
+            case .breath: breathLines
+            case .paragraphs: paragraphs
+            }
+        }
+    }
+
+    private func rhythmBlocks(available: CGSize) -> [ReaderRhythmBlock]? {
+        guard ReaderReadingRhythm.isEligible(composition: composition,
+                                             accessibility: typeSize.isAccessibilitySize,
+                                             compactHeight: verticalClass == .compact,
+                                             viewport: available) else { return nil }
+        return ReaderReadingRhythm.blocks(paragraphs: page.paragraphs, reading: page.reading, layout: layout)
+    }
+
+    private func rhythmNarrative(_ blocks: [ReaderRhythmBlock], available: CGSize) -> some View {
+        let hasTitle = !page.title.isEmpty
+        let offset = hasTitle ? 1 : 0
+        let size = layout == .breath ? readSize.larger.points : readSize.points
+        let gaps = blocks.enumerated().map { index, block in
+            if index == 0 { return hasTitle ? readSize.points * 0.55 : 0 }
+            if layout == .paragraphs { return readSize.points * 0.55 }
+            return block.sourceParagraph == blocks[index - 1].sourceParagraph
+                ? size * 0.55 : readSize.points * 0.55 + size * 0.5
+        }
+        let quiet = Set(blocks.indices.filter { $0 > 0 && blocks[$0].quiet }.map { $0 + offset })
+        return ReaderRhythmLayout(gaps: (hasTitle ? [0] : []) + gaps,
+                                  quietIndices: quiet, viewportHeight: available.height,
+                                  trailing: layout == .breath ? size * 0.5 : 0) {
+            if hasTitle {
+                Text(page.title).font(MP.F.displaySM()).mpTightTracking(21)
+                    .foregroundStyle(theme.foreground).padding(.bottom, MP.S.x1)
+            }
+            ForEach(Array(blocks.enumerated()), id: \.offset) { _, block in
+                rhythmText(block, size: size)
+            }
+        }
+    }
+
+    private func rhythmText(_ block: ReaderRhythmBlock, size: CGFloat) -> some View {
+        let dialogue = layout == .paragraphs && ReaderText.isDialogue(page.paragraphs[block.sourceParagraph])
+        let factor = layout == .breath ? max(spacing.factor, MP.ReadSpacing.rahat.factor) : spacing.factor
+        return Text(ReaderWords.attributed(block.text, words: page.words, size: size,
+                                          ink: theme.body, highlight: wordHighlight,
+                                          childName: childName, readAlong: rhythmMark(block)))
+            .lineSpacing(size * factor)
+            .tracking(ReaderText.tracking(size, easyReading: easyReading))
+            .tint(wordHighlight)
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(.leading, dialogue ? MP.S.x3 : 0)
+            .overlay(alignment: .leading) {
+                if dialogue {
+                    Capsule().fill(theme.muted.opacity(0.35)).frame(width: MP.E.width)
+                        .accessibilityHidden(true)
+                }
+            }
+    }
+
+    private func rhythmMark(_ block: ReaderRhythmBlock) -> ReaderWords.ReadAlong? {
+        let source: ReadAlongMark?
+        if layout == .breath {
+            guard let value = spoken.value,
+                  value.text == page.spokenText.trimmingCharacters(in: .whitespacesAndNewlines),
+                  let word = ReaderText.breathWordMark(paragraphs: page.paragraphs,
+                                                      location: value.location, length: value.length) else { return nil }
+            let sentence = ReaderText.sentenceRanges(in: page.paragraphs[word.paragraph])[word.line]
+            source = .init(paragraph: word.paragraph, start: sentence.lowerBound + word.start,
+                           end: sentence.lowerBound + word.end)
+        } else { source = readAlongMark }
+        guard let local = block.localMark(source, in: page.paragraphs) else { return nil }
+        // Younger readers retain word highlighting without dimming earlier text.
+        if layout == .breath, local.isEmpty { return nil }
+        return .init(start: local.lowerBound, end: local.upperBound,
+                     fill: theme.readAlong, readInk: layout == .breath ? theme.body : theme.muted)
     }
 
     /// 7-10 yaş: paragraflar ayrı ayrı dizilir. `lineSpacing` tek başına
@@ -352,9 +461,12 @@ private struct PageIllustration: View {
     let fileName: String
     let label: String?
     let theme: MP.ReadTheme
+    var art: StoryPageArt? = nil
     /// Kenardan kenara: kutuyu doldurur, köşesiz. iPad açık kitabın sol
     /// sayfası da böyle; telefonda dikey sayfa da artık böyle (21 Ekim 2026).
     var bleeds: Bool = true
+    var onUnavailable: () -> Void = {}
+    @Environment(\.displayScale) private var displayScale
 
     @State private var image: UIImage?
 
@@ -374,12 +486,17 @@ private struct PageIllustration: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .task(id: fileName) {
-                guard !fileName.isEmpty else { return }
-                let width = geo.size.width * UIScreen.main.scale
-                let loaded = await ReaderImageLoader.shared.image(
-                    named: fileName, targetPixelWidth: width
-                )
+            .task(id: "\(fileName):\(art?.assetDigest ?? "")@\(Int(geo.size.width * displayScale))") {
+                guard !fileName.isEmpty || art?.isBundledSpot == true else { return }
+                let width = geo.size.width * displayScale
+                let loaded: UIImage?
+                if let art, art.isBundledSpot {
+                    loaded = await ReaderImageLoader.shared.image(art: art, targetPixelWidth: width)
+                } else {
+                    loaded = await ReaderImageLoader.shared.image(named: fileName, targetPixelWidth: width)
+                }
+                guard !Task.isCancelled else { return }
+                if loaded == nil { onUnavailable() }
                 withAnimation(MP.M.gated(MP.M.easeOut)) { image = loaded }
             }
         }

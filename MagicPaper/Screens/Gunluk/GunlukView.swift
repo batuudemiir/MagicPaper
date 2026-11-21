@@ -177,7 +177,8 @@ struct GunlukView: View {
         let items = library.items(in: shelf)
         if !items.isEmpty {
             GunlukSection(title: shelf.title, subtitle: shelf.subtitle,
-                          action: { app.router.masallarPath.append(.shelf(shelf)) }) {
+                          action: { app.router.masallarPath.append(.shelf(shelf)) },
+                          titleArt: shelf.titleArt) {
                 GunlukRow {
                     ForEach(items) { item in
                         ClassicShelfCard(item: item, width: Self.coverWidth, height: Self.coverHeight) { open(item) }

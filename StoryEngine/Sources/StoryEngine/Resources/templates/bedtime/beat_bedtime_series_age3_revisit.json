@@ -12,6 +12,8 @@
   "variants": [
     {
       "id": "bts3_rv_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Yine uyku saati geldi. {{child.name}} yatağına girdi. Pencerede {{companion.name}} belirdi. Yine gelmişti!",
       "requiredSlots": [
         "child.name",
@@ -25,6 +27,8 @@
     },
     {
       "id": "bts3_rv_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yorganını çekti. {{companion.name}} pencerenin önündeydi. \"İyi akşamlar,\" dedi. İkisi gülümsedi.",
       "requiredSlots": [
         "child.name",
@@ -38,6 +42,8 @@
     },
     {
       "id": "bts3_rv_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'da lamba yumuşacık yandı. {{child.name}} {{keepsake.name}}'i hatırladı. {{companion.name}} yine pencereye geldi.",
       "requiredSlots": [
         "setting.name",
@@ -53,6 +59,8 @@
     },
     {
       "id": "bts3_rv_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yatağına uzandı. Pencereden tanıdık bir yüz baktı. {{companion.name}} yine buradaydı.",
       "requiredSlots": [
         "child.name",
@@ -66,6 +74,8 @@
     },
     {
       "id": "bts3_rv_fs_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile kardeşi {{family.name}} yataklarına girdi. Pencerede {{companion.name}} belirdi. İkisi el salladı.",
       "requiredSlots": [
         "child.name",
@@ -83,6 +93,8 @@
     },
     {
       "id": "bts3_rv_fs_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yorganını çekti. Kardeşi {{family.name}} pencereyi gösterdi. {{companion.name}} yine gelmişti.",
       "requiredSlots": [
         "child.name",
@@ -100,6 +112,8 @@
     },
     {
       "id": "bts3_rv_fs_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} kardeşi {{family.name}} ile fısıldaştı. Sonra pencereye baktılar. {{companion.name}} yine oradaydı!",
       "requiredSlots": [
         "child.name",
@@ -117,6 +131,8 @@
     },
     {
       "id": "bts3_rv_ff_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile arkadaşı {{family.name}} yan yana uzandı. Pencerede {{companion.name}} belirdi. İkisi çok sevindi.",
       "requiredSlots": [
         "child.name",
@@ -134,6 +150,8 @@
     },
     {
       "id": "bts3_rv_ff_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} arkadaşı {{family.name}}'a pencereyi gösterdi. {{companion.name}} oradaydı. \"Yine geldi,\" dediler.",
       "requiredSlots": [
         "child.name",
@@ -151,6 +169,8 @@
     },
     {
       "id": "bts3_rv_ff_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} arkadaşı {{family.name}} ile pijamalarını giydi. Pencerede {{companion.name}} belirdi. İkisi gülümsedi.",
       "requiredSlots": [
         "child.name",
@@ -168,6 +188,8 @@
     },
     {
       "id": "bts3_rv_fa_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yatağına girdi. Ayakucuna {{family.possessive}} {{family.name}} kıvrıldı. Pencerede {{companion.name}} belirdi.",
       "requiredSlots": [
         "child.name",
@@ -186,6 +208,8 @@
     },
     {
       "id": "bts3_rv_fa_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{family.possessive}} {{family.name}}'ı okşadı. Sonra pencereye baktı. {{companion.name}} yine gelmişti.",
       "requiredSlots": [
         "child.name",
@@ -204,6 +228,8 @@
     },
     {
       "id": "bts3_rv_fa_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} uzandı. Yanında {{family.possessive}} {{family.name}} kulaklarını dikti. {{companion.name}} pencereye gelmişti.",
       "requiredSlots": [
         "child.name",
@@ -222,6 +248,8 @@
     },
     {
       "id": "bts3_rv_fi_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} hayali arkadaşı {{family.name}} ile yatağa girdi. Pencerede {{companion.name}} belirdi. Üçü gülümsedi.",
       "requiredSlots": [
         "child.name",
@@ -239,6 +267,8 @@
     },
     {
       "id": "bts3_rv_fi_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} hayali arkadaşı {{family.name}}'a göz kırptı. Pencereden {{companion.name}} baktı. Yine gelmişti.",
       "requiredSlots": [
         "child.name",
@@ -256,6 +286,8 @@
     },
     {
       "id": "bts3_rv_fi_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yatağa uzandı. Hayali arkadaşı {{family.name}} pencereyi gösterdi. {{companion.name}} yine gelmişti.",
       "requiredSlots": [
         "child.name",

@@ -15,6 +15,8 @@
   "variants": [
     {
       "id": "rs_coop_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "İkisi birlikte başardı. {{companion.name}} sonunda olması gereken yere ulaştı. {{child.name}} arkasından baktı ve içi rahatladı. İkisi de yorgundu ama mutluydu.",
       "requiredSlots": [
         "companion.name",
@@ -28,6 +30,8 @@
     },
     {
       "id": "rs_coop_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Ne {{child.name}} tek başına yapabilirdi, ne de {{companion.name}}. Ama ikisi birlikte yaptı. Olması gereken neyse o oldu. Birbirlerine baktılar ve güldüler.",
       "requiredSlots": [
         "child.name",
@@ -41,6 +45,8 @@
     },
     {
       "id": "rs_speak_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} söyledi ve söylediği duyuldu. {{companion.name}} için bundan sonrası değişti. Artık kimse onu görmezden gelmiyordu. Bunu fark edince şaşırdı.",
       "requiredSlots": [
         "child.name",
@@ -54,6 +60,8 @@
     },
     {
       "id": "rs_speak_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Bir tek cümle yetti. {{companion.name}} istediğine kavuştu, çünkü {{child.name}} onun yerine konuşmuştu. Kendisi söyleyemezdi. Şimdi ikisi de çok rahatlamıştı.",
       "requiredSlots": [
         "companion.name",
@@ -67,6 +75,8 @@
     },
     {
       "id": "rs_give_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} verdiğine hiç üzülmedi. {{companion.name}} çok sevindi. Artık ihtiyacı olan şey elindeydi ve bu yeterdi. {{child.name}} geri istemeyi hiç düşünmedi.",
       "requiredSlots": [
         "child.name",
@@ -80,6 +90,8 @@
     },
     {
       "id": "rs_give_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Vermek zor olmadı. {{child.name}} verince {{companion.name}}'in eksiği tamamlandı. İkisi de bundan çok memnundu. Aslında kimse bir şey kaybetmemişti.",
       "requiredSlots": [
         "child.name",
@@ -93,6 +105,8 @@
     },
     {
       "id": "rs_persist_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} aramaktan vazgeçmedi ve sonunda buldu. {{companion.name}} kaybettiğine yeniden kavuştu. Sevincinden ne yapacağını bilemedi. O gün kimse pes etmedi.",
       "words": ["w56_vazgecmek"],
       "requiredSlots": [
@@ -107,6 +121,8 @@
     },
     {
       "id": "rs_persist_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Uzun sürdü ama oldu. {{child.name}} pes etmedi, aramaya devam etti. {{companion.name}} artık aradığına kavuşmuştu. Aramak uzun sürmüştü ama değmişti.",
       "requiredSlots": [
         "child.name",
@@ -120,6 +136,8 @@
     },
     {
       "id": "rs_views_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "İkisi de haklıymış, sadece başka yerden bakıyorlarmış. Anlaşınca gerisi kolaylaştı ve {{companion.name}} evine döndü. {{child.name}} arkasından uzun uzun baktı.",
       "requiredSlots": [
         "child.name",
@@ -133,6 +151,8 @@
     },
     {
       "id": "rs_views_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Yanlış anlaşılma bitince iş kolaydı. {{companion.name}} gitmesi gereken yere gitti. {{child.name}} arkasından gülümsedi. Artık kimsenin kırgınlığı kalmamıştı, hiç kimsenin.",
       "requiredSlots": [
         "companion.name",
@@ -146,6 +166,8 @@
     },
     {
       "id": "rs_ready_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Zamanı gelmişti. {{companion.name}} artık hazırdı ve {{child.name}} bunu görebiliyordu. Yavaşça uzaklaştı. Arkasından bakmak kolay değildi ama doğru olan buydu.",
       "requiredSlots": [
         "companion.name",
@@ -160,6 +182,8 @@
     },
     {
       "id": "rs_ready_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} elini açtı. {{companion.name}} bir an durdu, sonra gitti. Gitmesi gerekiyordu ve bu iyi bir şeydi. {{child.name}} elini yavaşça indirdi.",
       "requiredSlots": [
         "child.name",
@@ -174,6 +198,8 @@
     },
     {
       "id": "rs_any_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} gitmesi gereken yere döndü nihayet. {{child.name}} bunu uzaktan izledi. Onun yardımı olmasaydı bu iş buraya hiç varmazdı.",
       "requiredSlots": [
         "child.name",
@@ -193,6 +219,8 @@
     },
     {
       "id": "rs_any_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} ile {{child.name}} aynı anda derin bir nefes verdi. Zor kısım artık bitmişti ve ikisi de bunu içten içe hissediyordu.",
       "requiredSlots": [
         "child.name",
@@ -212,6 +240,8 @@
     },
     {
       "id": "rs_any_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} sayesinde {{companion.name}} aradığına kavuştu. Bunu kimse yüksek sesle söylemedi. Ama ikisi de gayet iyi biliyordu, ikisi de.",
       "requiredSlots": [
         "child.name",
@@ -231,6 +261,8 @@
     },
     {
       "id": "rs_any_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "İş bitti. {{companion.name}} artık tam olması gerektiği gibiydi. {{child.name}} yavaşça geri çekildi ve uzaktan izledi. Hiçbir şey söylemedi.",
       "requiredSlots": [
         "child.name",
@@ -250,6 +282,8 @@
     },
     {
       "id": "rs_any_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} için o gün her şey değişti. Bunu yapan {{child.name}} olmuştu ama hiç övünmedi. Sadece sevindi, o kadar.",
       "requiredSlots": [
         "child.name",
@@ -269,6 +303,8 @@
     },
     {
       "id": "rs_any_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Sonunda oldu. {{companion.name}} tam da ait olduğu yerdeydi artık. {{child.name}} bunu görmekten çok mutlu oldu ve gözlerini ayıramadı.",
       "requiredSlots": [
         "child.name",

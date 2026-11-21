@@ -5,11 +5,14 @@
   "ageBand": "3-4",
   "editorialNote": "3-4 bandı. Altı sayfa, sayfa başına 10-24 kelime, cümleler en fazla 10 kelime. Bu bant 5-6'nın kısaltılmışı DEĞİL: tek olay, tek sorun, çıkarım yok. Çocuk bir şeyin yerinde olmadığını görür, birine bakar, o iyileşir. Geriye dönüş yok, yanlış inanç yok, aşılacak engel yok. Cümleler kısa ve somut; soyut ad yerine görülen şey.",
   "lengthClasses": {
-    "solo": "10-24 words — sayfa 1 hiç paylaşılmaz"
+    "solo": "10-24 words — sayfa 1 hiç paylaşılmaz",
+    "paired": "5-12 words — sayfa 1, meet_companion ile paylaşılır (Sporlar)"
   },
   "variants": [
     {
       "id": "na3_01",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} o sabah bahçeye çıktı. Bir şey değişmişti. Ama ne olduğunu göremedi.",
       "requiredSlots": [
         "child.name"
@@ -19,6 +22,8 @@
     },
     {
       "id": "na3_02",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} durdu. Küçük bir ses duydu. Çok küçük bir ses.",
       "requiredSlots": [
         "child.name"
@@ -31,6 +36,8 @@
     },
     {
       "id": "na3_03",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "Her şey her günkü gibiydi. Sonra {{child.name}} bir şey gördü.",
       "requiredSlots": [
         "child.name"
@@ -43,6 +50,8 @@
     },
     {
       "id": "na3_04",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} yürüyordu. Birden durdu ve aşağı baktı. Tam önünde bir şey vardı.",
       "requiredSlots": [
         "child.name"
@@ -52,6 +61,8 @@
     },
     {
       "id": "na3_05",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "Sabah oldu. {{child.name}} pencereden dışarı baktı. Bugün bir şey başkaydı. Ne acaba?",
       "requiredSlots": [
         "child.name"
@@ -61,6 +72,8 @@
     },
     {
       "id": "na3_fam_sib_01",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} kardeşi {{family.name}} ile dışarı çıktı. Birden durdu. Bir şey değişmişti.",
       "requiredSlots": [
         "child.name",
@@ -75,6 +88,8 @@
     },
     {
       "id": "na3_fam_sib_02",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} pencereden baktı. Kardeşi {{family.name}} hâlâ uyuyordu. Bugün bir şey başkaydı.",
       "requiredSlots": [
         "child.name",
@@ -89,6 +104,8 @@
     },
     {
       "id": "na3_fam_fr_01",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} ile arkadaşı {{family.name}} oyun oynuyordu. Sonra {{child.name}} durdu. Ortada tuhaf bir şey vardı.",
       "requiredSlots": [
         "child.name",
@@ -103,6 +120,8 @@
     },
     {
       "id": "na3_fam_fr_02",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} kapıyı açtı, arkadaşı {{family.name}} gelmişti. İkisi dışarı çıktı. {{child.name}} birden durdu. Ne oldu acaba?",
       "requiredSlots": [
         "child.name",
@@ -117,6 +136,8 @@
     },
     {
       "id": "na3_fam_an_01",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} sabah {{family.name}}'a günaydın dedi. Sonra dışarı baktı. Bir şey değişmişti.",
       "requiredSlots": [
         "child.name",
@@ -131,6 +152,8 @@
     },
     {
       "id": "na3_fam_an_02",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} yavaşça kalktı. {{family.possessive}} {{family.name}} hâlâ uyuyordu. Dışarı çıkınca {{child.name}} birden durdu.",
       "words": ["w34_yavasca"],
       "requiredSlots": [
@@ -147,6 +170,8 @@
     },
     {
       "id": "na3_fam_im_01",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} hayali arkadaşı {{family.name}} ile yürüyordu. Birden durdu. Bir şey başkaydı.",
       "requiredSlots": [
         "child.name",
@@ -161,6 +186,8 @@
     },
     {
       "id": "na3_fam_im_02",
+      "visual": [],
+      "visualReview": "reviewed",
       "text": "{{child.name}} bugün de hayali arkadaşı {{family.name}} ile birlikteydi. Sonra bir şey fark etti.",
       "requiredSlots": [
         "child.name",
@@ -172,6 +199,333 @@
       "move": "fam3_imaginary_always_there",
       "lengthClass": "solo",
       "visualScene": "small child with a faint soft shape, noticing something"
+    },
+    {
+      "id": "s34_na_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "Yerde {{discovery.name}} duruyordu. Kimindi bu?",
+      "requiredSlots": [
+        "discovery.name"
+      ],
+      "move": "spor_s34_na_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s34_na_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} bir şey gördü: {{discovery.name}}.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "move": "spor_s34_na_02",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "s34_na_03",
+      "visual": [],
+      "visualReview": "reviewed",
+      "text": "Bugün oyun için güzel bir gündü. Hem de çok.",
+      "requiredSlots": [],
+      "move": "spor_s34_na_03",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "na3_h5_sib_01",
+      "visual": [],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} ile kardeşi {{family.name}} bahçeye koştu. Sonra ikisi de durdu. Orada yeni bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_sib_01",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two small children running out, then stopping"
+    },
+    {
+      "id": "na3_h5_sib_02",
+      "visual": [],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} kardeşi {{family.name}} ile el ele yürüyordu. Sonra bir şey gördü. Durdular.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_sib_02",
+      "familyRelations": [
+        "sibling"
+      ],
+      "visualScene": "two small children holding hands, one pointing"
+    },
+    {
+      "id": "na3_h5_fr_01",
+      "visual": [],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} ile arkadaşı {{family.name}} top oynuyordu. Top durdu. {{child.name}} eğildi. Yerde tuhaf bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_fr_01",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two small friends with a ball, both looking down"
+    },
+    {
+      "id": "na3_h5_fr_02",
+      "visual": [],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} arkadaşı {{family.name}} ile el ele yürüdü. Bir ses duydular. İkisi birlikte baktı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_fr_02",
+      "familyRelations": [
+        "friend"
+      ],
+      "visualScene": "two small friends hand in hand, turning their heads"
+    },
+    {
+      "id": "na3_h5_an_01",
+      "visual": [],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} {{family.possessive}} {{family.name}} ile dışarı çıktı. {{family.name}} durdu. {{child.name}} baktı. Bir şey değişmişti.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_an_01",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "small child outside with a pet, both stopping"
+    },
+    {
+      "id": "na3_h5_an_02",
+      "visual": [],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} {{family.possessive}} {{family.name}}'ın yanına çömeldi. Sonra pencereden baktı. Dışarıda yeni bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.possessive",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_an_02",
+      "familyRelations": [
+        "animal"
+      ],
+      "visualScene": "small child stroking a pet, looking out of a window"
+    },
+    {
+      "id": "na3_h5_im_01",
+      "visual": [],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}} ile saklambaç oynuyordu. Sonra durdu. Ortada tuhaf bir şey vardı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_im_01",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "small child playing alone, a faint soft shape nearby"
+    },
+    {
+      "id": "na3_h5_im_02",
+      "visual": [],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} hayali arkadaşı {{family.name}}'a bir şarkı söyledi. Şarkı bitince etrafına baktı. Bir şey başkaydı.",
+      "requiredSlots": [
+        "child.name",
+        "family.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_na3_im_02",
+      "familyRelations": [
+        "imaginary"
+      ],
+      "visualScene": "small child singing, a faint soft shape listening"
+    },
+    {
+      "id": "s34_na_tp_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "Yolun kenarında {{discovery.name}} vardı. {{child.name}} yaklaştı.",
+      "requiredSlots": [
+        "discovery.name",
+        "child.name"
+      ],
+      "move": "tp_s34_na_tp_01",
+      "lengthClass": "paired"
+    },
+    {
+      "id": "w_ct_na34_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} şehirde ilk kez yürüyordu. Her yer kalabalık ve sesliydi. Sonra durdu. Yerde {{discovery.name}} vardı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_first_walk_in_the_city",
+      "settingTags": [
+        "city"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_ct_na34_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "Tramvay çan çalarak geçti. {{child.name}} ona el salladı. Tam o sırada {{discovery.name}} dikkatini çekti.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_tram_passes_then_notice",
+      "settingTags": [
+        "city"
+      ]
+    },
+    {
+      "id": "w_ct_na34_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} {{setting.name}}'da güvercinleri sayıyordu. Bir, iki, üç. Sonra saymayı bıraktı. {{discovery.name}} oradaydı.",
+      "requiredSlots": [
+        "child.name",
+        "setting.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_counting_pigeons",
+      "settingTags": [
+        "city"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_cn_na34_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} uzak bir ülkeye gelmişti. Burada herkes başka dilde konuşuyordu. Sonra {{discovery.name}} gözüne çarptı.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_arrived_far_away",
+      "settingTags": [
+        "country"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_cn_na34_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "Biri ona bilmediği bir dilde merhaba dedi. {{child.name}} gülümsedi. Tam o sırada {{discovery.name}} dikkatini çekti.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_hello_in_a_new_language",
+      "settingTags": [
+        "country"
+      ]
+    },
+    {
+      "id": "w_cn_na34_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{setting.name}}'da hava bambaşka kokuyordu. {{child.name}} derin bir nefes aldı. Sonra durdu. {{discovery.name}} oradaydı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_new_air_new_smell",
+      "settingTags": [
+        "country"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_hs_na34_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "{{child.name}} çok eski bir yere gelmişti. Taşlar yüzlerce yıllıktı. Sonra {{discovery.name}} dikkatini çekti.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_very_old_place",
+      "settingTags": [
+        "history"
+      ]
+    },
+    {
+      "id": "w_hs_na34_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
+      "text": "{{setting.name}}'da her şey çok eskiydi. {{child.name}} yavaşça yürüdü. Sonra durdu. Önünde {{discovery.name}} vardı.",
+      "requiredSlots": [
+        "setting.name",
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_slow_walk_old_place",
+      "settingTags": [
+        "history"
+      ],
+      "discoveryTraits": [
+        "isVisible"
+      ]
+    },
+    {
+      "id": "w_hs_na34_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "reviewed",
+      "text": "Burada eskiden de çocuklar oynarmış. {{child.name}} bunu düşündü ve gülümsedi. Tam o sırada {{discovery.name}} dikkatini çekti.",
+      "requiredSlots": [
+        "child.name",
+        "discovery.name"
+      ],
+      "lengthClass": "solo",
+      "move": "world_children_long_ago",
+      "settingTags": [
+        "history"
+      ]
     }
   ]
 }

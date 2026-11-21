@@ -52,6 +52,10 @@ public final class StubEntitlementService: EntitlementService {
         EntitlementPolicy.decide(capability, in: context)
     }
 
+    public func evaluate(_ capability: Capability, usage: EntitlementUsage) -> EntitlementDecision {
+        EntitlementPolicy.decide(capability, in: context, usage: usage)
+    }
+
     @discardableResult
     public func consume(_ capability: Capability) -> EntitlementDecision {
         let decision = evaluate(capability)
@@ -60,16 +64,17 @@ public final class StubEntitlementService: EntitlementService {
         consumed.append(capability)
 
         // Gerçek servisin `SubscriptionManager` üzerinde yaptığı sayaç düşümünün
-        // bağlam üzerindeki karşılığı.
-        // `switch` yerine `if case`: tüketilebilir tek yeteneğin kararı her
-        // zaman kota ya da deneme taşır, dolayısıyla exhaustive bir `switch`
-        // asla yürütülmeyen bir dal bırakırdı. Ödeme mantığında ölü dal
-        // istemiyoruz — kapsam raporu onu gerçek bir boşluktan ayıramaz.
-        if case .allowedUsingQuota = decision {
+        // bağlam üzerindeki karşılığı; kural `EntitlementPolicy.consumption`'da.
+        switch EntitlementPolicy.consumption(of: capability, decision: decision, in: context) {
+        case .nothing:
+            break
+        case .quota:
             context.illustratedQuotaRemaining -= 1
-        } else if case .allowedUsingTrial = decision {
+        case .trialStar:
             context.trialStarsRemaining -= 1
             if capability == .illustratedStory { context.freeIllustratedStoryUsed = true }
+        case .freeTextStory(let at):
+            context.lastFreeTextStoryAt = at
         }
         return decision
     }

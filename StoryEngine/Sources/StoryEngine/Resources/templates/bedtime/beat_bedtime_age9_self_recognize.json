@@ -31,6 +31,15 @@
       "requiredSlots": [],
       "move": "h3_bs9_03",
       "lengthClass": "paired"
+    },
+    {
+      "id": "bs9_tp_01",
+      "text": "{{child.name}} saymayı bitirince küçük bir şey fark etti: bugün en çok, birine yardım ettiği anı sevmişti. Bu düşünceyle gözleri kapandı.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "move": "tp_bs9_tp_01",
+      "lengthClass": "paired"
     }
   ]
 }

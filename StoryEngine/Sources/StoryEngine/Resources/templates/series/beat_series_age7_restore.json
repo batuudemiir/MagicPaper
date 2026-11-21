@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "s7rs_pw_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Ve sonunda oldu: küçük şey kendine geldi, yeniden canlandı. {{child.name}} ile {{companion.name}} birbirine baktı. Ne bir şey söylemeye gerek vardı ne de acele etmeye.",
       "requiredSlots": [
         "child.name",
@@ -24,6 +26,8 @@
     },
     {
       "id": "s7rs_pw_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Bekleyiş karşılığını verdi. {{discovery.name}} artık iyiydi. {{child.name}} içinden bir oh çekti; bu, geçen seferki sevince çok benziyordu ama biraz daha büyüktü.",
       "requiredSlots": [
         "child.name",
@@ -37,6 +41,8 @@
     },
     {
       "id": "s7rs_lg_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Küçük şey yerine kavuştu. {{child.name}} bir adım geri çekilip baktı; her şey olması gerektiği gibiydi. {{companion.name}} sevinçle onun yanına geldi.",
       "requiredSlots": [
         "child.name",
@@ -58,6 +64,64 @@
       "lengthClass": "solo",
       "afterBeat": [
         "let_go"
+      ]
+    },
+    {
+      "id": "s7rs_lg_h5_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "{{child.name}} onu yerine bıraktı ve elini yavaşça çekti. Küçük şey olduğu yerde huzurla duruyordu. {{companion.name}} yanına geldi; ikisi bir süre sessizce izledi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s7rs_lg_01",
+      "afterBeat": [
+        "let_go"
+      ]
+    },
+    {
+      "id": "s7rs_lg_h5_02",
+      "text": "Her şey yerine dönmüştü. {{child.name}} geri çekilip baktı ve içinde tatlı bir hafiflik duydu. Bırakmak da bir çeşit vermekti; bunu ilk kez bu kadar açık hissetti.",
+      "requiredSlots": [
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s7rs_lg_02",
+      "afterBeat": [
+        "let_go"
+      ]
+    },
+    {
+      "id": "s7rs_pw_h5_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "Bekleyiş bitti ve {{discovery.name}} yavaş yavaş kendine geldi. {{child.name}} gülümsedi; sabır yine sessizce işini yapmıştı. {{companion.name}} başını salladı.",
+      "requiredSlots": [
+        "discovery.name",
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s7rs_pw_01",
+      "afterBeat": [
+        "patient_wait"
+      ]
+    },
+    {
+      "id": "s7rs_pw_h5_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
+      "text": "Bir süre sonra küçük şey kıpırdadı, sonra güçlendi. {{child.name}} ile {{companion.name}} göz göze geldi. Bu kez de beklemek, yapılabilecek en iyi şeydi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "h5_s7rs_pw_02",
+      "afterBeat": [
+        "patient_wait"
       ]
     }
   ]

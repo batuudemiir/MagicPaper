@@ -776,6 +776,16 @@
         "variants": [
           {
             "id": "occ_birthday_age3_open_01",
+            "visual": [
+              {
+                "subject": "setting",
+                "presence": "present",
+                "states": [
+                  "evening"
+                ]
+              }
+            ],
+            "visualReview": "auto",
             "text": "Bugün {{child.name}}'in doğum günüydü. Akşam olunca {{setting.name}}'da yatağına uzandı. Gün hâlâ içinde ışıl ışıldı.",
             "requiredSlots": [
               "child.name",
@@ -784,6 +794,16 @@
           },
           {
             "id": "occ_birthday_age3_open_02",
+            "visual": [
+              {
+                "subject": "setting",
+                "presence": "present",
+                "states": [
+                  "evening"
+                ]
+              }
+            ],
+            "visualReview": "auto",
             "text": "{{child.name}} bir yaş büyümüştü. Doğum günü akşamıydı ve {{setting.name}} sessizdi. Yastığına başını koydu, gülümsedi.",
             "requiredSlots": [
               "child.name",
@@ -828,6 +848,14 @@
         "variants": [
           {
             "id": "occ_school_age3_open_01",
+            "visual": [
+              {
+                "subject": "setting",
+                "presence": "present",
+                "states": []
+              }
+            ],
+            "visualReview": "auto",
             "text": "Yarın {{child.name}} okula başlayacaktı. Çantası kapının yanında hazır duruyordu. {{setting.name}} sessizdi.",
             "requiredSlots": [
               "child.name",
@@ -879,6 +907,14 @@
         "variants": [
           {
             "id": "occ_sibling_age3_open_01",
+            "visual": [
+              {
+                "subject": "setting",
+                "presence": "present",
+                "states": []
+              }
+            ],
+            "visualReview": "auto",
             "text": "{{child.name}}'in artık bir kardeşi vardı. {{occasion.sibling}} yan odada uyuyordu. {{setting.name}} sessizdi.",
             "requiredSlots": [
               "child.name",
@@ -984,6 +1020,21 @@
         "variants": [
           {
             "id": "occ_birthday_age5_open_01",
+            "visual": [
+              {
+                "subject": "discovery",
+                "presence": "present",
+                "states": [
+                  "found"
+                ]
+              },
+              {
+                "subject": "setting",
+                "presence": "present",
+                "states": []
+              }
+            ],
+            "visualReview": "reviewed",
             "text": "Bugün {{child.name}}'in doğum günüydü. Sabah erkenden {{setting.name}}'a gitti, çünkü doğum günlerinde her yer biraz daha parlak görünürdü. Orada durdu ve {{discovery.name}}'i fark etti.",
             "requiredSlots": [
               "child.name",
@@ -993,6 +1044,21 @@
           },
           {
             "id": "occ_birthday_age5_open_02",
+            "visual": [
+              {
+                "subject": "discovery",
+                "presence": "present",
+                "states": [
+                  "found"
+                ]
+              },
+              {
+                "subject": "setting",
+                "presence": "present",
+                "states": []
+              }
+            ],
+            "visualReview": "reviewed",
             "text": "{{child.name}} bu sabah bir yaş büyümüş olarak uyandı. Kutlamadan önce {{setting.name}}'da biraz dolaşmak istedi. Yürürken {{discovery.name}}'i fark etti ve durdu.",
             "requiredSlots": [
               "child.name",
@@ -1036,6 +1102,21 @@
         "variants": [
           {
             "id": "occ_school_age5_open_01",
+            "visual": [
+              {
+                "subject": "discovery",
+                "presence": "present",
+                "states": [
+                  "found"
+                ]
+              },
+              {
+                "subject": "setting",
+                "presence": "present",
+                "states": []
+              }
+            ],
+            "visualReview": "reviewed",
             "text": "Okulun ilk günü yaklaşıyordu. {{child.name}}'in çantası hazırdı ama içi biraz kıpır kıpırdı. Biraz yürümek için {{setting.name}}'a gitti ve orada {{discovery.name}}'i fark etti.",
             "requiredSlots": [
               "child.name",
@@ -1045,6 +1126,21 @@
           },
           {
             "id": "occ_school_age5_open_02",
+            "visual": [
+              {
+                "subject": "discovery",
+                "presence": "present",
+                "states": [
+                  "found"
+                ]
+              },
+              {
+                "subject": "setting",
+                "presence": "present",
+                "states": []
+              }
+            ],
+            "visualReview": "reviewed",
             "text": "{{child.name}} yeni okulunu çok merak ediyordu, biraz da çekiniyordu. Kafasını dinlemek için {{setting.name}}'a gitti. Tam orada {{discovery.name}}'i fark etti.",
             "requiredSlots": [
               "child.name",
@@ -1088,6 +1184,16 @@
         "variants": [
           {
             "id": "occ_sibling_age5_open_01",
+            "visual": [
+              {
+                "subject": "setting",
+                "presence": "present",
+                "states": [
+                  "night"
+                ]
+              }
+            ],
+            "visualReview": "auto",
             "text": "Eve küçük bir kardeş geleli birkaç gün olmuştu. Herkes {{occasion.sibling}}'e bakıyordu ve {{child.name}} bazen kendini biraz kenarda hissediyordu. O gece {{setting.name}}'da yatağına uzandı.",
             "requiredSlots": [
               "child.name",
@@ -1149,6 +1255,16 @@
           },
           {
             "id": "occ_tooth_age5_open_02",
+            "visual": [
+              {
+                "subject": "setting",
+                "presence": "present",
+                "states": [
+                  "evening"
+                ]
+              }
+            ],
+            "visualReview": "auto",
             "text": "{{child.name}} aynada gülümsedi ve ağzındaki minik boşluğu gördü. İlk dişi bugün düşmüştü. Büyüdüğünü ilk kez bu kadar açık görüyordu. O akşam {{setting.name}}'da yatağına uzandı.",
             "requiredSlots": [
               "child.name",
