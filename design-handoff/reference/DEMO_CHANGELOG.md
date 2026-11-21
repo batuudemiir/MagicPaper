@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-22 · main@d21b842 · TestFlight için Release arşivi
+
+- Xcode archive başarılı: MagicPaper-builds/MagicPaper-2026-11-22.xcarchive; gerçek sürüm2.0(2026112201),arm64. Sistem güven deposuyla codesign --verify --deep --strict geçti. Development imzalı arşiv Organizer Distribute App akışında dağıtım için yeniden imzalanır; App Store Connect yüklemesi yapılmadı.
+- Log /private/tmp/MagicPaper-archive-20261122.log. Mevcut başka oturum dosyaları kapsam dışında korundu.
+
+
 ### 2026-11-22 · main@cd3c02a · Görsel çalışmalarının main teslimi
 
 - Bu sohbetin altı commit’i güncel origin/main ile birleştirildi ve main’e pushlandı. Günlük çakışmasında iki taraf korundu; önceki çalışma farkı /private/tmp/magicpaper-pre-main-journal.patch içinde de yedekli.
