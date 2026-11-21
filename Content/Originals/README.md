@@ -41,3 +41,25 @@ içerik adresi (`magicpaper-393a7.web.app`) ile Firebase sitesi (`magicpaper-393
 şimdilik kurulmayacak. Açılırsa aynı masal hem katalogda hem akışta olsa da rafta bir kez görünür.
 
 Kapak: ajan prompt yazar, görseli Batuhan ChatGPT'de üretir (karar: 16 Kasım 2026). Ayrıntı: `COVER_GUIDE.md`.
+
+## Sayfa çizimleri (20 Kasım 2026)
+
+Her metin sayfasına bir sabit çizim eşlenir; kişiselleştirme ve uzak görsel isteği yoktur.
+Kaynaklar `published/<slug>/illustrations/page-01.jpg` … `page-07.jpg`; sıra, Türkçe görsel
+açıklaması ve tam hazırlama promptu aynı klasördeki `illustrations.json` dosyasındadır:
+
+```json
+{
+  "pages": [
+    {"page": 1, "file": "page-01.jpg", "altText": "Saatin içindeki iki fare.", "prompt": "..."}
+  ]
+}
+```
+
+Sayfa sayısı metinle eşleşmeli; eksik sıra, boş açıklama, yanlış dosya adı ya da JPEG olmayan
+kaynak derlemeyi durdurur. Manifesti olmayan eski masallar görselsiz çalışır.
+`python3 Scripts/ClassicsCatalog/build_classics_catalog.py` çizimleri
+`Assets.xcassets/Originals/original-<slug>-page-NN.imageset` içine kopyalar ve katalogdaki
+`soft.illustrations` alanına asset adı ile açıklamayı yazar. Okuyucu mevcut sahne düzenini kullanır;
+varlık yüklenemezse metin görünür kalır. Çizim dili `WORLD.md` son bölümündedir; mor zorunlu ana renk değildir.
+Kapak promptları `cover-prompt.json` içinde, kullanılan araç built-in `image_gen`’dir.

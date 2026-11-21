@@ -4,6 +4,8 @@ import StoryEngine
 /// Assigns a reviewed decision once, while both authored provenance and app pages exist.
 enum StorySpotBinder {
     static func bind(_ story: Story, composed: ComposedStory, catalog: StorySpotCatalog?) -> Story {
+        guard catalog != nil else { return story }
+        let story = ReviewedDiscoveryArtBinder.bind(story, composed: composed)
         guard let catalog, let origin = story.origin,
               origin.blueprintID == composed.blueprintID.rawValue,
               origin.settingID == composed.content.setting.id.rawValue,

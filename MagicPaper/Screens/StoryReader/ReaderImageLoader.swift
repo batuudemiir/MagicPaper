@@ -27,6 +27,19 @@ actor ReaderImageLoader {
         let key = "\(fileName)@\(Int(targetPixelWidth))" as NSString
         if let hit = cache.object(forKey: key) { return hit }
 
+        // Explicit namespace: bundled art never falls through to private story files.
+        if fileName.hasPrefix("asset:") {
+            let name = String(fileName.dropFirst("asset:".count))
+            guard !name.isEmpty, let original = UIImage(named: name) else { return nil }
+            let longest = max(original.size.width, original.size.height)
+            guard longest > 0 else { return nil }
+            let ratio = min(max(targetPixelWidth, 1) / longest, 1)
+            let size = CGSize(width: original.size.width * ratio, height: original.size.height * ratio)
+            guard let thumbnail = original.preparingThumbnail(of: size) else { return nil }
+            cache.setObject(thumbnail, forKey: key)
+            return thumbnail
+        }
+
         guard let directory = FileManagerService.shared.getStoriesDirectoryURL() else {
             return nil
         }

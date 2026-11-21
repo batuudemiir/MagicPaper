@@ -11,6 +11,7 @@ okuma defteri id ile tutulduğu için slug değiştirmek ilerlemeyi sıfırlar.
 Kullanım: python3 Scripts/ClassicsCatalog/build_classics_catalog.py
 """
 import glob, json, os, sys, uuid
+from original_illustrations import build_page_illustrations
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 SRC = os.path.join(ROOT, "Content", "Classics")
@@ -106,13 +107,20 @@ for folder in sorted(glob.glob(os.path.join(ORIGINALS, "*", "tale.json"))):
     json.dump({"images": [{"filename": asset + ".jpg", "idiom": "universal"}],
                "info": {"author": "xcode", "version": 1}},
               open(os.path.join(imageset, "Contents.json"), "w"), indent=2)
+    soft = {"pages": o["pages"]}
+    try:
+        illustrations = build_page_illustrations(os.path.dirname(folder), slug, len(o["pages"]), ASSETS)
+    except (ValueError, OSError) as error:
+        sys.exit(str(error))
+    if illustrations is not None:
+        soft["illustrations"] = illustrations
     focus = o.get("coverFocus", [0.5, 0.5])
     tales.append({"id": o["id"].upper(), "slug": slug, "title": o["title"], "origin": "orijinal",
                   "byline": "Original", "ageMin": o["ageMin"], "ageMax": o["ageMax"], "minutes": o["minutes"],
                   "summary": o["summary"], "shelves": ["uyku"] if o["mode"] == "bedtime" else [],
                   "cover": asset, "coverFocus": {"x": focus[0], "y": focus[1]},
                   "coverCredit": "Kapak: MagicPaper.", "attribution": "MagicPaper Original.",
-                  "soft": {"pages": o["pages"]}, "classic": None, "seriesID": None, "episode": None})
+                  "soft": soft, "classic": None, "seriesID": None, "episode": None})
     original_count += 1
 if original_count:
     folder_meta = os.path.join(ASSETS, "Contents.json")

@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "sourceEngineCommit": "c742ea71080e73527fb29d47600acb0acdf62beb",
+  "status": "narrow_app_publishing_attestations_not_global_engine_review",
+  "decisions": [
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_notice_anomaly.json",
+      "pointer": "/variants/0",
+      "sourceID": "na_neutral_01",
+      "textSHA256": "fa45f705061ba6cc7a01139887072310d3ee8737554ff505d1da2f9061e8b99b",
+      "manualDecision": "discovery_is_physically_present",
+      "scope": "isolated_silver_bell_only",
+      "engineVisualReviewUnchanged": "auto",
+      "note": "No discovery state contradicts a stationary small silver bell."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_notice_anomaly.json",
+      "pointer": "/variants/1",
+      "sourceID": "na_neutral_02",
+      "textSHA256": "6bfb71e6ad356f01a766f1acedc7c124480e59146adb90522775aa64dc60c189",
+      "manualDecision": "discovery_is_physically_present",
+      "scope": "isolated_silver_bell_only",
+      "engineVisualReviewUnchanged": "auto",
+      "note": "No discovery state contradicts a stationary small silver bell."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_notice_anomaly.json",
+      "pointer": "/variants/16",
+      "sourceID": "na_any_01",
+      "textSHA256": "68d5840d396d52639d8f1feb369fd669c401ef56457f078b96860cfec28384c3",
+      "manualDecision": "discovery_is_physically_present",
+      "scope": "isolated_silver_bell_only",
+      "engineVisualReviewUnchanged": "auto",
+      "note": "na_any_01 examined auto-state is not independently endorsed; only presence is attested."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_notice_anomaly.json",
+      "pointer": "/variants/17",
+      "sourceID": "na_any_02",
+      "textSHA256": "c6ee22e8a3f53f74c9124106304b7050871766202ce51d576e8e945f66c9b706",
+      "manualDecision": "discovery_is_physically_present",
+      "scope": "isolated_silver_bell_only",
+      "engineVisualReviewUnchanged": "auto",
+      "note": "No discovery state contradicts a stationary small silver bell."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_notice_anomaly.json",
+      "pointer": "/variants/18",
+      "sourceID": "na_any_03",
+      "textSHA256": "b8d642e3f19522a8c4d1f167d8f3418539a4db9739b76c2ff687c5835fc10c80",
+      "manualDecision": "discovery_is_physically_present",
+      "scope": "isolated_silver_bell_only",
+      "engineVisualReviewUnchanged": "auto",
+      "note": "No discovery state contradicts a stationary small silver bell."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/0",
+      "sourceID": "recall_met_once_here_01",
+      "textSHA256": "3f484682f1889c6e3aecff0824e13628e55b9981b31c1afba2d35c2deb5452cf",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/1",
+      "sourceID": "recall_met_once_here_02",
+      "textSHA256": "f5a32b6a9334931e00ff48aec2ccf216c3da3e77abe5046dff2c86843d72083a",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/2",
+      "sourceID": "recall_met_once_elsewhere_01",
+      "textSHA256": "c65a2900e5f39f6489b0bb334c3490caf1877904e6612bfeb46b5fbd2e5e4abf",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/3",
+      "sourceID": "recall_met_once_elsewhere_02",
+      "textSHA256": "7f4dd19b465a217f4db4cbc5b665aa9670b134e0e4fb890024c2e034566f77cf",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/4",
+      "sourceID": "recall_met_once_any_01",
+      "textSHA256": "243b6906c945e96fff7eb88afe3ba4368c72e6047eb996b9cbdef3418789c013",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/5",
+      "sourceID": "recall_met_once_any_02",
+      "textSHA256": "9f15e3b0a11bad485b57e868dd98c5119b61ec2b673b126cc24deae79bc53ed5",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/6",
+      "sourceID": "recall_friends_here_01",
+      "textSHA256": "3154b4a8bfa38a5e51b4a64cb47af469d61a8446f3254f1aa7233e95964ace88",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/7",
+      "sourceID": "recall_friends_here_02",
+      "textSHA256": "54623bb3ff64374600ed9ac92c79a82f731992f6f49cb5b1751a751733db7086",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/8",
+      "sourceID": "recall_friends_elsewhere_01",
+      "textSHA256": "1908c3f9316a97d8a1cb3a44776ae219cc2ac9a98f7fa85074e7a3d0b5b49443",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/9",
+      "sourceID": "recall_friends_elsewhere_02",
+      "textSHA256": "2f90b08dab071ac2768f407ca968934dcf175f7b051fd1ecbe88b8973f7b338e",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/10",
+      "sourceID": "recall_friends_any_01",
+      "textSHA256": "1c13d8a01511a577faeef2771f9bc8c70e230b8b2e940f1ab8488d26f1b35571",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/11",
+      "sourceID": "recall_friends_any_02",
+      "textSHA256": "47cffdec6d8f011e0577671418c86530acc791f2a014f07bc3de51bf16a1e009",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/12",
+      "sourceID": "recall_old_friends_here_01",
+      "textSHA256": "d48597693b01b601403a3b40c1f1686092f768787af3e343ace0bfbb57f33ec1",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/13",
+      "sourceID": "recall_old_friends_here_02",
+      "textSHA256": "da61b0db3e4cbd201f1082ccdbfadadd570b6876241283111d64e3134fb4ab49",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/14",
+      "sourceID": "recall_old_friends_elsewhere_01",
+      "textSHA256": "a44ed929f6e96b5ceca6dd9ea1ad685415c8bafe9d40e2e178ad3ba606f48c57",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/15",
+      "sourceID": "recall_old_friends_elsewhere_02",
+      "textSHA256": "7391df72d17d30e247a14ab0a6609e89b52752dbfd34ae6eaffe3cc581f6aea1",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/16",
+      "sourceID": "recall_old_friends_any_01",
+      "textSHA256": "8a7975f81edbc48b24a1984937f1edae3002242af81dd96b011b0c17a39b8d54",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/17",
+      "sourceID": "recall_old_friends_any_02",
+      "textSHA256": "d53707f9d9be3729d845545ad8ab0a1b8756f4e6b6ab01125a1ed74d021d4d68",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/18",
+      "sourceID": "recall_place_again_01",
+      "textSHA256": "20ab5f0db45b8367e2ccf395e5a413911716ab41c6cd94b478aacef70ac1a96c",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/19",
+      "sourceID": "recall_place_again_02",
+      "textSHA256": "467d705de05600abfd0ae432ca582fcf0fdac58befc743a73f385196ee4c239b",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/20",
+      "sourceID": "recall_place_again_03",
+      "textSHA256": "92022f907521dd7c418a656f534ef1a3c06d444832fad977960ca93346e2e7cf",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/21",
+      "sourceID": "recall_place_again_04",
+      "textSHA256": "e121d64fec84c83d90a8a2f77cf52d12f12650d485217c737fc2463827135938",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/22",
+      "sourceID": "recall_age3_met_once_any_01",
+      "textSHA256": "c6b571284e57bdebf932cfc8b9fc01a257a4b80c6f250121f81d4ed53133262d",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/23",
+      "sourceID": "recall_age3_met_once_any_02",
+      "textSHA256": "dd87b021800b755b941ca8f5708e56af5a2daf7fd6a7a0c6d56dfbc922c938ff",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/24",
+      "sourceID": "recall_age3_met_once_here_01",
+      "textSHA256": "80146b1f3b3ac15f925bc45f92091cfc0e38fec527a065a76992a58e2bec1725",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/25",
+      "sourceID": "recall_age3_met_once_elsewhere_01",
+      "textSHA256": "b13147e68ba30847944239f9b10b4c1b50d8277a210efc62c7781e776cdc2a6a",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/26",
+      "sourceID": "recall_age3_friends_any_01",
+      "textSHA256": "9a673aad1fc7408e451a6635a7a9cd8b9544827fb15a23d3040e84cdfd506d33",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/27",
+      "sourceID": "recall_age3_friends_any_02",
+      "textSHA256": "a8607ebe7cbb3ae1be0747cf9ef34df5e2d52eba956056b51f4f018b3d5a5b88",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/28",
+      "sourceID": "recall_age3_friends_here_01",
+      "textSHA256": "c56d7a47392aeaf2ff0206672e61e4beed18c528a6e154d121e7960a924d405c",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/29",
+      "sourceID": "recall_age3_friends_elsewhere_01",
+      "textSHA256": "8dd8d352411160a0732bcbfe3d1af1da67c4c4dc79c2d3ead457fbbaad3b6778",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/30",
+      "sourceID": "recall_age3_old_friends_any_01",
+      "textSHA256": "198a3b44537e9c59cab9ca93b6247491ba9a96fac5419534e65ff3b89c0de305",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/31",
+      "sourceID": "recall_age3_old_friends_any_02",
+      "textSHA256": "5429e6f24d0dd1fa3c17e20bd7c3c4bd122e4582b796f5df37aa172642b87fa0",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/32",
+      "sourceID": "recall_age3_old_friends_here_01",
+      "textSHA256": "0bfa7b0ac18fca332cdc812a7e4f440a0d242d2648eb3f77add1365c085a80b5",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/33",
+      "sourceID": "recall_age3_old_friends_elsewhere_01",
+      "textSHA256": "a1a2abcb488a3bbaef48175cede417c0ef060bdc7deb0526ea7ed304202fa42d",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/34",
+      "sourceID": "recall_age3_place_again_01",
+      "textSHA256": "b6a876d8c860f35652eddee4973f032165c8ab48b9876f8aea9a233bb525feb4",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/35",
+      "sourceID": "recall_age3_place_again_02",
+      "textSHA256": "b343c9f8618a0ddb9c0061e6f50003ddad9665d00404a0290db00fc6bd7b9b65",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/36",
+      "sourceID": "recall_age3_place_again_03",
+      "textSHA256": "ce245261f415a55b2715573f9fe2d85dfc8cbe94f6e957fd87ca7fc44e4c4e21",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "pointer": "/recallLines/37",
+      "sourceID": "recall_age3_place_again_04",
+      "textSHA256": "f97d4a9055313f6dafc4a3aa65a939f2fe3eb6faccd1fd29e669435afbfdf0db",
+      "manualDecision": "no_discovery_state_contradiction",
+      "scope": "trailing_recall_on_reviewed_isolated_silver_bell_page_only",
+      "note": "Place/companion history; does not authorize environment/character art."
+    }
+  ]
+}

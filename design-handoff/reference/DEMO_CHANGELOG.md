@@ -153,6 +153,21 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Test: motor paketi (BoundPoolTests hariç, 951 test) koşuldu, 7 hata 4 testteydi; düzeltildi ve etkilenen 42 test yeniden geçti. Uygulama `StoryPageProvenanceTests` (4) simülatörde geçti. BoundPoolTests koşulmadı.
 - Dosyalar: `SelectionScoring.swift`, `ReadingSequenceReport.swift` (yeni), `StoryPageProvenance.swift`, `OfflineStoryService.swift`, `StoryContextBuilder.swift`, `StoryGenerationManager.swift`, 16 şablon dosyası, `occasion_library_v1.json`, beş test dosyası, iki belge, bu günlük.
 
+### 2026-11-21 · codex/design-system-catalog, commit bu kayıtla · Originals sayfa çizimleri
+
+- İki yayımlanmış Original masalın 14 sayfasına ayrı sabit çizim ve Türkçe görsel açıklaması eklendi. İki kapak kullanıcı referansındaki sade, dokulu kitap diline yenilendi; mor ana renk yapılmadı. Ragi üç sayfada konuk. Erken görünen tren ve çift atkı devamlılık hataları düzeltildi.
+- Sayfa metinleri ve masal kimlikleri aynı kaldı; katalog derleyicisi tam sayfa sırasını doğrular. Eski görselsiz kataloglar ve eksik görselde metin yedeği korunur. Kaynaklar, tam promptlar ve iki görsel genel bakış Content/Originals altında.
+- Doğrulama: 6 Python testi geçti; 16 JPEG açıldı, 14 eşleme ve değişmeyen metinler doğrulandı; diff kontrolü temiz. Kod incelemesinde engelleyici bulgu yok. İlk Xcode denemesi başka derlemenin build.db kilidiyle durdu; ayrı önbellekte Swift derleme/bağlama geçti ancak dSYM paketleme diskte yer kalmamasıyla durdu (lipo errno=28). Geçici derleme kopyası temizlendi. Sonraki turda dSYM kapatılarak 44 uygulama testi 0 hatayla geçti (TEST SUCCEEDED); okuyucu 375/440 pt, gündüz/gece ve AX5 boyutlarında simülatör içinde render edildi. Gündüz ve küçük ekran gece AX5 örnekleri gözle incelendi. Ayrı fiziksel SE/Pro Max cihaz testi yapılmadı.
+- Dosyalar: Content/Originals, Originals asset kataloğu, ClassicText/ClassicReading/ClassicPageIllustration, ReaderImageLoader, katalog derleyicisi ve ilgili testler, tasarım/uygulama planı.
+
+### 2026-11-21 · codex/design-system-catalog, commit yok · İncelenmiş gümüş çan eşlemesi
+
+- Claude c742ea7 provenance tesliminin günlük hariç 206 dosyası patch ile alındı; sayfa kaynak izi yeni kitaplarda kalıcıdır. Merge yapılmadı.
+- 5–6 yaş için 5 notice ve 38 hatırlama kaynağına dayanan dar gümüş çan politikası, paketli çizim ve kayıtlı görsel pinleri eklendi. Kaynak/nesne/metin/dosya özeti doğrulanır; belirsiz sayfa metin kalır.
+- Masal metni, kimlikler, seed, seçim dağılımı ve eski kitaplar değişmedi. Her kitapta çizim garantisi yok; auto etiketler topluca onaylanmadı.
+- Motor 11 test/0 hata. Uygulama 96 test: 94 başarılı, 1 skip, 1 seri uygunluğu hatası (9–10 öğrenme devamı varsayımı). Yeni art/provenance 22/22 geçti; genel koşu başarısız. Telefona kurulum ve yeni UI matrisi yapılmadı.
+- Etkilenen alanlar: engine provenance/visual şeması ve şablon metadatası; Story/mapper; ReviewedDiscoveryArtPolicy/Binder, StorySpotBinder, art kaynakları ve testler; spec/plan/inceleme kaydı ve REPORT.md. Originals/Classic/ReaderImageLoader değişiklikleri bu işe dahil değil.
+
 ### 2026-11-20 · anlati-provenance, commit bu kayıtla · Sayfa kaynak izi ve satırlarda görsel anlam
 
 - Sözleşme (Batuhan ve ChatGPT, 20 Kasım 2026; `docs/GORSEL_ANLAM_SOZLESMESI.md`): görsel anlam içerik satırlarında, sanat kataloğu uygulamada; kaynak izi motor tarafından yazılır; görsel karar mevcut `StoryPage.art`'ta; eski kitaplar yeniden üretilmez. Dosya sahipliği: motor içeriği, `ComposedPage` parçaları, `Story.swift` ve `OfflineStoryMapper.swift` bu iş için Claude'da; görsel havuzu, bağlayıcı ve okuyucu ChatGPT'de.
@@ -162,6 +177,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Uygulama: `StoryPage.provenance` (`StoryPageProvenance`, hoşgörülü çözümleme), mapper sayfanın son hâlinden dolduruyor; senkron Codable olduğu için buluta da gidiyor. Masal düzeyindeki `StoryOrigin.variantIDs` aynı.
 - Test: motor `PageProvenanceTests`, `VisualMeaningTests` ile birlikte belirlenimcilik, bütünlük, anahtar kapsamı, hatırlama, nakarat deneyi, `StorySpotProvenanceTests`: geçti. Uygulama `StoryPageProvenanceTests` (4) ve `StorySpotReaderRenderingTests` (3) simülatörde geçti. Tam motor paketi ve tam uygulama paketi koşulmadı.
 - Dosyalar: `PageProvenance.swift`, `VisualMeaning.swift` (yeni), `OfflineStoryComposer.swift`, `RecallLines.swift`, `CatalogTemplate.swift`, `CatalogIntegrity.swift`, 193 şablon dosyası, `StoryPageProvenance.swift` (yeni), `Story.swift`, `OfflineStoryMapper.swift`, dört test dosyası, `docs/GORSEL_ANLAM_SOZLESMESI.md`, bu günlük.
+
 ### 2026-11-20 · evren-7-yetkiler, commit bu kayıtla · Pilot çizim listesi; çocuk figürü yok
 
 - Karar (Batuhan, 20 Kasım 2026): sayfa resminde çocuk figürü yok (avatar sistemiyle olmadı); resim masalın öğelerinden kurulur. Çizimleri Batuhan ChatGPT ile yaptırır, geri kalan her şey kodda.
@@ -190,6 +206,42 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Yeni belge `docs/ANLATI_PLANI.md`: küçük yaşta görsel betim (görsel anahtar sözlüğü, `visualKeys`, `sceneDetails` betim katmanı), büyük yaşta olay örgüsü (düğüm yuvası, tohum ve hasat), satır soğumasının ayrı pencereye çıkması, yeni olay örgüleri (önce uyku öncesi ve 7-10 macera), dünya satırlarının ara sayfalara yayılması; hedefler ve Batuhan'ın kararı gereken beş soru.
 - Bilerek yapılmadı: kod ve içerik değişmedi; ölçüm testleri silindi (A0 onları kalıcı yapacak).
 - Dosyalar: `docs/ANLATI_PLANI.md`, bu günlük.
+
+### 2026-11-20 · codex/design-system-catalog · c742ea7 provenance sözleşmesine göre envanter
+
+- anlati-provenance dalı mevcutkirli checkout’a birleştirilmeden exactGitcommit üzerinden okundu. Audit aracı Git snapshot modu ve visual yok/boş/auto/reviewed ayrımıyla genişletildi; auto etiket hiçbir zaman runtimeart onayı sayılmadı.
+-193dosyada1622auto,1099etiketsiz,toplam2721beat/0reviewed;genişJSONenvanter3304nesne. ÖncekitabanlaID/metinhash karşılaştırması0değişim/0ekleme/0silme. Sözleşmede subject/presence/states var; paralel visualKey sözlüğü üretilmedi.
+- Doğrulama:7araçtestigeçti,diff temiz;app/enginebuild/test/telefon kurulumu yapılmadı. Çıktılar docs/research/2026-11-20-provenance-c742ea7-art-inventory.json/md,Toolsartcoverageaudit+test,projehafızası. Evrensel kapsama veya yeni runtimeeşleme eklenmedi.
+
+### 2026-11-20 · codex/design-system-catalog · Statik havuza üç guaj çizim adayı
+
+- Kullanıcının devam talebiyle gümüş çan ve iki kanonik oda pencere detayı built-in image_gen üzerinden onaylı guaj referansıyla üretildi. Çocuk/Ragi/arkadaş kimliği veya yatak/aile sayısı eklenmedi. İlk ay pencere taslakları manzara/hale nedeniyle elendi; sonv3 temiz aday.
+- Üç final PNG proje içinde saklandı; candidates.json kanonik konu/durum/altTexttaslağı/SHA/ölçü/alfa taşır. VisualKeys motor şemasıyla çakışmamak için boş. Reviewcandidate statüsünde; runtime manifest, binder veya mevcut kitap değiştirilmedi.
+- Doğrulama: resimler gözle incelendi; üçündeRGBA ve alfa0–255, SHA kaydı doğrulandı. Build/test/simülatör çalıştırılmadı. Telefona yeni sürüm yüklenmedi; her kitapta resim garantisi verilmedi.
+- Dosyalar: design-handoff/proposals/2026-11-20-story-art-expansion/{REPORT.md,candidates.json,PNGler}, projehafızası. Engine/provenance/Story.swift/mapper/içerik dosyaları Claude’un sahipliğinde kaldı.
+
+### 2026-11-20 · codex/design-system-catalog · Görsel kapsamı audit aracı ve Claude iş bölümü
+
+- Metin/seed/seçim değişmeden karma görsel havuzu için spec, aşamalı plan ve salt okunur kaynak denetim aracı eklendi. Kaynak pointer/ID/text hash ve bütün dosya hash değişimlerini yakalar; aday slotları semantik onay saymaz, NOT_CERTIFIED durumunu korur.
+- Claude motorun kaynak parçaları, kalıcı provenance ve içerik visual anlam alanlarını sahipleniyor; bu dosyalara dokunulmadı. Mevcut12 çizim için canonical subject/state/asset revision/digest köprü envanteri hazır; visualKeys yeni şema gelene kadar boş, paralel isimlendirme yok.
+- Güncel a7685ca kaynak refresh’i238dosya/3016metin:973yeni,0silinen;830eski kaydın dosya bağlamı değişmiş,aynıpointertextdeğişmemiş.49incelemegeçersiz,2korundu,3014açık,0onaylıartbinding. Ham generic walker3304nesne farklıscope; kaynakta bulunma runtime seçilebilirlik kanıtı değildir.
+- Doğrulama:6Pythonunit testi geçti,3016kaynakpointer/kimlik/metin/dosyaSHA0hata,12assetdigest doğrulandı,diff temiz. Uygulama test/build veya telefon kurulumu yapılmadı; evrensel resimli sayfa garantisi verilmedi.
+- Dosyalar: Tools/story_art_coverage_audit.py+test, docs/research/2026-11-20-art-anchor-audit.json/md, authored-art-source-inventory.json, art-asset-bridge.json, art-engine-app-handoff.md, ilgili plan/spec/projehafızası. Başka oturumun kaynakları ve günlük kayıtları korunur.
+
+### 2026-11-20 · codex/design-system-catalog@d14cdbe · Güncel repo ve İrem devir notları
+
+- Origin dalları çekildi; origin/main@33e9759 açık dala birleştirildi (d14cdbe). Günlük çakışmasında iki taraf korundu; autostash ile saklanan yerel değişiklikler geri yüklendi. Uzak repoya gönderim yapılmadı.
+- İrem dalının README notları, 18–19 Kasım commitleri, abonelik planı, önizleyici README’si, tasarım denetimi, iş bölümü, günlük ve 20 Kasım uygulama kararları karşılaştırıldı. İrem’in son commit’i c7d4354 main’in atası; eski öneriler güncel karar olarak alınmadı.
+- Açık işler: Paywall son tasarımı, mağaza/RevenueCat canlı ürün doğrulaması, deneme uygunluğu, eski ios-build.yml ve tarihsel handoff belgeleri. Yeni ürün veya tasarım değişikliği yapılmadı.
+- Doğrulama: birleşme tamamlandı, çözümsüz dosya ve çatışma işareti yok; origin/main ve origin/irem HEAD’in atası. Test/build/simülatör çalıştırılmadı.
+- Etkilenen: birleştirmeyle gelen dosyalar ve bu günlük; diğer yerel işler commit’e alınmadı.
+
+### 2026-11-20 · codex/design-system-catalog · Metin korumalı görsel kapsamı önerisi
+
+- Kullanıcı her yeni masalda görsel ve küçük yaşta daha yüksek yoğunluk istedi; metin değişikliğini reddetti. Mimari/içerik uzmanlarıyla bütün-kitap anlam eşlemesi ve karma nesne/mekân/arkadaş havuzu değerlendirildi. Garanti henüz kanıtlanmadı; görünmez içerik daraltma veya genel dekorla sayı tamamlama önerilmedi.
+- Gerçek kaynaklardan28mekân+33keşif+26arkadaş için87satırCSV ve kaynak SHA/commit snapshot’ı çıkarıldı.52kurgu kaydı (36normal+8seri+8özel gün) ayrımı düzeltildi. İlk sayfaya otomatik mekân koyma varsayımının istisnaları kaydedildi; bunlardan bütün kitap için imkânsızlık sonucu çıkarılmadı.
+- Dosyalar: `docs/research/2026-11-20-metni-korumali-gorsel-kapsam-onerisi.md`, `2026-11-20-art-coverage-candidates.csv`, `2026-11-20-art-coverage-source-snapshot.json`, proje hafızası. Üretim kodu, metinler, görseller ve telefondaki uygulama değişmedi.
+- Doğrulama: kanonik JSON’lar parse edildi, kayıt kimliklerinin benzersizliği/sayıları ve diff kontrolü yapıldı. Test/build/simülatör çalıştırılmadı; rastgele seed örnekleri veya bu statik sayım tüm masalları kapsama kanıtı sayılmadı.
 
 ### 2026-11-20 · main (birleştirme, bu kayıtla), origin'de · Yeni dünyalar main'e alındı
 

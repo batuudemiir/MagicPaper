@@ -93,6 +93,17 @@ enum ClassicNarration: String, Codable, CaseIterable {
 /// Bir anlatımın sayfaları. Her öğe bir sayfa; paragraflar boş satırla ayrılır.
 struct ClassicText: Codable, Equatable {
     var pages: [String]
+    /// Eski kataloglarda yoktur. Sıra ve uzunluk metin sayfalarıyla birebir eşleşir.
+    var illustrations: [ClassicPageIllustration]? = nil
+
+    func illustration(at index: Int) -> ClassicPageIllustration? {
+        guard let illustrations, illustrations.count == pages.count,
+              illustrations.indices.contains(index) else { return nil }
+        let illustration = illustrations[index]
+        guard !illustration.asset.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+              !illustration.altText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
+        return illustration
+    }
 }
 
 struct ClassicTale: Codable, Identifiable, Equatable {
