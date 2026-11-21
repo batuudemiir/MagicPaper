@@ -20,3 +20,6 @@ Her aşama: tamamlanan iş, kanıt, açıklar, commit ve sonraki adım bu dosya 
 
 ## 21 Kasım başlangıç ölçümü
 600/600 başarılı ve temiz, 4.800sayfa. 221kitap bir pinli sayfa,379kitap sıfır; orta ve son pin0. Kaydet/aç metin, sayfa başına pin ve provenance eşitliği geçti. Tek XCTest, tüm uygulama paketi değil. Baseline ve rapor `design-handoff/proposals/2026-11-21-whole-book-art/`. Nesne detay adayları yalnız p2; orta/son katkısı ilk pilotta Tarçın kaynaklarından gelecek. Tarçın kimlik sayfası onaylandı; gerçek sayfa önizlemeleri ve yeni çizimler hazırlanıyor.
+
+## 22 Kasım pilot entegrasyonu
+6 yeni çizim,21 tam-sayfa kuralı, politika3 ve AX/kompakt ortak kaydırma uygulandı.101seçili test:100geçti/1skip/0hata. Aynı600masalda251pin(önce221); açılış240/orta9/son2.356kitap hâlâ0pin. Metin ve eski pinler korundu. Kanıt AFTER_REPORT.md ve VALIDATION.md. Kalan: render eklerinin elle incelenmesi, VoiceOver, telefon kurulumu ve aile değerlendirmesi. İlk ölçüm commit03769ff.

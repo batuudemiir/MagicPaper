@@ -38,6 +38,29 @@ final class ReaderPageCompositionTests: XCTestCase {
         XCTAssertEqual(ReaderPageLayout.spotSize(width: 760, height: 300, accessibility: false), .zero)
     }
 
+    func testScrollingSpotRemainsVisibleWithAccessibilityAndCompactChrome() {
+        for (width, height, accessibility, compact) in [
+            (CGFloat(320), CGFloat(568), true, false),
+            (CGFloat(760), CGFloat(300), false, true),
+            (CGFloat(760), CGFloat(300), true, true)
+        ] {
+            let size = ReaderPageLayout.scrollingSpotSize(width: width, pageHeight: height)
+            XCTAssertGreaterThan(size.width, 0)
+            XCTAssertGreaterThan(size.height, 0)
+            XCTAssertLessThanOrEqual(size.width, width)
+            let viewport = height - MP.S.navBarHeight - MP.S.x6
+                - ReaderPageLayout.bottomChromeClearance(accessibility: accessibility, compactHeight: compact)
+            let remainder = ReaderPageLayout.spotNarrativeMinimumHeight(viewportHeight: viewport,
+                                                                       artHeight: size.height)
+            XCTAssertGreaterThanOrEqual(remainder, 0)
+            if viewport >= size.height + MP.S.x6 {
+                XCTAssertEqual(size.height + MP.S.x6 + remainder, viewport, accuracy: 0.01)
+            }
+        }
+        XCTAssertEqual(ReaderPageLayout.spotNarrativeMinimumHeight(viewportHeight: 10, artHeight: 80), 0)
+        XCTAssertEqual(ReaderPageLayout.scrollingSpotSize(width: 0, pageHeight: 300), .zero)
+    }
+
     func testInvalidSpotGeometryNeverReservesSpace() {
         XCTAssertEqual(ReaderPageLayout.spotSize(width: -1, height: 700, accessibility: false), .zero)
         XCTAssertEqual(ReaderPageLayout.spotSize(width: 393, height: -1, accessibility: false), .zero)

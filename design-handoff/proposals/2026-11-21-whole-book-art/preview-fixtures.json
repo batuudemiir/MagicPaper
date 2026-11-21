@@ -1,0 +1,187 @@
+[
+  {
+    "blueprintID": "blueprint_absence_looking_001",
+    "seed": "whole-book-art-v1-002",
+    "page": {
+      "absenceReasons": [
+        "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+      ],
+      "beats": [
+        "examine"
+      ],
+      "candidacyEvidence": [
+        {
+          "review": "auto",
+          "sourceID": "ex_s_any_01",
+          "status": "annotation_only_not_an_approved_art_match",
+          "visual": {
+            "presence": "present",
+            "states": [
+              "examined"
+            ],
+            "subject": "discovery",
+            "subjectID": "object_torn_map_001"
+          }
+        }
+      ],
+      "missingSlots": [],
+      "pageNumber": 2,
+      "position": "opening",
+      "provenance": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_01",
+          "sourceTextDigest": "67d3b4e5e4cadf19",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "examined"
+              ],
+              "subject": "discovery",
+              "subjectID": "object_torn_map_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "role": "discovery",
+      "text": "Deniz iyice yaklaştı ve dikkatle inceledi. Yırtık bir harita beklediği gibi değildi. Bir süre öylece durdu ve düşündü. Sorusu daha da çoğaldı.",
+      "unrecognisedSuffixes": [],
+      "variantIDs": [
+        "ex_s_any_01"
+      ]
+    },
+    "image": "map-detail-v1.png"
+  },
+  {
+    "blueprintID": "bp_threshold_together_003",
+    "seed": "whole-book-art-v1-069",
+    "page": {
+      "absenceReasons": [
+        "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+      ],
+      "beats": [
+        "cooperative_effort"
+      ],
+      "candidacyEvidence": [
+        {
+          "review": "auto",
+          "sourceID": "ce_s_07",
+          "status": "annotation_only_not_an_approved_art_match",
+          "visual": {
+            "presence": "present",
+            "states": [
+              "together"
+            ],
+            "subject": "companion",
+            "subjectID": "companion_fox_pilot_001"
+          }
+        }
+      ],
+      "missingSlots": [],
+      "pageNumber": 6,
+      "position": "middle",
+      "provenance": [
+        {
+          "beat": "cooperative_effort",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ce_s_07",
+          "sourceTextDigest": "64c05370067e608e",
+          "templateID": "corpus_5-6_cooperative_effort",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "together"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "role": "challenge",
+      "text": "\"Bir fikrim var,\" dedi Deniz ve anlattı. Tarçın dinledi, sonra kendi bildiği bir şeyi ekledi. İki fikir birleşince iş tamam oldu.",
+      "unrecognisedSuffixes": [],
+      "variantIDs": [
+        "ce_s_07"
+      ]
+    },
+    "image": "tarcin-together-v1.png"
+  },
+  {
+    "blueprintID": "blueprint_threshold_crossing_001",
+    "seed": "whole-book-art-v1-055",
+    "page": {
+      "absenceReasons": [
+        "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+        "unannotated_source"
+      ],
+      "beats": [
+        "self_recognize",
+        "warm_close"
+      ],
+      "candidacyEvidence": [
+        {
+          "review": "auto",
+          "sourceID": "wc_p_succeed_03",
+          "status": "annotation_only_not_an_approved_art_match",
+          "visual": {
+            "presence": "present",
+            "states": [
+              "glad"
+            ],
+            "subject": "companion",
+            "subjectID": "companion_fox_pilot_001"
+          }
+        }
+      ],
+      "missingSlots": [],
+      "pageNumber": 8,
+      "position": "closing",
+      "provenance": [
+        {
+          "beat": "self_recognize",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "sr_p_09",
+          "sourceTextDigest": "20524753717c964e",
+          "templateID": "corpus_5-6_self_recognize"
+        },
+        {
+          "beat": "warm_close",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "wc_p_succeed_03",
+          "sourceTextDigest": "9d29a48b901bbd56",
+          "templateID": "corpus_5-6_warm_close",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "glad"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "role": "emotional_ending",
+      "text": "Deniz bugünü düşündü, sonra kendini. İkisi de biraz büyümüş gibiydi. Tarçın \"İyi ki buradaydın,\" dedi. Deniz bir şey demedi, sadece kulakları kızardı.",
+      "unrecognisedSuffixes": [],
+      "variantIDs": [
+        "sr_p_09",
+        "wc_p_succeed_03"
+      ]
+    },
+    "image": "tarcin-glad-v1.png"
+  }
+]

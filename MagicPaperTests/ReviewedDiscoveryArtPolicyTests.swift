@@ -368,7 +368,8 @@ final class ReviewedDiscoveryArtPolicyTests: XCTestCase {
                 authoredSourceFingerprint: "proof", bindingPolicyVersion: policy, catalogVersion: "2.1.0")
         }
         XCTAssertTrue(art(policy: 2).isBundledSpot)
-        XCTAssertFalse(art(policy: 3).isBundledSpot)
+        XCTAssertTrue(art(policy: 3).isBundledSpot)
+        XCTAssertFalse(art(policy: 4).isBundledSpot)
     }
     func testManifestCorruptionAndMissingAssetFailClosed() throws {
         let url = try XCTUnwrap(Bundle.main.url(forResource: "reviewed-discovery-art-v2", withExtension: "json"))

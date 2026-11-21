@@ -6,7 +6,8 @@ enum StorySpotBinder {
     static func bind(_ story: Story, composed: ComposedStory, catalog: StorySpotCatalog?) -> Story {
         guard catalog != nil else { return story }
         let bound = bindVersionOne(story, composed: composed, catalog: catalog)
-        return ReviewedDiscoveryArtBinder.bind(bound, composed: composed)
+        let reviewed = ReviewedDiscoveryArtBinder.bind(bound, composed: composed)
+        return WholeBookArtBinder.bind(reviewed, composed: composed)
     }
 
     private static func bindVersionOne(_ story: Story, composed: ComposedStory, catalog: StorySpotCatalog?) -> Story {

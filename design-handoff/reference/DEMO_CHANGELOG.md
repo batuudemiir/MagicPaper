@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-22 · codex/design-system-catalog, commit yok · Kitap boyunca görsel pilot entegrasyonu
+
+-6yeni guaj çizim,21tam-sayfa kaynak kuralı ve kalıcı politika3; eski pinler korunur. AX/kompakt okuyucuda çizim ve metin birlikte kayar.
+-101seçili test:100geçti/1skip/0hata. Aynı600masalda251pin;240açılış/9orta/2son. Metin ve eski pinler korundu.356kitap hâlâ görselsiz.
+-Kanıt: whole-book-art öneri klasöründe after.json/AFTER_REPORT/VALIDATION ve önizleme. Telefon,VoiceOver ve render eklerinin elle matrisi bekliyor. Başlangıç ölçümü03769ff.
+
+
 ### 2026-11-21 · codex/design-system-catalog · Kitap boyunca görsel başlangıç ölçümü
 
 - Kullanıcının onayladığı yol haritası `docs/STORY_ART_ROADMAP.md` içinde; Tarçın kimlik sayfasının görünüşü kullanıcı tarafından onaylandı.
