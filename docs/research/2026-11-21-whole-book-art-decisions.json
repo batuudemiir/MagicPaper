@@ -1,0 +1,956 @@
+{
+  "scope": "baseline fixed cohort; candidate attestations only, not runtime authorization",
+  "sources": {
+    "ce_s_01": {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_cooperative_effort.json",
+      "authoredRecord": {
+        "id": "ce_s_01",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "together"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{child.name}} nasıl yapılacağını buldu, {{companion.name}} ise yapabildiği yeri yaptı. İkisi aynı anda çalıştı. Ancak öyle oldu, başka türlü olmazdı.",
+        "requiredSlots": [
+          "child.name",
+          "companion.name"
+        ],
+        "lengthClass": "solo",
+        "move": "one_finds_one_does"
+      }
+    },
+    "ce_s_07": {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_cooperative_effort.json",
+      "authoredRecord": {
+        "id": "ce_s_07",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "together"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "\"Bir fikrim var,\" dedi {{child.name}} ve anlattı. {{companion.name}} dinledi, sonra kendi bildiği bir şeyi ekledi. İki fikir birleşince iş tamam oldu.",
+        "requiredSlots": [
+          "child.name",
+          "companion.name"
+        ],
+        "lengthClass": "solo",
+        "move": "two_ideas_combined"
+      }
+    },
+    "ce_s_08": {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_cooperative_effort.json",
+      "authoredRecord": {
+        "id": "ce_s_08",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "together"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{child.name}} sırayı belirledi: önce şu, sonra bu. {{companion.name}} sırayı bozmadan yaptı. Doğru sıra olmasa hiçbiri işe yaramazdı. İkisi de bunu biliyordu.",
+        "requiredSlots": [
+          "child.name",
+          "companion.name"
+        ],
+        "lengthClass": "solo",
+        "move": "the_order_mattered"
+      }
+    },
+    "sr_p_01": {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_self_recognize.json",
+      "authoredRecord": {
+        "id": "sr_p_01",
+        "text": "{{child.name}} kendi kendine düşündü. Demek yapabiliyormuş. Bunu daha önce hiç bilmiyordu.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "paired",
+        "move": "so_i_can_do_it"
+      }
+    },
+    "sr_p_09": {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_self_recognize.json",
+      "authoredRecord": {
+        "id": "sr_p_09",
+        "text": "{{child.name}} bugünü düşündü, sonra kendini. İkisi de biraz büyümüş gibiydi.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "paired",
+        "move": "day_and_self_both_grew"
+      }
+    },
+    "mc_calm_02": {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "authoredRecord": {
+        "id": "mc_calm_02",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "greeting"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "Yanına biri geldi. {{companion.name}} adında sakin bir {{companion.type}}. \"Acelemiz yok,\" dedi sadece. Sesi çok sakindi. Sonra {{child.name}}'in yanına ilişti.",
+        "requiredSlots": [
+          "companion.name",
+          "companion.type",
+          "child.name"
+        ],
+        "castRoles": [
+          "reassuring"
+        ],
+        "settingTraits": [],
+        "capabilityForbid": [],
+        "move": "no_hurry",
+        "lengthClass": "solo",
+        "natureRequire": [
+          "animal",
+          "fantastic"
+        ]
+      }
+    },
+    "mc_calm_04": {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "authoredRecord": {
+        "id": "mc_calm_04",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "greeting"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{companion.name}} telaşsızca geldi ve {{child.name}}'in yanında durdu. Hiçbir şey sormadı, hiçbir şey anlatmadı. Sadece orada olmak yetiyordu. {{child.name}} bunu hemen hissetti.",
+        "requiredSlots": [
+          "companion.name",
+          "child.name"
+        ],
+        "castRoles": [
+          "reassuring"
+        ],
+        "settingTraits": [],
+        "capabilityForbid": [],
+        "move": "being_there_was_enough",
+        "lengthClass": "solo",
+        "natureRequire": [
+          "animal",
+          "fantastic"
+        ]
+      }
+    },
+    "mc_calm_05": {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "authoredRecord": {
+        "id": "mc_calm_05",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "greeting"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "Bir {{companion.type}} çıkageldi, adı {{companion.name}}. Hiç telaşlı değildi. \"Ben buradayım,\" dedi. Sonra {{child.name}}'in yanına geçti ve sakince oturdu. Acelesi olmadığı her halinden belliydi.",
+        "requiredSlots": [
+          "companion.type",
+          "companion.name",
+          "child.name"
+        ],
+        "castRoles": [
+          "reassuring"
+        ],
+        "settingTraits": [],
+        "capabilityForbid": [],
+        "move": "says_i_am_here",
+        "lengthClass": "solo",
+        "natureRequire": [
+          "animal",
+          "fantastic"
+        ]
+      }
+    },
+    "mc_calm_06": {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "authoredRecord": {
+        "id": "mc_calm_06",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "greeting"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{companion.name}} buraya alışkındı. {{child.name}}'in gergin olduğunu gördü ama bunu söylemedi. Onun yerine yanına oturdu ve konuşmadan bekledi. Bu yeterli oldu.",
+        "requiredSlots": [
+          "companion.name",
+          "child.name"
+        ],
+        "castRoles": [
+          "reassuring"
+        ],
+        "settingTraits": [],
+        "capabilityForbid": [],
+        "move": "saw_it_and_did_not_name_it",
+        "lengthClass": "solo",
+        "natureRequire": [
+          "animal",
+          "fantastic"
+        ]
+      }
+    },
+    "wc_p_succeed_03": {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_warm_close.json",
+      "authoredRecord": {
+        "id": "wc_p_succeed_03",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "glad"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{companion.name}} \"İyi ki buradaydın,\" dedi. {{child.name}} bir şey demedi, sadece kulakları kızardı.",
+        "requiredSlots": [
+          "companion.name",
+          "child.name"
+        ],
+        "lengthClass": "paired",
+        "afterClosing": [
+          "succeed"
+        ],
+        "move": "praise_received_shyly"
+      }
+    },
+    "ex_s_light_02": {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_examine.json",
+      "authoredRecord": {
+        "id": "ex_s_light_02",
+        "visual": [
+          {
+            "subject": "discovery",
+            "presence": "present",
+            "states": [
+              "examined"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{child.name}} çömelip {{discovery.name}} inceledi. Dokunmadı, sadece uzun uzun baktı. Bir tarafı diğerinden çok daha parlaktı. Neden böyle olduğunu çıkaramadı.",
+        "words": [
+          "w56_comelmek"
+        ],
+        "requiredSlots": [
+          "child.name",
+          "discovery.name"
+        ],
+        "lengthClass": "solo",
+        "discoveryTraits": [
+          "isVisible"
+        ],
+        "settingTraits": [],
+        "move": "one_side_brighter"
+      }
+    },
+    "ex_s_any_01": {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_examine.json",
+      "authoredRecord": {
+        "id": "ex_s_any_01",
+        "visual": [
+          {
+            "subject": "discovery",
+            "presence": "present",
+            "states": [
+              "examined"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{child.name}} iyice yaklaştı ve dikkatle inceledi. {{discovery.name}} beklediği gibi değildi. Bir süre öylece durdu ve düşündü. Sorusu daha da çoğaldı.",
+        "requiredSlots": [
+          "child.name",
+          "discovery.name"
+        ],
+        "lengthClass": "solo",
+        "move": "not_what_was_expected"
+      }
+    },
+    "ex_s_any_02": {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_examine.json",
+      "authoredRecord": {
+        "id": "ex_s_any_02",
+        "visual": [
+          {
+            "subject": "discovery",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "auto",
+        "text": "Ne olduğunu anlamak kolay değildi. {{child.name}} uzun uzun üstünde durdu, sonra bir adım geri çekildi. {{discovery.name}} hâlâ bir bilmeceydi. Ama artık daha çok şey biliyordu.",
+        "requiredSlots": [
+          "child.name",
+          "discovery.name"
+        ],
+        "lengthClass": "solo",
+        "move": "still_a_puzzle_but_less_so"
+      }
+    }
+  },
+  "candidatePageCombinations": [
+    {
+      "subjectID": "companion_fox_pilot_001",
+      "candidateView": "fox-greeting-seated",
+      "status": "source-reviewed-art-compatibility-required",
+      "pageNumber": 3,
+      "role": "companion",
+      "beats": [
+        "meet_companion"
+      ],
+      "orderedParts": [
+        {
+          "beat": "meet_companion",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "mc_calm_05",
+          "sourceTextDigest": "74eb2ef77af53d51",
+          "templateID": "corpus_5-6_meet_companion",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "greeting"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto",
+          "authoredText": "Bir {{companion.type}} çıkageldi, adı {{companion.name}}. Hiç telaşlı değildi. \"Ben buradayım,\" dedi. Sonra {{child.name}}'in yanına geçti ve sakince oturdu. Acelesi olmadığı her halinden belliydi."
+        }
+      ],
+      "observedBlueprintIDs": [
+        "blueprint_threshold_crossing_001"
+      ],
+      "observedCount": 1,
+      "exampleText": "Bir tilki çıkageldi, adı Tarçın. Hiç telaşlı değildi. \"Ben buradayım,\" dedi. Sonra Deniz'in yanına geçti ve sakince oturdu. Acelesi olmadığı her halinden belliydi.",
+      "canonicalSubjectFingerprint": "3dc5e94208fa4542",
+      "assetCompatibility": "explicit pose/action review required; seated together may depict quiet greeting only while source state stays greeting"
+    },
+    {
+      "subjectID": "companion_fox_pilot_001",
+      "candidateView": "fox-greeting-seated",
+      "status": "source-reviewed-art-compatibility-required",
+      "pageNumber": 3,
+      "role": "companion",
+      "beats": [
+        "meet_companion"
+      ],
+      "orderedParts": [
+        {
+          "beat": "meet_companion",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "mc_calm_02",
+          "sourceTextDigest": "305698fc242f3c84",
+          "templateID": "corpus_5-6_meet_companion",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "greeting"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto",
+          "authoredText": "Yanına biri geldi. {{companion.name}} adında sakin bir {{companion.type}}. \"Acelemiz yok,\" dedi sadece. Sesi çok sakindi. Sonra {{child.name}}'in yanına ilişti."
+        }
+      ],
+      "observedBlueprintIDs": [
+        "blueprint_threshold_crossing_001"
+      ],
+      "observedCount": 3,
+      "exampleText": "Yanına biri geldi. Tarçın adında sakin bir tilki. \"Acelemiz yok,\" dedi sadece. Sesi çok sakindi. Sonra Deniz'in yanına ilişti.",
+      "canonicalSubjectFingerprint": "3dc5e94208fa4542",
+      "assetCompatibility": "explicit pose/action review required; seated together may depict quiet greeting only while source state stays greeting"
+    },
+    {
+      "subjectID": "companion_fox_pilot_001",
+      "candidateView": "fox-greeting-seated",
+      "status": "source-reviewed-art-compatibility-required",
+      "pageNumber": 3,
+      "role": "companion",
+      "beats": [
+        "meet_companion"
+      ],
+      "orderedParts": [
+        {
+          "beat": "meet_companion",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "mc_calm_06",
+          "sourceTextDigest": "42b68f451e90e786",
+          "templateID": "corpus_5-6_meet_companion",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "greeting"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto",
+          "authoredText": "{{companion.name}} buraya alışkındı. {{child.name}}'in gergin olduğunu gördü ama bunu söylemedi. Onun yerine yanına oturdu ve konuşmadan bekledi. Bu yeterli oldu."
+        }
+      ],
+      "observedBlueprintIDs": [
+        "blueprint_threshold_crossing_001"
+      ],
+      "observedCount": 2,
+      "exampleText": "Tarçın buraya alışkındı. Deniz'in gergin olduğunu gördü ama bunu söylemedi. Onun yerine yanına oturdu ve konuşmadan bekledi. Bu yeterli oldu.",
+      "canonicalSubjectFingerprint": "3dc5e94208fa4542",
+      "assetCompatibility": "explicit pose/action review required; seated together may depict quiet greeting only while source state stays greeting"
+    },
+    {
+      "subjectID": "companion_fox_pilot_001",
+      "candidateView": "fox-glad",
+      "status": "source-reviewed-art-compatibility-required",
+      "pageNumber": 8,
+      "role": "emotional_ending",
+      "beats": [
+        "self_recognize",
+        "warm_close"
+      ],
+      "orderedParts": [
+        {
+          "beat": "self_recognize",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "sr_p_09",
+          "sourceTextDigest": "20524753717c964e",
+          "templateID": "corpus_5-6_self_recognize",
+          "authoredText": "{{child.name}} bugünü düşündü, sonra kendini. İkisi de biraz büyümüş gibiydi."
+        },
+        {
+          "beat": "warm_close",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "wc_p_succeed_03",
+          "sourceTextDigest": "9d29a48b901bbd56",
+          "templateID": "corpus_5-6_warm_close",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "glad"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto",
+          "authoredText": "{{companion.name}} \"İyi ki buradaydın,\" dedi. {{child.name}} bir şey demedi, sadece kulakları kızardı."
+        }
+      ],
+      "observedBlueprintIDs": [
+        "blueprint_threshold_crossing_001"
+      ],
+      "observedCount": 1,
+      "exampleText": "Deniz bugünü düşündü, sonra kendini. İkisi de biraz büyümüş gibiydi. Tarçın \"İyi ki buradaydın,\" dedi. Deniz bir şey demedi, sadece kulakları kızardı.",
+      "canonicalSubjectFingerprint": "3dc5e94208fa4542",
+      "assetCompatibility": "explicit pose/action review required; seated together may depict quiet greeting only while source state stays greeting"
+    },
+    {
+      "subjectID": "companion_fox_pilot_001",
+      "candidateView": "fox-greeting-standing",
+      "status": "source-reviewed-art-compatibility-required",
+      "pageNumber": 3,
+      "role": "companion",
+      "beats": [
+        "meet_companion"
+      ],
+      "orderedParts": [
+        {
+          "beat": "meet_companion",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "mc_calm_04",
+          "sourceTextDigest": "2cb692d4c0b4edec",
+          "templateID": "corpus_5-6_meet_companion",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "greeting"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto",
+          "authoredText": "{{companion.name}} telaşsızca geldi ve {{child.name}}'in yanında durdu. Hiçbir şey sormadı, hiçbir şey anlatmadı. Sadece orada olmak yetiyordu. {{child.name}} bunu hemen hissetti."
+        }
+      ],
+      "observedBlueprintIDs": [
+        "blueprint_threshold_crossing_001"
+      ],
+      "observedCount": 1,
+      "exampleText": "Tarçın telaşsızca geldi ve Deniz'in yanında durdu. Hiçbir şey sormadı, hiçbir şey anlatmadı. Sadece orada olmak yetiyordu. Deniz bunu hemen hissetti.",
+      "canonicalSubjectFingerprint": "3dc5e94208fa4542",
+      "assetCompatibility": "explicit pose/action review required; seated together may depict quiet greeting only while source state stays greeting"
+    },
+    {
+      "subjectID": "object_compass_001",
+      "candidateView": "object-detail",
+      "status": "source-reviewed-art-compatibility-required",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_01",
+          "sourceTextDigest": "67d3b4e5e4cadf19",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "examined"
+              ],
+              "subject": "discovery",
+              "subjectID": "object_compass_001"
+            }
+          ],
+          "visualReview": "auto",
+          "authoredText": "{{child.name}} iyice yaklaştı ve dikkatle inceledi. {{discovery.name}} beklediği gibi değildi. Bir süre öylece durdu ve düşündü. Sorusu daha da çoğaldı."
+        }
+      ],
+      "observedBlueprintIDs": [
+        "bp_threshold_joining_002",
+        "bp_absence_retracing_002",
+        "bp_absence_asking_003"
+      ],
+      "observedCount": 3,
+      "exampleText": "Deniz iyice yaklaştı ve dikkatle inceledi. Pirinç pusula beklediği gibi değildi. Bir süre öylece durdu ve düşündü. Sorusu daha da çoğaldı.",
+      "canonicalSubjectFingerprint": "5d8e739525fd9e0c",
+      "fullAuthoredFingerprint": "9a6b1d3a56e902cb",
+      "assetCompatibility": "explicit pose/action review required; seated together may depict quiet greeting only while source state stays greeting"
+    },
+    {
+      "subjectID": "object_key_001",
+      "candidateView": "object-detail",
+      "status": "source-reviewed-art-compatibility-required",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_01",
+          "sourceTextDigest": "67d3b4e5e4cadf19",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "examined"
+              ],
+              "subject": "discovery",
+              "subjectID": "object_key_001"
+            }
+          ],
+          "visualReview": "auto",
+          "authoredText": "{{child.name}} iyice yaklaştı ve dikkatle inceledi. {{discovery.name}} beklediği gibi değildi. Bir süre öylece durdu ve düşündü. Sorusu daha da çoğaldı."
+        }
+      ],
+      "observedBlueprintIDs": [
+        "bp_threshold_joining_002",
+        "bp_absence_retracing_002",
+        "bp_absence_asking_003"
+      ],
+      "observedCount": 5,
+      "exampleText": "Deniz iyice yaklaştı ve dikkatle inceledi. Altın anahtar beklediği gibi değildi. Bir süre öylece durdu ve düşündü. Sorusu daha da çoğaldı.",
+      "canonicalSubjectFingerprint": "8a556dd4d832f915",
+      "fullAuthoredFingerprint": "33670f30fbc3d65c",
+      "assetCompatibility": "explicit pose/action review required; seated together may depict quiet greeting only while source state stays greeting"
+    },
+    {
+      "subjectID": "object_torn_map_001",
+      "candidateView": "object-detail",
+      "status": "source-reviewed-art-compatibility-required",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_01",
+          "sourceTextDigest": "67d3b4e5e4cadf19",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "examined"
+              ],
+              "subject": "discovery",
+              "subjectID": "object_torn_map_001"
+            }
+          ],
+          "visualReview": "auto",
+          "authoredText": "{{child.name}} iyice yaklaştı ve dikkatle inceledi. {{discovery.name}} beklediği gibi değildi. Bir süre öylece durdu ve düşündü. Sorusu daha da çoğaldı."
+        }
+      ],
+      "observedBlueprintIDs": [
+        "blueprint_absence_looking_001",
+        "bp_absence_retracing_002",
+        "bp_absence_asking_003"
+      ],
+      "observedCount": 8,
+      "exampleText": "Deniz iyice yaklaştı ve dikkatle inceledi. Yırtık bir harita beklediği gibi değildi. Bir süre öylece durdu ve düşündü. Sorusu daha da çoğaldı.",
+      "canonicalSubjectFingerprint": "ba9d4bec7f631c11",
+      "fullAuthoredFingerprint": "416f018a21b86f4e",
+      "assetCompatibility": "explicit pose/action review required; seated together may depict quiet greeting only while source state stays greeting"
+    },
+    {
+      "subjectID": "object_torn_map_001",
+      "candidateView": "object-detail",
+      "status": "source-reviewed-art-compatibility-required",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_02",
+          "sourceTextDigest": "961ca97c68b52733",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [],
+              "subject": "discovery",
+              "subjectID": "object_torn_map_001"
+            }
+          ],
+          "visualReview": "auto",
+          "authoredText": "Ne olduğunu anlamak kolay değildi. {{child.name}} uzun uzun üstünde durdu, sonra bir adım geri çekildi. {{discovery.name}} hâlâ bir bilmeceydi. Ama artık daha çok şey biliyordu."
+        }
+      ],
+      "observedBlueprintIDs": [
+        "blueprint_absence_looking_001"
+      ],
+      "observedCount": 4,
+      "exampleText": "Ne olduğunu anlamak kolay değildi. Deniz uzun uzun üstünde durdu, sonra bir adım geri çekildi. Yırtık bir harita hâlâ bir bilmeceydi. Ama artık daha çok şey biliyordu.",
+      "canonicalSubjectFingerprint": "ba9d4bec7f631c11",
+      "fullAuthoredFingerprint": "56c495069a01f467",
+      "assetCompatibility": "explicit pose/action review required; seated together may depict quiet greeting only while source state stays greeting"
+    },
+    {
+      "subjectID": "object_compass_001",
+      "candidateView": "object-detail",
+      "status": "source-reviewed-art-compatibility-required",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_02",
+          "sourceTextDigest": "961ca97c68b52733",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [],
+              "subject": "discovery",
+              "subjectID": "object_compass_001"
+            }
+          ],
+          "visualReview": "auto",
+          "authoredText": "Ne olduğunu anlamak kolay değildi. {{child.name}} uzun uzun üstünde durdu, sonra bir adım geri çekildi. {{discovery.name}} hâlâ bir bilmeceydi. Ama artık daha çok şey biliyordu."
+        }
+      ],
+      "observedBlueprintIDs": [
+        "bp_absence_retracing_002",
+        "bp_absence_asking_003"
+      ],
+      "observedCount": 8,
+      "exampleText": "Ne olduğunu anlamak kolay değildi. Deniz uzun uzun üstünde durdu, sonra bir adım geri çekildi. Pirinç pusula hâlâ bir bilmeceydi. Ama artık daha çok şey biliyordu.",
+      "canonicalSubjectFingerprint": "5d8e739525fd9e0c",
+      "fullAuthoredFingerprint": "917b3674d2aa4aae",
+      "assetCompatibility": "explicit pose/action review required; seated together may depict quiet greeting only while source state stays greeting"
+    },
+    {
+      "subjectID": "object_key_001",
+      "candidateView": "object-detail",
+      "status": "source-reviewed-art-compatibility-required",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_02",
+          "sourceTextDigest": "961ca97c68b52733",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [],
+              "subject": "discovery",
+              "subjectID": "object_key_001"
+            }
+          ],
+          "visualReview": "auto",
+          "authoredText": "Ne olduğunu anlamak kolay değildi. {{child.name}} uzun uzun üstünde durdu, sonra bir adım geri çekildi. {{discovery.name}} hâlâ bir bilmeceydi. Ama artık daha çok şey biliyordu."
+        }
+      ],
+      "observedBlueprintIDs": [
+        "bp_absence_retracing_002",
+        "bp_absence_asking_003"
+      ],
+      "observedCount": 3,
+      "exampleText": "Ne olduğunu anlamak kolay değildi. Deniz uzun uzun üstünde durdu, sonra bir adım geri çekildi. Altın anahtar hâlâ bir bilmeceydi. Ama artık daha çok şey biliyordu.",
+      "canonicalSubjectFingerprint": "8a556dd4d832f915",
+      "fullAuthoredFingerprint": "27317aeaab49e56b",
+      "assetCompatibility": "explicit pose/action review required; seated together may depict quiet greeting only while source state stays greeting"
+    },
+    {
+      "subjectID": "companion_fox_pilot_001",
+      "candidateView": "fox-glad",
+      "status": "source-reviewed-art-compatibility-required",
+      "pageNumber": 8,
+      "role": "emotional_ending",
+      "beats": [
+        "warm_close",
+        "self_recognize"
+      ],
+      "orderedParts": [
+        {
+          "beat": "warm_close",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "wc_p_succeed_03",
+          "sourceTextDigest": "9d29a48b901bbd56",
+          "templateID": "corpus_5-6_warm_close",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "glad"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto",
+          "authoredText": "{{companion.name}} \"İyi ki buradaydın,\" dedi. {{child.name}} bir şey demedi, sadece kulakları kızardı."
+        },
+        {
+          "beat": "self_recognize",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "sr_p_01",
+          "sourceTextDigest": "7c4fd9b627c4f8c6",
+          "templateID": "corpus_5-6_self_recognize",
+          "authoredText": "{{child.name}} kendi kendine düşündü. Demek yapabiliyormuş. Bunu daha önce hiç bilmiyordu."
+        }
+      ],
+      "observedBlueprintIDs": [
+        "bp_threshold_together_003"
+      ],
+      "observedCount": 1,
+      "exampleText": "Tarçın \"İyi ki buradaydın,\" dedi. Deniz bir şey demedi, sadece kulakları kızardı. Deniz kendi kendine düşündü. Demek yapabiliyormuş. Bunu daha önce hiç bilmiyordu.",
+      "canonicalSubjectFingerprint": "3dc5e94208fa4542",
+      "assetCompatibility": "explicit pose/action review required; seated together may depict quiet greeting only while source state stays greeting"
+    },
+    {
+      "subjectID": "companion_fox_pilot_001",
+      "candidateView": "fox-together-listening",
+      "status": "source-reviewed-art-compatibility-required",
+      "pageNumber": 6,
+      "role": "challenge",
+      "beats": [
+        "cooperative_effort"
+      ],
+      "orderedParts": [
+        {
+          "beat": "cooperative_effort",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ce_s_07",
+          "sourceTextDigest": "64c05370067e608e",
+          "templateID": "corpus_5-6_cooperative_effort",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "together"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto",
+          "authoredText": "\"Bir fikrim var,\" dedi {{child.name}} ve anlattı. {{companion.name}} dinledi, sonra kendi bildiği bir şeyi ekledi. İki fikir birleşince iş tamam oldu."
+        }
+      ],
+      "observedBlueprintIDs": [
+        "bp_threshold_together_003"
+      ],
+      "observedCount": 2,
+      "exampleText": "\"Bir fikrim var,\" dedi Deniz ve anlattı. Tarçın dinledi, sonra kendi bildiği bir şeyi ekledi. İki fikir birleşince iş tamam oldu.",
+      "canonicalSubjectFingerprint": "3dc5e94208fa4542",
+      "assetCompatibility": "explicit pose/action review required; seated together may depict quiet greeting only while source state stays greeting"
+    }
+  ],
+  "runtimeContract": {
+    "version": 3,
+    "catalogVersion": "2.1.0",
+    "require": [
+      "exact approved blueprint/page/role/beats",
+      "complete ordered parts count and kind/sourceID/templateID/sourceTextDigest/contexts/visualReview/visual arrays",
+      "exact subjectID/presence/states (empty differs from examined)",
+      "canonical discovery authored fingerprint or versioned companion visual-identity projection (explicit fields, not full record JSON)",
+      "exact composed-to-mapped text equality and clean page",
+      "no existing art/scene/file/url",
+      "no family/series/occasion",
+      "asset digest/revision/style/view and full-page attestation proof"
+    ],
+    "reject": [
+      "unknown or extra source parts",
+      "partial decoded app provenance",
+      "source-ID-only or any-visual matching",
+      "blanket auto-to-reviewed elevation"
+    ]
+  },
+  "deferred": {
+    "ex_s_light_02": "20 observed target-object pages; brighter-side claim requires matching visual review",
+    "trace_and_light04": "no declared present discovery; object closeup unsupported",
+    "object_middle_end": "no target object presence beyond p2 in this observed cohort; do not claim middle/end improvement",
+    "fox_action": "ce_s01 simultaneous work, ce_s08 ordered activity and ce_s03 pulling require matching action art; generic together pose insufficient",
+    "fox_farewell": "wc_p_both_01 goodbye should not be claimed by generic glad without dedicated semantic/art review"
+  },
+  "canonicalCompanionIdentity": {
+    "algorithm": "StableHash.fingerprint(values.map length-prefix UTF8 count)",
+    "orderedValueContract": [
+      "whole-book-companion-identity-v1",
+      "id",
+      "name",
+      "type",
+      "personality",
+      "description",
+      "visualDescription",
+      "traits.count",
+      "traits.sorted.rawValue[]",
+      "habitat.count",
+      "habitat.sorted.rawValue[]",
+      "declaredNature.rawValue ?? <nil>"
+    ],
+    "expectedValues": [
+      "whole-book-companion-identity-v1",
+      "companion_fox_pilot_001",
+      "Tarçın",
+      "tilki",
+      "Sakin ve güven veren.",
+      "Ormanı iyi bilen, acele ettirmeyen bir tilki.",
+      "warm russet fox, calm eyes, soft brush tail",
+      "3",
+      "hasLocalKnowledge",
+      "isPlayful",
+      "isQuick",
+      "3",
+      "forest",
+      "garden",
+      "mountain",
+      "animal"
+    ],
+    "fingerprint": "3dc5e94208fa4542",
+    "publicSwiftFields": [
+      "id.rawValue",
+      "name",
+      "type",
+      "personality",
+      "description",
+      "visualDescription",
+      "traits.map(\\.rawValue).sorted()",
+      "habitat.map(\\.rawValue).sorted()",
+      "declaredNature?.rawValue"
+    ],
+    "scope": "versioned identity projection; not full catalog record JSON"
+  },
+  "schemaNote": "No cartesian combinations; exact original complete ordered engine part arrays. authoredText audit-only; digest must equal engine sourceTextDigest. Identity projection uses explicit stable order and UTF8 length prefixes; do not encode unordered sets.",
+  "publication": {
+    "reviewID": "manual-whole-book-pilot-2026-11-21",
+    "manifest": "MagicPaper/StoryEngineBridge/StoryArtResources/whole-book-art-v3.json",
+    "sha256": "a9262bfc7c38f5d7464fa62fee62ef2e1b6fc3c9665f0bbe1af043205d018952",
+    "assetCount": 6,
+    "fullPageRuleCount": 21,
+    "identityApproval": "User approved Tarçın appearance in this chat, 2026-11-21",
+    "manualArtReview": "Exact source/object physical-state and fox pose review; seated greeting source mc02/05/06 uses attentive seated fox; standing mc04 uses standing greeting. ce07 listening only, not generic work/pulling. Glad only two reviewed full closing combinations. Brighter-side object sources deferred.",
+    "viewAliases": {
+      "fox-greeting-seated": "fox-together-listening"
+    },
+    "engineAnnotations": "Unchanged, auto stays auto; source-specific independent art publishing attestation.",
+    "visualEvidence": "design-handoff/proposals/2026-11-21-whole-book-art/preview.jpg",
+    "runtimeValidation": "pending final test window"
+  }
+}

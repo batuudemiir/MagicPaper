@@ -310,7 +310,7 @@ struct StoryPageArt: Codable, Equatable {
     }
 
     var isBundledSpot: Bool {
-        guard isSpot, schemaVersion == 1, let bindingPolicyVersion, [1, 2].contains(bindingPolicyVersion),
+        guard isSpot, schemaVersion == 1, let bindingPolicyVersion, [1, 2, 3].contains(bindingPolicyVersion),
               let assetRevision, assetRevision > 0,
               let subjectState, !subjectState.isEmpty, subjectState.allSatisfy({ !$0.isEmpty }),
               let variantIDs, !variantIDs.isEmpty, variantIDs.allSatisfy({ !$0.isEmpty }) else { return false }

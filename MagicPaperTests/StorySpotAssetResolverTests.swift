@@ -43,7 +43,7 @@ final class StorySpotAssetResolverTests: XCTestCase {
 
     func testUnknownSavedSchemaOrPolicyFailsClosed() {
         XCTAssertNil(StorySpotAssetResolver.url(for: art(schema: 2), bundle: bundle))
-        XCTAssertNil(StorySpotAssetResolver.url(for: art(policy: 3), bundle: bundle))
+        XCTAssertNil(StorySpotAssetResolver.url(for: art(policy: 4), bundle: bundle))
     }
 
     func testMissingFileOrDigestMismatchDoesNotSubstituteArt() {

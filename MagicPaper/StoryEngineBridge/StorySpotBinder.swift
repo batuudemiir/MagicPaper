@@ -5,7 +5,12 @@ import StoryEngine
 enum StorySpotBinder {
     static func bind(_ story: Story, composed: ComposedStory, catalog: StorySpotCatalog?) -> Story {
         guard catalog != nil else { return story }
-        let story = ReviewedDiscoveryArtBinder.bind(story, composed: composed)
+        let bound = bindVersionOne(story, composed: composed, catalog: catalog)
+        let reviewed = ReviewedDiscoveryArtBinder.bind(bound, composed: composed)
+        return WholeBookArtBinder.bind(reviewed, composed: composed)
+    }
+
+    private static func bindVersionOne(_ story: Story, composed: ComposedStory, catalog: StorySpotCatalog?) -> Story {
         guard let catalog, let origin = story.origin,
               origin.blueprintID == composed.blueprintID.rawValue,
               origin.settingID == composed.content.setting.id.rawValue,

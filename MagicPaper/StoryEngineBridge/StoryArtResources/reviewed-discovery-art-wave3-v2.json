@@ -1,0 +1,709 @@
+{
+  "schemaVersion": 1,
+  "bindingPolicyVersion": 2,
+  "catalogVersion": "2.1.0",
+  "sources": [
+    {
+      "sourceID": "na_neutral_01",
+      "templateID": "corpus_5-6_notice_anomaly",
+      "sourceTextDigest": "e6735c26014d9438",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "na_neutral_02",
+      "templateID": "corpus_5-6_notice_anomaly",
+      "sourceTextDigest": "5e46e49f771896f9",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "na_any_01",
+      "templateID": "corpus_5-6_notice_anomaly",
+      "sourceTextDigest": "2e9363acd595f0d9",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "na_any_02",
+      "templateID": "corpus_5-6_notice_anomaly",
+      "sourceTextDigest": "4a69ef18d512b8e8",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "na_any_03",
+      "templateID": "corpus_5-6_notice_anomaly",
+      "sourceTextDigest": "987b507c867b4bbd",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "s34_na_01",
+      "templateID": "corpus_3-4_notice_anomaly",
+      "sourceTextDigest": "c12f260ca5fe32ed",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "s34_na_02",
+      "templateID": "corpus_3-4_notice_anomaly",
+      "sourceTextDigest": "95b481638e591ced",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "s34_na_tp_01",
+      "templateID": "corpus_3-4_notice_anomaly",
+      "sourceTextDigest": "102912693272297c",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "na_neutral_03",
+      "templateID": "corpus_5-6_notice_anomaly",
+      "sourceTextDigest": "618634e5ad6d6d17",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "na_neutral_04",
+      "templateID": "corpus_5-6_notice_anomaly",
+      "sourceTextDigest": "673eb935a28a512d",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "na_neutral_05",
+      "templateID": "corpus_5-6_notice_anomaly",
+      "sourceTextDigest": "c32f7ca2d098219a",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "a7_na_03",
+      "templateID": "corpus_7-8_notice_anomaly",
+      "sourceTextDigest": "0b88d501e2ed246b",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "a7_na_04",
+      "templateID": "corpus_7-8_notice_anomaly",
+      "sourceTextDigest": "ea3fe68d56f32772",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "a7_na_05",
+      "templateID": "corpus_7-8_notice_anomaly",
+      "sourceTextDigest": "8bfab639b8b1c69e",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "a7_na_07",
+      "templateID": "corpus_7-8_notice_anomaly",
+      "sourceTextDigest": "772f2e2dbbd5f206",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "a9_na_01",
+      "templateID": "corpus_9-10_notice_anomaly",
+      "sourceTextDigest": "f1819cecdab76fd2",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "a9_na_02",
+      "templateID": "corpus_9-10_notice_anomaly",
+      "sourceTextDigest": "0b617ea3647b1663",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "a9_na_04",
+      "templateID": "corpus_9-10_notice_anomaly",
+      "sourceTextDigest": "0922e1a8bcaab5d1",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "a9_na_05",
+      "templateID": "corpus_9-10_notice_anomaly",
+      "sourceTextDigest": "77c9ebf8c82f85b4",
+      "decision": "discovery_present"
+    },
+    {
+      "sourceID": "a9_na_07",
+      "templateID": "corpus_9-10_notice_anomaly",
+      "sourceTextDigest": "6cd3f854f82469c9",
+      "decision": "discovery_present"
+    }
+  ],
+  "recalls": [
+    {
+      "sourceID": "recall_met_once_here_01",
+      "sourceTextDigest": "e5aa735c317ade73",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_met_once_here_02",
+      "sourceTextDigest": "c39f468c30e18786",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_met_once_elsewhere_01",
+      "sourceTextDigest": "a5460c86745c7eba",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_met_once_elsewhere_02",
+      "sourceTextDigest": "aa3003ec30ad2576",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_met_once_any_01",
+      "sourceTextDigest": "c313c6d47e791eed",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_met_once_any_02",
+      "sourceTextDigest": "b5c34c71457b5e0e",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_friends_here_01",
+      "sourceTextDigest": "2de6f90702599772",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_friends_here_02",
+      "sourceTextDigest": "1072de6dd140cad1",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_friends_elsewhere_01",
+      "sourceTextDigest": "669bf92b8b387843",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_friends_elsewhere_02",
+      "sourceTextDigest": "2ea0f1952fd138ce",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_friends_any_01",
+      "sourceTextDigest": "d278c000ea651db7",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_friends_any_02",
+      "sourceTextDigest": "031ddc3518d59c63",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_old_friends_here_01",
+      "sourceTextDigest": "e47ecc7f46c9b5ce",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_old_friends_here_02",
+      "sourceTextDigest": "9a95cf84ab78d5eb",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_old_friends_elsewhere_01",
+      "sourceTextDigest": "87892f0dbefb5d11",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_old_friends_elsewhere_02",
+      "sourceTextDigest": "cfd71d65ee83a11b",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_old_friends_any_01",
+      "sourceTextDigest": "765e74edadec64c2",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_old_friends_any_02",
+      "sourceTextDigest": "4915defca5b6ab4f",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_place_again_01",
+      "sourceTextDigest": "6beb9c931d9363df",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_place_again_02",
+      "sourceTextDigest": "174322bc2de3f42b",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_place_again_03",
+      "sourceTextDigest": "8ad40beb7551f7c0",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_place_again_04",
+      "sourceTextDigest": "3cfc34f82585f68d",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_met_once_any_01",
+      "sourceTextDigest": "585a2c47d0f846e6",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_met_once_any_02",
+      "sourceTextDigest": "cf5ec922e3036172",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_met_once_here_01",
+      "sourceTextDigest": "88c292edc966bb95",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_met_once_elsewhere_01",
+      "sourceTextDigest": "68b0cc789600f5f4",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_friends_any_01",
+      "sourceTextDigest": "144c936d218ad456",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_friends_any_02",
+      "sourceTextDigest": "e7e5b6c0ce9bff82",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_friends_here_01",
+      "sourceTextDigest": "55d54ff69096c8fe",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_friends_elsewhere_01",
+      "sourceTextDigest": "1e1815ce064304cf",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_old_friends_any_01",
+      "sourceTextDigest": "c241f440f694c0e8",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_old_friends_any_02",
+      "sourceTextDigest": "94ed42376aefb3cb",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_old_friends_here_01",
+      "sourceTextDigest": "137e6a968b16b1cc",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_old_friends_elsewhere_01",
+      "sourceTextDigest": "177ef4b60ba5d094",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_place_again_01",
+      "sourceTextDigest": "592c4bd35be3a325",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_place_again_02",
+      "sourceTextDigest": "760bd2fbb6c14b2d",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_place_again_03",
+      "sourceTextDigest": "4845569a556d0ccf",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "recall_age3_place_again_04",
+      "sourceTextDigest": "aec1a0be2181dc68",
+      "decision": "no_discovery_contradiction"
+    }
+  ],
+  "reviewID": "manual-isolated-discoveries-wave3-2026-11-21",
+  "entries": [
+    {
+      "canonicalDiscoveryFingerprint": "056b272623315690",
+      "asset": {
+        "assetID": "spot.silver-bell",
+        "revision": 1,
+        "digest": "135019d641cd0c30077dba84b89485c0ccc247d17369f2699250a17eabff4a4d",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-silver-bell-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_bell_001",
+        "subjectState": [
+          "small",
+          "silver",
+          "intact"
+        ],
+        "altText": "Küçük, gümüş renkli bir çan."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "ba9d4bec7f631c11",
+      "asset": {
+        "assetID": "spot.torn-map",
+        "revision": 5,
+        "digest": "ce7b1fff4f4f738fff4bcf89905ba8cde5d3352087db9fb84c7ee2c9f24f2bab",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-torn-map-r5.mpart",
+        "status": "approved",
+        "subjectID": "object_torn_map_001",
+        "subjectState": [
+          "torn",
+          "triangular-half-missing",
+          "forest-route-illustration"
+        ],
+        "altText": "Çizgili bir rota ve orman çizimi taşıyan, çapraz yırtılmış yarım lila harita."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "a2e45984378100b6",
+      "asset": {
+        "assetID": "spot.dropped-mitten",
+        "revision": 1,
+        "digest": "56d77941d81f68736ab89b964b798c217671aba56393a20ba1775b1be6c4a472",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-dropped-mitten-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_dropped_mitten_001",
+        "subjectState": [
+          "single",
+          "coral-knit",
+          "purple-cuff"
+        ],
+        "altText": "Mor manşetli, mercan renkli tek örgü eldiven."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "c7d3b34e6a9c06e8",
+      "asset": {
+        "assetID": "spot.old-lantern",
+        "revision": 1,
+        "digest": "df31cf84b673b91894b8b40584d5cba4731eca2f71b1774e60e4828e0437f574",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-old-lantern-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_lantern_001",
+        "subjectState": [
+          "portable",
+          "intact",
+          "internally-lit"
+        ],
+        "altText": "Taşıma saplı, camı içinde ışık olan eski mor fener."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "8a556dd4d832f915",
+      "asset": {
+        "assetID": "spot.golden-key",
+        "revision": 1,
+        "digest": "4a9336ab48c3149f2a07c4c2e8febd6af13d2fa342507d2150163f1e25e486c8",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-golden-key-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_key_001",
+        "subjectState": [
+          "gold",
+          "intact"
+        ],
+        "altText": "Tek, altın renkli küçük anahtar."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "dd5fa6c15aba3435",
+      "asset": {
+        "assetID": "spot.blue-crystal",
+        "revision": 1,
+        "digest": "3d2f6d08357e5d1dfd063bd348fa249d0cba8929ee8d9996e9658a6ec34b81b3",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-blue-crystal-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_crystal_001",
+        "subjectState": [
+          "blue",
+          "internally-luminous"
+        ],
+        "altText": "İçi yumuşakça parlayan mavi kristal."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "2569115691489869",
+      "asset": {
+        "assetID": "spot.colorful-feather",
+        "revision": 1,
+        "digest": "6d22c1d283463a0605af4800d9a32693a9d6e9f931c0a1824a7bfbd4232935f9",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-colorful-feather-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_feather_001",
+        "subjectState": [
+          "single",
+          "turquoise-lilac-coral"
+        ],
+        "altText": "Turkuaz, lila ve mercan renkli tek kuş tüyü."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "46c683da9f223a06",
+      "asset": {
+        "assetID": "spot.sea-shell",
+        "revision": 1,
+        "digest": "7da298e37961f5ddfa1df755165a3fbe59bd4eafd8b6d1da4d938de5f104fd1d",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-sea-shell-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_shell_001",
+        "subjectState": [
+          "empty",
+          "lilac-coral"
+        ],
+        "altText": "Lila dış yüzeyli, mercan içli boş deniz kabuğu."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "f4fd2c60a547518f",
+      "asset": {
+        "assetID": "spot.magnifying-glass",
+        "revision": 1,
+        "digest": "0f149b497756f43cd49c808c54bbd1c99fc4aff1c34ebbeec90bc58519e900a0",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-magnifying-glass-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_magnifying_glass_001",
+        "subjectState": [
+          "intact",
+          "purple-handle"
+        ],
+        "altText": "Mor saplı, yuvarlak camlı büyüteç."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "b1bcd4c529b52801",
+      "asset": {
+        "assetID": "spot.sturdy-rope",
+        "revision": 1,
+        "digest": "b887a09be7adb6db7a7a3c65ea139df575326357c39d6f9ec46f7000b4c29f1a",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-sturdy-rope-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_rope_001",
+        "subjectState": [
+          "thick",
+          "intact",
+          "loose-coil",
+          "two-ends"
+        ],
+        "altText": "İki ucu görünen, gevşekçe sarılmış kalın ip."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "7135258667882a44",
+      "asset": {
+        "assetID": "spot.paper-lantern",
+        "revision": 1,
+        "digest": "075be03f489d29878593eb47154b8bc46ebd901c387707b5c915b18c28646165",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-paper-lantern-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_paper_lantern_001",
+        "subjectState": [
+          "paper",
+          "internally-lit"
+        ],
+        "altText": "İçinde yumuşak ışık olan lila ve mercan kâğıt fener."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "5d8e739525fd9e0c",
+      "asset": {
+        "assetID": "spot.brass-compass",
+        "revision": 1,
+        "digest": "6c8ccde960b0f52f47e4ee35648e5421d182e6ee665f49aa9c8b41fc54996d7e",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-brass-compass-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_compass_001",
+        "subjectState": [
+          "brass",
+          "intact"
+        ],
+        "altText": "Pirinç gövdeli, lila kadranlı ve iki renk ibreli bir pusula."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "9e2261be995450ca",
+      "asset": {
+        "assetID": "spot.old-coin",
+        "revision": 1,
+        "digest": "c3472dd02f3503036750519470ef1c348ef8f4348132b4a770525c6fe7df86a5",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-old-coin-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_coin_001",
+        "subjectState": [
+          "old",
+          "metal",
+          "strange-markings"
+        ],
+        "altText": "Üzerinde aşınmış soyut şekiller bulunan eski bir madeni para."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "4f4f8eda6f2aa445",
+      "asset": {
+        "assetID": "spot.star-stone",
+        "revision": 1,
+        "digest": "7ebe1ede204c802b2cacbfbd01ac162f7ba23efc7d19df7a79af92dec7c0f738",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-star-stone-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_star_stone_001",
+        "subjectState": [
+          "star-shaped",
+          "bright",
+          "stone"
+        ],
+        "altText": "Turkuaz ve lila tonlarında, yıldız biçimli parlak bir taş."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "7f6ea3f693ddf86a",
+      "asset": {
+        "assetID": "spot.red-ball",
+        "revision": 1,
+        "digest": "e9e01c14239bd07572113c012ec87161783109554aa1134abd6d824c8d950695",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-red-ball-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_ball_001",
+        "subjectState": [
+          "red",
+          "round",
+          "single"
+        ],
+        "altText": "Yuvarlak, kırmızı bir top."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "ddfd55908ba692ab",
+      "asset": {
+        "assetID": "spot.jump-rope",
+        "revision": 1,
+        "digest": "82e30c1ea6fcfafdbcf243b1ea63aa3047b674695ce4d2dd14d5d2a928c9d065",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-jump-rope-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_jump_rope_001",
+        "subjectState": [
+          "long",
+          "two-handles",
+          "blue-handle",
+          "yellow-handle"
+        ],
+        "altText": "Bir sapı mavi, diğer sapı sarı olan uzun bir atlama ipi."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "2dd2ae934615e472",
+      "asset": {
+        "assetID": "spot.paper-kite",
+        "revision": 1,
+        "digest": "db332e81bee33f04a1d4389185c8fd891d0c12a9ad997c505134c9d9d2217255",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-paper-kite-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_kite_001",
+        "subjectState": [
+          "paper",
+          "intact",
+          "colorful-ribbon-tail"
+        ],
+        "altText": "Lila ve turkuaz kâğıttan, kuyruğunda renkli kurdeleler olan bir uçurtma."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "cdf9166c9184a6e1",
+      "asset": {
+        "assetID": "spot.wooden-flute",
+        "revision": 1,
+        "digest": "0ef665fd51496f1f995376fe02af5e23dd6b7ca9696f8fdf97348864edc43d8f",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-wooden-flute-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_flute_001",
+        "subjectState": [
+          "wood",
+          "intact",
+          "recorder-form"
+        ],
+        "altText": "Parmak delikleri görünen küçük bir tahta flüt."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "33295733941ff0b0",
+      "asset": {
+        "assetID": "spot.hand-mirror",
+        "revision": 1,
+        "digest": "b79d8e8d8b519af111c75348fcff1dab1e12be584ebc77bfa6d91b965785865a",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-hand-mirror-r1.mpart",
+        "status": "approved",
+        "subjectID": "object_mirror_001",
+        "subjectState": [
+          "hand-mirror",
+          "intact",
+          "no-person-reflection"
+        ],
+        "altText": "Mor saplı, camında yalnız ışık yansıması görünen küçük bir el aynası."
+      }
+    },
+    {
+      "canonicalDiscoveryFingerprint": "f0552b9d96a1ad5d",
+      "asset": {
+        "assetID": "spot.red-ribbon",
+        "revision": 2,
+        "digest": "6380471595347d4c3c765378ba0f9203adfad5f66c9792fb9f0ec8eaa8c45d5a",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-story-spot-red-ribbon-r2.mpart",
+        "status": "approved",
+        "subjectID": "object_ribbon_001",
+        "subjectState": [
+          "red",
+          "silk",
+          "long",
+          "loose"
+        ],
+        "altText": "Uçları açıkta duran, kıvrılmış uzun kırmızı bir kurdele."
+      }
+    }
+  ],
+  "pairedSources": [
+    {
+      "sourceID": "mc3u_01",
+      "templateID": "corpus_3-4_meet_companion",
+      "sourceTextDigest": "7adcbcd50d309c3e",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "mc3u_04",
+      "templateID": "corpus_3-4_meet_companion",
+      "sourceTextDigest": "fd00c1ee2f8361e5",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "mc3u_05",
+      "templateID": "corpus_3-4_meet_companion",
+      "sourceTextDigest": "e0948899956f2eea",
+      "decision": "no_discovery_contradiction"
+    },
+    {
+      "sourceID": "mc3u_tp_01",
+      "templateID": "corpus_3-4_meet_companion",
+      "sourceTextDigest": "35d62b5f9c6001fd",
+      "decision": "no_discovery_contradiction"
+    }
+  ],
+  "pairedBlueprintIDs": [
+    "bp_sports_howitmoves_age3_001",
+    "bp_sports_wind_age3_001",
+    "bp_sports_together_age3_001"
+  ]
+}

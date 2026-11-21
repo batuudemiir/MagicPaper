@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-22 · irem (dal, birleştirme commit'i) · Batuhan'ın main'i irem'e alındı
+
+- origin/main'in son 9 commit'i (`856cb88`'e kadar): kaynak izli görsel pilotu, kitap boyunca görsel (`WholeBookArtBinder`, `WholeBookArtPolicy`), Guaj nesne havuzu, okuyucu sayfa düzeni (`ReaderPageComposition`, `StoryPageView`), Release arşiv kaydı (TestFlight 2.0, 2026112201).
+- Çakışma yalnızca bu günlükte: iki tarafın kayıtları da korundu (önce irem'inkiler, sonra main'inkiler). Kod çakışması yok; ana sayfa, paywall ve seri dosyalarımıza main dokunmamış.
+- main'e hiçbir şey gönderilmedi. Test çalıştırılmadı; `[ekran]` turu derlemeyi doğrular.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa: en büyük yazı düzeni ve kartta kapak (A5, A6)
 
 - A5: erişilebilirlik yazı boyutlarında `HomeHeaderScene(compact:)`: sahne 120 pt'lik bant (manzaranın ortası, Ragi %70 bantta), ad bandın altında kâğıtta (açık yazı yok, kırpılmaz). Selam düşer, rozet notu kalır. Yıldız/gün satırı kartın altına iner. Kartın kapağı düşer. Amaç: SE'de en büyük yazıda kartın düğmesi ilk ekranda. Normal boyutlarda hiçbir şey değişmedi.
@@ -262,6 +268,61 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Test: design law grep'leri değişen dosyalarda boş. Swift yerelde derlenmedi; bu commit `[ekran]` ile GitHub'ın Mac'inde derlenip çekiliyor.
 - Dosyalar: `MagicPaper/Views/HomeView.swift`, `MagicPaper/DesignSystem/Pastel/{MPHomeReadingNook,MPHomeChrome}.swift`, `MagicPaper/DesignSystem/MPTheme.swift`, `MagicPaper/Assets.xcassets/Scenes/home{ReadingNook,WorldLearning,WorldAdventure}.imageset`, `design-preview/app/{home.js,app.css,index.html}`, `README.md`, bu günlük.
 
+### 2026-11-22 · main@d21b842 · TestFlight için Release arşivi
+
+- Xcode archive başarılı: MagicPaper-builds/MagicPaper-2026-11-22.xcarchive; gerçek sürüm2.0(2026112201),arm64. Sistem güven deposuyla codesign --verify --deep --strict geçti. Development imzalı arşiv Organizer Distribute App akışında dağıtım için yeniden imzalanır; App Store Connect yüklemesi yapılmadı.
+- Log /private/tmp/MagicPaper-archive-20261122.log. Mevcut başka oturum dosyaları kapsam dışında korundu.
+
+
+### 2026-11-22 · main@cd3c02a · Görsel çalışmalarının main teslimi
+
+- Bu sohbetin altı commit’i güncel origin/main ile birleştirildi ve main’e pushlandı. Günlük çakışmasında iki taraf korundu; önceki çalışma farkı /private/tmp/magicpaper-pre-main-journal.patch içinde de yedekli.
+- Son seçili doğrulama101test:100geçti/1skip/0hata. Birleştirme yalnız günlükte çakıştı. Release1.0(2026112201) arşivi hazırlanıyor; sonuç henüz doğrulanmadı.
+
+
+### 2026-11-22 · codex/design-system-catalog, commit yok · Kitap boyunca görsel pilot entegrasyonu
+
+-6yeni guaj çizim,21tam-sayfa kaynak kuralı ve kalıcı politika3; eski pinler korunur. AX/kompakt okuyucuda çizim ve metin birlikte kayar.
+-101seçili test:100geçti/1skip/0hata. Aynı600masalda251pin;240açılış/9orta/2son. Metin ve eski pinler korundu.356kitap hâlâ görselsiz.
+-Kanıt: whole-book-art öneri klasöründe after.json/AFTER_REPORT/VALIDATION ve önizleme. Telefon,VoiceOver ve render eklerinin elle matrisi bekliyor. Başlangıç ölçümü03769ff.
+
+
+### 2026-11-21 · codex/design-system-catalog · Kitap boyunca görsel başlangıç ölçümü
+
+- Kullanıcının onayladığı yol haritası `docs/STORY_ART_ROADMAP.md` içinde; Tarçın kimlik sayfasının görünüşü kullanıcı tarafından onaylandı.
+- Altı5–6macera kurgusu×100sabitseed:600/600temizmasal,4.800sayfa,221kitap1pin/379kitap0pin; tüm pinler açılışta. Orta/son0. Metin, sayfa başına art ve provenance kaydet/aç eşitliği doğrulandı.
+- Test: seçili `WholeBookArtCoverageTests`1/0hata, Xcode TEST SUCCEEDED. Tam paket/telefon/UI matrisi çalıştırılmadı. Mevcut üretim kodu/metin/seçim değişmedi; otomatik etiketler yalnız inceleme adayıdır.
+- Dosyalar: yeni XCTest, `Tools/summarize_whole_book_art.py`, yol haritası, proje hafızası; `design-handoff/proposals/2026-11-21-whole-book-art/` başlangıçJSON/rapor/kimliktaslağı.
+
+
+### 2026-11-21 · codex/design-system-catalog, commit yok · Guaj nesne havuzu 20 konuya çıktı
+
+- Onaylı referanslarla altı yeni sabit çizim: kırmızı top, mavi/sarı saplı atlama ipi, kâğıt uçurtma, tahta flüt, el aynası, uzun kırmızı kurdele. Kurdele dış boya izleri image_gen ile temizlendi; v2 seçildi. Kaynak PNG'ler ve istemler kayıtlı; aynı byte'lar mpart olarak paketlendi.
+- Önceki 14 girdi ve 20/4/3/38 kaynak listeleri korundu. Kapalı dört-sürüm SHA→edition tablosu; eski pinler/v1 önceliği korunur, authorization/binder/ImageIO değişmez. Motor/metin/seed/seçim/reader UI değişikliği yok; her masalda görsel garantisi yok.
+- İki inceleme onaylı. Seçili uygulama: 91 test, 90 geçti, 1 skip, 0 hata. Gerçek altı nesne map/save fixture'ı ve 20 reader decode geçti; üç oyuncak 3–4, kurdele 5–6, flüt 7–8, ayna 9–10. Motor yeniden koşulmadı; önceki 44/0 ayrı kanıt. Telefon kurulumu/yeni UI/VoiceOver matrisi yok; önceki seri/ölçüm bulguları açık.
+- Test için yalnız önceki cihaz derlemesinin yeniden oluşturulabilir Build çıktıları ve başarısız swiftbuild .build/out önbelleği temizlendi. Dosyalar: policy/test; altı mpart+wave3manifest; araştırma/spec/plan; görseller/üretim kaydı/rapor/gerçek fixture JSON'u; proje hafızası. Rapor: design-handoff/proposals/2026-11-21-story-art-wave3/REPORT.md.
+
+### 2026-11-21 · codex/design-system-catalog, commit yok · Üç yeni guaj nesne ve yaşlara göre kaynak eşlemesi
+
+- Yerleşik image_gen + onaylı referanslarla pirinç pusula, eski madeni para ve yıldız biçimli taş hazırlandı; saydam PNG ve aynı byte'lı mpart. Kaynak izli havuz 11→14 konu, notice izin listesi 5→20 kaynak; dört küçük yaş destek satırı eklendi.
+- Tekli keşif sayfaları 5–6/7–8/9–10; 3–4 yalnız üç sports blueprint'inin ilk sayfasında notice→meet. Tam kaynak sırası, gerçek companion, beat listesi ve nesne/dosya özetleri doğrulanır. Mevcut v1, eski çizim dosyaları ve kayıtlı pinler korunur; her masalda görsel garantisi yok.
+- Claude c742ea7→365b66b deltası günlük hariç 32 dosyalık patch ile alındı; merge yapılmadı. Kaynak metinleri/kimlikleri değişmedi. Upstream history20/partCount geldi; ReadingSequenceReport ölçüm bulgusu bu tur düzeltilmedi.
+- İlk testler, pakete giren 193 izlenmeyen `… 2.json` eski kopyasını ortaya çıkardı. Bunlar ve aynı byte'lı 772 generated kopya silinmeden `/private/tmp/magicpaper-json-copy-quarantine-20261121-wave2/` altında yol/SHA manifestleriyle korundu. Son temiz koşu: motor 44/0; uygulama 89 test, 88 geçti, 1 skip, 0 hata. Gerçek 3–4 pusula/7–8 para/9–10 yıldız taşı ve 14 reader decode geçti. Telefona kurulum ve yeni UI/VoiceOver matrisi yok; tam paket/BoundPool ve önceki seri uygunluğu hatası bu koşuya dahil değil.
+- Dosyalar: açık upstream import listesi; ReviewedDiscoveryArtPolicy/Binder ve testleri; üç mpart + wave2 manifest; yeni PNG'ler/üretim kaydı/rapor/gerçek fixture JSON'u; spec/plan/araştırma kararları ve proje hafızası. Ayrıntı design-handoff/proposals/2026-11-21-story-art-wave2/REPORT.md.
+
+### 2026-11-21 · codex/design-system-catalog, commit yok · Claude motor teslimi incelemesi
+
+- origin fetch ile anlati-provenance@365b66b ve origin/main@b8a597b incelendi; Claude tesliminin main'e alındığı doğrulandı. Yerel dal/uygulama kodu değiştirilmedi, merge yapılmadı.
+- Tek P2 bulgu: ReadingSequenceReport birebir tekrar sayacında seed içeren fingerprint kullanıyor; aynı metin farklı seed ile tekrar olarak yakalanmıyor. Seed bağımsız metin özeti ve dar fixture önerildi.
+- Statik kaynak karşılaştırması: değişen 17 içerik dosyasında kaynak metni/kimliği ekleme-silme-değişim 0; 272 reviewed ilk sayfa kaydı. Mevcut beş görsel kaynağı aynı. PartCount/isComplete ve 20 masallık satır geçmişi incelendi.
+- Entegrasyon: d3a3b46 henüz uzak main'de değil; eski pilot liste yeni uygulama-kararlı sözleşmeye hizalanmalı. Testler yeniden çalıştırılmadı; önceki yerel test sonucu birleşik sürüm için onay sayılmadı. Rapor: docs/research/2026-11-21-claude-story-engine-review.md.
+
+### 2026-11-21 · codex/design-system-catalog, commit yok · Kaynak izli çizimler 11 nesneye genişledi
+
+- Gümüş çan politikasına mevcut on nesne çizimi eklendi; beş 5–6 notice ve 38 hatırlama kaynağı için ayrı inceleme kaydı yazıldı. Manifest/kanonik nesne/dosya özetleri doğrulanır; asset ve kanıt birlikte yetkilendirilir.
+- Mevcut v1 eşlemesi öncelikli; yeni politika kalan uygun sayfalara uygulanır. Eski çan pinleri korunur. Motor metinleri, kimlikler, seed/seçim, eski kitaplar ve okuyucu düzeni değişmedi. Boş yuva/açık müzik kutusu kapsam dışı; her masalda çizim garantisi yok.
+- Spec ve bağımsız kod incelemesi onaylı. Seçili Xcode: 76 test, 75 başarılı, 1 skip, 0 hata; art/provenance 27/27. Gerçek on nesne fixture'ı, kayıt roundtrip ve 11 reader decode geçti. İlk deneme testlerden önce sandbox önbellek erişiminde durdu; erişimle tekrar başarılı. Önceki seri uygunluğu hatası bu tur çözülmedi veya tekrar sınanmadı. Telefona kurulum/yeni UI matrisi yok.
+- Dosyalar: ReviewedDiscoveryArtPolicy/Binder, StorySpotBinder; ReviewedDiscoveryArtPolicyTests ve StorySpotBindingTests; expansion manifesti; research kararları, spec/plan, teslim raporu ve kaynak doğrulama kaydı, proje hafızası.
 ### 2026-11-21 · main, commit bu kayıtla · anlati-provenance, evren-7-yetkiler ve codex/design-system-catalog main'e birleşti
 - Birleşenler (Batuhan'ın isteğiyle, sırayla, `--no-ff`): `anlati-provenance` (71d4893: sayfa kaynak izi, Anlatı planı A0-A8, katmanlı sayfa resmi kararı, pilot çizim listesi), `evren-7-yetkiler` (7fc4231: aynı plan belgelerinin eski kopyaları), `codex/design-system-catalog` (bbbc522: yayımlanmış Original'lara sayfa çizimleri, incelenmiş çan görseli, görsel kaynak denetimi).
 - Çakışma çözümü: `ANLATI_PLANI.md`'de anlati-provenance'ın yeni sürümü kaldı (evren-7'deki A0/A1 öncesi hâli). codex dalı `c742ea7`'yi yama olarak almıştı; çakışan 20 dosyanın (StoryPageProvenance, 18 notice_anomaly şablonu, VisualMeaningTests, GORSEL_ANLAM_SOZLESMESI) codex sürümü `c742ea7` ile birebir aynıydı, bu yüzden anlati-provenance'ın ilerlemiş sürümü (`visualReview: "reviewed"`) kaldı. Günlükte iki tarafın kayıtları tarihe göre birleşti, hiçbiri silinmedi.

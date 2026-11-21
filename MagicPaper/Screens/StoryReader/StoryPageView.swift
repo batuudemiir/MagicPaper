@@ -53,6 +53,8 @@ struct StoryPageView: View {
             GeometryReader { geo in
                 if isSpread(geo) {
                     spread(in: geo)
+                } else if composition == .spot && (typeSize.isAccessibilitySize || verticalClass == .compact) {
+                    scrollingSpot(in: geo)
                 } else {
                 // Çizim kenardan kenara ve sayfanın en üstünden başlar; cam
                 // kontroller onun üstünde yüzer. Metin kenar boşluğunda kalır.
@@ -149,6 +151,34 @@ struct StoryPageView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.bottom, MP.S.x6)
         }
+    }
+
+    /// Illustration and narrative share one scroll container when the reading viewport is constrained.
+    private func scrollingSpot(in geo: GeometryProxy) -> some View {
+        let top = MP.S.navBarHeight + MP.S.x6
+        let width = max(0, geo.size.width - StoryPageView.gutter * 2)
+        let viewportHeight = max(0, geo.size.height - top - bottomClearance)
+        let size = ReaderPageLayout.scrollingSpotSize(width: width, pageHeight: geo.size.height)
+        let narrativeHeight = ReaderPageLayout.spotNarrativeMinimumHeight(
+            viewportHeight: viewportHeight, artHeight: size.height)
+        return ScrollView(.vertical) {
+            VStack(spacing: MP.S.x6) {
+                PageIllustration(fileName: page.imageRef ?? "", label: page.imageLabel, theme: theme,
+                                 art: page.art, bleeds: false,
+                                 onUnavailable: { unavailableImageRef = illustrationKey })
+                    .frame(width: size.width, height: size.height)
+                    .frame(maxWidth: .infinity)
+                narrative(available: CGSize(width: width, height: narrativeHeight))
+                    .frame(maxWidth: measure, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(minHeight: narrativeHeight, alignment: .center)
+            }
+            .padding(.horizontal, StoryPageView.gutter)
+        }
+        .scrollBounceBehavior(.basedOnSize)
+        .scrollIndicators(.hidden)
+        .padding(.top, top)
+        .padding(.bottom, bottomClearance)
     }
 
     // MARK: - 27 · iPad yatay açık kitap

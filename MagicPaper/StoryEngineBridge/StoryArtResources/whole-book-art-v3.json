@@ -1,0 +1,869 @@
+{
+  "schemaVersion": 1,
+  "bindingPolicyVersion": 3,
+  "reviewID": "manual-whole-book-pilot-2026-11-21",
+  "catalogVersion": "2.1.0",
+  "blueprintIDs": [
+    "blueprint_threshold_crossing_001",
+    "bp_threshold_joining_002",
+    "blueprint_absence_looking_001",
+    "bp_absence_retracing_002",
+    "bp_threshold_together_003",
+    "bp_absence_asking_003"
+  ],
+  "assets": [
+    {
+      "asset": {
+        "assetID": "whole-book.map-detail-v1",
+        "revision": 1,
+        "digest": "47bd447a0ae60060341fcee3c606a0bbd3158445a97c7674c2c8d3a98dbe18d9",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-whole-book-map-detail-v1.mpart",
+        "status": "approved",
+        "subjectID": "object_torn_map_001",
+        "subjectState": [
+          "torn",
+          "triangular-half-missing",
+          "forest-route-illustration"
+        ],
+        "altText": "Yırtık yarım lila haritanın yakın görünümü."
+      },
+      "view": "object-detail",
+      "subjectRole": "discovery",
+      "canonicalFingerprint": "ba9d4bec7f631c11"
+    },
+    {
+      "asset": {
+        "assetID": "whole-book.compass-detail-v1",
+        "revision": 1,
+        "digest": "5f31616ec7dfb978cf4cbe42d01106dcd88360c8bacc4141844bc6d480fce8c8",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-whole-book-compass-detail-v1.mpart",
+        "status": "approved",
+        "subjectID": "object_compass_001",
+        "subjectState": [
+          "brass",
+          "intact"
+        ],
+        "altText": "Pirinç pusulanın lila kadranı ve iki renkli ibresi."
+      },
+      "view": "object-detail",
+      "subjectRole": "discovery",
+      "canonicalFingerprint": "5d8e739525fd9e0c"
+    },
+    {
+      "asset": {
+        "assetID": "whole-book.key-detail-v1",
+        "revision": 1,
+        "digest": "2129c115c2fd94e2090b1ce44f37f2746b09c3709910f4afe541987eca664809",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-whole-book-key-detail-v1.mpart",
+        "status": "approved",
+        "subjectID": "object_key_001",
+        "subjectState": [
+          "gold",
+          "intact"
+        ],
+        "altText": "Altın anahtarın yakın görünümü."
+      },
+      "view": "object-detail",
+      "subjectRole": "discovery",
+      "canonicalFingerprint": "8a556dd4d832f915"
+    },
+    {
+      "asset": {
+        "assetID": "whole-book.tarcin-greeting-v2",
+        "revision": 1,
+        "digest": "c25edea400626f93256c16acf157dc08e7642642974995403bc2585841ea0bdb",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-whole-book-tarcin-greeting-v2.mpart",
+        "status": "approved",
+        "subjectID": "companion_fox_pilot_001",
+        "subjectState": [
+          "russet",
+          "standing",
+          "identity-v1"
+        ],
+        "altText": "Sakin bakışlı kızıl tilki Tarçın ayakta selam veriyor."
+      },
+      "view": "fox-greeting-standing",
+      "subjectRole": "companion",
+      "canonicalFingerprint": "3dc5e94208fa4542"
+    },
+    {
+      "asset": {
+        "assetID": "whole-book.tarcin-together-v1",
+        "revision": 1,
+        "digest": "d2efab9e34eddcca436905ea77dcae23e5ce0c58d849b450682dcbbb2e35ff61",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-whole-book-tarcin-together-v1.mpart",
+        "status": "approved",
+        "subjectID": "companion_fox_pilot_001",
+        "subjectState": [
+          "russet",
+          "seated",
+          "identity-v1"
+        ],
+        "altText": "Tilki Tarçın oturmuş dikkatle dinliyor."
+      },
+      "view": "fox-together-listening",
+      "subjectRole": "companion",
+      "canonicalFingerprint": "3dc5e94208fa4542"
+    },
+    {
+      "asset": {
+        "assetID": "whole-book.tarcin-glad-v1",
+        "revision": 1,
+        "digest": "eca1c030c2905c4d4ec53d2e8bc12793ecc9c60af3e8856fc75c1dc3eadfa03e",
+        "styleRevision": "gouache-social-v1",
+        "fileName": "mp-whole-book-tarcin-glad-v1.mpart",
+        "status": "approved",
+        "subjectID": "companion_fox_pilot_001",
+        "subjectState": [
+          "russet",
+          "standing",
+          "identity-v1"
+        ],
+        "altText": "Tilki Tarçın sakin ve mutlu görünüyor."
+      },
+      "view": "fox-glad",
+      "subjectRole": "companion",
+      "canonicalFingerprint": "3dc5e94208fa4542"
+    }
+  ],
+  "rules": [
+    {
+      "blueprintID": "blueprint_threshold_crossing_001",
+      "pageNumber": 3,
+      "role": "companion",
+      "beats": [
+        "meet_companion"
+      ],
+      "orderedParts": [
+        {
+          "beat": "meet_companion",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "mc_calm_05",
+          "sourceTextDigest": "74eb2ef77af53d51",
+          "templateID": "corpus_5-6_meet_companion",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "greeting"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.tarcin-together-v1",
+      "requiredSubjectID": "companion_fox_pilot_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "greeting"
+      ]
+    },
+    {
+      "blueprintID": "blueprint_threshold_crossing_001",
+      "pageNumber": 3,
+      "role": "companion",
+      "beats": [
+        "meet_companion"
+      ],
+      "orderedParts": [
+        {
+          "beat": "meet_companion",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "mc_calm_02",
+          "sourceTextDigest": "305698fc242f3c84",
+          "templateID": "corpus_5-6_meet_companion",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "greeting"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.tarcin-together-v1",
+      "requiredSubjectID": "companion_fox_pilot_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "greeting"
+      ]
+    },
+    {
+      "blueprintID": "blueprint_threshold_crossing_001",
+      "pageNumber": 3,
+      "role": "companion",
+      "beats": [
+        "meet_companion"
+      ],
+      "orderedParts": [
+        {
+          "beat": "meet_companion",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "mc_calm_06",
+          "sourceTextDigest": "42b68f451e90e786",
+          "templateID": "corpus_5-6_meet_companion",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "greeting"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.tarcin-together-v1",
+      "requiredSubjectID": "companion_fox_pilot_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "greeting"
+      ]
+    },
+    {
+      "blueprintID": "blueprint_threshold_crossing_001",
+      "pageNumber": 8,
+      "role": "emotional_ending",
+      "beats": [
+        "self_recognize",
+        "warm_close"
+      ],
+      "orderedParts": [
+        {
+          "beat": "self_recognize",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "sr_p_09",
+          "sourceTextDigest": "20524753717c964e",
+          "templateID": "corpus_5-6_self_recognize"
+        },
+        {
+          "beat": "warm_close",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "wc_p_succeed_03",
+          "sourceTextDigest": "9d29a48b901bbd56",
+          "templateID": "corpus_5-6_warm_close",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "glad"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.tarcin-glad-v1",
+      "requiredSubjectID": "companion_fox_pilot_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "glad"
+      ]
+    },
+    {
+      "blueprintID": "blueprint_threshold_crossing_001",
+      "pageNumber": 3,
+      "role": "companion",
+      "beats": [
+        "meet_companion"
+      ],
+      "orderedParts": [
+        {
+          "beat": "meet_companion",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "mc_calm_04",
+          "sourceTextDigest": "2cb692d4c0b4edec",
+          "templateID": "corpus_5-6_meet_companion",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "greeting"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.tarcin-greeting-v2",
+      "requiredSubjectID": "companion_fox_pilot_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "greeting"
+      ]
+    },
+    {
+      "blueprintID": "bp_threshold_joining_002",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_01",
+          "sourceTextDigest": "67d3b4e5e4cadf19",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "examined"
+              ],
+              "subject": "discovery",
+              "subjectID": "object_compass_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.compass-detail-v1",
+      "requiredSubjectID": "object_compass_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "examined"
+      ]
+    },
+    {
+      "blueprintID": "bp_absence_retracing_002",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_01",
+          "sourceTextDigest": "67d3b4e5e4cadf19",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "examined"
+              ],
+              "subject": "discovery",
+              "subjectID": "object_compass_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.compass-detail-v1",
+      "requiredSubjectID": "object_compass_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "examined"
+      ]
+    },
+    {
+      "blueprintID": "bp_absence_asking_003",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_01",
+          "sourceTextDigest": "67d3b4e5e4cadf19",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "examined"
+              ],
+              "subject": "discovery",
+              "subjectID": "object_compass_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.compass-detail-v1",
+      "requiredSubjectID": "object_compass_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "examined"
+      ]
+    },
+    {
+      "blueprintID": "bp_threshold_joining_002",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_01",
+          "sourceTextDigest": "67d3b4e5e4cadf19",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "examined"
+              ],
+              "subject": "discovery",
+              "subjectID": "object_key_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.key-detail-v1",
+      "requiredSubjectID": "object_key_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "examined"
+      ]
+    },
+    {
+      "blueprintID": "bp_absence_retracing_002",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_01",
+          "sourceTextDigest": "67d3b4e5e4cadf19",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "examined"
+              ],
+              "subject": "discovery",
+              "subjectID": "object_key_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.key-detail-v1",
+      "requiredSubjectID": "object_key_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "examined"
+      ]
+    },
+    {
+      "blueprintID": "bp_absence_asking_003",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_01",
+          "sourceTextDigest": "67d3b4e5e4cadf19",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "examined"
+              ],
+              "subject": "discovery",
+              "subjectID": "object_key_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.key-detail-v1",
+      "requiredSubjectID": "object_key_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "examined"
+      ]
+    },
+    {
+      "blueprintID": "blueprint_absence_looking_001",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_01",
+          "sourceTextDigest": "67d3b4e5e4cadf19",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "examined"
+              ],
+              "subject": "discovery",
+              "subjectID": "object_torn_map_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.map-detail-v1",
+      "requiredSubjectID": "object_torn_map_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "examined"
+      ]
+    },
+    {
+      "blueprintID": "bp_absence_retracing_002",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_01",
+          "sourceTextDigest": "67d3b4e5e4cadf19",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "examined"
+              ],
+              "subject": "discovery",
+              "subjectID": "object_torn_map_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.map-detail-v1",
+      "requiredSubjectID": "object_torn_map_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "examined"
+      ]
+    },
+    {
+      "blueprintID": "bp_absence_asking_003",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_01",
+          "sourceTextDigest": "67d3b4e5e4cadf19",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "examined"
+              ],
+              "subject": "discovery",
+              "subjectID": "object_torn_map_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.map-detail-v1",
+      "requiredSubjectID": "object_torn_map_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "examined"
+      ]
+    },
+    {
+      "blueprintID": "blueprint_absence_looking_001",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_02",
+          "sourceTextDigest": "961ca97c68b52733",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [],
+              "subject": "discovery",
+              "subjectID": "object_torn_map_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.map-detail-v1",
+      "requiredSubjectID": "object_torn_map_001",
+      "requiredPresence": "present",
+      "requiredStates": []
+    },
+    {
+      "blueprintID": "bp_absence_retracing_002",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_02",
+          "sourceTextDigest": "961ca97c68b52733",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [],
+              "subject": "discovery",
+              "subjectID": "object_compass_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.compass-detail-v1",
+      "requiredSubjectID": "object_compass_001",
+      "requiredPresence": "present",
+      "requiredStates": []
+    },
+    {
+      "blueprintID": "bp_absence_asking_003",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_02",
+          "sourceTextDigest": "961ca97c68b52733",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [],
+              "subject": "discovery",
+              "subjectID": "object_compass_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.compass-detail-v1",
+      "requiredSubjectID": "object_compass_001",
+      "requiredPresence": "present",
+      "requiredStates": []
+    },
+    {
+      "blueprintID": "bp_absence_retracing_002",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_02",
+          "sourceTextDigest": "961ca97c68b52733",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [],
+              "subject": "discovery",
+              "subjectID": "object_key_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.key-detail-v1",
+      "requiredSubjectID": "object_key_001",
+      "requiredPresence": "present",
+      "requiredStates": []
+    },
+    {
+      "blueprintID": "bp_absence_asking_003",
+      "pageNumber": 2,
+      "role": "discovery",
+      "beats": [
+        "examine"
+      ],
+      "orderedParts": [
+        {
+          "beat": "examine",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ex_s_any_02",
+          "sourceTextDigest": "961ca97c68b52733",
+          "templateID": "corpus_5-6_examine",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [],
+              "subject": "discovery",
+              "subjectID": "object_key_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.key-detail-v1",
+      "requiredSubjectID": "object_key_001",
+      "requiredPresence": "present",
+      "requiredStates": []
+    },
+    {
+      "blueprintID": "bp_threshold_together_003",
+      "pageNumber": 8,
+      "role": "emotional_ending",
+      "beats": [
+        "warm_close",
+        "self_recognize"
+      ],
+      "orderedParts": [
+        {
+          "beat": "warm_close",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "wc_p_succeed_03",
+          "sourceTextDigest": "9d29a48b901bbd56",
+          "templateID": "corpus_5-6_warm_close",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "glad"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto"
+        },
+        {
+          "beat": "self_recognize",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "sr_p_01",
+          "sourceTextDigest": "7c4fd9b627c4f8c6",
+          "templateID": "corpus_5-6_self_recognize"
+        }
+      ],
+      "assetID": "whole-book.tarcin-glad-v1",
+      "requiredSubjectID": "companion_fox_pilot_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "glad"
+      ]
+    },
+    {
+      "blueprintID": "bp_threshold_together_003",
+      "pageNumber": 6,
+      "role": "challenge",
+      "beats": [
+        "cooperative_effort"
+      ],
+      "orderedParts": [
+        {
+          "beat": "cooperative_effort",
+          "contexts": [],
+          "kind": "beat_line",
+          "sourceID": "ce_s_07",
+          "sourceTextDigest": "64c05370067e608e",
+          "templateID": "corpus_5-6_cooperative_effort",
+          "visual": [
+            {
+              "presence": "present",
+              "states": [
+                "together"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          ],
+          "visualReview": "auto"
+        }
+      ],
+      "assetID": "whole-book.tarcin-together-v1",
+      "requiredSubjectID": "companion_fox_pilot_001",
+      "requiredPresence": "present",
+      "requiredStates": [
+        "together"
+      ]
+    }
+  ]
+}

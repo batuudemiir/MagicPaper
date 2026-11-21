@@ -32,6 +32,18 @@ enum ReaderPageLayout {
                        accessibility: accessibility)
     }
 
+    /// A scrollable page keeps the normal art footprint even when chrome or large text needs more room.
+    static func scrollingSpotSize(width: CGFloat, pageHeight: CGFloat) -> CGSize {
+        let nominalContent = pageHeight - MP.S.navBarHeight - MP.S.x6
+            - bottomChromeClearance(accessibility: false)
+        return spotHeaderSize(width: width, pageHeight: pageHeight,
+                              contentHeight: max(nominalContent, MP.S.x10 * 5), accessibility: false)
+    }
+
+    static func spotNarrativeMinimumHeight(viewportHeight: CGFloat, artHeight: CGFloat) -> CGFloat {
+        max(0, viewportHeight - artHeight - MP.S.x6)
+    }
+
     /// The page sets the desired footprint; the remaining text column bounds it.
     static func spotHeaderSize(width: CGFloat, pageHeight: CGFloat, contentHeight: CGFloat,
                                accessibility: Bool) -> CGSize {
