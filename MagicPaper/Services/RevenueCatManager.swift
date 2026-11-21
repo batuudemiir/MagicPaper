@@ -101,6 +101,7 @@ class RevenueCatManager: ObservableObject {
                 
                 if let offerings = offerings {
                     self?.offerings = offerings
+                    self?.refreshTrialEligibility(offerings)
                     logger.debug("✅ RevenueCat offerings loaded: \(offerings.all.count) offerings")
                     
                     if let current = offerings.current {
@@ -309,12 +310,29 @@ class RevenueCatManager: ObservableObject {
         getPackage(for: tier, period: period)?.storeProduct.localizedPricePerMonth
     }
 
-    /// Ürünün mağazada tanımlı ücretsiz deneme süresi (gün). Deneme yoksa `nil`:
-    /// Paywall "ücretsiz dene" sözünü yalnızca gerçekten varsa verir (19 Kasım 2026).
-    /// Not: kullanıcının denemeye hâlâ uygun olup olmadığı burada sorulmaz.
+    /// Denemeye uygun olmayan ürünler: Apple aynı abonelik grubunda daha önce
+    /// deneme ya da tanıtım fiyatı kullanmış hesaba yeniden deneme vermez
+    /// (21 Kasım 2026). "Bilinmiyor" cevabında deneme gösterilmeye devam eder;
+    /// gerçek fiyat zaten Apple'ın ödeme penceresinde yazar.
+    @Published private(set) var trialIneligible: Set<String> = []
+
+    private func refreshTrialEligibility(_ offerings: Offerings) {
+        let ids = offerings.current?.availablePackages.map { $0.storeProduct.productIdentifier } ?? []
+        guard !ids.isEmpty else { return }
+        Purchases.shared.checkTrialOrIntroDiscountEligibility(productIdentifiers: ids) { [weak self] result in
+            let ineligible = Set(result.filter { $0.value.status == .ineligible }.map(.key))
+            DispatchQueue.main.async { self?.trialIneligible = ineligible }
+        }
+    }
+
+    /// Ürünün mağazada tanımlı ücretsiz deneme süresi (gün). Deneme yoksa ya da
+    /// bu hesap denemeye uygun değilse `nil`: Paywall "ücretsiz dene" sözünü
+    /// yalnızca gerçekten verilecekse verir (19 ve 21 Kasım 2026).
     func freeTrialDays(for tier: SubscriptionManager.SubscriptionTier,
                        period: BillingPeriod) -> Int? {
-        guard let intro = getPackage(for: tier, period: period)?.storeProduct.introductoryDiscount,
+        guard let product = getPackage(for: tier, period: period)?.storeProduct,
+              !trialIneligible.contains(product.productIdentifier),
+              let intro = product.introductoryDiscount,
               intro.paymentMode == .freeTrial else { return nil }
         let length = intro.subscriptionPeriod.value
         switch intro.subscriptionPeriod.unit {

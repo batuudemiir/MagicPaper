@@ -158,6 +158,10 @@ final class SeriesManager: ObservableObject {
         case ready(storyID: UUID, episode: Int, title: String)
         /// The next episode opens on a later day.
         case waiting(episode: Int, title: String)
+        /// Its day has come but the plan does not open it (E7, ücretsiz pay
+        /// ilk yeni bölüm). Kart "yarın" diye sonsuza kadar beklemesin: kilit
+        /// penceresine, oradan ebeveyn kapısı ve Paywall'a gider (21 Kasım 2026, İrem).
+        case locked(episode: Int, title: String)
     }
 
     /// Okunan bölüm ve toplam bölüm, ilk masal dahil (seri satırının şeridi).
@@ -173,6 +177,11 @@ final class SeriesManager: ObservableObject {
             return .ready(storyID: id, episode: ready.number, title: series.firstStoryTitle)
         }
         if let next = series.nextLocked {
+            if !episodeAllowed(next.number),
+               let waitingOn = series.readMark(before: next.number),
+               clock.dayHasPassed(since: waitingOn) {
+                return .locked(episode: next.number, title: series.firstStoryTitle)
+            }
             return .waiting(episode: next.number, title: series.firstStoryTitle)
         }
         return nil

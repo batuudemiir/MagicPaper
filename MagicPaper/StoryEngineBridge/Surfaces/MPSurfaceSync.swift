@@ -124,6 +124,10 @@ enum MPSurfaceSync {
             return .init(title: title, episode: episode, isReady: false,
                          opensAt: open.readMark(before: episode).flatMap(dayAfter),
                          read: progress.read, total: progress.total)
+        case .locked(let episode, let title):
+            // Widget satış yapmaz ve açılış günü vaat etmez.
+            return .init(title: title, episode: episode, isReady: false, opensAt: nil,
+                         read: progress.read, total: progress.total)
         }
     }
 

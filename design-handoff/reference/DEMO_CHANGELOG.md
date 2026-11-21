@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Paywall yerleşim haritası; seri kilidi; deneme uygunluğu
+
+- Yeni belge `docs/PAYWALL_YERLESIM.md`: Paywall'a giden 8 yol (kod yerleriyle), çıkmadığı yerler, akış şeması, açık öneriler.
+- Hata düzeltmesi: ücretsiz kullanıcıda Premium seri bölümünün günü geldiğinde ana sayfa kartı sonsuza kadar "N. bölüm yarın" diyordu (bölüm hiç açılmıyordu). `SeriesManager.CardState.locked`: günü gelmiş ama plan açmıyorsa "N. bölüm büyüklerle açılır"; dokununca `app.unlock(.seriesStories, .seriesEpisode(n))` → kilit penceresi → kapı → Paywall. Widget (`MPSurfaceSync`) kilitli bölüm için açılış günü vermez. Gün dolmadan önceki davranış (`SeriesTests` beklentisi) değişmedi.
+- Deneme uygunluğu: `RevenueCatManager` ürünler yüklenince `checkTrialOrIntroDiscountEligibility` sorar; `.ineligible` ürünlerde `freeTrialDays` nil, Paywall "Abone ol" der ve takvimi gizler. "Bilinmiyor"da deneme görünür.
+- Bilerek yapılmadı (Batuhan'ın kararına, belgede): satın almadan sonra işe dönmek, ilk deneyim sonrası ebeveyn tanıtım kartı, günlük limit düğmesinin adı.
+- Test: design law grep'leri boş. Swift yerelde derlenmedi; bu commit `[ekran]` ile derleniyor. Seri kilidi ve deneme uygunluğu simülatörde demo verisiyle tetiklenmiyor (gerçek ürün ve gün geçişi gerekir); elle doğrulanmadı.
+- Dosyalar: `docs/PAYWALL_YERLESIM.md`, `MagicPaper/StoryEngineBridge/SeriesManager.swift`, `MagicPaper/Screens/Series/{SeriesCard,SeriesCopy}.swift`, `MagicPaper/StoryEngineBridge/Surfaces/MPSurfaceSync.swift`, `MagicPaper/Services/RevenueCatManager.swift`, `README.md`, bu günlük.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Okuma köşesi gerçek uygulamada derlendi; ekran beklemesi 10 sn
 
 - `727c2d8` turu: derleme başarılı, 32 görüntü. SE'de yeni ana sayfa (okuma köşesi, davet, düğme) doğru çiziliyor. Pro Max görüntüsü açılış karşılamasında (logo + el sallayan Ragi) kalmış: main'den gelen açılış animasyonu 7 sn'ye sığmıyor. SE'de Profil boş (zamanlama).
