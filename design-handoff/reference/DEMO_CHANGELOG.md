@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-22 · codex/design-system-catalog, commit yok · Beş arkadaş karakter tanışma taslağı
+
+- Kullanıcı beşli kadroyu görsel olarak denemeyi onayladı: Tarçın,Kestane,Yıldız,Simit,Böğürtlen. Onaylı marka/Tarçın referanslarıyla built-in image_gen grup çizimi; diğer dört görünüş onay bekleyen taslak. Ragi mevcut kimliğiyle Originals konuk rolü önerisinde.
+- Takıma paylaşılabilir tekdosya HTML,PNG,karakterverisi ve tam prompt kaydı `design-handoff/proposals/2026-11-22-magicpaper-characters/` içinde. HTML beşkart/gömülüresim kontrolü geçti; çizim görsel incelendi. App/motor/karakterseçimi değişmedi; app test/simülatör çalıştırılmadı.
+
+
 ### 2026-11-22 · main@d21b842 · TestFlight için Release arşivi
 
 - Xcode archive başarılı: MagicPaper-builds/MagicPaper-2026-11-22.xcarchive; gerçek sürüm2.0(2026112201),arm64. Sistem güven deposuyla codesign --verify --deep --strict geçti. Development imzalı arşiv Organizer Distribute App akışında dağıtım için yeniden imzalanır; App Store Connect yüklemesi yapılmadı.
