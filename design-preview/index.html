@@ -24,8 +24,8 @@
   <div class="screen"><iframe id="app" title="MagicPaper"></iframe></div>
 </div>
 <script>
-  // Adres çubuğundaki bağlantı telefonun içine geçer: index.html?ortu=payA gibi
-  // (payA|payB|payC|paywall|parent|reader), ?ekran=masallar, ?ilk=welcome, ?sayfa=tale:rapunzel.
+  // Adres çubuğundaki bağlantı telefonun içine geçer: index.html?ortu=paywall gibi
+  // (paywall|parent|reader|createMode), ?ekran=masallar, ?ilk=welcome, ?sayfa=tale:rapunzel.
   document.getElementById("app").src = "app/index.html" + location.search;
   // Telefon pencereye sığsın: küçültülür ama hiç büyütülmez. zoom, transform'un
   // aksine yerleşimi de küçültür; telefon her panel boyutunda ortada ve tam görünür.

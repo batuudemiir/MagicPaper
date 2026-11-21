@@ -430,36 +430,6 @@ const VIEWS = {
         <button class="row" data-act="parentPush" data-arg="settings"><span class="tile" style="background:var(--mp-world-gray-soft)">${ic("type")}</span><span class="grow"><span class="t-card-title">Ayarlar</span><span class="t-footnote secondary" style="font-weight:400">Profiller, bildirim, hesap</span></span><span class="chev">${ic("right")}</span></button>
         <button class="row" data-act="paywall"><span class="tile" style="background:var(--mp-world-yellow-soft);color:var(--mp-world-yellow-deep)">${ic("crown")}</span><span class="grow"><span class="t-card-title">Abonelik</span><span class="t-footnote secondary" style="font-weight:400">Ücretsiz plan</span></span><span class="chev">${ic("right")}</span></button>
       </div>
-      <div class="section-h"><h2>Paywall seçenekleri</h2></div>
-      <p class="t-footnote secondary section-sub" style="font-weight:400">Prototip: karar için üç tasarım (docs/PAYWALL_EKONOMI_PLANI.md).</p>
-      <div class="list">${[["payA", "A · Kitaplık", "Sahiplik: çocuğun kendi kapakları"], ["payB", "B · Akşam ritüeli", "Kimlik: gece sahnesi ve karşılaştırma"], ["payC", "C · Sade ve güven", "Netlik: fiyat önde, deneme takvimi"]]
-        .map(([v, t, d]) => `<button class="row" data-act="payOpen" data-arg="${v}"><span class="tile" style="background:var(--mp-world-lav-soft);color:var(--mp-world-lav-deep)">${ic("crown")}</span><span class="grow"><span class="t-card-title">${t}</span><span class="t-footnote secondary" style="font-weight:400">${d}</span></span><span class="chev">${ic("right")}</span></button>`).join("")}</div>
-    </div>` };
-  },
-  settings() {
-    const row = (icon, bg, fg, t, s, attrs) => `<button class="row" ${attrs}><span class="tile" style="background:var(${bg});color:var(${fg})">${ic(icon)}</span><span class="grow"><span class="t-card-title">${t}</span>${s ? `<span class="t-footnote secondary" style="font-weight:400">${s}</span>` : ""}</span><span class="chev">${ic("right")}</span></button>`;
-    return { parent: true, html: `<div class="topbar"><button class="circle" data-act="parentBack" aria-label="Geri">${ic("left")}</button><span class="t-section">Ayarlar</span></div>
-      <div class="scroller">
-        <div class="section-h" style="margin-top:8px"><h2>Çocuk profilleri</h2></div>
-        <div class="list" style="margin-top:10px">${row("user", "--mp-world-green-soft", "--mp-world-green-deep", CHILD, `5-6 yaş · ${S.library.length} masal`, 'data-soon="Profil düzenleme"')}${row("plus", "--mp-world-sky-soft", "--mp-world-sky-deep", "Profil ekle", "", 'data-soon="Profil ekleme"')}</div>
-        <div class="section-h"><h2>Bildirimler</h2></div>
-        <div class="list" style="margin-top:10px"><div class="row"><span class="tile" style="background:var(--mp-world-yellow-soft);color:var(--mp-world-yellow-deep)">${ic("bell")}</span><span class="grow"><span class="t-card-title">Masal saati hatırlatması</span><span class="t-footnote secondary" style="font-weight:400">Kapalı</span></span><button class="switch" data-act="toggle" aria-label="Masal saati hatırlatması"></button></div></div>
-        <div class="section-h"><h2>Hesap</h2></div>
-        <div class="list" style="margin-top:10px">${row("user", "--mp-world-yellow-soft", "--mp-world-yellow-deep", "Giriş yapılmadı", "Masalların cihazda. Bağlantı gelince giriş yapabilirsin.", 'data-soon="Giriş"')}
-          ${row("crown", "--mp-world-yellow-soft", "--mp-world-yellow-deep", "Abonelik", "Ücretsiz plan", 'data-act="paywall"')}
-          ${row("lock", "--mp-world-gray-soft", "--mp-text-secondary", "Gizlilik ve veri", "Ne tuttuğumuz, nasıl sildiğimiz", 'data-soon="Gizlilik ve veri"')}</div>
-      </div>` };
-  },
-  paywall(m) {
-    const benefits = [["sparkles", "lav", "Sınırsız metin masalı"], ["library", "pink", "Bütün klasik masallar ve seriler"], ["volume", "sky", "Sesli okuma"], ["sticker", "green", "Yazdırılabilir PDF masal kitabı"]];
-    return { html: `<div class="scroller" style="padding:0 0 20px">
-        <div style="position:relative;height:270px;margin-top:-54px;background:var(--mp-world-lav-soft);border-radius:0 0 200px 200px;display:flex;justify-content:center;align-items:flex-end">
-          <img src="${img.ragi("OnBook")}" alt="" style="width:190px;margin-bottom:22px">
-          <span class="t-supporting" style="position:absolute;bottom:-14px;background:#fff;color:var(--mp-world-yellow-deep);border-radius:999px;padding:6px 16px;display:flex;gap:6px;align-items:center">${ic("crown")}Premium</span></div>
-        <button class="circle" style="position:absolute;top:calc(var(--status) + 8px);right:20px;z-index:3" data-act="paywallClose" aria-label="Kapat">${ic("x")}</button>
-        <div class="center" style="padding:28px 20px 0"><div class="t-page">Her akşam yeni bir masal</div>
-          <p class="t-body secondary" style="margin:8px 0 0">Sınırsız masal, bütün klasikler ve seriler, sesli okuma.</p></div>
-        <div style="padding:22px 24px 0;display:grid;gap:16px">${benefits.map(([i, t, l]) => `<div style="display:flex;gap:16px;align-items:center"><span style="width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--mp-world-${t}-soft);color:var(--mp-world-${t}-deep)">${ic(i)}</span><span class="t-card-title">${l}</span></div>`).join("")}</div>
         <p class="t-footnote center" style="margin:22px 24px 0;color:var(--mp-status-danger)">Prototip: bugünkü Paywall (19 Kasım düzeltmesiyle). Yeni tasarım karar bekliyor: docs/PAYWALL_EKONOMI_PLANI.md.</p>
       </div>
       <div class="footer-cta" style="border:0"><button class="btn btn-primary" data-soon="Satın alma">Planları gör</button><button class="btn btn-ghost" data-act="paywallClose">Şimdi değil</button></div>` };

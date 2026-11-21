@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Paywall tamamen C; seçenekler kaldırıldı
+
+- İrem: A'nın kapak başlığı beğenilmedi; Paywall prototipteki "C · Sade ve güven" ile birebir. `PaywallView`: başlık "MagicPaper Premium" + "Ritüel ücretsiz kalır. Premium kitaplığı büyütür.", beş kısa fayda (Gün boyu yeni masal, Bütün klasikler ve seriler, Masal ailem, Ailedeki her çocuk, PDF masal kitabı), **yıllık varsayılan** (İrem'in kararı; Batuhan'a README notu). Kapak rafı, `loadCovers`, küçük ekran kısaltması kaldırıldı (SE'de C zaten ilk ekrana sığıyor); `HomeView.shelfItems` yeniden `private`.
+- Prototip: A/B/C seçenekleri, "Paywall seçenekleri" bölümü ve `payA/payB/payC` bağlantıları kaldırıldı; tek Paywall `?ortu=paywall`.
+- Test: prototip Edge'de 440×956 ve 375×667 çekildi; design law grep'leri boş. Swift bu commit'le `[ekran]` turunda derleniyor.
+- Dosyalar: `MagicPaper/Screens/PaywallView.swift`, `MagicPaper/Views/HomeView.swift`, `design-preview/app/{paywall.js,app.js}`, `design-preview/index.html`, `README.md`, bu günlük.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Paywall son tasarımı: C'nin sadeliği + A'nın başlığı
 
 - İrem seçti: prototipteki "C · Sade ve güven" düzeni, başında "A · Kitaplık" başlığı. `PaywallView` yeniden çizildi; Batuhan'ın 20 Kasım tek plan modeli, satın alma, geri yükleme, deneme ve 3.1.2 mantığı korunarak.

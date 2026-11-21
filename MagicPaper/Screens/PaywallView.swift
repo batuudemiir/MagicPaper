@@ -3,13 +3,11 @@ import SwiftUI
 /// 37 · Abonelik (`Paywall`). Yalnızca ebeveyn alanından açılır.
 ///
 /// Son tasarım (21 Kasım 2026, İrem): prototipteki "C · Sade ve güven" düzeni,
-/// başında "A · Kitaplık"ın başlığı (`design-preview/app/paywall.js`). Sıra:
-/// çocuğun kitaplığından kapaklar ve "<ad>'in kitaplığı", yan yana Yıllık/Aylık,
-/// onay işaretli kısa fayda listesi, deneme takvimi (yalnızca mağazada deneme
-/// varsa), güven satırı, App Store 3.1.2 yenileme metni. Satın alma yetişkin
-/// ekranı: Ragi yok. Fiyat baştan görünür ("Planları gör" ara adımı kalktı).
-/// Model: tek plan MagicPaper Premium (karar: Batuhan 20 Kasım 2026); varsayılan
-/// aylık, çünkü yıllığın varsayılan olması henüz karar değil.
+/// olduğu gibi (`design-preview/app/paywall.js`). Sıra: "MagicPaper Premium" ve
+/// tek cümle, yan yana Yıllık/Aylık (yıllık varsayılan, İrem'in kararı), onay
+/// işaretli beş fayda, deneme takvimi (yalnızca mağazada deneme varsa), güven
+/// satırı, App Store 3.1.2 yenileme metni. Satın alma yetişkin ekranı: Ragi yok.
+/// Fiyat baştan görünür. Model: tek plan MagicPaper Premium (karar: Batuhan 20 Kasım 2026).
 struct PaywallView: View {
     @EnvironmentObject private var app: MPAppState
     @Environment(\.dismiss) private var dismiss
@@ -18,12 +16,10 @@ struct PaywallView: View {
 
     @StateObject private var revenueCat = RevenueCatManager.shared
 
-    @State private var cycle: Cycle = .monthly
+    @State private var cycle: Cycle = .yearly
     @State private var isPurchasing = false
     @State private var purchaseError: String?
     @State private var isRestoring = false
-    /// Başlıktaki kapaklar: çocuğun kitaplığı, boşsa haftanın seçkisi.
-    @State private var covers: [MPBookCover.Art] = []
 
     enum Cycle: Hashable { case monthly, yearly }
 
@@ -62,11 +58,10 @@ struct PaywallView: View {
     /// masal Release'te kapalı olduğu için satılmaz.
     private let benefits = [
         "Gün boyu yeni masal",
-        "Bütün klasikler ve MagicPaper Original masalları",
-        "Serinin bütün bölümleri",
-        "Masal ailem: bütün ailen masala katılır",
-        "Ailedeki her çocuk için ayrı profil",
-        "Yazdırılabilir PDF masal kitabı"
+        "Bütün klasikler ve seriler",
+        "Masal ailem",
+        "Ailedeki her çocuk",
+        "PDF masal kitabı"
     ]
 
     /// Mağazada tanımlı ücretsiz deneme (gün); yoksa deneme sözü verilmez.
@@ -81,18 +76,11 @@ struct PaywallView: View {
             + "Abonelik, dönem bitmeden en az 24 saat önce iptal edilmezse aynı fiyatla kendiliğinden yenilenir."
     }
 
-    private var childName: String? { ProfileManager.shared.currentProfile?.name }
-
-    private var coverScale: CGFloat { compact ? 0.75 : 1 }
-
-    /// Küçük ekran (iPhone SE): kapaklar küçülür, açıklama cümlesi düşer; fiyatlar ilk ekranda kalsın.
-    @State private var compact = false
-
     var body: some View {
         VStack(spacing: 0) {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: MPSpacing.xxl) {
-                    shelfHeader
+                    header
                     plans
                     benefitList
                     if let trialDays { trialTimeline(days: trialDays) }
@@ -116,58 +104,20 @@ struct PaywallView: View {
                 .padding(.top, MPSpacing.sm)
         }
         .task { revenueCat.fetchOfferings() }
-        .onAppear(perform: loadCovers)
-        .onGeometryChange(for: Bool.self) { $0.size.height < 700 } action: { compact = $0 }
     }
 
-    // MARK: - Başlık: çocuğun kitaplığı (A)
+    // MARK: - Başlık (C)
 
-    private var shelfHeader: some View {
-        VStack(spacing: MPSpacing.md) {
-            HStack(alignment: .bottom, spacing: MPSpacing.sm) {
-                ForEach(Array(covers.prefix(2).enumerated()), id: \.offset) { index, art in
-                    MPBookCover(art: art, width: (index == 1 ? MPSize.minTouchHero * 1.5 : MPSize.minTouchHero * 1.3) * coverScale)
-                        .rotationEffect(.degrees(index == 0 ? -6 : 0))
-                }
-                // Gelecek kitabın yeri: kesik çizgili boş kapak.
-                RoundedRectangle(cornerRadius: MPRadius.sm, style: .continuous)
-                    .strokeBorder(MPColor.borderKid, style: StrokeStyle(lineWidth: 1.5, dash: [6, 5]))
-                    .background(MPColor.actionSoft, in: RoundedRectangle(cornerRadius: MPRadius.sm, style: .continuous))
-                    .frame(width: MPSize.minTouchHero * 1.3 * coverScale, height: MPSize.minTouchHero * 1.3 * coverScale * 176 / 128)
-                    .overlay { MPIcon("plus", size: MP.G.lg, weight: .semibold).foregroundStyle(MPColor.actionPrimary) }
-                    .rotationEffect(.degrees(5))
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.top, compact ? MPSpacing.xxxl : MPSize.minTouchHero)
-            .accessibilityHidden(true)
-
-            VStack(spacing: MPSpacing.xs) {
-                Text(childName.map { "\(SeriesCopy.genitive($0)) kitaplığı" } ?? "Kitaplığın")
-                    .mpText(.eyebrow).foregroundStyle(MPColor.actionPrimary)
-                Text("Her akşamın masalı bir kitaplığa dönüşsün")
-                    .mpText(.page).foregroundStyle(MPColor.textPrimary)
-                    .accessibilityAddTraits(.isHeader)
-                if !compact {
-                    Text("Her akşamın masalı ücretsiz. MagicPaper Premium ile gün boyu masal yazılır, kitaplık tamamen açılır.")
-                        .mpText(.body).foregroundStyle(MPColor.textSecondary)
-                }
-            }
-            .multilineTextAlignment(.center)
-            .fixedSize(horizontal: false, vertical: true)
+    private var header: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.xs) {
+            Text("MagicPaper Premium").mpText(.page).foregroundStyle(MPColor.textPrimary)
+                .accessibilityAddTraits(.isHeader)
+            Text("Ritüel ücretsiz kalır. Premium kitaplığı büyütür.")
+                .mpText(.body).foregroundStyle(MPColor.textSecondary)
+                .fixedSize(horizontal: false, vertical: true)
         }
-    }
-
-    /// Çocuğun kitaplığından iki kapak (ana sayfanın "Kitaplığından" kaynağı);
-    /// kitaplık boşsa haftanın seçkisinden iki klasik.
-    private func loadCovers() {
-        let mine = HomeView.shelfItems(profile: ProfileManager.shared.currentProfile,
-                                       stories: StoryGenerationManager.shared.stories, excluding: nil)
-            .map(\.art)
-        let picks: [MPBookCover.Art] = ClassicsLibrary.shared.weeklyPicks.compactMap { item in
-            if case .tale(let tale) = item { return .image(tale.cover, focus: tale.coverFocus) }
-            return nil
-        }
-        covers = Array((mine + picks).prefix(2))
+        // Kapat düğmesinin altından başlar.
+        .padding(.top, MPSize.minTouchHero)
     }
 
     // MARK: - Planlar (C)

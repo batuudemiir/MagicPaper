@@ -34,37 +34,10 @@ const footer = () => `<div class="footer-cta pw-foot">
 const closeBtn = (light) => `<button class="circle pw-x ${light ? "light" : ""}" data-act="paywallClose" aria-label="Kapat">${ic("x")}</button>`;
 const trust = `<div class="pw-trust t-footnote">${ic("lock")}Reklam yok · Veriler satılmaz · İnternetsiz çalışır</div>`;
 
-// A · Kitaplık: sahiplik. Çocuğun gerçek kapakları ve "kitaplığı büyüsün".
-VIEWS.payA = () => {
-  const covers = (window.MP_CONTENT ? MP_CONTENT.tales.filter((t) => t.cover && !t.seriesID).slice(0, 2).map((t) => t.cover) : []);
-  return { html: `${closeBtn()}<div class="scroller" style="padding-bottom:20px">
-    <div class="pw-shelf" aria-hidden="true">
-      ${covers.map((c) => `<div class="cv" style="background-image:url(${c})"></div>`).join("")}
-      ${S.library[0] ? `<div class="cv made" style="background:var(--mp-world-lav-soft);color:var(--mp-world-lav-deep)">${esc(S.library[0].title)}</div>` : ""}
-      <div class="cv next">${ic("plus")}</div></div>
-    <div class="center"><div class="t-eyebrow" style="color:var(--mp-action-primary)">${esc(CHILD)}'in kitaplığı</div>
-      <div class="t-page" style="margin-top:4px">Her akşamın masalı bir kitaplığa dönüşsün</div>
-      <p class="t-body secondary" style="margin:8px 0 0">Bu hafta ${Math.max(2, S.library.length)} masal okudunuz. Premium'la ${esc(CHILD)}'in dünyası gün boyu açık.</p></div>
-    <div class="pw-list">${benefitRows(5, false)}</div>
-    ${planCards()}${timeline()}${trust}${legal()}
-  </div>${footer()}` };
-};
-
-// B · Akşam ritüeli: kimlik ve duygu. Gece sahnesi, haftanın gerçeği, dürüst karşılaştırma.
-VIEWS.payB = () => ({ html: `<div class="scroller" style="padding:0 var(--mp-space-screen-h) 20px">
-    <div class="pw-night" style="background-image:url(${img.night})">${closeBtn(true)}
-      <div class="pw-night-txt"><div class="t-cover" style="color:#fff">Her akşam,<br>birlikte bir masal</div>
-        <div class="t-supporting" style="color:rgba(255,255,255,.88)">Bu hafta 4 akşam birlikte okudunuz.</div></div></div>
-    <table class="pw-compare"><thead><tr><th></th><th>Ücretsiz</th><th class="pro">Premium</th></tr></thead><tbody>
-      ${[["Akşam masalı", "Her akşam 1", "Gün boyu"], ["Kendi masallarını okuma", "✓", "✓"], ["Sesli okuma", "✓", "✓"], ["Klasikler ve seriler", "Seçkiler", "Hepsi"], ["Masal ailem", "1 kişi", "Herkes"], ["Çocuk profili", "1", "Her çocuk"], ["PDF masal kitabı", "–", "✓"]]
-        .map(([a, f, p]) => `<tr><td>${a}</td><td>${f}</td><td class="pro">${p}</td></tr>`).join("")}
-    </tbody></table>
-    <p class="t-footnote secondary" style="font-weight:400;margin:8px 2px 0">Yıldızlar, rozetler ve çocuğun yazdığı masallar her planda onun.</p>
-    ${planCards("row")}${trust}${legal()}
-  </div>${footer()}` });
-
-// C · Sade ve güven: Apple'ın kendi ekranları gibi kısa; fiyat en üstte, deneme takvimi.
-VIEWS.payC = () => ({ html: `${closeBtn()}<div class="scroller" style="padding-bottom:20px">
+// TEK PAYWALL (21 Kasım 2026, İrem): "C · Sade ve güven" olduğu gibi; A ve B
+// seçenekleri kaldırıldı. SwiftUI karşılığı: Screens/PaywallView.swift.
+// Yıllık varsayılan (İrem'in kararı). Büyükler için → Abonelik, ?ortu=paywall.
+VIEWS.paywall = () => ({ html: `${closeBtn()}<div class="scroller" style="padding-bottom:20px">
     <div class="t-page" style="margin-top:56px">MagicPaper Premium</div>
     <p class="t-body secondary" style="margin:6px 0 16px">Ritüel ücretsiz kalır. Premium kitaplığı büyütür.</p>
     ${planCards("row")}
@@ -72,30 +45,4 @@ VIEWS.payC = () => ({ html: `${closeBtn()}<div class="scroller" style="padding-b
     ${timeline()}${trust}${legal()}
   </div>${footer()}` });
 
-Object.assign(ACTIONS, {
-  pwPick: (k) => { S.pwPlan = k; render(); },
-  payOpen: (v) => { S.modal = { view: v, from: S.modal }; render("cover"); },
-});
-// Derin bağlantı: ?ortu=payA|payB|payC
-{ const o = new URLSearchParams(location.search).get("ortu");
-  if (["payA", "payB", "payC"].includes(o)) { S.os = "app"; S.onboarded = true; S.modal = { view: o, from: { view: "parent" } }; } }
-
-// SON TASARIM (21 Kasım 2026, İrem): C'nin sadeliği, başında A'nın başlığı.
-// SwiftUI karşılığı: Screens/PaywallView.swift. Varsayılan aylık (yıllığın
-// varsayılan olması Batuhan'ın kararını bekliyor). Büyükler için → Abonelik.
-VIEWS.paywall = () => {
-  const keep = S.pwPlan; S.pwPlan = S.pwFinal || "ay";
-  const covers = (window.MP_CONTENT ? MP_CONTENT.tales.filter((t) => t.cover && !t.seriesID).slice(0, 2).map((t) => t.cover) : []);
-  const html = `${closeBtn()}<div class="scroller" style="padding-bottom:20px">
-    <div class="pw-shelf" aria-hidden="true">${covers.map((c) => `<div class="cv" style="background-image:url(${c})"></div>`).join("")}<div class="cv next">${ic("plus")}</div></div>
-    <div class="center"><div class="t-eyebrow" style="color:var(--mp-action-primary)">${esc(CHILD)}'in kitaplığı</div>
-      <div class="t-page" style="margin-top:4px">Her akşamın masalı bir kitaplığa dönüşsün</div>
-      <p class="t-body secondary" style="margin:8px 0 0">Her akşamın masalı ücretsiz. MagicPaper Premium ile gün boyu masal yazılır, kitaplık tamamen açılır.</p></div>
-    ${planCards("row").replaceAll('data-act="pwPick"', 'data-act="pwFinalPick"')}
-    <div class="pw-checks">${["Gün boyu yeni masal", "Bütün klasikler ve MagicPaper Original masalları", "Serinin bütün bölümleri", "Masal ailem: bütün ailen masala katılır", "Ailedeki her çocuk için ayrı profil", "Yazdırılabilir PDF masal kitabı"].map((a) => `<div>${ic("check")}<span class="t-body">${a}</span></div>`).join("")}</div>
-    ${timeline()}${trust}${legal()}
-  </div>${footer()}`;
-  S.pwPlan = keep;
-  return { html };
-};
-ACTIONS.pwFinalPick = (k) => { S.pwFinal = k; render(); };
+Object.assign(ACTIONS, { pwPick: (k) => { S.pwPlan = k; render(); } });
