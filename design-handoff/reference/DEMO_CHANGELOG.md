@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa: selam tepeye yakın, sahne altına girer
+
+- İrem: telefonun üstü boş duruyordu (selam ile saat çubuğu arası ve selamla sahne arası). Selamın üst boşluğu `lg` → `xxs`; okuma köşesi sahnesi `-md` ile selamın altına girer, başlık önde (`zIndex`). Sahnenin üst kenarı kâğıda eridiği için çizgi yok. Prototipte aynısı.
+- Prototip: ilk açılışta yazılan adın ilk harfi Türkçe kurala göre büyür (gerçek uygulamada klavye zaten `.words`).
+- Test: prototip Edge'de çekildi. Swift bu commit'le `[ekran]` turunda derleniyor.
+- Dosyalar: `MagicPaper/Views/HomeView.swift`, `design-preview/app/{app.css,os.js}`, bu günlük.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa "Okuma köşesi"; main irem'e alındı
 
 - Batuhan'ın main'i (20-21 Kasım: abonelik yetkileri, tek plan, okuyucu düzeni, Originals, yeni dünyalar) `irem`'e birleşti (f6b38f6), çakışma yok. Ana sayfanın kullandığı API'ler birleşmeden sonra yerinde doğrulandı.

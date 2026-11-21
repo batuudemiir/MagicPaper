@@ -78,10 +78,14 @@ struct HomeView: View {
                     avatarButton
                 }
                 .padding(.horizontal, MPSpacing.screenH)
-                .padding(.top, MPSpacing.lg)
+                // Selam saat çubuğuna yakın; sahne altına hafifçe girer, üst kenarı
+                // kâğıda eridiği için ikisi tek parça okunur (21 Kasım, İrem).
+                .padding(.top, MPSpacing.xxs)
+                .zIndex(1)
 
                 // Küçük ekranda sahne kısılır: davet ve düğme kıvrımın üstünde kalsın.
                 HomeReadingNook(height: min(width * HomeReadingNook.aspect, height * 0.46))
+                    .padding(.top, -MPSpacing.md)
 
                 HomeTonightInvite(state: tonightState, onPrimary: tonightAction)
                     .padding(.horizontal, MPSpacing.screenH)
