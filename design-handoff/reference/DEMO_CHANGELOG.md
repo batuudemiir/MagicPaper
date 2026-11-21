@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem@916e8bb · Prototip: ana sayfa avatarı anonim
+
+- İrem: ana sayfanın köşesindeki avatar prototipte şimdilik görselsiz; lavanta daire içinde kişi simgesi. SwiftUI'da çocuğun kahraman avatarı (`HeroAvatarView`) kalıyor.
+- Test: yok (yalnızca prototip). Dosyalar: `design-preview/app/{home.js,app.css}`, bu günlük.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Okuma köşesi sahnesinin üstü de erir
 
 - İrem: sahnenin üst kenarı (kırpılan yaprak, perde, kemer) keskin çizgiyle bitiyordu. `HomeReadingNook` maskesi üstte de %16 boyunca kâğıda erir (alttaki gibi). Prototipte aynısı.
