@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · codex/design-system-catalog, commit yok · Claude motor teslimi incelemesi
+
+- origin fetch ile anlati-provenance@365b66b ve origin/main@b8a597b incelendi; Claude tesliminin main'e alındığı doğrulandı. Yerel dal/uygulama kodu değiştirilmedi, merge yapılmadı.
+- Tek P2 bulgu: ReadingSequenceReport birebir tekrar sayacında seed içeren fingerprint kullanıyor; aynı metin farklı seed ile tekrar olarak yakalanmıyor. Seed bağımsız metin özeti ve dar fixture önerildi.
+- Statik kaynak karşılaştırması: değişen 17 içerik dosyasında kaynak metni/kimliği ekleme-silme-değişim 0; 272 reviewed ilk sayfa kaydı. Mevcut beş görsel kaynağı aynı. PartCount/isComplete ve 20 masallık satır geçmişi incelendi.
+- Entegrasyon: d3a3b46 henüz uzak main'de değil; eski pilot liste yeni uygulama-kararlı sözleşmeye hizalanmalı. Testler yeniden çalıştırılmadı; önceki yerel test sonucu birleşik sürüm için onay sayılmadı. Rapor: docs/research/2026-11-21-claude-story-engine-review.md.
+
 ### 2026-11-21 · codex/design-system-catalog, commit yok · Kaynak izli çizimler 11 nesneye genişledi
 
 - Gümüş çan politikasına mevcut on nesne çizimi eklendi; beş 5–6 notice ve 38 hatırlama kaynağı için ayrı inceleme kaydı yazıldı. Manifest/kanonik nesne/dosya özetleri doğrulanır; asset ve kanıt birlikte yetkilendirilir.
