@@ -47,7 +47,7 @@ struct GunlukShelfView: View {
         case .all: return items
         case .series: return items.filter { if case .series = $0 { return true } else { return false } }
         case .short: return items.filter { if case .tale(let t) = $0 { return t.minutes <= 5 } else { return false } }
-        case .voiced: return []
+        case .voiced: return items.filter { if case .tale(let t) = $0 { return MPStudioNarration.exists(t.id) } else { return false } }
         }
     }
 
@@ -98,7 +98,7 @@ struct GunlukShelfView: View {
                             if shelf != .besDakika {
                                 GunlukChip(title: "5 dakika", isSelected: narrow == .short) { narrow = .short }
                             }
-                            // "Sesli": seslendirilmiş masal gelince görünür.
+                            // "Sesli": stüdyo seslendirmesi olan masal varsa görünür.
                             if !library.items(in: .sesli).isEmpty {
                                 GunlukChip(title: "Sesli", isSelected: narrow == .voiced) { narrow = .voiced }
                             }

@@ -502,10 +502,12 @@ struct StoryReaderView: View {
     }
 
     /// Sayfayı sesli okur; kayıt ailenin sesiyse rozet için not edilir.
+    /// Ailenin sesi yoksa masalın stüdyo seslendirmesi, o da yoksa cihazın anlatıcısı.
     private func speakPage(_ text: String) {
-        let recording = familyRecording
-        speech.speak(text, recording: recording)
-        if recording != nil { heardFamilyVoice = true }
+        let family = familyRecording
+        let studio = family == nil ? model.currentPage.flatMap { MPNarration.audio(story.id, page: $0.index) } : nil
+        speech.speak(text, recording: family ?? studio)
+        if family != nil { heardFamilyVoice = true }
     }
 
     private func markWordCardOpened() {

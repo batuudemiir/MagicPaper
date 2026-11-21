@@ -68,8 +68,8 @@ enum ClassicShelf: String, Codable, CaseIterable, Identifiable {
 
     /// Bu raflar kataloğa yazılmaz; masalın başka alanlarından çıkarılır.
     /// "Seriler" seri olmaktan, "5 dakikalık" süreden, "MagicPaper Original"
-    /// uzaktan akıştan. "Sesli" için henüz seslendirilmiş masal yok, bu
-    /// yüzden hep boş ve gizli.
+    /// uzaktan akıştan. "Sesli" uygulamayla gelen stüdyo seslendirmesinden
+    /// (`MPStudioNarration`); seslendirilmiş masal yoksa boş ve gizli.
     var isDerived: Bool { self == .seriler || self == .besDakika || self == .sesli || self == .orijinal }
 }
 

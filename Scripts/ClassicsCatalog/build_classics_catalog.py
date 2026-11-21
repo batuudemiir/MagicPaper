@@ -75,10 +75,28 @@ series_list.sort(key=lambda s: series_order.index(s["slug"]) if s["slug"] in ser
 # Id masalın kendi id'si (okuma defteri onunla tutulur); kapak asset kataloğuna kopyalanır.
 ORIGINALS = os.path.join(ROOT, "Content", "Originals", "published")
 ASSETS = os.path.join(ROOT, "MagicPaper", "Assets.xcassets", "Originals")
+# Stüdyo seslendirmesi (20 Kasım 2026): published/<slug>/narration/page-NN.m4a uygulamaya
+# narration-<ID>-NN.m4a olarak kopyalanır (paket kökü düz, ad çakışmasın diye id'li).
+# Uygulama `MPStudioNarration` ile bulur; klasör her çalışmada baştan yazılır.
+NARRATION = os.path.join(ROOT, "MagicPaper", "Screens", "Gunluk", "Narration")
+for old in glob.glob(os.path.join(NARRATION, "narration-*.m4a")):
+    os.remove(old)
+narrated_count = 0
 original_count = 0
 for folder in sorted(glob.glob(os.path.join(ORIGINALS, "*", "tale.json"))):
     o = load(folder)
     slug = o["slug"]
+    voice = sorted(glob.glob(os.path.join(os.path.dirname(folder), "narration", "page-*.m4a")))
+    if voice:
+        if len(voice) != len(o["pages"]):
+            sys.exit(f"{slug}: seslendirme {len(voice)} dosya, masal {len(o['pages'])} sayfa")
+        os.makedirs(NARRATION, exist_ok=True)
+        for number, path in enumerate(voice, 1):
+            if os.path.basename(path) != f"page-{number:02d}.m4a":
+                sys.exit(f"{slug}: seslendirme dosyası sırası bozuk: {os.path.basename(path)}")
+            with open(path, "rb") as src, open(os.path.join(NARRATION, f"narration-{o['id'].upper()}-{number:02d}.m4a"), "wb") as dst:
+                dst.write(src.read())
+        narrated_count += 1
     cover_src = os.path.join(os.path.dirname(folder), "cover.jpg")
     if not os.path.exists(cover_src): sys.exit(f"{folder}: cover.jpg yok")
     asset = "original-" + slug
@@ -124,6 +142,7 @@ if covers.get("featured"):
 json.dump(catalog, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print(f"{len(tales)} masal ({sum(1 for t in tales if not t['seriesID'])} tek), {len(series_list)} seri, "
       f"{len(picks)} seçki, {len(originals)} orijinal kapak, {original_count} MagicPaper Original"
+      f" ({narrated_count} seslendirilmiş)"
       f" -> {os.path.relpath(OUT, ROOT)}")
 missing = [s for s in covers["weeklyPicks"]["slugs"] if s not in known]
 if missing: print("UYARI: seçkide henüz yazılmamış:", ", ".join(missing))

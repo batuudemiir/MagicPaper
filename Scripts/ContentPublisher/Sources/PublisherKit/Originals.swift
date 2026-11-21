@@ -143,6 +143,34 @@ public enum OriginalLibrary {
         }
         let cover = try? Data(contentsOf: folder.appendingPathComponent("cover.jpg"))
         return tale.problems(folder: folder.lastPathComponent, characters: known, cover: cover)
+            + narrationProblems(in: folder, pageCount: tale.pages.count)
+    }
+
+    /// İsteğe bağlı stüdyo seslendirmesi (20 Kasım 2026): `narration/page-01.m4a` … her sayfaya bir dosya.
+    /// Klasör yoksa masal sessizdir, sorun değil; varsa eksiksiz olmalı.
+    static let narrationFolder = "narration"
+
+    static func narrationFileName(page: Int) -> String { String(format: "page-%02d.m4a", page) }
+
+    static func narrationProblems(in folder: URL, pageCount: Int) -> [String] {
+        let narration = folder.appendingPathComponent(narrationFolder)
+        guard FileManager.default.fileExists(atPath: narration.path) else { return [] }
+        let names = Set(((try? FileManager.default.contentsOfDirectory(atPath: narration.path)) ?? [])
+            .filter { !$0.hasPrefix(".") })
+        let expected = Set((1...max(pageCount, 1)).map(narrationFileName(page:)))
+        var problems: [String] = []
+        let missing = expected.subtracting(names).sorted()
+        if !missing.isEmpty { problems.append("seslendirmede eksik sayfa: \(missing.joined(separator: ", "))") }
+        let extra = names.subtracting(expected).sorted()
+        if !extra.isEmpty { problems.append("seslendirmede fazla dosya: \(extra.joined(separator: ", "))") }
+        for name in expected.intersection(names).sorted() {
+            let data = try? Data(contentsOf: narration.appendingPathComponent(name), options: .mappedIfSafe)
+            // MPEG-4 kabı: 4. bayttan sonra "ftyp".
+            if data.map({ $0.count < 12 || $0[4..<8] != Data("ftyp".utf8) }) ?? true {
+                problems.append("seslendirme \(name) m4a değil")
+            }
+        }
+        return problems
     }
 
     static func isValidSlug(_ slug: String) -> Bool {
@@ -186,7 +214,8 @@ public enum OriginalLibrary {
         return entries
     }
 
-    /// `drafts/<slug>` → `published/<slug>`: önce kopyalanır, yalnız `tale.json` ve `cover.jpg`.
+    /// `drafts/<slug>` → `published/<slug>`: önce kopyalanır, yalnız `tale.json`, `cover.jpg`
+    /// ve varsa `cover.svg` ile `narration/`.
     /// `review.md` taşınmaz; git geçmişinde kalır.
     public static func approve(slug: String, repo: Repo, log: (String) -> Void = { print($0) }) throws {
         guard isValidSlug(slug) else { throw PublishError.message("geçersiz slug: \(slug)") }
@@ -206,7 +235,9 @@ public enum OriginalLibrary {
         do {
             // cover.svg kapağın kaynağı (Claude çizer, COVER_GUIDE.md): varsa onunla birlikte gider.
             let svg = FileManager.default.fileExists(atPath: draft.appendingPathComponent("cover.svg").path)
-            for name in ["tale.json", "cover.jpg"] + (svg ? ["cover.svg"] : []) {
+            // narration/ stüdyo seslendirmesi: varsa sayfa dosyalarıyla birlikte gider.
+            let narration = FileManager.default.fileExists(atPath: draft.appendingPathComponent(narrationFolder).path)
+            for name in ["tale.json", "cover.jpg"] + (svg ? ["cover.svg"] : []) + (narration ? [narrationFolder] : []) {
                 try FileManager.default.copyItem(at: draft.appendingPathComponent(name), to: target.appendingPathComponent(name))
             }
         } catch {
