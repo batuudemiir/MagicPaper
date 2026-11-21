@@ -23,14 +23,14 @@ enum ReviewedDiscoveryArtBinder {
                   page.missingSlots.isEmpty, page.unrecognisedSuffixes.isEmpty,
                   result.pages[index].art == nil, result.pages[index].scene == nil,
                   result.pages[index].imageFileName == nil, result.pages[index].imageUrl == nil,
-                  let proof = policy.proof(parts: page.provenance, variantIDs: page.variantIDs.map(\.rawValue),
+                  let authorization = policy.authorization(parts: page.provenance, variantIDs: page.variantIDs.map(\.rawValue),
                     discovery: composed.content.discovery) else { continue }
-            let asset = policy.asset
+            let asset = authorization.asset
             result.pages[index].art = StoryPageArt(role: "spot", altText: asset.altText, sourceID: asset.assetID,
                 schemaVersion: 1, assetRevision: asset.revision, assetDigest: asset.digest,
                 styleRevision: asset.styleRevision, bundledFileName: asset.fileName,
                 subjectID: asset.subjectID, subjectState: asset.subjectState, variantIDs: page.variantIDs.map(\.rawValue),
-                authoredSourceFingerprint: proof, bindingPolicyVersion: policy.bindingPolicyVersion,
+                authoredSourceFingerprint: authorization.proof, bindingPolicyVersion: policy.bindingPolicyVersion,
                 catalogVersion: policy.catalogVersion)
         }
         return result

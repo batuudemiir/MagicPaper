@@ -36,14 +36,13 @@ final class StorySpotBindingTests: XCTestCase {
     }
 
     @MainActor
-    func testRealBundledCompositionBindsAndUnsupportedVariantStaysText() throws {
+    func testRealBundledCompositionBindsAndChangedTextStaysText() throws {
         let catalog = try ContentCatalogLoader().load().catalog
         let spots = try XCTUnwrap(StorySpotCatalog.bundled)
         let rule = try XCTUnwrap(spots.rules.first)
         let asset = try XCTUnwrap(spots.assets.first { $0.assetID == rule.assetID && $0.revision == rule.assetRevision })
         let blueprint = try XCTUnwrap(catalog.blueprints.first { $0.id.rawValue == rule.blueprintID })
         var bound = false
-        var unsupported = false
         for seed in 0..<160 {
             let intent = OfflineStoryIntent(childName: "Yeliz",
                 settingID: rule.settingIDs?.first.map { ContentID($0) },
@@ -56,15 +55,15 @@ final class StorySpotBindingTests: XCTestCase {
                 try assertBoundStory(story, composed: composed, catalog: catalog, blueprint: blueprint,
                     spots: spots, seed: "spot-fixture-\(seed)")
             }
-            if let first = composed.pages.first,
-               first.variantIDs.count != 1 || !["na_neutral_01", "na_neutral_02"].contains(first.variantIDs[0].rawValue) {
-                XCTAssertNil(story.pages[0].art)
-                unsupported = true
+            if bound {
+                var changed = story
+                changed.pages[0].art = nil
+                changed.pages[0].text += " changed"
+                XCTAssertNil(StorySpotBinder.bind(changed, composed: composed, catalog: spots).pages[0].art)
+                break
             }
-            if bound && unsupported { break }
         }
         XCTAssertTrue(bound, "A real reviewed bundled composition must bind")
-        XCTAssertTrue(unsupported, "A real non-reviewed variant must stay text")
     }
 
 
@@ -81,8 +80,19 @@ final class StorySpotBindingTests: XCTestCase {
         let recalled = try OfflineStoryComposer().compose(blueprint: blueprint, catalog: catalog, intent: recallIntent)
         XCTAssertNotNil(recalled.recallLineID)
         XCTAssertNil(recalled.pages[0].authoredSourceFingerprint)
-        XCTAssertNil(OfflineStoryMapper.appStory(from: recalled, childName: "Yeliz", childProfileID: UUID(),
-            storyIdeaID: nil, catalogVersion: catalog.version).pages[0].art)
+        let recalledStory = OfflineStoryMapper.appStory(from: recalled, childName: "Yeliz", childProfileID: UUID(),
+            storyIdeaID: nil, catalogVersion: catalog.version)
+        let policy = try XCTUnwrap(ReviewedDiscoveryArtPolicy.bundled)
+        let first = try XCTUnwrap(recalled.pages.first)
+        let authorization = policy.authorization(parts: first.provenance,
+            variantIDs: first.variantIDs.map(\.rawValue), discovery: recalled.content.discovery)
+        if let authorization {
+            XCTAssertEqual(recalledStory.pages[0].art?.bindingPolicyVersion, 2)
+            XCTAssertEqual(recalledStory.pages[0].art?.sourceID, authorization.asset.assetID)
+            XCTAssertEqual(recalledStory.pages[0].art?.authoredSourceFingerprint, authorization.proof)
+        } else {
+            XCTAssertNil(recalledStory.pages[0].art)
+        }
         var existing = story
         existing.pages[0].art = StoryPageArt(role: "scene", altText: "Eski", sourceID: "old")
         XCTAssertEqual(StorySpotBinder.bind(existing, composed: composed, catalog: spots).pages[0].art?.sourceID, "old")

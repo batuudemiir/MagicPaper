@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · codex/design-system-catalog, commit yok · Kaynak izli çizimler 11 nesneye genişledi
+
+- Gümüş çan politikasına mevcut on nesne çizimi eklendi; beş 5–6 notice ve 38 hatırlama kaynağı için ayrı inceleme kaydı yazıldı. Manifest/kanonik nesne/dosya özetleri doğrulanır; asset ve kanıt birlikte yetkilendirilir.
+- Mevcut v1 eşlemesi öncelikli; yeni politika kalan uygun sayfalara uygulanır. Eski çan pinleri korunur. Motor metinleri, kimlikler, seed/seçim, eski kitaplar ve okuyucu düzeni değişmedi. Boş yuva/açık müzik kutusu kapsam dışı; her masalda çizim garantisi yok.
+- Spec ve bağımsız kod incelemesi onaylı. Seçili Xcode: 76 test, 75 başarılı, 1 skip, 0 hata; art/provenance 27/27. Gerçek on nesne fixture'ı, kayıt roundtrip ve 11 reader decode geçti. İlk deneme testlerden önce sandbox önbellek erişiminde durdu; erişimle tekrar başarılı. Önceki seri uygunluğu hatası bu tur çözülmedi veya tekrar sınanmadı. Telefona kurulum/yeni UI matrisi yok.
+- Dosyalar: ReviewedDiscoveryArtPolicy/Binder, StorySpotBinder; ReviewedDiscoveryArtPolicyTests ve StorySpotBindingTests; expansion manifesti; research kararları, spec/plan, teslim raporu ve kaynak doğrulama kaydı, proje hafızası.
+
 ### 2026-11-21 · codex/design-system-catalog, commit bu kayıtla · Originals sayfa çizimleri
 
 - İki yayımlanmış Original masalın 14 sayfasına ayrı sabit çizim ve Türkçe görsel açıklaması eklendi. İki kapak kullanıcı referansındaki sade, dokulu kitap diline yenilendi; mor ana renk yapılmadı. Ragi üç sayfada konuk. Erken görünen tren ve çift atkı devamlılık hataları düzeltildi.
