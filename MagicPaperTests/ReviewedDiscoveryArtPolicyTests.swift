@@ -6,13 +6,13 @@ final class ReviewedDiscoveryArtPolicyTests: XCTestCase {
     func testExpansionAuthorizesEverySubjectSourceAndRecallWithCoupledAsset() throws {
         let policy = try XCTUnwrap(ReviewedDiscoveryArtPolicy.bundled)
         let catalog = try ContentCatalogLoader().load().catalog
-        XCTAssertEqual(policy.entries.count, 11)
+        XCTAssertEqual(policy.entries.count, 14)
         for entry in policy.entries {
             let object = try XCTUnwrap(catalog.objects.first { $0.id.rawValue == entry.asset.subjectID })
             var json = try XCTUnwrap(JSONSerialization.jsonObject(with: JSONEncoder().encode(object)) as? [String: Any])
             json["description"] = "Changed canonical description"
             let changed = try JSONDecoder().decode(CatalogObject.self, from: JSONSerialization.data(withJSONObject: json))
-            for source in policy.sources {
+            for source in policy.sources where source.templateID != "corpus_3-4_notice_anomaly" {
                 let beat = PageSourcePart(kind: .beatLine, sourceID: source.sourceID,
                     sourceTextDigest: source.sourceTextDigest, templateID: source.templateID, beat: .noticeAnomaly,
                     visual: [.init(subject: .discovery, subjectID: object.id.rawValue, presence: .present, states: [])])
@@ -48,8 +48,140 @@ final class ReviewedDiscoveryArtPolicyTests: XCTestCase {
         }
     }
 
-    func testExpansionManifestAndEveryMissingAssetFailClosed() throws {
+    func testPairedSourcesRequireExactCompositionContextAndCompanion() throws {
+        let policy = try XCTUnwrap(ReviewedDiscoveryArtPolicy.bundled)
+        let catalog = try ContentCatalogLoader().load().catalog
+        let object = try XCTUnwrap(catalog.objects.first { $0.id.rawValue == "object_compass_001" })
+        for source in policy.sources where source.templateID == "corpus_3-4_notice_anomaly" {
+            let notice = PageSourcePart(kind: .beatLine, sourceID: source.sourceID,
+                sourceTextDigest: source.sourceTextDigest, templateID: source.templateID, beat: .noticeAnomaly,
+                visual: [.init(subject: .discovery, subjectID: object.id.rawValue, presence: .present, states: [])])
+            XCTAssertNil(policy.authorization(parts: [notice], variantIDs: [source.sourceID], discovery: object))
+            for support in policy.pairedSources {
+                let meet = PageSourcePart(kind: .beatLine, sourceID: support.sourceID,
+                    sourceTextDigest: support.sourceTextDigest, templateID: support.templateID, beat: .meetCompanion,
+                    visual: [.init(subject: .companion, subjectID: "friend", presence: .present, states: ["greeting"])])
+                let parts = [notice, meet], ids = parts.map(\.sourceID)
+                for blueprint in policy.pairedBlueprintIDs {
+                    XCTAssertEqual(policy.authorization(parts: parts, variantIDs: ids, discovery: object,
+                        blueprintID: blueprint, pageNumber: 1, companionID: "friend")?.beats, [.noticeAnomaly, .meetCompanion])
+                    for page in [0, 2] {
+                        XCTAssertNil(policy.authorization(parts: parts, variantIDs: ids, discovery: object,
+                            blueprintID: blueprint, pageNumber: page, companionID: "friend"))
+                    }
+                    XCTAssertNil(policy.authorization(parts: parts, variantIDs: ids, discovery: object,
+                        blueprintID: blueprint, pageNumber: 1, companionID: "wrong"))
+                }
+                XCTAssertNil(policy.authorization(parts: parts, variantIDs: ids, discovery: object))
+                XCTAssertNil(policy.authorization(parts: parts, variantIDs: ids, discovery: object,
+                    blueprintID: "unknown", pageNumber: 1, companionID: "friend"))
+                XCTAssertNil(policy.authorization(parts: Array(parts.reversed()), variantIDs: Array(ids.reversed()), discovery: object,
+                    blueprintID: policy.pairedBlueprintIDs.first, pageNumber: 1, companionID: "friend"))
+                XCTAssertNil(policy.authorization(parts: parts + [meet], variantIDs: ids + [meet.sourceID], discovery: object,
+                    blueprintID: policy.pairedBlueprintIDs.first, pageNumber: 1, companionID: "friend"))
+            }
+        }
+    }
+
+    func testPairedMalformedSourcesAndVisualsFailClosed() throws {
+        let policy = try XCTUnwrap(ReviewedDiscoveryArtPolicy.bundled)
+        let catalog = try ContentCatalogLoader().load().catalog
+        let object = try XCTUnwrap(catalog.objects.first { $0.id.rawValue == "object_coin_001" })
+        let source = try XCTUnwrap(policy.sources.first { $0.templateID == "corpus_3-4_notice_anomaly" })
+        let support = try XCTUnwrap(policy.pairedSources.first)
+        let notice = PageSourcePart(kind: .beatLine, sourceID: source.sourceID,
+            sourceTextDigest: source.sourceTextDigest, templateID: source.templateID, beat: .noticeAnomaly,
+            visual: [.init(subject: .discovery, subjectID: object.id.rawValue, presence: .present, states: [])])
+        let meet = PageSourcePart(kind: .beatLine, sourceID: support.sourceID,
+            sourceTextDigest: support.sourceTextDigest, templateID: support.templateID, beat: .meetCompanion,
+            visual: [.init(subject: .companion, subjectID: "friend", presence: .present, states: ["greeting"])])
+        func authorize(_ parts: [PageSourcePart], ids: [String]? = nil) -> ReviewedDiscoveryArtPolicy.Authorization? {
+            policy.authorization(parts: parts, variantIDs: ids ?? parts.map(\.sourceID), discovery: object,
+                blueprintID: policy.pairedBlueprintIDs.first, pageNumber: 1, companionID: "friend")
+        }
+        XCTAssertNotNil(authorize([notice, meet]))
+        for (template, digest, contexts, visual) in [
+            ("wrong", support.sourceTextDigest, [String](), meet.visual!),
+            (support.templateID, "wrong", [], meet.visual!),
+            (support.templateID, support.sourceTextDigest, ["family"], meet.visual!),
+            (support.templateID, support.sourceTextDigest, [], [.init(subject: .companion, subjectID: "friend", presence: .remembered, states: ["greeting"])]),
+            (support.templateID, support.sourceTextDigest, [], [.init(subject: .companion, subjectID: "friend", presence: .present, states: [])]),
+            (support.templateID, support.sourceTextDigest, [], meet.visual! + notice.visual!)
+        ] {
+            let changed = PageSourcePart(kind: .beatLine, sourceID: support.sourceID, sourceTextDigest: digest,
+                templateID: template, beat: .meetCompanion, contexts: contexts, visual: visual)
+            XCTAssertNil(authorize([notice, changed]))
+        }
+        for context in ["family", "occasion", "series", "world", "unknown"] {
+            let changed = PageSourcePart(kind: .beatLine, sourceID: source.sourceID,
+                sourceTextDigest: source.sourceTextDigest, templateID: source.templateID, beat: .noticeAnomaly,
+                contexts: [context], visual: notice.visual)
+            XCTAssertNil(authorize([changed, meet]))
+        }
+        let recall = try XCTUnwrap(policy.recalls.first)
+        XCTAssertNil(authorize([notice, meet, .init(kind: .recall, sourceID: recall.sourceID, sourceTextDigest: recall.sourceTextDigest)]))
+        XCTAssertNil(authorize([notice, meet], ids: [meet.sourceID, notice.sourceID]))
+        XCTAssertNil(authorize([notice, meet], ids: [notice.sourceID]))
+    }
+
+    func testOldElevenSubjectManifestRemainsReadable() throws {
         let url = try XCTUnwrap(Bundle.main.url(forResource: "reviewed-discovery-art-expansion-v2", withExtension: "json"))
+        let policy = try XCTUnwrap(ReviewedDiscoveryArtPolicy.load(data: Data(contentsOf: url)) { _, _ in true })
+        XCTAssertEqual(policy.entries.count, 11)
+        XCTAssertEqual(policy.sources.count, 5)
+        XCTAssertTrue(policy.pairedSources.isEmpty)
+        XCTAssertTrue(policy.pairedBlueprintIDs.isEmpty)
+    }
+
+    @MainActor
+    func testWaveTwoRealComposerMapsNewSubjectsAndAgeBandsWithoutChangingText() throws {
+        let catalog = try ContentCatalogLoader().load().catalog
+        let policy = try XCTUnwrap(ReviewedDiscoveryArtPolicy.bundled)
+        let cases = [("3-4", "object_compass_001"), ("7-8", "object_coin_001"),
+                     ("9-10", "object_star_stone_001")]
+        for (age, discovery) in cases {
+            var matched = false
+            for blueprint in catalog.blueprints where blueprint.ageRange.description == age {
+                if age == "3-4" && !policy.pairedBlueprintIDs.contains(blueprint.id.rawValue) { continue }
+                for seed in 0..<48 {
+                    let intent = OfflineStoryIntent(childName: "Deniz", discoveryID: ContentID(discovery),
+                        seed: "reviewed-wave2-\(seed)")
+                    guard let composed = try? OfflineStoryComposer().compose(blueprint: blueprint, catalog: catalog, intent: intent),
+                          composed.pages.contains(where: { policy.authorization(parts: $0.provenance,
+                            variantIDs: $0.variantIDs.map(\.rawValue), discovery: composed.content.discovery,
+                            blueprintID: composed.blueprintID.rawValue, pageNumber: $0.pageNumber,
+                            companionID: composed.content.companion.id.rawValue) != nil }) else { continue }
+                    if age == "3-4" {
+                        XCTAssertEqual(composed.pages.first?.beats, [.noticeAnomaly, .meetCompanion])
+                    }
+                    let story = OfflineStoryMapper.appStory(from: composed, childName: "Deniz", childProfileID: UUID(),
+                        storyIdeaID: nil, catalogVersion: catalog.version)
+                    XCTAssertEqual(story.pages.map(\.text), composed.pages.sorted { $0.pageNumber < $1.pageNumber }.map(\.text))
+                    let art = try XCTUnwrap(story.pages.compactMap(\.art).first)
+                    XCTAssertEqual(art.subjectID, discovery)
+                    XCTAssertEqual(art.bindingPolicyVersion, 2)
+                    let artIndex = try XCTUnwrap(story.pages.firstIndex { $0.art != nil })
+                    let page = composed.pages.sorted { $0.pageNumber < $1.pageNumber }[artIndex]
+                    let evidence = "age=\(age) blueprint=\(blueprint.id.rawValue) seed=reviewed-wave2-\(seed) subject=\(discovery) page=\(page.pageNumber) beats=\(page.beats.map(\.rawValue)) variants=\(page.variantIDs.map(\.rawValue))"
+                    XCTContext.runActivity(named: evidence) { activity in
+                        let attachment = XCTAttachment(string: evidence)
+                        attachment.lifetime = .keepAlways
+                        activity.add(attachment)
+                    }
+                    XCTAssertNotNil(StorySpotAssetResolver.url(for: art))
+                    let saved = try JSONDecoder().decode(MagicPaper.Story.self, from: JSONEncoder().encode(story))
+                    XCTAssertEqual(saved.pages.compactMap(\.art), story.pages.compactMap(\.art))
+                    matched = true
+                    break
+                }
+                if matched { break }
+            }
+            XCTAssertTrue(matched, "Missing real composed fixture: \(age) \(discovery)")
+        }
+    }
+
+    func testExpansionManifestAndEveryMissingAssetFailClosed() throws {
+        let url = try XCTUnwrap(Bundle.main.url(forResource: "reviewed-discovery-art-wave2-v2", withExtension: "json"))
         let data = try Data(contentsOf: url)
         let policy = try XCTUnwrap(ReviewedDiscoveryArtPolicy.load(data: data) { _, _ in true })
         for entry in policy.entries {
@@ -151,9 +283,9 @@ final class ReviewedDiscoveryArtPolicyTests: XCTestCase {
         objectJSON["description"] = "Changed canonical description"
         let changedBell = try JSONDecoder().decode(CatalogObject.self,
             from: JSONSerialization.data(withJSONObject: objectJSON))
-        XCTAssertEqual(policy.sources.count, 5)
+        XCTAssertEqual(policy.sources.count, 20)
         XCTAssertEqual(policy.recalls.count, 38)
-        for source in policy.sources {
+        for source in policy.sources where source.templateID != "corpus_3-4_notice_anomaly" {
             let part = PageSourcePart(kind: .beatLine, sourceID: source.sourceID,
                 sourceTextDigest: source.sourceTextDigest, templateID: source.templateID,
                 beat: .noticeAnomaly, visual: [.init(subject: .discovery,

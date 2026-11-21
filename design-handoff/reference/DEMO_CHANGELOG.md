@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · codex/design-system-catalog, commit yok · Üç yeni guaj nesne ve yaşlara göre kaynak eşlemesi
+
+- Yerleşik image_gen + onaylı referanslarla pirinç pusula, eski madeni para ve yıldız biçimli taş hazırlandı; saydam PNG ve aynı byte'lı mpart. Kaynak izli havuz 11→14 konu, notice izin listesi 5→20 kaynak; dört küçük yaş destek satırı eklendi.
+- Tekli keşif sayfaları 5–6/7–8/9–10; 3–4 yalnız üç sports blueprint'inin ilk sayfasında notice→meet. Tam kaynak sırası, gerçek companion, beat listesi ve nesne/dosya özetleri doğrulanır. Mevcut v1, eski çizim dosyaları ve kayıtlı pinler korunur; her masalda görsel garantisi yok.
+- Claude c742ea7→365b66b deltası günlük hariç 32 dosyalık patch ile alındı; merge yapılmadı. Kaynak metinleri/kimlikleri değişmedi. Upstream history20/partCount geldi; ReadingSequenceReport ölçüm bulgusu bu tur düzeltilmedi.
+- İlk testler, pakete giren 193 izlenmeyen `… 2.json` eski kopyasını ortaya çıkardı. Bunlar ve aynı byte'lı 772 generated kopya silinmeden `/private/tmp/magicpaper-json-copy-quarantine-20261121-wave2/` altında yol/SHA manifestleriyle korundu. Son temiz koşu: motor 44/0; uygulama 89 test, 88 geçti, 1 skip, 0 hata. Gerçek 3–4 pusula/7–8 para/9–10 yıldız taşı ve 14 reader decode geçti. Telefona kurulum ve yeni UI/VoiceOver matrisi yok; tam paket/BoundPool ve önceki seri uygunluğu hatası bu koşuya dahil değil.
+- Dosyalar: açık upstream import listesi; ReviewedDiscoveryArtPolicy/Binder ve testleri; üç mpart + wave2 manifest; yeni PNG'ler/üretim kaydı/rapor/gerçek fixture JSON'u; spec/plan/araştırma kararları ve proje hafızası. Ayrıntı design-handoff/proposals/2026-11-21-story-art-wave2/REPORT.md.
+
 ### 2026-11-21 · codex/design-system-catalog, commit yok · Claude motor teslimi incelemesi
 
 - origin fetch ile anlati-provenance@365b66b ve origin/main@b8a597b incelendi; Claude tesliminin main'e alındığı doğrulandı. Yerel dal/uygulama kodu değiştirilmedi, merge yapılmadı.

@@ -14,6 +14,14 @@ import StoryEngine
 struct StoryPageProvenance: Codable, Equatable {
     let schemaVersion: Int
     let parts: [Part]
+    /// Kayıt anında yazılan parça sayısı. Okumada bozuk parça atlanırsa
+    /// `parts` bundan kısa kalır ve sayfa eksik sayılır (`isComplete`);
+    /// yeniden kaydedilince beyan korunur, eksiklik kaybolmaz.
+    let partCount: Int
+
+    /// Bütün parçalar okundu mu. Eksik sayfaya otomatik görsel bağlanmamalı:
+    /// kalan parçalar sayfanın bütün kaynağı değildir.
+    var isComplete: Bool { parts.count == partCount }
 
     struct Part: Codable, Equatable {
         /// `beat_line`, `refrain`, `recall`. Ham metin: gelecekte eklenen bir
@@ -75,6 +83,7 @@ struct StoryPageProvenance: Codable, Equatable {
     init(parts: [Part], schemaVersion: Int = PageSourcePart.schemaVersion) {
         self.schemaVersion = schemaVersion
         self.parts = parts
+        self.partCount = parts.count
     }
 
     /// Motorun parçalarından; boşsa nil (bu alandan önce kurulmuş sayfa).
@@ -92,14 +101,15 @@ struct StoryPageProvenance: Codable, Equatable {
         })
     }
 
-    private enum CodingKeys: String, CodingKey { case schemaVersion, parts }
+    private enum CodingKeys: String, CodingKey { case schemaVersion, parts, partCount }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         schemaVersion = (try? values.decode(Int.self, forKey: .schemaVersion)) ?? 0
-        // Bozuk parça atlanır; sıra korunur.
+        // Bozuk parça atlanır; sıra korunur. Beyan yoksa ham dizi sayısı.
         let raw = (try? values.decode([FailableDecodable<Part>].self, forKey: .parts)) ?? []
         parts = raw.compactMap(\.value)
+        partCount = max((try? values.decode(Int.self, forKey: .partCount)) ?? raw.count, raw.count)
     }
 
     /// Satır kimlikleri, beat satırlarıyla sınırlı, sırayla.

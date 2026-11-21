@@ -12,7 +12,7 @@
     {
       "id": "s9n_01",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "Bir süre yürüdükten sonra {{child.name}} durdu, çünkü gözü bir şeye takılmıştı. Az ileride {{discovery.name}} vardı. Geçen sefer orada olmadığından emindi; bu yolu artık ezbere biliyordu ve ezberinde böyle bir şey yoktu. {{companion.name}} yanında durup aynı yere baktı.",
       "requiredSlots": [
         "child.name",
@@ -27,8 +27,8 @@
     },
     {
       "id": "s9n_02",
-      "visual": [{"subject": "discovery", "presence": "present", "states": ["examined"]}, {"subject": "companion", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{companion.name}} durdu ve başını bir yana eğdi. {{child.name}} nefesini tutup dinledi: çok yakından {{discovery.name}} geliyordu. Bu sesi daha önce burada hiç duymamışlardı. İkisi, sesin geldiği yöne, acele etmeden ve dikkatle döndü.",
       "requiredSlots": [
         "child.name",
@@ -44,7 +44,7 @@
     {
       "id": "s9n_03",
       "visual": [{"subject": "companion", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "Her şey geçen seferki gibiydi, tek bir ayrıntı dışında. {{child.name}} bunu ilk bakışta sezdi, ama ne olduğunu ancak ikinci bakışta anladı. {{companion.name}} ise üçüncü bakışta. İkisi aynı noktaya döndü ve gülümsedi: demek ki bu yerin hâlâ gösterecek yeni şeyleri vardı.",
       "requiredSlots": [
         "child.name",

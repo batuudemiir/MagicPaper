@@ -18,7 +18,7 @@
     {
       "id": "a9_na_01",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} o sabah {{setting.name}}'a yalnızca biraz kafa dinlemek için gelmişti. Planı basitti: oturmak, etrafı izlemek, hiçbir şey düşünmemek. Plan tam dört dakika sürdü. Çünkü {{discovery.name}} oradaydı ve dün aynı yere baktığında orada hiçbir şey yoktu.",
       "requiredSlots": [
         "child.name",
@@ -31,7 +31,7 @@
     {
       "id": "a9_na_02",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}}'in tuhaf bir yeteneği vardı: bir yerde neyin değiştiğini, ne olduğunu anlamadan önce sezerdi. {{setting.name}}'a adımını atar atmaz o tanıdık kıpırtıyı hissetti. Gözleri yavaşça dolaştı ve sonunda durdu. {{discovery.name}}, sanki hep oradaymış gibi duruyordu.",
       "requiredSlots": [
         "child.name",
@@ -46,8 +46,8 @@
     },
     {
       "id": "a9_na_03",
-      "visual": [{"subject": "discovery", "presence": "present", "states": ["examined"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "Herkes {{setting.name}}'ı ezbere bildiğini sanırdı, {{child.name}} dahil. Oysa o gün, her zamanki yoldan geçerken, ezberin bir satırı tutmadı. Bir şey eksik değildi, tersine fazlaydı: {{discovery.name}}. Küçük bir ayrıntıydı belki, ama {{child.name}} ayrıntıları önemserdi.",
       "requiredSlots": [
         "setting.name",
@@ -63,7 +63,7 @@
     {
       "id": "a9_na_04",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} sorular sormayı severdi, cevaplardan bile çok. {{setting.name}}'da {{discovery.name}} dikkatini çekince kafasında aynı anda üç soru belirdi. Ne zaman gelmişti, nereden gelmişti, neden tam buradaydı? Üçünün de cevabı yoktu ve bu, günün en güzel haberiydi.",
       "requiredSlots": [
         "child.name",
@@ -76,7 +76,7 @@
     {
       "id": "a9_na_05",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "Bazı günler sıradan başlar ve sıradan devam edecekmiş gibi görünür. {{child.name}} için o gün de öyleydi, ta ki {{setting.name}}'da {{discovery.name}} dikkatini çekene kadar. {{child.name}} adımlarını yavaşlattı. Sıradan günlerin en sevdiği yanı buydu: arada bir sıradan olmaktan vazgeçmeleri.",
       "requiredSlots": [
         "child.name",
@@ -89,7 +89,7 @@
     {
       "id": "a9_na_06",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} {{setting.name}}'da gördüklerini not etmeyi alışkanlık hâline getirmişti. Defterinde neyin nerede durduğu, hangi saatte hangi sesin geldiği yazardı. O gün deftere bakmasına gerek kalmadı. {{discovery.name}} hiçbir sayfada yoktu, bundan emindi.",
       "requiredSlots": [
         "child.name",
@@ -102,7 +102,7 @@
     {
       "id": "a9_na_07",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "Bir kitapta okumuştu: dikkatli bakan göz, her şeyi iki kez görür. {{child.name}} o gün bunun ne demek olduğunu anladı. {{setting.name}}'da herkesin yanından geçip gittiği yerde {{discovery.name}} duruyordu. Bir kez gördü, sonra durup bir kez daha baktı.",
       "requiredSlots": [
         "child.name",
@@ -118,7 +118,7 @@
     {
       "id": "a9_na_08",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'a aynı anda vardılar, ama aynı şeyi görmediler. {{family.name}} yol boyunca bir taşı tekmelemiş, şimdi onun nereye gittiğini arıyordu. {{child.name}} ise durmuştu. Dün burada olmayan bir şey vardı. Taş bekleyebilirdi; bu bekleyemezdi.",
       "requiredSlots": [
         "child.name",
@@ -134,7 +134,7 @@
     {
       "id": "a9_na_09",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}}, kardeşi {{family.name}} ile {{setting.name}}'da bir oyun kuruyordu. Kuralları {{family.name}} koyuyor, her beş dakikada bir değiştiriyordu. {{child.name}} yedinci değişiklikte itiraz etmek üzereydi ki sustu. Bir şey yerinde değildi. Oyun, kurallarıyla birlikte, kendiliğinden askıya alındı.",
       "requiredSlots": [
         "child.name",
@@ -150,7 +150,7 @@
     {
       "id": "a9_na_10",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da kimin daha uzun susabileceğine dair iddiaya girmişti. {{family.name}} on saniyede kaybetti, çünkü bir kuş gördü. {{child.name}} kazandı ama sevinemedi. Sessizlikte bir şey fark etmişti ve bu, iddiadan çok daha ilginçti.",
       "requiredSlots": [
         "child.name",
@@ -166,7 +166,7 @@
     {
       "id": "a9_na_11",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}}'in arkadaşı {{family.name}}, {{setting.name}}'a bir defter ve üç kalemle gelmişti. Haritaları o çizerdi, yönleri {{child.name}} bulurdu. O gün harita yarıda kaldı. {{child.name}} kalemini bırakmış, bir noktaya bakıyordu. {{family.name}} sebebini sorduğunda cevap veremedi; henüz bir cevabı yoktu, sadece bir sorusu vardı.",
       "requiredSlots": [
         "child.name",
@@ -182,7 +182,7 @@
     {
       "id": "a9_na_12",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} o sabah {{setting.name}}'a {{family.possessive}} {{family.name}} ile birlikte geldi. {{family.name}} her zamanki gibi önce her şeyi kokladı, sonra her şeyden sıkıldı. Ama bir noktada durdu ve kıpırdamadı. {{child.name}} onun baktığı yere baktı. Orada dün olmayan bir şey vardı. Demek ki bunu ilk fark eden o değildi.",
       "requiredSlots": [
         "child.name",
@@ -199,7 +199,7 @@
     {
       "id": "a9_na_13",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}}, {{family.possessive}} {{family.name}}'a günün planını anlattı: yürüyüş, biraz keşif, eve dönüş. {{family.name}} planı esneyerek onayladı. {{setting.name}}'a vardıklarında planın ikinci maddesi beklenenden erken başladı. Çünkü orada bir şey vardı ve açıklama bekliyordu.",
       "requiredSlots": [
         "child.name",
@@ -216,7 +216,7 @@
     {
       "id": "a9_na_14",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}}'in hayali arkadaşı {{family.name}} kendini her konuda uzman sayardı. {{child.name}} ona bu yüzden bazen \"Profesör\" derdi. O sabah {{setting.name}}'da Profesör'ün bile söyleyecek sözü kalmadı. Orada, ikisinin de daha önce rastlamadığı bir şey vardı. {{child.name}} ilk kez bir şeyi ondan önce fark etmişti.",
       "requiredSlots": [
         "child.name",
@@ -232,7 +232,7 @@
     {
       "id": "a9_na_15",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} yürürken hayali arkadaşı {{family.name}} ile ciddi bir tartışmaya dalmıştı: bulutların ağırlığı var mıydı? {{family.name}} vardı diyordu, {{child.name}} yoktu. {{setting.name}}'a varınca ikisi birden sustu. Tartışma bitmemişti ama orada daha acil bir soru duruyordu.",
       "requiredSlots": [
         "child.name",
@@ -248,7 +248,7 @@
     {
       "id": "a9_na_h5_sib_01",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} kardeşi {{family.name}}'a {{setting.name}}'ı gezdiriyordu, bir rehber ciddiyetiyle. {{family.name}} her şeyi soruyor, {{child.name}} her şeyi cevaplıyordu. Ama bir noktada {{child.name}} sustu. Orada, cevabını bilmediği bir şey vardı. Rehber, bir anda turistten farksız kalmıştı.",
       "requiredSlots": [
         "child.name",
@@ -265,7 +265,7 @@
     {
       "id": "a9_na_h5_sib_02",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} ile kardeşi {{family.name}} {{setting.name}}'da adım sayarak yürüyordu. {{family.name}} her otuzda bir sayıyı karıştırıyor, baştan başlıyordu. {{child.name}} sabırla bekliyordu ki gözü bir şeye takıldı. Orada, dün görmediği bir şey duruyordu. Sayı, bu kez ikisi için de unutuldu.",
       "requiredSlots": [
         "child.name",
@@ -282,7 +282,7 @@
     {
       "id": "a9_na_h5_fr_01",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da gizli bir işaret dili geliştiriyordu. Şimdiye kadar on iki işaretleri vardı. On üçüncüyü kararlaştırırken {{child.name}} elini indirdi. Az ilerideki şey için henüz bir işaretleri yoktu, ve belki de bir isme ihtiyacı vardı.",
       "requiredSlots": [
         "child.name",
@@ -299,7 +299,7 @@
     {
       "id": "a9_na_h5_fr_02",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}}, arkadaşı {{family.name}} ile {{setting.name}}'ın haritasını çiziyordu; {{family.name}} çiziyor, {{child.name}} ölçüyordu. Harita neredeyse bitmişti. Sonra {{child.name}} haritaya bir kez daha baktı, sonra araziye. İkisi uyuşmuyordu. Orada, haritada olmayan bir şey vardı.",
       "requiredSlots": [
         "child.name",
@@ -316,7 +316,7 @@
     {
       "id": "a9_na_h5_an_01",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} {{family.possessive}} {{family.name}} ile {{setting.name}}'da yavaşça yürüyordu. {{family.name}} bir yerde durdu ve oradan ayrılmak istemedi; ne çağırmak işe yaradı ne de beklemek. {{child.name}} sonunda eğilip baktı. {{family.name}} haklıydı. Orada, açıklanmayı bekleyen bir şey vardı.",
       "requiredSlots": [
         "child.name",
@@ -334,7 +334,7 @@
     {
       "id": "a9_na_h5_an_02",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} sabah {{family.possessive}} {{family.name}}'a kahvaltısını verdi ve {{setting.name}}'a çıktı. Her şey ilk bakışta her günkü gibiydi. Ama {{child.name}} her günkü şeylere dikkatle bakmayı severdi, ve bugün bir ayrıntı yerinde değildi. Küçük bir şeydi. Küçük şeyler bazen en ilginç soruları taşırdı.",
       "requiredSlots": [
         "child.name",
@@ -352,7 +352,7 @@
     {
       "id": "a9_na_h5_im_01",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} hayali arkadaşı {{family.name}} ile {{setting.name}}'da bir şarkı uyduruyordu. {{family.name}} sözleri yazıyor, {{child.name}} ezgiyi buluyordu. İkinci kıtanın ortasında şarkı yarım kaldı. {{child.name}} gördüğü şeyi önce {{family.name}}'a gösterdi. Hayali arkadaşı, ilk kez, söyleyecek söz bulamadı.",
       "requiredSlots": [
         "child.name",
@@ -369,7 +369,7 @@
     {
       "id": "a9_na_h5_im_02",
       "visual": [{"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} yolda hayali arkadaşı {{family.name}} ile zor bir bilmeceyi çözmeye çalışıyordu: iki kapısı olan ama hiç duvarı olmayan şey neydi. Cevap tam dilinin ucundaydı ki {{setting.name}}'a vardılar. Orada, bilmeceden de zor bir soru duruyordu. Bilmece bekleyebilirdi.",
       "requiredSlots": [
         "child.name",
@@ -386,7 +386,7 @@
     {
       "id": "w_ct_na910_01",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} yeni bir şehri tanımanın en iyi yolunun yürümek olduğuna karar vermişti. Otobüs her yere götürüyordu ama hiçbir şey göstermiyordu; yürümek yavaştı ama her şeyi gösteriyordu. Bu teoriyi {{setting.name}}'da sınarken bir şey teoriyi fazlasıyla doğruladı. {{discovery.name}}, kalabalığın arasında görünmek için sıra bekliyor gibiydi.",
       "requiredSlots": [
         "child.name",
@@ -405,7 +405,7 @@
     {
       "id": "w_ct_na910_02",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "Şehirde herkesin bir yere yetişmesi gerekiyordu; {{child.name}} hariç. O, {{setting.name}}'ın bir köşesinde durmuş, şehrin nasıl işlediğini anlamaya çalışıyordu. Kim nereden geliyor, nereye gidiyor, kim kime selam veriyor. Listesi uzarken bir madde kendiliğinden eklendi: {{discovery.name}}. Bu madde öbürlerine hiç benzemiyordu.",
       "requiredSlots": [
         "child.name",
@@ -421,7 +421,7 @@
     {
       "id": "w_ct_na910_03",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} bu şehre gelmeden önce haritasını üç kez incelemişti. Hangi sokak nereye çıkar, hangi köprü nereden geçer, hepsini biliyordu. Ya da bildiğini sanıyordu. Çünkü {{setting.name}}'da haritanın hiç söz etmediği bir şeyle karşılaştı: {{discovery.name}}. Demek ki haritalar her şeyi anlatmıyordu.",
       "requiredSlots": [
         "child.name",
@@ -437,7 +437,7 @@
     {
       "id": "w_cn_na910_01",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} bu ülkenin dilinde kendini tanıtmayı bir hafta boyunca çalışmıştı. Sonuç fena değildi: insanlar gülümsüyor, ardından çok hızlı bir şeyler söylüyordu. Asıl zor kısım, demek ki, karşılığı anlamaktı. {{setting.name}}'da tam bunu düşünürken bir şey dikkatini çekti, bu kez hiçbir dile gerek yoktu: {{discovery.name}}.",
       "requiredSlots": [
         "child.name",
@@ -453,7 +453,7 @@
     {
       "id": "w_cn_na910_02",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "Uzak bir ülkeye gitmek, {{child.name}}'e göre bir bulmacanın içine girmek gibiydi. Selamlaşma başkaydı, yemekler başkaydı, dükkânların açılış saatleri bile başkaydı. {{child.name}} bu farkları tek tek not ediyordu. {{setting.name}}'da listeye yeni bir madde eklemesi gerekti: {{discovery.name}}. Bu madde ötekilerden epey ilginçti.",
       "requiredSlots": [
         "child.name",
@@ -469,7 +469,7 @@
     {
       "id": "w_cn_na910_03",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} bir ülkeyi tanımanın en iyi yolunun onu dinlemek olduğuna inanıyordu. O yüzden {{setting.name}}'da gözlerini kapamış, sesleri ayırmaya çalışıyordu. Uzakta bir şarkı, bir kapı gıcırtısı, bilmediği bir dilde bir kahkaha. Gözlerini açınca {{discovery.name}} tam önündeydi. Bu da plana dahil değildi.",
       "requiredSlots": [
         "child.name",
@@ -488,7 +488,7 @@
     {
       "id": "w_hs_na910_01",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} tarihin kitaplarda yaşadığını düşünürdü: kalın, ağır, biraz tozlu kitaplarda. {{setting.name}}'a geldiğinde bu düşüncesini gözden geçirmesi gerekti. Burada tarih kitapta değil, taşın içindeydi; dokunulabiliyor, üstünde yürünebiliyordu. Tam bu yeni fikri tartarken bir şey dikkatini çekti: {{discovery.name}}.",
       "requiredSlots": [
         "child.name",
@@ -504,7 +504,7 @@
     {
       "id": "w_hs_na910_02",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "Rehber, burada yüzlerce yıl önce insanların yaşadığını anlatıyordu. {{child.name}} dinlerken kafasında küçük bir hesap yaptı: yüzlerce yıl, onun yaşının belki elli katıydı. Bu sayı o kadar büyüktü ki hayal etmek bile zordu. Derken {{discovery.name}} gözüne çarptı ve hesap yarım kaldı.",
       "requiredSlots": [
         "child.name",
@@ -522,7 +522,7 @@
     {
       "id": "w_hs_na910_03",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "{{child.name}} {{setting.name}}'da kendine bir görev vermişti: burada yaşamış birini, yalnızca bıraktığı izlerden tanımak. Görev zor görünüyordu, çünkü yüzlerce yıl epey uzun bir süreydi. Sonra ilk ipucu kendiliğinden ortaya çıktı: {{discovery.name}}.",
       "requiredSlots": [
         "child.name",

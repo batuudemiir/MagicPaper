@@ -22,6 +22,19 @@ public enum SelectionScoring {
     public static let interestBoost = 2.0
     /// How many recent stories cool content down.
     public static let cooldownWindow = 4
+
+    /// Proza satırlarının soğuma penceresi (A1, 20 Kasım 2026): içerikten
+    /// (`cooldownWindow`) ayrı. Bir masalın onlarca satırı var ve havuz dar;
+    /// dört masal sonra serbest kalan satır 100 masallık okumada tekrarın asıl
+    /// kaynağıydı (`ReadingSequenceReport`). Değer ölçümle seçildi (20 Kasım
+    /// 2026, yaş başına 3 çocuk × 100 masal): 4 → 20, 4-10. masallarda tanıdık
+    /// satır yaklaşık yarıya indi (9-10: %14 → %7); 50. masaldan sonra değişmedi
+    /// (%83-91), çünkü soğuma satır yaratmaz. Kalıcı çare havuz (ANLATI_PLANI A4, A6).
+    public static let lineCooldownWindow = 20
+
+    /// Uygulamanın motora vermesi gereken geçmiş: iki pencerenin büyüğü.
+    /// İçerik ağırlığı yalnızca ilk `cooldownWindow` kaydı okur.
+    public static var historyWindow: Int { max(cooldownWindow, lineCooldownWindow) }
     /// What the most recent story's content keeps of its weight. Older stories
     /// cool less, linearly, until the window ends.
     public static let cooldownFloor = 0.1
@@ -54,9 +67,9 @@ public enum SelectionScoring {
     /// Tek yerde durması şart, çünkü iki ekseni besliyor: içerik kayıtları
     /// (eksen başına tek kimlik) ve proza satırları (masal başına onlarca).
     /// Eğriyi iki kez yazmak, birini ayarlayıp öbürünü unutmanın en kolay yolu.
-    static func cooled(storiesAgo index: Int?, cooldown: Double) -> Double {
-        guard let index else { return 1 }
-        let full = (1 - cooldownFloor) * Double(cooldownWindow - index) / Double(cooldownWindow)
+    static func cooled(storiesAgo index: Int?, cooldown: Double, window: Int = cooldownWindow) -> Double {
+        guard let index, index < window else { return 1 }
+        let full = (1 - cooldownFloor) * Double(window - index) / Double(window)
         // Never to zero: cooled is less likely, not impossible, so a pool of
         // one stays a pool of one rather than an error.
         return 1 - min(full * max(0, cooldown), 0.95)
@@ -80,8 +93,8 @@ public enum SelectionScoring {
     /// Süzgeç değil ağırlık: üç varyantlı bir beat'te satırı elemek masalı
     /// kurulamaz hâle getirirdi. Soğuyan satır daha az olası, imkânsız değil.
     public static func variantWeight(id: ContentID, recent: [Set<ContentID>]) -> Double {
-        let index = recent.prefix(cooldownWindow).firstIndex { $0.contains(id) }
-        return cooled(storiesAgo: index, cooldown: 1)
+        let index = recent.prefix(lineCooldownWindow).firstIndex { $0.contains(id) }
+        return cooled(storiesAgo: index, cooldown: 1, window: lineCooldownWindow)
     }
 
     /// `items` best first, deterministically.

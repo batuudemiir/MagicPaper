@@ -22,6 +22,7 @@ final class StoryPageProvenanceTests: XCTestCase {
         for (page, engine) in zip(story.pages, composed.pages.sorted { $0.pageNumber < $1.pageNumber }) {
             let provenance = try XCTUnwrap(page.provenance)
             XCTAssertEqual(provenance.schemaVersion, PageSourcePart.schemaVersion)
+            XCTAssertTrue(provenance.isComplete)
             XCTAssertEqual(provenance.parts.map(\.sourceID), engine.provenance.map(\.sourceID))
             XCTAssertEqual(provenance.parts.map(\.sourceKind), engine.provenance.map(\.kind.rawValue))
             XCTAssertEqual(provenance.beatLineIDs, engine.variantIDs.map(\.rawValue))
@@ -71,6 +72,11 @@ final class StoryPageProvenanceTests: XCTestCase {
         """
         let provenance = try JSONDecoder().decode(StoryPageProvenance.self, from: Data(json.utf8))
         XCTAssertEqual(provenance.parts.map(\.sourceID), ["a", "b", "c"])
+        // Atlanan parça sayfayı eksik yapar; yeniden kaydedilince de eksik kalır.
+        XCTAssertFalse(provenance.isComplete)
+        let again = try JSONDecoder().decode(StoryPageProvenance.self, from: JSONEncoder().encode(provenance))
+        XCTAssertFalse(again.isComplete)
+        XCTAssertEqual(again.partCount, 4)
         XCTAssertEqual(provenance.parts.first?.contexts, ["family"])
         XCTAssertEqual(provenance.beatLineIDs, ["a"])
     }

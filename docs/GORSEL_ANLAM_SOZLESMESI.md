@@ -37,6 +37,8 @@
 
 **Bugünkü durum.** 2.721 satırdan 1.622'si `auto` etiketli (yer tutucu taşıyanlar), 1.099'u etiketsiz. Henüz `reviewed` satır yok. Öneri kuralı: yer tutucunun geçtiği cümle; konu yalın ya da tamlama ekliyse sahnede; belirtme/yönelme/ayrılma ekiyle ve en çok dört kelime sonra "hatırla/düşün/özle" geliyorsa `remembered`, "ara/bulmak/istedi/git" geliyorsa `intended`. Rastgele 30 satırlık örnekte 29 doğru.
 
+**İnceleme kuralı (20 Kasım, ilk sayfa):** yalnızca adıyla (yer tutucusuyla) geçen öğe listelenir; "bir ses duydu" gibi adsız anma keşfe bağlanmaz, çünkü bağlanan keşif görünen bir nesne olabilir. İlk sayfada adı geçen keşif `present` + `found` (sayfanın tanımı: bir şey dikkat çeker); öneri betiğinin `opened`/`examined` gibi durumları başka öğelerin fiillerinden yanlış çıkarıyordu ("gözlerini açtı"). Masal ailem karakteri görsel konusu değil. Adı geçen öğe yoksa `visual: []`.
+
 **Elle inceleme sırası (öneri):** sayfa 1 (`notice_anomaly`), keşif sayfaları (`examine`, `approach`), çözüm (`succeed`, `restore`), kapanış (`warm_close`); yani bağlayıcının en çok kullanacağı sayfalar.
 
 ## Sayfa: `ComposedPage.provenance` → `StoryPage.provenance`
@@ -44,6 +46,7 @@
 ```
 StoryPage.provenance?:
   schemaVersion: 1
+  partCount           # kayıt anında yazılan parça sayısı
   parts[]:            # sayfanın kuruluş sırasıyla
     sourceKind        # beat_line | refrain | recall
     sourceID          # satır kimliği; nakaratta "<blueprintID>#refrain.line" / "#refrain.finalLine"
@@ -58,7 +61,7 @@ StoryPage.provenance?:
 - Hatırlama satırı sayfa kurulduktan sonra en sona eklenir ve kendi parçasını alır. Yazar parmak izi (`authoredSourceFingerprint`) bu durumda bilerek düşer (`StorySpotProvenanceTests`); kaynak izi kalır.
 - Olgu cümlesi masal düzeyinde kalır (`Story.fact`).
 - Masal düzeyindeki düz `StoryOrigin.variantIDs` (satır soğuması için) değişmedi.
-- Uygulama tarafında çözümleme hoşgörülüdür: tanınmayan tür okunur, bozuk parça atlanır.
+- Uygulama tarafında çözümleme hoşgörülüdür: tanınmayan tür okunur, bozuk parça atlanır. Atlanan parça varsa `isComplete == false` (okunan parça sayısı `partCount`'tan az); yeniden kaydedilince beyan korunur. **Eksik sayfaya otomatik görsel bağlanmamalı** (ChatGPT'nin uyarısı, 20 Kasım).
 
 ## Değişmeyenler
 

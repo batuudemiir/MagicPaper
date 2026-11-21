@@ -12,7 +12,7 @@
     {
       "id": "s7n_01",
       "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "Biraz yürüdükten sonra {{child.name}} durdu. Az ileride {{discovery.name}} vardı. Geçen sefer orada değildi; {{child.name}} bundan emindi, çünkü bu yolu ezbere biliyordu.",
       "requiredSlots": [
         "child.name",
@@ -26,8 +26,8 @@
     },
     {
       "id": "s7n_02",
-      "visual": [{"subject": "discovery", "presence": "present", "states": ["examined"]}, {"subject": "companion", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "reviewed",
       "text": "{{companion.name}} durup dinledi, {{child.name}} nefesini tuttu. Yakından {{discovery.name}} geliyordu. İkisi de bunu daha önce burada hiç duymamıştı.",
       "requiredSlots": [
         "child.name",
@@ -43,7 +43,7 @@
     {
       "id": "s7n_03",
       "visual": [{"subject": "companion", "presence": "present", "states": []}],
-      "visualReview": "auto",
+      "visualReview": "reviewed",
       "text": "Her şey geçen seferki gibiydi, tek bir şey dışında. {{child.name}} bunu ilk bakışta fark etti; {{companion.name}} ise ikinci bakışta. İkisi aynı noktaya döndü.",
       "requiredSlots": [
         "child.name",

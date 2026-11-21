@@ -19,12 +19,14 @@ enum ReviewedDiscoveryArtBinder {
               pages.enumerated().allSatisfy({ story.pages[$0.offset].text == $0.element.text }) else { return story }
         var result = story
         for (index, page) in pages.enumerated() {
-            guard page.beats == [.noticeAnomaly], page.refrain == nil,
+            guard page.refrain == nil,
                   page.missingSlots.isEmpty, page.unrecognisedSuffixes.isEmpty,
                   result.pages[index].art == nil, result.pages[index].scene == nil,
                   result.pages[index].imageFileName == nil, result.pages[index].imageUrl == nil,
                   let authorization = policy.authorization(parts: page.provenance, variantIDs: page.variantIDs.map(\.rawValue),
-                    discovery: composed.content.discovery) else { continue }
+                    discovery: composed.content.discovery, blueprintID: composed.blueprintID.rawValue,
+                    pageNumber: page.pageNumber, companionID: composed.content.companion.id.rawValue),
+                  page.beats == authorization.beats else { continue }
             let asset = authorization.asset
             result.pages[index].art = StoryPageArt(role: "spot", altText: asset.altText, sourceID: asset.assetID,
                 schemaVersion: 1, assetRevision: asset.revision, assetDigest: asset.digest,

@@ -205,10 +205,11 @@ final class ProseCooldownTests: XCTestCase {
         XCTAssertTrue(story.isClean)
     }
 
-    /// Soğuma eğrisi iki eksende aynı: "üç masal önce geçti" içerik kaydı için
-    /// de proza satırı için de aynı ağırlığı veriyor.
+    /// Soğuma eğrisi iki eksende aynı fonksiyon (`cooled`), ama pencereler
+    /// ayrı (A1, 20 Kasım 2026): içerik `cooldownWindow`, satır
+    /// `lineCooldownWindow`. Bir satır, içerikten daha uzun süre soğuk kalır.
     func testBothAxesShareOneCooldownCurve() {
-        for ago in 0..<SelectionScoring.cooldownWindow {
+        for ago in 0..<SelectionScoring.lineCooldownWindow {
             var recordHistory: [ContentID?] = Array(repeating: nil, count: ago)
             recordHistory.append("x")
             let record = SelectionScoring.weight(
@@ -218,7 +219,10 @@ final class ProseCooldownTests: XCTestCase {
             lineHistory.append(["x"])
             let line = SelectionScoring.variantWeight(id: "x", recent: lineHistory)
 
-            XCTAssertEqual(record, line, accuracy: 0.0001, "\(ago) masal önce")
+            XCTAssertEqual(record, SelectionScoring.cooled(storiesAgo: ago, cooldown: 1), accuracy: 0.0001)
+            XCTAssertEqual(line, SelectionScoring.cooled(
+                storiesAgo: ago, cooldown: 1, window: SelectionScoring.lineCooldownWindow), accuracy: 0.0001)
+            XCTAssertGreaterThanOrEqual(1 - line, 1 - record, "\(ago) masal önce satır en az kayıt kadar soğuk")
         }
         XCTAssertEqual(SelectionScoring.variantWeight(id: "x", recent: []), 1)
     }
