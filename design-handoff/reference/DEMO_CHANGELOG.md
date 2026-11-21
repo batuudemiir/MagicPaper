@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa yayına hazırlık denetimi
+
+- Yeni belge `docs/ANA_SAYFA_HAZIRLIK.md`: ana sayfanın kodu, okuduğu servisler ve son ekran turu tarandı; yayını engelleyen 6, görsel 5, mimari 5, küçük 4 madde ve plan.
+- En önemli bulgu: günün masalı ücretsiz kullanıcıda kilide çarpıyor (12 günlük masalın 9'u vitrin dışında). Batuhan'ın kararına README madde 6 olarak yazıldı.
+- Kod değişmedi; test çalıştırılmadı (yalnızca belge).
+- Dosyalar: `docs/ANA_SAYFA_HAZIRLIK.md`, `README.md`, bu günlük.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Gerçek uygulamada Paywall C ve Okuma köşesi doğrulandı; ekran turunda açılış ekranı atlanır
 
 - `8475808` turu: derleme başarılı, 32 görüntü, boş yok. Abonelik ekranı Pro Max ve SE'de C ile aynı (SE'de planlar ilk ekranda). CI'da mağaza ürünü olmadığı için "%N avantajlı", "Ayda ₺X" ve deneme takvimi görünmüyor; beklenen. SE ana sayfası: selam saat çubuğuna yakın, sahnenin üstü ve altı kâğıda eriyor.
