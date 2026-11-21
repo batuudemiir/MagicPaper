@@ -212,6 +212,10 @@ enum MP {
         static let calmEdge = Palette.yesim600
         static let calmSoft = MPColor.statusSuccessSoft
 
+        /// Ana sayfa "Okuma köşesi" zemini (19 Kasım 2026, İrem): sahne görselinin
+        /// kenarının eridiği sıcak kâğıt; görsel ile sayfa arasında çizgi kalmaz.
+        static let homePaper = Palette.kagit50
+
         static let textTitle = MPColor.textPrimary
         static let textBody  = MPColor.textPrimary
         static let textMuted = MPColor.textSecondary
