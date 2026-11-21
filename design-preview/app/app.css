@@ -371,3 +371,12 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
                 border-bottom: 1px solid var(--mp-border-kid); opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 15; }
 .nook-compact.on { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .nook-compact { transition: none; } }
+
+/* Küçük ekran (iPhone SE): Paywall kapakları küçülür, fiyatlar ilk ekranda kalsın */
+@media (max-height: 700px) {
+  .pw-shelf { padding-top: 34px; padding-bottom: 8px; }
+  .pw-shelf .cv { width: 62px; }
+  .pw-shelf .cv:nth-child(2) { width: 72px; }
+  .pw-shelf ~ .center .t-page { font-size: calc(23px * var(--type)); }
+  .pw-shelf ~ .center p { display: none; }
+}

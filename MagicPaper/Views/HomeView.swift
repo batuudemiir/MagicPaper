@@ -209,7 +209,8 @@ struct HomeView: View {
     }
 
     /// Kitaplık sekmesiyle aynı model; bu akşamın davetinde sunulan kitap tekrarlanmaz.
-    private static func shelfItems(profile: UserProfile?, stories: [Story], excluding title: String?) -> [LibraryItem] {
+    /// Paywall da kullanır (kapak rafı).
+    static func shelfItems(profile: UserProfile?, stories: [Story], excluding title: String?) -> [LibraryItem] {
         let mine = MPStoryGate.visible(stories).filter { $0.belongs(to: profile) }
         let library = ClassicsLibrary.shared
         let classics = ClassicProgressStore.shared.entries.compactMap { id, entry in

@@ -296,6 +296,19 @@ class RevenueCatManager: ObservableObject {
         getPackage(for: tier, period: period) != nil
     }
 
+    /// Mağaza fiyatının sayısal değeri: Paywall yıllığın aylığa göre avantajını
+    /// sabit yazmaz, gerçek fiyattan hesaplar (21 Kasım 2026).
+    func priceAmount(for tier: SubscriptionManager.SubscriptionTier,
+                     period: BillingPeriod) -> Decimal? {
+        getPackage(for: tier, period: period)?.storeProduct.price
+    }
+
+    /// Ürünün aylık karşılığı, yerelleştirilmiş ("₺83,25"). Yıllık kartta.
+    func localizedPricePerMonth(for tier: SubscriptionManager.SubscriptionTier,
+                                period: BillingPeriod) -> String? {
+        getPackage(for: tier, period: period)?.storeProduct.localizedPricePerMonth
+    }
+
     /// Ürünün mağazada tanımlı ücretsiz deneme süresi (gün). Deneme yoksa `nil`:
     /// Paywall "ücretsiz dene" sözünü yalnızca gerçekten varsa verir (19 Kasım 2026).
     /// Not: kullanıcının denemeye hâlâ uygun olup olmadığı burada sorulmaz.
@@ -366,6 +379,12 @@ class RevenueCatManager: ObservableObject {
 
     func freeTrialDays(for tier: SubscriptionManager.SubscriptionTier,
                        period: BillingPeriod) -> Int? { nil }
+
+    func priceAmount(for tier: SubscriptionManager.SubscriptionTier,
+                     period: BillingPeriod) -> Decimal? { nil }
+
+    func localizedPricePerMonth(for tier: SubscriptionManager.SubscriptionTier,
+                                period: BillingPeriod) -> String? { nil }
 
     /// Gerçek sınıftaki eşlemenin aynısı; testler modül olmadan da derlensin.
     static func tier(forActiveSubscriptions ids: Set<String>) -> SubscriptionManager.SubscriptionTier {

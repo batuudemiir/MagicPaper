@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Paywall son tasarımı: C'nin sadeliği + A'nın başlığı
+
+- İrem seçti: prototipteki "C · Sade ve güven" düzeni, başında "A · Kitaplık" başlığı. `PaywallView` yeniden çizildi; Batuhan'ın 20 Kasım tek plan modeli, satın alma, geri yükleme, deneme ve 3.1.2 mantığı korunarak.
+- Düzen: çocuğun kitaplığından iki kapak (`HomeView.shelfItems`, boşsa haftanın seçkisi) ve kesik çizgili boş kapak; "<ad>'in kitaplığı" (`SeriesCopy.genitive`), "Her akşamın masalı bir kitaplığa dönüşsün"; yan yana Yıllık/Aylık kartı (en büyük yazıda alt alta); onay işaretli altı fayda (20 Kasım listesi); deneme takvimi yalnızca mağazada deneme varsa, hatırlatma günü deneme süresinden; güven satırı; yenileme metni. "Planları gör" ara adımı ve Ragi kalktı (satın alma yetişkin ekranı).
+- Dürüstlük: "%N avantajlı" ve "Ayda ₺X" mağaza fiyatından hesaplanır (`RevenueCatManager.priceAmount`, `localizedPricePerMonth`; modülsüz yedek sınıfta da). Ürünler gelmezse rozet görünmez, sabit yüzde yazılmaz.
+- Küçük ekran: yükseklik 700 pt altındaysa kapaklar %75, açıklama cümlesi düşer; iPhone SE'de planlar ve fiyatlar ilk ekranda (prototipte ölçüldü).
+- Bilerek değişmedi: varsayılan dönem aylık (yıllık varsayılan Batuhan'ın kararını bekliyor), deneme uygunluğu kontrolü (ayrı iş).
+- Prototip: Büyükler için → Abonelik artık son tasarımı açar (`?ortu=paywall`); A/B/C seçenekleri karşılaştırma için duruyor.
+- Test: design law grep'leri boş; `Image(systemName:)` yerine `MPIcon`. Swift yerelde derlenmedi; bu commit `[ekran]` ile derlenip Abonelik ekranı çekiliyor.
+- Dosyalar: `MagicPaper/Screens/PaywallView.swift`, `MagicPaper/Services/RevenueCatManager.swift`, `MagicPaper/Views/HomeView.swift` (`shelfItems` paylaşıldı), `design-preview/app/{paywall.js,app.css}`, `README.md`, bu günlük.
+
 ### 2026-11-21 · irem@916e8bb · Prototip: ana sayfa avatarı anonim
 
 - İrem: ana sayfanın köşesindeki avatar prototipte şimdilik görselsiz; lavanta daire içinde kişi simgesi. SwiftUI'da çocuğun kahraman avatarı (`HeroAvatarView`) kalıyor.

@@ -79,3 +79,23 @@ Object.assign(ACTIONS, {
 // Derin bağlantı: ?ortu=payA|payB|payC
 { const o = new URLSearchParams(location.search).get("ortu");
   if (["payA", "payB", "payC"].includes(o)) { S.os = "app"; S.onboarded = true; S.modal = { view: o, from: { view: "parent" } }; } }
+
+// SON TASARIM (21 Kasım 2026, İrem): C'nin sadeliği, başında A'nın başlığı.
+// SwiftUI karşılığı: Screens/PaywallView.swift. Varsayılan aylık (yıllığın
+// varsayılan olması Batuhan'ın kararını bekliyor). Büyükler için → Abonelik.
+VIEWS.paywall = () => {
+  const keep = S.pwPlan; S.pwPlan = S.pwFinal || "ay";
+  const covers = (window.MP_CONTENT ? MP_CONTENT.tales.filter((t) => t.cover && !t.seriesID).slice(0, 2).map((t) => t.cover) : []);
+  const html = `${closeBtn()}<div class="scroller" style="padding-bottom:20px">
+    <div class="pw-shelf" aria-hidden="true">${covers.map((c) => `<div class="cv" style="background-image:url(${c})"></div>`).join("")}<div class="cv next">${ic("plus")}</div></div>
+    <div class="center"><div class="t-eyebrow" style="color:var(--mp-action-primary)">${esc(CHILD)}'in kitaplığı</div>
+      <div class="t-page" style="margin-top:4px">Her akşamın masalı bir kitaplığa dönüşsün</div>
+      <p class="t-body secondary" style="margin:8px 0 0">Her akşamın masalı ücretsiz. MagicPaper Premium ile gün boyu masal yazılır, kitaplık tamamen açılır.</p></div>
+    ${planCards("row").replaceAll('data-act="pwPick"', 'data-act="pwFinalPick"')}
+    <div class="pw-checks">${["Gün boyu yeni masal", "Bütün klasikler ve MagicPaper Original masalları", "Serinin bütün bölümleri", "Masal ailem: bütün ailen masala katılır", "Ailedeki her çocuk için ayrı profil", "Yazdırılabilir PDF masal kitabı"].map((a) => `<div>${ic("check")}<span class="t-body">${a}</span></div>`).join("")}</div>
+    ${timeline()}${trust}${legal()}
+  </div>${footer()}`;
+  S.pwPlan = keep;
+  return { html };
+};
+ACTIONS.pwFinalPick = (k) => { S.pwFinal = k; render(); };
