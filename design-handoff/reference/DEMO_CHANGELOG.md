@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · codex/design-system-catalog, commit yok · Guaj nesne havuzu 20 konuya çıktı
+
+- Onaylı referanslarla altı yeni sabit çizim: kırmızı top, mavi/sarı saplı atlama ipi, kâğıt uçurtma, tahta flüt, el aynası, uzun kırmızı kurdele. Kurdele dış boya izleri image_gen ile temizlendi; v2 seçildi. Kaynak PNG'ler ve istemler kayıtlı; aynı byte'lar mpart olarak paketlendi.
+- Önceki 14 girdi ve 20/4/3/38 kaynak listeleri korundu. Kapalı dört-sürüm SHA→edition tablosu; eski pinler/v1 önceliği korunur, authorization/binder/ImageIO değişmez. Motor/metin/seed/seçim/reader UI değişikliği yok; her masalda görsel garantisi yok.
+- İki inceleme onaylı. Seçili uygulama: 91 test, 90 geçti, 1 skip, 0 hata. Gerçek altı nesne map/save fixture'ı ve 20 reader decode geçti; üç oyuncak 3–4, kurdele 5–6, flüt 7–8, ayna 9–10. Motor yeniden koşulmadı; önceki 44/0 ayrı kanıt. Telefon kurulumu/yeni UI/VoiceOver matrisi yok; önceki seri/ölçüm bulguları açık.
+- Test için yalnız önceki cihaz derlemesinin yeniden oluşturulabilir Build çıktıları ve başarısız swiftbuild .build/out önbelleği temizlendi. Dosyalar: policy/test; altı mpart+wave3manifest; araştırma/spec/plan; görseller/üretim kaydı/rapor/gerçek fixture JSON'u; proje hafızası. Rapor: design-handoff/proposals/2026-11-21-story-art-wave3/REPORT.md.
+
 ### 2026-11-21 · codex/design-system-catalog, commit yok · Üç yeni guaj nesne ve yaşlara göre kaynak eşlemesi
 
 - Yerleşik image_gen + onaylı referanslarla pirinç pusula, eski madeni para ve yıldız biçimli taş hazırlandı; saydam PNG ve aynı byte'lı mpart. Kaynak izli havuz 11→14 konu, notice izin listesi 5→20 kaynak; dört küçük yaş destek satırı eklendi.

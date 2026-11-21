@@ -6,7 +6,10 @@ final class ReviewedDiscoveryArtPolicyTests: XCTestCase {
     func testExpansionAuthorizesEverySubjectSourceAndRecallWithCoupledAsset() throws {
         let policy = try XCTUnwrap(ReviewedDiscoveryArtPolicy.bundled)
         let catalog = try ContentCatalogLoader().load().catalog
-        XCTAssertEqual(policy.entries.count, 14)
+        XCTAssertEqual(policy.entries.count, 20)
+        XCTAssertEqual(policy.sources.count, 20)
+        XCTAssertEqual(policy.pairedSources.count, 4)
+        XCTAssertEqual(policy.pairedBlueprintIDs.count, 3)
         for entry in policy.entries {
             let object = try XCTUnwrap(catalog.objects.first { $0.id.rawValue == entry.asset.subjectID })
             var json = try XCTUnwrap(JSONSerialization.jsonObject(with: JSONEncoder().encode(object)) as? [String: Any])
@@ -133,55 +136,83 @@ final class ReviewedDiscoveryArtPolicyTests: XCTestCase {
         XCTAssertTrue(policy.pairedBlueprintIDs.isEmpty)
     }
 
+    func testOldFourteenSubjectManifestRemainsReadable() throws {
+        let url = try XCTUnwrap(Bundle.main.url(forResource: "reviewed-discovery-art-wave2-v2", withExtension: "json"))
+        let policy = try XCTUnwrap(ReviewedDiscoveryArtPolicy.load(data: Data(contentsOf: url)) { _, _ in true })
+        XCTAssertEqual(policy.entries.count, 14)
+        XCTAssertEqual(policy.sources.count, 20)
+        XCTAssertEqual(policy.pairedSources.count, 4)
+        XCTAssertEqual(policy.pairedBlueprintIDs.count, 3)
+    }
+
     @MainActor
     func testWaveTwoRealComposerMapsNewSubjectsAndAgeBandsWithoutChangingText() throws {
-        let catalog = try ContentCatalogLoader().load().catalog
-        let policy = try XCTUnwrap(ReviewedDiscoveryArtPolicy.bundled)
-        let cases = [("3-4", "object_compass_001"), ("7-8", "object_coin_001"),
-                     ("9-10", "object_star_stone_001")]
-        for (age, discovery) in cases {
-            var matched = false
-            for blueprint in catalog.blueprints where blueprint.ageRange.description == age {
-                if age == "3-4" && !policy.pairedBlueprintIDs.contains(blueprint.id.rawValue) { continue }
-                for seed in 0..<48 {
-                    let intent = OfflineStoryIntent(childName: "Deniz", discoveryID: ContentID(discovery),
-                        seed: "reviewed-wave2-\(seed)")
-                    guard let composed = try? OfflineStoryComposer().compose(blueprint: blueprint, catalog: catalog, intent: intent),
-                          composed.pages.contains(where: { policy.authorization(parts: $0.provenance,
-                            variantIDs: $0.variantIDs.map(\.rawValue), discovery: composed.content.discovery,
-                            blueprintID: composed.blueprintID.rawValue, pageNumber: $0.pageNumber,
-                            companionID: composed.content.companion.id.rawValue) != nil }) else { continue }
-                    if age == "3-4" {
-                        XCTAssertEqual(composed.pages.first?.beats, [.noticeAnomaly, .meetCompanion])
-                    }
-                    let story = OfflineStoryMapper.appStory(from: composed, childName: "Deniz", childProfileID: UUID(),
-                        storyIdeaID: nil, catalogVersion: catalog.version)
-                    XCTAssertEqual(story.pages.map(\.text), composed.pages.sorted { $0.pageNumber < $1.pageNumber }.map(\.text))
-                    let art = try XCTUnwrap(story.pages.compactMap(\.art).first)
-                    XCTAssertEqual(art.subjectID, discovery)
-                    XCTAssertEqual(art.bindingPolicyVersion, 2)
-                    let artIndex = try XCTUnwrap(story.pages.firstIndex { $0.art != nil })
-                    let page = composed.pages.sorted { $0.pageNumber < $1.pageNumber }[artIndex]
-                    let evidence = "age=\(age) blueprint=\(blueprint.id.rawValue) seed=reviewed-wave2-\(seed) subject=\(discovery) page=\(page.pageNumber) beats=\(page.beats.map(\.rawValue)) variants=\(page.variantIDs.map(\.rawValue))"
-                    XCTContext.runActivity(named: evidence) { activity in
-                        let attachment = XCTAttachment(string: evidence)
-                        attachment.lifetime = .keepAlways
-                        activity.add(attachment)
-                    }
-                    XCTAssertNotNil(StorySpotAssetResolver.url(for: art))
-                    let saved = try JSONDecoder().decode(MagicPaper.Story.self, from: JSONEncoder().encode(story))
-                    XCTAssertEqual(saved.pages.compactMap(\.art), story.pages.compactMap(\.art))
-                    matched = true
-                    break
-                }
-                if matched { break }
-            }
-            XCTAssertTrue(matched, "Missing real composed fixture: \(age) \(discovery)")
+        for (age, discovery) in [("3-4", "object_compass_001"), ("7-8", "object_coin_001"),
+                                  ("9-10", "object_star_stone_001")] {
+            try assertRealComposition(age: age, discovery: discovery, wave: "wave2")
         }
     }
 
+    @MainActor
+    func testWaveThreeRealComposerMapsSixSubjectsWithoutChangingText() throws {
+        for (age, discovery) in [("3-4", "object_ball_001"), ("3-4", "object_jump_rope_001"),
+                                  ("3-4", "object_kite_001"), ("5-6", "object_ribbon_001"),
+                                  ("7-8", "object_flute_001"), ("9-10", "object_mirror_001")] {
+            try assertRealComposition(age: age, discovery: discovery, wave: "wave3")
+        }
+    }
+
+    @MainActor
+    private func assertRealComposition(age: String, discovery: String, wave: String) throws {
+        let catalog = try ContentCatalogLoader().load().catalog
+        let policy = try XCTUnwrap(ReviewedDiscoveryArtPolicy.bundled)
+        var matched = false
+        for blueprint in catalog.blueprints where blueprint.ageRange.description == age {
+            if age == "3-4" && !policy.pairedBlueprintIDs.contains(blueprint.id.rawValue) { continue }
+            for seed in 0..<48 {
+                let intent = OfflineStoryIntent(childName: "Deniz",
+                    settingID: age == "3-4" && wave == "wave3" ? ContentID("setting_village_green_001") : nil,
+                    discoveryID: ContentID(discovery),
+                    seed: "reviewed-\(wave)-\(seed)")
+                guard let composed = try? OfflineStoryComposer().compose(blueprint: blueprint, catalog: catalog, intent: intent),
+                      composed.pages.contains(where: { policy.authorization(parts: $0.provenance,
+                        variantIDs: $0.variantIDs.map(\.rawValue), discovery: composed.content.discovery,
+                        blueprintID: composed.blueprintID.rawValue, pageNumber: $0.pageNumber,
+                        companionID: composed.content.companion.id.rawValue) != nil }) else { continue }
+                XCTAssertEqual(composed.content.discovery.id.rawValue, discovery)
+                if age == "3-4" {
+                    if wave == "wave3" {
+                        XCTAssertEqual(composed.content.setting.id.rawValue, "setting_village_green_001")
+                    }
+                    XCTAssertEqual(composed.pages.first?.beats, [.noticeAnomaly, .meetCompanion])
+                }
+                let story = OfflineStoryMapper.appStory(from: composed, childName: "Deniz", childProfileID: UUID(),
+                    storyIdeaID: nil, catalogVersion: catalog.version)
+                XCTAssertEqual(story.pages.map(\.text), composed.pages.sorted { $0.pageNumber < $1.pageNumber }.map(\.text))
+                let art = try XCTUnwrap(story.pages.compactMap(\.art).first)
+                XCTAssertEqual(art.subjectID, discovery)
+                XCTAssertEqual(art.bindingPolicyVersion, 2)
+                let artIndex = try XCTUnwrap(story.pages.firstIndex { $0.art != nil })
+                let page = composed.pages.sorted { $0.pageNumber < $1.pageNumber }[artIndex]
+                let evidence = "age=\(age) blueprint=\(blueprint.id.rawValue) seed=reviewed-\(wave)-\(seed) subject=\(discovery) page=\(page.pageNumber) beats=\(page.beats.map(\.rawValue)) variants=\(page.variantIDs.map(\.rawValue))"
+                XCTContext.runActivity(named: evidence) { activity in
+                    let attachment = XCTAttachment(string: evidence)
+                    attachment.lifetime = .keepAlways
+                    activity.add(attachment)
+                }
+                XCTAssertNotNil(StorySpotAssetResolver.url(for: art))
+                let saved = try JSONDecoder().decode(MagicPaper.Story.self, from: JSONEncoder().encode(story))
+                XCTAssertEqual(saved.pages.compactMap(\.art), story.pages.compactMap(\.art))
+                matched = true
+                break
+            }
+            if matched { break }
+        }
+        XCTAssertTrue(matched, "Missing real composed fixture: \(age) \(discovery)")
+    }
+
     func testExpansionManifestAndEveryMissingAssetFailClosed() throws {
-        let url = try XCTUnwrap(Bundle.main.url(forResource: "reviewed-discovery-art-wave2-v2", withExtension: "json"))
+        let url = try XCTUnwrap(Bundle.main.url(forResource: "reviewed-discovery-art-wave3-v2", withExtension: "json"))
         let data = try Data(contentsOf: url)
         let policy = try XCTUnwrap(ReviewedDiscoveryArtPolicy.load(data: data) { _, _ in true })
         for entry in policy.entries {
@@ -410,6 +441,7 @@ final class ReviewedDiscoveryArtPolicyTests: XCTestCase {
     @MainActor
     func testEveryReviewedBundledRevisionDecodesInReader() async throws {
         let policy = try XCTUnwrap(ReviewedDiscoveryArtPolicy.bundled)
+        XCTAssertEqual(policy.entries.count, 20)
         for entry in policy.entries {
             let asset = entry.asset
             let art = StoryPageArt(role: "spot", altText: asset.altText, sourceID: asset.assetID,

@@ -49,47 +49,68 @@ struct ReviewedDiscoveryArtPolicy {
     let pairedSources: [Source]
     let pairedBlueprintIDs: [String]
 
+    private struct Edition {
+        let reviewID: String
+        let entryCount: Int
+        let sourceCount: Int
+        let supportCount: Int
+        let blueprintCount: Int
+    }
+    private static let editions: [String: Edition] = [
+        "5a39b3e776a6a0c7cdd70c7f8eb03743a242a58a1fd5045f94e1bee1763d8af4":
+            Edition(reviewID: "manual-isolated-bell-2026-11-20", entryCount: 1,
+                    sourceCount: 5, supportCount: 0, blueprintCount: 0),
+        "28b285072990b172843f39c88d7b4275472a36b49d38ff0dc40b8877f6771f4c":
+            Edition(reviewID: "manual-isolated-discoveries-2026-11-21", entryCount: 11,
+                    sourceCount: 5, supportCount: 0, blueprintCount: 0),
+        "7ff4a60b417fa71f560354b80344af5a5112e0ed1bb019feea9e98ff481cd91d":
+            Edition(reviewID: "manual-isolated-discoveries-wave2-2026-11-21", entryCount: 14,
+                    sourceCount: 20, supportCount: 4, blueprintCount: 3),
+        "c065eb4b4a1c400c00b5225b4e6aadce77630040116713e0e5e45f70895ac897":
+            Edition(reviewID: "manual-isolated-discoveries-wave3-2026-11-21", entryCount: 20,
+                    sourceCount: 20, supportCount: 4, blueprintCount: 3)
+    ]
+
     static let bundled: Self? = {
-        guard let url = Bundle.main.url(forResource: "reviewed-discovery-art-wave2-v2", withExtension: "json"),
+        guard let url = Bundle.main.url(forResource: "reviewed-discovery-art-wave3-v2", withExtension: "json"),
               let data = try? Data(contentsOf: url) else { return nil }
         return load(data: data, validateFile: validatesBundledImage)
     }()
 
     static func load(data: Data, validateFile: (String, String) -> Bool) -> Self? {
         let digest = SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
-        let legacy = digest == "5a39b3e776a6a0c7cdd70c7f8eb03743a242a58a1fd5045f94e1bee1763d8af4"
-        let wave2 = digest == "7ff4a60b417fa71f560354b80344af5a5112e0ed1bb019feea9e98ff481cd91d"
-        guard legacy || wave2 || digest == "28b285072990b172843f39c88d7b4275472a36b49d38ff0dc40b8877f6771f4c",
+        guard let edition = editions[digest],
               let manifest = try? JSONDecoder().decode(Manifest.self, from: data),
               manifest.schemaVersion == 1, manifest.bindingPolicyVersion == 2,
-              manifest.reviewID == (legacy ? "manual-isolated-bell-2026-11-20" : wave2 ? "manual-isolated-discoveries-wave2-2026-11-21" : "manual-isolated-discoveries-2026-11-21"),
+              manifest.reviewID == edition.reviewID,
               manifest.catalogVersion == "2.1.0" else { return nil }
+        let legacy = edition.entryCount == 1
         let entries: [Entry]
         if legacy, let asset = manifest.asset, let fingerprint = manifest.canonicalDiscoveryFingerprint {
             entries = [Entry(canonicalDiscoveryFingerprint: fingerprint, asset: asset)]
         } else {
             guard !legacy, manifest.asset == nil, manifest.canonicalDiscoveryFingerprint == nil,
-                  let expanded = manifest.entries, expanded.count == (wave2 ? 14 : 11) else { return nil }
+                  let expanded = manifest.entries, expanded.count == edition.entryCount else { return nil }
             entries = expanded
         }
         let policy = Self(schemaVersion: manifest.schemaVersion, bindingPolicyVersion: manifest.bindingPolicyVersion,
             reviewID: manifest.reviewID, catalogVersion: manifest.catalogVersion,
             entries: entries, sources: manifest.sources, recalls: manifest.recalls,
             pairedSources: manifest.pairedSources ?? [], pairedBlueprintIDs: manifest.pairedBlueprintIDs ?? [])
-        return policy.validated(validateFile: validateFile) ? policy : nil
+        return policy.validated(edition: edition, validateFile: validateFile) ? policy : nil
     }
 
-    private func validated(validateFile: (String, String) -> Bool) -> Bool {
+    private func validated(edition: Edition, validateFile: (String, String) -> Bool) -> Bool {
         guard Set(entries.map { $0.asset.subjectID }).count == entries.count,
               Set(entries.map { $0.asset.fileName }).count == entries.count,
               Set(entries.map(\.canonicalDiscoveryFingerprint)).count == entries.count,
               entries.allSatisfy({ Self.validDigest($0.canonicalDiscoveryFingerprint) }),
               Set(sources.map { $0.templateID + ":" + $0.sourceID }).count == sources.count,
-              sources.count == (entries.count == 14 ? 20 : 5), recalls.count == 38,
+              sources.count == edition.sourceCount, recalls.count == 38,
               Set(recalls.map(\.sourceID)).count == recalls.count,
               sources.allSatisfy({ $0.decision == "discovery_present" && Self.validDigest($0.sourceTextDigest) }),
-              pairedSources.count == (entries.count == 14 ? 4 : 0),
-              pairedBlueprintIDs.count == (entries.count == 14 ? 3 : 0),
+              pairedSources.count == edition.supportCount,
+              pairedBlueprintIDs.count == edition.blueprintCount,
               Set(pairedSources.map { $0.templateID + ":" + $0.sourceID }).count == pairedSources.count,
               pairedSources.allSatisfy({ $0.templateID == "corpus_3-4_meet_companion"
                   && $0.decision == "no_discovery_contradiction" && Self.validDigest($0.sourceTextDigest) }),
