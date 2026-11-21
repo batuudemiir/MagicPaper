@@ -165,7 +165,7 @@ struct HomeView: View {
         case .unread(let daily):
             return .unread(title: daily.title, meta: "\(daily.minutes) dakika")
         case .readToday:
-            return .readToday
+            return .readToday(canWrite: app.canWriteNewStoryToday)
         }
     }
 

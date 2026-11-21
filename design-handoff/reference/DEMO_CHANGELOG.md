@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Hak bitince bu akşamın kartı kitaplığa çağırır (ana sayfa A2)
+
+- Sorun: ücretsiz kullanıcı bugün okuduysa ve günün masalını da yazdıysa kartın tek birincil düğmesi "Yeni masal yaz" kilit penceresi açıyordu.
+- `TonightState.readToday(canWrite:)`. Hak yoksa kart: "Bugün okudun" · "Yarın yeni bir masal var" · "Bu akşam kitaplığından bir masal okuyalım." · **Kitaplığına bak** (`books.vertical`). Sayı, saat, geri sayım yok.
+- Karar tek yerde: `MPAppState.canWriteNewStoryToday` (`isUnlocked(.unlimitedTextStories)`); kartın metni ve `openTonight` aynı cevabı okur, hak yoksa Kitaplık sekmesi açılır.
+- Bilerek değişmedi: Masal yaz dairesi ve "Yeni bir masal yaz" karoları kilit penceresine gitmeye devam eder (o pencere zaten sakin ve "Kitaplığa bak" sunuyor). Widget ve Siri yolu aynı.
+- Bilinen açık: uyku saatinde "Uyku masalı yaz" penceresindeki "uyku masalı" seçeneği hak bitmişse yine kilit penceresine gider; ayrı madde olarak denetime eklenecek.
+- Test: birim testi yazılmadı (`MPAppState` tekil servislere bağlı; ana sayfa modeli C1'de test edilecek). `[ekran]` turu derlemeyi doğrular.
+- Dosyalar: `DesignSystem/Pastel/MPStory.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `Screens/MPAppState.swift`, `Views/HomeView.swift`, `MagicPaperTests/DesignSystemSnapshotTests.swift`.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Günün masalı her zaman ücretsiz (ana sayfa A1)
 
 - Sorun: ana sayfa kartındaki günün masalı (Original) çoğu gün ücretsiz vitrinin dışındaydı (uygulamayla gelen 12 masalın 9'u); ücretsiz kullanıcıda "Masalı oku" kilit penceresi açıyordu.

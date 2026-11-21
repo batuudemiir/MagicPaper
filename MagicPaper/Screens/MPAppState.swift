@@ -130,9 +130,18 @@ final class MPAppState: ObservableObject {
         case .unread:
             if let daily = resolved.daily { readOriginal(daily) }
         case .readToday:
-            if !fromSurface { startStoryCreation() }
+            guard !fromSurface else { return }
+            // Ücretsiz günün masalı da yazıldıysa kart kilide değil kitaplığa
+            // götürür (21 Kasım 2026, ANA_SAYFA_HAZIRLIK A2). Masal yaz dairesi
+            // ve mod karoları kilit penceresine gitmeye devam eder.
+            if canWriteNewStoryToday { startStoryCreation() } else { router.tab = .library }
         }
     }
+
+    /// Bugün yeni bir masal yazılabilir mi (ücretsizde günde bir; abonede hep).
+    /// Bu akşamın kartı metnini ve düğmesini buna göre seçer. Karar
+    /// `EntitlementPolicy`'de; bu yalnızca soru.
+    var canWriteNewStoryToday: Bool { isUnlocked(.unlimitedTextStories) }
 
     /// 26 · Uyku modu: çocuğun son uyku masalı, yoksa günün masalı; ikisi de
     /// yoksa uyku öncesi modunda yeni bir masal. Uyku modu kapalıyken (v1)

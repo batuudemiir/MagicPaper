@@ -353,9 +353,11 @@ struct HomeHeroCard: View {
 
     private var eyebrow: String { switch state { case .resume: "Kaldığın yerden"; case .unread: "Bu akşamın masalı"; case .readToday: "Bugün okudun"; case .bedtime(let t): "Saat \(t)" } }
     private var title: String { switch state { case .resume(_, let t, _): t; case .unread(let t, _): t; case .readToday: "Yarın yeni bir masal var"; case .bedtime: "Uyku masalı zamanı" } }
-    private var sub: String { switch state { case .resume(_, _, let m): m; case .unread(_, let m): m; case .readToday: "İstersen bu akşam bir tane daha yazalım."; case .bedtime: "Kısa, sakin bir masalla günü kapatalım." } }
-    private var buttonTitle: String { switch state { case .resume: "Okumaya devam et"; case .unread: "Masalı oku"; case .readToday: "Yeni masal yaz"; case .bedtime: "Uyku masalı yaz" } }
-    private var buttonIcon: String { switch state { case .resume: "book"; case .unread: "book"; case .readToday: "wand.and.sparkles"; case .bedtime: "moon.fill" } }
+    // Ücretsiz günün masalı da yazıldıysa (`canWrite == false`) kart kilide
+    // götürmez: kitaplığa çağırır. Sayı ve saat yok (21 Kasım 2026, A2).
+    private var sub: String { switch state { case .resume(_, _, let m): m; case .unread(_, let m): m; case .readToday(let canWrite): canWrite ? "İstersen bu akşam bir tane daha yazalım." : "Bu akşam kitaplığından bir masal okuyalım."; case .bedtime: "Kısa, sakin bir masalla günü kapatalım." } }
+    private var buttonTitle: String { switch state { case .resume: "Okumaya devam et"; case .unread: "Masalı oku"; case .readToday(let canWrite): canWrite ? "Yeni masal yaz" : "Kitaplığına bak"; case .bedtime: "Uyku masalı yaz" } }
+    private var buttonIcon: String { switch state { case .resume: "book"; case .unread: "book"; case .readToday(let canWrite): canWrite ? "wand.and.sparkles" : "books.vertical"; case .bedtime: "moon.fill" } }
 }
 
 // MARK: - Bölüm
@@ -536,7 +538,8 @@ struct HomeModeTile: View {
         VStack(spacing: MPSpacing.xl) {
             HomeHeroCard(state: .resume(progress: 0.37, title: "Şehri Kurtaran Gün", meta: "Sayfa 3 / 8")) {}
             HomeHeroCard(state: .unread(title: "Ormandaki Fısıltı", meta: "5 dakika")) {}
-            HomeHeroCard(state: .readToday) {}
+            HomeHeroCard(state: .readToday(canWrite: true)) {}
+            HomeHeroCard(state: .readToday(canWrite: false)) {}
             HomeHeroCard(state: .bedtime(time: "20.30"), isNight: true) {}
             HStack(spacing: MPSpacing.sm) {
                 HomeModeTile(title: "Uyku öncesi", systemImage: "moon", tone: .lav) {}

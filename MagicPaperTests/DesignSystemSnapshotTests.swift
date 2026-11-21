@@ -83,7 +83,7 @@ final class DesignSystemSnapshotTests: XCTestCase {
         assertBoth(
             VStack(spacing: MP.S.x4) {
                 HomeHeroCard(state: .resume(progress: 0.37, title: "Şehri Kurtaran Gün", meta: "Sayfa 3 / 8")) {}
-                HomeHeroCard(state: .readToday) {}
+                HomeHeroCard(state: .readToday(canWrite: true)) {}
             },
             height: 860, largeHeight: 1500)
     }
