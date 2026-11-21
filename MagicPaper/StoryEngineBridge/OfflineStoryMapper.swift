@@ -88,6 +88,8 @@ enum OfflineStoryMapper {
             imagePrompt: page.visualScene
         )
         appPage.reading = StoryPageReading(role: page.role.rawValue, refrain: page.refrain)
+        // Kaynak izi sayfanın son hâliyle (hatırlama dahil) saklanır.
+        appPage.provenance = StoryPageProvenance(engine: page.provenance)
         let words = storyWords(page.words, in: page.text)
         appPage.words = words.isEmpty ? nil : words
         return appPage

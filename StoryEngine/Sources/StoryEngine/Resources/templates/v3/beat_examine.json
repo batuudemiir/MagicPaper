@@ -25,6 +25,8 @@
     },
     {
       "id": "ex_s_light_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["examined"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} çömelip {{discovery.name}} inceledi. Dokunmadı, sadece uzun uzun baktı. Bir tarafı diğerinden çok daha parlaktı. Neden böyle olduğunu çıkaramadı.",
       "words": ["w56_comelmek"],
       "requiredSlots": [
@@ -97,6 +99,8 @@
     },
     {
       "id": "ex_s_trace_03",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} izleri saydı, sonra bir daha saydı. Sayı hiç değişmedi. İzler {{setting.name}}'ın içine doğru gidiyor, geri dönmüyordu.",
       "requiredSlots": [
         "child.name",
@@ -184,6 +188,8 @@
     },
     {
       "id": "ex_s_any_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["examined"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} iyice yaklaştı ve dikkatle inceledi. {{discovery.name}} beklediği gibi değildi. Bir süre öylece durdu ve düşündü. Sorusu daha da çoğaldı.",
       "requiredSlots": [
         "child.name",
@@ -194,6 +200,8 @@
     },
     {
       "id": "ex_s_any_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Ne olduğunu anlamak kolay değildi. {{child.name}} uzun uzun üstünde durdu, sonra bir adım geri çekildi. {{discovery.name}} hâlâ bir bilmeceydi. Ama artık daha çok şey biliyordu.",
       "requiredSlots": [
         "child.name",
@@ -204,6 +212,8 @@
     },
     {
       "id": "ex_p_any_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["examined"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} iyice yaklaştı. {{discovery.name}} ne olursa olsun, buraya ait değildi.",
       "requiredSlots": [
         "child.name",
@@ -214,6 +224,8 @@
     },
     {
       "id": "ex_p_any_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Yaklaştı, durdu, dikkatini verdi. {{discovery.name}} hakkında hiçbir fikri yoktu henüz.",
       "requiredSlots": [
         "discovery.name"

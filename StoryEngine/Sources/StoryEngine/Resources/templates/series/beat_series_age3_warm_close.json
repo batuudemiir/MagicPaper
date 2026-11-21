@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "swc3_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile {{companion.name}} yan yana oturdu. Hava ılıktı. Her şey yerli yerindeydi.",
       "requiredSlots": [
         "child.name",
@@ -30,6 +32,8 @@
     },
     {
       "id": "swc3_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} {{child.name}}'e sarıldı. Sonra ikisi de güldü. Ne güzel bir gün.",
       "words": ["w34_sarilmak"],
       "requiredSlots": [
@@ -51,6 +55,8 @@
     },
     {
       "id": "swc3_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "Güneş battı. {{companion.name}} evine döndü. {{child.name}} kendi evine döndü, mutluydu.",
       "requiredSlots": [
         "companion.name",
@@ -282,6 +288,8 @@
     },
     {
       "id": "swc3h_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile {{companion.name}} yan yana oturdu. Bugün yeni bir şey öğrenmişlerdi. İkisi de çok mutluydu.",
       "requiredSlots": [
         "child.name",
@@ -308,6 +316,8 @@
     },
     {
       "id": "swc3h_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "\"Ne güzel bir maceraydı,\" dedi {{child.name}}. {{companion.name}} gülümsedi. Her şey yerli yerindeydi.",
       "requiredSlots": [
         "child.name",

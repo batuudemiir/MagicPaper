@@ -10,6 +10,8 @@
   "variants": [
     {
       "id": "a9_td_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "İlk gün {{child.name}} çok şey yaptı, belki gereğinden fazla. İkinci gün daha azını yaptı ama daha doğrusunu. Üçüncü gün bir düzen oturmuştu: önce bakmak, sonra düzeltmek, en son biraz oturup eşlik etmek. {{companion.name}} bu düzene yavaş yavaş alıştı.",
       "requiredSlots": [
         "child.name",
@@ -29,6 +31,8 @@
     },
     {
       "id": "a9_td_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Bakmak, {{child.name}}'in sandığından hem daha kolay hem daha zordu. Kolaydı, çünkü yapılacak şeyler küçüktü. Zordu, çünkü her gün yapılmaları gerekiyordu, canı istemese bile. {{child.name}} bir gün bile aksatmadı; {{companion.name}} bunu fark etti.",
       "requiredSlots": [
         "child.name",
@@ -39,6 +43,8 @@
     },
     {
       "id": "a9_td_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} her sabah aynı sırayla çalıştı: önce {{companion.name}}'e baktı, sonra suyunu tazeledi, en son yanında biraz oturdu. Bazı günler bir şeyi yanlış yaptı ve ertesi gün düzeltti. Yavaş yavaş, bakmanın bir ezber değil, dikkatle öğrenilen bir iş olduğunu anladı.",
       "requiredSlots": [
         "child.name",

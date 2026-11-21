@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "s9ra_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bunun yeri burası değil,\" dedi {{companion.name}} düşünceli bir sesle. \"Nereye ait olduğunu biliyorum; ama oraya tek başıma götüremem.\"",
       "requiredSlots": [
         "companion.name"
@@ -20,6 +22,8 @@
     },
     {
       "id": "s9ra_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} usulca açıkladı: bu şey evinden uzak düşmüştü ve geri dönmesi gerekiyordu. Yolu biliyordu, ama birinin dikkatle taşıması lazımdı.",
       "requiredSlots": [
         "companion.name"
@@ -29,6 +33,8 @@
     },
     {
       "id": "s9ra_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Onu evine götürmeme yardım eder misin, {{child.name}}?\" diye sordu {{companion.name}}. \"Yol uzun değil, ama dikkat ister.\"",
       "requiredSlots": [
         "child.name",

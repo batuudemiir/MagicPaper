@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "sr_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} o sabah yine {{setting.name}}'a gitti. {{companion.name}} her zamanki yerinde onu bekliyordu. İkisi birbirini görünce aynı anda gülümsedi.",
       "requiredSlots": [
         "child.name",
@@ -22,6 +24,8 @@
     },
     {
       "id": "sr_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yolu artık ezbere biliyordu. {{setting.name}}'a varır varmaz {{companion.name}} karşısına çıktı. \"Geldin işte,\" dedi sevinçle. \"Seni çok bekledim.\"",
       "requiredSlots": [
         "child.name",
@@ -33,6 +37,8 @@
     },
     {
       "id": "sr_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yine {{setting.name}}'a geldi. {{companion.name}} ile ilk buluştukları günü düşündü. O günkü {{keepsake.name}} hâlâ aklındaydı. İkisi de onu unutmamıştı.",
       "requiredSlots": [
         "child.name",
@@ -45,6 +51,8 @@
     },
     {
       "id": "sr_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{setting.name}}'a vardığında {{companion.name}} onu bekliyordu. İkisi önce {{keepsake.name}}'i konuştu, o günü uzun uzun andılar. Sonra yeni bir güne başladılar.",
       "requiredSlots": [
         "child.name",
@@ -57,6 +65,8 @@
     },
     {
       "id": "sr_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Güneşli bir sabahtı. {{child.name}} yine {{setting.name}}'a doğru yürüdü. {{companion.name}} onu uzaktan görünce sevinçle yanına geldi. \"Hoş geldin,\" dedi.",
       "requiredSlots": [
         "child.name",
@@ -68,6 +78,8 @@
     },
     {
       "id": "sr_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bugün {{setting.name}}'a erkenden geldi. {{companion.name}} daha yeni uyanıyordu. \"Günaydın,\" dedi {{child.name}} usulca. {{companion.name}} gözlerini açıp ona gülümsedi.",
       "words": ["w56_usulca"],
       "requiredSlots": [
@@ -80,6 +92,8 @@
     },
     {
       "id": "sr_fam_sib_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bu sabah kardeşi {{family.name}} ile {{setting.name}}'a geldi. {{companion.name}} ikisini görünce sevindi. \"Bugün iki kişisiniz,\" dedi gülümseyerek.",
       "requiredSlots": [
         "child.name",
@@ -96,6 +110,8 @@
     },
     {
       "id": "sr_fam_sib_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} kardeşi {{family.name}}'ın elini tuttu, birlikte {{setting.name}}'a yürüdüler. {{companion.name}} onları her zamanki yerde bekliyordu. Üçü de çok sevindi.",
       "requiredSlots": [
         "child.name",
@@ -112,6 +128,8 @@
     },
     {
       "id": "sr_fam_fr_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bugün arkadaşı {{family.name}} ile buluştu. İkisi birlikte {{setting.name}}'a gitti. {{companion.name}} ikisini her zamanki gibi sevinçle karşıladı.",
       "requiredSlots": [
         "child.name",
@@ -128,6 +146,8 @@
     },
     {
       "id": "sr_fam_fr_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yolda arkadaşı {{family.name}}'a {{companion.name}}'i anlattı. {{setting.name}}'a vardıklarında {{companion.name}} oradaydı, ikisine de gülümsedi. \"İkiniz de hoş geldiniz,\" dedi neşeyle.",
       "requiredSlots": [
         "child.name",
@@ -144,6 +164,8 @@
     },
     {
       "id": "sr_fam_an_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}}, {{family.possessive}} {{family.name}} ile {{setting.name}}'a gitti. {{companion.name}} ikisini görünce sevinçle yanlarına geldi. Üçü de birbirini çok seviyordu.",
       "requiredSlots": [
         "child.name",
@@ -161,6 +183,8 @@
     },
     {
       "id": "sr_fam_an_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bugün yalnız değildi. Yanında {{family.possessive}} {{family.name}} vardı. {{setting.name}}'a vardıklarında {{companion.name}} ikisini sevinçle karşıladı. Üçü hemen tanışıp kaynaştı.",
       "words": ["w56_kaynasmak"],
       "requiredSlots": [
@@ -179,6 +203,8 @@
     },
     {
       "id": "sr_fam_im_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} hayali arkadaşı {{family.name}} ile yine {{setting.name}}'a geldi. {{companion.name}} onu göremiyordu, ama anlatılanları dinleyip gülümsedi. Bu çok hoşuna gitti.",
       "requiredSlots": [
         "child.name",
@@ -195,6 +221,8 @@
     },
     {
       "id": "sr_fam_im_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yürürken hayali arkadaşı {{family.name}} ile konuşuyordu. {{setting.name}}'a vardıklarında {{companion.name}} onları her zamanki yerde bekliyordu. Gün güzel başlamıştı.",
       "requiredSlots": [
         "child.name",
@@ -211,6 +239,8 @@
     },
     {
       "id": "sr_fam_sib_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile kardeşi {{family.name}} bu sabah erkenden yola çıktı. {{setting.name}}'a vardıklarında {{companion.name}} onları bekliyordu. \"Günaydın ikinize de,\" dedi neşeyle.",
       "requiredSlots": [
         "child.name",
@@ -226,6 +256,8 @@
     },
     {
       "id": "sr_fam_sib_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yolda kardeşi {{family.name}}'a geçen seferi anlattı. {{family.name}} her şeyi merakla dinledi. {{setting.name}}'a vardıklarında {{companion.name}} ikisini sevinçle karşıladı.",
       "requiredSlots": [
         "child.name",
@@ -241,6 +273,8 @@
     },
     {
       "id": "sr_fam_fr_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bugün arkadaşı {{family.name}} ile birlikte geldi. {{companion.name}} onları her zamanki yerde bekliyordu. Üçü bir süre sohbet etti, sonra yürüyüşe çıktılar.",
       "requiredSlots": [
         "child.name",
@@ -255,6 +289,8 @@
     },
     {
       "id": "sr_fam_fr_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} sabah kapıyı açınca arkadaşı {{family.name}}'ı gördü. Birlikte {{setting.name}}'a gittiler. {{companion.name}} ikisini görünce sevinçle gülümsedi ve yanlarına geldi.",
       "requiredSlots": [
         "child.name",
@@ -270,6 +306,8 @@
     },
     {
       "id": "sr_fam_an_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bu sabah {{family.possessive}} {{family.name}} ile birlikte {{setting.name}}'a gitti. {{companion.name}} ikisini uzaktan hemen tanıdı, çok sevindi. Üçü uzun uzun birbirini selamladı.",
       "requiredSlots": [
         "child.name",
@@ -286,6 +324,8 @@
     },
     {
       "id": "sr_fam_an_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yola çıkarken {{family.possessive}} {{family.name}} hemen peşine takıldı. {{setting.name}}'a vardıklarında {{companion.name}} ikisini sevinçle karşıladı. Bugün de güzel bir gün olacaktı.",
       "requiredSlots": [
         "child.name",
@@ -302,6 +342,8 @@
     },
     {
       "id": "sr_fam_im_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} hayali arkadaşı {{family.name}}'a yolu tek tek gösterdi. Birlikte {{setting.name}}'a vardılar. {{companion.name}} onları her zamanki yerde bekliyordu, çok sevindi.",
       "requiredSlots": [
         "child.name",
@@ -317,6 +359,8 @@
     },
     {
       "id": "sr_fam_im_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bugün hayali arkadaşı {{family.name}} ile birlikteydi. {{setting.name}}'a varınca {{companion.name}}'e ondan söz etti. {{companion.name}} dikkatle dinledi ve sevinçle gülümsedi.",
       "requiredSlots": [
         "child.name",

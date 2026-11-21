@@ -22,7 +22,7 @@ struct StoryContext: Equatable {
     var family: FamilyCharacter?
     var interests: [String]
     /// This child's story origins, newest first, at most
-    /// `SelectionScoring.cooldownWindow`; stories without one are skipped.
+    /// `SelectionScoring.historyWindow` (A1: satır penceresi içerikten uzun olabilir); stories without one are skipped.
     var recent: [StoryOrigin]
     var usage: [StoryUsage]
     /// This child's newest titles, at most `StoryGenerationManager.titleMemory`.
@@ -149,7 +149,7 @@ struct StoryContextBuilder {
     /// What this child's most recent stories were made of, newest first
     /// (FAZ 12). Stories without an origin say nothing and are skipped.
     static func recentOrigins(
-        of library: [Story], for profile: UserProfile, limit: Int = SelectionScoring.cooldownWindow
+        of library: [Story], for profile: UserProfile, limit: Int = SelectionScoring.historyWindow
     ) -> [StoryOrigin] {
         Array(newestFirst(of: library, for: profile).compactMap(\.origin).prefix(limit))
     }

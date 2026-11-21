@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "bo7_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} günü geri saymayı önerdi, en sondan başa doğru. Önce bu pencere, sonra akşam yemeği, sonra bahçedeki oyun. Her şey bir öncekinden biraz daha uzakta, biraz daha yumuşak duruyordu.",
       "requiredSlots": [
         "companion.name"
@@ -20,6 +22,8 @@
     },
     {
       "id": "bo7_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Ben bugün üç güzel şey gördüm,\" dedi {{companion.name}}, \"sen de say.\" {{child.name}} düşündü: sabah kahvaltıdaki reçel, öğleden sonraki yağmur, bir de şu pencere. Üç tane, tam üç.",
       "requiredSlots": [
         "child.name",
@@ -30,6 +34,8 @@
     },
     {
       "id": "bo7_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} küçük bir oyun bildiğini söyledi: gün, sondan başa doğru, yavaşça anlatılır. {{child.name}} denedi. Şimdi yatak, az önce banyo, daha önce masal. Anlattıkça gün yavaşladı.",
       "requiredSlots": [
         "child.name",
@@ -40,6 +46,8 @@
     },
     {
       "id": "bo7_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} usulca bir şey önerdi: günün en güzel üç anını bulmak. {{child.name}} düşündü ve buldu: sabahki sıcak süt, parktaki salıncak, bir de akşamki masal. Üçü de yumuşacık duruyordu.",
       "requiredSlots": [
         "companion.name",

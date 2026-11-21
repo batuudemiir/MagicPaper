@@ -91,6 +91,8 @@
     },
     {
       "id": "s34_fb_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{discovery.name}}'e baktı. \"Bununla nasıl oynanır acaba?\" diye düşündü. Belki zıplayarak, belki koşarak.",
       "requiredSlots": [
         "child.name",
@@ -110,6 +112,8 @@
     },
     {
       "id": "s34_fb_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bir fikir buldu: \"Belki yavaş yavaş yaparsam olur.\" {{companion.name}} başını salladı.",
       "requiredSlots": [
         "child.name",

@@ -41,6 +41,8 @@
     },
     {
       "id": "cm3_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bir karar verdi. Bugün başka hiçbir şey yapmayacaktı. Bugün {{companion.name}}'e bakacaktı.",
       "requiredSlots": [
         "child.name",
@@ -51,6 +53,8 @@
     },
     {
       "id": "cm3_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Sana bakabilir miyim?\" diye sordu {{child.name}}. {{companion.name}} başını salladı. Böylece başladılar.",
       "move": "asks_first",
       "lengthClass": "solo",
@@ -61,6 +65,8 @@
     },
     {
       "id": "cm3_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} oyununu bir kenara bıraktı. Oyun bekleyebilirdi. Şimdi {{companion.name}} vardı.",
       "move": "sets_play_aside",
       "lengthClass": "solo",
@@ -71,6 +77,8 @@
     },
     {
       "id": "cm3_07",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} kollarını sıvadı. Sonra {{companion.name}}'e döndü. \"Şimdi sıra bende,\" dedi.",
       "move": "rolls_up_sleeves",
       "lengthClass": "solo",
@@ -108,6 +116,8 @@
     },
     {
       "id": "cm3h_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Birlikte bakalım mı?\" dedi {{child.name}}. {{companion.name}} başını salladı.",
       "requiredSlots": [
         "child.name",

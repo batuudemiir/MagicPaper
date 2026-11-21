@@ -18,6 +18,8 @@
   "variants": [
     {
       "id": "a9_co_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} bir şey hatırladı: \"Ben buraya öğle sularında uğrarım. O saatte böyle değildi, buna eminim.\" Neden değiştiğini o da bilmiyordu.",
       "requiredSlots": [
         "companion.name"
@@ -27,6 +29,8 @@
     },
     {
       "id": "a9_co_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Benim bildiğim tek şey şu,\" dedi {{companion.name}}, \"buranın en sessiz köşesi hep orasıdır.\" Bunun işe yarayıp yaramayacağına {{child.name}} karar verecekti.",
       "requiredSlots": [
         "companion.name",
@@ -37,6 +41,8 @@
     },
     {
       "id": "a9_co_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}}'ın bir huyu vardı: gördüğü her şeyi sayardı. \"Dünkü sayım tutmuyor,\" dedi. \"Bir fazlalık var, ama neyin fazlası, çıkaramadım.\"",
       "requiredSlots": [
         "companion.name"
@@ -46,6 +52,8 @@
     },
     {
       "id": "a9_co_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} omuz silkti. \"Buradan pek kimse geçmez,\" dedi. \"Geçen de dikkat etmez.\" Bu bir bilgiydi, açıklama değil; ama {{child.name}} onu aklına yazdı.",
       "requiredSlots": [
         "companion.name",
@@ -56,6 +64,8 @@
     },
     {
       "id": "a9_co_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Son yağmurdan önce böyle bir şey yoktu,\" dedi {{companion.name}}, düşünceli düşünceli. \"Yağmur mu getirdi, yoksa yağmura mı denk geldi, orası bende değil.\"",
       "requiredSlots": [
         "companion.name"
@@ -68,6 +78,8 @@
     },
     {
       "id": "a9_co_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} küçük bir bilgi ekledi: buraya hep aynı yoldan gelir, aynı yoldan dönerdi. Bugün ilk kez yolunu değiştirmek zorunda kalmıştı. Nedenini o da merak ediyordu.",
       "requiredSlots": [
         "companion.name"
@@ -77,6 +89,8 @@
     },
     {
       "id": "a9_co_07",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} yalnızca bir şey hatırlıyordu: \"Geçen hafta da benzeri vardı, ama daha küçüktü.\" Ne olduğunu sorsalar söyleyemezdi.",
       "requiredSlots": [
         "companion.name"
@@ -86,6 +100,8 @@
     },
     {
       "id": "a9_co_h2_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["examined"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} konuşmayı pek sevmiyordu, ama göstermeyi biliyordu. Başını {{discovery.name}} tarafına çevirdi ve bir süre öyle kaldı. {{child.name}} anladı: {{companion.name}}'in derdi yalnızca kendisi değildi; yanındaki {{discovery.name}} ona en az kendisi kadar önemliydi.",
       "requiredSlots": [
         "child.name",
@@ -100,6 +116,8 @@
     },
     {
       "id": "a9_co_h2_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bana böyle iyi geliyor,\" dedi {{companion.name}} usulca ve {{child.name}}'e neyi nasıl sevdiğini gösterdi: biraz gölge, biraz sessizlik, bir de yanında birinin olduğunu bilmek. {{child.name}} hepsini aklına yazdı. Bakmak, önce dinlemekle başlıyordu.",
       "requiredSlots": [
         "child.name",
@@ -113,6 +131,8 @@
     },
     {
       "id": "a9_co_h2_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} biraz cesaret toplayınca anlatmaya başladı. Kısa cümlelerle, ara vererek anlattı: neye ihtiyacı vardı, neyden hoşlanmazdı, en çok neyi özlemişti. {{child.name}} hiç sözünü kesmedi. Her cümleyle {{companion.name}}'i biraz daha iyi tanıdı.",
       "requiredSlots": [
         "child.name",
@@ -126,6 +146,8 @@
     },
     {
       "id": "a9_co_j_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} usulca söyledi: \"Bazı işler acele kaldırmaz; zorlarsan olmaz. Bakar, beklersin; zamanı gelince kendiliğinden olur.\"",
       "requiredSlots": [
         "companion.name"
@@ -138,6 +160,8 @@
     },
     {
       "id": "a9_co_j_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} gülümsedi: \"Benim işimde de böyledir. Her şeyin bir zamanı var, ve o zamanı beklemeyi bilen işini iyi yapar.\"",
       "requiredSlots": [
         "companion.name"
@@ -150,6 +174,8 @@
     },
     {
       "id": "a9_co_j_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Ben her gün beklerim,\" dedi {{companion.name}}. \"Beklemek boş durmak değil; dikkatle izlemek, işin en sessiz parçası.\"",
       "requiredSlots": [
         "companion.name"
@@ -162,6 +188,8 @@
     },
     {
       "id": "a9_co_h2_tp_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} bir süre sessiz kaldı, sonra küçük işaretlerle anlatmaya başladı. Önce sıcak bir köşeyi gösterdi, sonra biraz suyu, en son da {{child.name}}'in yanındaki boşluğu. {{child.name}} hepsini dikkatle izledi. Ne istediğini söylemek zordu belki, ama göstermek mümkündü.",
       "requiredSlots": [
         "companion.name",

@@ -13,6 +13,8 @@
   "variants": [
     {
       "id": "mc_guide_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Bir dal kımıldadı. Arkasından {{companion.name}} adında bir {{companion.type}} çıktı ortaya. \"Ben buralıyım,\" dedi. \"Sen kimsin? Daha önce hiç görmedim seni.\"",
       "requiredSlots": [
         "companion.name",
@@ -32,6 +34,8 @@
     },
     {
       "id": "mc_guide_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} her sabah bu yoldan geçerdi. O gün {{child.name}}'i gördü ve durdu. Meraklı gözlerle ona baktı, sonra ileriye baktı.",
       "requiredSlots": [
         "companion.name",
@@ -51,6 +55,8 @@
     },
     {
       "id": "mc_guide_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Yukarıdan bir kanat sesi geldi. {{companion.name}} adlı {{companion.type}} süzülerek indi. Burayı avucunun içi gibi bilirdi. \"Ben sana yardım edebilirim,\" dedi.",
       "requiredSlots": [
         "companion.name",
@@ -73,6 +79,8 @@
     },
     {
       "id": "mc_guide_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "\"Sen yenisin,\" dedi bir ses. {{child.name}} hemen döndü. Küçük bir {{companion.type}} ona bakıyordu. Adı {{companion.name}}, burada doğup büyümüştü.",
       "requiredSlots": [
         "child.name",
@@ -93,6 +101,8 @@
     },
     {
       "id": "mc_guide_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} tam oradan geçiyordu. Durdu, önce {{child.name}}'e baktı, sonra ilerideki şeye. \"Onu ben de gördüm,\" dedi yavaşça. \"Hem de ilk kez değil.\"",
       "requiredSlots": [
         "companion.name",
@@ -112,6 +122,8 @@
     },
     {
       "id": "mc_care_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Yerde küçük bir kıpırtı vardı. {{child.name}} eğilip baktı. Minicik bir {{companion.type}} oradaydı. Adı {{companion.name}} ve çok yorgun görünüyordu.",
       "requiredSlots": [
         "child.name",
@@ -132,6 +144,8 @@
     },
     {
       "id": "mc_care_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Ses yine geldi, bu kez çok yakından. {{child.name}} usulca yaklaştı. {{companion.name}} oradaydı, küçücük bir {{companion.type}}, tek başına ve korkmuş.",
       "topics": [
         "alone",
@@ -159,6 +173,8 @@
     },
     {
       "id": "mc_care_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Bir şey titriyordu, çok hafifçe. {{child.name}} yavaşça yanına gitti. {{companion.name}} adında küçük bir {{companion.type}} kıpırdamadan duruyordu. Sonra başını kaldırdı.",
       "requiredSlots": [
         "child.name",
@@ -179,6 +195,8 @@
     },
     {
       "id": "mc_care_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} çok küçüktü ve çok yorgundu. {{child.name}} onu hemen fark etti. Yanına çömeldi ve usulca seslendi. \"Merhaba,\" dedi.",
       "words": [
         "w56_usulca",
@@ -202,6 +220,8 @@
     },
     {
       "id": "mc_care_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Orada bir {{companion.type}} vardı, {{child.name}}'den bile küçük. Önce hiç kımıldamadı. Sonra minik bir gözünü açtı ve ona baktı.",
       "requiredSlots": [
         "companion.type",
@@ -223,6 +243,8 @@
     },
     {
       "id": "mc_hesitant_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Bir şeyin arkasından iki göz bakıyordu. {{child.name}} hiç kıpırdamadı. Yavaş yavaş {{companion.name}} ortaya çıktı, iki adım attı, sonra yine durdu.",
       "requiredSlots": [
         "child.name",
@@ -244,6 +266,8 @@
     },
     {
       "id": "mc_hesitant_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Aynı yerde {{companion.name}} durmuş bakıyordu. O da ilerlemek istemiyordu galiba. İkisi göz göze geldi ve birbirlerini hemen anladılar.",
       "requiredSlots": [
         "companion.name"
@@ -262,6 +286,8 @@
     },
     {
       "id": "mc_hesitant_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "\"Ben de hep burada duruyorum,\" dedi ince bir ses. {{child.name}} döndü. {{companion.name}} oradaydı. \"Bir türlü geçemedim,\" diye ekledi.",
       "requiredSlots": [
         "child.name",
@@ -281,6 +307,8 @@
     },
     {
       "id": "mc_calm_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} hiç acele etmiyordu. {{child.name}}'in yanına geldi, yere oturdu ve bekledi. Hiçbir şey söylemedi. Böylece ikisi birlikte beklediler.",
       "requiredSlots": [
         "companion.name",
@@ -300,6 +328,8 @@
     },
     {
       "id": "mc_calm_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Yanına biri geldi. {{companion.name}} adında sakin bir {{companion.type}}. \"Acelemiz yok,\" dedi sadece. Sesi çok sakindi. Sonra {{child.name}}'in yanına ilişti.",
       "requiredSlots": [
         "companion.name",
@@ -320,6 +350,8 @@
     },
     {
       "id": "mc_calm_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} buraya çok gelirdi. {{child.name}}'i görünce hiç şaşırmadı. Sadece yanına geçti ve onunla birlikte ileriye baktı. Hiç konuşmadılar.",
       "requiredSlots": [
         "companion.name",
@@ -339,6 +371,8 @@
     },
     {
       "id": "mc_guide_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} bu yolları ezbere bilirdi. {{child.name}}'i görünce yanına geldi. \"Buraya nasıl geldin?\" diye sordu. \"Buralarda pek kimse olmaz.\" Sonra ilerideki şeye baktı.",
       "requiredSlots": [
         "companion.name",
@@ -358,6 +392,8 @@
     },
     {
       "id": "mc_guide_p06",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "\"Burayı ben iyi bilirim,\" dedi {{companion.name}}. {{child.name}} şaşırdı, çünkü kimseyi görmemişti. Ama {{companion.name}} artık çoktan yanındaydı.",
       "requiredSlots": [
         "companion.name",
@@ -377,6 +413,8 @@
     },
     {
       "id": "mc_guide_p07",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Bu taraflarda {{companion.name}} büyümüştü. Yabancı birini görmek onun için yeni bir şeydi. Merakla ve yavaşça {{child.name}}'e yaklaştı.",
       "requiredSlots": [
         "companion.name",
@@ -396,6 +434,8 @@
     },
     {
       "id": "mc_guide_p08",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Kimse yokken bile {{companion.name}} buradaydı. Şimdi de buradaydı. \"Beni takip et,\" demedi. Sadece yürüdü ve bekledi.",
       "requiredSlots": [
         "companion.name"
@@ -414,6 +454,8 @@
     },
     {
       "id": "mc_care_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Aşağıda küçük bir şey duruyordu. {{child.name}} eğilip baktı. {{companion.name}} oradaydı ve çok küçüktü. Kaçmadı, saklanmadı, sadece orada kaldı. Sonra çok hafif bir ses çıkardı.",
       "requiredSlots": [
         "child.name",
@@ -433,6 +475,8 @@
     },
     {
       "id": "mc_care_07",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} önce duyamadı, sonra duydu. Çok ince bir sesti. {{companion.name}} adında küçücük bir {{companion.type}} hemen oradaydı. Öylece durdu ve bekledi.",
       "requiredSlots": [
         "child.name",
@@ -453,6 +497,8 @@
     },
     {
       "id": "mc_care_p06",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} bir şeye neredeyse basıyordu. Tam zamanında durdu. Aşağıda {{companion.name}} vardı, çok çok küçük ve hareketsiz.",
       "requiredSlots": [
         "child.name",
@@ -472,6 +518,8 @@
     },
     {
       "id": "mc_care_p07",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Bir {{companion.type}} vardı orada, adı {{companion.name}}. Kendi başınaydı. {{child.name}} onu görünce hemen durdu ve önce hiç yaklaşmadı.",
       "requiredSlots": [
         "companion.type",
@@ -492,6 +540,8 @@
     },
     {
       "id": "mc_hesitant_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} bir adım attı, sonra geri çekildi. Bunu birkaç kez yaptı. {{child.name}} onu izledi ve tanıdık geldi. Kendisi de aynısını yapıyordu.",
       "requiredSlots": [
         "companion.name",
@@ -511,6 +561,8 @@
     },
     {
       "id": "mc_hesitant_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "\"Ben de biraz korkuyorum,\" dedi {{companion.name}}. Söylemesi kolay olmadı. {{child.name}} şaşırdı, çünkü yalnız olmadığını yeni öğrenmişti. İkisi de rahatladı.",
       "topics": [
         "fear"
@@ -533,6 +585,8 @@
     },
     {
       "id": "mc_hesitant_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Bir {{companion.type}} çıktı ortaya, adı {{companion.name}}. Hemen yanına gelmedi. Biraz uzakta durdu, {{child.name}}'e baktı, sonra biraz daha yaklaştı. Ve orada kaldı.",
       "requiredSlots": [
         "companion.type",
@@ -553,6 +607,8 @@
     },
     {
       "id": "mc_hesitant_07",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} uzun süredir oradaydı ama hiç geçmemişti. {{child.name}} gelince tek kelime etmedi. Sadece yanına geldi ve aynı yöne baktı, aynı yere.",
       "requiredSlots": [
         "companion.name",
@@ -572,6 +628,8 @@
     },
     {
       "id": "mc_hesitant_p04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Yakınlarda biri daha vardı. {{companion.name}} çıkageldi ama hemen durdu. \"Ben de duruyorum burada,\" dedi usulca, sesi çok alçaktı.",
       "words": [
         "w56_usulca"
@@ -593,6 +651,8 @@
     },
     {
       "id": "mc_hesitant_p05",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} yaklaştı, sonra vazgeçti, sonra yine yaklaştı. {{child.name}} hiç kıpırdamadı. Beklemek doğru olan şeydi, {{child.name}} bunu biliyordu.",
       "words": [
         "w56_vazgecmek"
@@ -615,6 +675,8 @@
     },
     {
       "id": "mc_calm_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} telaşsızca geldi ve {{child.name}}'in yanında durdu. Hiçbir şey sormadı, hiçbir şey anlatmadı. Sadece orada olmak yetiyordu. {{child.name}} bunu hemen hissetti.",
       "requiredSlots": [
         "companion.name",
@@ -634,6 +696,8 @@
     },
     {
       "id": "mc_calm_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Bir {{companion.type}} çıkageldi, adı {{companion.name}}. Hiç telaşlı değildi. \"Ben buradayım,\" dedi. Sonra {{child.name}}'in yanına geçti ve sakince oturdu. Acelesi olmadığı her halinden belliydi.",
       "requiredSlots": [
         "companion.type",
@@ -654,6 +718,8 @@
     },
     {
       "id": "mc_calm_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} buraya alışkındı. {{child.name}}'in gergin olduğunu gördü ama bunu söylemedi. Onun yerine yanına oturdu ve konuşmadan bekledi. Bu yeterli oldu.",
       "requiredSlots": [
         "companion.name",
@@ -673,6 +739,8 @@
     },
     {
       "id": "mc_calm_p04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} sessizce yaklaştı ve yanına oturdu. Hiçbir şey sormadı. {{child.name}} biraz rahatladı, nedenini kendisi de bilmeden.",
       "requiredSlots": [
         "companion.name",
@@ -692,6 +760,8 @@
     },
     {
       "id": "mc_calm_p05",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} sık sık buraya gelirdi. Bugün yalnız değildi. {{child.name}}'in yanına geçti ve hiç ama hiç acele etmedi.",
       "requiredSlots": [
         "companion.name",
@@ -711,6 +781,8 @@
     },
     {
       "id": "mc_person_guide_s01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} kapıyı araladı. İçeride {{companion.name}} vardı, her zamanki gibi işinin başında. Başını kaldırdı, {{child.name}}'i gördü ve gülümsedi. \"Hoş geldin,\" dedi. \"Bir şey mi arıyorsun?\"",
       "requiredSlots": [
         "child.name",
@@ -727,6 +799,8 @@
     },
     {
       "id": "mc_person_guide_s02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} doğru {{companion.name}}'e gitti, çünkü burada bir şeyi en iyi o bilirdi. {{companion.name}} elindeki işi bırakmadı ama dinledi. Sonra başını salladı. \"Haa,\" dedi. \"Onu biliyorum.\"",
       "requiredSlots": [
         "child.name",
@@ -743,6 +817,8 @@
     },
     {
       "id": "mc_person_guide_s03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Köyde bir {{companion.type}} vardı ve {{child.name}} nerede olduğunu biliyordu. Gidip orada bekledi. {{companion.name}} işini bitirince ona döndü. \"Anlat bakalım,\" dedi, hiç acele ettirmeden.",
       "requiredSlots": [
         "child.name",
@@ -760,6 +836,8 @@
     },
     {
       "id": "mc_person_guide_s04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'nda herkesin bir yeri vardı. {{child.name}} tam {{companion.name}}'in yerine gitti. \"Sen bilirsin,\" dedi. {{companion.name}} güldü. \"Bilirim,\" dedi. \"Gel, göstereyim.\"",
       "requiredSlots": [
         "child.name",
@@ -777,6 +855,8 @@
     },
     {
       "id": "mc_person_guide_p01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{companion.name}}'in kapısını çaldı ve biraz bekledi. \"Bunu sana sormaya geldim,\" dedi hemen içeri girer girmez.",
       "requiredSlots": [
         "child.name",
@@ -793,6 +873,8 @@
     },
     {
       "id": "mc_person_guide_p02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} doğru {{companion.name}}'e gitti, hiç düşünmeden. Burayı en iyi o bilirdi, köyde zaten herkes böyle derdi.",
       "requiredSlots": [
         "child.name",
@@ -809,6 +891,8 @@
     },
     {
       "id": "mc_person_guide_p03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Bir {{companion.type}} aranıyordu ve {{child.name}} tam olarak nereye gideceğini çok iyi biliyordu. Yolu yarılamadan oraya varmıştı bile.",
       "requiredSlots": [
         "child.name",
@@ -825,6 +909,8 @@
     },
     {
       "id": "mc_person_guide_p04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} işinin başındaydı ve elleri doluydu. {{child.name}} yanına gidip sessizce beklemeye başladı, onu hiç acele ettirmedi.",
       "requiredSlots": [
         "child.name",
@@ -841,6 +927,8 @@
     },
     {
       "id": "mc_person_calm_s01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{companion.name}}'in yanına oturdu, çünkü orası sakin bir yerdi. {{companion.name}} bir şey sormadı. Yalnızca elindeki işe devam etti. Bir süre ikisi de konuşmadı, ve bu iyi geldi.",
       "requiredSlots": [
         "child.name",
@@ -857,6 +945,8 @@
     },
     {
       "id": "mc_person_calm_s02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} içeri girdiğinde {{companion.name}} başını kaldırdı ama telaşlanmadı. \"Otur istersen,\" dedi. {{child.name}} oturdu. {{companion.name}} işini yapmaya devam etti, {{child.name}} sessizce izledi.",
       "requiredSlots": [
         "child.name",
@@ -873,6 +963,8 @@
     },
     {
       "id": "mc_person_calm_s03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Köyde insanın sakinleşebileceği bir yer vardı: {{companion.name}}'in yanı. {{child.name}} oraya gitti. {{companion.name}} her zaman olduğu gibi oradaydı ve acelesi yoktu.",
       "requiredSlots": [
         "child.name",
@@ -889,6 +981,8 @@
     },
     {
       "id": "mc_person_calm_s04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} eşikte durdu. {{companion.name}} onu gördü, \"gel\" demedi, kapıyı biraz daha açtı. {{child.name}} girdi ve bir sandalyeye oturdu. Hiçbir şey sorulmadı.",
       "requiredSlots": [
         "child.name",
@@ -905,6 +999,8 @@
     },
     {
       "id": "mc_person_calm_p01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{companion.name}}'in yanına gitti ve usulca oturdu. Orada acele eden kimse olmazdı, zaten hiç de olmamıştı.",
       "requiredSlots": [
         "child.name",
@@ -921,6 +1017,8 @@
     },
     {
       "id": "mc_person_calm_p02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} eşikte durup sessizce bekledi, hiçbir şey sormadı. {{child.name}} içeri girdi ve derin bir nefes aldı.",
       "requiredSlots": [
         "child.name",
@@ -937,6 +1035,8 @@
     },
     {
       "id": "mc_person_calm_p03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} geldiğinde {{companion.name}} yalnızca gülümsedi. Soru sormadı, yorum da yapmadı; yanında ona hemen sessizce yer açtı.",
       "requiredSlots": [
         "child.name",
@@ -953,6 +1053,8 @@
     },
     {
       "id": "mc_person_calm_p04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'nda {{child.name}}'in her gün gittiği bir yer vardı. {{companion.name}} oradaydı, her zamanki gibi, her zamanki sakinliğiyle.",
       "requiredSlots": [
         "child.name",

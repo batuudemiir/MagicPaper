@@ -12,6 +12,8 @@
   "variants": [
     {
       "id": "b7sap_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["examined"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} usulca doğruldu ve pencereye biraz yaklaştı, yorganı omzunda. Yakından bakınca {{discovery.name}} daha da küçük göründü. Birinin ona bakması gerekiyordu, bu belliydi.",
       "requiredSlots": [
         "child.name",
@@ -25,6 +27,8 @@
     },
     {
       "id": "b7sap_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["emitting"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yataktan inmeden pencereye doğru biraz kaydı. Ay ışığında {{discovery.name}} daha net görünüyordu. {{companion.name}} ona yer açtı.",
       "requiredSlots": [
         "child.name",
@@ -39,6 +43,8 @@
     },
     {
       "id": "b7sap_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} terliklerini giymeden pencerenin önüne kadar parmak ucunda yürüdü. Oradan bakınca her şey daha sakin görünüyordu. {{discovery.name}} oradaydı, ve biraz yardıma ihtiyacı vardı.",
       "requiredSlots": [
         "child.name",

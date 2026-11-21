@@ -46,6 +46,8 @@
     },
     {
       "id": "a9_wc_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'dan ayrılmadan önce {{child.name}} {{companion.name}}'a döndü. \"Buraya bir gün yine gelirim,\" dedi. \"Ben de buradayım,\" dedi {{companion.name}}, \"ama bundan sonra başka türlü bakacağım.\" {{child.name}} güldü; aynı şeyi o da düşünüyordu. El sallaştılar ve her biri kendi yoluna döndü.",
       "requiredSlots": [
         "setting.name",
@@ -73,6 +75,8 @@
     },
     {
       "id": "a9_wc_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "Güneş yavaş yavaş alçalırken {{child.name}} ile {{companion.name}} yan yana oturdu. İkisi de konuşmadı. Konuşacak çok şey vardı aslında, ama hiçbiri acele değildi. Gün bitiyordu, bıraktığı his bitmiyordu. {{child.name}} o hissi cebine koyar gibi sakladı.",
       "requiredSlots": [
         "child.name",
@@ -99,6 +103,8 @@
     },
     {
       "id": "a9_wc_07",
+      "visual": [{"subject": "setting", "presence": "present", "states": ["evening"]}],
+      "visualReview": "auto",
       "text": "Akşam olunca {{setting.name}} sessizliğe büründü. {{child.name}} gitmeden etrafa son bir göz attı. Sabahki gizem artık bir gizem değildi; tanıdık, sevimli bir bilgiydi. Ama yerini boş bırakmamıştı. O boşluğa küçük, sıcak bir merak yerleşmişti.",
       "requiredSlots": [
         "setting.name",
@@ -128,6 +134,8 @@
     },
     {
       "id": "a9_wc_09",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} ile vedalaşırken {{child.name}} bir şey söylemek istedi, ama doğru kelimeyi bulamadı. Karşısındaki de bulamadı. İkisi de güldü; bulunamayan kelime bile bugüne yakışıyordu.",
       "requiredSlots": [
         "companion.name",
@@ -165,6 +173,8 @@
     },
     {
       "id": "a9_wc_12",
+      "visual": [{"subject": "setting", "presence": "present", "states": ["evening"]}],
+      "visualReview": "auto",
       "text": "Akşamın ışığı {{setting.name}}'ın üstüne yavaşça yayıldı. {{child.name}} gitmeden önce her şeyin başladığı yere son bir selam verdi.",
       "requiredSlots": [
         "setting.name",
@@ -192,6 +202,8 @@
     },
     {
       "id": "a9_wc_14",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} bulduğu şeyi yanından hiç ayırmadan yoluna koyuldu. Birkaç adımda bir dönüp bakıyor, {{child.name}} her seferinde el sallayarak karşılık veriyordu.",
       "requiredSlots": [
         "companion.name",
@@ -217,6 +229,8 @@
     },
     {
       "id": "a9_wc_16",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "\"Bir daha kaybedersem seni çağırırım,\" dedi {{companion.name}}. {{child.name}} güldü: \"Bence hiç kaybetme. Ama yine de çağır, bir şey bulmak için kaybetmek şart değil.\"",
       "requiredSlots": [
         "companion.name",
@@ -671,6 +685,8 @@
     },
     {
       "id": "w_ct_wc910_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Tramvay {{setting.name}}'dan uzaklaşırken {{child.name}} pencereye yaslandı. Şehir hâlâ kocamandı, ama artık içinde ona ait küçük bir köşe vardı.",
       "requiredSlots": [
         "setting.name",
@@ -696,6 +712,8 @@
     },
     {
       "id": "w_ct_wc910_04",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'da gün yavaş yavaş bitiyordu. Dükkânlar kepenklerini indiriyor, sokaklar sessizleşiyordu. {{child.name}} bir bankta oturup şehrin bu hâlini izledi. Sabah ona gürültülü ve karışık gelen her şey, şimdi tek tek tanıdığı seslerden ve yüzlerden ibaretti. İyi bir gündü, diye düşündü; bir şehirle tanışılan türden.",
       "requiredSlots": [
         "setting.name",
@@ -721,6 +739,8 @@
     },
     {
       "id": "w_cn_wc910_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} ona kendi dilinde bir veda sözü söyledi. {{child.name}} sözcükleri anlamadı ama sesin sıcaklığını anladı; bazı şeyler hiç çeviri istemiyordu.",
       "requiredSlots": [
         "companion.name",
@@ -734,6 +754,8 @@
     },
     {
       "id": "w_cn_wc910_03",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'dan ayrılırken {{child.name}} yabancı olmanın ne demek olduğunu düşündü. Sabah her şey yabancıydı: dil, yemek, sokaklar, insanlar. Akşama doğru yabancılık azalmıştı, çünkü birkaç sözcük, birkaç yüz ve bir arkadaş artık tanıdıktı. Demek ki yabancılık bir yer değil, henüz tanışılmamış bir şeydi.",
       "requiredSlots": [
         "setting.name",
@@ -771,6 +793,8 @@
     },
     {
       "id": "w_hs_wc910_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{setting.name}}'dan ayrılırken arkasına baktı. Yüzlerce yıldır orada duran taşlar onun gidişini de sakin sakin izledi; onlar için bu, sayısız gidişten biriydi.",
       "requiredSlots": [
         "child.name",
@@ -796,6 +820,8 @@
     },
     {
       "id": "w_hs_wc910_04",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'da gün bitiyordu. Işık yumuşamış, sesler azalmıştı. {{child.name}} bir süre hiçbir şey yapmadan oturdu. Sabah buraya bir yabancı gibi gelmişti; şimdi ise bu eski yerin yüzlerce yıllık konuk listesine adını sessizce yazmış gibiydi.",
       "requiredSlots": [
         "setting.name",

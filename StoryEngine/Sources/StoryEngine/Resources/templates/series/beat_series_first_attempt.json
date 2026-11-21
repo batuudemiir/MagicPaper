@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "sfa_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} onu iki eliyle taşıdı. Her adımı dikkatle attı, hiç sallamadı. {{companion.name}} önden gidip yolu gösterdi. Arada bir dönüp arkasına baktı.",
       "requiredSlots": [
         "child.name",
@@ -21,6 +23,8 @@
     },
     {
       "id": "sfa_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Yol sandığından uzundu. {{child.name}} acele etmedi, küçük adımlarla yürüdü. Arada bir durup {{companion.name}}'i bekledi. Böyle yürümek hiç de yorucu değildi.",
       "requiredSlots": [
         "child.name",
@@ -31,6 +35,8 @@
     },
     {
       "id": "sfa_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} onu göğsüne yakın tuttu. {{companion.name}} yanında yürüdü, arada bir yolu gösterdi. Az kalmıştı, bunu ikisi de hissediyordu.",
       "requiredSlots": [
         "child.name",
@@ -41,6 +47,8 @@
     },
     {
       "id": "sfa_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "İkisi birlikte yola koyuldu. {{child.name}} taşıyordu, {{companion.name}} yolu gösteriyordu. Çok iyi bir ekip olmuşlardı. Yol da onlara kısa geldi.",
       "requiredSlots": [
         "child.name",

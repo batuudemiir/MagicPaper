@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "bt3_wc_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yine yatağına döndü. {{setting.name}} sessizdi. Gözleri usulca kapandı.",
       "requiredSlots": [
         "child.name",
@@ -27,6 +29,8 @@
     },
     {
       "id": "bt3_wc_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yorganını çenesine çekti. {{setting.name}}'da her şey sakindi. Pencerede bir dost uyuyordu.",
       "requiredSlots": [
         "child.name",
@@ -43,6 +47,8 @@
     },
     {
       "id": "bt3_wc_03",
+      "visual": [{"subject": "setting", "presence": "present", "states": ["evening"]}],
+      "visualReview": "auto",
       "text": "Işık kısık, yorgan sıcacıktı. {{setting.name}} tıpkı akşamki gibiydi. {{child.name}} uykuya daldı.",
       "requiredSlots": [
         "setting.name",
@@ -56,6 +62,8 @@
     },
     {
       "id": "bt3_wc_04",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} pencereye son kez baktı. {{setting.name}} sakindi. Gözleri kapandı.",
       "requiredSlots": [
         "child.name",
@@ -69,6 +77,8 @@
     },
     {
       "id": "bt3_wc_fs_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Kardeşi {{family.name}} çoktan uyumuştu. {{child.name}} yorganına sarındı. {{setting.name}} sessizdi.",
       "requiredSlots": [
         "family.name",
@@ -86,6 +96,8 @@
     },
     {
       "id": "bt3_wc_fs_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"İyi geceler,\" dedi kardeşi {{family.name}}. {{child.name}} gözlerini kapadı. {{setting.name}}'da her şey sakindi.",
       "requiredSlots": [
         "family.name",
@@ -103,6 +115,8 @@
     },
     {
       "id": "bt3_wc_ff_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Arkadaşı {{family.name}} mışıl mışıl uyuyordu. {{child.name}} yorganını çekti. {{setting.name}} sessizdi.",
       "requiredSlots": [
         "family.name",
@@ -120,6 +134,8 @@
     },
     {
       "id": "bt3_wc_ff_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile arkadaşı {{family.name}} yan yana uzandı. {{setting.name}}'da her şey sakindi.",
       "requiredSlots": [
         "child.name",
@@ -137,6 +153,8 @@
     },
     {
       "id": "bt3_wc_fa_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Ayakucunda {{family.possessive}} {{family.name}} uyuyordu. {{child.name}} gözlerini kapadı. {{setting.name}} sessizdi.",
       "requiredSlots": [
         "family.possessive",
@@ -155,6 +173,8 @@
     },
     {
       "id": "bt3_wc_fa_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yorganını çekti. Yanına {{family.possessive}} {{family.name}} sokuldu. {{setting.name}}'da her şey sakindi.",
       "requiredSlots": [
         "child.name",
@@ -173,6 +193,8 @@
     },
     {
       "id": "bt3_wc_fi_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Hayali arkadaşı {{family.name}} pencerenin yanında oturdu. {{child.name}} uykuya daldı. {{setting.name}} sessizdi.",
       "requiredSlots": [
         "family.name",
@@ -190,6 +212,8 @@
     },
     {
       "id": "bt3_wc_fi_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}}, hayali arkadaşı {{family.name}}'a \"İyi geceler\" dedi. {{setting.name}}'da her şey sakindi.",
       "requiredSlots": [
         "child.name",
@@ -207,6 +231,8 @@
     },
     {
       "id": "bt3_wc_h5_sib_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} kardeşi {{family.name}}'a doğru döndü. İkisinin de gözleri kapandı. {{setting.name}} sessizdi.",
       "requiredSlots": [
         "child.name",
@@ -256,6 +282,8 @@
     },
     {
       "id": "bt3_wc_h5_fr_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Arkadaşı {{family.name}} yorganına sarındı. {{child.name}} gülümsedi. {{setting.name}}'da lamba usulca söndü.",
       "requiredSlots": [
         "family.name",

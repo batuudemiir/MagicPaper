@@ -364,7 +364,7 @@ final class OfflineStoryService {
         // word the catalog stopped offering is kept on the profile, not used.
         let wanted = ChildInterests.offered(interests, from: interestChoices()).map { InterestTag($0) }
         let history: [RecentContent] = recent
-            .prefix(SelectionScoring.cooldownWindow)
+            .prefix(SelectionScoring.historyWindow)
             .map { origin -> RecentContent in
                 // D2: eski masallarda satır kimliği yok, ve olmaması seçimi
                 // etkilemiyor — boş küme "geçmiş yok" demekle aynı.

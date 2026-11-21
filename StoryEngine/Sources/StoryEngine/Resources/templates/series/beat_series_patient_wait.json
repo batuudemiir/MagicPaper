@@ -21,6 +21,8 @@
     },
     {
       "id": "spw_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile {{companion.name}} yan yana oturdu. Kuşların sesini dinlediler, bulutları saydılar. Zaman yavaş geçiyordu, ama acele eden yoktu.",
       "requiredSlots": [
         "child.name",
@@ -31,6 +33,8 @@
     },
     {
       "id": "spw_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Bir süre hiçbir şey olmadı. {{child.name}} bekledi. {{companion.name}} bekledi. Rüzgâr bile usulca esiyordu, sanki o da onlarla birlikte bekliyordu.",
       "words": ["w56_usulca"],
       "requiredSlots": [
@@ -42,6 +46,8 @@
     },
     {
       "id": "spw_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Biraz daha,\" dedi {{companion.name}} fısıltıyla. {{child.name}} başını salladı ve yerinden hiç kıpırdamadı. Beklemek kolay değildi, ama yanında bir dost olunca güzeldi.",
       "requiredSlots": [
         "companion.name",

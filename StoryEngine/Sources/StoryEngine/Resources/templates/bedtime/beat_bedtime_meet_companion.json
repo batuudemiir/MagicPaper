@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "bt_mc_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} perdeyi araladı. Pencerenin önünde {{companion.name}} adında minik bir {{companion.type}} duruyordu. Gözleri kocaman açıktı. \"Uykum var ama uyuyamıyorum,\" dedi usulca.",
       "requiredSlots": [
         "child.name",
@@ -28,6 +30,8 @@
     },
     {
       "id": "bt_mc_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "Pencerenin önünde küçük bir {{companion.type}} vardı: {{companion.name}}. Esniyor, esniyor ama gözlerini bir türlü kapatamıyordu. \"Uyuyamıyorum,\" dedi yorgun bir sesle.",
       "requiredSlots": [
         "companion.type",
@@ -44,6 +48,8 @@
     },
     {
       "id": "bt_mc_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} adında küçük bir {{companion.type}}, pencerenin önünde ay ışığına bakıyordu. Uzun zamandır uyumaya çalışıyor ama uyuyamıyordu. Gözleri yorgun ama açıktı.",
       "requiredSlots": [
         "companion.name",
@@ -60,6 +66,8 @@
     },
     {
       "id": "bt_mc_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["greeting"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} pencereden dışarı baktı. Orada {{companion.name}} vardı, küçük bir {{companion.type}}. Kımıldıyor, dönüyor, yine kımıldıyordu. \"Bir türlü uyuyamıyorum,\" dedi tatlı bir sesle.",
       "requiredSlots": [
         "child.name",

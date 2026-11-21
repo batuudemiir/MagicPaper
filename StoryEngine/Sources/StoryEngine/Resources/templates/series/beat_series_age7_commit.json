@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "s7cm_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bir an düşündü. Yol uzun olabilirdi ve dikkat isteyecekti. Yine de karar verdi: bunu evine kendisi götürecekti, yolu ise {{companion.name}} gösterecekti.",
       "requiredSlots": [
         "child.name",
@@ -31,6 +33,8 @@
     },
     {
       "id": "s7cm_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} kollarını sıvadı. Bu iş acele kaldırmazdı, bunu biliyordu. Önce nasıl taşıyacağını düşündü ve derin bir nefes aldı, sonra {{companion.name}}'e döndü: \"Hazırım.\"",
       "requiredSlots": [
         "child.name",

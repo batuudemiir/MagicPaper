@@ -10,6 +10,8 @@
   "variants": [
     {
       "id": "ce3h_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} bir yandan, {{child.name}} öbür yandan uğraştı.",
       "requiredSlots": [
         "child.name",
@@ -27,6 +29,8 @@
     },
     {
       "id": "ce3h_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} yolu gösterdi, {{companion.name}} yardım etti.",
       "requiredSlots": [
         "child.name",
@@ -44,6 +48,8 @@
     },
     {
       "id": "ce3a_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "Sonra {{companion.name}} ile birlikte uğraştılar.",
       "requiredSlots": [
         "companion.name"
@@ -56,6 +62,8 @@
     },
     {
       "id": "ce3a_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} gösterdi, {{child.name}} yaptı. Birlikte daha kolaydı.",
       "requiredSlots": [
         "child.name",
@@ -69,6 +77,8 @@
     },
     {
       "id": "ce3a_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["together"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} bir yandan tuttu, {{companion.name}} öbür yandan.",
       "requiredSlots": [
         "child.name",

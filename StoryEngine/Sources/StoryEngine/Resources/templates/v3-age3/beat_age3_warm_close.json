@@ -10,6 +10,8 @@
   "variants": [
     {
       "id": "wc3_01",
+      "visual": [{"subject": "companion", "presence": "remembered", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} gülümsedi. Sonra yavaşça eve gitti. Yolda hep {{companion.name}}'i düşündü.",
       "words": [
         "w34_yavasca"
@@ -175,6 +177,8 @@
     },
     {
       "id": "wc3h_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "Akşam olunca {{child.name}} bugünü düşündü. {{companion.name}} ile çok güzel bir gündü.",
       "requiredSlots": [
         "child.name",
@@ -200,6 +204,8 @@
     },
     {
       "id": "wc3h_03",
+      "visual": [{"subject": "companion", "presence": "remembered", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} akşam eve döndü. Yolda hep {{companion.name}}'i düşündü ve gülümsedi.",
       "requiredSlots": [
         "child.name",
@@ -213,6 +219,8 @@
     },
     {
       "id": "wc3h_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "\"Bugün çok güzeldi,\" dedi {{child.name}}. {{companion.name}} başını salladı. İkisi de gülümsedi.",
       "requiredSlots": [
         "child.name",
@@ -352,6 +360,8 @@
     },
     {
       "id": "w_ct_wc34_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{companion.name}}'e el salladı. Tramvay yavaşça geldi. Eve dönüş yolu çok güzeldi.",
       "requiredSlots": [
         "child.name",
@@ -389,6 +399,8 @@
     },
     {
       "id": "w_cn_wc34_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "Uzak ülkede akşam oldu. {{child.name}} {{companion.name}}'e sarıldı. Burası artık o kadar uzak gelmiyordu.",
       "requiredSlots": [
         "child.name",
@@ -426,6 +438,8 @@
     },
     {
       "id": "w_hs_wc34_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{companion.name}}'e el salladı. Akşam oldu. Eski hikâyeler hep orada kaldı.",
       "requiredSlots": [
         "child.name",
