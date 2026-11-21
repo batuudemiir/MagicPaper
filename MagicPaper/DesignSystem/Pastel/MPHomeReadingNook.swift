@@ -100,9 +100,8 @@ struct HomeTonightInvite: View {
 
 // MARK: - Başka bir dünya seç
 
-/// Resimli mod karosu: pastel zemin, üstte çizim, altta adı. Çizimin beyaz
-/// zemini karonun rengine çarpılarak erir (`multiply`). Çizimi olmayan mod
-/// (Uyku öncesi) simgesiyle gelir.
+/// Resimli mod karosu: pastel zemin, üstte saydam zeminli çizim, altta adı.
+/// Çizimi olmayan mod (Uyku öncesi) simgesiyle gelir.
 struct HomeWorldTile: View {
     let title: String
     let art: String?
@@ -115,7 +114,7 @@ struct HomeWorldTile: View {
             VStack(spacing: MPSpacing.xs) {
                 Group {
                     if let art {
-                        Image(art).resizable().aspectRatio(contentMode: .fit).blendMode(.multiply)
+                        Image(art).resizable().aspectRatio(contentMode: .fit)
                     } else {
                         MPIcon(systemImage, size: MP.G.xxl, weight: .semibold).foregroundStyle(tone.deep)
                     }
@@ -131,7 +130,6 @@ struct HomeWorldTile: View {
             .padding(.horizontal, MPSpacing.sm)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(tone.soft, in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
-            .compositingGroup()
         }
         .buttonStyle(MPPressStyle())
         .accessibilityLabel(title)

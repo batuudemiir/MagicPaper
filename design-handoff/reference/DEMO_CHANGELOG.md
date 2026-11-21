@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa "Okuma köşesi"; main irem'e alındı
+
+- Batuhan'ın main'i (20-21 Kasım: abonelik yetkileri, tek plan, okuyucu düzeni, Originals, yeni dünyalar) `irem`'e birleşti (f6b38f6), çakışma yok. Ana sayfanın kullandığı API'ler birleşmeden sonra yerinde doğrulandı.
+- Ana sayfa GPT teslimine göre yeniden kuruldu (İrem): selam + kahraman avatarı (dokununca Profil), okuma köşesi sahnesi (alt kenarı illüstrasyon maskesiyle kâğıda erir; küçük ekranda yükseklik ekranın %46'sıyla sınırlı), "Bu akşam" daveti (`TonightState`'in dört durumu, tek birincil düğme), "Başka bir dünya seç" (davet uykuysa Uyku öncesi tekrarlanmaz; en büyük yazıda tek sütun), "Kitaplığından" (`LibraryShelfModel` ile en çok iki kitap, davetteki kitap tekrarlanmaz; yarım kitap kaldığı sayfadan), "Masal bul" (Masallar'da arama; altında ilk Original ya da haftanın seçkisi), kaydırınca üstte "Ana sayfa".
+- Yeni: `DesignSystem/Pastel/MPHomeReadingNook.swift` (HomeReadingNook, HomeTonightInvite, HomeWorldTile, HomeShelfBook, HomeFindField, HomePickRow); `MP.C.homePaper` = `kagit50` (sahnenin kenar rengi); görseller `Scenes/homeReadingNook` (WebP'den JPEG), `homeWorldLearning` ve `homeWorldAdventure` (WebP'den PNG, düz zemin saydam yapıldı).
+- Kaldırılan: `HomeHeaderScene` ve ona bağlı `showsScene`/`onArt` parametreleri; HomeView'daki eski kart, mod şeridi, yıldız satırı ve beyaz zemin.
+- Bilerek değişmedi: alt çubuk ("Masal yaz" dairesi duruyor), mod adları ("Yeni şeyler öğrenelim"), `HomeHeroCard` (testlerde ve önizlemede kullanılıyor). Kurallarla çakışan noktalar README notunda Batuhan'ın onayına.
+- Prototip: `design-preview/app/home.js` aynı düzende.
+- Test: design law grep'leri değişen dosyalarda boş. Swift yerelde derlenmedi; bu commit `[ekran]` ile GitHub'ın Mac'inde derlenip çekiliyor.
+- Dosyalar: `MagicPaper/Views/HomeView.swift`, `MagicPaper/DesignSystem/Pastel/{MPHomeReadingNook,MPHomeChrome}.swift`, `MagicPaper/DesignSystem/MPTheme.swift`, `MagicPaper/Assets.xcassets/Scenes/home{ReadingNook,WorldLearning,WorldAdventure}.imageset`, `design-preview/app/{home.js,app.css,index.html}`, `README.md`, bu günlük.
+
 ### 2026-11-21 · main, commit bu kayıtla · anlati-provenance, evren-7-yetkiler ve codex/design-system-catalog main'e birleşti
 - Birleşenler (Batuhan'ın isteğiyle, sırayla, `--no-ff`): `anlati-provenance` (71d4893: sayfa kaynak izi, Anlatı planı A0-A8, katmanlı sayfa resmi kararı, pilot çizim listesi), `evren-7-yetkiler` (7fc4231: aynı plan belgelerinin eski kopyaları), `codex/design-system-catalog` (bbbc522: yayımlanmış Original'lara sayfa çizimleri, incelenmiş çan görseli, görsel kaynak denetimi).
 - Çakışma çözümü: `ANLATI_PLANI.md`'de anlati-provenance'ın yeni sürümü kaldı (evren-7'deki A0/A1 öncesi hâli). codex dalı `c742ea7`'yi yama olarak almıştı; çakışan 20 dosyanın (StoryPageProvenance, 18 notice_anomaly şablonu, VisualMeaningTests, GORSEL_ANLAM_SOZLESMESI) codex sürümü `c742ea7` ile birebir aynıydı, bu yüzden anlati-provenance'ın ilerlemiş sürümü (`visualReview: "reviewed"`) kaldı. Günlükte iki tarafın kayıtları tarihe göre birleşti, hiçbiri silinmedi.
