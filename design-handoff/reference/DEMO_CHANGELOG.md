@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · main, commit bu kayıtla · anlati-provenance, evren-7-yetkiler ve codex/design-system-catalog main'e birleşti
+- Birleşenler (Batuhan'ın isteğiyle, sırayla, `--no-ff`): `anlati-provenance` (71d4893: sayfa kaynak izi, Anlatı planı A0-A8, katmanlı sayfa resmi kararı, pilot çizim listesi), `evren-7-yetkiler` (7fc4231: aynı plan belgelerinin eski kopyaları), `codex/design-system-catalog` (bbbc522: yayımlanmış Original'lara sayfa çizimleri, incelenmiş çan görseli, görsel kaynak denetimi).
+- Çakışma çözümü: `ANLATI_PLANI.md`'de anlati-provenance'ın yeni sürümü kaldı (evren-7'deki A0/A1 öncesi hâli). codex dalı `c742ea7`'yi yama olarak almıştı; çakışan 20 dosyanın (StoryPageProvenance, 18 notice_anomaly şablonu, VisualMeaningTests, GORSEL_ANLAM_SOZLESMESI) codex sürümü `c742ea7` ile birebir aynıydı, bu yüzden anlati-provenance'ın ilerlemiş sürümü (`visualReview: "reviewed"`) kaldı. Günlükte iki tarafın kayıtları tarihe göre birleşti, hiçbiri silinmedi.
+- codex dalının yeni "Saatin İçindeki Ninni" kapağı logosuzdu; 19 Kasım kararına göre Originals logosu `stamp_originals_logo.py` ile basıldı (published + uygulama asset'i). "Originals" yazısı saatin karlı tepesine biraz değiyor, hale ile okunuyor.
+- Bilerek değişmeyen: paylaşılan checkout'taki `codex/design-system-catalog` dalının commit edilmemiş değişiklikleri (ReviewedDiscoveryArtBinder/Policy, StorySpotBinder ve testleri) birleşmeye girmedi; o oturumun işi.
+- Doğrulama: iPhone 16 için Debug derleme BUILD SUCCEEDED; StoryEngine `VisualMeaningTests` 5/0; ContentPublisher 32/0; `test_original_illustrations.py` 6/0; katalog derleyicisi yeniden çalıştı, çıktı değişmedi. Uygulama test paketi koşulmadı; birleşik hâl cihazda denenmedi.
+- Dosyalar: üç dalın değişiklikleri, `Content/Originals/published/saatin-icindeki-ninni/cover.jpg`, `MagicPaper/Assets.xcassets/Originals/original-saatin-icindeki-ninni.imageset`, bu günlük.
+
 ### 2026-11-21 · main, commit bu kayıtla · Kar Tepesi'ndeki Yeşil Işık stüdyo sesiyle yayında
 - Seslendirme: Batuhan'ın ElevenLabs kaydı (anlatıcı "Venera", 232 sn, tek MP3) dokuz sayfa dosyasına bölündü: `Content/Originals/published/kar-tepesindeki-yesil-isik/narration/page-01…09.m4a` (AAC 64 kbps mono, toplam ~1,9 MB). Anlatıcı sayfa arasında daha uzun durmadığı için sınırlar cümle cümle hece sayısı ve duraklarla eşleştirildi, sonra elle kontrol edildi. Kesimler (sn): 28,39 · 54,57 · 81,94 · 107,99 · 132,36 · 155,77 · 180,44 · 208,59. Başlık 1. sayfanın sesinin başında okunuyor. Sayfa başına süre/hece oranı ±%12 içinde. Kulakla dinlenmedi.
 - Onay: Batuhan'ın onayıyla `originals approve` çalıştı, taslak `published/`'a geçti (review.md git geçmişinde), `build_classics_catalog.py` masalı katalog ve kapak asset'iyle uygulamaya ekledi.
