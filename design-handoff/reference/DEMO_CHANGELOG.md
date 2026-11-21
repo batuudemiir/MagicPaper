@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · codex/design-system-catalog · Kitap boyunca görsel başlangıç ölçümü
+
+- Kullanıcının onayladığı yol haritası `docs/STORY_ART_ROADMAP.md` içinde; Tarçın kimlik sayfasının görünüşü kullanıcı tarafından onaylandı.
+- Altı5–6macera kurgusu×100sabitseed:600/600temizmasal,4.800sayfa,221kitap1pin/379kitap0pin; tüm pinler açılışta. Orta/son0. Metin, sayfa başına art ve provenance kaydet/aç eşitliği doğrulandı.
+- Test: seçili `WholeBookArtCoverageTests`1/0hata, Xcode TEST SUCCEEDED. Tam paket/telefon/UI matrisi çalıştırılmadı. Mevcut üretim kodu/metin/seçim değişmedi; otomatik etiketler yalnız inceleme adayıdır.
+- Dosyalar: yeni XCTest, `Tools/summarize_whole_book_art.py`, yol haritası, proje hafızası; `design-handoff/proposals/2026-11-21-whole-book-art/` başlangıçJSON/rapor/kimliktaslağı.
+
+
 ### 2026-11-21 · codex/design-system-catalog, commit yok · Guaj nesne havuzu 20 konuya çıktı
 
 - Onaylı referanslarla altı yeni sabit çizim: kırmızı top, mavi/sarı saplı atlama ipi, kâğıt uçurtma, tahta flüt, el aynası, uzun kırmızı kurdele. Kurdele dış boya izleri image_gen ile temizlendi; v2 seçildi. Kaynak PNG'ler ve istemler kayıtlı; aynı byte'lar mpart olarak paketlendi.
