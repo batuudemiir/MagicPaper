@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-22 · codex/design-system-catalog, commit yok · Tarçın poz kütüphanesi
+
+- Onaylı kimlik+marka referanslı built-in image_gen ile8yeni poz, mevcut3poz ve kimlik sayfası korunarak11pozluk başlangıçseti; HTML/ZIP/prompt/SHA kayıtları tarcin-pose-library klasöründe.8yeni PNG alpha/decode kontrolü geçti, görseller incelendi. Bazı boyalı zeminler ve yardımhazırlığı→uzanma anlamı yayın incelemesi bekler. App/motor/eşleme değişmedi; test/simülatör çalıştırılmadı.
+
+
 ### 2026-11-22 · codex/design-system-catalog, commit yok · Ragi ve beş arkadaş marka thumbnaili
 
 - Built-in image_gen ile onaylı marka, Ragi ve beşli görseli referanslı yatay thumbnail; MagicPaper yazısı ve altı karakter görsel kontrolünden geçti. PNG ve prompt kaydı karakter öneri klasöründe. Üretilmiş yazı resmi logonun yerine geçmez. Uygulama değişmedi; test çalıştırılmadı.
