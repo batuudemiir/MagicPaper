@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Okuma köşesi gerçek uygulamada derlendi; ekran beklemesi 10 sn
+
+- `727c2d8` turu: derleme başarılı, 32 görüntü. SE'de yeni ana sayfa (okuma köşesi, davet, düğme) doğru çiziliyor. Pro Max görüntüsü açılış karşılamasında (logo + el sallayan Ragi) kalmış: main'den gelen açılış animasyonu 7 sn'ye sığmıyor. SE'de Profil boş (zamanlama).
+- `Scripts/ci_screenshots.sh`: bekleme 7 → 10 sn.
+- Dosyalar: `Scripts/ci_screenshots.sh`, bu günlük.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Paywall tamamen C; seçenekler kaldırıldı
 
 - İrem: A'nın kapak başlığı beğenilmedi; Paywall prototipteki "C · Sade ve güven" ile birebir. `PaywallView`: başlık "MagicPaper Premium" + "Ritüel ücretsiz kalır. Premium kitaplığı büyütür.", beş kısa fayda (Gün boyu yeni masal, Bütün klasikler ve seriler, Masal ailem, Ailedeki her çocuk, PDF masal kitabı), **yıllık varsayılan** (İrem'in kararı; Batuhan'a README notu). Kapak rafı, `loadCovers`, küçük ekran kısaltması kaldırıldı (SE'de C zaten ilk ekrana sığıyor); `HomeView.shelfItems` yeniden `private`.

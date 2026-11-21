@@ -15,7 +15,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/design-preview/screens/real"
 DERIVED="${DERIVED:-$ROOT/build/screenshots}"
 BUNDLE="com.batu.magicpaper.v1"
-WAIT="${WAIT:-7}"
+WAIT="${WAIT:-10}"  # açılış karşılaması (Batuhan, 21 Kasım) 7 sn'ye sığmıyor
 
 cd "$ROOT"
 
