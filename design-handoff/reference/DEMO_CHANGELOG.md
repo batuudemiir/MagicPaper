@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Gerçek uygulamada Paywall C ve Okuma köşesi doğrulandı; ekran turunda açılış ekranı atlanır
+
+- `8475808` turu: derleme başarılı, 32 görüntü, boş yok. Abonelik ekranı Pro Max ve SE'de C ile aynı (SE'de planlar ilk ekranda). CI'da mağaza ürünü olmadığı için "%N avantajlı", "Ayda ₺X" ve deneme takvimi görünmüyor; beklenen. SE ana sayfası: selam saat çubuğuna yakın, sahnenin üstü ve altı kâğıda eriyor.
+- Pro Max ana sayfa görüntüsü yine açılış ekranında (ilk açılışta 10 sn'de kapanmadı). `MagicPaperApp.showSplash`: DEBUG'da `-mpDemo` ile açılış ekranı atlanır; Release değişmedi. Olası takılma README'de Batuhan'a.
+- Test: bu commit `[ekran]` ile.
+- Dosyalar: `MagicPaper/MagicPaperApp.swift`, `README.md`, bu günlük.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Derleme düzeltmesi: deneme uygunluğu satırı
 
 - `8afd339` turu derlenmedi: `RevenueCatManager.swift:323` `Set(result.filter{…}.map(.key))`. Satırı yazan komut `.key` içindeki ters eğik çizgiyi yutmuştu. Açık tipli `compactMap` ile yeniden yazıldı. Derleme günlüğünde başka hata yoktu (yeni Paywall, seri kilidi derlendi).

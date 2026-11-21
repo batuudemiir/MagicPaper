@@ -97,7 +97,14 @@ struct MagicPaperApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
   @ObservedObject private var profileManager = ProfileManager.shared
   /// Sabit bekleme yalnızca ilk açılışta: Ragi selam verir. Sonra doğrudan uygulama.
-  @State private var showSplash = !UserDefaults.standard.bool(forKey: SplashScreenView.seenKey)
+  /// Ekran görüntüsü turunda (DEBUG, `-mpDemo`) açılış ekranı atlanır: Pro Max simülatöründe
+  /// ilk açılışta 10 sn'de kapanmadı (21 Kasım 2026). Release davranışı aynı.
+  @State private var showSplash: Bool = {
+    #if DEBUG
+    if UserDefaults.standard.bool(forKey: "mpDemo") { return false }
+    #endif
+    return !UserDefaults.standard.bool(forKey: SplashScreenView.seenKey)
+  }()
 
   var body: some Scene {
     WindowGroup {
