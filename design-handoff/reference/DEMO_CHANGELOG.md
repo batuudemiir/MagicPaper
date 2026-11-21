@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa Batuhan'ın son hâline döndü
+
+- İrem'in kararı: ana sayfanın tasarımı main'deki son hâl (`HomeHeaderScene`, bu akşamın kartı, "Yeni bir masal yaz" karoları, devam eden seri). Okuma köşesi geri alındı.
+- `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `DesignSystem/MPTheme.swift` main'den alındı (birebir). Silindi: `MPHomeReadingNook.swift`, `Scenes/homeReadingNook`, `homeWorldLearning`, `homeWorldAdventure`.
+- Prototip: `design-preview/app/home.js` ve Okuma köşesi stilleri silindi; `app.js`'teki eski ana sayfa yeniden görünür.
+- Bilerek değişmedi: Paywall C, seri kartı kilidi, deneme uygunluğu, DEBUG açılış atlama.
+- `docs/ANA_SAYFA_HAZIRLIK.md` Batuhan'ın sürümüne göre yeniden yazıldı (A1–A6, B1–B3, C1–C4); README notu güncellendi.
+- Test: bu commit'le `[ekran]` turu (derleme + görüntü); yerelde test çalıştırılmadı.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa yayına hazırlık denetimi
 
 - Yeni belge `docs/ANA_SAYFA_HAZIRLIK.md`: ana sayfanın kodu, okuduğu servisler ve son ekran turu tarandı; yayını engelleyen 6, görsel 5, mimari 5, küçük 4 madde ve plan.

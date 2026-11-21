@@ -14,7 +14,7 @@
     if (!files.length) return dispatchEvent(new Event("mp-ready"));
     const s = document.createElement("script"); s.src = files[0] + "?v=" + Date.now();
     s.onload = () => load(files.slice(1)); document.body.appendChild(s);
-  })(["app.js", "content.js", "masallar.js", "home.js", "paywall.js", "os.js"]);
+  })(["app.js", "content.js", "masallar.js", "paywall.js", "os.js"]);
 </script>
 </body>
 </html>
