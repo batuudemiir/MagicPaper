@@ -71,6 +71,40 @@ final class HomeFeedTests: XCTestCase {
         XCTAssertNotEqual(a, HomeFeed.make(inputs(.readToday, canWrite: false), now: date("15:00"), calendar: calendar))
     }
 
+    // MARK: - Kartın kapağı (A6)
+
+    private func daily(_ category: DailyStoryCategory) -> DailyStory {
+        DailyStory(id: UUID(), title: "Kelebeğin Dönüşümü", category: category, ageRange: "3-6",
+                   readingTime: 5, content: "", moralLesson: "", emoji: "", isRead: false, lastReadDate: nil)
+    }
+
+    func testTodaysStoryWithoutAPaintedCoverGetsItsCategoryTitleCover() {
+        let story = daily(.nature)
+        XCTAssertEqual(HomeFeed.cover(for: .unread(.init(title: story.title, minutes: 5)), resume: nil,
+                                      daily: story, original: nil),
+                       .title("Kelebeğin Dönüşümü", tone: .green, modeSymbol: nil, worldSymbol: "tree"))
+    }
+
+    func testTodaysStoryWithAPaintedCoverShowsIt() {
+        let story = daily(.bedtime)
+        let painted = ClassicOriginalCover(feedID: story.id, cover: "classic-orijinal-ayin-ninni-sarkisi",
+                                           coverFocus: .center, coverCredit: "", shelves: [.uyku])
+        XCTAssertEqual(HomeFeed.cover(for: .unread(.init(title: story.title, minutes: 5)), resume: nil,
+                                      daily: story, original: painted),
+                       .image("classic-orijinal-ayin-ninni-sarkisi", focus: .center))
+    }
+
+    func testBedtimeAndReadTodayOfferNoBookSoNoCover() {
+        let story = daily(.nature)
+        XCTAssertNil(HomeFeed.cover(for: .bedtime(bedtime), resume: nil, daily: story, original: nil))
+        XCTAssertNil(HomeFeed.cover(for: .readToday, resume: nil, daily: story, original: nil))
+    }
+
+    func testEveryCategoryHasItsOwnTone() {
+        let tones = DailyStoryCategory.allCases.map(HomeFeed.tone(for:))
+        XCTAssertEqual(Set(tones).count, DailyStoryCategory.allCases.count)
+    }
+
     // MARK: - Bir sonraki değişim
 
     func testNextChangeIsTheNearestGreetingHour() {

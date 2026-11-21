@@ -114,12 +114,17 @@ final class HomeFeedStore: ObservableObject {
     private static func liveInputs(now: Date) -> HomeFeed.Inputs {
         let profile = ProfileManager.shared.currentProfile
         let stories = StoryGenerationManager.shared.stories
+        let resolved = MPTonightSource.current()
+        let tonight = resolved.tonight(at: now)
+        let original = resolved.daily.flatMap { ClassicsLibrary.shared.original($0.id)?.cover }
         return HomeFeed.Inputs(
-            tonight: MPTonightSource.current().tonight(at: now),
+            tonight: tonight,
             canWriteNewStory: MPAppState.canWriteNewStoryToday,
             stars: profile.map { MPStars.score(for: $0, stories: stories, now: now) } ?? 0,
             streak: MPStreak.shared.currentStreak,
-            hasSeriesCard: profile.map { SeriesManager.shared.cardState(for: $0.id) != nil } ?? false)
+            hasSeriesCard: profile.map { SeriesManager.shared.cardState(for: $0.id) != nil } ?? false,
+            cover: HomeFeed.cover(for: tonight, resume: resolved.resumeStory, daily: resolved.daily,
+                                  original: original))
     }
 
     /// Ücretsiz günün masalı yazıldıysa yenisinin açılacağı an.

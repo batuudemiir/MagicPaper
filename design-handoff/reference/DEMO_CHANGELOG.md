@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa: en büyük yazı düzeni ve kartta kapak (A5, A6)
+
+- A5: erişilebilirlik yazı boyutlarında `HomeHeaderScene(compact:)`: sahne 120 pt'lik bant (manzaranın ortası, Ragi %70 bantta), ad bandın altında kâğıtta (açık yazı yok, kırpılmaz). Selam düşer, rozet notu kalır. Yıldız/gün satırı kartın altına iner. Kartın kapağı düşer. Amaç: SE'de en büyük yazıda kartın düğmesi ilk ekranda. Normal boyutlarda hiçbir şey değişmedi.
+- A6: `HomeFeed.cover` + `HomeHeroCard(art:)`: kapak metnin solunda (66 pt, Kitaplık'ın `MPBookCover`'ı; dar kapakta ad yazılmaz). Yarım masal: Kitaplık'taki kapak ve ilerleme halkası. Günün masalı: boyalı Original kapağı varsa o, yoksa kategorinin renginde simgeli başlık kapağı. Uyku ve "bugün okudun"da kapak yok.
+- Eski `tonightCover` silindi: günün klasiğini günün Original'iyle adından karşılaştırıyordu, hiç eşleşmiyordu; her çizimde `UIImage` da yüklüyordu.
+- Kart içi boşluk korunur (açıklama ile düğme arası 12 pt, önceki gibi).
+- Tasarım yasası grep'leri değişen dosyalarda boş. Test: `HomeFeedTests` +4 (kapak kuralı), **çalıştırılmadı** (Mac). `[ekran]` turunun en büyük yazı görüntüleri A5'i gösterecek.
+- Dosyalar: `DesignSystem/Pastel/MPHomeChrome.swift`, `Views/HomeView.swift`, `Screens/Home/HomeFeed.swift`, `Screens/Home/HomeFeedStore.swift`, `MagicPaperTests/HomeFeedTests.swift`, `docs/ANA_SAYFA_HAZIRLIK.md`.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa canlı veriyi ve saati izler (A3, A4)
 
 - Yeni `Screens/Home/HomeFeed.swift`: ana sayfanın kararları, saf (selam, bu akşamın kartı, gece, yıldız, gün, seri kartı, bir sonraki değişim anı). Görünümdeki `greeting`, `tonight`, `tonightState`, `stars` ve seri sorgusu buraya taşındı.

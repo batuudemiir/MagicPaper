@@ -20,6 +20,8 @@ struct HomeFeed: Equatable {
     var streak: Int
     /// "Devam eden seri" bölümü görünür mü.
     var hasSeriesCard: Bool
+    /// Bu akşamın kartındaki kapak (A6): okumayan çocuk masalı kapağından tanır.
+    var cover: MPBookCover.Art?
 
     struct Inputs: Equatable {
         var tonight: MPTonight
@@ -28,6 +30,7 @@ struct HomeFeed: Equatable {
         var stars: Int
         var streak: Int
         var hasSeriesCard: Bool
+        var cover: MPBookCover.Art? = nil
     }
 
     static func make(_ inputs: Inputs, now: Date, calendar: Calendar = .current) -> HomeFeed {
@@ -39,7 +42,8 @@ struct HomeFeed: Equatable {
                         isNight: isNight,
                         stars: inputs.stars,
                         streak: inputs.streak,
-                        hasSeriesCard: inputs.hasSeriesCard)
+                        hasSeriesCard: inputs.hasSeriesCard,
+                        cover: inputs.cover)
     }
 
     /// `MPTonight` → kartın durumu.
@@ -54,6 +58,39 @@ struct HomeFeed: Equatable {
             return .unread(title: daily.title, meta: "\(daily.minutes) dakika")
         case .readToday:
             return .readToday(canWrite: canWrite)
+        }
+    }
+
+    // MARK: - Kapak (A6)
+
+    /// Kartın kapağı. Yarım masal: Kitaplık'taki kapağı (`LibraryShelfModel`).
+    /// Günün masalı: boyalı Original kapağı varsa o, yoksa kategorinin renginde
+    /// başlık kapağı (dar kapakta ad yazılmaz, yalnızca simge; ad yanında).
+    /// Uyku ve "bugün okudun" durumunda kart bir masal sunmaz: kapak yok.
+    static func cover(for tonight: MPTonight, resume: Story?, daily: DailyStory?,
+                      original: ClassicOriginalCover?) -> MPBookCover.Art? {
+        switch tonight {
+        case .resume:
+            return resume.map(LibraryShelfModel.coverArt)
+        case .unread:
+            guard let daily else { return nil }
+            if let original { return .image(original.cover, focus: original.coverFocus) }
+            return .title(daily.title, tone: tone(for: daily.category), modeSymbol: nil,
+                          worldSymbol: daily.category.mpSymbol)
+        case .bedtime, .readToday:
+            return nil
+        }
+    }
+
+    /// Günlük masal kategorisinin pastel tonu (kapak zemini).
+    static func tone(for category: DailyStoryCategory) -> MPWorldTone {
+        switch category {
+        case .bedtime:     return .lav
+        case .morning:     return .yellow
+        case .educational: return .sky
+        case .values:      return .pink
+        case .adventure:   return .peach
+        case .nature:      return .green
         }
     }
 

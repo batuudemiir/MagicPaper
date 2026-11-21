@@ -77,25 +77,28 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: MPSpacing.xl) {
             // 19 Kasım 2026 (İrem): selam ve ad tam genişlik sahnenin üstünde
             // (`HomeHeaderScene`); ekranın tek Ragi'si orada, kart sahnesiz.
-            HomeHeaderScene(isNight: isNight, topInset: topInset) {
-                // Yıldız ve gün başlığın sağında (13 Kasım 2026); en büyük yazı
-                // boyutlarında ad daralmasın diye eski yerinde, başlığın altında.
-                VStack(alignment: .leading, spacing: 0) {
-                    // Rozet notu iki kademede de bir kez; selam yalnızca okuyan çocukta.
-                    MPKidTabHeader(title: activeName,
-                                   eyebrow: badgeNews.homeNote(for: profileManager.currentProfile?.id)
-                                       ?? (level == .little ? nil : feed.greeting),
-                                   onArt: isNight) {
-                        if showsStats, !typeSize.isAccessibilitySize { statLine(compact: true) }
-                    }
-                    if showsStats, typeSize.isAccessibilitySize { statLine(compact: false) }
+            HomeHeaderScene(isNight: isNight, topInset: topInset, compact: largeType) {
+                // Rozet notu iki kademede de bir kez; selam yalnızca okuyan çocukta.
+                // En büyük yazıda selam düşer (A5): kartın düğmesi ilk ekranda kalsın.
+                // Başlık orada sahnenin altında, kâğıtta: açık yazı yok.
+                MPKidTabHeader(title: activeName,
+                               eyebrow: badgeNews.homeNote(for: profileManager.currentProfile?.id)
+                                   ?? (level == .little || largeType ? nil : feed.greeting),
+                               onArt: isNight && !largeType) {
+                    // Yıldız ve gün başlığın sağında (13 Kasım 2026).
+                    if showsStats, !largeType { statLine(compact: true, onArt: isNight) }
                 }
             }
 
             VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
-                HomeHeroCard(state: feed.tonight, isNight: isNight, cover: tonightCover,
-                             showsScene: false, onPrimary: tonightAction)
-                    .homeEntrance(0)
+                VStack(alignment: .leading, spacing: MPSpacing.md) {
+                    HomeHeroCard(state: feed.tonight, isNight: isNight, showsScene: false,
+                                 art: feed.cover, onPrimary: tonightAction)
+                    // En büyük yazıda yıldız ve gün kartın altında (A5): ad
+                    // daralmaz, kartın düğmesi aşağı itilmez.
+                    if showsStats, largeType { statLine(compact: false, onArt: false) }
+                }
+                .homeEntrance(0)
 
                 // Modlar kartın hemen altında, kıvrımın üstünde (Faz 7): seri kartı
                 // onları aşağı itiyordu.
@@ -122,10 +125,10 @@ struct HomeView: View {
     /// Satır Odam'a götürür: yıldız ve serinin ayrıntısı orada.
     /// Sıfırlar yazılmaz: "0 gün üst üste" kimseye bir şey söylemez.
     @ViewBuilder
-    private func statLine(compact: Bool) -> some View {
+    private func statLine(compact: Bool, onArt: Bool) -> some View {
         if feed.stars > 0 || feed.streak > 0 {
             Button { MPHaptics.tap(); app.router.openKidCorner() } label: {
-                HomeStatLine(stars: feed.stars, streak: feed.streak, compact: compact, onArt: isNight)
+                HomeStatLine(stars: feed.stars, streak: feed.streak, compact: compact, onArt: onArt)
             }
             .buttonStyle(MPPressStyle())
             .accessibilityHint("Profili açar")
@@ -135,6 +138,9 @@ struct HomeView: View {
     /// Uyku saatinde başlık sahnesi geceye döner; sayfa açık kalır.
     private var isNight: Bool { feed.isNight }
 
+    /// Erişilebilirlik yazı boyutları: sahne kısa bant, başlık kâğıtta (A5).
+    private var largeType: Bool { typeSize.isAccessibilitySize }
+
     // MARK: - Başlık
 
     private var activeName: String {
@@ -143,21 +149,11 @@ struct HomeView: View {
 
     // MARK: - Bu akşamın masalı
 
-    /// Okunmamış günün masalı bir klasikse kapağı sahneye konur. Yarım kalan
-    /// masalın kapağı `MPTonight`'ta taşınmıyor; o durumda sahne kapaksız.
-    private var tonightCover: (asset: String, focus: ClassicFocus)? {
-        guard case .unread(let title, _) = feed.tonight,
-              let tale = classics.todaysTale, tale.title == title,
-              UIImage(named: tale.cover) != nil else { return nil }
-        return (tale.cover, tale.coverFocus)
-    }
-
+    /// Kartın kapağı `HomeFeed.cover`'da (A6): yarım masal, günün masalı.
     private func tonightAction() {
         MPHaptics.tap()
         app.openTonight()
     }
-
-    private var classics: ClassicsLibrary { .shared }
 
     // MARK: - Mod şeridi
 

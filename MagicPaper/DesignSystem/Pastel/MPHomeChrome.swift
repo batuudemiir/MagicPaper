@@ -204,41 +204,65 @@ struct HomeHeaderScene<Header: View>: View {
     var isNight: Bool
     /// Üst güvenli alan: sahne saat çubuğunun altına uzanır, başlık onun altında başlar.
     var topInset: CGFloat = 0
+    /// En büyük yazı boyutları (21 Kasım 2026, ANA_SAYFA_HAZIRLIK A5): sahne
+    /// kısa bir banda iner, başlık sahnenin üstünde değil altında, kâğıtta durur.
+    /// Büyüyen ad ve selam kırpılmaz, okunurluğu resme bağlı kalmaz ve bu
+    /// akşamın kartının düğmesi ilk ekrana sığar. Ragi bantta, küçülerek kalır.
+    var compact: Bool = false
     @ViewBuilder var header: Header
 
     static var height: CGFloat { 300 }
+    /// Kısa bandın yüksekliği (üst güvenli alan hariç).
+    static var compactHeight: CGFloat { 120 }
 
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            ZStack(alignment: .bottomTrailing) {
-                // Görsel `overlay`'de: dolduran (fill) resim yerleşime genişliğini
-                // dayatmasın. İlk turda sayfa ekrandan taştı (19 Kasım, CI görüntüsü).
-                ZStack {
-                    MPColor.sceneSkyDay
-                        .overlay(alignment: .bottom) {
-                            Image("Scenes/homeSceneDay").resizable().aspectRatio(contentMode: .fill)
-                        }
-                    MPColor.sceneSkyNight
-                        .overlay(alignment: .bottom) {
-                            Image("Scenes/homeSceneNight").resizable().aspectRatio(contentMode: .fill)
-                        }
-                        .opacity(isNight ? 1 : 0)
-                }
-                .frame(height: Self.height + topInset)
-                .clipped()
-                .animation(MP.M.gated(MP.M.slow), value: isNight)
-                .accessibilityHidden(true)
-                HomeSceneMascot(isNight: isNight)
-                    .padding(.trailing, MPSpacing.xl)
-                    .padding(.bottom, MPSpacing.xxl)
+        if compact {
+            VStack(alignment: .leading, spacing: MPSpacing.lg) {
+                band(height: Self.compactHeight + topInset)
+                    .clipShape(WaveBottom())
+                header
+                    .padding(.horizontal, MPSpacing.screenH)
             }
-            header
-                .padding(.top, topInset + MPSpacing.lg)
-                .padding(.horizontal, MPSpacing.screenH)
+        } else {
+            ZStack(alignment: .topLeading) {
+                band(height: Self.height + topInset)
+                header
+                    .padding(.top, topInset + MPSpacing.lg)
+                    .padding(.horizontal, MPSpacing.screenH)
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: Self.height + topInset)
+            .clipShape(WaveBottom())
+        }
+    }
+
+    /// Manzara ve Ragi. Kısa bantta manzaranın ortası görünür (alt kenarda
+    /// yalnızca çayır kalırdı) ve Ragi küçülür.
+    private func band(height: CGFloat) -> some View {
+        ZStack(alignment: .bottomTrailing) {
+            // Görsel `overlay`'de: dolduran (fill) resim yerleşime genişliğini
+            // dayatmasın. İlk turda sayfa ekrandan taştı (19 Kasım, CI görüntüsü).
+            ZStack {
+                MPColor.sceneSkyDay
+                    .overlay(alignment: compact ? .center : .bottom) {
+                        Image("Scenes/homeSceneDay").resizable().aspectRatio(contentMode: .fill)
+                    }
+                MPColor.sceneSkyNight
+                    .overlay(alignment: compact ? .center : .bottom) {
+                        Image("Scenes/homeSceneNight").resizable().aspectRatio(contentMode: .fill)
+                    }
+                    .opacity(isNight ? 1 : 0)
+            }
+            .frame(height: height)
+            .clipped()
+            .animation(MP.M.gated(MP.M.slow), value: isNight)
+            .accessibilityHidden(true)
+            HomeSceneMascot(isNight: isNight)
+                .scaleEffect(compact ? 0.7 : 1, anchor: .bottomTrailing)
+                .padding(.trailing, MPSpacing.xl)
+                .padding(.bottom, compact ? MPSpacing.lg : MPSpacing.xxl)
         }
         .frame(maxWidth: .infinity)
-        .frame(height: Self.height + topInset)
-        .clipShape(WaveBottom())
     }
 }
 
@@ -292,19 +316,33 @@ struct HomeHeroCard: View {
     /// Ana sayfada sahne sayfanın tepesinde (`HomeHeaderScene`, 19 Kasım 2026):
     /// kart sahnesiz, ekranın tek Ragi'si başlıkta kalır.
     var showsScene: Bool = true
+    /// Masalın kitap kapağı, metnin solunda (21 Kasım 2026, ANA_SAYFA_HAZIRLIK A6):
+    /// okumayan çocuk masalı adından değil kapağından tanır. Sahnesiz kartta
+    /// (`showsScene == false`) kullanılır. Yarım masalda kapakta ilerleme halkası.
+    var art: MPBookCover.Art? = nil
     let onPrimary: () -> Void
+
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             if showsScene { scene }
-            VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                Text(eyebrow).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.actionPrimary)
-                Text(title).mpText(.section).foregroundStyle(MPColor.textPrimary)
-                    .fixedSize(horizontal: false, vertical: true)
-                Text(sub).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
+            VStack(alignment: .leading, spacing: MPSpacing.md) {
+                HStack(alignment: .top, spacing: MPSpacing.md) {
+                    // En büyük yazıda kapak düşer: öncelik metin ve düğmede (A5).
+                    if let art, !showsScene, !typeSize.isAccessibilitySize {
+                        MPBookCover(art: art, badge: coverBadge, width: Self.coverSize.width)
+                    }
+                    VStack(alignment: .leading, spacing: MPSpacing.xxs) {
+                        Text(eyebrow).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.actionPrimary)
+                        Text(title).mpText(.section).foregroundStyle(MPColor.textPrimary)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Text(sub).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
                 MPButton(title: buttonTitle, systemImage: buttonIcon, size: .hero, fullWidth: true, action: onPrimary)
-                    .padding(.top, MPSpacing.sm)
             }
             .padding(MPSpacing.lg)
         }
@@ -350,6 +388,12 @@ struct HomeHeroCard: View {
         .clipped()
     }
 
+
+    /// Yarım masalda kapağın köşesinde ilerleme halkası (dar kapakta yazısız).
+    private var coverBadge: MPBookCover.Badge? {
+        if case .resume(let progress, _, _) = state, progress > 0 { return .progress(progress) }
+        return nil
+    }
 
     private var eyebrow: String { switch state { case .resume: "Kaldığın yerden"; case .unread: "Bu akşamın masalı"; case .readToday: "Bugün okudun"; case .bedtime(let t): "Saat \(t)" } }
     private var title: String { switch state { case .resume(_, let t, _): t; case .unread(let t, _): t; case .readToday: "Yarın yeni bir masal var"; case .bedtime: "Uyku masalı zamanı" } }
@@ -541,6 +585,10 @@ struct HomeModeTile: View {
             HomeHeroCard(state: .readToday(canWrite: true)) {}
             HomeHeroCard(state: .readToday(canWrite: false)) {}
             HomeHeroCard(state: .bedtime(time: "20.30"), isNight: true) {}
+            // Ana sayfadaki hâli: sahnesiz, kapaklı (A6).
+            HomeHeroCard(state: .resume(progress: 0.4, title: "Şehri Kurtaran Gün", meta: "Sayfa 3 / 8"),
+                         showsScene: false,
+                         art: .title("Şehri Kurtaran Gün", tone: .peach, modeSymbol: "tent", worldSymbol: "tree")) {}
             HStack(spacing: MPSpacing.sm) {
                 HomeModeTile(title: "Uyku öncesi", systemImage: "moon", tone: .lav) {}
                 HomeModeTile(title: "Öğrenelim", systemImage: "sparkles", tone: .mint) {}
