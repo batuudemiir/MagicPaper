@@ -8,8 +8,8 @@ import SwiftUI
 // MARK: - Okuma köşesi sahnesi
 
 /// Pencere önünde kitap okuyan Ragi: ekranın tek Ragi'si, süs (erişilebilirlikten
-/// gizli). Görsel kenarlarında kâğıda erir; alt kenarın ortası pembe kaldığı için
-/// alttan kısa bir maske ile zemine karışır. Bu bir arayüz yüzeyi değil,
+/// gizli). Üst ve alt kenar kısa bir maskeyle kâğıda erir: görselin kırpılan
+/// üstü (yaprak, perde, kemer) ve pembe kalan altı keskin çizgi bırakmasın (21 Kasım, İrem). Bu bir arayüz yüzeyi değil,
 /// illüstrasyonun kendi maskesidir. Küçük ekranda yükseklik kısılır, yanlar kırpılır.
 struct HomeReadingNook: View {
     var height: CGFloat
@@ -22,7 +22,8 @@ struct HomeReadingNook: View {
             .frame(height: height)
             .clipped()
             .mask {
-                LinearGradient(stops: [.init(color: .white, location: 0),
+                LinearGradient(stops: [.init(color: .white.opacity(0), location: 0),
+                                       .init(color: .white, location: 0.16),
                                        .init(color: .white, location: 0.84),
                                        .init(color: .white.opacity(0), location: 1)],
                                startPoint: .top, endPoint: .bottom)

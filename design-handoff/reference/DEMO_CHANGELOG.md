@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Okuma köşesi sahnesinin üstü de erir
+
+- İrem: sahnenin üst kenarı (kırpılan yaprak, perde, kemer) keskin çizgiyle bitiyordu. `HomeReadingNook` maskesi üstte de %16 boyunca kâğıda erir (alttaki gibi). Prototipte aynısı.
+- Test: prototip Edge'de çekildi; Swift bu commit'le `[ekran]` turunda.
+- Dosyalar: `MagicPaper/DesignSystem/Pastel/MPHomeReadingNook.swift`, `design-preview/app/app.css`, bu günlük.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa: selam tepeye yakın, sahne altına girer
 
 - İrem: telefonun üstü boş duruyordu (selam ile saat çubuğu arası ve selamla sahne arası). Selamın üst boşluğu `lg` → `xxs`; okuma köşesi sahnesi `-md` ile selamın altına girer, başlık önde (`zIndex`). Sahnenin üst kenarı kâğıda eridiği için çizgi yok. Prototipte aynısı.
