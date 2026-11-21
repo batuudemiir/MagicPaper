@@ -25,7 +25,7 @@ VIEWS.home = () => {
   const book = (cover, title, status, attrs) => `<button class="nook-book" ${attrs}>${cover}<b class="t-card-title">${esc(title)}</b><span class="t-supporting secondary">${status}</span></button>`;
   return { cls: "nook-page", html: `<div class="scroller nook">
     <div class="tab-head nook-head"><h1>${greet} ${esc(CHILD)}</h1>
-      <button class="nook-av" data-go="profil" aria-label="${esc(CHILD)} profilini aç">${bust()}</button></div>
+      <button class="nook-av" data-go="profil" aria-label="${esc(CHILD)} profilini aç">${ic("user")}</button></div>
     <img class="nook-scene" src="${NOOK}homeReadingNook.imageset/homeReadingNook.jpg" alt="">
     <div class="nook-invite"><span class="t-card-title">${invite.eyebrow}</span><div class="t-cover">${esc(invite.title)}</div>
       ${invite.sub ? `<span class="t-supporting secondary">${invite.sub}</span>` : ""}
