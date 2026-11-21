@@ -278,7 +278,7 @@ extension ClassicsCatalog {
             if tale.isEpisode {
                 if tale.episode == nil { flag(s, "bölüm numarası yok") }
                 if let sid = tale.seriesID, series(sid) == nil { flag(s, "serisi katalogda yok") }
-            } else if tale.shelves.isEmpty {
+            } else if tale.shelves.isEmpty && tale.origin != .orijinal {
                 flag(s, "hiçbir rafta değil")
             }
         }

@@ -1,5 +1,11 @@
 # MagicPaper Original kapak kılavuzu
 
+**20 Kasım 2026 güncellemesi:** Batuhan’ın onayıyla iki yayımlanmış kapağın ve iç sayfaların
+stil referansı `brand/interior-style-reference.png` oldu. Sade biçimler, kâğıt dokusu ve sıcak
+ifadeler kullanılır; mor ana renk değildir. Bu oturumda built-in image_gen kullanıldı.
+Tam promptlar her masalın `cover-prompt.json` ve `illustrations.json` dosyalarındadır.
+Aşağıdaki eski vintage stil yönergelerinde bu güncel karar önceliklidir.
+
 **Ana yol (karar: 16 Kasım 2026, Batuhan):** ajan kapağı çizmez, `review.md`'ye bir ChatGPT promptu yazar.
 Batuhan görseli ChatGPT'de üretir, referans kapağı da ekleyerek; sonra:
 

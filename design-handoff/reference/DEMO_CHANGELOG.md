@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · codex/design-system-catalog, commit bu kayıtla · Originals sayfa çizimleri
+
+- İki yayımlanmış Original masalın 14 sayfasına ayrı sabit çizim ve Türkçe görsel açıklaması eklendi. İki kapak kullanıcı referansındaki sade, dokulu kitap diline yenilendi; mor ana renk yapılmadı. Ragi üç sayfada konuk. Erken görünen tren ve çift atkı devamlılık hataları düzeltildi.
+- Sayfa metinleri ve masal kimlikleri aynı kaldı; katalog derleyicisi tam sayfa sırasını doğrular. Eski görselsiz kataloglar ve eksik görselde metin yedeği korunur. Kaynaklar, tam promptlar ve iki görsel genel bakış Content/Originals altında.
+- Doğrulama: 6 Python testi geçti; 16 JPEG açıldı, 14 eşleme ve değişmeyen metinler doğrulandı; diff kontrolü temiz. Kod incelemesinde engelleyici bulgu yok. İlk Xcode denemesi başka derlemenin build.db kilidiyle durdu; ayrı önbellekte Swift derleme/bağlama geçti ancak dSYM paketleme diskte yer kalmamasıyla durdu (lipo errno=28). Geçici derleme kopyası temizlendi. Sonraki turda dSYM kapatılarak 44 uygulama testi 0 hatayla geçti (TEST SUCCEEDED); okuyucu 375/440 pt, gündüz/gece ve AX5 boyutlarında simülatör içinde render edildi. Gündüz ve küçük ekran gece AX5 örnekleri gözle incelendi. Ayrı fiziksel SE/Pro Max cihaz testi yapılmadı.
+- Dosyalar: Content/Originals, Originals asset kataloğu, ClassicText/ClassicReading/ClassicPageIllustration, ReaderImageLoader, katalog derleyicisi ve ilgili testler, tasarım/uygulama planı.
+
+
 ### 2026-11-21 · codex/design-system-catalog, commit yok · İncelenmiş gümüş çan eşlemesi
 
 - Claude c742ea7 provenance tesliminin günlük hariç 206 dosyası patch ile alındı; sayfa kaynak izi yeni kitaplarda kalıcıdır. Merge yapılmadı.
