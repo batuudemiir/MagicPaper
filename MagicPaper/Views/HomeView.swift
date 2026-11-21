@@ -24,6 +24,11 @@ import SwiftUI
 /// 19 Kasım 2026 (İrem, tasarım): tam genişlik sahne sayfanın tepesine döndü
 /// (`HomeHeaderScene`), selam ve ad sahnenin üstünde; 22 Ekim'deki "sahne bu
 /// akşamın kartında" düzeninin yerine. Kart artık sahnesiz, Ragi başlıkta.
+///
+/// 21 Kasım 2026 (`docs/ANA_SAYFA_HAZIRLIK.md` A3, A4): selam, bu akşamın
+/// durumu, gece, yıldız, gün ve seri kartı `HomeFeedStore`'dan gelir. Depo
+/// ekranın okuduğu her kaynağı dinler ve saat ilerleyince (yatma saati, gece
+/// yarısı, selam saatleri) kendiliğinden yenilenir. Görünüş değişmedi.
 struct HomeView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
@@ -31,7 +36,9 @@ struct HomeView: View {
     @ObservedObject private var storyManager = StoryGenerationManager.shared
     /// Rozet planı R4: yeni rozet ya da kat, selamın üst satırında bir kez.
     @ObservedObject private var badgeNews = MPBadgeNews.shared
-    @StateObject private var streak = MPStreak.shared
+    /// Ekranın kararları ve canlı verisi (`HomeFeed`).
+    @StateObject private var feedStore = HomeFeedStore()
+    private var feed: HomeFeed { feedStore.feed }
 
     var body: some View {
         // Sahne saat çubuğunun altına uzanır (19 Kasım 2026): kaydırma üst güvenli
@@ -47,7 +54,11 @@ struct HomeView: View {
         // görünüyordu (Batuhan, 16 Ekim).
         .background(pageBackground.ignoresSafeArea())
         // Pahalı hesaplar kaydırma sırasında değil, veri değişince yapılır.
-        .onAppear(perform: refreshCaches)
+        .onAppear {
+            refreshCaches()
+            // Sekmeye dönünce: başka sekmedeyken kaçan bir değişim kalmasın.
+            feedStore.refresh()
+        }
         // Rozet notu bir kez söylenir: ana sayfadan çıkınca düşer.
         .onDisappear { badgeNews.consumeHomeNote(profileManager.currentProfile?.id) }
         .onChange(of: storyManager.stories) { _, _ in refreshCaches() }
@@ -60,7 +71,6 @@ struct HomeView: View {
     private func refreshCaches() {
         let modes = Self.modes(for: profileManager.currentProfile)
         if modes != availableModes { availableModes = modes }
-        stars = profileManager.currentProfile.map { MPStars.score(for: $0, stories: storyManager.stories) } ?? 0
     }
 
     private func content(topInset: CGFloat) -> some View {
@@ -74,7 +84,7 @@ struct HomeView: View {
                     // Rozet notu iki kademede de bir kez; selam yalnızca okuyan çocukta.
                     MPKidTabHeader(title: activeName,
                                    eyebrow: badgeNews.homeNote(for: profileManager.currentProfile?.id)
-                                       ?? (level == .little ? nil : greeting),
+                                       ?? (level == .little ? nil : feed.greeting),
                                    onArt: isNight) {
                         if showsStats, !typeSize.isAccessibilitySize { statLine(compact: true) }
                     }
@@ -83,7 +93,7 @@ struct HomeView: View {
             }
 
             VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
-                HomeHeroCard(state: tonightState, isNight: isNight, cover: tonightCover,
+                HomeHeroCard(state: feed.tonight, isNight: isNight, cover: tonightCover,
                              showsScene: false, onPrimary: tonightAction)
                     .homeEntrance(0)
 
@@ -91,8 +101,7 @@ struct HomeView: View {
                 // onları aşağı itiyordu.
                 if !shownModes.isEmpty { modeStrip.homeEntrance(1) }
 
-                if let child = profileManager.currentProfile?.id,
-                   SeriesManager.shared.cardState(for: child) != nil {
+                if let child = profileManager.currentProfile?.id, feed.hasSeriesCard {
                     HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
                         .homeEntrance(2)
                 }
@@ -114,23 +123,17 @@ struct HomeView: View {
     /// Sıfırlar yazılmaz: "0 gün üst üste" kimseye bir şey söylemez.
     @ViewBuilder
     private func statLine(compact: Bool) -> some View {
-        if stars > 0 || streak.currentStreak > 0 {
+        if feed.stars > 0 || feed.streak > 0 {
             Button { MPHaptics.tap(); app.router.openKidCorner() } label: {
-                HomeStatLine(stars: stars, streak: streak.currentStreak, compact: compact, onArt: isNight)
+                HomeStatLine(stars: feed.stars, streak: feed.streak, compact: compact, onArt: isNight)
             }
             .buttonStyle(MPPressStyle())
             .accessibilityHint("Profili açar")
         }
     }
 
-    /// Uyku saatinde kartın sahnesi geceye döner; sayfa açık kalır.
-    private var isNight: Bool {
-        if case .bedtime = tonightState { return true }
-        return false
-    }
-
-    /// Her sabah 1, sonuna kadar okunan her masal 1 (`MPStars`).
-    @State private var stars = 0
+    /// Uyku saatinde başlık sahnesi geceye döner; sayfa açık kalır.
+    private var isNight: Bool { feed.isNight }
 
     // MARK: - Başlık
 
@@ -138,41 +141,12 @@ struct HomeView: View {
         profileManager.currentProfile?.name ?? "Arkadaşım"
     }
 
-    /// Saate göre selam: akşam açılan bir masal uygulamasına "günaydın"
-    /// demek, ürünün ne için var olduğunu bilmemek olurdu.
-    private var greeting: String {
-        switch Calendar.current.component(.hour, from: Date()) {
-        case 5..<11:  return "Günaydın,"
-        case 11..<17: return "İyi günler,"
-        case 17..<22: return "İyi akşamlar,"
-        default:      return "İyi geceler,"
-        }
-    }
-
     // MARK: - Bu akşamın masalı
-
-    /// Kural `MPTonight`'ta (SCREENS.md 11): widget ve Siri de aynı masalı
-    /// seçer. Görünüm yalnızca metne çevirir.
-    private var tonight: MPTonightSource.Resolved { MPTonightSource.current(settings: settings) }
-
-    private var tonightState: TonightState {
-        switch tonight.tonight() {
-        case .bedtime(let bedtime):
-            return .bedtime(time: bedtime.clockLabel)
-        case .resume(let resume):
-            return .resume(progress: resume.progress, title: resume.title,
-                           meta: "Sayfa \(resume.page) / \(resume.pageCount)")
-        case .unread(let daily):
-            return .unread(title: daily.title, meta: "\(daily.minutes) dakika")
-        case .readToday:
-            return .readToday(canWrite: app.canWriteNewStoryToday)
-        }
-    }
 
     /// Okunmamış günün masalı bir klasikse kapağı sahneye konur. Yarım kalan
     /// masalın kapağı `MPTonight`'ta taşınmıyor; o durumda sahne kapaksız.
     private var tonightCover: (asset: String, focus: ClassicFocus)? {
-        guard case .unread(let title, _) = tonightState,
+        guard case .unread(let title, _) = feed.tonight,
               let tale = classics.todaysTale, tale.title == title,
               UIImage(named: tale.cover) != nil else { return nil }
         return (tale.cover, tale.coverFocus)

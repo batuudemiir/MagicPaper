@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa canlı veriyi ve saati izler (A3, A4)
+
+- Yeni `Screens/Home/HomeFeed.swift`: ana sayfanın kararları, saf (selam, bu akşamın kartı, gece, yıldız, gün, seri kartı, bir sonraki değişim anı). Görünümdeki `greeting`, `tonight`, `tonightState`, `stars` ve seri sorgusu buraya taşındı.
+- Yeni `Screens/Home/HomeFeedStore.swift`: `StoryGenerationManager`, `ProfileManager`, `MPStreak`, `DailyStoryManager`, `SeriesManager`, `LiveEntitlementService`, `MPSettingsStore`, `.mpFamilyDataChanged` (yıldız), saat değişimi ve öne gelme dinlenir; 80 ms'de toplanır, eşit sonuç yayınlanmaz. Bir sonraki an (yatma saati, 05.00, gece yarısı, 05/11/17/22 selam saatleri, ücretsiz hakkın açılması) beklenip kendiliğinden yenilenir; gün dönünce günün masalı ve seri yeniden seçilir.
+- `HomeView`: veriyi depodan okur; görünüş değişmedi. `TonightState` `Equatable`; `MPAppState.canWriteNewStoryToday` örneksiz de sorulabilir.
+- Gerçek uygulamada `6512652` turu: ana sayfa Batuhan'ın sürümü, iki ekranda doğru.
+- Denetime A7 eklendi (uyku saatinde hak bitmişse "Uyku masalı yaz" penceresi).
+- Test: `HomeFeedTests` 12 test; **çalıştırılmadı** (Mac gerekiyor). `[ekran]` turu derlemeyi doğrular. Saatle değişim simülatörde görülmedi; Batuhan cihazda yatma saatini birkaç dakika sonraya kurup uygulama açıkken denesin.
+- Dosyalar: `Screens/Home/HomeFeed.swift`, `Screens/Home/HomeFeedStore.swift`, `Views/HomeView.swift`, `DesignSystem/Pastel/MPStory.swift`, `Screens/MPAppState.swift`, `MagicPaperTests/HomeFeedTests.swift`, `docs/ANA_SAYFA_HAZIRLIK.md`.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Hak bitince bu akşamın kartı kitaplığa çağırır (ana sayfa A2)
 
 - Sorun: ücretsiz kullanıcı bugün okuduysa ve günün masalını da yazdıysa kartın tek birincil düğmesi "Yeni masal yaz" kilit penceresi açıyordu.

@@ -141,7 +141,12 @@ final class MPAppState: ObservableObject {
     /// Bugün yeni bir masal yazılabilir mi (ücretsizde günde bir; abonede hep).
     /// Bu akşamın kartı metnini ve düğmesini buna göre seçer. Karar
     /// `EntitlementPolicy`'de; bu yalnızca soru.
-    var canWriteNewStoryToday: Bool { isUnlocked(.unlimitedTextStories) }
+    var canWriteNewStoryToday: Bool { Self.canWriteNewStoryToday }
+
+    /// Aynı soru, `MPAppState` örneği olmadan (`HomeFeedStore`).
+    static var canWriteNewStoryToday: Bool {
+        LiveEntitlementService.shared.evaluate(.unlimitedTextStories, usage: .plain).isAllowed
+    }
 
     /// 26 · Uyku modu: çocuğun son uyku masalı, yoksa günün masalı; ikisi de
     /// yoksa uyku öncesi modunda yeni bir masal. Uyku modu kapalıyken (v1)
