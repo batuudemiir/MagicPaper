@@ -1,4 +1,4 @@
-window.MP_SHOTS = { tarih: "2026-11-21T20:58Z", commit: "6512652", liste: [
+window.MP_SHOTS = { tarih: "2026-11-21T21:51Z", commit: "4d0d569", liste: [
   {ekran:"ana-sayfa", baslik:"Ana sayfa", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"normal", dosya:"screens/real/ana-sayfa.kucuk.normal.png"},
   {ekran:"masallar", baslik:"Masallar", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"normal", dosya:"screens/real/masallar.kucuk.normal.png"},
   {ekran:"kitaplik", baslik:"Kitaplık", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"normal", dosya:"screens/real/kitaplik.kucuk.normal.png"},
