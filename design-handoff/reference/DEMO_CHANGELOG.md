@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-22 · codex/design-system-catalog, commit yok · Ragi ve beş arkadaş marka thumbnaili
+
+- Built-in image_gen ile onaylı marka, Ragi ve beşli görseli referanslı yatay thumbnail; MagicPaper yazısı ve altı karakter görsel kontrolünden geçti. PNG ve prompt kaydı karakter öneri klasöründe. Üretilmiş yazı resmi logonun yerine geçmez. Uygulama değişmedi; test çalıştırılmadı.
+
+
 ### 2026-11-22 · codex/design-system-catalog, commit yok · Beş arkadaş karakter tanışma taslağı
 
 - Kullanıcı beşli kadroyu görsel olarak denemeyi onayladı: Tarçın,Kestane,Yıldız,Simit,Böğürtlen. Onaylı marka/Tarçın referanslarıyla built-in image_gen grup çizimi; diğer dört görünüş onay bekleyen taslak. Ragi mevcut kimliğiyle Originals konuk rolü önerisinde.
