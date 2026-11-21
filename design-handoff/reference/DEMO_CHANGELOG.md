@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-22 · main@cd3c02a · Görsel çalışmalarının main teslimi
+
+- Bu sohbetin altı commit’i güncel origin/main ile birleştirildi ve main’e pushlandı. Günlük çakışmasında iki taraf korundu; önceki çalışma farkı /private/tmp/magicpaper-pre-main-journal.patch içinde de yedekli.
+- Son seçili doğrulama101test:100geçti/1skip/0hata. Birleştirme yalnız günlükte çakıştı. Release1.0(2026112201) arşivi hazırlanıyor; sonuç henüz doğrulanmadı.
+
+
 ### 2026-11-22 · codex/design-system-catalog, commit yok · Kitap boyunca görsel pilot entegrasyonu
 
 -6yeni guaj çizim,21tam-sayfa kaynak kuralı ve kalıcı politika3; eski pinler korunur. AX/kompakt okuyucuda çizim ve metin birlikte kayar.
