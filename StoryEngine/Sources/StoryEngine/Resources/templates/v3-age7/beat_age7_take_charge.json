@@ -10,6 +10,8 @@
   "variants": [
     {
       "id": "a7_tc_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} uzun uzun düşündü. Bu iş bir günde bitmezdi, bunu biliyordu. Yine de karar verdi: {{companion.name}} iyileşene kadar her gün buraya gelecek, ona kendisi bakacaktı.",
       "requiredSlots": [
         "child.name",
@@ -29,6 +31,8 @@
     },
     {
       "id": "a7_tc_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": []}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{discovery.name}} ile {{companion.name}}'e baktı. İkisinin de birine ihtiyacı vardı. O biri, bugünden sonra kendisi olacaktı. Bu düşünce onu biraz şaşırttı, ama çok da sevindirdi.",
       "requiredSlots": [
         "child.name",
@@ -40,6 +44,8 @@
     },
     {
       "id": "a7_tc_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} kendine bir görev verdi. Kimse ondan istememişti, ama {{companion.name}}'in yanında kalmak ona doğru geliyordu. \"Tamam,\" dedi usulca. \"Bu iş artık benim işim.\"",
       "requiredSlots": [
         "child.name",

@@ -10,6 +10,8 @@
   "variants": [
     {
       "id": "sf_s_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["helping"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} öne çıktı ve konuştu. {{companion.name}} söyleyemiyordu, o söyledi. Sesi yüksek değildi ama gayet net çıktı. Herkes duydu, herkes döndü baktı.",
       "requiredSlots": [
         "child.name",
@@ -29,6 +31,8 @@
     },
     {
       "id": "sf_s_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["helping"]}],
+      "visualReview": "auto",
       "text": "Kimse {{companion.name}}'i duymuyordu. {{child.name}} duyulana kadar tekrar etti, sabırla. Sonunda herkes döndü ve dinledi. Beklemeye değdi, sonunda anlaşıldı.",
       "words": ["w56_sabir"],
       "requiredSlots": [
@@ -40,6 +44,8 @@
     },
     {
       "id": "sf_s_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["helping"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} kelimeleri buldu. {{companion.name}}'in bulamadığı, söylemeye çalışıp söyleyemediği kelimeleri. Söyleyince hava bir anda değişti. Doğru kelime çok şeyi değiştirirmiş.",
       "requiredSlots": [
         "child.name",
@@ -59,6 +65,8 @@
     },
     {
       "id": "sf_s_06",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["helping"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} elini kaldırdı ve bekledi. Sıra kendisine gelince {{companion.name}}'in derdini anlattı. Kimse itiraz etmedi. Sadece bilmiyorlardı, şimdi öğrendiler. Öğrenince de yardım ettiler.",
       "requiredSlots": [
         "child.name",
@@ -69,6 +77,8 @@
     },
     {
       "id": "sf_s_07",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["helping"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} {{child.name}}'e bir baktı, {{child.name}} hemen anladı. Söylenmesi gerekeni söyledi, ne eksik ne fazla. Söylerken sesi hiç titremedi. Bittiğinde ortalık sessizdi.",
       "requiredSlots": [
         "child.name",
@@ -79,6 +89,8 @@
     },
     {
       "id": "sf_s_08",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["helping"]}],
+      "visualReview": "auto",
       "text": "Söyleyecek olan {{companion.name}} değildi, olamazdı da. {{child.name}} bunu bildiği için konuştu. Kendi adına değil, onun adına. Karşıdakiler başlarını salladı ve yer açtılar.",
       "requiredSlots": [
         "child.name",
@@ -89,6 +101,8 @@
     },
     {
       "id": "sf_s_09",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["helping"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} konuşmadan önce {{companion.name}}'e döndü. \"Söyleyeyim mi?\" diye sordu usulca. {{companion.name}} evet dedi. Ancak o zaman {{child.name}} herkese dönüp anlattı.",
       "requiredSlots": [
         "child.name",
@@ -99,6 +113,8 @@
     },
     {
       "id": "sf_s_10",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["helping"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} tek bir cümle söyledi, ama doğru cümleydi. \"{{companion.name}} bunu istiyor, sadece söyleyemiyor.\" Dinleyenler birbirine baktı ve anlayışla gülümsedi.",
       "requiredSlots": [
         "child.name",
@@ -109,6 +125,8 @@
     },
     {
       "id": "sf_s_11",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["helping"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} yavaş konuştu, herkes anlasın diye. Kendi fikrini eklemedi, sadece {{companion.name}}'in istediğini söyledi. Arada bir {{companion.name}}'e dönüp \"doğru mu?\" diye sordu. Doğruydu.",
       "requiredSlots": [
         "child.name",
@@ -119,6 +137,8 @@
     },
     {
       "id": "sf_s_12",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["helping"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} önce {{companion.name}}'i herkese tanıttı. Adını söyledi, nereden geldiğini söyledi. Bunu yaptıktan sonra ne istediğini anlattı. Tanıyınca dinlemek de kolaylaştı.",
       "requiredSlots": [
         "child.name",

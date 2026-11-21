@@ -14,7 +14,7 @@
       "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "promise_made_to_nobody" },
     { "id": "cf_p_04", "text": "Eve giderken {{child.name}} yol boyunca etrafına baktı. Alışkanlık olmuştu bile.",
       "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "already_a_habit" },
-    { "id": "cf_p_05", "text": "{{companion.name}} ona küçük bir şey verdi. {{child.name}} onu avucunda sıkıca tuttu.",
+    { "id": "cf_p_05", "visual": [{"subject": "companion", "presence": "present", "states": []}], "visualReview": "auto", "text": "{{companion.name}} ona küçük bir şey verdi. {{child.name}} onu avucunda sıkıca tuttu.",
       "requiredSlots": ["companion.name", "child.name"], "lengthClass": "paired", "move": "something_small_given" },
     { "id": "cf_p_06", "text": "{{child.name}} bundan sonra hep dinleyecekti. Önce dinlemek, sonra bakmak, bunu öğrenmişti.",
       "requiredSlots": ["child.name"], "lengthClass": "paired", "move": "listen_first_then_look" },
@@ -51,6 +51,8 @@
     },
     {
       "id": "cf_p_12",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} bir dahaki sefere {{companion.name}}'i arayacaktı. Nerede bulacağını artık biliyordu.",
       "requiredSlots": [
         "child.name",

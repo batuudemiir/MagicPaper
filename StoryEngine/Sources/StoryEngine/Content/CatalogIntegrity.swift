@@ -118,6 +118,7 @@ public struct CatalogIntegrityChecker: Sendable {
         issues.append(contentsOf: checkArcs(catalog))
         issues.append(contentsOf: checkRecallLines(catalog))
         issues.append(contentsOf: checkOccasions(catalog))
+        issues.append(contentsOf: checkVisualMeaning(catalog))
 
         return CatalogIntegrityReport(issues: issues, counts: catalog.recordCounts)
     }
@@ -919,6 +920,36 @@ public struct CatalogIntegrityChecker: Sendable {
     /// (`CatalogObject.factID`). "Bir masalda en çok bir olgu" kuralının ayrı
     /// bir denetime ihtiyacı kalmadı: bir masalın bir keşfi var, o keşfin de
     /// en çok bir olgusu.
+    /// Görsel anlam (20 Kasım 2026): sözlük dışı durum yok, bir satır aynı
+    /// öğeyi iki kez anmaz, kaynak işareti etiketsiz satırda durmaz.
+    private func checkVisualMeaning(_ catalog: ContentCatalog) -> [CatalogIssue] {
+        var issues: [CatalogIssue] = []
+        let templates = catalog.templates + catalog.series.templates + catalog.occasions.templates.map(\.template)
+        for variant in templates.flatMap(\.variants) {
+            guard let visual = variant.visual else {
+                if variant.visualReview != nil {
+                    issues.append(CatalogIssue(severity: .warning, code: "visual_review_without_visual",
+                        recordID: variant.id, message: "visualReview var ama visual yok."))
+                }
+                continue
+            }
+            var seen = Set<VisualMention.Subject>()
+            for mention in visual {
+                if !seen.insert(mention.subject).inserted {
+                    issues.append(CatalogIssue(severity: .error, code: "visual_subject_repeated",
+                        recordID: variant.id, message: "\(mention.subject.rawValue) iki kez anılmış."))
+                }
+                let allowed = VisualMention.allowedStates[mention.subject] ?? []
+                for state in mention.states where !allowed.contains(state) {
+                    issues.append(CatalogIssue(severity: .error, code: "visual_state_unknown",
+                        recordID: variant.id,
+                        message: "'\(state)' \(mention.subject.rawValue) için sözlükte yok."))
+                }
+            }
+        }
+        return issues
+    }
+
     private func checkFacts(_ catalog: ContentCatalog) -> [CatalogIssue] {
         var issues: [CatalogIssue] = []
         var defined: [ContentID: CatalogFact] = [:]

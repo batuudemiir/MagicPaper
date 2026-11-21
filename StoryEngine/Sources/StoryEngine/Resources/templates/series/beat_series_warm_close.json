@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "swc_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Akşam olunca {{child.name}} yavaşça eve döndü. Yorgundu, ama çok mutluydu. Bugün de {{setting.name}}'da güzel bir gün geçmişti.",
       "requiredSlots": [
         "child.name",
@@ -21,6 +23,8 @@
     },
     {
       "id": "swc_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile {{companion.name}} bir süre daha yan yana oturdu. Kimse konuşmadı, gerek yoktu. Her şey olması gerektiği gibiydi.",
       "requiredSlots": [
         "child.name",
@@ -41,6 +45,8 @@
     },
     {
       "id": "swc_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} {{child.name}}'e sarılıp teşekkür etti. Güneş batarken ikisi de evine döndü. Gün tatlı bir yorgunlukla bitti, her şey yerli yerindeydi.",
       "requiredSlots": [
         "companion.name",
@@ -51,6 +57,8 @@
     },
     {
       "id": "swc_05",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Eve dönerken {{child.name}} bir kez dönüp baktı. {{setting.name}} sakindi, her şey yerli yerindeydi. Gülümsedi ve yoluna devam etti.",
       "requiredSlots": [
         "child.name",

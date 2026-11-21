@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "sra_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Ben bunun yerini biliyorum,\" dedi {{companion.name}}. \"Hiç uzak değil, biraz ileride.\"",
       "requiredSlots": [
         "companion.name"
@@ -20,6 +22,8 @@
     },
     {
       "id": "sra_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} başıyla bir yönü gösterdi. \"Onun yeri orası. Götürelim mi?\"",
       "requiredSlots": [
         "companion.name"
@@ -29,6 +33,8 @@
     },
     {
       "id": "sra_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Bunu yerine götürmeliyiz,\" dedi {{companion.name}} yumuşak bir sesle. \"Onun evi burası değil.\"",
       "requiredSlots": [
         "companion.name"
@@ -38,6 +44,8 @@
     },
     {
       "id": "sra_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} biraz düşündü. \"Bunu nereye götüreceğimizi ben biliyorum,\" dedi sonunda gülümseyerek.",
       "requiredSlots": [
         "companion.name"

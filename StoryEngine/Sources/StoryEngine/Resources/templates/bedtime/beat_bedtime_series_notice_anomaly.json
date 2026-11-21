@@ -12,6 +12,8 @@
   "variants": [
     {
       "id": "bts_na_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} tam gözlerini kapayacaktı ki {{companion.name}} pencerenin kenarını gösterdi. Orada {{discovery.name}} vardı. Daha önce orada değildi.",
       "requiredSlots": [
         "child.name",
@@ -29,6 +31,8 @@
     },
     {
       "id": "bts_na_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Bu akşam bir şey farklıydı. Pencerenin önünde {{discovery.name}} duruyordu. {{child.name}} yatakta doğruldu ve merakla baktı. {{companion.name}} usulca başını salladı.",
       "requiredSlots": [
         "discovery.name",
@@ -49,6 +53,8 @@
     },
     {
       "id": "bts_na_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} bu gece bir şey göstermeye gelmişti. Pencerenin önünde {{discovery.name}} vardı. {{child.name}} merakla yorganından başını çıkardı.",
       "requiredSlots": [
         "companion.name",
@@ -66,6 +72,8 @@
     },
     {
       "id": "bts_na_04",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["emitting"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} perdeyi biraz araladı. Ay ışığında {{discovery.name}} görünüyordu. {{companion.name}} hemen yanında oturmuş, ona bakıyordu. İkisi bunu ilk kez görüyordu.",
       "requiredSlots": [
         "child.name",
@@ -83,6 +91,8 @@
     },
     {
       "id": "bts_na_06",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} tam esneyecekti ki durdu. Pencerenin kenarında {{discovery.name}} duruyordu. Perdenin arasından tatlı tatlı görünüyordu. {{companion.name}} ona bakıp gülümsedi.",
       "requiredSlots": [
         "child.name",
@@ -100,6 +110,8 @@
     },
     {
       "id": "bts_na_05",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Oda sessizdi. Sonra pencerenin önünden {{discovery.name}} geldi. {{child.name}} başını yastıktan yavaşça kaldırdı. {{companion.name}} hemen kulak kabarttı, merakla bekledi.",
       "requiredSlots": [
         "discovery.name",

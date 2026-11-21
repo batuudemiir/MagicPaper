@@ -7,6 +7,8 @@
   "variants": [
     {
       "id": "na_neutral_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} o sabah {{setting.name}}'a erkenden gitti. Her şey her zamanki gibiydi. Sonra durdu. Tam ilerisinde {{discovery.name}} duruyordu.",
       "requiredSlots": [
         "child.name",
@@ -22,6 +24,8 @@
     },
     {
       "id": "na_neutral_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'da o gün hava çok sakindi. {{child.name}} ıslık çala çala yürüyordu. Birden ıslığı kesildi. Az ötede {{discovery.name}} bekliyordu.",
       "requiredSlots": [
         "child.name",
@@ -37,6 +41,8 @@
     },
     {
       "id": "na_neutral_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{setting.name}}'da yürürken ayakları kendiliğinden durdu. Böyle bir şeyi daha önce hiç görmemişti. {{discovery.name}} tam oradaydı, apaçık.",
       "words": ["w56_apacik"],
       "requiredSlots": [
@@ -53,6 +59,8 @@
     },
     {
       "id": "na_neutral_04",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Her gün aynı yoldan geçerdi {{child.name}}. Ama bugün {{setting.name}} bambaşkaydı. Yolun tam ortasında {{discovery.name}} duruyor, onu bekliyordu.",
       "requiredSlots": [
         "child.name",
@@ -68,6 +76,8 @@
     },
     {
       "id": "na_neutral_05",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{setting.name}}'a vardığında içinden bir ses \"dur\" dedi. Sebebini önce anlamadı. Olduğu yerde biraz bekledi. Sonra {{discovery.name}} gözüne çarptı.",
       "requiredSlots": [
         "child.name",
@@ -83,6 +93,8 @@
     },
     {
       "id": "na_sound_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Önce sesi duydu {{child.name}}. İnce, uzun, hiç tanımadığı bir ses. {{setting.name}}'da durup kulak kabarttı. Ses yine geldi.",
       "requiredSlots": [
         "child.name",
@@ -97,6 +109,8 @@
     },
     {
       "id": "na_sound_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'da hiçbir şey kıpırdamıyordu. Sonra {{child.name}} bir tıkırtı duydu. Çok hafifti ama oradaydı. Nereden geldiğini bulmak istedi.",
       "requiredSlots": [
         "child.name",
@@ -124,6 +138,8 @@
     },
     {
       "id": "na_light_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Gözünün ucuyla bir parıltı yakaladı {{child.name}}. Döndüğünde kayboldu. Bir adım attı ve parıltı geri geldi. {{setting.name}}'da bir şey ışıldıyordu.",
       "words": ["w56_parilti", "w56_isildamak"],
       "requiredSlots": [
@@ -140,6 +156,8 @@
     },
     {
       "id": "na_light_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'da gölgeler uzamıştı. {{child.name}} tam eve dönecekti ki küçücük bir ışık gördü. Uzakta bir yerdeydi. Orada olmaması gerekiyordu.",
       "topics": ["darkness"],
       "requiredSlots": [
@@ -156,6 +174,8 @@
     },
     {
       "id": "na_light_03",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} elini gözlerine siper etti. {{setting.name}}'da bir yer pırıl pırıl parlıyordu. Orası hep gölgede kalırdı oysa. Bugün neden başkaydı?",
       "words": ["w56_siper"],
       "requiredSlots": [
@@ -171,6 +191,8 @@
     },
     {
       "id": "na_weather_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Yağmur yeni dinmişti. {{child.name}} hemen {{setting.name}}'a koştu, çünkü yağmurdan sonrası en güzeldir. Islak toprakta {{discovery.name}} göze çarpıyordu.",
       "requiredSlots": [
         "child.name",
@@ -188,6 +210,8 @@
     },
     {
       "id": "na_weather_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Rüzgar bütün sabah esmişti. Sonunda durdu. {{setting.name}} bambaşka görünüyordu. {{child.name}} yavaşça yaklaştı. Rüzgar {{discovery.name}} ortaya çıkarmıştı sanki.",
       "topics": ["weather"],
       "requiredSlots": [
@@ -206,6 +230,8 @@
     },
     {
       "id": "na_traces_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} yere baktı ve durdu. Yerde izler vardı. Kendi izleri değildi bunlar. {{setting.name}}'da ondan önce birileri yürümüştü.",
       "requiredSlots": [
         "child.name",
@@ -223,6 +249,8 @@
     },
     {
       "id": "na_traces_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'da toprak yumuşacıktı. {{child.name}} kendi ayak izlerini sayarak yürüyordu. Derken bir tane fazla saydı. Sonra bir tane daha.",
       "words": ["w56_yumusacik"],
       "requiredSlots": [
@@ -240,6 +268,8 @@
     },
     {
       "id": "na_enclosed_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "İçerisi dışarıdan serindi. {{child.name}} bir iki adım attı ve gözleri karanlığa alıştı. Tam o sırada {{discovery.name}}'i fark etti.",
       "topics": ["darkness"],
       "words": ["w56_serin"],
@@ -258,6 +288,8 @@
     },
     {
       "id": "na_any_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["examined"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} o gün bir şeyin değiştiğini anladı. {{discovery.name}} oradaydı ve daha önce orada değildi. Durdu. Sonra biraz daha durdu.",
       "requiredSlots": [
         "child.name",
@@ -268,6 +300,8 @@
     },
     {
       "id": "na_any_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "Bir şey değişmişti ama {{child.name}} ne olduğunu hemen anlayamadı. Sonra fark etti: {{discovery.name}}. Dün yoktu, bugün vardı. Bu çok tuhaftı.",
       "requiredSlots": [
         "child.name",
@@ -278,6 +312,8 @@
     },
     {
       "id": "na_any_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} tam geçip gidecekti ki durdu. {{discovery.name}} dikkatini çekmişti. Geri döndü ve iyice yaklaştı. Böyle bir şeyle ilk kez karşılaşıyordu.",
       "requiredSlots": [
         "child.name",
@@ -288,6 +324,8 @@
     },
     {
       "id": "na_fam_sib_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} o sabah kardeşi {{family.name}} ile {{setting.name}}'a gitti. İkisi de çok keyifliydi. Sonra {{child.name}} adımlarını yavaşlattı. Bir şey her zamanki gibi değildi.",
       "requiredSlots": [
         "child.name",
@@ -317,6 +355,8 @@
     },
     {
       "id": "na_fam_fr_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da saklambaç oynuyordu. Sayma sırası {{child.name}}'e gelmişti. Gözlerini açtığında bir şeyin değiştiğini hemen anladı.",
       "requiredSlots": [
         "child.name",
@@ -332,6 +372,8 @@
     },
     {
       "id": "na_fam_fr_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} kapıyı açtığında arkadaşı {{family.name}} gelmişti bile. Birlikte {{setting.name}}'a doğru yavaşça yürüdüler. {{child.name}} yolda birden durdu. Bir şey tuhaftı.",
       "requiredSlots": [
         "child.name",
@@ -347,6 +389,8 @@
     },
     {
       "id": "na_fam_an_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} çıkmadan önce {{family.possessive}} {{family.name}}'a günaydın dedi. {{setting.name}}'a vardığında içini tuhaf bir merak kapladı. Bir şey her günkü gibi değildi.",
       "requiredSlots": [
         "child.name",
@@ -377,6 +421,8 @@
     },
     {
       "id": "na_fam_im_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'a giden yolda {{child.name}} yalnız değildi. Hayali arkadaşı {{family.name}} hep onunlaydı. Onu kimse göremezdi ama {{child.name}} görürdü. Sonra ikisi birden sustu. Bir şey tuhaftı.",
       "requiredSlots": [
         "setting.name",
@@ -392,6 +438,8 @@
     },
     {
       "id": "na_fam_im_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} hayali arkadaşı {{family.name}} ile konuşa konuşa yürüyordu. {{setting.name}} her zamanki gibiydi. Derken {{child.name}} sustu. Bir şey yerinde değildi.",
       "requiredSlots": [
         "child.name",
@@ -407,6 +455,8 @@
     },
     {
       "id": "na_h5_sib_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} kardeşi {{family.name}} ile {{setting.name}}'da taş topluyordu. {{family.name}} en parlak taşı arıyordu. {{child.name}} ise bir anda durdu. Burada dün olmayan bir şey vardı.",
       "requiredSlots": [
         "child.name",
@@ -422,6 +472,8 @@
     },
     {
       "id": "na_h5_sib_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}}, kardeşi {{family.name}}'ın ayakkabı bağlarını bağlıyordu. Başını kaldırınca {{setting.name}}'a gözü takıldı. Orada bir şey her zamanki gibi değildi.",
       "requiredSlots": [
         "child.name",
@@ -437,6 +489,8 @@
     },
     {
       "id": "na_h5_fr_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile arkadaşı {{family.name}} {{setting.name}}'da bulut seyrediyordu. Bir bulut tavşana benziyordu, öbürü gemiye. Sonra {{child.name}} gözünü buluttan ayırdı. Yakında tuhaf bir şey vardı.",
       "requiredSlots": [
         "child.name",
@@ -452,6 +506,8 @@
     },
     {
       "id": "na_h5_fr_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} arkadaşı {{family.name}}'a yeni bir oyun öğretiyordu. Kuralları tam anlatmıştı ki sustu. {{setting.name}}'da bir şey yerinde değildi.",
       "requiredSlots": [
         "child.name",
@@ -467,6 +523,8 @@
     },
     {
       "id": "na_h5_an_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{family.possessive}} {{family.name}} ile {{setting.name}}'da gezintiye çıktı. {{family.name}} bir yerde durdu ve kıpırdamadı. {{child.name}} onun baktığı yere baktı. Orada bir tuhaflık vardı.",
       "requiredSlots": [
         "child.name",
@@ -483,6 +541,8 @@
     },
     {
       "id": "na_h5_an_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} sabah {{family.possessive}} {{family.name}}'a su verdi. Sonra {{setting.name}}'a doğru yürüdü. Yolun ortasında durdu. Bir şey alışılmışın dışındaydı.",
       "requiredSlots": [
         "child.name",
@@ -499,6 +559,8 @@
     },
     {
       "id": "na_h5_im_01",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} hayali arkadaşı {{family.name}} ile {{setting.name}}'a yürüyordu. {{family.name}} bugün çok konuşkandı. Sonra ikisi aynı anda sustu. Bir şey tuhaftı.",
       "requiredSlots": [
         "child.name",
@@ -514,6 +576,8 @@
     },
     {
       "id": "na_h5_im_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} hayali arkadaşı {{family.name}}'a {{setting.name}}'ı gösteriyordu. \"Burayı çok iyi bilirim,\" dedi. Ama o gün orada bilmediği bir şey vardı.",
       "requiredSlots": [
         "child.name",
@@ -529,6 +593,8 @@
     },
     {
       "id": "w_ct_na56_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} bu şehre ilk kez geliyordu. Sokaklar kalabalık, dükkânlar rengârenkti. Bir simitçi neşeyle sesleniyor, bir tramvay çan çalarak geçiyordu. {{child.name}} her şeye bakmak istiyordu. Sonra {{discovery.name}} dikkatini çekti ve gözleri orada kaldı.",
       "requiredSlots": [
         "child.name",
@@ -545,6 +611,8 @@
     },
     {
       "id": "w_ct_na56_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'da insanlar birbirine selam vererek geçiyordu. {{child.name}} herkese selam verdi; bu şehirde herkes böyle yapıyordu. Derken bir şey fark etti: {{discovery.name}}. Kalabalıkta onu kimse fark etmemiş gibiydi.",
       "requiredSlots": [
         "setting.name",
@@ -559,6 +627,8 @@
     },
     {
       "id": "w_ct_na56_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} elinde bir haritayla şehri geziyordu. Haritada her sokak vardı, her köprü, her meydan. Ama {{setting.name}}'da haritada olmayan bir şey vardı. {{discovery.name}} tam karşısında duruyordu.",
       "requiredSlots": [
         "child.name",
@@ -576,6 +646,8 @@
     },
     {
       "id": "w_cn_na56_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} hiç görmediği bir ülkedeydi. Burada insanlar başka bir dilde konuşuyor, başka şarkılar söylüyordu. Pencerelerden bilmediği yemeklerin kokusu geliyordu. {{child.name}} her şeyi merakla dinliyordu. Derken {{setting.name}}'da {{discovery.name}} dikkatini çekti.",
       "requiredSlots": [
         "child.name",
@@ -590,6 +662,8 @@
     },
     {
       "id": "w_cn_na56_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "Bu ülkede herkes birbirini başka bir sözcükle selamlıyordu. {{child.name}} o sözcüğü sabahtan beri tekrar ediyordu. Tam doğru söylediğini düşünürken durdu. {{discovery.name}} tam önündeydi.",
       "requiredSlots": [
         "child.name",
@@ -606,6 +680,8 @@
     },
     {
       "id": "w_cn_na56_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{setting.name}}'da yürüyordu. Her şey yeniydi: evlerin renkleri, insanların selamı, rüzgârın kokusu. {{child.name}} hepsini aklına yazmaya çalıştı. Sonra yazmayı unuttu, çünkü {{discovery.name}} gözüne çarptı.",
       "requiredSlots": [
         "child.name",
@@ -623,6 +699,8 @@
     },
     {
       "id": "w_hs_na56_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} o gün {{setting.name}}'a ilk kez geliyordu. Burada her taş yüzlerce yıllıktı ve her taşın bir hikâyesi vardı. {{child.name}} hepsini dinlemek istedi. Ama önce bir şey dikkatini çekti: {{discovery.name}}.",
       "requiredSlots": [
         "child.name",
@@ -637,6 +715,8 @@
     },
     {
       "id": "w_hs_na56_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "Rehber, burada çok eskiden insanların yaşadığını anlatıyordu. {{child.name}} dinlerken bir yandan da etrafa bakıyordu. O insanlar nasıl giyinirdi, ne yerdi, ne oynardı? Derken {{discovery.name}} gözüne çarptı.",
       "requiredSlots": [
         "child.name",
@@ -653,6 +733,8 @@
     },
     {
       "id": "w_hs_na56_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'da sessizlik başkaydı; sanki eski zamanlar da susup dinliyordu. {{child.name}} parmak uçlarında yürüdü. Tam o sırada {{discovery.name}} dikkatini çekti.",
       "requiredSlots": [
         "setting.name",

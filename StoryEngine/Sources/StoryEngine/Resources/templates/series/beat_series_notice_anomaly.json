@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "sn_01",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "İkisi biraz yürüdükten sonra {{child.name}} durdu. Az ileride {{discovery.name}} vardı. Geçen sefer orada değildi, bundan emindi.",
       "requiredSlots": [
         "child.name",
@@ -24,6 +26,8 @@
     },
     {
       "id": "sn_02",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["examined"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} durup kulak kabarttı. {{child.name}} nefesini tutup dinledi. Çok yakından {{discovery.name}} geliyordu. İkisi sesin geldiği yöne döndü.",
       "requiredSlots": [
         "companion.name",
@@ -38,6 +42,8 @@
     },
     {
       "id": "sn_03",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}, {"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Bugün {{setting.name}}'da bir şey farklıydı. {{child.name}} etrafına dikkatle baktı, sonra bir şey gördü. Az ileride {{discovery.name}} duruyordu.",
       "requiredSlots": [
         "setting.name",
@@ -52,6 +58,8 @@
     },
     {
       "id": "sn_04",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["found"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} her zamanki yolda yürürken bir şey fark etti. Orada {{discovery.name}} vardı. Bunu daha önce hiç görmemişti.",
       "requiredSlots": [
         "child.name",
@@ -65,6 +73,8 @@
     },
     {
       "id": "sn_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Her şey geçen seferki gibiydi, bir şey dışında. {{child.name}} durdu, {{companion.name}} yanında durdu. İkisi aynı yere, aynı küçük şeye bakıyordu.",
       "requiredSlots": [
         "child.name",
@@ -75,6 +85,8 @@
     },
     {
       "id": "sn_06",
+      "visual": [{"subject": "discovery", "presence": "present", "states": ["examined"]}, {"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} ile {{companion.name}} yürürken bir şey duydular. Yakından {{discovery.name}} geliyordu. İkisi aynı anda durup dinledi. Ses çok küçük ve tatlıydı.",
       "requiredSlots": [
         "child.name",

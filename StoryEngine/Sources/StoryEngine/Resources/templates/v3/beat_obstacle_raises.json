@@ -45,6 +45,8 @@
     },
     {
       "id": "ob_reach_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} tek başına yapamıyordu. Ne boyu yetiyordu, ne de gücü.",
       "requiredSlots": [
         "companion.name"
@@ -58,6 +60,8 @@
     },
     {
       "id": "ob_reach_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Sorun belliydi. Oraya ulaşmak için uzanmak gerekiyordu, {{companion.name}} ise uzanamıyordu.",
       "requiredSlots": [
         "companion.name"
@@ -70,6 +74,8 @@
     },
     {
       "id": "ob_reach_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} elinden geleni yapmıştı, gerçekten yapmıştı. Geriye bir tek {{child.name}} kalıyordu.",
       "requiredSlots": [
         "companion.name",
@@ -172,6 +178,8 @@
     },
     {
       "id": "ob_wait_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{companion.name}} henüz hazır değildi. Acele etmenin hiçbir faydası yoktu, hiç de yoktu.",
       "requiredSlots": [
         "companion.name"

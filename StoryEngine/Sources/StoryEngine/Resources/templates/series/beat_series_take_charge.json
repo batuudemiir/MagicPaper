@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "stc_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Buna biz bakarız,\" dedi {{child.name}}. {{companion.name}} hiç düşünmeden başını salladı. Bugün bütün günü buna ayıracaklardı. Bu küçük şey artık yalnız değildi.",
       "requiredSlots": [
         "child.name",
@@ -21,6 +23,8 @@
     },
     {
       "id": "stc_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} burada kalmaya karar verdi. Yardıma ihtiyacı olan birini yalnız bırakmazdı. {{companion.name}} hemen yanına yerleşti, o da onunla kalacaktı.",
       "requiredSlots": [
         "child.name",
@@ -31,6 +35,8 @@
     },
     {
       "id": "stc_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} ellerini dizlerine koyup düşündü. Biraz sıcaklık gerekiyordu, biraz da sabır. \"Tamam,\" dedi. \"Başlıyoruz.\" {{companion.name}} hemen yanına sokuldu, hazırdı.",
       "words": ["w56_sabir"],
       "requiredSlots": [
@@ -42,6 +48,8 @@
     },
     {
       "id": "stc_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "\"Ben buradayım,\" dedi {{child.name}} usulca. Sonra {{companion.name}}'e döndü. \"Sen kalır mısın?\" {{companion.name}} çoktan yanına oturmuştu bile. Hiç gitmeye niyeti yoktu.",
       "words": ["w56_usulca"],
       "requiredSlots": [

@@ -11,6 +11,8 @@
   "variants": [
     {
       "id": "s9fa_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} onu iki eliyle, hiç sallamadan taşıdı. {{companion.name}} önden gidip yolu gösterdi. Bir yerde yol daralınca durdular ve nasıl geçeceklerini birlikte tartıştılar; sonunda {{child.name}} yan yan yürümeyi önerdi, ve işe yaradı.",
       "requiredSlots": [
         "child.name",
@@ -30,6 +32,8 @@
     },
     {
       "id": "s9fa_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "İkisi yola çıktı: {{child.name}} taşıdı, {{companion.name}} yolu gösterdi. Bir ara doğru yolda olup olmadıklarından emin olamadılar. Durup etrafa baktılar, bildikleri işaretleri tek tek saydılar ve yönlerini yeniden buldular. Bu küçük duraklama, yolun geri kalanını kolaylaştırdı.",
       "requiredSlots": [
         "child.name",

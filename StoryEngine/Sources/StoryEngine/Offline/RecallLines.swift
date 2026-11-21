@@ -193,11 +193,18 @@ enum RecallComposer {
 
 extension ComposedPage {
     /// This page with the recall line added as its own paragraph at the end.
-    func appendingRecall(id: ContentID, text line: String) -> ComposedPage {
+    ///
+    /// Yazar parmak izi bilerek düşer: sayfa artık yalnızca beat satırlarından
+    /// oluşmuyor, o izle bağlanmış görsel geçersiz (`StorySpotProvenanceTests`).
+    /// Kaynak izi ise korunur ve hatırlama parçasını alır (20 Kasım 2026).
+    func appendingRecall(id: ContentID, text line: String, authoredText: String? = nil) -> ComposedPage {
         ComposedPage(
             pageNumber: pageNumber, role: role, beats: beats, emotion: emotion,
             text: text + "\n\n" + line, visualScene: visualScene,
             variantIDs: variantIDs + [id], missingSlots: missingSlots,
-            unrecognisedSuffixes: unrecognisedSuffixes, words: words, refrain: refrain)
+            unrecognisedSuffixes: unrecognisedSuffixes, words: words, refrain: refrain,
+            provenance: provenance + [PageSourcePart(
+                kind: .recall, sourceID: id.rawValue,
+                sourceTextDigest: PageSourcePart.digest(authoredText ?? line))])
     }
 }

@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · codex/design-system-catalog, commit yok · İncelenmiş gümüş çan eşlemesi
+
+- Claude c742ea7 provenance tesliminin günlük hariç 206 dosyası patch ile alındı; sayfa kaynak izi yeni kitaplarda kalıcıdır. Merge yapılmadı.
+- 5–6 yaş için 5 notice ve 38 hatırlama kaynağına dayanan dar gümüş çan politikası, paketli çizim ve kayıtlı görsel pinleri eklendi. Kaynak/nesne/metin/dosya özeti doğrulanır; belirsiz sayfa metin kalır.
+- Masal metni, kimlikler, seed, seçim dağılımı ve eski kitaplar değişmedi. Her kitapta çizim garantisi yok; auto etiketler topluca onaylanmadı.
+- Motor 11 test/0 hata. Uygulama 96 test: 94 başarılı, 1 skip, 1 seri uygunluğu hatası (9–10 öğrenme devamı varsayımı). Yeni art/provenance 22/22 geçti; genel koşu başarısız. Telefona kurulum ve yeni UI matrisi yapılmadı.
+- Etkilenen alanlar: engine provenance/visual şeması ve şablon metadatası; Story/mapper; ReviewedDiscoveryArtPolicy/Binder, StorySpotBinder, art kaynakları ve testler; spec/plan/inceleme kaydı ve REPORT.md. Originals/Classic/ReaderImageLoader değişiklikleri bu işe dahil değil.
+
 ### 2026-11-20 · codex/design-system-catalog · c742ea7 provenance sözleşmesine göre envanter
 
 - anlati-provenance dalı mevcutkirli checkout’a birleştirilmeden exactGitcommit üzerinden okundu. Audit aracı Git snapshot modu ve visual yok/boş/auto/reviewed ayrımıyla genişletildi; auto etiket hiçbir zaman runtimeart onayı sayılmadı.

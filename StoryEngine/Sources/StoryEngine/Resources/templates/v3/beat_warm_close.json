@@ -23,6 +23,8 @@
     },
     {
       "id": "wc_p_succeed_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}} yavaş yavaş sessizleşti. {{child.name}} bir kez daha arkasına baktı ve gülümsedi.",
       "requiredSlots": [
         "setting.name",
@@ -37,6 +39,8 @@
     },
     {
       "id": "wc_p_succeed_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} \"İyi ki buradaydın,\" dedi. {{child.name}} bir şey demedi, sadece kulakları kızardı.",
       "requiredSlots": [
         "companion.name",
@@ -75,6 +79,8 @@
     },
     {
       "id": "wc_p_restore_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} artık olması gereken yerdeydi. {{child.name}} bunu biraz izledi, sonra sessizce ayrıldı.",
       "requiredSlots": [
         "companion.name",
@@ -88,6 +94,8 @@
     },
     {
       "id": "wc_p_restore_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "Uzaktan minik bir ses geldi. {{companion.name}} veda ediyordu. {{child.name}} el salladı, ses duyulmaz olana kadar.",
       "requiredSlots": [
         "companion.name",
@@ -101,6 +109,8 @@
     },
     {
       "id": "wc_p_restore_03",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} sonunda evine kavuştu. {{child.name}} arkasından baktı. İçi öyle bir sıcacık oldu ki.",
       "requiredSlots": [
         "companion.name",
@@ -126,6 +136,8 @@
     },
     {
       "id": "wc_p_restore_05",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{companion.name}} bir kez daha döndü ona baktı. {{child.name}} başını salladı. Konuşmaya gerek yoktu.",
       "requiredSlots": [
         "companion.name",
@@ -139,6 +151,8 @@
     },
     {
       "id": "wc_p_both_01",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} ve {{companion.name}} vedalaştılar. Uzun bir veda olmadı, çünkü yarın yine buluşacaklardı.",
       "requiredSlots": [
         "child.name",
@@ -179,6 +193,8 @@
     },
     {
       "id": "wc_s_both_03",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'dan ayrılırken {{child.name}} biraz yavaşladı. Buraya yine gelecekti, bundan emindi. Arkasında çok güzel bir gün bırakmıştı. Yarını merak ediyordu.",
       "requiredSlots": [
         "setting.name",
@@ -193,6 +209,8 @@
     },
     {
       "id": "wc_s_both_04",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "Gökyüzü turuncuya dönmüştü. {{child.name}} eve doğru yürüdü, {{companion.name}} ise kendi yoluna gitti. İkisi de aynı şeyi düşünüyordu. Yarın yine göreceklerdi.",
       "requiredSlots": [
         "child.name",
@@ -688,6 +706,8 @@
     },
     {
       "id": "w_ct_wc56_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "Tramvay çan çalarak geldi. {{child.name}} pencereden {{setting.name}}'a son bir kez el salladı.",
       "requiredSlots": [
         "child.name",
@@ -713,6 +733,8 @@
     },
     {
       "id": "w_ct_wc56_04",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'dan ayrılırken {{child.name}} kulak kabarttı. Şehrin sesleri hâlâ oradaydı: bir çan, bir kahkaha, uzaktan bir tramvay. Ama hepsi artık tanıdık geliyordu.",
       "requiredSlots": [
         "setting.name",
@@ -738,6 +760,8 @@
     },
     {
       "id": "w_cn_wc56_02",
+      "visual": [{"subject": "companion", "presence": "present", "states": ["glad"]}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{companion.name}}'e o ülkenin dilinde teşekkür etti. Doğru söyleyip söylemediğini bilmiyordu ama {{companion.name}} gülümsedi.",
       "requiredSlots": [
         "child.name",
@@ -763,6 +787,8 @@
     },
     {
       "id": "w_cn_wc56_04",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{setting.name}}'dan ayrılırken {{child.name}} cebinde üç şey taşıyordu. Yeni bir sözcük, yeni bir tat, yeni bir arkadaşın adı. Hiçbiri ağır değildi, ama hepsi değerliydi.",
       "requiredSlots": [
         "setting.name",
@@ -788,6 +814,8 @@
     },
     {
       "id": "w_hs_wc56_02",
+      "visual": [{"subject": "setting", "presence": "present", "states": []}],
+      "visualReview": "auto",
       "text": "{{child.name}} {{setting.name}}'dan ayrılırken bir taşa dokundu. Yüzlerce yıl önce de biri ona dokunmuştu belki.",
       "requiredSlots": [
         "child.name",
@@ -813,6 +841,8 @@
     },
     {
       "id": "w_hs_wc56_04",
+      "visual": [{"subject": "setting", "presence": "present", "states": ["evening"]}],
+      "visualReview": "auto",
       "text": "{{setting.name}} akşamın sessizliğine büründü. {{child.name}} arkasına baktı ve eski taşların yüzlerce yıldır orada beklediğini düşündü. Şimdi onun hikâyesi de o taşlara karışmıştı.",
       "requiredSlots": [
         "setting.name",

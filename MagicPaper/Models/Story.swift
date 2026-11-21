@@ -310,7 +310,7 @@ struct StoryPageArt: Codable, Equatable {
     }
 
     var isBundledSpot: Bool {
-        guard isSpot, schemaVersion == 1, bindingPolicyVersion == 1,
+        guard isSpot, schemaVersion == 1, let bindingPolicyVersion, [1, 2].contains(bindingPolicyVersion),
               let assetRevision, assetRevision > 0,
               let subjectState, !subjectState.isEmpty, subjectState.allSatisfy({ !$0.isEmpty }),
               let variantIDs, !variantIDs.isEmpty, variantIDs.allSatisfy({ !$0.isEmpty }) else { return false }
@@ -342,6 +342,9 @@ struct StoryPage: Identifiable, Codable, Equatable {
     var art: StoryPageArt?
     /// Optional authored semantics; absent on existing saved books.
     var reading: StoryPageReading?
+    /// Sayfanın kaynak izi (20 Kasım 2026): metni oluşturan parçalar, sırayla.
+    /// Eski kitaplarda yok ve sonradan üretilmez.
+    var provenance: StoryPageProvenance?
     /// Sayfadaki yeni kelimeler (FAZ 17). FAZ 17 öncesi masallarda `nil`:
     /// masal metni yazıldıktan sonra değişmez, eski sayfalar kelimesiz kalır.
     var words: [StoryWord]?
