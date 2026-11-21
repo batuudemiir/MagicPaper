@@ -6,15 +6,39 @@ import XCTest
 @MainActor
 final class OriginalTalesTests: XCTestCase {
 
-    private func library(_ originals: [FeedOriginal], today: String = "2026-11-20") -> ClassicsLibrary {
+    private func library(_ originals: [FeedOriginal], today: String = "2026-11-20",
+                         todaysOriginal: UUID? = nil) -> ClassicsLibrary {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let date = formatter.date(from: today)!
         let suite = "OriginalTalesTests-\(UUID().uuidString)"
         return ClassicsLibrary(catalog: ClassicsCatalog(file: ClassicsCatalogTests.file),
                                defaults: UserDefaults(suiteName: suite)!, now: { date },
-                               currentAge: { nil }, dailyStories: { [] }, remoteOriginals: { originals })
+                               currentAge: { nil }, dailyStories: { [] }, remoteOriginals: { originals },
+                               todaysOriginal: { todaysOriginal })
     }
+
+    // MARK: - Günün masalı ücretsiz (21 Kasım 2026, ANA_SAYFA_HAZIRLIK A1)
+
+    func testTodaysOriginalIsFreeEvenOffTheShowcaseShelves() {
+        let today = UUID()
+        let library = library([], todaysOriginal: today)
+        XCTAssertTrue(library.isInFreeShowcase(today))
+        XCTAssertFalse(library.isInFreeShowcase(UUID()))
+    }
+
+    func testTodaysClassicIsFreeButAnotherOffShowcaseClassicIsNot() throws {
+        let library = library([])
+        let today = try XCTUnwrap(library.todaysTale)
+        XCTAssertTrue(library.isInFreeShowcase(today.id))
+        // Haftanın seçkisi 1 ve 2; geri kalan tek masallardan bugünün olmayanı kilitli kalır.
+        let offShowcase = ClassicsCatalogTests.file.tales
+            .filter { $0.seriesID == nil && ![1, 2].map(id).contains($0.id) && $0.id != today.id }
+        XCTAssertFalse(offShowcase.isEmpty)
+        for tale in offShowcase { XCTAssertFalse(library.isInFreeShowcase(tale.id), tale.title) }
+    }
+
+    private func id(_ n: Int) -> UUID { UUID(uuidString: String(format: "00000000-0000-0000-0000-%012d", n))! }
 
     func testABedtimeOriginalSitsOnTheOriginalAndBedtimeShelves() {
         let tale = TestPublisher.original("fener", mode: "bedtime").classicTale

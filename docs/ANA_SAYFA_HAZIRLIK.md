@@ -15,7 +15,7 @@ veri ve erişilebilirlik içindir.
 
 | # | Sorun | Kanıt | Öneri |
 |---|---|---|---|
-| A1 | **Günün masalı ücretsiz kullanıcıda kilide çarpıyor.** Bu akşamın kartındaki "Masalı oku" çoğu gün kilit penceresini açıyor. | `openTonight` → `readOriginal` → `unlock(.classicLibrary, .classic(inShowcase:))`. Vitrin yalnızca haftanın seçkisi ve Uyku vakti rafı. Uygulamayla gelen 12 günlük masalın yalnızca 3'ü vitrinde: **4 günden 3'ünde** yeni yükleyen ailenin ilk dokunuşu kilit. Paywall da "Ritüel ücretsiz kalır" diyor. | Günün masalı her zaman ücretsiz: `readOriginal` günün masalı için `inShowcase: true` sorar (karar `EntitlementPolicy`'de kalır). **Batuhan'ın kararı.** |
+| A1 ✅ | **Günün masalı ücretsiz kullanıcıda kilide çarpıyor.** *Yapıldı (21 Kasım): `ClassicsLibrary.isInFreeShowcase` günün Original'ini ve günün klasiğini vitrine sayar; `DailyStoryManager.todaysPick` kart, widget ve vitrinin ortak cevabı; testler `OriginalTalesTests`.* Bu akşamın kartındaki "Masalı oku" çoğu gün kilit penceresini açıyor. | `openTonight` → `readOriginal` → `unlock(.classicLibrary, .classic(inShowcase:))`. Vitrin yalnızca haftanın seçkisi ve Uyku vakti rafı. Uygulamayla gelen 12 günlük masalın yalnızca 3'ü vitrinde: **4 günden 3'ünde** yeni yükleyen ailenin ilk dokunuşu kilit. Paywall da "Ritüel ücretsiz kalır" diyor. | Günün masalı her zaman ücretsiz: `readOriginal` günün masalı için `inShowcase: true` sorar (karar `EntitlementPolicy`'de kalır). **Batuhan'ın kararı.** |
 | A2 | **Ücretsiz günlük hak bitince kartın düğmesi yine kilide gidiyor.** "Bugün okudun" durumunda düğme "Yeni masal yaz"; o gün masal yazıldıysa kilit penceresi. | `HomeHeroCard` hakkı bilmiyor; `startStoryCreation` → `.unlimitedTextStories`. | Hak bittiyse kart "Yarın yeni bir masal yazabiliriz" der, düğme kitaplıktan bir masal açar. Karolar kilit penceresine gidebilir (o pencere sakin); kartın tek birincil düğmesi gitmez. |
 | A3 | **Ana sayfa canlı veriyi izlemiyor.** | Gözlenen: masal listesi, profil, okuma günü. Gözlenmeyen: `DailyStoryManager` (gün dönünce günün masalı), `SeriesManager` (seri kartı çıkar/kaybolur), abonelik durumu. Yıldız sayısı yalnızca masal listesi değişince hesaplanıyor: sabah yıldızı ve klasik okuma sonrası eski kalır. Başka bir şey yeniden çizdirirse tesadüfen düzeliyor. | Tek bir ana sayfa modeli (C1) bu kaynakları izler, bir kez hesaplar. |
 | A4 | **Saat ilerleyince sayfa değişmiyor.** Uygulama açıkken yatma saati gelirse kart "Uyku masalı zamanı"na, sahne geceye geçmez; selam aynı kalır. | Görünüm zamanı yalnızca çizilirken okuyor. Widget aynı kuralı `MPTonight.nextChange` ile zamanlıyor, ana sayfa zamanlamıyor. | Model `nextChange` anında ve uygulama öne gelince yeniden hesaplar. |
@@ -42,5 +42,5 @@ veri ve erişilebilirlik içindir.
 ## Plan
 
 1. **Kod (İrem + Claude):** A2–A6, B1–B3, C1–C4. Ana sayfanın davranışı için birim testleri. Görünüş Batuhan'ınki kalır.
-2. **Batuhan'ın kararı:** A1 (günün masalı ücretsiz). Kod tek satır; karar onun.
+2. **A1 yapıldı** (İrem'in kararı, Batuhan'ın onayına).
 3. **Doğrulama:** `[ekran]` turu (SE + Pro Max, normal + en büyük yazı); Batuhan cihazda gün dönümü, yatma saati ve satın alma sonrası.

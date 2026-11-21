@@ -20,6 +20,8 @@ final class ClassicsLibrary: ObservableObject {
     private let currentAge: () -> Int?
     private let dailyStories: () -> [DailyStory]
     private let remoteOriginals: () -> [FeedOriginal]
+    /// Ana sayfa kartındaki günün masalı (Original); ücretsiz vitrine girer.
+    private let todaysOriginal: () -> UUID?
     private var cancellables: Set<AnyCancellable> = []
 
     enum Key {
@@ -35,7 +37,8 @@ final class ClassicsLibrary: ObservableObject {
         calendar: Calendar = .current,
         currentAge: (() -> Int?)? = nil,
         dailyStories: (() -> [DailyStory])? = nil,
-        remoteOriginals: (() -> [FeedOriginal])? = nil
+        remoteOriginals: (() -> [FeedOriginal])? = nil,
+        todaysOriginal: (() -> UUID?)? = nil
     ) {
         self.catalog = catalog
         self.progress = progress ?? .shared
@@ -45,6 +48,7 @@ final class ClassicsLibrary: ObservableObject {
         self.currentAge = currentAge ?? { ProfileManager.shared.currentProfile?.age }
         self.dailyStories = dailyStories ?? { DailyStoryManager.shared.dailyStories }
         self.remoteOriginals = remoteOriginals ?? { RemoteContentService.shared.originals }
+        self.todaysOriginal = todaysOriginal ?? { DailyStoryManager.shared.todaysPick?.id }
         if remoteOriginals == nil {
             // Kapaklar inince raflar yenilensin.
             RemoteContentService.shared.$originals
@@ -151,7 +155,13 @@ final class ClassicsLibrary: ObservableObject {
     /// haftanın seçkisi ve Uyku vakti rafı. Vitrindeki bir serinin bütün
     /// bölümleri vitrindedir. Karar burada değil, `EntitlementPolicy`'de;
     /// bu yalnızca "bu masal vitrinde mi" sorusunun cevabı.
+    ///
+    /// Günün masalı da her zaman vitrinde (21 Kasım 2026, İrem;
+    /// `docs/ANA_SAYFA_HAZIRLIK.md` A1): ana sayfa kartındaki Original ve
+    /// Masallar'daki "Günün masalı" klasiği. Ritüel ücretsiz kalır; yoksa ana
+    /// sayfanın tek birincil düğmesi çoğu gün kilit penceresi açıyordu.
     func isInFreeShowcase(_ id: UUID) -> Bool {
+        if id == todaysOriginal() || id == todaysTale?.id { return true }
         let shelfItems = weeklyPicks + items(in: .uyku)
         if shelfItems.contains(where: { item in
             switch item {

@@ -39,7 +39,7 @@ enum MPTonightSource {
         let dailyManager = dailyManager ?? .shared
         let stories = visibleStories(settings: settings)
         let unfinished = MPContinueReading.pick(from: stories)
-        let daily = dailyManager.todaysStory ?? dailyManager.dailyStories.first
+        let daily = dailyManager.todaysPick
         let inputs = MPTonight.Inputs(
             bedtime: settings.bedtime
                 ? .init(hour: settings.bedtimeHour, minute: settings.bedtimeMinute) : nil,
@@ -66,7 +66,7 @@ enum MPTonightSource {
             .max(by: { ($0.lastReadAt ?? $0.createdAt) < ($1.lastReadAt ?? $1.createdAt) }) {
             return MPSleepSession(story: story)
         }
-        if let daily = dailyManager.todaysStory ?? dailyManager.dailyStories.first {
+        if let daily = dailyManager.todaysPick {
             return MPSleepSession(daily: daily)
         }
         return nil

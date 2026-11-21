@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Günün masalı her zaman ücretsiz (ana sayfa A1)
+
+- Sorun: ana sayfa kartındaki günün masalı (Original) çoğu gün ücretsiz vitrinin dışındaydı (uygulamayla gelen 12 masalın 9'u); ücretsiz kullanıcıda "Masalı oku" kilit penceresi açıyordu.
+- `ClassicsLibrary.isInFreeShowcase`: günün Original'i ve Masallar'daki "Günün masalı" klasiği her zaman vitrinde. Karar yine `EntitlementPolicy`'de, ona dokunulmadı.
+- `DailyStoryManager.todaysPick` (`todaysStory ?? dailyStories.first`): kart, widget, uyku modu ve vitrin aynı masalı görür; `MPSurfaceSync`'teki iki tekrar bununla değişti.
+- Testler: `OriginalTalesTests` iki yeni test (günün Original'i ücretsiz, başka Original değil; günün klasiği ücretsiz, vitrin dışı başka klasik değil). **Çalıştırılmadı** (Mac gerekiyor); `[ekran]` turu derlemeyi doğrular.
+- Belgeler: `ANA_SAYFA_HAZIRLIK.md` A1 yapıldı, `PAYWALL_YERLESIM.md` satır 4, README madde 5 (Batuhan'ın onayına).
+- Dosyalar: `Screens/Gunluk/Model/ClassicsLibrary.swift`, `Services/DailyStoryManager.swift`, `StoryEngineBridge/Surfaces/MPSurfaceSync.swift`, `MagicPaperTests/OriginalTalesTests.swift`.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa Batuhan'ın son hâline döndü
 
 - İrem'in kararı: ana sayfanın tasarımı main'deki son hâl (`HomeHeaderScene`, bu akşamın kartı, "Yeni bir masal yaz" karoları, devam eden seri). Okuma köşesi geri alındı.
