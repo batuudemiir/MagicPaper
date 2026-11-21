@@ -320,7 +320,7 @@ class RevenueCatManager: ObservableObject {
         let ids = offerings.current?.availablePackages.map { $0.storeProduct.productIdentifier } ?? []
         guard !ids.isEmpty else { return }
         Purchases.shared.checkTrialOrIntroDiscountEligibility(productIdentifiers: ids) { [weak self] result in
-            let ineligible = Set(result.filter { $0.value.status == .ineligible }.map(.key))
+            let ineligible: Set<String> = Set(result.compactMap { id, eligibility in eligibility.status == .ineligible ? id : nil })
             DispatchQueue.main.async { self?.trialIneligible = ineligible }
         }
     }

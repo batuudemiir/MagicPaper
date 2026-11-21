@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Derleme düzeltmesi: deneme uygunluğu satırı
+
+- `8afd339` turu derlenmedi: `RevenueCatManager.swift:323` `Set(result.filter{…}.map(.key))`. Satırı yazan komut `.key` içindeki ters eğik çizgiyi yutmuştu. Açık tipli `compactMap` ile yeniden yazıldı. Derleme günlüğünde başka hata yoktu (yeni Paywall, seri kilidi derlendi).
+- Test: bu commit `[ekran]` ile yeniden derleniyor.
+- Dosyalar: `MagicPaper/Services/RevenueCatManager.swift`, bu günlük.
+
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Paywall yerleşim haritası; seri kilidi; deneme uygunluğu
 
 - Yeni belge `docs/PAYWALL_YERLESIM.md`: Paywall'a giden 8 yol (kod yerleriyle), çıkmadığı yerler, akış şeması, açık öneriler.
