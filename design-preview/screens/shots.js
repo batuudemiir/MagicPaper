@@ -1,4 +1,4 @@
-window.MP_SHOTS = { tarih: "2026-11-22T18:58Z", commit: "85fe4a6", liste: [
+window.MP_SHOTS = { tarih: "2026-11-22T19:49Z", commit: "c84a5ca", liste: [
   {ekran:"ana-sayfa", baslik:"Ana sayfa", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"normal", dosya:"screens/real/ana-sayfa.kucuk.normal.png"},
   {ekran:"masallar", baslik:"Masallar", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"normal", dosya:"screens/real/masallar.kucuk.normal.png"},
   {ekran:"kitaplik", baslik:"Kitaplık", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"normal", dosya:"screens/real/kitaplik.kucuk.normal.png"},
@@ -6,6 +6,7 @@ window.MP_SHOTS = { tarih: "2026-11-22T18:58Z", commit: "85fe4a6", liste: [
   {ekran:"buyukler-icin", baslik:"Büyükler için", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"normal", dosya:"screens/real/buyukler-icin.kucuk.normal.png"},
   {ekran:"ayarlar", baslik:"Ayarlar", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"normal", dosya:"screens/real/ayarlar.kucuk.normal.png"},
   {ekran:"abonelik", baslik:"Abonelik (Paywall)", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"normal", dosya:"screens/real/abonelik.kucuk.normal.png"},
+  {ekran:"kahraman-dolabi", baslik:"Masal dolabım (kahraman)", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"normal", dosya:"screens/real/kahraman-dolabi.kucuk.normal.png"},
   {ekran:"tasarim-katalogu", baslik:"Tasarım sistemi kataloğu", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"normal", dosya:"screens/real/tasarim-katalogu.kucuk.normal.png"},
   {ekran:"ana-sayfa", baslik:"Ana sayfa", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"en-buyuk-yazi", dosya:"screens/real/ana-sayfa.kucuk.en-buyuk-yazi.png"},
   {ekran:"masallar", baslik:"Masallar", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"en-buyuk-yazi", dosya:"screens/real/masallar.kucuk.en-buyuk-yazi.png"},
@@ -14,6 +15,7 @@ window.MP_SHOTS = { tarih: "2026-11-22T18:58Z", commit: "85fe4a6", liste: [
   {ekran:"buyukler-icin", baslik:"Büyükler için", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"en-buyuk-yazi", dosya:"screens/real/buyukler-icin.kucuk.en-buyuk-yazi.png"},
   {ekran:"ayarlar", baslik:"Ayarlar", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"en-buyuk-yazi", dosya:"screens/real/ayarlar.kucuk.en-buyuk-yazi.png"},
   {ekran:"abonelik", baslik:"Abonelik (Paywall)", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"en-buyuk-yazi", dosya:"screens/real/abonelik.kucuk.en-buyuk-yazi.png"},
+  {ekran:"kahraman-dolabi", baslik:"Masal dolabım (kahraman)", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"en-buyuk-yazi", dosya:"screens/real/kahraman-dolabi.kucuk.en-buyuk-yazi.png"},
   {ekran:"tasarim-katalogu", baslik:"Tasarım sistemi kataloğu", cihaz:"kucuk", cihazAdi:"iPhone SE (3rd generation)", yazi:"en-buyuk-yazi", dosya:"screens/real/tasarim-katalogu.kucuk.en-buyuk-yazi.png"},
   {ekran:"ana-sayfa", baslik:"Ana sayfa", cihaz:"buyuk", cihazAdi:"iPhone 17 Pro Max", yazi:"normal", dosya:"screens/real/ana-sayfa.buyuk.normal.png"},
   {ekran:"masallar", baslik:"Masallar", cihaz:"buyuk", cihazAdi:"iPhone 17 Pro Max", yazi:"normal", dosya:"screens/real/masallar.buyuk.normal.png"},
@@ -22,6 +24,7 @@ window.MP_SHOTS = { tarih: "2026-11-22T18:58Z", commit: "85fe4a6", liste: [
   {ekran:"buyukler-icin", baslik:"Büyükler için", cihaz:"buyuk", cihazAdi:"iPhone 17 Pro Max", yazi:"normal", dosya:"screens/real/buyukler-icin.buyuk.normal.png"},
   {ekran:"ayarlar", baslik:"Ayarlar", cihaz:"buyuk", cihazAdi:"iPhone 17 Pro Max", yazi:"normal", dosya:"screens/real/ayarlar.buyuk.normal.png"},
   {ekran:"abonelik", baslik:"Abonelik (Paywall)", cihaz:"buyuk", cihazAdi:"iPhone 17 Pro Max", yazi:"normal", dosya:"screens/real/abonelik.buyuk.normal.png"},
+  {ekran:"kahraman-dolabi", baslik:"Masal dolabım (kahraman)", cihaz:"buyuk", cihazAdi:"iPhone 17 Pro Max", yazi:"normal", dosya:"screens/real/kahraman-dolabi.buyuk.normal.png"},
   {ekran:"tasarim-katalogu", baslik:"Tasarım sistemi kataloğu", cihaz:"buyuk", cihazAdi:"iPhone 17 Pro Max", yazi:"normal", dosya:"screens/real/tasarim-katalogu.buyuk.normal.png"},
   {ekran:"ana-sayfa", baslik:"Ana sayfa", cihaz:"buyuk", cihazAdi:"iPhone 17 Pro Max", yazi:"en-buyuk-yazi", dosya:"screens/real/ana-sayfa.buyuk.en-buyuk-yazi.png"},
   {ekran:"masallar", baslik:"Masallar", cihaz:"buyuk", cihazAdi:"iPhone 17 Pro Max", yazi:"en-buyuk-yazi", dosya:"screens/real/masallar.buyuk.en-buyuk-yazi.png"},
@@ -30,5 +33,6 @@ window.MP_SHOTS = { tarih: "2026-11-22T18:58Z", commit: "85fe4a6", liste: [
   {ekran:"buyukler-icin", baslik:"Büyükler için", cihaz:"buyuk", cihazAdi:"iPhone 17 Pro Max", yazi:"en-buyuk-yazi", dosya:"screens/real/buyukler-icin.buyuk.en-buyuk-yazi.png"},
   {ekran:"ayarlar", baslik:"Ayarlar", cihaz:"buyuk", cihazAdi:"iPhone 17 Pro Max", yazi:"en-buyuk-yazi", dosya:"screens/real/ayarlar.buyuk.en-buyuk-yazi.png"},
   {ekran:"abonelik", baslik:"Abonelik (Paywall)", cihaz:"buyuk", cihazAdi:"iPhone 17 Pro Max", yazi:"en-buyuk-yazi", dosya:"screens/real/abonelik.buyuk.en-buyuk-yazi.png"},
+  {ekran:"kahraman-dolabi", baslik:"Masal dolabım (kahraman)", cihaz:"buyuk", cihazAdi:"iPhone 17 Pro Max", yazi:"en-buyuk-yazi", dosya:"screens/real/kahraman-dolabi.buyuk.en-buyuk-yazi.png"},
   {ekran:"tasarim-katalogu", baslik:"Tasarım sistemi kataloğu", cihaz:"buyuk", cihazAdi:"iPhone 17 Pro Max", yazi:"en-buyuk-yazi", dosya:"screens/real/tasarim-katalogu.buyuk.en-buyuk-yazi.png"},
 ]};
