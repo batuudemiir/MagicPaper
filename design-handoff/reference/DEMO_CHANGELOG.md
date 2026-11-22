@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · Ana sayfa sahnesi kâğıda erir (dalga kalktı)
+
+- İrem'in isteği (TestFlight ekran görüntüsü): başlık sahnesinin alt kenarı dalga kesimi yerine son çeyrekte yumuşakça sayfanın kâğıdına erir; sayfa zemini beyaz yerine sıcak krem.
+- `HomeHeaderScene`: `WaveBottom` kırpması kalktı; manzara katmanına `fadeMask` (%74'ten sonra saydamlaşır). Ragi ve başlık maskenin dışında, silikleşmez. Kısa bant (en büyük yazı) da aynı.
+- Yeni token `MP.C.homePaper` = `Palette.kagit100` (#FFF8EE); `HomeView.pageBackground` bunu okur.
+- Prototip: `.home-scene-art` ayrı katman ve maske, `.layer.home-page` zemini #FFF8EE; tarayıcıda ekran görüntüsüyle bakıldı.
+- Bilerek değişmedi: `WaveBottom` başka ekranlarda (`HomeSky`) duruyor. Gece sahnesi de kreme erir; gerçek uygulamada gece görüntüsüne bakılmalı.
+- Test: çalıştırılmadı; `[ekran]` turu. Dosyalar: `DesignSystem/MPTheme.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `Views/HomeView.swift`, `design-preview/app/app.css`, `design-preview/app/app.js`.
+
 ### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · En büyük yazıda SE'de kartın düğmesi (A5 tamamlama)
 
 - `4d0d569` turu: Pro Max en büyük yazıda kısa bant ve düğme ilk ekranda, doğru. SE'de "Kısa, sakin bir masalla günü kapatalım." üç satıra yayılıp "Uyku masalı yaz"ı alt çubuğun arkasına itiyordu.

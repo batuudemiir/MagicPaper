@@ -278,10 +278,14 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* Ana sayfa başlık sahnesi (HomeHeaderScene, 19 Kasım 2026): durum çubuğunun altına uzanır */
 .home-page .statusbar { position: absolute; left: 0; right: 0; top: 0; z-index: 6; color: #fff; }
 .home-page .scroller { padding-top: 0; }
+/* 22 Kasım 2026 (İrem): dalga kesimi yerine manzara son çeyrekte kâğıda erir; Ragi ve başlık maskenin dışında. */
+.layer.home-page { background: #FFF8EE; }   /* MP.C.homePaper = kagit100 */
 .home-scene { position: relative; height: calc(300px + var(--status, 54px)); margin: 0 calc(-1 * var(--mp-space-screen-h));
-              padding: var(--status, 54px) var(--mp-space-screen-h) 0; background-color: #0C215D; background-size: cover; background-position: center bottom;
-              clip-path: path("M0 0 H440 V330 Q330 300 220 340 Q110 360 0 335 Z"); }
-@supports not (clip-path: path("M0 0")) { .home-scene { border-radius: 0 0 32px 32px; } }
+              padding: var(--status, 54px) var(--mp-space-screen-h) 0; }
+.home-scene-art { position: absolute; inset: 0; background-color: #0C215D; background-size: cover; background-position: center bottom;
+                  -webkit-mask-image: linear-gradient(#000 74%, transparent); mask-image: linear-gradient(#000 74%, transparent); }
+.home-scene .tab-head { position: relative; z-index: 1; }
+.home-scene .scene-ragi { z-index: 1; }
 .home-scene .tab-head h1, .home-scene .eyebrow-greet { color: #fff; }
 .home-scene .eyebrow-greet { opacity: .85; }
 .home-scene .stat-line { color: rgba(255,255,255,.85); font: 700 calc(13px * var(--type)) "Nunito", sans-serif; }

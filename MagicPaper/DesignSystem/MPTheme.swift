@@ -212,6 +212,10 @@ enum MP {
         static let calmEdge = Palette.yesim600
         static let calmSoft = MPColor.statusSuccessSoft
 
+        /// Ana sayfa zemini (22 Kasım 2026, İrem): başlık sahnesinin alt kenarı
+        /// bu sıcak kâğıda erir; dalga kesimi ve beyaz zemin yerine.
+        static let homePaper = Palette.kagit100
+
         static let textTitle = MPColor.textPrimary
         static let textBody  = MPColor.textPrimary
         static let textMuted = MPColor.textSecondary

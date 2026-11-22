@@ -226,8 +226,9 @@ struct HomeView: View {
             .padding(.horizontal, -MPSpacing.md)
     }
 
-    /// Sayfa zemini beyaz (15 Ekim, Apple düzeni); lavanta yalnızca bu akşamın kartında.
-    private var pageBackground: Color { MPColor.backgroundSurface }
+    /// Sayfa zemini sıcak kâğıt (22 Kasım 2026, İrem; 15 Ekim'deki beyazın
+    /// yerine): başlık sahnesi buna erir. Lavanta yalnızca bu akşamın kartında.
+    private var pageBackground: Color { MP.C.homePaper }
 }
 
 #Preview("11 · Ana sayfa") {

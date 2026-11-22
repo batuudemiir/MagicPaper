@@ -198,8 +198,10 @@ struct HomeStatLine: View {
 /// "sahne bu akşamın kartında" kararının yerine). Durum çubuğunun altına kadar
 /// uzanan manzara, uyku saatinde gece; selam ve çocuğun adı sahnenin üstünde,
 /// ekranın tek Ragi'si sağ altta. Gece yazı açık (`onArt`), gündüz koyu: gündüz
-/// göğü açık mavi olduğu için açık yazı 4.5:1'i tutmaz. Karartma (gradient) yok;
-/// alt kenar yumuşak dalga (`WaveBottom`).
+/// göğü açık mavi olduğu için açık yazı 4.5:1'i tutmaz. Karartma (gradient) yok.
+/// Alt kenar (22 Kasım 2026, İrem; dalga kesiminin yerine): manzara son
+/// çeyreğinde sayfanın kâğıdına (`MP.C.homePaper`) erir. Bu bir arayüz yüzeyi
+/// değil, illüstrasyonun kendi maskesi; Ragi ve başlık maskenin dışında.
 struct HomeHeaderScene<Header: View>: View {
     var isNight: Bool
     /// Üst güvenli alan: sahne saat çubuğunun altına uzanır, başlık onun altında başlar.
@@ -219,7 +221,6 @@ struct HomeHeaderScene<Header: View>: View {
         if compact {
             VStack(alignment: .leading, spacing: MPSpacing.lg) {
                 band(height: Self.compactHeight + topInset)
-                    .clipShape(WaveBottom())
                 header
                     .padding(.horizontal, MPSpacing.screenH)
             }
@@ -232,8 +233,16 @@ struct HomeHeaderScene<Header: View>: View {
             }
             .frame(maxWidth: .infinity)
             .frame(height: Self.height + topInset)
-            .clipShape(WaveBottom())
+            .clipped()
         }
+    }
+
+    /// Manzaranın alt kenarı: son çeyrekte kâğıda erir.
+    private var fadeMask: some View {
+        LinearGradient(stops: [.init(color: .white, location: 0),
+                               .init(color: .white, location: 0.74),
+                               .init(color: .white.opacity(0), location: 1)],
+                       startPoint: .top, endPoint: .bottom)
     }
 
     /// Manzara ve Ragi. Kısa bantta manzaranın ortası görünür (alt kenarda
@@ -255,6 +264,7 @@ struct HomeHeaderScene<Header: View>: View {
             }
             .frame(height: height)
             .clipped()
+            .mask { fadeMask }
             .animation(MP.M.gated(MP.M.slow), value: isNight)
             .accessibilityHidden(true)
             HomeSceneMascot(isNight: isNight)

@@ -210,7 +210,7 @@ const VIEWS = {
     const h = new Date().getHours();
     const greet = h >= 5 && h < 11 ? "Günaydın," : h < 17 && h >= 11 ? "İyi günler," : h < 22 && h >= 17 ? "İyi akşamlar," : "İyi geceler,";
     return { cls: "home-page", html: `<div class="scroller">
-      <div class="home-scene" style="background-image:url(${img.night})">
+      <div class="home-scene"><div class="home-scene-art" style="background-image:url(${img.night})"></div>
         <div class="tab-head"><div><span class="eyebrow-greet">${greet}</span><h1>${CHILD}</h1></div>
           ${S.stars ? `<span class="stat-line">★ ${S.stars}${S.finished ? " · " + S.finished + " gün" : ""}</span>` : ""}</div>
         <img class="scene-ragi ragi-jump" src="${img.ragi("Sleeping")}" alt="">
