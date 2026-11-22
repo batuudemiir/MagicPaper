@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fff8ee"><title>MagicPaper · Masal dolabım</title><link rel="stylesheet" href="studio.css"></head>
+<body><main>
+<header><button class="round" id="back" aria-label="Profile dön">‹</button><h1>Masal dolabım</h1><button class="round" id="undo" aria-label="Son seçimi geri al" title="Son seçimi geri al">↶</button></header>
+<section class="stage" aria-label="Kahraman önizlemesi"><div class="arch"></div><div id="model"></div><button id="zoom" aria-label="Kahramanın yüzünü yakından gör">Yüzü gör</button></section>
+<section class="panel"><nav id="families" aria-label="Dolap bölümleri"></nav><nav id="slots" aria-label="Seçim türü"></nav><div class="rack"><h2 id="title"></h2><p id="hairNote" hidden></p><div id="tiles" role="group" aria-labelledby="title"></div></div></section>
+<footer><button class="primary" id="save">Kahramanımı kaydet</button></footer>
+<dialog id="leave"><h2>Dolaptan çıkalım mı?</h2><p>Son değişikliklerini kaydedebilir veya önceki görünümüne dönebilirsin.</p><button id="stay" class="primary">Denemeye devam et</button><button id="discard" class="text">Kaydetmeden çık</button></dialog>
+<section id="profile" hidden><div id="portrait"></div><h2>Kahramanım</h2><p id="feedback"></p><button id="open" class="primary">Kahramanını giydir</button></section>
+<span id="msg" class="sr" aria-live="polite"></span></main>
+<script src="katalog.js"></script><script src="kahraman.js"></script><script src="secim.js"></script><script src="studio.js"></script></body></html>

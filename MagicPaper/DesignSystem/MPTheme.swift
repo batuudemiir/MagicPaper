@@ -215,6 +215,9 @@ enum MP {
         /// Ana sayfa zemini (22 Kasım 2026, İrem): başlık sahnesinin alt kenarı
         /// bu sıcak kâğıda erir; dalga kesimi ve beyaz zemin yerine.
         static let homePaper = Palette.kagit100
+        /// Masal dolabının prova nişi (22 Kasım 2026, `HeroStudioView`): krem
+        /// kâğıdın üstünde bir ton koyu kemer.
+        static let heroNiche = Palette.kagit300
         /// Sahne kenarı geçişinin sıcak ara tonu: koyu gece resmi kâğıda
         /// erirken ara tonlar soğuk griye (sis) değil kâğıda dönsün.
         static let homePaperShade = Palette.kagit300

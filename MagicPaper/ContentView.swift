@@ -57,6 +57,10 @@ struct ContentView: View {
                 }
                 if let route = MPDebugLaunch.parentRoute { app.router.parentRoute = route }
                 if MPDebugLaunch.opensPaywall { app.openPaywall() }
+                if MPDebugLaunch.opensWardrobe, let id = profileManager.currentProfile?.id {
+                    app.router.tab = .corner
+                    app.router.openKidPage(.wardrobe(id))
+                }
             }
             #endif
             .task {
@@ -340,13 +344,13 @@ struct KidPageView: View {
             if let profile = profile(id) { FamilyCharactersView(profile: profile) }
         case .bookCharacter(let id):
             // E4: kitap karakteri ayrı bir kimlik değil; kahraman düzenleyicisine gider.
-            if let profile = profile(id) { HeroWardrobeView(profile: profile) }
+            if let profile = profile(id) { HeroDressingRoom(profile: profile) }
         case .stickers(let id):
             if let profile = profile(id) { StickerAlbumView(profile: profile) }
         case .decor(let id):
             if let profile = profile(id) { DecorShopView(profile: profile) }
         case .wardrobe(let id):
-            if let profile = profile(id) { HeroWardrobeView(profile: profile) }
+            if let profile = profile(id) { HeroDressingRoom(profile: profile) }
         case .storyMap(let id):
             if let profile = profile(id) { StoryMapView(profile: profile) }
         case .badges(let id):

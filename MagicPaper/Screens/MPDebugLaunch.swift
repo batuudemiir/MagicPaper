@@ -24,6 +24,8 @@ enum MPDebugLaunch {
     static var parentTab: MPParentTab? { defaults.string(forKey: "mpParentTab").flatMap(MPParentTab.init(rawValue:)) }
     static var demoLibrary: Bool { defaults.bool(forKey: "mpDemoLibrary") }
     static var opensPaywall: Bool { defaults.bool(forKey: "mpOpenPaywall") }
+    /// `mpOpenWardrobe`: Profil'den kahramanın dolabı açılır (CI ekran görüntüleri, 22 Kasım).
+    static var opensWardrobe: Bool { defaults.bool(forKey: "mpOpenWardrobe") }
     /// Ragi'nin hareket ve ses vitrini (`RagiStudioView`); önizleme videosu buradan kaydedilir.
     static var ragiStudio: Bool { defaults.bool(forKey: "mpRagiStudio") }
     static var parentRoute: MPParentRoute? { defaults.string(forKey: "mpParentRoute").flatMap(MPParentRoute.init(debugName:)) }

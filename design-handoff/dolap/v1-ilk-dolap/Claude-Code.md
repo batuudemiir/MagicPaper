@@ -1,0 +1,8 @@
+MagicPaper’da Profil > Kahramanını giydir ekranını bu klasördeki görsel ve davranış referanslarına göre uygula. Önce projedeki gerçek teknoloji yığınını, mevcut avatar veri modelini, profil kayıt yolunu ve tasarım tokenlarını incele. Dolap.html etkileşim örneğidir. Mevcut uygulamanın kendi bileşenleri ve gezinme sistemiyle üret.
+
+1. Görünümü 01-Dolap.png ve 02-Aksesuar.png ile karşılaştır. Baloo 2 başlıklarını, Nunito metinlerini, mor ana eylemi ve sert alt kenarı projeden al. Seçim listesinin son satırını kaydet düğmesinin üstünde erişilebilir tut.
+2. Önce assets içindeki üç takım ile şapka ve gözlük yuvalarını çalıştır. Tam boy koordinat sistemini hareket ederken birlikte ölçekle. Son seçim kazanır. Azaltılmış harekete uy.
+3. Düzenleyici açıldığında aktif çocuk kimliğine bağlı bir taslak oluştur. Kayıtta görünümü atomik olarak yaz. Eski avatarların çocuk/hayvan türünü, tenini, saçını, yüzünü ve mevcut aksesuarlarını koru. Tam boy çizimi eksik olan mevcut kahramanlarda eski görünümü destekle. Yeni örnek karakteri zorunlu varsayılan olarak atama.
+4. Prototipteki yerel tarayıcı kaydı yalnız referans. Uygulamada mevcut saklama yöntemi kullanılsın. Geri, hata, çevrimdışı ve erişilebilirlik durumlarını 01-Tasarim-ve-davranis.md üzerinden kontrol et.
+5. katalog.csv içindeki “plan” satırlarını gelecek içerik olarak ele al. Gerçek çizim ve bağlantı noktası hazır olduğunda kullanıma aç. Tam sürüm için üç üst kategoriye geç ve başörtüsüyle temel gözlüğü herkese açık tut.
+6. En küçük desteklenen iPhone’da ve en büyük metin boyutunda görsel kontrol yap. Aktif profil değişimi, iptal, kaydetme, tekrar açma ve iOS Hareketi Azalt tercihini doğrula.

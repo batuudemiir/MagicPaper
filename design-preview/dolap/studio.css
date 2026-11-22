@@ -1,0 +1,29 @@
+*{box-sizing:border-box}
+:root{--ink:#2e1e3e;--dark:#3a2458;--purple:#6a47b8;--pale:#efe6f7;--paper:#fff8ee;--line:#e6dfe8;}
+body{margin:0;background:#ede8ed;color:var(--ink);font:600 16px Nunito,ui-rounded,"Trebuchet MS",sans-serif}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}button:focus-visible{outline:3px solid #427876;outline-offset:2px}
+main{width:min(100%,490px);height:100dvh;min-height:360px;margin:auto;background:white;position:relative;display:flex;flex-direction:column}
+header{padding:8px 19px 0;min-height:54px;display:flex;align-items:center;justify-content:space-between;background:var(--paper);gap:8px}
+h1,h2{font-family:"Baloo 2",ui-rounded,"Trebuchet MS",sans-serif;letter-spacing:-.035em}
+h1{margin:0;font-size:22px}.round{width:44px;height:44px;border:0;border-radius:50%;background:#f5ebdf;color:var(--dark);font-size:27px}.round:disabled{opacity:.35;cursor:default}
+.stage{height:clamp(170px,40dvh,365px);flex:none;position:relative;display:grid;place-items:center;overflow:hidden;background:var(--paper);isolation:isolate}
+.arch{background:#efe2d1;position:absolute;z-index:-1;inset:8% 22% -4%;border-radius:50% 50% 0 0 / 35% 35% 0 0;box-shadow:0 0 0 5px var(--paper),0 0 0 6px #eadcc7}
+#model{height:98%;aspect-ratio:146/343;transform-origin:50% 95%}#model.near{aspect-ratio:134/147;height:95%}#model svg,#portrait svg{width:100%;height:100%}.wear{animation:wear .26s ease-out}@keyframes wear{50%{transform:rotate(-1deg) translateY(-1px)}}
+#zoom{position:absolute;bottom:12px;right:14px;background:#fffbf4;color:#604973;border:1px solid #e3d5c8;border-radius:18px;min-height:44px;font-size:13px;padding:0 12px}
+.panel{display:flex;flex:1;flex-direction:column;min-height:0}nav{display:flex;gap:6px}
+#families{padding:9px 16px 0;justify-content:space-between;border-bottom:1px solid var(--line)}#families button{background:white;border:0;border-bottom:3px solid transparent;flex:1;padding:8px 2px;min-height:44px;font-size:15px}
+#families [aria-pressed=true]{color:var(--purple);border-bottom-color:var(--purple)}
+#slots{padding:10px 16px 5px;overflow-x:auto;flex:none;scrollbar-width:thin}#slots button{white-space:nowrap;background:#f8f5f8;border:1px solid #ece5ed;border-radius:16px;font-size:13px;min-height:44px;padding:0 13px}
+#slots [aria-pressed=true]{background:var(--pale);border-color:#d4bee9;color:var(--dark)}
+.rack{min-height:0;overflow:auto;padding:5px 16px 18px;scrollbar-width:thin}h2{font-size:22px;line-height:1.16;margin:10px 0 12px}
+#tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.tile{position:relative;border:1px solid var(--line);border-radius:16px;padding:0 0 8px;overflow:hidden;background:white}
+.tile[aria-pressed=true]{border:2px solid var(--purple);padding-bottom:7px}.tile[aria-pressed=true]:after{content:'✓';position:absolute;right:4px;top:4px;border-radius:50%;background:var(--purple);color:white;font-size:13px;line-height:19px;width:19px}
+.thumb{height:66px;display:grid;place-items:center;overflow:hidden;background:#faf5ed}.thumb img,.thumb svg{width:100%;height:100%;object-fit:contain;max-height:66px;display:block}.thumb img{padding:4px}.chip{display:block;width:32px;height:32px;border-radius:50%;box-shadow:inset 0 0 0 1px #604a4922}.tile b{display:block;margin:6px 3px 0;font-size:12px;line-height:1.2;font-weight:700}
+footer{padding:9px 16px max(14px,env(safe-area-inset-bottom));border-top:1px solid var(--line);background:white}.primary{border:0;width:100%;min-height:48px;border-radius:18px;background:var(--purple);color:white;padding:12px;box-shadow:0 3px var(--dark);font-weight:750}
+dialog{border:0;border-radius:22px;padding:24px;max-width:min(330px,92%);color:var(--ink)}dialog::backdrop{background:#291d35aa}dialog p,#feedback{line-height:1.45}.text{background:white;border:0;width:100%;min-height:44px;margin-top:6px}
+#profile{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:var(--paper);z-index:4;text-align:center}#portrait{width:min(70%,210px);height:255px}#profile h2{margin-bottom:0}
+.sr{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}[hidden]{display:none!important}
+@media(max-height:620px){.stage{height:29dvh;min-height:125px}#slots{padding-top:4px}h2{margin:6px 0}.thumb,.thumb img,.thumb svg{height:52px}}
+@media(max-width:335px){#tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.wear{animation:none}}
+#hairNote{font-size:13px;color:#62536d;margin:0 0 10px}

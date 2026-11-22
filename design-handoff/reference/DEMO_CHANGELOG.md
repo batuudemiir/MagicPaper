@@ -133,6 +133,19 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · Masal dolabım: tam boy kahraman (Dolap paketleri)
+
+- İrem'in iki paketi: "MagicPaper-Tam-Dolap-v2" (asıl sistem) uygulamaya entegre edildi; "MagicPaper-Dolap-Handoff" (v1, sabit yüzlü demo) belgeleriyle arşivlendi, uygulamaya alınmadı (v2 onun tamamlanmış hali; yüzü resimde sabit). Belgeler ve referanslar `design-handoff/dolap/`.
+- Yeni `Screens/Hero/Figure/`: `HeroFigure` (17 yuva, katalog, `secim.js` kuralları), `HeroFigureArt` (`kahraman.js`'in Canvas karşılığı, SVG yol okuyucu), `HeroHairDye` (saç boyası, Core Image), `HeroFigurePalette`, `HeroFigure+Legacy` (eski alanlara yansıma), `HeroStudioView` + `HeroDressingRoom` (insan yeni dolap, hayvan eski dolap).
+- `hero_figure_catalog.json` paketten değiştirilmeden. 36 PNG `Assets.xcassets/HeroFigure`: saç ve şapka tam çözünürlük, giysi ve ayakkabı %65 (11,5 MB → 7 MB, alfa korunarak).
+- `HeroLook.figure` (isteğe bağlı): kayıt, eşitleme ve profil silme aynı yoldan. `HeroAvatarView` tam boy kaydı olan çocuğu aynı kaydın büstüyle çizer. Eski kahraman otomatik dönüştürülmez.
+- Ekran referansa göre (`Dolap-ve-yuz.png`): krem üst bölüm, kemerli prova nişi, "Yüzü gör", alt çizgili üç bölüm, lavanta alt sekmeler, krem zeminli karolar, tek mor "Kahramanımı kaydet". Yeni tokenlar `MP.C.heroNiche` (kagit300).
+- Yönlendirme: `.wardrobe` ve `.bookCharacter` (çocuk ve ebeveyn) `HeroDressingRoom`'a. `HeroWardrobeView`'e iki kanca: `initialKind`, `onChooseChild`.
+- Prototip: `design-preview/dolap/Dolap.html` (paketin stüdyosu, parçaları asset kataloğundan okur); tarayıcıda açılıp bakıldı.
+- CI: `-mpOpenWardrobe` DEBUG kancası, ekran listesine "kahraman-dolabi".
+- Test: `HeroFigureTests` (kontrol.cjs'in kuralları + kayıt, yansıma, yol okuyucu, renk karışımı, boya küpü). **Çalıştırılmadı** (Mac). Tasarım yasası grep'leri yeni dosyalarda boş. `[ekran]` turu derlemeyi doğrular.
+- Batuhan'a: yıldız fiyatı, çizim paleti istisnası, kenar kaydırma onayı (README madde 6).
+
 ### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · Ana sayfa sahnesi: yumuşatılmış, sıcak tonlu kenar
 
 - İrem: %86 maskede de gece sahnesinin altında beyaz, sisli bir bant kalıyordu. Neden: lacivert resim yarı saydamken kremle karışınca ara tonlar soğuk griye döner; düz (doğrusal) geçiş bu bölgeyi uzun tutar.
