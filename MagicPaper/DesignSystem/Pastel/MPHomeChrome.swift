@@ -237,10 +237,12 @@ struct HomeHeaderScene<Header: View>: View {
         }
     }
 
-    /// Manzaranın alt kenarı: son çeyrekte kâğıda erir.
+    /// Manzaranın alt kenarı: en altta kâğıda erir. %86'dan önce dolu; geçişin
+    /// başı yavaş açılır, gece sahnesi sisli bir banda dönmesin (22 Kasım, İrem).
     private var fadeMask: some View {
         LinearGradient(stops: [.init(color: .white, location: 0),
-                               .init(color: .white, location: 0.74),
+                               .init(color: .white, location: 0.86),
+                               .init(color: .white.opacity(0.7), location: 0.93),
                                .init(color: .white.opacity(0), location: 1)],
                        startPoint: .top, endPoint: .bottom)
     }

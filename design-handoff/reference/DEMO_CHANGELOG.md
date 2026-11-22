@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · Ana sayfa sahnesinin geçişi aşağı alındı
+
+- İrem: gece sahnesinde %74'ten başlayan geçiş resmin alt çeyreğini sisli beyaza boğuyordu. `fadeMask` artık %86'ya kadar dolu, %93'te 0.7, en altta saydam. Prototip aynı (`app.css`), tarayıcıda bakıldı.
+- Test: çalıştırılmadı; `[ekran]` turu. Dosyalar: `DesignSystem/Pastel/MPHomeChrome.swift`, `design-preview/app/app.css`.
+
 ### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · Ana sayfa sahnesi kâğıda erir (dalga kalktı)
 
 - İrem'in isteği (TestFlight ekran görüntüsü): başlık sahnesinin alt kenarı dalga kesimi yerine son çeyrekte yumuşakça sayfanın kâğıdına erir; sayfa zemini beyaz yerine sıcak krem.
