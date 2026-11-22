@@ -71,6 +71,8 @@ public struct SeriesPlan: Codable, Sendable, Hashable {
     public let schemaVersion: Int
     public let seed: String
     public let catalogVersion: String
+    /// Exact authored source, absent on plans made before source pinning.
+    public private(set) var contentSource: ContentSourceMetadata?
     public let mode: StoryMode
     public let ageBand: AgeBand
     public let anchor: SeriesAnchor
@@ -89,12 +91,14 @@ public struct SeriesPlan: Codable, Sendable, Hashable {
         anchor: SeriesAnchor,
         family: SeriesFamily?,
         episodes: [PlannedEpisode],
-        safety: ContentSafety? = nil
+        safety: ContentSafety? = nil,
+        contentSource: ContentSourceMetadata? = nil
     ) {
         self.schemaVersion = Self.currentSchemaVersion
         self.safety = safety
         self.seed = seed
         self.catalogVersion = catalogVersion
+        self.contentSource = contentSource
         self.mode = mode
         self.ageBand = ageBand
         self.anchor = anchor
@@ -109,7 +113,36 @@ public struct SeriesPlan: Codable, Sendable, Hashable {
         return copy
     }
 
+    /// Used only after the host verified an omitted metadata field belongs to
+    /// the identical saved plan, e.g. a read mark sent by an older client.
+    public func withContentSource(_ source: ContentSourceMetadata) -> SeriesPlan {
+        var copy = self
+        copy.contentSource = source
+        return copy
+    }
+
     public func episode(_ number: Int) -> PlannedEpisode? { episodes.first { $0.number == number } }
+}
+
+extension SeriesPlan {
+    private enum CodingKeys: String, CodingKey {
+        case schemaVersion, seed, catalogVersion, contentSource, mode, ageBand, anchor, family, episodes, safety
+    }
+
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        schemaVersion = try values.decode(Int.self, forKey: .schemaVersion)
+        seed = try values.decode(String.self, forKey: .seed)
+        catalogVersion = try values.decode(String.self, forKey: .catalogVersion)
+        contentSource = values.contains(.contentSource)
+            ? try values.decode(ContentSourceMetadata.self, forKey: .contentSource) : nil
+        mode = try values.decode(StoryMode.self, forKey: .mode)
+        ageBand = try values.decode(AgeBand.self, forKey: .ageBand)
+        anchor = try values.decode(SeriesAnchor.self, forKey: .anchor)
+        family = try values.decodeIfPresent(SeriesFamily.self, forKey: .family)
+        episodes = try values.decode([PlannedEpisode].self, forKey: .episodes)
+        safety = try values.decodeIfPresent(ContentSafety.self, forKey: .safety)
+    }
 }
 
 // MARK: - Planning
@@ -123,6 +156,7 @@ public enum SeriesPlanningError: Error, Sendable, Equatable, CustomStringConvert
     case noContinuation(mode: StoryMode, band: AgeBand, episode: Int)
     /// No discovery could be bound for this episode.
     case noDiscovery(episode: Int)
+    case sourceMismatch
 
     public var description: String {
         switch self {
@@ -130,6 +164,7 @@ public enum SeriesPlanningError: Error, Sendable, Equatable, CustomStringConvert
         case .noContinuation(let mode, let band, let episode):
             return "No continuation serves \(mode.rawValue) \(band) episode \(episode)"
         case .noDiscovery(let episode): return "No discovery fits episode \(episode)"
+        case .sourceMismatch: return "Series source is unavailable, unsupported or does not match the pinned source"
         }
     }
 }
@@ -174,8 +209,14 @@ public struct SeriesPlanner: Sendable {
         childName: String,
         seed: String,
         catalog: ContentCatalog,
-        safety: ContentSafety? = nil
+        safety: ContentSafety? = nil,
+        sourceReference: ContentSourceReference? = nil
     ) throws -> Result {
+        if let sourceReference {
+            guard sourceReference.isSupported, sourceReference.catalogVersion == catalog.version else {
+                throw SeriesPlanningError.sourceMismatch
+            }
+        }
         guard let keepsake = catalog.object(anchor.keepsakeID) else {
             throw SeriesPlanningError.unknownContent(anchor.keepsakeID)
         }
@@ -246,7 +287,8 @@ public struct SeriesPlanner: Sendable {
 
         let plan = SeriesPlan(
             seed: seed, catalogVersion: catalog.version, mode: mode, ageBand: band,
-            anchor: anchor, family: seriesFamily, episodes: chosen.map(\.0), safety: safety)
+            anchor: anchor, family: seriesFamily, episodes: chosen.map(\.0), safety: safety,
+            contentSource: sourceReference.map { ContentSourceMetadata($0) })
         return Result(plan: plan, episodes: chosen.map(\.1))
     }
 
@@ -261,8 +303,16 @@ public struct SeriesPlanner: Sendable {
         _ plan: SeriesPlan,
         childName: String,
         family: FamilyCast?,
-        catalog: ContentCatalog
+        catalog: ContentCatalog,
+        sourceReference: ContentSourceReference? = nil
     ) throws -> [ComposedStory] {
+        guard plan.catalogVersion == catalog.version else { throw SeriesPlanningError.sourceMismatch }
+        if let pinned = plan.contentSource {
+            guard let expected = pinned.reference, expected.isSupported,
+                  expected.catalogVersion == catalog.version, expected == sourceReference else {
+                throw SeriesPlanningError.sourceMismatch
+            }
+        }
         guard let keepsake = catalog.object(plan.anchor.keepsakeID) else {
             throw SeriesPlanningError.unknownContent(plan.anchor.keepsakeID)
         }

@@ -21,6 +21,7 @@ enum OfflineStoryMapper {
         childProfileID: UUID,
         storyIdeaID: String?,
         catalogVersion: String,
+        contentSource: ContentSourceMetadata? = nil,
         mode: StoryMode? = nil,
         selectionStrategy: StorySelectionStrategy? = nil,
         ageBand: AgeBand? = nil,
@@ -49,6 +50,7 @@ enum OfflineStoryMapper {
                 discoveryID: composed.content.discovery.id.rawValue,
                 fingerprint: composed.fingerprint,
                 catalogVersion: catalogVersion,
+                contentSource: contentSource,
                 worldID: MP.World.from(
                     settingTags: composed.content.setting.tags.map(\.rawValue))?.rawValue,
                 modeID: mode?.rawValue,

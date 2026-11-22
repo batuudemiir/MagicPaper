@@ -36,6 +36,8 @@ enum LocalDataEraser {
         AvatarStore.eraseAll()
         FamilyCharacterStore.eraseAll()
         StorySeriesStore.eraseAll()
+        try? CatalogSnapshotStore.shared.eraseAll()
+        OfflineStoryService.shared.resetSourceCache()
         defaults.removeObject(forKey: SeriesClock.highWaterKey)
         StoryUsageStore.eraseAll()
         ReadingEventQueue.eraseAll()

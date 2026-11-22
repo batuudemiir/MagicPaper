@@ -1,0 +1,967 @@
+{
+  "id": "pilot56_book_u1_owl_v1",
+  "title": "Odanın Yumuşak Sesleri",
+  "blueprintID": "pilot56_blueprint_u1_v1",
+  "planLabel": "U1",
+  "mechanismKey": "familiar-sound-ritual",
+  "status": "authored-internal-review-required",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "bedtime",
+    "arc": "charge-bedtime-editorial",
+    "companionID": "companion_owl_pilot_001",
+    "settingID": "pilot56_setting_forest_edge_room_v1",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_room_sounds_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Az konuşur; dikkatle gözler; cevabı çocuğa bırakır.",
+  "physicalContract": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+  "childAgency": "Çocuk bildiği sesleri sırayla seçip dinlemeyi bırakır.",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "settled_room",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_1_v1"
+      ],
+      "text": "Deniz, Orman Kıyısındaki Oda’da yatağına oturdu. Yıldız de odadaydı. Pencere kapalıydı; akşamın soluk ışığı yerde duruyordu. Bu gece hiçbir yere gitmeleri gerekmiyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "settled_room",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_owl_p01_v1",
+            "sourceTextDigest": "b0a6c2191edc6ad8c9cdc8e84306e9afdd7287bfd67640b38d9d3531e6e0d850",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/46",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_owl_p01_v1_s01",
+        "pilot56_source_u1_owl_p01_v1_s02",
+        "pilot56_source_u1_owl_p01_v1_s03",
+        "pilot56_source_u1_owl_p01_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "description": "yatağa oturur",
+            "evidenceSourceID": "pilot56_source_u1_owl_p01_v1",
+            "evidenceText": "Deniz, Orman Kıyısındaki Oda’da yatağına oturdu. Yıldız de odadaydı. Pencere kapalıydı; akşamın soluk ışığı yerde duruyordu. Bu gece hiçbir yere gitmeleri gerekmiyordu."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "yatağa oturur",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "No four-legged curl, hands, or unsupported flight; flight only explicit A3 p5. A2 p3 landing is explicit."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 2,
+      "role": "ritual_chosen",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_2_v1"
+      ],
+      "text": "Perdenin ucu duvara usulca değdi. Deniz bu sesi biliyordu. \"Önce bunu dinleyelim,\" dedi. Örtüsünü dizlerine çekti; sesi aramak için kalkmadı. Odadaki her şey yerli yerindeydi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "settled_room",
+      "stateAfter": "ritual_chosen",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_owl_p02_v1",
+            "sourceTextDigest": "d2aec5000e4611f10edf3764456e4ade6e71295414ba60ebf1261ce180a61a09",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/52",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_owl_p02_v1_s01",
+        "pilot56_source_u1_owl_p02_v1_s02",
+        "pilot56_source_u1_owl_p02_v1_s03",
+        "pilot56_source_u1_owl_p02_v1_s04",
+        "pilot56_source_u1_owl_p02_v1_s05"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "description": "tanıdık perde sesini seçer",
+            "evidenceSourceID": "pilot56_source_u1_owl_p02_v1",
+            "evidenceText": "Perdenin ucu duvara usulca değdi. Deniz bu sesi biliyordu. \"Önce bunu dinleyelim,\" dedi. Örtüsünü dizlerine çekti; sesi aramak için kalkmadı. Odadaki her şey yerli yerindeydi."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "tanıdık perde sesini seçer",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "No four-legged curl, hands, or unsupported flight; flight only explicit A3 p5. A2 p3 landing is explicit."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_listens",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_3_v1"
+      ],
+      "text": "Yıldız alçak, sağlam tüneğinde duruyordu. Kanatları doğal biçimde kapalıydı. \"Perde,\" dedi yalnızca. Deniz başıyla onayladı. Baykuş odanın içindeydi; ne uçuyor ne dışarıdaki bir sesi arıyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "ritual_chosen",
+      "stateAfter": "friend_listens",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_owl_p03_v1",
+            "sourceTextDigest": "b15585c02245bb848625b38bd8a04827b1fc00f95a6147ae3c31a2e8b0145fc4",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/58",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_owl_p03_v1_s01",
+        "pilot56_source_u1_owl_p03_v1_s02",
+        "pilot56_source_u1_owl_p03_v1_s03",
+        "pilot56_source_u1_owl_p03_v1_s04",
+        "pilot56_source_u1_owl_p03_v1_s05"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectID": "companion_owl_pilot_001",
+            "description": "Yıldız alçak, sağlam tüneğinde duruyordu. Kanatları doğal biçimde kapalıydı. \"Perde,\" dedi yalnızca. Deniz başıyla onayladı. Baykuş odanın içindeydi; ne uçuyor ne dışarıdaki bir sesi arıyordu.",
+            "evidenceSourceID": "pilot56_source_u1_owl_p03_v1",
+            "evidenceText": "Yıldız alçak, sağlam tüneğinde duruyordu. Kanatları doğal biçimde kapalıydı. \"Perde,\" dedi yalnızca. Deniz başıyla onayladı. Baykuş odanın içindeydi; ne uçuyor ne dışarıdaki bir sesi arıyordu."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yıldız alçak, sağlam tüneğinde duruyordu. Kanatları doğal biçimde kapalıydı. \"Perde,\" dedi yalnızca. Deniz başıyla onayladı. Baykuş odanın içindeydi; ne uçuyor ne dışarıdaki bir sesi arıyordu.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "No four-legged curl, hands, or unsupported flight; flight only explicit A3 p5. A2 p3 landing is explicit."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_names_sound",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_4_v1"
+      ],
+      "text": "Deniz başını yastığa yaklaştırdı. Kendi nefesinin örtüye değen sesini duydu. \"Bu da benim sesim,\" dedi. Bir sesi ötekinden ayırmak için acele etmesine gerek yoktu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_listens",
+      "stateAfter": "child_names_sound",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_owl_p04_v1",
+            "sourceTextDigest": "1980b27af87682808dc01b1eed7e9c77f0678a90f0bf2127c852d88af0ddb378",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/63",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_owl_p04_v1_s01",
+        "pilot56_source_u1_owl_p04_v1_s02",
+        "pilot56_source_u1_owl_p04_v1_s03",
+        "pilot56_source_u1_owl_p04_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "description": "kendi nefesini fark eder",
+            "evidenceSourceID": "pilot56_source_u1_owl_p04_v1",
+            "evidenceText": "Deniz başını yastığa yaklaştırdı. Kendi nefesinin örtüye değen sesini duydu. \"Bu da benim sesim,\" dedi. Bir sesi ötekinden ayırmak için acele etmesine gerek yoktu."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "kendi nefesini fark eder",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "No four-legged curl, hands, or unsupported flight; flight only explicit A3 p5. A2 p3 landing is explicit."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "soft_smile",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_5_v1"
+      ],
+      "text": "Deniz nefesini dinlerken kaşlarının gevşediğini fark etti. Yıldız başını hafifçe ona çevirdi. İkisi konuşmadan gülümsedi. Tanıdık sesleri anlatmak için uzun sözlere ihtiyaçları kalmamıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_names_sound",
+      "stateAfter": "soft_smile",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_owl_p05_v1",
+            "sourceTextDigest": "1e4e592ca1a3b87b328a3a8b51760ccbe887868a2d5c7a326db120ff8ee6a031",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/68",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_owl_p05_v1_s01",
+        "pilot56_source_u1_owl_p05_v1_s02",
+        "pilot56_source_u1_owl_p05_v1_s03",
+        "pilot56_source_u1_owl_p05_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "description": "Deniz nefesini dinlerken kaşlarının gevşediğini fark etti. Yıldız başını hafifçe ona çevirdi. İkisi konuşmadan gülümsedi. Tanıdık sesleri anlatmak için uzun sözlere ihtiyaçları kalmamıştı.",
+            "evidenceSourceID": "pilot56_source_u1_owl_p05_v1",
+            "evidenceText": "Deniz nefesini dinlerken kaşlarının gevşediğini fark etti. Yıldız başını hafifçe ona çevirdi. İkisi konuşmadan gülümsedi. Tanıdık sesleri anlatmak için uzun sözlere ihtiyaçları kalmamıştı."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz nefesini dinlerken kaşlarının gevşediğini fark etti. Yıldız başını hafifçe ona çevirdi. İkisi konuşmadan gülümsedi. Tanıdık sesleri anlatmak için uzun sözlere ihtiyaçları kalmamıştı.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "No four-legged curl, hands, or unsupported flight; flight only explicit A3 p5. A2 p3 landing is explicit."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "attention_released",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_6_v1"
+      ],
+      "text": "Deniz \"Bu kadarı yeter,\" diye fısıldadı. Yıldız tüneğinde dengeli durdu, gözleri açıktı. Kanatlarını gövdesine yakın tuttu. Deniz örtüsüne yaslandı; odada yeni bir görev başlamadı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "soft_smile",
+      "stateAfter": "attention_released",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_owl_p06_v1",
+            "sourceTextDigest": "53e7b47491e20c7eee5be47f58689612bc0349c69ae55dc69bac4e9b8f0f99c9",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/73",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_owl_p06_v1_s01",
+        "pilot56_source_u1_owl_p06_v1_s02",
+        "pilot56_source_u1_owl_p06_v1_s03",
+        "pilot56_source_u1_owl_p06_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved",
+              "resting-awake"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "description": "Deniz \"Bu kadarı yeter,\" diye fısıldadı. Yıldız tüneğinde dengeli durdu, gözleri açıktı. Kanatlarını gövdesine yakın tuttu. Deniz örtüsüne yaslandı; odada yeni bir görev başlamadı.",
+            "evidenceSourceID": "pilot56_source_u1_owl_p06_v1",
+            "evidenceText": "Deniz \"Bu kadarı yeter,\" diye fısıldadı. Yıldız tüneğinde dengeli durdu, gözleri açıktı. Kanatlarını gövdesine yakın tuttu. Deniz örtüsüne yaslandı; odada yeni bir görev başlamadı."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz \"Bu kadarı yeter,\" diye fısıldadı. Yıldız tüneğinde dengeli durdu, gözleri açıktı. Kanatlarını gövdesine yakın tuttu. Deniz örtüsüne yaslandı; odada yeni bir görev başlamadı.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "No four-legged curl, hands, or unsupported flight; flight only explicit A3 p5. A2 p3 landing is explicit."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 7,
+      "role": "awake_rest",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_7_v1"
+      ],
+      "text": "Deniz artık sesleri saymıyordu. Örtü omuzlarında hafifti. Arkadaşı da kendi yerinde uyanık ve rahattı. Odanın tanıdık sesleri, ilgilenmeleri gereken işler olmadan sürüp gidiyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "attention_released",
+      "stateAfter": "awake_rest",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_owl_p07_v1",
+            "sourceTextDigest": "b346a898782bde1f90868417f415014eb902291188d18c0ce53e7e8753f3431f",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/78",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_owl_p07_v1_s01",
+        "pilot56_source_u1_owl_p07_v1_s02",
+        "pilot56_source_u1_owl_p07_v1_s03",
+        "pilot56_source_u1_owl_p07_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved",
+              "resting-awake"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectID": "pilot56_synthetic_child_deniz + companion_owl_pilot_001",
+            "description": "uyanık dinlenir",
+            "evidenceSourceID": "pilot56_source_u1_owl_p07_v1",
+            "evidenceText": "Deniz artık sesleri saymıyordu. Örtü omuzlarında hafifti. Arkadaşı da kendi yerinde uyanık ve rahattı. Odanın tanıdık sesleri, ilgilenmeleri gereken işler olmadan sürüp gidiyordu."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "uyanık dinlenir",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "No four-legged curl, hands, or unsupported flight; flight only explicit A3 p5. A2 p3 landing is explicit."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_calm",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_8_v1"
+      ],
+      "text": "Orman Kıyısındaki Oda sessizce dinleniyordu. Deniz gözlerini kapattı. Arkadaşı rahat yerinde kaldı. Söylenecek son bir söz, bulunacak son bir ses yoktu. Bu akşam tamamlanmıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "awake_rest",
+      "stateAfter": "closed_calm",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_owl_p08_v1",
+            "sourceTextDigest": "8e9b0aad1a26d5d7223df3be23cc81c252d9ee18a37b6e7d0f6b1007ea2f9f89",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/84",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_owl_p08_v1_s01",
+        "pilot56_source_u1_owl_p08_v1_s02",
+        "pilot56_source_u1_owl_p08_v1_s03",
+        "pilot56_source_u1_owl_p08_v1_s04",
+        "pilot56_source_u1_owl_p08_v1_s05"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved",
+              "resting-awake"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "description": "gözlerini kapatır; uykuya daldığı iddia edilmez",
+            "evidenceSourceID": "pilot56_source_u1_owl_p08_v1",
+            "evidenceText": "Orman Kıyısındaki Oda sessizce dinleniyordu. Deniz gözlerini kapattı. Arkadaşı rahat yerinde kaldı. Söylenecek son bir söz, bulunacak son bir ses yoktu. Bu akşam tamamlanmıştı."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "gözlerini kapatır; uykuya daldığı iddia edilmez",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "No four-legged curl, hands, or unsupported flight; flight only explicit A3 p5. A2 p3 landing is explicit."
+        ]
+      },
+      "editorialIntensity": 0
+    }
+  ],
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false
+}

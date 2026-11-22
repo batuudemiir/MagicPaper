@@ -1,0 +1,5010 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-22",
+  "sourceCommit": "1fed247a38ad872f9ed451d68c37bda84a1d3cc1",
+  "scope": "planning_handoff_with_existing_legacy_full_page_evidence_not_runtime_authorization",
+  "newRuntimeRun": false,
+  "syntheticChildNamesOnly": true,
+  "existingFixtureSHA256": "41f8b7668dccf04456fc86a6a2126a62b4107c08aeb66152d33d013aa0577c14",
+  "contentSourceDigestAlgorithm": "PageSourcePart.digest: FNV-1a fingerprint of [page-source-v1, utf8ByteCount:authoredText], separator 0x1f after each string; separate from SHA-256 file/payload integrity.",
+  "sourceHashes": [
+    {
+      "path": "MagicPaper/StoryEngineBridge/Account/SyncModel.swift",
+      "sha256": "0c0cdcf5b2cd6c927e1e1344b9700d1077b51f35e6ddd5bb2b5c99164d6aa2bd"
+    },
+    {
+      "path": "MagicPaper/StoryEngineBridge/OfflineStoryMapper.swift",
+      "sha256": "c2562a6fa3c0217d40e5284b7758e5e394ac7ef2435650b8b883613d883030bc"
+    },
+    {
+      "path": "MagicPaper/StoryEngineBridge/OfflineStoryService.swift",
+      "sha256": "4e65f2051e74b7ba5a6279e781ee955ccd78ec891e36ecd117ac10ee8ba3814a"
+    },
+    {
+      "path": "MagicPaper/StoryEngineBridge/RemoteContent/CatalogSourceResolver.swift",
+      "sha256": "d07abc97687ba9604839a75796d57ecc660d806cf8f109e04e767dfb2ca12b9c"
+    },
+    {
+      "path": "MagicPaper/StoryEngineBridge/RemoteContent/RemoteContentService.swift",
+      "sha256": "00ec082da52e38b2f5829da117b63a5b7d6e05f1ebb5e9084f1d4ac3e4701f8c"
+    },
+    {
+      "path": "MagicPaper/StoryEngineBridge/RemoteContent/RemoteContentStore.swift",
+      "sha256": "cd45fa23cc3bd5a492174befa8f08e650f8893ec61785495030747556672e99c"
+    },
+    {
+      "path": "MagicPaper/StoryEngineBridge/SeriesManager.swift",
+      "sha256": "09199a7978972bf1d5f93d250065831a5049a0287389e408baf492c734689814"
+    },
+    {
+      "path": "MagicPaper/StoryEngineBridge/StorySeriesStore.swift",
+      "sha256": "373b548a4d3f063b4cd9a449c25203446e933678ece9cba6120f0ff8e02ff21f"
+    },
+    {
+      "path": "StoryEngine/Sources/EngineFoundation/StableHash.swift",
+      "sha256": "f0fcc6036bf17d7ea531c704a2b301fe8d7eafc21b1bf2db952fddd28587e788"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Content/BeatSequenceValidator.swift",
+      "sha256": "0b72c87a7b11d40574c9c5627123012f8592d28674999131688ecbd689e1486f"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Content/ContentPackage.swift",
+      "sha256": "65be569a13665b31df313a2a873ddde9a627c6f71b39787c14dea0eba7ecc409"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Content/StoryBeat.swift",
+      "sha256": "1afce844b40895f73bef6a06b619520433fc2ebba887d3f79761ba5aba79594a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Offline/PageProvenance.swift",
+      "sha256": "8f9b18f6aa013beb7ddb224519686c2c2afd3c3f02cfdec88894cac42deba3ef"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Offline/Series/SeriesPlan.swift",
+      "sha256": "4e75a8acb0fb3f852d34f7609bf1a1dce3a027ecd9e691dc105291f681cbc1ff"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/blueprints/occasion_library_v1.json",
+      "sha256": "f11174d092a03d4c5dde739a4079b8d1180091031c18a0824e3252b82a4c92e8"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+      "sha256": "d42824f84c2d93b2a9451dafea843f3494e2c46a96e4ab40236c6247aeb684a0"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "sha256": "f30b3c15254f353bc7ffe9c8806e4b73eb6ce555734648bb7893fc6a91552076"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/adventure_01.json",
+      "sha256": "2610e01e1b4b0ff026f9f1a168d5bd8565674f762c0947f6bde8e3941b77d376"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_companion_offers.json",
+      "sha256": "d7cb2b3fe7e0c7a2010a431272842628b58c4cbae855a70aaf22bc5f93c52208"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_establish_ordinary.json",
+      "sha256": "159539884691cc0c3db35c59f168c042b0f1148b97fc69c499d855ce8a301f32"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_examine.json",
+      "sha256": "f4864604cf97459e014d12a7f24fa019b130a5edc24fc450ecbf4097f540b10a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_let_go.json",
+      "sha256": "254cf04da962adf9b269fa5400c4715abc3093c3eecc1d0ac64b5df1b68e4099"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_meet_companion.json",
+      "sha256": "8164f06ac9ca472e72475e3e177f0af7f007b3878bee7d0b54d4b4cf445011a6"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_notice_anomaly.json",
+      "sha256": "f8ce0e24842b92550575815038cb949e76ae60d1c19aa2ada22be712145f3308"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_patient_wait.json",
+      "sha256": "6ca3d01983fbb6b49793d81aa10bd37687741b9f0ddd459acd870c791762f4a6"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_restore.json",
+      "sha256": "e5f58ddc9fd54f488a811bc742118ea802574f97aad22dfe3362619cac1d3888"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_take_charge.json",
+      "sha256": "a7691a17d4f3676b4cd1771517ed2bc749edd3e9c345fc498c6c4293d967007b"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_tend.json",
+      "sha256": "80162f0113607775a9164cc87b9f0ede7cdf929d497b290316294fa97a8128cc"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_warm_close.json",
+      "sha256": "bcb9570b2d9dc2fa828d779fbcbbb57844d569016dd1237b794df953c05423e9"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_companion_offers.json",
+      "sha256": "d4a52aaabc9e188ca4ebf83ed0bb586973e18aad2cf9b6ac43d096932d098e31"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_establish_ordinary.json",
+      "sha256": "eaee677ee801dd4e5811704813980ffe2901dc222d9182845fd52f79ad3c8490"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_examine.json",
+      "sha256": "e1474bb61a417f832226062a642dd18d85738423b5493de1946197015a0b293a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_let_go.json",
+      "sha256": "4d3aea445abccec9ffc691fb6c8b71dd8e77ac7e746f73f2ad68795fb3e4de65"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_meet_companion.json",
+      "sha256": "3e9ab7e57c5844877b0edfded6d11fe93bddf7bf927f4e1f3306e6a025e4bc4f"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_notice_anomaly.json",
+      "sha256": "40bf1eb640ee359e71e75e4484fde2ccafe6d7f04389be9068f8796521ef6643"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_patient_wait.json",
+      "sha256": "64a0b52be147faa911f3c79768e58f4ba75485bb09bca976bbe528974ffd7f7a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_restore.json",
+      "sha256": "3289cba1e9b4ab7fbd104004958b1b5cbd28af6ba4309056e82330baee506379"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_take_charge.json",
+      "sha256": "5575667097f204518675184d1c60ff8021db4f76a12796b3e6964d2f3e459361"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_tend.json",
+      "sha256": "5c885542e218a8c18251e78cd49e354d3892e3c7950f00eb674416cc2f929452"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_warm_close.json",
+      "sha256": "19bf83231488fdec9ec4d7149b5ae300d4732bf5b5c9f6b83d6ba73de5769bc2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_approach.json",
+      "sha256": "948b9a793a26cf8cbce82e15514120917fb962a1a9ae46d973e83e9417e75266"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_companion_offers.json",
+      "sha256": "114ad78094ddef0ec840da782bbe8c5a0c17665f38a5d85063e437499838b6dd"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_establish_ordinary.json",
+      "sha256": "d479ead35bbc7045a45b05844d2cc2ed820604199f78c26db278060831d40071"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_examine.json",
+      "sha256": "927750efa1bd31726c8a160b6ec6bc121a7aa9d3e9ebaa1ab31762046079cada"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_let_go.json",
+      "sha256": "add844eb61d076f59726a5855b5498005fdee10dad4474d7884132a2e1ded51c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_meet_companion.json",
+      "sha256": "3a11630ed7d87308ee5885082376124660d177e48975cd1693f99942e7d05076"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_notice_anomaly.json",
+      "sha256": "75958550db1835756c7a374633deec6fd061c8f56e6ca2bb7ebca72d0222764e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_patient_wait.json",
+      "sha256": "b909ca6ddf9acd1a3cb00a50d1dc3526bf82e2df2e13bdfab90d039170475909"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_restore.json",
+      "sha256": "b287f1f1e011d5e7b290f37649bf1a1f1a52019f95ae5cabfd4503b7a3b9aca8"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_self_recognize.json",
+      "sha256": "74c363cac8ee7f231f0279e1fe11c67c095feaad21f7601211d8297e6d8f53e8"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_take_charge.json",
+      "sha256": "3baee4ad736388e1c0e549bab345a8e4d536e9ff32eb061de647c260a03826ed"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_tend.json",
+      "sha256": "cd813ef6535aea5b2bfdd986bb359ed28efe3bedbdbde04615b29dc49158c3df"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_warm_close.json",
+      "sha256": "51314cf850dc05e61f7631ed181ec64109de2eeab960eb12717c752bd2c82947"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_approach.json",
+      "sha256": "b70a3f1da111a590582b8e4ac6abdfc19d18d3b46c89a5851871a0775485f1f7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_establish_ordinary.json",
+      "sha256": "6f739567f2886768e2744c3b24316d25f6ef10a9c22499bc8337b75387533122"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_examine.json",
+      "sha256": "6d7f09324355ddfa6b89fea8816b8038abf83581f352e4c9821553afb0bbda36"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_let_go.json",
+      "sha256": "40b17f151354db62e32d1e3706c02f62a30e9237b7601fa2a300b62df32dfebc"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_meet_companion.json",
+      "sha256": "7131e74698c5cfc9d78b2e6e9bf79f77016380b4b3702afff280378e2d23eaf1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_notice_anomaly.json",
+      "sha256": "8f3e7b451be61a12cafbb9d1df34736e9d45d9b35cc48013a9bfbc8ba4de4688"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_patient_wait.json",
+      "sha256": "d3f1e2235214a2471d0e32285182e330c2d518aaabc0730ae43fd1e88203a860"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_restore.json",
+      "sha256": "cce5f0581411493f068145c6fb6e4eb4e7e8a289e7b65bf349612129eb7eead3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_commit.json",
+      "sha256": "65295087892c7e3ca58d7854ffe028fa199aab508740862371b87724c8fd4615"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_first_attempt.json",
+      "sha256": "b18ba552316c98c15341842dd42efdfefdf88e8ca2e76875b1951ec126cad449"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_let_go.json",
+      "sha256": "7441cc1fb2ff0f7ffe05aa5cc49074b9d5c0f1b45a43effc4605e041521b44e4"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_notice_anomaly.json",
+      "sha256": "c60820917c912d57a4733b23375fb45eb5171bbba630540cb07dc5fbaaad210f"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_patient_wait.json",
+      "sha256": "ce5f1e242b5596def6f12770ec20779040d56969bbb5b4cc941550ae17396014"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_receive_appeal.json",
+      "sha256": "e99072529b9ba0f2abdca3aa25c7c53be0b1a7943035ad13ce434b046519d7b3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_restore.json",
+      "sha256": "7d4a7402399b9a52e6f4c36c578a641ab3d080fb3ba284462d76f9fda1cbadb1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_revisit.json",
+      "sha256": "084a645f03a06e177619b19663f7701072d208c40f4559e733825c4a20d82d56"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_take_charge.json",
+      "sha256": "9918304b9e11c927849fa8524ed2cad50e2249657bdabdf295e6f8a44d6017fc"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_tend.json",
+      "sha256": "5dcc24af5f9223749833a63747172f4075c3e7fefed533ed89caee259e6417cc"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_warm_close.json",
+      "sha256": "164e4a653131f1ed01e0511ecd2ff8b1457d5c1f382f95c21432fec535cea5c2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age7_approach.json",
+      "sha256": "4be202b264db9e5c69e6208d5a92714edd63d68eaa36861aaa9c7a52991c6c01"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age7_commit.json",
+      "sha256": "f465ffdda098d948755138668d6cff520bfe527391e5453e45abbf81c6916daf"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age7_first_attempt.json",
+      "sha256": "a681f9dd0484f2fe32d98850c8ae691fd8be5c7aab7a869812c180f0d13f6b4f"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age7_notice_anomaly.json",
+      "sha256": "c498cd7368a00aaa27e70bc7776ccb711bbc056ca5f08f58c0b5a98c1d7b80ce"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age7_receive_appeal.json",
+      "sha256": "08e2009b9247a3fa7b11bd9e1b1b7e3ed4895a15968384d8f31d6cb2f0777721"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age7_revisit.json",
+      "sha256": "5c1360d3380a25f1986bc1aa89df6b8a6fc5284d0b164a3aa76e8a32b5baa2ac"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age7_warm_close.json",
+      "sha256": "dace5ecd67298c5c25afee9ba8ac73554c100be0f107c2af80522d44bbb11027"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age9_approach.json",
+      "sha256": "8a93db391e821363bdd27f42ecc6d0a95b016a1262d66ad69e2bb5b2f7a9a398"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age9_commit.json",
+      "sha256": "b142f05f6ce8e670470b6b04dea93bde2e325ec0d25ab9deb6459ef0ea0c23e5"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age9_first_attempt.json",
+      "sha256": "d85e5b5eead41d06b9ae5c1872dc65404bc6641d9965aba14598d274e5fb445a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age9_notice_anomaly.json",
+      "sha256": "1085df52c0717f7c00bdb02f8e9849bdae57b52b6fbf6a8fbf0543b18e413e4a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age9_receive_appeal.json",
+      "sha256": "fd714451ca162e3f9dc6ef98d02ce3a142e713c1bf2223738e581721ceb4297d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age9_revisit.json",
+      "sha256": "6f21dd56d6790dde054c2280aaf6ed8642baff3d417130bb08b8bcd86c282cb2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age9_warm_close.json",
+      "sha256": "6e0e9adb79efa88b5d974cf5e97312f53fa98ef4751206fbf4c69ba477e311d5"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_approach.json",
+      "sha256": "7084cb5f204d2a122b91dd944578ae7bf6e105c3498f7c72e75187eeeaee1567"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_commit.json",
+      "sha256": "632aa64c79a4b5cdea4f31061a4662fbf728fdd06819d1975b4d73f224514f51"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_examine.json",
+      "sha256": "ade6d61c6d0a24d2d10a2b6742d473f999cc87337196d2ad619e64575ca3a260"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_first_attempt.json",
+      "sha256": "e9a220bb2ba318676429db08b7f8b03a546d18e77a19707a35f63c3309542321"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_let_go.json",
+      "sha256": "2a9e9656c50239a79f3a38352f62b8b173c891d1aa5c8543aca6e99ab144aca7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_notice_anomaly.json",
+      "sha256": "1644836458b498d26ccc7054b151028ccb99bc39a62f42d82f83e7ad7f9bcdfc"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_patient_wait.json",
+      "sha256": "5da695fc43dfdb7b3cbf0a3731d1ba43bbd3446cc177d86977111c940b5998fe"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_receive_appeal.json",
+      "sha256": "953ca2367911834ed3d04daf68a30d535a975c34089393ee4c134359531b8679"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_restore.json",
+      "sha256": "0085e2eeaf9cc332f841a3f10c438859ad8cc4ee4dfdb9cc5b209ed633bcb1ea"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_revisit.json",
+      "sha256": "f9f13b48feeb2fcd16e23ddaec93ae3f89f9465dc80361757c0aa1664a16a9ef"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_take_charge.json",
+      "sha256": "108c8047ce0f5923d925de4027afabe6924fcc3458d1a687878d4ba65b88892e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_tend.json",
+      "sha256": "08b7c03d956d661e19b384ac304a7563fc295c982e79f64e0c70a02874bdfaf8"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_warm_close.json",
+      "sha256": "5d792779bc68910c3d02fd933aac2b1f07e57b68c455f140006a5ad6bb15544d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_take_charge.json",
+      "sha256": "4b17db6a5c6d73043c7bf3a0211268d812536dcc167cf7983a0e80e149e51608"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_tend.json",
+      "sha256": "5bd749c8fd0636055c1f4cbb638d0a7a9beb63dcea0f55ef5fe966320b9f03cb"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_warm_close.json",
+      "sha256": "ccdd781dd058b96f01935a16d9f6b8fd38b7c573fd1d762c87883aaeae4a573b"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/adventure_courage_bridge_002.json",
+      "sha256": "e28b8ca367c19069d083bea88eb2a31ae910db6103037075ba5aee55b621cfb3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/adventure_courage_cave_001.json",
+      "sha256": "f6d7bebbd769f7bb148b3ca22aadc3b6a793ac51b826f8e970609987bf39ce93"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/adventure_courage_footprints_005.json",
+      "sha256": "1045c99e6475254da6c8d42c27d1c84869400db11fa66b505b60fa154951ca31"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/adventure_courage_garden_004.json",
+      "sha256": "6d8c54469c0c1022c820b5b6e50cac7fa42d166b245a7082c46114c4dae2a214"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/adventure_courage_map_003.json",
+      "sha256": "3d989c621cb37705be972a8a2d97827d9bea24b90abf35ff62b91088236c8a2d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/fantasy_magic_001.json",
+      "sha256": "5edb4e095ea66bdb6be013a6aad8d995ab273cf755bd2226b4db98ed3ac0788a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/fantasy_magic_002.json",
+      "sha256": "8c76dd5b48644838f5e58deb22a104fc4f7738afc65e71b24c8fd4c7de14cf46"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/hero_courage_001.json",
+      "sha256": "56d94ad9b3a8528a03282c94294e5d13f611b927d6bc08ff41f1acec9f06c6c0"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/shared_content_library.json",
+      "sha256": "f9b4064da53d5b8ea0558b72e2899083932095f2e2a2546f9e7ffc0b585802d3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/space_discovery_001.json",
+      "sha256": "830af64f345f01b473999be81a3d95ff78b0c1de38c8f40def6d09d3015b7d8b"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/space_discovery_002.json",
+      "sha256": "8a9d9afab9a03e3b258108ab9ce5cdde104aedfdf9a519dd8c0ba25b7ad2a0e0"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/underwater_friendship_001.json",
+      "sha256": "1d379a40ca792c9aa16e200d38fbb4cdc1d870bbf95c9b8ff00081114e1f024c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/underwater_friendship_002.json",
+      "sha256": "8f7c36c6d19161bfa5011f0ae47cae7f947ce6c4d2406f87fb1765d4de0d30db"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "sha256": "e5585160abb21c2cfb60a9e17d5e86469e03481aae7a884b4bd14f054793d0db"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_commit.json",
+      "sha256": "aa970b07083af10e4b0f2bf3d5bade7ed74f7c44b3ec237f92de97e5b2d6625c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_first_attempt.json",
+      "sha256": "ab9b2fa6968dbd5158ae9b5e3d896495c2346161a312c7089d0fb0596c86781c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_let_go.json",
+      "sha256": "39cbf58031858106569e261d6a0c241bd469a8822529d43f1256ac3ed6b52494"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_notice_anomaly.json",
+      "sha256": "e8ca3fd67fe77e12cc61527217245b98d60fd6518ff231b677e7745309273551"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_patient_wait.json",
+      "sha256": "911d3309dde953ab3ddc690a6f841d83282b18dab5fb22bfdc5f039c083b3bdb"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_receive_appeal.json",
+      "sha256": "658c962d4623f0e63aca6985f5c7319be624147351f8128a87373ba27a1cbab1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_restore.json",
+      "sha256": "d69affacaf712c4079bd8e7b18fc4a05b296ea34a09ca606937199a795f9269d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_revisit.json",
+      "sha256": "236ecfede91cdbedae33aa5357dd819bae428727737aca26baa21a39129cbdc5"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_take_charge.json",
+      "sha256": "c45fd09c43cf6db345146e19877ff0568101c12f3101d9a0cedab4f44fa00124"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_tend.json",
+      "sha256": "1c27a4f727113090b36d1a09fd4c90c14bc376059018629309aa713e050d60ce"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_warm_close.json",
+      "sha256": "d28482cd4ddbf7aaab7bf15434e3a0b1ed3df0197b5479139b766969bb76a15e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_commit.json",
+      "sha256": "8045d6bcee7bd6ae8be14693b04f42f360e89c98f35f60d3e0139ed9c11f52a1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_first_attempt.json",
+      "sha256": "0528be687b168815f5e98e015e3508fb498020e012b5d41b958717ae6526a5c0"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_let_go.json",
+      "sha256": "10944335d22eb2750f1351dd3e82ac0c919fa5e1be66e882c38244b8b205309c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_notice_anomaly.json",
+      "sha256": "28a81d5028afc40ed47eee50d1b43de98ce4058e72f5870f6592626c98d3be92"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_patient_wait.json",
+      "sha256": "b1c5e154f644d085992d05c42f538026630441df2d50dcaa784226eb879523ee"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_receive_appeal.json",
+      "sha256": "23c14211bf5f41003e14fe69665c5ea4206c28159c66b36fea71fa719841dd61"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_restore.json",
+      "sha256": "9d82b9000224cee4dd4579029f2061250604d6be0a908ecd601f8b859094ca50"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_revisit.json",
+      "sha256": "533df19e5633c24bec082526b88c79af742d94060dde4908dd5180afdc160aaf"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_take_charge.json",
+      "sha256": "b649c2be2db1250c1ff65bc062ed9a209e74ec511cced4fb45ee0377e0bb216c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_tend.json",
+      "sha256": "6e375cc39825359d31629b7e94339de156753d58c314844ed5e3d5b163a329c3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_warm_close.json",
+      "sha256": "572f8ad7c3aac56e3aed7e45f2232a80e929ba624f00a221f7f7da7bc083be3b"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_commit.json",
+      "sha256": "f33d330cfead5ef0fa851f58d0baee70da4789d41162ec4dc6b5032f7160e659"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_companion_offers.json",
+      "sha256": "5e5a05f833f348fcf2bc562812713641a00577d1e5e4862b640a5360e8b6e6c4"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_first_attempt.json",
+      "sha256": "0885ef32a0b9cf361644accebff51de2c0ed293a372cfca3a70bcb989f08e548"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_let_go.json",
+      "sha256": "1dc58ebed608a7bae6c3df63a65c031752af5f25723d69e5c8a39cf81725a3a4"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_notice_anomaly.json",
+      "sha256": "e916e182e173d6a4b5fa38454b84decc3d5a081bd71249fdf49cfbc19322e5a1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_patient_wait.json",
+      "sha256": "37e126075f8d9c2476f0d8d02c6da3da256407837f51c6907af6ef4d4f9d4c9d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_receive_appeal.json",
+      "sha256": "dda57159e60e9a4e0a55c77348485e97b8151cb8c2d738f767c8a66d9b7eed21"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_restore.json",
+      "sha256": "f82a82cc9f383f7bbeb369df406983dbab5a3903325e437ca288e168fa8be0e2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_revisit.json",
+      "sha256": "070e55d74f4916411402468a9eb925e6bcdbb4f66fddd9d50dcd4807e1bdc11a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_take_charge.json",
+      "sha256": "7bcb9e6f9183b33468004e33e53c664aae5516ec949b833081b0cdad659d7766"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_tend.json",
+      "sha256": "5d5627db4c2c44a702b91b189e75904e3e2c0c4a4f6c7557401350be534ea704"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_warm_close.json",
+      "sha256": "2a725bfdfb9a4f53f93f0819d8abd152ac259d5bd2a4c41f48fa1be491a6109f"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_approach.json",
+      "sha256": "7eff207128517462cefefce75a0851dd605fcd9883de2fe8c322c5bc787a1b33"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_commit.json",
+      "sha256": "531819cdf2033c177cb5e0489c7d86ad9bbc73ff0a3f11dcfc68cca23875d8b1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_examine.json",
+      "sha256": "2f154e91b098d6d809a4e8fede6df311776e6dc5094510f3766b772f0c4d68d9"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_first_attempt.json",
+      "sha256": "5df3d49728a009f710e3fa2187e30244245083a9d2de9fb69420f4dbd9a4f9d0"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_let_go.json",
+      "sha256": "7e6eb6f28eec36588122edba1d61aab4da870dbfee91bdcf0498f37b3d7edf35"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_notice_anomaly.json",
+      "sha256": "b1373fb486da5216d7035d5891cf45f1af19f928da824e39ed76e7e830021ae7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_patient_wait.json",
+      "sha256": "6a7563ce1ee99c066df590e55ec23217722cd77a42d9485b2198db9535bd7b3e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_receive_appeal.json",
+      "sha256": "5a6d453155610b5426ef1dadfc13daabc0c7ac7af90b19c3a1c8484f59b108ba"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_restore.json",
+      "sha256": "893680d199700e7b1751fda479b7619ff314a596da96cc9c6ce29733fb86f1fb"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_revisit.json",
+      "sha256": "c86cc8f763d5bb3698355ca4121c6e54b053712051a4bf5abcd4c357dffc212f"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_take_charge.json",
+      "sha256": "85523a6d6a29293b0e91fa8fcefd9b6271dd8e6de4418bafd719be180ee00905"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_tend.json",
+      "sha256": "c569889a327862c685e9f9b78cb5ca6d706442769586c8eed8853a664bfdd094"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_warm_close.json",
+      "sha256": "eba8c18666f8524cec766a413e07d385ea56abf2584050fb98623c6120185213"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_ask_for_help.json",
+      "sha256": "3af1d5df2b5ce1574a9e6e5ca12ba0d967a5bb36e136e30fce464b3daa4a7a6a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_belief_fails.json",
+      "sha256": "02c089d833f25f640945bada1720a2bdbf762030cd0d7b98eb09ee5b3c553262"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_commit.json",
+      "sha256": "ce9dde98be9a69bc98a13d060802b2208f626dababefcb46f73e8ba985481998"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_cooperative_effort.json",
+      "sha256": "c66e19ef95252b633ea8857aaecaa759ebf77f7e2d3b1925f6091196d7e13873"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_first_attempt.json",
+      "sha256": "c74264dfca11d9b891ce466eb76dc6a940d7724acc2bb7b4244cc2ae73eb9e75"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_form_belief.json",
+      "sha256": "620acf9f4060641f1ea7864fa2963ac8541a4a332e8fa0964598924eabc48db3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_insight.json",
+      "sha256": "b2747da5a6bd3d46dcb3ac0c350d5a505640b6dbccf9d1efe5f2583b2473b84e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_let_go.json",
+      "sha256": "c5aaa40e34f51f3d078fd7d7e44ab38ec7510a8dc1c4607621a0399eb6e4c1cc"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_meet_companion.json",
+      "sha256": "21fd8a3b2c9375947b92b526d91e1dd5f06e08d3ef1253b55796661ee44ecd5a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_notice_anomaly.json",
+      "sha256": "bbc464c419f246792751da7b806d5129602948bda2dc14a7c6a97cdc5767bb61"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_obstacle_raises.json",
+      "sha256": "372931ff0d45808b4a43c39ddf7d848c6c44014913f891796ae0502da08383e3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_patient_wait.json",
+      "sha256": "65e6ed9e58157a8b32129f336647ad6d3e5ad7b3d9f6acb7f4b603628f1b0507"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_persist.json",
+      "sha256": "a402d0a65d62a2b51bdc7f8ed70e56d15305c7bf66d05953d053c3b7dba81fbb"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_receive_appeal.json",
+      "sha256": "254071e0e212eceb71259dc03d32f960b6511314852a885f17179c3733c629ea"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_restore.json",
+      "sha256": "9ecb8685494cc22a38faaf6a2b2ffc3a8987a8f4fa38b0f78b66d37298b612b9"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_retrace.json",
+      "sha256": "dfc118778abb665a82a56c8881095d3cca805b6fd47685b21beb8bcefc154974"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_reveal_truth.json",
+      "sha256": "3934965f635a0d2473a8b8541d5509cd75407436d4274a17d3d0d18a0c6e08d3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_succeed.json",
+      "sha256": "98634ff4eaeeebd7ca808a6688dbde3ad8adb70accc1562157780edd36723001"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_tend.json",
+      "sha256": "1f5eb6609cd62d26f306bb07448682f798dc90dbeee41c8c95858b638027c92d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_warm_close.json",
+      "sha256": "ec9914604d8e67f7ebcfc3a96b65e5ac2af0fc9873522513b34d2099eaef77d1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_ask_for_help.json",
+      "sha256": "8d8f67d07f491e1c5d1830ff70378c058cf82b70d4a1e193dbbc9c778473374d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_belief_fails.json",
+      "sha256": "6ed51b37ade90429b7b65bf6e6efc07b9f09755971543cf14ad810f7afa7af1a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_carry_forward.json",
+      "sha256": "f93bffcb6989f1aa1bd5b437f52e2159a461320750c7a48b1235b2be7e5bd47a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_commit.json",
+      "sha256": "7decacb8f887dc6662c7464c63515e5e164e9381edb2b321bb56d202dd4ded25"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_companion_offers.json",
+      "sha256": "3e416aee6d987ba632796b2806f7b7fe6af2ad2a82c8921e8d590b357560ad79"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_cooperative_effort.json",
+      "sha256": "d5854d93c1cf8294812932b63c52949fc31dc47435e5de0f19d0e973b7fae79a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_examine.json",
+      "sha256": "60f7e64d2a6a4e01fa32cf15f9d38cf594e636c96854773227651e735ff31ca2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_first_attempt.json",
+      "sha256": "0ae96ae8379b335aa0166b7ac7a9396137ce1d814a2e09fab1e9bb93e0a189be"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_form_belief.json",
+      "sha256": "ca72d6e2b2beec9108685ea5cb87bf9bfd668ee4cd7a3e9d33b5f2ce7edc8072"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_insight.json",
+      "sha256": "1baf5b024723bb63ad66129b7f64610693bb240f726399fd4e49ec306890852b"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_meet_companion.json",
+      "sha256": "e9744cc83cdeca7da6af5ccc105b1f8eb1285b5e453a9a63bcaa5395265c6268"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_notice_anomaly.json",
+      "sha256": "100b24bf6503fa76b97b6db40e31f1f94e34b8e9a00c23bf1215dada4eeb58f7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_obstacle_raises.json",
+      "sha256": "5ee2ed54ef04a409fe3f462cbc49fe8f58bd2878a1e0c6eab12097e5b9155e67"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_patient_wait.json",
+      "sha256": "b81eac3ee5b3fff82c2b4a9ffe9b6a908db5c91d5b134b8526d42bd6a498df2c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_persist.json",
+      "sha256": "4ba4442bb1b885bde74cff74223bdac10b14c209e821700673aa3f0f8e52b780"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_receive_appeal.json",
+      "sha256": "34abbad542ea73b3547da6870af2bfe77c18afd34b2c917e1de7ca2f676187ec"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_restore.json",
+      "sha256": "57fe39003206ce56fd71f9cd75509f0f6dff3b68823a476aa3de9d55c16f4467"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_retrace.json",
+      "sha256": "669ddfadb29a6b539d0aae977a1f738ccdec50219129562176bc032dd23cada7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_reveal_truth.json",
+      "sha256": "79230f068c04436701a17369608583a0642e8a062980a822832c2339303c089e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_self_recognize.json",
+      "sha256": "b885e97b347b63b2a302d469a2a5aa75d95a19f0be4c5e3b1342c976b2f9237c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_succeed.json",
+      "sha256": "7893b3c6e53512e3e119891c11207371a55b1c4728b9638c391847eb97588844"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_take_charge.json",
+      "sha256": "222430cd9c2228c2fd540f68429ef0f5789d291ae46437eef9a12bb246edc9c5"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_tend.json",
+      "sha256": "10d329b5e068e7a2911ea6f8265d5cb7ef4e6fc8dfb1b3bfb79a8db33ea78e3e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_warm_close.json",
+      "sha256": "ffab31c3f7261a650a1c6949568dc370177cd62221da7e8802907beed888a410"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_approach.json",
+      "sha256": "a764e1bbaf4cb54e609bf349cacdeb4a1740209e29f6f65197746c15a5d80f9e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_ask_for_help.json",
+      "sha256": "bbf7363b2b77c64131dcdf63b898cca12c29bd959e461de01df20409442e76be"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_belief_fails.json",
+      "sha256": "f5900aa365892262007d866e7dff283b98c30f91db87eb2adeacf5597d4c6c48"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_carry_forward.json",
+      "sha256": "7b3912e0c1fd3c5d3c54e57e41426a2b83c57a011297e2790f9b0e27d83e8415"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_commit.json",
+      "sha256": "f2a82888068ea056bcd29db88b7c943f0449e420f6309cd33ae534153efd8922"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_companion_offers.json",
+      "sha256": "18381acf03ac21f58ac7edd616c3da7798466b19d2a7ad2c9eccb397bc6da20e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_cooperative_effort.json",
+      "sha256": "d38fa1608ebefaa2ef3161b5247c7798096a48277b8b287a773ca469a1c99ea7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_examine.json",
+      "sha256": "137b813ea09ba591d8962949185ac4422b956302d15cb7f9b37c57d5f3a8dd86"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_exchange_views.json",
+      "sha256": "221b107cac21bf1c3ed5a7c50047f61ba3e0e3d4f0d1c981e57a68e8795c23bd"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_first_attempt.json",
+      "sha256": "d1f6e3a097bcc780a94e6bff508a23f6c82de8cd8016ed8ce805322e8b6103bf"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_form_belief.json",
+      "sha256": "ea6644491ab6ac820ca4f62e78d39c1a55f7d01613cf6a1701f9c94577dba9ab"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_insight.json",
+      "sha256": "460a3868637bb0ad87d712495d8858fe15ecb4a9d4b3f95beb74cbf83501fd68"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_meet_companion.json",
+      "sha256": "e5d9d0ec0587f8048adfb65870f28a15d4d12dc6cd45fb2467fe92dda71376e2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_notice_anomaly.json",
+      "sha256": "75fd9e75f513d1c8e83ac2252e65cb20674e6b8c5ef5af3b828c9d78dafd961d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_obstacle_raises.json",
+      "sha256": "bc02578e0831921a25bf2243e8b429c3218bf14ceb0a30761db2d8cd8e29f080"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_patient_wait.json",
+      "sha256": "346098a422cdc0be70b6bb5d38217b73c01678349073a0b4302c911b793307b0"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_persist.json",
+      "sha256": "76393dafbe27a656406c80a969316b8627d908ca6ef5327e1759adfaa8412e85"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_receive_appeal.json",
+      "sha256": "fa3783101cee76fad4f825583e3f81e78f42ead7b5b6109a560e80398e5c6b9c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_restore.json",
+      "sha256": "5bec30a397b913634213b23843203e2324ee7593ad5df96fed754725c60049ce"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_retrace.json",
+      "sha256": "257ecc6590a6f3e73fbac94dd0015047f7c67c37415d94da983ab78ad265999d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_reveal_truth.json",
+      "sha256": "bb15aa66ca988b3e7097211ae39b71912eec76d82ba71f7b26d2c5425acd3572"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_self_recognize.json",
+      "sha256": "11c8c3283732642d97370dde2e1961cadaa23d63943a846417dfd46ac75745ac"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_succeed.json",
+      "sha256": "446da412e9516572dd66d93b80ee74de55d0bd5b12707dd0365f84c3f5bd4bf7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_take_charge.json",
+      "sha256": "4d61b0200e72c9ab2bd5fa66a7801d2586f44cc21fe1960d0e4e2788ffb046c5"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_tend.json",
+      "sha256": "907b8f4367993f70ec41c59772c495281dd4ebae8cddec35b936b48453bbe499"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_warm_close.json",
+      "sha256": "0d1a3737dba811f2c3cfad142768aac5f823709398d6c3929fdb9cbef3a6e206"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_approach.json",
+      "sha256": "607e87fddee1448bff7cadf9a52e47fd7833cc236256ec1968da1e43ae7d73b5"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_ask_for_help.json",
+      "sha256": "1d1bc386b2e7b6f19673dfd2e4be17c9c5d9014423f510634a1da130f25af5c8"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_belief_fails.json",
+      "sha256": "ec385323681ef3f58c339bf55e522ff89f068cfb4895ee7dd1411d021a1f49d6"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_carry_forward.json",
+      "sha256": "39e75391df558b6becff2365eadec08cfd2e440c03d5e4bda7a6322b729c19e3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_commit.json",
+      "sha256": "ebadd762bb3b67295733aa49211829185a4b88070b6b733c0ef04754a01f4bb7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_companion_offers.json",
+      "sha256": "1aa67b5f92bf090415eff537a43978ca2963c011cb135cc866dc2b8582d45960"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_cooperative_effort.json",
+      "sha256": "3397ccf8aad4d978e78cb8c9cd17ade5e67c485f8be87931dec0053ffe74b3c6"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_examine.json",
+      "sha256": "89c24fb7749e595036698f177443f7346d538f0ab185b90ec4ecff53dabe6007"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_exchange_views.json",
+      "sha256": "8ccc3341a4ed6391bd031f16cd1d3cdbe88ca990083f22a6363e42e0ac567d5c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_find_own_courage.json",
+      "sha256": "5b81de87d197c4cea238dc08ac7d7fb763d3e48587b435beeaf860c1fef05b16"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_first_attempt.json",
+      "sha256": "7f6b20e999b760975511f9e5b850eea341eb54c4ce4c0c8c09af39d0216801bc"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_form_belief.json",
+      "sha256": "65929d4c08f8fb06bb116c79373da41fc0c15ca4a19c4f015df7f0e08dc5af6d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_give_up_something.json",
+      "sha256": "e8ad9c18ae60f36a6167b557d81855ad6a52d0b9d80fd45fbcfc7445935a9401"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_hesitate.json",
+      "sha256": "8830d21ef139fa77021431c33ea358888129bf4eacc046119f9df7fc525d2690"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_insight.json",
+      "sha256": "c26c600ec25f736ca71b13f4ccbbc2bf706b69fc55b6308a02a590fe524348d2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_let_go.json",
+      "sha256": "7cb4ea7cb31cf72211b311d1029e8e19f24e138f94e45fc51283915cabd8769e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "sha256": "b6258321b1273b02a47ad42f29325a8dc04c0474e006052aa49772c19c517377"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_notice_anomaly.json",
+      "sha256": "84c8f9dd6f35124e1861ec7ecc38f5620bd4b17eb228e70a10a5363bd2dba3c3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_obstacle_raises.json",
+      "sha256": "0de8132da8b95a1e293edfd1ed753aaa3794b7757720213737587e9b380c5162"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_patient_wait.json",
+      "sha256": "e4ace537c5938acfcf17fdc8e324bdd6a9d90ff381aec3595214a628e98dc456"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_persist.json",
+      "sha256": "b50cacf7bb5403a9f98d421e00f4715c47f8894087d41f07a18bc4c44196deea"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_prepare.json",
+      "sha256": "4014ec9abe094f4526187f6b8b7c2eee7f1d10084578bddcb1e63930e724d582"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_receive_appeal.json",
+      "sha256": "8716e6e1e717c95e9a6adb23b6b92586d5cc3a919647784c3a7cf4f8d224c3a2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_restore.json",
+      "sha256": "d8dcbdc56915ce38709ebdb566d8a87c3d158daf0208194e8b91aee80e25e9f3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_retrace.json",
+      "sha256": "3b12e5734b12bf9edd044918e4175fda04d1722883abb090e9057e31e46543c3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_reveal_truth.json",
+      "sha256": "675e04757e7e59b9aa0450e2a228c4093a216bf823be3d8e13a9cd60cc698855"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_self_recognize.json",
+      "sha256": "fd6fb9ade43af1b7c5d4d610eb3448fc4e423d126767103e77a2bf8fb2146e0c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_small_step.json",
+      "sha256": "95263813d34055b88c47837e8dfcc20c5ad40436026f6d40c51cb6afe34730c3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_speak_for.json",
+      "sha256": "a6783370326161e237bb7c415537d7bbc2fb239d8ea6d1f687029d33cc8e7ac1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_succeed.json",
+      "sha256": "131de5768ddd53de86928cc4b70c30ee5d2c65993d9c758a4180c99d26b4ca44"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_take_charge.json",
+      "sha256": "abeee672685541269582d45d4b8de1f6b6d45f6c0f698a8434835753c5ceefb4"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_tend.json",
+      "sha256": "742b775d55082f87430d500a1de607e8e047991bf6fe582eb30ec3e8c7c91cc7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_warm_close.json",
+      "sha256": "c0566b37b395bcbcbd3371d3e05af54a94ebb0a9c0b70b85ec092bae82cf2ec9"
+    },
+    {
+      "path": "design-handoff/proposals/2026-11-21-whole-book-art/after.json",
+      "sha256": "41f8b7668dccf04456fc86a6a2126a62b4107c08aeb66152d33d013aa0577c14"
+    },
+    {
+      "path": "design-handoff/proposals/2026-11-22-magicpaper-characters/characters.json",
+      "sha256": "1b3ca3fce7a92c8fcf6f0d1606655832ba9855ec88de06e26e4359af0b05e98a"
+    },
+    {
+      "path": "design-handoff/proposals/2026-11-22-tarcin-pose-library/GENERATION_RECORD.json",
+      "sha256": "1708befee4be8c65e082860838aaa23ffe3c66dca73f0fd805997af3810baa7f"
+    },
+    {
+      "path": "docs/ANLATI_PLANI.md",
+      "sha256": "b832c64bbb0ccdd676db6fa323568ff57b3309297b248517bef6d458840a5574"
+    },
+    {
+      "path": "docs/GORSEL_ANLAM_SOZLESMESI.md",
+      "sha256": "9ddfafe43f3f63943e9107a109abdf39772768c6fcc840b1e469ec23f9560e81"
+    },
+    {
+      "path": "docs/UYKU_ARKI.md",
+      "sha256": "0a978ad9016484d0ddda2eac954ff9d2e12ee3f027b1440f6641d7d56adb9f84"
+    }
+  ],
+  "books": [
+    {
+      "name": "Tarçın",
+      "canonicalCompanionID": "companion_fox_pilot_001",
+      "scope": "existing_legacy_fixture_not_new_pilot",
+      "contextNote": "Orman, gerçek birlikte çalışma örneği; yeni pilot profili onayı değildir.",
+      "sourceFixture": "design-handoff/proposals/2026-11-21-whole-book-art/after.json",
+      "attempt": {
+        "blueprintID": "bp_threshold_together_003",
+        "companionID": "companion_fox_pilot_001",
+        "discoveryID": "object_music_box_001",
+        "fingerprint": "22c06dc7a4783ab8",
+        "isClean": true,
+        "pages": [
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+            ],
+            "beats": [
+              "notice_anomaly"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "reviewed",
+                "sourceID": "na_any_01",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [
+                    "found"
+                  ],
+                  "subject": "discovery",
+                  "subjectID": "object_music_box_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 1,
+            "position": "opening",
+            "provenance": [
+              {
+                "beat": "notice_anomaly",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "na_any_01",
+                "sourceTextDigest": "2e9363acd595f0d9",
+                "templateID": "corpus_5-6_notice_anomaly",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [
+                      "found"
+                    ],
+                    "subject": "discovery",
+                    "subjectID": "object_music_box_001"
+                  }
+                ],
+                "visualReview": "reviewed"
+              }
+            ],
+            "role": "hook",
+            "text": "Deniz o gün bir şeyin değiştiğini anladı. Eski bir müzik kutusu oradaydı ve daha önce orada değildi. Durdu. Sonra biraz daha durdu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "na_any_01"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "approach"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 2,
+            "position": "opening",
+            "provenance": [
+              {
+                "beat": "approach",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "ap_s_01",
+                "sourceTextDigest": "98682f0ee6246f1a",
+                "templateID": "corpus_5-6_approach"
+              }
+            ],
+            "role": "discovery",
+            "text": "Deniz yavaşça yaklaştı. Her adımda gözünde biraz daha büyüdü. Yakından bakınca sandığından bambaşkaydı. Durup uzun uzun baktı, gözlerini ayıramadı.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "ap_s_01"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+            ],
+            "beats": [
+              "meet_companion",
+              "companion_offers"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "auto",
+                "sourceID": "mc_calm_03",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [
+                    "greeting"
+                  ],
+                  "subject": "companion",
+                  "subjectID": "companion_fox_pilot_001"
+                }
+              },
+              {
+                "review": "auto",
+                "sourceID": "co_p_01",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [],
+                  "subject": "companion",
+                  "subjectID": "companion_fox_pilot_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 3,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "meet_companion",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "mc_calm_03",
+                "sourceTextDigest": "dd509e064ad9be70",
+                "templateID": "corpus_5-6_meet_companion",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [
+                      "greeting"
+                    ],
+                    "subject": "companion",
+                    "subjectID": "companion_fox_pilot_001"
+                  }
+                ],
+                "visualReview": "auto"
+              },
+              {
+                "beat": "companion_offers",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "co_p_01",
+                "sourceTextDigest": "810bf93fad9ef582",
+                "templateID": "corpus_5-6_companion_offers",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [],
+                    "subject": "companion",
+                    "subjectID": "companion_fox_pilot_001"
+                  }
+                ],
+                "visualReview": "auto"
+              }
+            ],
+            "role": "companion",
+            "text": "Tarçın buraya çok gelirdi. Deniz'i görünce hiç şaşırmadı. Sadece yanına geçti ve onunla birlikte ileriye baktı. Hiç konuşmadılar. \"Ben burayı bilirim,\" dedi Tarçın. \"Her gün buradan geçerim.\"",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "mc_calm_03",
+              "co_p_01"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source"
+            ],
+            "beats": [
+              "commit",
+              "obstacle_raises"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "auto",
+                "sourceID": "cm_p_09",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [],
+                  "subject": "companion",
+                  "subjectID": "companion_fox_pilot_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 4,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "commit",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "cm_p_09",
+                "sourceTextDigest": "03380ca8040bf53b",
+                "templateID": "corpus_5-6_commit",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [],
+                    "subject": "companion",
+                    "subjectID": "companion_fox_pilot_001"
+                  }
+                ],
+                "visualReview": "auto"
+              },
+              {
+                "beat": "obstacle_raises",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "ob_calm_01",
+                "sourceTextDigest": "12cef45fc8d886d4",
+                "templateID": "corpus_5-6_obstacle_raises"
+              }
+            ],
+            "role": "problem",
+            "text": "Tarçın ne düşünüyor bilmiyordu. Ama Deniz kararını çoktan vermişti bile. Ama yol düşündüğünden uzundu. Tek başına gitmek Deniz için biraz zor olacaktı.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "cm_p_09",
+              "ob_calm_01"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "first_attempt"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 5,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "first_attempt",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "fa_s_02",
+                "sourceTextDigest": "c478765fa4a7a1d0",
+                "templateID": "corpus_5-6_first_attempt"
+              }
+            ],
+            "role": "attempt",
+            "text": "Deniz tam düşündüğü gibi yaptı. Yarısına kadar işe yaradı. Sonra durdu, daha ileri gitmedi. Ne olduğunu anlamak için eğilip baktı.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "fa_s_02"
+            ]
+          },
+          {
+            "absenceReasons": [],
+            "art": {
+              "altText": "Tilki Tarçın oturmuş dikkatle dinliyor.",
+              "assetDigest": "d2efab9e34eddcca436905ea77dcae23e5ce0c58d849b450682dcbbb2e35ff61",
+              "assetRevision": 1,
+              "authoredSourceFingerprint": "64a792a326f266e8",
+              "bindingPolicyVersion": 3,
+              "bundledFileName": "mp-whole-book-tarcin-together-v1.mpart",
+              "catalogVersion": "2.1.0",
+              "hasBundledMetadata": true,
+              "role": "spot",
+              "schemaVersion": 1,
+              "sourceID": "whole-book.tarcin-together-v1",
+              "styleRevision": "gouache-social-v1",
+              "subjectID": "companion_fox_pilot_001",
+              "subjectState": [
+                "russet",
+                "seated",
+                "identity-v1"
+              ],
+              "variantIDs": [
+                "ce_s_07"
+              ]
+            },
+            "beats": [
+              "cooperative_effort"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "auto",
+                "sourceID": "ce_s_07",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [
+                    "together"
+                  ],
+                  "subject": "companion",
+                  "subjectID": "companion_fox_pilot_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 6,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "cooperative_effort",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "ce_s_07",
+                "sourceTextDigest": "64c05370067e608e",
+                "templateID": "corpus_5-6_cooperative_effort",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [
+                      "together"
+                    ],
+                    "subject": "companion",
+                    "subjectID": "companion_fox_pilot_001"
+                  }
+                ],
+                "visualReview": "auto"
+              }
+            ],
+            "role": "challenge",
+            "text": "\"Bir fikrim var,\" dedi Deniz ve anlattı. Tarçın dinledi, sonra kendi bildiği bir şeyi ekledi. İki fikir birleşince iş tamam oldu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "ce_s_07"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "succeed"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 7,
+            "position": "closing",
+            "provenance": [
+              {
+                "beat": "succeed",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "sc_together_tp_01",
+                "sourceTextDigest": "b117fa0f815e7d4e",
+                "templateID": "corpus_5-6_succeed"
+              }
+            ],
+            "role": "resolution",
+            "text": "Son adımı birlikte attılar ve kendilerini öbür tarafta buldular. Deniz dönüp geçtikleri yere baktı. Birlikte olunca yol hiç de uzun gelmemişti.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "sc_together_tp_01"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "warm_close",
+              "self_recognize"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 8,
+            "position": "closing",
+            "provenance": [
+              {
+                "beat": "warm_close",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "wc_p_succeed_01",
+                "sourceTextDigest": "9cef73b834ce7bf2",
+                "templateID": "corpus_5-6_warm_close"
+              },
+              {
+                "beat": "self_recognize",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "sr_p_11",
+                "sourceTextDigest": "1cdbb54504892549",
+                "templateID": "corpus_5-6_self_recognize"
+              }
+            ],
+            "role": "emotional_ending",
+            "text": "Eve dönerken hava kararmaya başlamıştı. Deniz yorgundu ama bu iyi bir yorgunluktu. Deniz kendine biraz şaşırdı. İçinde daha önce bilmediği bir yer varmış meğer.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "wc_p_succeed_01",
+              "sr_p_11"
+            ]
+          }
+        ],
+        "seed": "whole-book-art-v1-069",
+        "settingID": "setting_whispering_forest_001"
+      }
+    },
+    {
+      "name": "Kestane",
+      "canonicalCompanionID": "companion_hedgehog_pilot_001",
+      "scope": "existing_legacy_fixture_not_new_pilot",
+      "contextNote": "Orman, sakin eşlik; yeni pilot şablonu değildir.",
+      "sourceFixture": "design-handoff/proposals/2026-11-21-whole-book-art/after.json",
+      "attempt": {
+        "blueprintID": "blueprint_threshold_crossing_001",
+        "companionID": "companion_hedgehog_pilot_001",
+        "discoveryID": "object_lantern_001",
+        "fingerprint": "a496eebfefce4d88",
+        "isClean": true,
+        "pages": [
+          {
+            "absenceReasons": [],
+            "art": {
+              "altText": "Taşıma saplı, camı içinde ışık olan eski mor fener.",
+              "assetDigest": "df31cf84b673b91894b8b40584d5cba4731eca2f71b1774e60e4828e0437f574",
+              "assetRevision": 1,
+              "authoredSourceFingerprint": "3b3cb4fc280b6c6c",
+              "bindingPolicyVersion": 2,
+              "bundledFileName": "mp-story-spot-old-lantern-r1.mpart",
+              "catalogVersion": "2.1.0",
+              "hasBundledMetadata": true,
+              "role": "spot",
+              "schemaVersion": 1,
+              "sourceID": "spot.old-lantern",
+              "styleRevision": "gouache-social-v1",
+              "subjectID": "object_lantern_001",
+              "subjectState": [
+                "portable",
+                "intact",
+                "internally-lit"
+              ],
+              "variantIDs": [
+                "na_any_03"
+              ]
+            },
+            "beats": [
+              "notice_anomaly"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "reviewed",
+                "sourceID": "na_any_03",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [
+                    "found"
+                  ],
+                  "subject": "discovery",
+                  "subjectID": "object_lantern_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 1,
+            "position": "opening",
+            "provenance": [
+              {
+                "beat": "notice_anomaly",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "na_any_03",
+                "sourceTextDigest": "987b507c867b4bbd",
+                "templateID": "corpus_5-6_notice_anomaly",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [
+                      "found"
+                    ],
+                    "subject": "discovery",
+                    "subjectID": "object_lantern_001"
+                  }
+                ],
+                "visualReview": "reviewed"
+              }
+            ],
+            "role": "hook",
+            "text": "Deniz tam geçip gidecekti ki durdu. Eski fener dikkatini çekmişti. Geri döndü ve iyice yaklaştı. Böyle bir şeyle ilk kez karşılaşıyordu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "na_any_03"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "approach"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 2,
+            "position": "opening",
+            "provenance": [
+              {
+                "beat": "approach",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "ap_s_02",
+                "sourceTextDigest": "b1d79e5ae92dab5a",
+                "templateID": "corpus_5-6_approach"
+              }
+            ],
+            "role": "discovery",
+            "text": "Birkaç adım attı Deniz, sonra durdu. Sonra birkaç adım daha. Artık iyice yakındı ve geri dönmeyi hiç düşünmüyordu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "ap_s_02"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+            ],
+            "beats": [
+              "meet_companion"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "auto",
+                "sourceID": "mc_calm_02",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [
+                    "greeting"
+                  ],
+                  "subject": "companion",
+                  "subjectID": "companion_hedgehog_pilot_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 3,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "meet_companion",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "mc_calm_02",
+                "sourceTextDigest": "305698fc242f3c84",
+                "templateID": "corpus_5-6_meet_companion",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [
+                      "greeting"
+                    ],
+                    "subject": "companion",
+                    "subjectID": "companion_hedgehog_pilot_001"
+                  }
+                ],
+                "visualReview": "auto"
+              }
+            ],
+            "role": "companion",
+            "text": "Yanına biri geldi. Kestane adında sakin bir kirpi. \"Acelemiz yok,\" dedi sadece. Sesi çok sakindi. Sonra Deniz'in yanına ilişti.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "mc_calm_02"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "hesitate"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 4,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "hesitate",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "hz_s_03",
+                "sourceTextDigest": "ed4b6f2e1aae27ea",
+                "templateID": "corpus_5-6_hesitate"
+              }
+            ],
+            "role": "problem",
+            "text": "Deniz elini uzattı ve geri çekti. İki kez daha aynısını yaptı. Üçüncüde elini cebine soktu ve orada tuttu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "hz_s_03"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "small_step"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 5,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "small_step",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "ss_s_03",
+                "sourceTextDigest": "7878f229babb2204",
+                "templateID": "corpus_5-6_small_step"
+              }
+            ],
+            "role": "attempt",
+            "text": "\"Bir adım,\" dedi Deniz kendi kendine. \"Sadece bir adım.\" Attı o adımı ve dünya yerinde durdu, hiçbir yere gitmedi.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "ss_s_03"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "find_own_courage"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 6,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "find_own_courage",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "fc_s_01",
+                "sourceTextDigest": "524ff01433cbb5e9",
+                "templateID": "corpus_5-6_find_own_courage"
+              }
+            ],
+            "role": "challenge",
+            "text": "O ilk adım tutmuştu, Deniz bunu gördü. Tutuyorsa ikincisi de tutardı. Doğruldu ve yürümeye başladı, bu kez hiç durmadan.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "fc_s_01"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "succeed"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 7,
+            "position": "closing",
+            "provenance": [
+              {
+                "beat": "succeed",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "sc_courage_01",
+                "sourceTextDigest": "f37c9167355d02be",
+                "templateID": "corpus_5-6_succeed"
+              }
+            ],
+            "role": "resolution",
+            "text": "Deniz gitti. Kalbi çok hızlı atıyordu ama durmadı. Karşı tarafa vardığında hâlâ inanamıyordu. Bir süre öylece durdu, sonra kendi kendine güldü.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "sc_courage_01"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "self_recognize",
+              "warm_close"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 8,
+            "position": "closing",
+            "provenance": [
+              {
+                "beat": "self_recognize",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "sr_p_01",
+                "sourceTextDigest": "7c4fd9b627c4f8c6",
+                "templateID": "corpus_5-6_self_recognize"
+              },
+              {
+                "beat": "warm_close",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "wc_p_succeed_01",
+                "sourceTextDigest": "9cef73b834ce7bf2",
+                "templateID": "corpus_5-6_warm_close"
+              }
+            ],
+            "role": "emotional_ending",
+            "text": "Deniz kendi kendine düşündü. Demek yapabiliyormuş. Bunu daha önce hiç bilmiyordu. Eve dönerken hava kararmaya başlamıştı. Deniz yorgundu ama bu iyi bir yorgunluktu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "sr_p_01",
+              "wc_p_succeed_01"
+            ]
+          }
+        ],
+        "seed": "whole-book-art-v1-018",
+        "settingID": "setting_whispering_forest_001"
+      }
+    },
+    {
+      "name": "Yıldız",
+      "canonicalCompanionID": "companion_owl_pilot_001",
+      "scope": "existing_legacy_fixture_not_new_pilot",
+      "contextNote": "Şenlik Çayırı; ortak orman pilotunun erişilebilirlik kanıtı değildir.",
+      "sourceFixture": "design-handoff/proposals/2026-11-21-whole-book-art/after.json",
+      "attempt": {
+        "blueprintID": "bp_threshold_joining_002",
+        "companionID": "companion_owl_pilot_001",
+        "discoveryID": "object_lantern_001",
+        "fingerprint": "a1d3ee2765173cbb",
+        "isClean": true,
+        "pages": [
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+            ],
+            "beats": [
+              "notice_anomaly"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "reviewed",
+                "sourceID": "na_light_01",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [],
+                  "subject": "setting",
+                  "subjectID": "setting_festival_meadow_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 1,
+            "position": "opening",
+            "provenance": [
+              {
+                "beat": "notice_anomaly",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "na_light_01",
+                "sourceTextDigest": "4879d7709dfb3e44",
+                "templateID": "corpus_5-6_notice_anomaly",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [],
+                    "subject": "setting",
+                    "subjectID": "setting_festival_meadow_001"
+                  }
+                ],
+                "visualReview": "reviewed"
+              }
+            ],
+            "role": "hook",
+            "text": "Gözünün ucuyla bir parıltı yakaladı Deniz. Döndüğünde kayboldu. Bir adım attı ve parıltı geri geldi. Şenlik Çayırı'nda bir şey ışıldıyordu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "na_light_01"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+            ],
+            "beats": [
+              "examine"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "auto",
+                "sourceID": "ex_s_light_02",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [
+                    "examined"
+                  ],
+                  "subject": "discovery",
+                  "subjectID": "object_lantern_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 2,
+            "position": "opening",
+            "provenance": [
+              {
+                "beat": "examine",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "ex_s_light_02",
+                "sourceTextDigest": "f1bcf3cfd74f3824",
+                "templateID": "corpus_5-6_examine",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [
+                      "examined"
+                    ],
+                    "subject": "discovery",
+                    "subjectID": "object_lantern_001"
+                  }
+                ],
+                "visualReview": "auto"
+              }
+            ],
+            "role": "discovery",
+            "text": "Deniz çömelip eski fener inceledi. Dokunmadı, sadece uzun uzun baktı. Bir tarafı diğerinden çok daha parlaktı. Neden böyle olduğunu çıkaramadı.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "ex_s_light_02"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+            ],
+            "beats": [
+              "meet_companion",
+              "companion_offers"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "auto",
+                "sourceID": "mc_calm_03",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [
+                    "greeting"
+                  ],
+                  "subject": "companion",
+                  "subjectID": "companion_owl_pilot_001"
+                }
+              },
+              {
+                "review": "auto",
+                "sourceID": "co_p_12",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [],
+                  "subject": "companion",
+                  "subjectID": "companion_owl_pilot_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 3,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "meet_companion",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "mc_calm_03",
+                "sourceTextDigest": "dd509e064ad9be70",
+                "templateID": "corpus_5-6_meet_companion",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [
+                      "greeting"
+                    ],
+                    "subject": "companion",
+                    "subjectID": "companion_owl_pilot_001"
+                  }
+                ],
+                "visualReview": "auto"
+              },
+              {
+                "beat": "companion_offers",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "co_p_12",
+                "sourceTextDigest": "e1cd0a3674109186",
+                "templateID": "corpus_5-6_companion_offers",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [],
+                    "subject": "companion",
+                    "subjectID": "companion_owl_pilot_001"
+                  }
+                ],
+                "visualReview": "auto"
+              }
+            ],
+            "role": "companion",
+            "text": "Yıldız buraya çok gelirdi. Deniz'i görünce hiç şaşırmadı. Sadece yanına geçti ve onunla birlikte ileriye baktı. Hiç konuşmadılar. \"Bu ilk değil,\" dedi Yıldız. \"Geçen hafta da olmuştu.\"",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "mc_calm_03",
+              "co_p_12"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "hesitate"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 4,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "hesitate",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "hz_s_02",
+                "sourceTextDigest": "483812c29b03bb13",
+                "templateID": "corpus_5-6_hesitate"
+              }
+            ],
+            "role": "problem",
+            "text": "Bir adım attı Deniz, sonra geri çekildi. Sonra bir adım daha, yine geri. Vücudu ona bir şey söylüyordu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "hz_s_02"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "prepare"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 5,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "prepare",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "pr_s_05",
+                "sourceTextDigest": "13b6314a56d971b7",
+                "templateID": "corpus_5-6_prepare"
+              }
+            ],
+            "role": "attempt",
+            "text": "Deniz bir süre sessizce bekledi ve hazırlandı. Aceleye hiç getirmedi. Hazır olmadan başlamanın bir anlamı yoktu, bunu biliyordu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "pr_s_05"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "ask_for_help"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 6,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "ask_for_help",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "ah_s_04",
+                "sourceTextDigest": "228a01c0ad9a6c7f",
+                "templateID": "corpus_5-6_ask_for_help"
+              }
+            ],
+            "role": "challenge",
+            "text": "Sormaya karar vermek, sormaktan daha zordu. Deniz önce karar verdi, sonra sordu. İkisi de ayrı ayrı cesaret istedi.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "ah_s_04"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "succeed"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 7,
+            "position": "closing",
+            "provenance": [
+              {
+                "beat": "succeed",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "sc_any_02",
+                "sourceTextDigest": "d66ffe395e7d3aef",
+                "templateID": "corpus_5-6_succeed"
+              }
+            ],
+            "role": "resolution",
+            "text": "Sonunda oldu. Deniz bir adım geri çekilip baktı. Kendi başardığı için ayrı bir güzeldi bu. Uzun uzun seyretti.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "sc_any_02"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "warm_close",
+              "carry_forward"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 8,
+            "position": "closing",
+            "provenance": [
+              {
+                "beat": "warm_close",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "wc_p_succeed_05",
+                "sourceTextDigest": "e8f144d032437b1b",
+                "templateID": "corpus_5-6_warm_close"
+              },
+              {
+                "beat": "carry_forward",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "cf_p_11",
+                "sourceTextDigest": "df9ea32abaec04a0",
+                "templateID": "corpus_5-6_carry_forward"
+              }
+            ],
+            "role": "emotional_ending",
+            "text": "Deniz eve doğru yürürken içi kıpır kıpırdı. Kimseye anlatmasa da olurdu aslında. Deniz o günden sonra biraz daha yavaş yürüdü. Acele etmeyince daha çok şey görünüyordu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "wc_p_succeed_05",
+              "cf_p_11"
+            ]
+          }
+        ],
+        "seed": "whole-book-art-v1-009",
+        "settingID": "setting_festival_meadow_001"
+      }
+    },
+    {
+      "name": "Simit",
+      "canonicalCompanionID": "companion_city_cat_001",
+      "scope": "existing_legacy_fixture_not_new_pilot",
+      "contextNote": "Kemerli Çarşı; forest ziyareti henüz yazılmadı, bu örnek şehirdedir.",
+      "sourceFixture": "design-handoff/proposals/2026-11-21-whole-book-art/after.json",
+      "attempt": {
+        "blueprintID": "blueprint_threshold_crossing_001",
+        "companionID": "companion_city_cat_001",
+        "discoveryID": "object_tram_ticket_001",
+        "fingerprint": "73070c4ac56adf32",
+        "isClean": true,
+        "pages": [
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+            ],
+            "beats": [
+              "notice_anomaly"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "reviewed",
+                "sourceID": "w_ct_na56_03",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [
+                    "found"
+                  ],
+                  "subject": "discovery",
+                  "subjectID": "object_tram_ticket_001"
+                }
+              },
+              {
+                "review": "reviewed",
+                "sourceID": "w_ct_na56_03",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [],
+                  "subject": "setting",
+                  "subjectID": "setting_arched_bazaar_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 1,
+            "position": "opening",
+            "provenance": [
+              {
+                "beat": "notice_anomaly",
+                "contexts": [
+                  "world"
+                ],
+                "kind": "beat_line",
+                "sourceID": "w_ct_na56_03",
+                "sourceTextDigest": "58254cae4de8341b",
+                "templateID": "corpus_5-6_notice_anomaly",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [
+                      "found"
+                    ],
+                    "subject": "discovery",
+                    "subjectID": "object_tram_ticket_001"
+                  },
+                  {
+                    "presence": "present",
+                    "states": [],
+                    "subject": "setting",
+                    "subjectID": "setting_arched_bazaar_001"
+                  }
+                ],
+                "visualReview": "reviewed"
+              }
+            ],
+            "role": "hook",
+            "text": "Deniz elinde bir haritayla şehri geziyordu. Haritada her sokak vardı, her köprü, her meydan. Ama Kemerli Çarşı'da haritada olmayan bir şey vardı. Yarısı yırtılmış bir tramvay bileti tam karşısında duruyordu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "w_ct_na56_03"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "approach"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 2,
+            "position": "opening",
+            "provenance": [
+              {
+                "beat": "approach",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "ap_s_04",
+                "sourceTextDigest": "8a7932a01f62a192",
+                "templateID": "corpus_5-6_approach"
+              }
+            ],
+            "role": "discovery",
+            "text": "Yaklaşmak kolay değildi ama Deniz yine de yaklaştı. Durdu, baktı, bir adım daha attı. Şimdi elini uzatsa rahatça dokunabilirdi ona.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "ap_s_04"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+            ],
+            "beats": [
+              "meet_companion"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "auto",
+                "sourceID": "mc_calm_05",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [
+                    "greeting"
+                  ],
+                  "subject": "companion",
+                  "subjectID": "companion_city_cat_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 3,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "meet_companion",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "mc_calm_05",
+                "sourceTextDigest": "74eb2ef77af53d51",
+                "templateID": "corpus_5-6_meet_companion",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [
+                      "greeting"
+                    ],
+                    "subject": "companion",
+                    "subjectID": "companion_city_cat_001"
+                  }
+                ],
+                "visualReview": "auto"
+              }
+            ],
+            "role": "companion",
+            "text": "Bir kedi çıkageldi, adı Simit. Hiç telaşlı değildi. \"Ben buradayım,\" dedi. Sonra Deniz'in yanına geçti ve sakince oturdu. Acelesi olmadığı her halinden belliydi.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "mc_calm_05"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "hesitate"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 4,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "hesitate",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "hz_s_03",
+                "sourceTextDigest": "ed4b6f2e1aae27ea",
+                "templateID": "corpus_5-6_hesitate"
+              }
+            ],
+            "role": "problem",
+            "text": "Deniz elini uzattı ve geri çekti. İki kez daha aynısını yaptı. Üçüncüde elini cebine soktu ve orada tuttu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "hz_s_03"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "small_step"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 5,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "small_step",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "ss_s_09",
+                "sourceTextDigest": "7d46ae6b37c438e0",
+                "templateID": "corpus_5-6_small_step"
+              }
+            ],
+            "role": "attempt",
+            "text": "Deniz kendine üç adım dedi, fazlası değil. Birinciyi attı, ikinciyi, üçüncüyü. Sonra durdu. Hiçbir şey olmamıştı, her şey yerli yerindeydi.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "ss_s_09"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "find_own_courage"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 6,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "find_own_courage",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "fc_s_03",
+                "sourceTextDigest": "ba5bcf44c6fa65c7",
+                "templateID": "corpus_5-6_find_own_courage"
+              }
+            ],
+            "role": "challenge",
+            "text": "Korkusu gitmedi. Ama Deniz korkusuyla birlikte yürümeyi öğrendi, işte o kadar. Adım adım ilerledi ve bir kez bile geri bakmadı.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "fc_s_03"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "succeed"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 7,
+            "position": "closing",
+            "provenance": [
+              {
+                "beat": "succeed",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "sc_any_05",
+                "sourceTextDigest": "11c98616658c4d54",
+                "templateID": "corpus_5-6_succeed"
+              }
+            ],
+            "role": "resolution",
+            "text": "Deniz epeyce yorulmuştu ama artık önemi yoktu. Karşısındaki şey artık başkaydı. Bunu değiştiren de kendisiydi, başka kimse değil.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "sc_any_05"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "self_recognize",
+              "warm_close"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 8,
+            "position": "closing",
+            "provenance": [
+              {
+                "beat": "self_recognize",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "sr_p_07",
+                "sourceTextDigest": "a500fd6ae282728a",
+                "templateID": "corpus_5-6_self_recognize"
+              },
+              {
+                "beat": "warm_close",
+                "contexts": [
+                  "world"
+                ],
+                "kind": "beat_line",
+                "sourceID": "w_ct_wc56_01",
+                "sourceTextDigest": "866d0ea47957cf5b",
+                "templateID": "corpus_5-6_warm_close"
+              }
+            ],
+            "role": "emotional_ending",
+            "text": "Deniz kendi kendine gülümsedi. Başkasına değil, kendine gülümsüyordu. Hak etmişti. Akşam olunca şehrin bütün ışıkları yandı. Deniz bu şehri artık biraz tanıyordu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "sr_p_07",
+              "w_ct_wc56_01"
+            ]
+          }
+        ],
+        "seed": "whole-book-art-v1-003",
+        "settingID": "setting_arched_bazaar_001"
+      }
+    },
+    {
+      "name": "Böğürtlen",
+      "canonicalCompanionID": "companion_bear_001",
+      "scope": "existing_legacy_fixture_not_new_pilot",
+      "contextNote": "Orman; güç ile çözümü çocuğun yapması ayrımını inceleme örneği.",
+      "sourceFixture": "design-handoff/proposals/2026-11-21-whole-book-art/after.json",
+      "attempt": {
+        "blueprintID": "bp_threshold_together_003",
+        "companionID": "companion_bear_001",
+        "discoveryID": "object_key_001",
+        "fingerprint": "30d456abbaa76ede",
+        "isClean": true,
+        "pages": [
+          {
+            "absenceReasons": [],
+            "art": {
+              "altText": "Tek, altın renkli küçük anahtar.",
+              "assetDigest": "4a9336ab48c3149f2a07c4c2e8febd6af13d2fa342507d2150163f1e25e486c8",
+              "assetRevision": 1,
+              "authoredSourceFingerprint": "9660fe1675ced172",
+              "bindingPolicyVersion": 2,
+              "bundledFileName": "mp-story-spot-golden-key-r1.mpart",
+              "catalogVersion": "2.1.0",
+              "hasBundledMetadata": true,
+              "role": "spot",
+              "schemaVersion": 1,
+              "sourceID": "spot.golden-key",
+              "styleRevision": "gouache-social-v1",
+              "subjectID": "object_key_001",
+              "subjectState": [
+                "gold",
+                "intact"
+              ],
+              "variantIDs": [
+                "na_neutral_03"
+              ]
+            },
+            "beats": [
+              "notice_anomaly"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "reviewed",
+                "sourceID": "na_neutral_03",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [
+                    "found"
+                  ],
+                  "subject": "discovery",
+                  "subjectID": "object_key_001"
+                }
+              },
+              {
+                "review": "reviewed",
+                "sourceID": "na_neutral_03",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [],
+                  "subject": "setting",
+                  "subjectID": "setting_whispering_forest_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 1,
+            "position": "opening",
+            "provenance": [
+              {
+                "beat": "notice_anomaly",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "na_neutral_03",
+                "sourceTextDigest": "618634e5ad6d6d17",
+                "templateID": "corpus_5-6_notice_anomaly",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [
+                      "found"
+                    ],
+                    "subject": "discovery",
+                    "subjectID": "object_key_001"
+                  },
+                  {
+                    "presence": "present",
+                    "states": [],
+                    "subject": "setting",
+                    "subjectID": "setting_whispering_forest_001"
+                  }
+                ],
+                "visualReview": "reviewed"
+              }
+            ],
+            "role": "hook",
+            "text": "Deniz Fısıldayan Orman'da yürürken ayakları kendiliğinden durdu. Böyle bir şeyi daha önce hiç görmemişti. Altın anahtar tam oradaydı, apaçık.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "na_neutral_03"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+            ],
+            "beats": [
+              "approach"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "auto",
+                "sourceID": "ap_s_03",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [],
+                  "subject": "setting",
+                  "subjectID": "setting_whispering_forest_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 2,
+            "position": "opening",
+            "provenance": [
+              {
+                "beat": "approach",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "ap_s_03",
+                "sourceTextDigest": "5ca7216875f5c944",
+                "templateID": "corpus_5-6_approach",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [],
+                    "subject": "setting",
+                    "subjectID": "setting_whispering_forest_001"
+                  }
+                ],
+                "visualReview": "auto"
+              }
+            ],
+            "role": "discovery",
+            "text": "Deniz soluğunu tuttu ve ilerledi. Fısıldayan Orman bir anda sessizleşti sanki. Yaklaştıkça kalbi daha hızlı atıyordu, kendisi de duyuyordu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "ap_s_03"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+            ],
+            "beats": [
+              "meet_companion",
+              "companion_offers"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "auto",
+                "sourceID": "mc_calm_03",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [
+                    "greeting"
+                  ],
+                  "subject": "companion",
+                  "subjectID": "companion_bear_001"
+                }
+              },
+              {
+                "review": "auto",
+                "sourceID": "co_p_05",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [],
+                  "subject": "companion",
+                  "subjectID": "companion_bear_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 3,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "meet_companion",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "mc_calm_03",
+                "sourceTextDigest": "dd509e064ad9be70",
+                "templateID": "corpus_5-6_meet_companion",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [
+                      "greeting"
+                    ],
+                    "subject": "companion",
+                    "subjectID": "companion_bear_001"
+                  }
+                ],
+                "visualReview": "auto"
+              },
+              {
+                "beat": "companion_offers",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "co_p_05",
+                "sourceTextDigest": "5edb3aa3d56f1c70",
+                "templateID": "corpus_5-6_companion_offers",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [],
+                    "subject": "companion",
+                    "subjectID": "companion_bear_001"
+                  }
+                ],
+                "visualReview": "auto"
+              }
+            ],
+            "role": "companion",
+            "text": "Böğürtlen buraya çok gelirdi. Deniz'i görünce hiç şaşırmadı. Sadece yanına geçti ve onunla birlikte ileriye baktı. Hiç konuşmadılar. Böğürtlen yardım etmeyi teklif etti. \"Ben yolları bilirim,\" dedi sadece.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "mc_calm_03",
+              "co_p_05"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "commit",
+              "obstacle_raises"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 4,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "commit",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "cm_p_08",
+                "sourceTextDigest": "54f4c859ca4596eb",
+                "templateID": "corpus_5-6_commit"
+              },
+              {
+                "beat": "obstacle_raises",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "ob_calm_01",
+                "sourceTextDigest": "12cef45fc8d886d4",
+                "templateID": "corpus_5-6_obstacle_raises"
+              }
+            ],
+            "role": "problem",
+            "text": "Deniz bir kez daha baktı, sonra kararını verdi. Bugün öğrenecekti. Ama yol düşündüğünden uzundu. Tek başına gitmek Deniz için biraz zor olacaktı.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "cm_p_08",
+              "ob_calm_01"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "first_attempt"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 5,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "first_attempt",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "fa_s_10",
+                "sourceTextDigest": "731ca49f15e2554e",
+                "templateID": "corpus_5-6_first_attempt"
+              }
+            ],
+            "role": "attempt",
+            "text": "Deniz elindekiyle idare etmeye çalıştı. Bir süre işe yaradı. Sonra o da bitti ve yeniden düşünmek zorunda kaldı.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "fa_s_10"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+            ],
+            "beats": [
+              "cooperative_effort"
+            ],
+            "candidacyEvidence": [
+              {
+                "review": "auto",
+                "sourceID": "ce_s_07",
+                "status": "annotation_only_not_an_approved_art_match",
+                "visual": {
+                  "presence": "present",
+                  "states": [
+                    "together"
+                  ],
+                  "subject": "companion",
+                  "subjectID": "companion_bear_001"
+                }
+              }
+            ],
+            "missingSlots": [],
+            "pageNumber": 6,
+            "position": "middle",
+            "provenance": [
+              {
+                "beat": "cooperative_effort",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "ce_s_07",
+                "sourceTextDigest": "64c05370067e608e",
+                "templateID": "corpus_5-6_cooperative_effort",
+                "visual": [
+                  {
+                    "presence": "present",
+                    "states": [
+                      "together"
+                    ],
+                    "subject": "companion",
+                    "subjectID": "companion_bear_001"
+                  }
+                ],
+                "visualReview": "auto"
+              }
+            ],
+            "role": "challenge",
+            "text": "\"Bir fikrim var,\" dedi Deniz ve anlattı. Böğürtlen dinledi, sonra kendi bildiği bir şeyi ekledi. İki fikir birleşince iş tamam oldu.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "ce_s_07"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "succeed"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 7,
+            "position": "closing",
+            "provenance": [
+              {
+                "beat": "succeed",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "sc_together_tp_01",
+                "sourceTextDigest": "b117fa0f815e7d4e",
+                "templateID": "corpus_5-6_succeed"
+              }
+            ],
+            "role": "resolution",
+            "text": "Son adımı birlikte attılar ve kendilerini öbür tarafta buldular. Deniz dönüp geçtikleri yere baktı. Birlikte olunca yol hiç de uzun gelmemişti.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "sc_together_tp_01"
+            ]
+          },
+          {
+            "absenceReasons": [
+              "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+              "unannotated_source",
+              "no_declared_visual_mentions",
+              "no_declared_present_subject"
+            ],
+            "beats": [
+              "warm_close",
+              "self_recognize"
+            ],
+            "candidacyEvidence": [],
+            "missingSlots": [],
+            "pageNumber": 8,
+            "position": "closing",
+            "provenance": [
+              {
+                "beat": "warm_close",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "wc_p_succeed_01",
+                "sourceTextDigest": "9cef73b834ce7bf2",
+                "templateID": "corpus_5-6_warm_close"
+              },
+              {
+                "beat": "self_recognize",
+                "contexts": [],
+                "kind": "beat_line",
+                "sourceID": "sr_p_07",
+                "sourceTextDigest": "a500fd6ae282728a",
+                "templateID": "corpus_5-6_self_recognize"
+              }
+            ],
+            "role": "emotional_ending",
+            "text": "Eve dönerken hava kararmaya başlamıştı. Deniz yorgundu ama bu iyi bir yorgunluktu. Deniz kendi kendine gülümsedi. Başkasına değil, kendine gülümsüyordu. Hak etmişti.",
+            "unrecognisedSuffixes": [],
+            "variantIDs": [
+              "wc_p_succeed_01",
+              "sr_p_07"
+            ]
+          }
+        ],
+        "seed": "whole-book-art-v1-076",
+        "settingID": "setting_whispering_forest_001"
+      }
+    }
+  ],
+  "negativeZeroArtExample": {
+    "blueprintID": "bp_threshold_joining_002",
+    "companionID": "companion_fox_pilot_001",
+    "discoveryID": "object_flickering_light_001",
+    "fingerprint": "3aa2e30918ba33ae",
+    "isClean": true,
+    "pages": [
+      {
+        "absenceReasons": [
+          "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+        ],
+        "beats": [
+          "notice_anomaly"
+        ],
+        "candidacyEvidence": [
+          {
+            "review": "reviewed",
+            "sourceID": "na_any_02",
+            "status": "annotation_only_not_an_approved_art_match",
+            "visual": {
+              "presence": "present",
+              "states": [
+                "found"
+              ],
+              "subject": "discovery",
+              "subjectID": "object_flickering_light_001"
+            }
+          }
+        ],
+        "missingSlots": [],
+        "pageNumber": 1,
+        "position": "opening",
+        "provenance": [
+          {
+            "beat": "notice_anomaly",
+            "contexts": [],
+            "kind": "beat_line",
+            "sourceID": "na_any_02",
+            "sourceTextDigest": "4a69ef18d512b8e8",
+            "templateID": "corpus_5-6_notice_anomaly",
+            "visual": [
+              {
+                "presence": "present",
+                "states": [
+                  "found"
+                ],
+                "subject": "discovery",
+                "subjectID": "object_flickering_light_001"
+              }
+            ],
+            "visualReview": "reviewed"
+          }
+        ],
+        "role": "hook",
+        "text": "Bir şey değişmişti ama Deniz ne olduğunu hemen anlayamadı. Sonra fark etti: Titrek bir ışık. Dün yoktu, bugün vardı. Bu çok tuhaftı.",
+        "unrecognisedSuffixes": [],
+        "variantIDs": [
+          "na_any_02"
+        ]
+      },
+      {
+        "absenceReasons": [
+          "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+          "unannotated_source",
+          "no_declared_visual_mentions",
+          "no_declared_present_subject"
+        ],
+        "beats": [
+          "examine"
+        ],
+        "candidacyEvidence": [],
+        "missingSlots": [],
+        "pageNumber": 2,
+        "position": "opening",
+        "provenance": [
+          {
+            "beat": "examine",
+            "contexts": [],
+            "kind": "beat_line",
+            "sourceID": "ex_s_light_01",
+            "sourceTextDigest": "b10f039f7eb59adc",
+            "templateID": "corpus_5-6_examine"
+          }
+        ],
+        "role": "discovery",
+        "text": "Deniz yaklaşıp dikkatle baktı. Işık sürekli yanmıyordu. Bir yanıp bir sönüyordu, hep aynı sırayla. Saymaya başladı ve şaşırdı.",
+        "unrecognisedSuffixes": [],
+        "variantIDs": [
+          "ex_s_light_01"
+        ]
+      },
+      {
+        "absenceReasons": [
+          "mapper_produced_no_pin; policy_rejection_reason_not_exposed"
+        ],
+        "beats": [
+          "meet_companion",
+          "companion_offers"
+        ],
+        "candidacyEvidence": [
+          {
+            "review": "auto",
+            "sourceID": "mc_calm_01",
+            "status": "annotation_only_not_an_approved_art_match",
+            "visual": {
+              "presence": "present",
+              "states": [
+                "greeting"
+              ],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          },
+          {
+            "review": "auto",
+            "sourceID": "co_p_07",
+            "status": "annotation_only_not_an_approved_art_match",
+            "visual": {
+              "presence": "present",
+              "states": [],
+              "subject": "companion",
+              "subjectID": "companion_fox_pilot_001"
+            }
+          }
+        ],
+        "missingSlots": [],
+        "pageNumber": 3,
+        "position": "middle",
+        "provenance": [
+          {
+            "beat": "meet_companion",
+            "contexts": [],
+            "kind": "beat_line",
+            "sourceID": "mc_calm_01",
+            "sourceTextDigest": "835524f928deb3d3",
+            "templateID": "corpus_5-6_meet_companion",
+            "visual": [
+              {
+                "presence": "present",
+                "states": [
+                  "greeting"
+                ],
+                "subject": "companion",
+                "subjectID": "companion_fox_pilot_001"
+              }
+            ],
+            "visualReview": "auto"
+          },
+          {
+            "beat": "companion_offers",
+            "contexts": [],
+            "kind": "beat_line",
+            "sourceID": "co_p_07",
+            "sourceTextDigest": "675951da0f2fb150",
+            "templateID": "corpus_5-6_companion_offers",
+            "visual": [
+              {
+                "presence": "present",
+                "states": [],
+                "subject": "companion",
+                "subjectID": "companion_fox_pilot_001"
+              }
+            ],
+            "visualReview": "auto"
+          }
+        ],
+        "role": "companion",
+        "text": "Tarçın hiç acele etmiyordu. Deniz'in yanına geldi, yere oturdu ve bekledi. Hiçbir şey söylemedi. Böylece ikisi birlikte beklediler. Tarçın bir yeri gösterdi. \"Şuraya bak,\" dedi. Başka bir şey demedi.",
+        "unrecognisedSuffixes": [],
+        "variantIDs": [
+          "mc_calm_01",
+          "co_p_07"
+        ]
+      },
+      {
+        "absenceReasons": [
+          "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+          "unannotated_source",
+          "no_declared_visual_mentions",
+          "no_declared_present_subject"
+        ],
+        "beats": [
+          "hesitate"
+        ],
+        "candidacyEvidence": [],
+        "missingSlots": [],
+        "pageNumber": 4,
+        "position": "middle",
+        "provenance": [
+          {
+            "beat": "hesitate",
+            "contexts": [],
+            "kind": "beat_line",
+            "sourceID": "hz_s_05",
+            "sourceTextDigest": "78ed3729fe36da20",
+            "templateID": "corpus_5-6_hesitate"
+          }
+        ],
+        "role": "problem",
+        "text": "Deniz bir süre hiç konuşmadı. Yutkundu. Sonra \"biraz bekleyelim mi?\" diye sordu, çok yavaş bir sesle, neredeyse fısıltıyla.",
+        "unrecognisedSuffixes": [],
+        "variantIDs": [
+          "hz_s_05"
+        ]
+      },
+      {
+        "absenceReasons": [
+          "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+          "unannotated_source",
+          "no_declared_visual_mentions",
+          "no_declared_present_subject"
+        ],
+        "beats": [
+          "prepare"
+        ],
+        "candidacyEvidence": [],
+        "missingSlots": [],
+        "pageNumber": 5,
+        "position": "middle",
+        "provenance": [
+          {
+            "beat": "prepare",
+            "contexts": [],
+            "kind": "beat_line",
+            "sourceID": "pr_s_04",
+            "sourceTextDigest": "800b24b281f2f506",
+            "templateID": "corpus_5-6_prepare"
+          }
+        ],
+        "role": "attempt",
+        "text": "Ne yapacağını önceden adım adım düşündü Deniz. Bir de yedek planı vardı. Hazırlanınca iş o kadar da büyük görünmedi.",
+        "unrecognisedSuffixes": [],
+        "variantIDs": [
+          "pr_s_04"
+        ]
+      },
+      {
+        "absenceReasons": [
+          "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+          "unannotated_source",
+          "no_declared_visual_mentions",
+          "no_declared_present_subject"
+        ],
+        "beats": [
+          "ask_for_help"
+        ],
+        "candidacyEvidence": [],
+        "missingSlots": [],
+        "pageNumber": 6,
+        "position": "middle",
+        "provenance": [
+          {
+            "beat": "ask_for_help",
+            "contexts": [],
+            "kind": "beat_line",
+            "sourceID": "ah_s_03",
+            "sourceTextDigest": "a8949a72d7a07228",
+            "templateID": "corpus_5-6_ask_for_help"
+          }
+        ],
+        "role": "challenge",
+        "text": "Deniz kendi başına çözemeyeceğini anladı. Bu utanılacak bir şey değildi, kimse öyle demezdi. Derin bir nefes aldı ve sordu.",
+        "unrecognisedSuffixes": [],
+        "variantIDs": [
+          "ah_s_03"
+        ]
+      },
+      {
+        "absenceReasons": [
+          "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+          "unannotated_source",
+          "no_declared_visual_mentions",
+          "no_declared_present_subject"
+        ],
+        "beats": [
+          "succeed"
+        ],
+        "candidacyEvidence": [],
+        "missingSlots": [],
+        "pageNumber": 7,
+        "position": "closing",
+        "provenance": [
+          {
+            "beat": "succeed",
+            "contexts": [],
+            "kind": "beat_line",
+            "sourceID": "sc_any_03",
+            "sourceTextDigest": "cc19a6f4a599df03",
+            "templateID": "corpus_5-6_succeed"
+          }
+        ],
+        "role": "resolution",
+        "text": "Deniz doğru olanı yapmıştı ve şimdi bunu görebiliyordu. Uzun uzun baktı. İçi içine sığmıyordu. Anlatacak çok şeyi vardı.",
+        "unrecognisedSuffixes": [],
+        "variantIDs": [
+          "sc_any_03"
+        ]
+      },
+      {
+        "absenceReasons": [
+          "mapper_produced_no_pin; policy_rejection_reason_not_exposed",
+          "unannotated_source",
+          "no_declared_visual_mentions",
+          "no_declared_present_subject"
+        ],
+        "beats": [
+          "warm_close",
+          "carry_forward"
+        ],
+        "candidacyEvidence": [],
+        "missingSlots": [],
+        "pageNumber": 8,
+        "position": "closing",
+        "provenance": [
+          {
+            "beat": "warm_close",
+            "contexts": [],
+            "kind": "beat_line",
+            "sourceID": "wc_p_succeed_04",
+            "sourceTextDigest": "ee8bacbe487d9cbb",
+            "templateID": "corpus_5-6_warm_close"
+          },
+          {
+            "beat": "carry_forward",
+            "contexts": [],
+            "kind": "beat_line",
+            "sourceID": "cf_p_02",
+            "sourceTextDigest": "d242fa4146545122",
+            "templateID": "corpus_5-6_carry_forward"
+          }
+        ],
+        "role": "emotional_ending",
+        "text": "Akşam oluyordu. Deniz derin bir nefes aldı. Zor kısmı çoktan geride kalmıştı. Artık Deniz her yere iki kez bakıyordu. Bir şey kaçırmasın diye.",
+        "unrecognisedSuffixes": [],
+        "variantIDs": [
+          "wc_p_succeed_04",
+          "cf_p_02"
+        ]
+      }
+    ],
+    "seed": "whole-book-art-v1-016",
+    "settingID": "setting_festival_meadow_001"
+  },
+  "authoredSourceRecords": [
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_ask_for_help.json",
+      "jsonPointer": "/variants/3",
+      "line": 51,
+      "fileSHA256": "1d1bc386b2e7b6f19673dfd2e4be17c9c5d9014423f510634a1da130f25af5c8",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "ask_for_help",
+      "series": false,
+      "record": {
+        "id": "ah_s_04",
+        "text": "Sormaya karar vermek, sormaktan daha zordu. {{child.name}} önce karar verdi, sonra sordu. İkisi de ayrı ayrı cesaret istedi.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "move": "deciding_is_harder_than_asking",
+        "natureRequire": [
+          "animal",
+          "fantastic"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_approach.json",
+      "jsonPointer": "/variants/0",
+      "line": 13,
+      "fileSHA256": "607e87fddee1448bff7cadf9a52e47fd7833cc236256ec1968da1e43ae7d73b5",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "approach",
+      "series": false,
+      "record": {
+        "id": "ap_s_01",
+        "text": "{{child.name}} yavaşça yaklaştı. Her adımda gözünde biraz daha büyüdü. Yakından bakınca sandığından bambaşkaydı. Durup uzun uzun baktı, gözlerini ayıramadı.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "move": "grows_with_every_step"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_approach.json",
+      "jsonPointer": "/variants/1",
+      "line": 22,
+      "fileSHA256": "607e87fddee1448bff7cadf9a52e47fd7833cc236256ec1968da1e43ae7d73b5",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "approach",
+      "series": false,
+      "record": {
+        "id": "ap_s_02",
+        "text": "Birkaç adım attı {{child.name}}, sonra durdu. Sonra birkaç adım daha. Artık iyice yakındı ve geri dönmeyi hiç düşünmüyordu.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "move": "stop_start_stop"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_approach.json",
+      "jsonPointer": "/variants/2",
+      "line": 31,
+      "fileSHA256": "607e87fddee1448bff7cadf9a52e47fd7833cc236256ec1968da1e43ae7d73b5",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "approach",
+      "series": false,
+      "record": {
+        "id": "ap_s_03",
+        "visual": [
+          {
+            "subject": "setting",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{child.name}} soluğunu tuttu ve ilerledi. {{setting.name}} bir anda sessizleşti sanki. Yaklaştıkça kalbi daha hızlı atıyordu, kendisi de duyuyordu.",
+        "requiredSlots": [
+          "child.name",
+          "setting.name"
+        ],
+        "lengthClass": "solo",
+        "move": "everything_goes_quiet"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_approach.json",
+      "jsonPointer": "/variants/3",
+      "line": 43,
+      "fileSHA256": "607e87fddee1448bff7cadf9a52e47fd7833cc236256ec1968da1e43ae7d73b5",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "approach",
+      "series": false,
+      "record": {
+        "id": "ap_s_04",
+        "text": "Yaklaşmak kolay değildi ama {{child.name}} yine de yaklaştı. Durdu, baktı, bir adım daha attı. Şimdi elini uzatsa rahatça dokunabilirdi ona.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "move": "close_enough_to_touch"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_let_go.json",
+      "jsonPointer": "/variants/3",
+      "line": 55,
+      "fileSHA256": "40b17f151354db62e32d1e3706c02f62a30e9237b7601fa2a300b62df32dfebc",
+      "ageBand": "5-6",
+      "arc": "bedtime",
+      "beat": "let_go",
+      "series": false,
+      "record": {
+        "id": "bt_lg_blanket_corner",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{child.name}} ona yorganının küçük bir köşesini verdi, sonra elini usulca çekti. \"Şimdi sıra sende,\" dedi gülümseyerek. {{companion.name}} kendi yerinde rahatça kıvrıldı.",
+        "requiredSlots": [
+          "child.name",
+          "companion.name"
+        ],
+        "lengthClass": "solo",
+        "move": "bt_lg_blanket_corner",
+        "settingTraits": [
+          "isRestingPlace"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_meet_companion.json",
+      "jsonPointer": "/variants/1",
+      "line": 32,
+      "fileSHA256": "7131e74698c5cfc9d78b2e6e9bf79f77016380b4b3702afff280378e2d23eaf1",
+      "ageBand": "5-6",
+      "arc": "bedtime",
+      "beat": "meet_companion",
+      "series": false,
+      "record": {
+        "id": "bt_mc_02",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "greeting"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "Pencerenin önünde küçük bir {{companion.type}} vardı: {{companion.name}}. Esniyor, esniyor ama gözlerini bir türlü kapatamıyordu. \"Uyuyamıyorum,\" dedi yorgun bir sesle.",
+        "requiredSlots": [
+          "companion.type",
+          "companion.name"
+        ],
+        "lengthClass": "solo",
+        "move": "bt_mc_yawning_awake",
+        "settingTraits": [
+          "isRestingPlace"
+        ],
+        "castRoles": [
+          "needsCare"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_restore.json",
+      "jsonPointer": "/variants/6",
+      "line": 105,
+      "fileSHA256": "cce5f0581411493f068145c6fb6e4eb4e7e8a289e7b65bf349612129eb7eead3",
+      "ageBand": "5-6",
+      "arc": "bedtime",
+      "beat": "restore",
+      "series": false,
+      "record": {
+        "id": "bt_rs_p_curls_up",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{companion.name}} kıvrılıp tatlı bir uykuya daldı, yüzü rahat ve sakindi.",
+        "requiredSlots": [
+          "companion.name"
+        ],
+        "lengthClass": "paired",
+        "move": "bt_rs_p_curls_up",
+        "settingTraits": [
+          "isRestingPlace"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_restore.json",
+      "jsonPointer": "/variants/5",
+      "line": 91,
+      "fileSHA256": "cce5f0581411493f068145c6fb6e4eb4e7e8a289e7b65bf349612129eb7eead3",
+      "ageBand": "5-6",
+      "arc": "bedtime",
+      "beat": "restore",
+      "series": false,
+      "record": {
+        "id": "bt_rs_p_one_more_yawn",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "auto",
+        "text": "Bir esneme daha, bir kıpırtı daha; sonra {{companion.name}} mışıl mışıl uyudu.",
+        "requiredSlots": [
+          "companion.name"
+        ],
+        "lengthClass": "paired",
+        "move": "bt_rs_p_one_more_yawn",
+        "settingTraits": [
+          "isRestingPlace"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_warm_close.json",
+      "jsonPointer": "/variants/2",
+      "line": 42,
+      "fileSHA256": "ccdd781dd058b96f01935a16d9f6b8fd38b7c573fd1d762c87883aaeae4a573b",
+      "ageBand": "5-6",
+      "arc": "bedtime",
+      "beat": "warm_close",
+      "series": false,
+      "record": {
+        "id": "bt_wc_03",
+        "visual": [
+          {
+            "subject": "setting",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{child.name}} yastığına başını koydu. Bir yanda {{setting.name}}'nın tanıdık sessizliği, öbür yanda uyuyan küçük dostu vardı. Gözleri ağırlaştı ve tatlı bir uykuya daldı.",
+        "requiredSlots": [
+          "child.name",
+          "setting.name"
+        ],
+        "lengthClass": "solo",
+        "move": "bt_wc_familiar_quiet",
+        "settingTraits": [
+          "isRestingPlace"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_cooperative_effort.json",
+      "jsonPointer": "/variants/6",
+      "line": 86,
+      "fileSHA256": "3397ccf8aad4d978e78cb8c9cd17ade5e67c485f8be87931dec0053ffe74b3c6",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "cooperative_effort",
+      "series": false,
+      "record": {
+        "id": "ce_s_07",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "together"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "\"Bir fikrim var,\" dedi {{child.name}} ve anlattı. {{companion.name}} dinledi, sonra kendi bildiği bir şeyi ekledi. İki fikir birleşince iş tamam oldu.",
+        "requiredSlots": [
+          "child.name",
+          "companion.name"
+        ],
+        "lengthClass": "solo",
+        "move": "two_ideas_combined"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_carry_forward.json",
+      "jsonPointer": "/variants/10",
+      "line": 44,
+      "fileSHA256": "39e75391df558b6becff2365eadec08cfd2e440c03d5e4bda7a6322b729c19e3",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "carry_forward",
+      "series": false,
+      "record": {
+        "id": "cf_p_11",
+        "text": "{{child.name}} o günden sonra biraz daha yavaş yürüdü. Acele etmeyince daha çok şey görünüyordu.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "paired",
+        "move": "walks_slower_sees_more"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_commit.json",
+      "jsonPointer": "/variants/7",
+      "line": 79,
+      "fileSHA256": "ebadd762bb3b67295733aa49211829185a4b88070b6b733c0ef04754a01f4bb7",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "commit",
+      "series": false,
+      "record": {
+        "id": "cm_p_08",
+        "text": "{{child.name}} bir kez daha baktı, sonra kararını verdi. Bugün öğrenecekti.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "paired",
+        "move": "today_is_the_day"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_commit.json",
+      "jsonPointer": "/variants/8",
+      "line": 88,
+      "fileSHA256": "ebadd762bb3b67295733aa49211829185a4b88070b6b733c0ef04754a01f4bb7",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "commit",
+      "series": false,
+      "record": {
+        "id": "cm_p_09",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{companion.name}} ne düşünüyor bilmiyordu. Ama {{child.name}} kararını çoktan vermişti bile.",
+        "requiredSlots": [
+          "companion.name",
+          "child.name"
+        ],
+        "lengthClass": "paired",
+        "move": "decides_regardless"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_companion_offers.json",
+      "jsonPointer": "/variants/0",
+      "line": 9,
+      "fileSHA256": "1aa67b5f92bf090415eff537a43978ca2963c011cb135cc866dc2b8582d45960",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "companion_offers",
+      "series": false,
+      "record": {
+        "id": "co_p_01",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "auto",
+        "text": "\"Ben burayı bilirim,\" dedi {{companion.name}}. \"Her gün buradan geçerim.\"",
+        "requiredSlots": [
+          "companion.name"
+        ],
+        "lengthClass": "paired",
+        "move": "i_know_this_place"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_companion_offers.json",
+      "jsonPointer": "/variants/4",
+      "line": 17,
+      "fileSHA256": "1aa67b5f92bf090415eff537a43978ca2963c011cb135cc866dc2b8582d45960",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "companion_offers",
+      "series": false,
+      "record": {
+        "id": "co_p_05",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{companion.name}} yardım etmeyi teklif etti. \"Ben yolları bilirim,\" dedi sadece.",
+        "requiredSlots": [
+          "companion.name"
+        ],
+        "lengthClass": "paired",
+        "move": "offers_to_help"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_companion_offers.json",
+      "jsonPointer": "/variants/6",
+      "line": 21,
+      "fileSHA256": "1aa67b5f92bf090415eff537a43978ca2963c011cb135cc866dc2b8582d45960",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "companion_offers",
+      "series": false,
+      "record": {
+        "id": "co_p_07",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{companion.name}} bir yeri gösterdi. \"Şuraya bak,\" dedi. Başka bir şey demedi.",
+        "requiredSlots": [
+          "companion.name"
+        ],
+        "lengthClass": "paired",
+        "move": "points_without_explaining"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_companion_offers.json",
+      "jsonPointer": "/variants/11",
+      "line": 59,
+      "fileSHA256": "1aa67b5f92bf090415eff537a43978ca2963c011cb135cc866dc2b8582d45960",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "companion_offers",
+      "series": false,
+      "record": {
+        "id": "co_p_12",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "auto",
+        "text": "\"Bu ilk değil,\" dedi {{companion.name}}. \"Geçen hafta da olmuştu.\"",
+        "requiredSlots": [
+          "companion.name"
+        ],
+        "lengthClass": "paired",
+        "move": "happened_before_last_week"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_examine.json",
+      "jsonPointer": "/variants/1",
+      "line": 27,
+      "fileSHA256": "89c24fb7749e595036698f177443f7346d538f0ab185b90ec4ecff53dabe6007",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "examine",
+      "series": false,
+      "record": {
+        "id": "ex_s_light_02",
+        "visual": [
+          {
+            "subject": "discovery",
+            "presence": "present",
+            "states": [
+              "examined"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{child.name}} çömelip {{discovery.name}} inceledi. Dokunmadı, sadece uzun uzun baktı. Bir tarafı diğerinden çok daha parlaktı. Neden böyle olduğunu çıkaramadı.",
+        "words": [
+          "w56_comelmek"
+        ],
+        "requiredSlots": [
+          "child.name",
+          "discovery.name"
+        ],
+        "lengthClass": "solo",
+        "discoveryTraits": [
+          "isVisible"
+        ],
+        "settingTraits": [],
+        "move": "one_side_brighter"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_first_attempt.json",
+      "jsonPointer": "/variants/1",
+      "line": 22,
+      "fileSHA256": "7f6b20e999b760975511f9e5b850eea341eb54c4ce4c0c8c09af39d0216801bc",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "first_attempt",
+      "series": false,
+      "record": {
+        "id": "fa_s_02",
+        "text": "{{child.name}} tam düşündüğü gibi yaptı. Yarısına kadar işe yaradı. Sonra durdu, daha ileri gitmedi. Ne olduğunu anlamak için eğilip baktı.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "move": "works_halfway"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_first_attempt.json",
+      "jsonPointer": "/variants/9",
+      "line": 97,
+      "fileSHA256": "7f6b20e999b760975511f9e5b850eea341eb54c4ce4c0c8c09af39d0216801bc",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "first_attempt",
+      "series": false,
+      "record": {
+        "id": "fa_s_10",
+        "text": "{{child.name}} elindekiyle idare etmeye çalıştı. Bir süre işe yaradı. Sonra o da bitti ve yeniden düşünmek zorunda kaldı.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "move": "makes_do_until_it_runs_out"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_find_own_courage.json",
+      "jsonPointer": "/variants/0",
+      "line": 12,
+      "fileSHA256": "5b81de87d197c4cea238dc08ac7d7fb763d3e48587b435beeaf860c1fef05b16",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "find_own_courage",
+      "series": false,
+      "record": {
+        "id": "fc_s_01",
+        "text": "O ilk adım tutmuştu, {{child.name}} bunu gördü. Tutuyorsa ikincisi de tutardı. Doğruldu ve yürümeye başladı, bu kez hiç durmadan.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "move": "if_one_held_so_will_two"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_find_own_courage.json",
+      "jsonPointer": "/variants/2",
+      "line": 30,
+      "fileSHA256": "5b81de87d197c4cea238dc08ac7d7fb763d3e48587b435beeaf860c1fef05b16",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "find_own_courage",
+      "series": false,
+      "record": {
+        "id": "fc_s_03",
+        "text": "Korkusu gitmedi. Ama {{child.name}} korkusuyla birlikte yürümeyi öğrendi, işte o kadar. Adım adım ilerledi ve bir kez bile geri bakmadı.",
+        "topics": [
+          "fear"
+        ],
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "move": "walked_with_the_fear"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_hesitate.json",
+      "jsonPointer": "/variants/1",
+      "line": 22,
+      "fileSHA256": "8830d21ef139fa77021431c33ea358888129bf4eacc046119f9df7fc525d2690",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "hesitate",
+      "series": false,
+      "record": {
+        "id": "hz_s_02",
+        "text": "Bir adım attı {{child.name}}, sonra geri çekildi. Sonra bir adım daha, yine geri. Vücudu ona bir şey söylüyordu.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "move": "step_forward_step_back"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_hesitate.json",
+      "jsonPointer": "/variants/2",
+      "line": 31,
+      "fileSHA256": "8830d21ef139fa77021431c33ea358888129bf4eacc046119f9df7fc525d2690",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "hesitate",
+      "series": false,
+      "record": {
+        "id": "hz_s_03",
+        "text": "{{child.name}} elini uzattı ve geri çekti. İki kez daha aynısını yaptı. Üçüncüde elini cebine soktu ve orada tuttu.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "move": "hand_out_hand_back"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "jsonPointer": "/variants/13",
+      "line": 309,
+      "fileSHA256": "b6258321b1273b02a47ad42f29325a8dc04c0474e006052aa49772c19c517377",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "meet_companion",
+      "series": false,
+      "record": {
+        "id": "mc_calm_01",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "greeting"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{companion.name}} hiç acele etmiyordu. {{child.name}}'in yanına geldi, yere oturdu ve bekledi. Hiçbir şey söylemedi. Böylece ikisi birlikte beklediler.",
+        "requiredSlots": [
+          "companion.name",
+          "child.name"
+        ],
+        "castRoles": [
+          "reassuring"
+        ],
+        "settingTraits": [],
+        "capabilityForbid": [],
+        "move": "sits_down_and_waits",
+        "lengthClass": "paired",
+        "natureRequire": [
+          "animal",
+          "fantastic"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "jsonPointer": "/variants/14",
+      "line": 330,
+      "fileSHA256": "b6258321b1273b02a47ad42f29325a8dc04c0474e006052aa49772c19c517377",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "meet_companion",
+      "series": false,
+      "record": {
+        "id": "mc_calm_02",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "greeting"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "Yanına biri geldi. {{companion.name}} adında sakin bir {{companion.type}}. \"Acelemiz yok,\" dedi sadece. Sesi çok sakindi. Sonra {{child.name}}'in yanına ilişti.",
+        "requiredSlots": [
+          "companion.name",
+          "companion.type",
+          "child.name"
+        ],
+        "castRoles": [
+          "reassuring"
+        ],
+        "settingTraits": [],
+        "capabilityForbid": [],
+        "move": "no_hurry",
+        "lengthClass": "solo",
+        "natureRequire": [
+          "animal",
+          "fantastic"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "jsonPointer": "/variants/15",
+      "line": 352,
+      "fileSHA256": "b6258321b1273b02a47ad42f29325a8dc04c0474e006052aa49772c19c517377",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "meet_companion",
+      "series": false,
+      "record": {
+        "id": "mc_calm_03",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "greeting"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{companion.name}} buraya çok gelirdi. {{child.name}}'i görünce hiç şaşırmadı. Sadece yanına geçti ve onunla birlikte ileriye baktı. Hiç konuşmadılar.",
+        "requiredSlots": [
+          "companion.name",
+          "child.name"
+        ],
+        "castRoles": [
+          "reassuring"
+        ],
+        "settingTraits": [],
+        "capabilityForbid": [],
+        "move": "looks_the_same_way",
+        "lengthClass": "paired",
+        "natureRequire": [
+          "animal",
+          "fantastic"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "jsonPointer": "/variants/31",
+      "line": 698,
+      "fileSHA256": "b6258321b1273b02a47ad42f29325a8dc04c0474e006052aa49772c19c517377",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "meet_companion",
+      "series": false,
+      "record": {
+        "id": "mc_calm_05",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "greeting"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "Bir {{companion.type}} çıkageldi, adı {{companion.name}}. Hiç telaşlı değildi. \"Ben buradayım,\" dedi. Sonra {{child.name}}'in yanına geçti ve sakince oturdu. Acelesi olmadığı her halinden belliydi.",
+        "requiredSlots": [
+          "companion.type",
+          "companion.name",
+          "child.name"
+        ],
+        "castRoles": [
+          "reassuring"
+        ],
+        "settingTraits": [],
+        "capabilityForbid": [],
+        "move": "says_i_am_here",
+        "lengthClass": "solo",
+        "natureRequire": [
+          "animal",
+          "fantastic"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "jsonPointer": "/variants/7",
+      "line": 175,
+      "fileSHA256": "b6258321b1273b02a47ad42f29325a8dc04c0474e006052aa49772c19c517377",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "meet_companion",
+      "series": false,
+      "record": {
+        "id": "mc_care_03",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "greeting"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "Bir şey titriyordu, çok hafifçe. {{child.name}} yavaşça yanına gitti. {{companion.name}} adında küçük bir {{companion.type}} kıpırdamadan duruyordu. Sonra başını kaldırdı.",
+        "requiredSlots": [
+          "child.name",
+          "companion.name",
+          "companion.type"
+        ],
+        "castRoles": [
+          "needsCare"
+        ],
+        "settingTraits": [],
+        "capabilityForbid": [],
+        "move": "trembling_stillness",
+        "lengthClass": "solo",
+        "natureRequire": [
+          "animal",
+          "fantastic"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "jsonPointer": "/variants/1",
+      "line": 36,
+      "fileSHA256": "b6258321b1273b02a47ad42f29325a8dc04c0474e006052aa49772c19c517377",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "meet_companion",
+      "series": false,
+      "record": {
+        "id": "mc_guide_02",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "greeting"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{companion.name}} her sabah bu yoldan geçerdi. O gün {{child.name}}'i gördü ve durdu. Meraklı gözlerle ona baktı, sonra ileriye baktı.",
+        "requiredSlots": [
+          "companion.name",
+          "child.name"
+        ],
+        "castRoles": [
+          "guide"
+        ],
+        "settingTraits": [],
+        "capabilityForbid": [],
+        "move": "routine_of_its_own",
+        "lengthClass": "solo",
+        "natureRequire": [
+          "animal",
+          "fantastic"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "jsonPointer": "/variants/2",
+      "line": 57,
+      "fileSHA256": "b6258321b1273b02a47ad42f29325a8dc04c0474e006052aa49772c19c517377",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "meet_companion",
+      "series": false,
+      "record": {
+        "id": "mc_guide_03",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": [
+              "greeting"
+            ]
+          }
+        ],
+        "visualReview": "auto",
+        "text": "Yukarıdan bir kanat sesi geldi. {{companion.name}} adlı {{companion.type}} süzülerek indi. Burayı avucunun içi gibi bilirdi. \"Ben sana yardım edebilirim,\" dedi.",
+        "requiredSlots": [
+          "companion.name",
+          "companion.type"
+        ],
+        "castRoles": [
+          "guide"
+        ],
+        "settingTraits": [],
+        "capabilityRequire": [
+          "canFly"
+        ],
+        "capabilityForbid": [],
+        "move": "arrives_from_above",
+        "lengthClass": "solo",
+        "natureRequire": [
+          "animal",
+          "fantastic"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_notice_anomaly.json",
+      "jsonPointer": "/variants/16",
+      "line": 292,
+      "fileSHA256": "84c8f9dd6f35124e1861ec7ecc38f5620bd4b17eb228e70a10a5363bd2dba3c3",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "notice_anomaly",
+      "series": false,
+      "record": {
+        "id": "na_any_01",
+        "visual": [
+          {
+            "subject": "discovery",
+            "presence": "present",
+            "states": [
+              "found"
+            ]
+          }
+        ],
+        "visualReview": "reviewed",
+        "text": "{{child.name}} o gün bir şeyin değiştiğini anladı. {{discovery.name}} oradaydı ve daha önce orada değildi. Durdu. Sonra biraz daha durdu.",
+        "requiredSlots": [
+          "child.name",
+          "discovery.name"
+        ],
+        "lengthClass": "solo",
+        "move": "was_not_there_before"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_notice_anomaly.json",
+      "jsonPointer": "/variants/18",
+      "line": 316,
+      "fileSHA256": "84c8f9dd6f35124e1861ec7ecc38f5620bd4b17eb228e70a10a5363bd2dba3c3",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "notice_anomaly",
+      "series": false,
+      "record": {
+        "id": "na_any_03",
+        "visual": [
+          {
+            "subject": "discovery",
+            "presence": "present",
+            "states": [
+              "found"
+            ]
+          }
+        ],
+        "visualReview": "reviewed",
+        "text": "{{child.name}} tam geçip gidecekti ki durdu. {{discovery.name}} dikkatini çekmişti. Geri döndü ve iyice yaklaştı. Böyle bir şeyle ilk kez karşılaşıyordu.",
+        "requiredSlots": [
+          "child.name",
+          "discovery.name"
+        ],
+        "lengthClass": "solo",
+        "move": "almost_walked_past_it"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_notice_anomaly.json",
+      "jsonPointer": "/variants/8",
+      "line": 142,
+      "fileSHA256": "84c8f9dd6f35124e1861ec7ecc38f5620bd4b17eb228e70a10a5363bd2dba3c3",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "notice_anomaly",
+      "series": false,
+      "record": {
+        "id": "na_light_01",
+        "visual": [
+          {
+            "subject": "setting",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "reviewed",
+        "text": "Gözünün ucuyla bir parıltı yakaladı {{child.name}}. Döndüğünde kayboldu. Bir adım attı ve parıltı geri geldi. {{setting.name}}'da bir şey ışıldıyordu.",
+        "words": [
+          "w56_parilti",
+          "w56_isildamak"
+        ],
+        "requiredSlots": [
+          "child.name",
+          "setting.name"
+        ],
+        "settingTraits": [],
+        "discoveryTraits": [
+          "emitsSignal",
+          "isVisible"
+        ],
+        "move": "glimpse_that_hides",
+        "lengthClass": "solo"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_notice_anomaly.json",
+      "jsonPointer": "/variants/2",
+      "line": 43,
+      "fileSHA256": "84c8f9dd6f35124e1861ec7ecc38f5620bd4b17eb228e70a10a5363bd2dba3c3",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "notice_anomaly",
+      "series": false,
+      "record": {
+        "id": "na_neutral_03",
+        "visual": [
+          {
+            "subject": "discovery",
+            "presence": "present",
+            "states": [
+              "found"
+            ]
+          },
+          {
+            "subject": "setting",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "reviewed",
+        "text": "{{child.name}} {{setting.name}}'da yürürken ayakları kendiliğinden durdu. Böyle bir şeyi daha önce hiç görmemişti. {{discovery.name}} tam oradaydı, apaçık.",
+        "words": [
+          "w56_apacik"
+        ],
+        "requiredSlots": [
+          "child.name",
+          "setting.name",
+          "discovery.name"
+        ],
+        "settingTraits": [],
+        "discoveryTraits": [
+          "isVisible"
+        ],
+        "move": "body_notices_first",
+        "lengthClass": "solo"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_obstacle_raises.json",
+      "jsonPointer": "/variants/15",
+      "line": 204,
+      "fileSHA256": "0de8132da8b95a1e293edfd1ed753aaa3794b7757720213737587e9b380c5162",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "obstacle_raises",
+      "series": false,
+      "record": {
+        "id": "ob_calm_01",
+        "text": "Ama yol düşündüğünden uzundu. Tek başına gitmek {{child.name}} için biraz zor olacaktı.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "move": "h1_ob_calm_01",
+        "lengthClass": "paired",
+        "conflictKinds": [
+          "internal"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_prepare.json",
+      "jsonPointer": "/variants/4",
+      "line": 49,
+      "fileSHA256": "4014ec9abe094f4526187f6b8b7c2eee7f1d10084578bddcb1e63930e724d582",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "prepare",
+      "series": false,
+      "record": {
+        "id": "pr_s_05",
+        "text": "{{child.name}} bir süre sessizce bekledi ve hazırlandı. Aceleye hiç getirmedi. Hazır olmadan başlamanın bir anlamı yoktu, bunu biliyordu.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "move": "no_point_starting_unready"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_receive_appeal.json",
+      "jsonPointer": "/variants/14",
+      "line": 172,
+      "fileSHA256": "8716e6e1e717c95e9a6adb23b6b92586d5cc3a919647784c3a7cf4f8d224c3a2",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "receive_appeal",
+      "series": false,
+      "record": {
+        "id": "s56_ra_03",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "auto",
+        "text": "\"Benimle oynar mısın?\" diye sordu {{companion.name}}. Çayırda tek başına koşup durmaktan sıkılmıştı. Oyun, birlikte oynanınca daha güzeldi; bunu ikisi de biliyordu.",
+        "requiredSlots": [
+          "companion.name"
+        ],
+        "move": "spor_s56_ra_03",
+        "lengthClass": "solo"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_succeed.json",
+      "jsonPointer": "/variants/13",
+      "line": 185,
+      "fileSHA256": "131de5768ddd53de86928cc4b70c30ee5d2c65993d9c758a4180c99d26b4ca44",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "succeed",
+      "series": false,
+      "record": {
+        "id": "sc_any_02",
+        "text": "Sonunda oldu. {{child.name}} bir adım geri çekilip baktı. Kendi başardığı için ayrı bir güzeldi bu. Uzun uzun seyretti.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "afterBeat": [
+          "insight",
+          "patient_wait",
+          "ask_for_help",
+          "find_own_courage",
+          "retrace",
+          "reveal_truth",
+          "exchange_views"
+        ],
+        "move": "stepping_back_to_look"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_succeed.json",
+      "jsonPointer": "/variants/16",
+      "line": 239,
+      "fileSHA256": "131de5768ddd53de86928cc4b70c30ee5d2c65993d9c758a4180c99d26b4ca44",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "succeed",
+      "series": false,
+      "record": {
+        "id": "sc_any_05",
+        "text": "{{child.name}} epeyce yorulmuştu ama artık önemi yoktu. Karşısındaki şey artık başkaydı. Bunu değiştiren de kendisiydi, başka kimse değil.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "afterBeat": [
+          "insight",
+          "patient_wait",
+          "ask_for_help",
+          "find_own_courage",
+          "retrace",
+          "reveal_truth",
+          "exchange_views"
+        ],
+        "move": "tired_but_changed_it"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_succeed.json",
+      "jsonPointer": "/variants/6",
+      "line": 92,
+      "fileSHA256": "131de5768ddd53de86928cc4b70c30ee5d2c65993d9c758a4180c99d26b4ca44",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "succeed",
+      "series": false,
+      "record": {
+        "id": "sc_courage_01",
+        "text": "{{child.name}} gitti. Kalbi çok hızlı atıyordu ama durmadı. Karşı tarafa vardığında hâlâ inanamıyordu. Bir süre öylece durdu, sonra kendi kendine güldü.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "afterBeat": [
+          "find_own_courage"
+        ],
+        "move": "heart_racing_but_went"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_succeed.json",
+      "jsonPointer": "/variants/27",
+      "line": 404,
+      "fileSHA256": "131de5768ddd53de86928cc4b70c30ee5d2c65993d9c758a4180c99d26b4ca44",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "succeed",
+      "series": false,
+      "record": {
+        "id": "sc_together_tp_01",
+        "text": "Son adımı birlikte attılar ve kendilerini öbür tarafta buldular. {{child.name}} dönüp geçtikleri yere baktı. Birlikte olunca yol hiç de uzun gelmemişti.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "move": "tp_sc_together_tp_01",
+        "lengthClass": "solo",
+        "afterBeat": [
+          "cooperative_effort"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_first_attempt.json",
+      "jsonPointer": "/variants/0",
+      "line": 13,
+      "fileSHA256": "5df3d49728a009f710e3fa2187e30244245083a9d2de9fb69420f4dbd9a4f9d0",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "first_attempt",
+      "series": true,
+      "record": {
+        "id": "sfa_01",
+        "visual": [
+          {
+            "subject": "companion",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "auto",
+        "text": "{{child.name}} onu iki eliyle taşıdı. Her adımı dikkatle attı, hiç sallamadı. {{companion.name}} önden gidip yolu gösterdi. Arada bir dönüp arkasına baktı.",
+        "requiredSlots": [
+          "child.name",
+          "companion.name"
+        ],
+        "lengthClass": "solo",
+        "move": "sfa_01"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_self_recognize.json",
+      "jsonPointer": "/variants/0",
+      "line": 9,
+      "fileSHA256": "fd6fb9ade43af1b7c5d4d610eb3448fc4e423d126767103e77a2bf8fb2146e0c",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "self_recognize",
+      "series": false,
+      "record": {
+        "id": "sr_p_01",
+        "text": "{{child.name}} kendi kendine düşündü. Demek yapabiliyormuş. Bunu daha önce hiç bilmiyordu.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "paired",
+        "move": "so_i_can_do_it"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_self_recognize.json",
+      "jsonPointer": "/variants/6",
+      "line": 21,
+      "fileSHA256": "fd6fb9ade43af1b7c5d4d610eb3448fc4e423d126767103e77a2bf8fb2146e0c",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "self_recognize",
+      "series": false,
+      "record": {
+        "id": "sr_p_07",
+        "text": "{{child.name}} kendi kendine gülümsedi. Başkasına değil, kendine gülümsüyordu. Hak etmişti.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "paired",
+        "move": "smiled_at_self"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_self_recognize.json",
+      "jsonPointer": "/variants/10",
+      "line": 44,
+      "fileSHA256": "fd6fb9ade43af1b7c5d4d610eb3448fc4e423d126767103e77a2bf8fb2146e0c",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "self_recognize",
+      "series": false,
+      "record": {
+        "id": "sr_p_11",
+        "text": "{{child.name}} kendine biraz şaşırdı. İçinde daha önce bilmediği bir yer varmış meğer.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "paired",
+        "move": "found_an_unknown_room_inside"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_small_step.json",
+      "jsonPointer": "/variants/2",
+      "line": 30,
+      "fileSHA256": "95263813d34055b88c47837e8dfcc20c5ad40436026f6d40c51cb6afe34730c3",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "small_step",
+      "series": false,
+      "record": {
+        "id": "ss_s_03",
+        "text": "\"Bir adım,\" dedi {{child.name}} kendi kendine. \"Sadece bir adım.\" Attı o adımı ve dünya yerinde durdu, hiçbir yere gitmedi.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "move": "the_world_stayed_put"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_small_step.json",
+      "jsonPointer": "/variants/8",
+      "line": 86,
+      "fileSHA256": "95263813d34055b88c47837e8dfcc20c5ad40436026f6d40c51cb6afe34730c3",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "small_step",
+      "series": false,
+      "record": {
+        "id": "ss_s_09",
+        "text": "{{child.name}} kendine üç adım dedi, fazlası değil. Birinciyi attı, ikinciyi, üçüncüyü. Sonra durdu. Hiçbir şey olmamıştı, her şey yerli yerindeydi.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "solo",
+        "move": "counted_three_paces"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_notice_anomaly.json",
+      "jsonPointer": "/variants/37",
+      "line": 635,
+      "fileSHA256": "84c8f9dd6f35124e1861ec7ecc38f5620bd4b17eb228e70a10a5363bd2dba3c3",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "notice_anomaly",
+      "series": false,
+      "record": {
+        "id": "w_ct_na56_03",
+        "visual": [
+          {
+            "subject": "discovery",
+            "presence": "present",
+            "states": [
+              "found"
+            ]
+          },
+          {
+            "subject": "setting",
+            "presence": "present",
+            "states": []
+          }
+        ],
+        "visualReview": "reviewed",
+        "text": "{{child.name}} elinde bir haritayla şehri geziyordu. Haritada her sokak vardı, her köprü, her meydan. Ama {{setting.name}}'da haritada olmayan bir şey vardı. {{discovery.name}} tam karşısında duruyordu.",
+        "requiredSlots": [
+          "child.name",
+          "setting.name",
+          "discovery.name"
+        ],
+        "lengthClass": "solo",
+        "move": "world_not_on_the_city_map",
+        "settingTags": [
+          "city"
+        ],
+        "discoveryTraits": [
+          "isVisible"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_warm_close.json",
+      "jsonPointer": "/variants/48",
+      "line": 696,
+      "fileSHA256": "c0566b37b395bcbcbd3371d3e05af54a94ebb0a9c0b70b85ec092bae82cf2ec9",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "warm_close",
+      "series": false,
+      "record": {
+        "id": "w_ct_wc56_01",
+        "text": "Akşam olunca şehrin bütün ışıkları yandı. {{child.name}} bu şehri artık biraz tanıyordu.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "paired",
+        "move": "world_city_lights_known",
+        "settingTags": [
+          "city"
+        ]
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_warm_close.json",
+      "jsonPointer": "/variants/0",
+      "line": 13,
+      "fileSHA256": "c0566b37b395bcbcbd3371d3e05af54a94ebb0a9c0b70b85ec092bae82cf2ec9",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "warm_close",
+      "series": false,
+      "record": {
+        "id": "wc_p_succeed_01",
+        "text": "Eve dönerken hava kararmaya başlamıştı. {{child.name}} yorgundu ama bu iyi bir yorgunluktu.",
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "paired",
+        "afterClosing": [
+          "succeed"
+        ],
+        "move": "good_tiredness"
+      }
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_warm_close.json",
+      "jsonPointer": "/variants/4",
+      "line": 68,
+      "fileSHA256": "c0566b37b395bcbcbd3371d3e05af54a94ebb0a9c0b70b85ec092bae82cf2ec9",
+      "ageBand": "5-6",
+      "arc": "standard",
+      "beat": "warm_close",
+      "series": false,
+      "record": {
+        "id": "wc_p_succeed_05",
+        "text": "{{child.name}} eve doğru yürürken içi kıpır kıpırdı. Kimseye anlatmasa da olurdu aslında.",
+        "words": [
+          "w56_kipirkipir"
+        ],
+        "requiredSlots": [
+          "child.name"
+        ],
+        "lengthClass": "paired",
+        "afterClosing": [
+          "succeed"
+        ],
+        "move": "private_gladness"
+      }
+    }
+  ],
+  "sourceDigestValidation": {
+    "checkedParts": 50,
+    "missingSourceIDs": [],
+    "mismatchedSourceIDs": []
+  },
+  "pilotCells": [
+    {
+      "name": "Tarçın",
+      "canonicalCompanionID": "companion_fox_pilot_001",
+      "mode": "bedtime",
+      "designLabels": [
+        "U1",
+        "U3"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    },
+    {
+      "name": "Tarçın",
+      "canonicalCompanionID": "companion_fox_pilot_001",
+      "mode": "learning",
+      "designLabels": [
+        "L1",
+        "L3"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    },
+    {
+      "name": "Tarçın",
+      "canonicalCompanionID": "companion_fox_pilot_001",
+      "mode": "adventure",
+      "designLabels": [
+        "A1",
+        "A2"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    },
+    {
+      "name": "Kestane",
+      "canonicalCompanionID": "companion_hedgehog_pilot_001",
+      "mode": "bedtime",
+      "designLabels": [
+        "U2",
+        "U3"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    },
+    {
+      "name": "Kestane",
+      "canonicalCompanionID": "companion_hedgehog_pilot_001",
+      "mode": "learning",
+      "designLabels": [
+        "L2",
+        "L3"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    },
+    {
+      "name": "Kestane",
+      "canonicalCompanionID": "companion_hedgehog_pilot_001",
+      "mode": "adventure",
+      "designLabels": [
+        "A1",
+        "A3"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    },
+    {
+      "name": "Yıldız",
+      "canonicalCompanionID": "companion_owl_pilot_001",
+      "mode": "bedtime",
+      "designLabels": [
+        "U1",
+        "U3"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    },
+    {
+      "name": "Yıldız",
+      "canonicalCompanionID": "companion_owl_pilot_001",
+      "mode": "learning",
+      "designLabels": [
+        "L1",
+        "L2"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    },
+    {
+      "name": "Yıldız",
+      "canonicalCompanionID": "companion_owl_pilot_001",
+      "mode": "adventure",
+      "designLabels": [
+        "A2",
+        "A3"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    },
+    {
+      "name": "Simit",
+      "canonicalCompanionID": "companion_city_cat_001",
+      "mode": "bedtime",
+      "designLabels": [
+        "U2",
+        "U3"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    },
+    {
+      "name": "Simit",
+      "canonicalCompanionID": "companion_city_cat_001",
+      "mode": "learning",
+      "designLabels": [
+        "L1",
+        "L3"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    },
+    {
+      "name": "Simit",
+      "canonicalCompanionID": "companion_city_cat_001",
+      "mode": "adventure",
+      "designLabels": [
+        "A1",
+        "A3"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    },
+    {
+      "name": "Böğürtlen",
+      "canonicalCompanionID": "companion_bear_001",
+      "mode": "bedtime",
+      "designLabels": [
+        "U1",
+        "U2"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    },
+    {
+      "name": "Böğürtlen",
+      "canonicalCompanionID": "companion_bear_001",
+      "mode": "learning",
+      "designLabels": [
+        "L2",
+        "L3"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    },
+    {
+      "name": "Böğürtlen",
+      "canonicalCompanionID": "companion_bear_001",
+      "mode": "adventure",
+      "designLabels": [
+        "A2",
+        "A3"
+      ],
+      "authoredPilotSourceIDs": [],
+      "fullPilotPageContextAvailable": false,
+      "runtimeBindingApproved": false,
+      "status": "content_design_proposal_waits_for_authored_sources"
+    }
+  ],
+  "warnings": [
+    "These five full books are selected explanatory legacy examples, not a new seed experiment or pilot coverage sample.",
+    "Full ordered page provenance, rendered text and complete book context are retained.",
+    "Source semantic review and drawing suitability/runtime approval are separate.",
+    "New pilot-authored sources do not exist yet. Empty pilot source lists are deliberate, and block action-specific runtime approval.",
+    "Simit example is city and Yıldız example is meadow; neither is proof of the proposed forest pilot."
+  ]
+}

@@ -182,7 +182,7 @@ final class SeriesManagerTests: XCTestCase {
             family: character)
         var story = OfflineStoryMapper.appStory(
             from: composed.story, childName: "Yeliz", childProfileID: child, storyIdeaID: nil,
-            catalogVersion: composed.catalogVersion, mode: mode, selectionStrategy: strategy,
+            catalogVersion: composed.catalogVersion, contentSource: composed.contentSource, mode: mode, selectionStrategy: strategy,
             ageBand: service.servedBand(forAge: age), familyCharacter: character)
         // Read to its last page, unless a test says otherwise.
         if finished { story.lastReadPage = story.pages.count - 1 }
@@ -210,11 +210,13 @@ final class SeriesManagerTests: XCTestCase {
     }
 
     func testAModeNoContinuationServesMayNot() throws {
-        // 5-6 learning is served; a 5-6 story whose origin claims an
-        // unserved band is not.
+        // Both authored bands have continuations now. Use a genuinely
+        // unsupported band for the rejection instead of the obsolete 9-10 gap.
         var story = try firstStory(age: 5, mode: .learning)
         XCTAssertEqual(manager().eligibility(for: story), .available)
         story.origin?.ageBand = "9-10"
+        XCTAssertEqual(manager().eligibility(for: story), .available)
+        story.origin?.ageBand = "11-12"
         XCTAssertEqual(manager().eligibility(for: story), .unavailable)
     }
 

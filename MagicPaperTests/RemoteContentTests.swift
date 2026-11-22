@@ -143,7 +143,7 @@ final class RemoteContentTests: XCTestCase {
     }
 
     private func resolver() -> CatalogSourceResolver {
-        CatalogSourceResolver(store: store, key: config.key)
+        CatalogSourceResolver(store: store, key: config.key, history: CatalogSnapshotStore(root: directory.appendingPathComponent("History")))
     }
 
     // MARK: - Configuration
@@ -431,7 +431,7 @@ final class RemoteContentTests: XCTestCase {
         try store.saveFeed(feed, signature: publisher.sign(feed))
         try store.stage(package)
 
-        let resolved = try CatalogSourceResolver(store: store, key: nil).resolve()
+        let resolved = try CatalogSourceResolver(store: store, key: nil, history: CatalogSnapshotStore(root: directory.appendingPathComponent("History"))).resolve()
         XCTAssertFalse(resolved.fromPackage)
     }
 

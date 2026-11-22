@@ -133,6 +133,27 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-22 · codex/design-system-catalog, commit yok · K0–K1 kaynak koruması ve P56 editoryal korpusu
+
+- Tam kaynak SHA-256/engine davranış kimliği, kayıpsız origin/seri metadata'sı, atomik katalog arşivi, exact tarihsel resolver ve eski istemci sync koruması uygulandı. Kaynak kanıtı olmadan aynı semver güncel kaynak sayılmaz; kayıtlı metin ve hazırlanmış bölümler korunur. Tarihsel doğrulanmış eşlemeler henüz boş, bu kitaplarda yeni devam/yeniden yazım desteklenmiş sayılmıyor.
+- Beş arkadaş × üç mod için 9 kurgu/30 tam kitap/240 sayfa ve 1.251 kaynak kaydı yazıldı; tam bağlam, somut poz/eylem ve sekiz sürümlü editoryal düzeltme teslim edildi. Bu korpus runtime paketi değil; 1.500 örnekleme ve görsel kabulü bekliyor. Yeni beşli üretim politikası kapalı. Meslek/deniz/uzay ayrı teslimler.
+- Tam motor Release: 1.122 test, 2 atlanan, 0 hata; seçili gerçek iOS entegrasyonu: 133 test, 1 atlanan, 0 hata. P56 bütünlük kontrolü geçti, kelime bütçesi uyarısı yok. 252 mevcut motor kaynak hash'inde değişiklik yok. Sabit ID bağlama performansı aynı uygunluk kontrolleri korunarak iyileştirildi; bağımsız incelemede kritik/yüksek bulgu yok. Push/deploy yapılmadı.
+- Dosyalar: StoryEngine kaynak kimliği/SeriesPlan/OfflineSelection ve testleri; uygulama CatalogHistory/seri/sync/mapper köprüsü ve testleri; Content/Pilots/five-friends-56-v1; docs/research/five-friends-k01-baseline ve five-friends-pilot; planlar ve proje hafızası. Aynı ağaçtaki diğer oturumun portre/UI/medya işleri bu commit'e alınmadı.
+
+### 2026-11-22 · codex/design-system-catalog, commit yok · B kararı, K0–K1 planı ve 5–6 ortak dünya pilotu
+
+- Kullanıcı B yaklaşımını onayladı: beş ana arkadaş, gerektiğinde ayrı konuk/uzman; üç modda kişiliğe uygun repertuvar ve eski kitap/seri koruması. Kodlama başlamadan K0–K1 için kaynak snapshot/digest/engine davranış sürümü, kayıpsız metadata, tarihsel resolver, seri/sync/restore ve test kabul görevleri ayrıntılandırıldı. K0–K1 uygulanmış sayılmıyor; yeni politika pilot doğrulanmadan yayına girmeyecek.
+- Fısıldayan Orman gündüz mekânı + aynı dünyanın ayrı uyku odası önerildi. 5–6 yaşta 15 hücre, 9 kurgu tasarımı ve 30 karakter–kurgu eşleşmesi; konuklu meslek, deniz, uzay ayrı teslimler. Bunlar henüz yazılmış masal/blueprint veya onaylanmış kaynak/çizim değil.
+- Görsel ekibe gerçek legacy fixture'lardan 5 tam kitap/40 sayfa, 53 authored kaynak kaydı ve somut eylem sınırları verildi. 50 provenance parçasında kimlik/metin özeti doğrulandı (0 missing/0 mismatch). Yeni pilot kaynakları yokken sourceID uydurulmadı; tüm pilot runtime art onayları false. 272 kaynak hash'i, belge bağlantıları, pointer'lar ve 15/30 kapsam tutarlılığı doğrulandı. Test/build/simülatör veya yeni runtime deney koşulmadı.
+- Dosyalar: `docs/superpowers/plans/2026-11-22-bes-arkadas-k0-k1-uygulama-plani.md`, `2026-11-22-bes-arkadas-56-pilot-kapsami.md`, `2026-11-22-bes-arkadas-56-gorsel-teslim.md`; `docs/research/2026-11-22-bes-arkadas-56-gorsel-kaynaklar.json`; önceki geçiş raporuna güncel karar bağlantısı ve bu günlük. Üretim kodu, masal/karakter JSON'ları, görseller ve kayıtlı kitaplar değiştirilmedi.
+
+### 2026-11-22 · codex/design-system-catalog, commit yok · Beş ana arkadaş için motor ve içerik geçiş planı
+
+- Kullanıcının onayladığı Tarçın/Kestane/Yıldız/Simit/Böğürtlen kadrosu için üç yaklaşım karşılaştırıldı; sürümlü ana kadro ve ayrı konuk/uzman rolü önerildi. Yaş×mod×karakter×rol matrisi, mevcut 34 arkadaşın kapsamı, dünya/konu boşlukları, eski kitap/seri/hatırlama uyumluluğu, dosya sahipliği ve aşamalı uygulama planı yazıldı. Bu öneri uygulama onayı değildir.
+- Kaynaklara dayalı ilk çizim ihtiyaçları ve Tarçın taslak/onay ayrımı belgelendi. Önceki 600 masallık sanat pilotu ve sıfır pinli gerçek örnek aktarıldı; yeni kadro sonrası ölçüm yapılmış gibi sunulmadı. Statik aday hesapları runtime uygunluk sertifikası değildir.
+- Değişen dosyalar: `docs/superpowers/plans/2026-11-22-bes-arkadas-gecis-plani.md`, `docs/research/2026-11-22-five-friends-evidence.json` ve bu günlük. Motor/app kodu, masal/karakter içerikleri, asset'ler ve kayıtlı kitaplar değiştirilmedi. Test, build ve simülatör çalıştırılmadı; kaynak SHA'ları, çizim kaynak kimlik/metinleri, 60 hücre, 34 karakter ve belge bağlantıları salt okunur kontrolle doğrulandı.
+
+
 ### 2026-11-22 · codex/design-system-catalog, commit yok · Standart arkadaş seçim satırına kanonik portre
 
 -5kanonik kimlik için uygulama-yerel CompanionPortraitCatalog ve MPCompanionPortrait; standart CompanionStep yalnız leadinggörseli değişti. Eski/bilinmeyen kimlikler mevcut MPIconTile,52ptaspectfit/dekoratifAX. Katalog/kadro/prefix3/simgetekilleştirme ve LittleSteps değişmedi; her modda5seçenek açıldığı iddia edilmiyor.

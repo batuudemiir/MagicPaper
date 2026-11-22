@@ -1,0 +1,958 @@
+{
+  "id": "pilot56_book_u2_hedgehog_v1",
+  "title": "Tam Bana Göre Bir Yer",
+  "blueprintID": "pilot56_blueprint_u2_v1",
+  "planLabel": "U2",
+  "mechanismKey": "comfort-choice-and-space",
+  "status": "authored-internal-review-required",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "bedtime",
+    "arc": "charge-bedtime-editorial",
+    "companionID": "companion_hedgehog_pilot_001",
+    "settingID": "pilot56_setting_forest_edge_room_v1",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_resting_material_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "N",
+  "personalityContract": "Küçük adımlarla cesaretlenir; her sahnede kaygılı değildir.",
+  "physicalContract": "Dört kısa ayak; dikenler korunur.",
+  "childAgency": "Çocuk seçeneği hazırlar, tercihi dinler ve alan bırakır.",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "settled_room",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_1_v1"
+      ],
+      "text": "Orman Kıyısındaki Oda akşam için hazırdı. Deniz yatağında, Kestane yanında duruyordu. Yerde arkadaşının rahatça dinlenebileceği boş bir alan vardı. Kapalı pencerenin önüne hiçbir yatak konmamıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_resting_material_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "settled_room",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_hedgehog_p01_v1",
+            "sourceTextDigest": "e4d48fe3eab48de5c82feffd5d3f9ebc224718cfa3ccf326cc711da8da3b1171",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/131",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_resting_material_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_hedgehog_p01_v1_s01",
+        "pilot56_source_u2_hedgehog_p01_v1_s02",
+        "pilot56_source_u2_hedgehog_p01_v1_s03",
+        "pilot56_source_u2_hedgehog_p01_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_resting_material_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü; püskülsüz düz minder (kirpi), geniş minder (kedi), geniş yer döşeği ve ince bez (ayı)",
+        "actions": [
+          {
+            "actorSubjectID": "pilot56_synthetic_child_deniz + companion_hedgehog_pilot_001",
+            "description": "odada uygun geniş alanda durur",
+            "evidenceSourceID": "pilot56_source_u2_hedgehog_p01_v1",
+            "evidenceText": "Orman Kıyısındaki Oda akşam için hazırdı. Deniz yatağında, Kestane yanında duruyordu. Yerde arkadaşının rahatça dinlenebileceği boş bir alan vardı. Kapalı pencerenin önüne hiçbir yatak konmamıştı."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "odada uygun geniş alanda durur",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 2,
+      "role": "comfort_need",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_2_v1"
+      ],
+      "text": "Deniz arkadaşına yer hazırlamak istedi. \"Yumuşak mı olsun, düz mü?\" diye sordu. İki seçeneğin de iyi olabileceğini düşündü. Arkadaşının cevabını beklerken örtüsünü yatağında bıraktı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_resting_material_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "settled_room",
+      "stateAfter": "comfort_need",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_hedgehog_p02_v1",
+            "sourceTextDigest": "4c13afff8b9287989d7fe171c5c683ee354b0babcc2b46e91b03557e04242454",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/136",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_resting_material_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_hedgehog_p02_v1_s01",
+        "pilot56_source_u2_hedgehog_p02_v1_s02",
+        "pilot56_source_u2_hedgehog_p02_v1_s03",
+        "pilot56_source_u2_hedgehog_p02_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_resting_material_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü; püskülsüz düz minder (kirpi), geniş minder (kedi), geniş yer döşeği ve ince bez (ayı)",
+        "actions": [
+          {
+            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "description": "rahatlık tercihini sorar",
+            "evidenceSourceID": "pilot56_source_u2_hedgehog_p02_v1",
+            "evidenceText": "Deniz arkadaşına yer hazırlamak istedi. \"Yumuşak mı olsun, düz mü?\" diye sordu. İki seçeneğin de iyi olabileceğini düşündü. Arkadaşının cevabını beklerken örtüsünü yatağında bıraktı."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "rahatlık tercihini sorar",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_preference",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_3_v1"
+      ],
+      "text": "Kestane düz minderle katlı bezi inceledi. \"Düz olanı deneyeyim,\" dedi. Dikenlerine takılacak püsküller istemiyordu. Deniz püskülsüz minderi açık yere koydu. Kestane kendi kısa adımlarıyla yaklaşabilecekti.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_resting_material_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "comfort_need",
+      "stateAfter": "friend_preference",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_hedgehog_p03_v1",
+            "sourceTextDigest": "36bd224ef052861f40d1e53fff4138cd933be7a453bfa6b7310d30505079c1c9",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/142",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_resting_material_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_hedgehog_p03_v1_s01",
+        "pilot56_source_u2_hedgehog_p03_v1_s02",
+        "pilot56_source_u2_hedgehog_p03_v1_s03",
+        "pilot56_source_u2_hedgehog_p03_v1_s04",
+        "pilot56_source_u2_hedgehog_p03_v1_s05"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_resting_material_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü; püskülsüz düz minder (kirpi), geniş minder (kedi), geniş yer döşeği ve ince bez (ayı)",
+        "actions": [
+          {
+            "actorSubjectID": "companion_hedgehog_pilot_001",
+            "description": "Kestane düz minderle katlı bezi inceledi. \"Düz olanı deneyeyim,\" dedi. Dikenlerine takılacak püsküller istemiyordu. Deniz püskülsüz minderi açık yere koydu. Kestane kendi kısa adımlarıyla yaklaşabilecekti.",
+            "evidenceSourceID": "pilot56_source_u2_hedgehog_p03_v1",
+            "evidenceText": "Kestane düz minderle katlı bezi inceledi. \"Düz olanı deneyeyim,\" dedi. Dikenlerine takılacak püsküller istemiyordu. Deniz püskülsüz minderi açık yere koydu. Kestane kendi kısa adımlarıyla yaklaşabilecekti."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane düz minderle katlı bezi inceledi. \"Düz olanı deneyeyim,\" dedi. Dikenlerine takılacak püsküller istemiyordu. Deniz püskülsüz minderi açık yere koydu. Kestane kendi kısa adımlarıyla yaklaşabilecekti.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_prepares",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_4_v1"
+      ],
+      "text": "Deniz yerdeki alanın kenarına oturdu. Hazırladığı yerin girişini açık bıraktı. Arkadaşı rahatça yaklaşabilsin diye dizlerini geri çekti. \"Sen dene, ben burada bekleyeyim,\" dedi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_resting_material_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_preference",
+      "stateAfter": "child_prepares",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_hedgehog_p04_v1",
+            "sourceTextDigest": "0f43aceb912a445b7f7e1d4ef367c315f6d7b704deadb13d4f0a8b1cbcc5ac39",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/147",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_resting_material_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_hedgehog_p04_v1_s01",
+        "pilot56_source_u2_hedgehog_p04_v1_s02",
+        "pilot56_source_u2_hedgehog_p04_v1_s03",
+        "pilot56_source_u2_hedgehog_p04_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_resting_material_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü; püskülsüz düz minder (kirpi), geniş minder (kedi), geniş yer döşeği ve ince bez (ayı)",
+        "actions": [
+          {
+            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "description": "yaklaşma alanını açık bırakır",
+            "evidenceSourceID": "pilot56_source_u2_hedgehog_p04_v1",
+            "evidenceText": "Deniz yerdeki alanın kenarına oturdu. Hazırladığı yerin girişini açık bıraktı. Arkadaşı rahatça yaklaşabilsin diye dizlerini geri çekti. \"Sen dene, ben burada bekleyeyim,\" dedi."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "yaklaşma alanını açık bırakır",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "soft_trial",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_5_v1"
+      ],
+      "text": "Kestane minderin üstüne çıktı, sonra bir adım geriye indi. \"Biraz daha açık olsun,\" dedi. Deniz katlı bezi kenara aldı. Denemek yanlış yapmak değildi; yerin nasıl rahat olacağını gösteriyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_resting_material_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_prepares",
+      "stateAfter": "soft_trial",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_hedgehog_p05_v1",
+            "sourceTextDigest": "1e347ae658b141e7e269e3d27b7f387772490aa7d907329425a6225ac5d6b4d9",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/152",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_resting_material_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_hedgehog_p05_v1_s01",
+        "pilot56_source_u2_hedgehog_p05_v1_s02",
+        "pilot56_source_u2_hedgehog_p05_v1_s03",
+        "pilot56_source_u2_hedgehog_p05_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_resting_material_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü; püskülsüz düz minder (kirpi), geniş minder (kedi), geniş yer döşeği ve ince bez (ayı)",
+        "actions": [
+          {
+            "actorSubjectID": "companion_hedgehog_pilot_001",
+            "description": "Kestane minderin üstüne çıktı, sonra bir adım geriye indi. \"Biraz daha açık olsun,\" dedi. Deniz katlı bezi kenara aldı. Denemek yanlış yapmak değildi; yerin nasıl rahat olacağını gösteriyordu.",
+            "evidenceSourceID": "pilot56_source_u2_hedgehog_p05_v1",
+            "evidenceText": "Kestane minderin üstüne çıktı, sonra bir adım geriye indi. \"Biraz daha açık olsun,\" dedi. Deniz katlı bezi kenara aldı. Denemek yanlış yapmak değildi; yerin nasıl rahat olacağını gösteriyordu."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane minderin üstüne çıktı, sonra bir adım geriye indi. \"Biraz daha açık olsun,\" dedi. Deniz katlı bezi kenara aldı. Denemek yanlış yapmak değildi; yerin nasıl rahat olacağını gösteriyordu.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "child_yields_space",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_6_v1"
+      ],
+      "text": "Deniz bir adım çekildi. Kestane açık kalan mindere yeniden yerleşti, dikenleri rahatça duruyordu. \"Böyle iyi,\" dedi. Deniz bunu duyunca hazırlığı bitirdi; başka bir şey eklemedi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_resting_material_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "soft_trial",
+      "stateAfter": "child_yields_space",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_hedgehog_p06_v1",
+            "sourceTextDigest": "f26486faf6ac0b86179e4e516dca694a3367b6a115b223a66e194fe8618f2d58",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/157",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_resting_material_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_hedgehog_p06_v1_s01",
+        "pilot56_source_u2_hedgehog_p06_v1_s02",
+        "pilot56_source_u2_hedgehog_p06_v1_s03",
+        "pilot56_source_u2_hedgehog_p06_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved",
+              "resting-awake"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_resting_material_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü; püskülsüz düz minder (kirpi), geniş minder (kedi), geniş yer döşeği ve ince bez (ayı)",
+        "actions": [
+          {
+            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "description": "Deniz bir adım çekildi. Kestane açık kalan mindere yeniden yerleşti, dikenleri rahatça duruyordu. \"Böyle iyi,\" dedi. Deniz bunu duyunca hazırlığı bitirdi; başka bir şey eklemedi.",
+            "evidenceSourceID": "pilot56_source_u2_hedgehog_p06_v1",
+            "evidenceText": "Deniz bir adım çekildi. Kestane açık kalan mindere yeniden yerleşti, dikenleri rahatça duruyordu. \"Böyle iyi,\" dedi. Deniz bunu duyunca hazırlığı bitirdi; başka bir şey eklemedi."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz bir adım çekildi. Kestane açık kalan mindere yeniden yerleşti, dikenleri rahatça duruyordu. \"Böyle iyi,\" dedi. Deniz bunu duyunca hazırlığı bitirdi; başka bir şey eklemedi.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 7,
+      "role": "awake_rest",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_7_v1"
+      ],
+      "text": "Arkadaşı seçtiği yerde uyanık dinleniyordu. Deniz kendi yatağına döndü. Yaptığı hazırlığı yeniden düzeltmedi; rahatlığın nasıl olacağını artık arkadaşı biliyordu. Odada geniş, sakin bir boşluk kaldı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_resting_material_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "child_yields_space",
+      "stateAfter": "awake_rest",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_hedgehog_p07_v1",
+            "sourceTextDigest": "4bea378105c09077fd8d0935294b2f914991ab8aa32953ad60a19656f3ba145e",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/162",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_resting_material_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_hedgehog_p07_v1_s01",
+        "pilot56_source_u2_hedgehog_p07_v1_s02",
+        "pilot56_source_u2_hedgehog_p07_v1_s03",
+        "pilot56_source_u2_hedgehog_p07_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved",
+              "resting-awake"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_resting_material_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü; püskülsüz düz minder (kirpi), geniş minder (kedi), geniş yer döşeği ve ince bez (ayı)",
+        "actions": [
+          {
+            "actorSubjectID": "pilot56_synthetic_child_deniz + companion_hedgehog_pilot_001",
+            "description": "kendi yerlerinde uyanık dinlenir",
+            "evidenceSourceID": "pilot56_source_u2_hedgehog_p07_v1",
+            "evidenceText": "Arkadaşı seçtiği yerde uyanık dinleniyordu. Deniz kendi yatağına döndü. Yaptığı hazırlığı yeniden düzeltmedi; rahatlığın nasıl olacağını artık arkadaşı biliyordu. Odada geniş, sakin bir boşluk kaldı."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "kendi yerlerinde uyanık dinlenir",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_calm",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_8_v1"
+      ],
+      "text": "Orman Kıyısındaki Oda’da herkes kendi yerindeydi. Deniz örtüsünü çekip gözlerini kapattı. Arkadaşı rahatça dinlenmeyi sürdürdü. Yerler hazırlanmış, küçük iş bitmişti. Akşam yavaşça kapanıyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_resting_material_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "awake_rest",
+      "stateAfter": "closed_calm",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_hedgehog_p08_v1",
+            "sourceTextDigest": "03b6863db9bb4cdca767ba156a68205684bb935f7651de8989647914e9b7599d",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/168",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_resting_material_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_hedgehog_p08_v1_s01",
+        "pilot56_source_u2_hedgehog_p08_v1_s02",
+        "pilot56_source_u2_hedgehog_p08_v1_s03",
+        "pilot56_source_u2_hedgehog_p08_v1_s04",
+        "pilot56_source_u2_hedgehog_p08_v1_s05"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved",
+              "resting-awake"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_resting_material_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü; püskülsüz düz minder (kirpi), geniş minder (kedi), geniş yer döşeği ve ince bez (ayı)",
+        "actions": [
+          {
+            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "description": "gözlerini kapatır; arkadaş uyanık dinlenir",
+            "evidenceSourceID": "pilot56_source_u2_hedgehog_p08_v1",
+            "evidenceText": "Orman Kıyısındaki Oda’da herkes kendi yerindeydi. Deniz örtüsünü çekip gözlerini kapattı. Arkadaşı rahatça dinlenmeyi sürdürdü. Yerler hazırlanmış, küçük iş bitmişti. Akşam yavaşça kapanıyordu."
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "gözlerini kapatır; arkadaş uyanık dinlenir",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 0
+    }
+  ],
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false
+}

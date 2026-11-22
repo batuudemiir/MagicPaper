@@ -21,6 +21,7 @@ struct CatalogSourceResolver {
     let store: RemoteContentStore
     let key: ContentSigningKey?
     var loader = ContentCatalogLoader()
+    var history = CatalogSnapshotStore.shared
 
     static func forThisLaunch() -> CatalogSourceResolver {
         CatalogSourceResolver(store: RemoteContentStore(), key: RemoteContentConfig.current()?.key)
@@ -29,32 +30,48 @@ struct CatalogSourceResolver {
     struct Resolved {
         let result: ContentCatalogLoader.Result
         let fromPackage: Bool
+        let contentSource: ContentSourceMetadata
     }
 
     func resolve() throws -> Resolved {
         let bundled = try loader.load()
-        guard let key else { return Resolved(result: bundled, fromPackage: false) }
+        let sources = ContentPackage.bundledSources()
+        let names = sources.libraries.map(\.name) + sources.beats.map(\.name)
+        guard names.count == Set(names).count,
+              Set(names) == Set(bundled.report.mergedSources),
+              Set(sources.libraries.map(\.name)) == Set(
+                ([ContentCatalogLoader.resourceName] + ContentCatalogLoader.additionalResourceNames).map { $0 + ".json" }) else {
+            throw CatalogSnapshotStore.StoreError.corrupt
+        }
+        let bundledPayload = try ContentPackage.build(version: bundled.catalog.version,
+                                                       libraries: sources.libraries, beats: sources.beats)
+        let bundledReference = try history.saveVerified(payload: bundledPayload)
+        let fallback = Resolved(result: bundled, fromPackage: false,
+                                contentSource: ContentSourceMetadata(bundledReference))
+        guard let key else { return fallback }
 
         store.promoteStaged()
-        guard let package = store.activePackage else { return Resolved(result: bundled, fromPackage: false) }
+        guard let package = store.activePackage else { return fallback }
 
         guard let reference = store.feed(key: key)?.catalogPackage, reference.matches(package) else {
             logger.notice("İçerik paketi akışla eşleşmiyor; paketle gelen katalog kullanılıyor")
             store.removeActive()
-            return Resolved(result: bundled, fromPackage: false)
+            return fallback
         }
         guard let loaded = try? loader.load(package: package) else {
             logger.error("🛑 İçerik paketi \(reference.version, privacy: .public) yüklenemedi")
             store.removeActive()
-            return Resolved(result: bundled, fromPackage: false)
+            return fallback
         }
         let verdict = RemoteCatalogPolicy.evaluate(package: loaded, bundled: bundled)
         guard verdict == .accept else {
             logger.notice("İçerik paketi \(reference.version, privacy: .public) kullanılmıyor: \(String(describing: verdict), privacy: .public)")
             store.removeActive()
-            return Resolved(result: bundled, fromPackage: false)
+            return fallback
         }
         logger.info("İçerik paketi \(reference.version, privacy: .public) kullanılıyor")
-        return Resolved(result: loaded, fromPackage: true)
+        let archivedReference = try history.saveVerified(payload: package)
+        return Resolved(result: loaded, fromPackage: true,
+                        contentSource: ContentSourceMetadata(archivedReference))
     }
 }

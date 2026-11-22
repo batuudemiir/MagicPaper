@@ -301,6 +301,7 @@ extension StoryGenerationManager {
             childProfileID: profile.id,
             storyIdeaID: storyIdeaID,
             catalogVersion: composed.catalogVersion,
+            contentSource: composed.contentSource,
             mode: mode,
             selectionStrategy: strategy,
             ageBand: service.servedBand(forAge: profile.age),

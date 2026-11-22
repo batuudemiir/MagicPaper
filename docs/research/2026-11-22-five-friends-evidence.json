@@ -1,0 +1,4494 @@
+{
+  "scope": "static_joint_record_feasibility_not_runtime_prose_or_topic_certification",
+  "catalogCounts": {
+    "companions": 34,
+    "settings": 36,
+    "objects": 43,
+    "blueprints": 78
+  },
+  "companions": [
+    {
+      "id": "companion_fox_001",
+      "name": "Kıpır",
+      "type": "tilki",
+      "personality": "oyuncu ve zeki",
+      "description": "Kızıl tüylü küçük bir tilki.",
+      "visualDescription": "kızıl tilki",
+      "compatibleSettings": [
+        "forest",
+        "meadow",
+        "cave"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "problem_solving"
+      ],
+      "tags": [
+        "animal",
+        "clever"
+      ],
+      "nature": "animal",
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0,
+      "note": "Bilerek etiketlenmedi (21 Ekim 2026): pilot kütüphanesinde aynı türden bir yol arkadaşı zaten var. Diriltilseydi çocuk iki ayrı masalda aynı türün iki ayrı adını görürdü — yeni karakter değil, kafa karışıklığı."
+    },
+    {
+      "id": "companion_rabbit_001",
+      "name": "Yonca",
+      "type": "tavşan",
+      "personality": "nazik ama ürkek",
+      "description": "Beyaz tüylü küçük bir tavşan.",
+      "visualDescription": "beyaz tavşan",
+      "compatibleSettings": [
+        "forest",
+        "meadow",
+        "garden"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "friendship"
+      ],
+      "tags": [
+        "animal",
+        "shy"
+      ],
+      "nature": "animal",
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0,
+      "note": "Bilerek etiketlenmedi (21 Ekim 2026): pilot kütüphanesinde aynı türden bir yol arkadaşı zaten var. Diriltilseydi çocuk iki ayrı masalda aynı türün iki ayrı adını görürdü — yeni karakter değil, kafa karışıklığı."
+    },
+    {
+      "id": "companion_owl_001",
+      "name": "Bilge",
+      "type": "baykuş",
+      "personality": "akıllı",
+      "description": "Büyük gözlü kahverengi baykuş.",
+      "visualDescription": "kahverengi baykuş",
+      "compatibleSettings": [
+        "forest",
+        "mountain",
+        "night"
+      ],
+      "compatibleThemes": [
+        "discovery",
+        "problem_solving"
+      ],
+      "tags": [
+        "bird",
+        "wise"
+      ],
+      "nature": "animal",
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.1,
+      "note": "Bilerek etiketlenmedi (21 Ekim 2026): pilot kütüphanesinde aynı türden bir yol arkadaşı zaten var. Diriltilseydi çocuk iki ayrı masalda aynı türün iki ayrı adını görürdü — yeni karakter değil, kafa karışıklığı."
+    },
+    {
+      "id": "companion_hedgehog_001",
+      "name": "Dikenli",
+      "type": "kirpi",
+      "personality": "dikkatli",
+      "description": "Minik patili kirpi.",
+      "visualDescription": "küçük kirpi",
+      "compatibleSettings": [
+        "forest",
+        "garden"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "trying_again"
+      ],
+      "tags": [
+        "animal",
+        "careful"
+      ],
+      "nature": "animal",
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0,
+      "note": "Bilerek etiketlenmedi (21 Ekim 2026): pilot kütüphanesinde aynı türden bir yol arkadaşı zaten var. Diriltilseydi çocuk iki ayrı masalda aynı türün iki ayrı adını görürdü — yeni karakter değil, kafa karışıklığı."
+    },
+    {
+      "id": "companion_dragon_001",
+      "name": "Kıvılcım",
+      "type": "ejderha",
+      "personality": "hevesli ama sakar",
+      "description": "Küçük yeşil ejderha.",
+      "visualDescription": "küçük ejderha",
+      "compatibleSettings": [
+        "mountain",
+        "cave",
+        "castle"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "helping_others"
+      ],
+      "tags": [
+        "fantasy",
+        "clumsy"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.5,
+      "habitat": [
+        "mountain",
+        "forest"
+      ],
+      "nature": "fantastic",
+      "traits": [
+        "canFly",
+        "canCarry"
+      ],
+      "castRoles": [
+        "hesitant",
+        "guide"
+      ],
+      "interests": [
+        "magic"
+      ]
+    },
+    {
+      "id": "companion_squirrel_001",
+      "name": "Fındık",
+      "type": "sincap",
+      "personality": "enerjik",
+      "description": "Hızlı hareket eden sincap.",
+      "visualDescription": "kızıl sincap",
+      "compatibleSettings": [
+        "forest",
+        "park",
+        "garden"
+      ],
+      "compatibleThemes": [
+        "problem_solving"
+      ],
+      "tags": [
+        "animal",
+        "energetic"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "forest",
+        "garden"
+      ],
+      "nature": "animal",
+      "traits": [
+        "isSmall",
+        "isQuick"
+      ],
+      "castRoles": [
+        "hesitant",
+        "needsCare"
+      ],
+      "interests": [
+        "animals"
+      ]
+    },
+    {
+      "id": "companion_bear_001",
+      "name": "Böğürtlen",
+      "type": "ayı",
+      "personality": "sakin ve güçlü",
+      "description": "Kahverengi sevimli ayı.",
+      "visualDescription": "kahverengi ayı",
+      "compatibleSettings": [
+        "forest",
+        "mountain",
+        "cave"
+      ],
+      "compatibleThemes": [
+        "friendship",
+        "courage"
+      ],
+      "tags": [
+        "animal",
+        "strong"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.2,
+      "habitat": [
+        "forest",
+        "mountain"
+      ],
+      "nature": "animal",
+      "traits": [
+        "canCarry",
+        "isPatient"
+      ],
+      "castRoles": [
+        "reassuring",
+        "guide"
+      ],
+      "interests": [
+        "animals"
+      ]
+    },
+    {
+      "id": "companion_penguin_001",
+      "name": "Pofuduk",
+      "type": "penguen",
+      "personality": "meraklı",
+      "description": "Siyah beyaz küçük penguen.",
+      "visualDescription": "küçük penguen",
+      "compatibleSettings": [
+        "snow",
+        "water",
+        "beach"
+      ],
+      "compatibleThemes": [
+        "discovery"
+      ],
+      "tags": [
+        "animal",
+        "curious"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.3,
+      "habitat": [
+        "sea"
+      ],
+      "nature": "animal",
+      "traits": [
+        "isSmall",
+        "canSwim"
+      ],
+      "castRoles": [
+        "hesitant",
+        "needsCare"
+      ],
+      "interests": [
+        "animals",
+        "sea"
+      ]
+    },
+    {
+      "id": "companion_turtle_001",
+      "name": "Yavaş",
+      "type": "kaplumbağa",
+      "personality": "sabırlı",
+      "description": "Yeşil kabuklu kaplumbağa.",
+      "visualDescription": "yeşil kaplumbağa",
+      "compatibleSettings": [
+        "river",
+        "beach",
+        "pond"
+      ],
+      "compatibleThemes": [
+        "trying_again",
+        "problem_solving"
+      ],
+      "tags": [
+        "animal",
+        "patient"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "sea",
+        "garden"
+      ],
+      "nature": "animal",
+      "traits": [
+        "canCarry",
+        "isPatient",
+        "canSwim"
+      ],
+      "castRoles": [
+        "reassuring",
+        "needsCare"
+      ],
+      "interests": [
+        "animals",
+        "sea"
+      ]
+    },
+    {
+      "id": "companion_dolphin_001",
+      "name": "Mavi",
+      "type": "yunus",
+      "personality": "neşeli",
+      "description": "Gülümseyen yunus.",
+      "visualDescription": "gri yunus",
+      "compatibleSettings": [
+        "ocean",
+        "water"
+      ],
+      "compatibleThemes": [
+        "friendship",
+        "discovery"
+      ],
+      "tags": [
+        "animal",
+        "playful"
+      ],
+      "nature": "animal",
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.4,
+      "note": "Bilerek etiketlenmedi (21 Ekim 2026): pilot kütüphanesinde aynı türden bir yol arkadaşı zaten var. Diriltilseydi çocuk iki ayrı masalda aynı türün iki ayrı adını görürdü — yeni karakter değil, kafa karışıklığı."
+    },
+    {
+      "id": "companion_firefly_001",
+      "name": "Pırıltı",
+      "type": "ateşböceği",
+      "personality": "yardımsever",
+      "description": "Parlayan küçük böcek.",
+      "visualDescription": "parlak ateşböceği",
+      "compatibleSettings": [
+        "night",
+        "forest",
+        "cave"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "helping_others"
+      ],
+      "tags": [
+        "insect",
+        "light"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.2,
+      "typePossessiveStem": true,
+      "habitat": [
+        "forest",
+        "garden"
+      ],
+      "nature": "animal",
+      "traits": [
+        "canFly",
+        "isSmall"
+      ],
+      "castRoles": [
+        "reassuring",
+        "needsCare"
+      ],
+      "interests": [
+        "animals"
+      ]
+    },
+    {
+      "id": "companion_robot_001",
+      "name": "Zip",
+      "type": "robot",
+      "personality": "mantıklı ve şaşkın",
+      "description": "Metalik küçük robot.",
+      "visualDescription": "gümüş robot",
+      "compatibleSettings": [
+        "space",
+        "city"
+      ],
+      "compatibleThemes": [
+        "discovery",
+        "problem_solving"
+      ],
+      "tags": [
+        "tech",
+        "logical"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.5,
+      "habitat": [
+        "garden",
+        "forest",
+        "mountain"
+      ],
+      "nature": "fantastic",
+      "traits": [
+        "isLiteralMinded",
+        "canCarry"
+      ],
+      "castRoles": [
+        "hesitant",
+        "guide"
+      ],
+      "interests": [
+        "robots"
+      ]
+    },
+    {
+      "id": "companion_frog_001",
+      "name": "Zıpzıp",
+      "type": "kurbağa",
+      "personality": "hareketli",
+      "description": "Yeşil kurbağa.",
+      "visualDescription": "yeşil kurbağa",
+      "compatibleSettings": [
+        "river",
+        "pond",
+        "rain"
+      ],
+      "compatibleThemes": [
+        "friendship"
+      ],
+      "tags": [
+        "animal",
+        "jumping"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "garden",
+        "forest"
+      ],
+      "nature": "animal",
+      "traits": [
+        "isSmall",
+        "isQuick",
+        "canSwim"
+      ],
+      "castRoles": [
+        "hesitant",
+        "needsCare"
+      ],
+      "interests": [
+        "animals"
+      ]
+    },
+    {
+      "id": "companion_cat_001",
+      "name": "Pati",
+      "type": "kedi",
+      "personality": "meraklı ama tembel",
+      "description": "Beyaz kedi.",
+      "visualDescription": "beyaz kedi",
+      "compatibleSettings": [
+        "village",
+        "house",
+        "garden"
+      ],
+      "compatibleThemes": [
+        "discovery"
+      ],
+      "tags": [
+        "animal",
+        "domestic"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "garden",
+        "forest"
+      ],
+      "nature": "animal",
+      "traits": [
+        "isQuick",
+        "isPatient"
+      ],
+      "castRoles": [
+        "reassuring",
+        "needsCare"
+      ],
+      "interests": [
+        "animals"
+      ],
+      "note": "21 Ekim 2026: adı 'Pamuk' idi; pilot kütüphanesindeki tavşan da Pamuk. Havuza katılınca çocuk iki ayrı masalda aynı adı taşıyan iki farklı hayvanla karşılaşacaktı."
+    },
+    {
+      "id": "companion_dog_001",
+      "name": "Cesur",
+      "type": "köpek",
+      "personality": "sadık ve cesur",
+      "description": "Kahverengi yavru köpek.",
+      "visualDescription": "kahverengi köpek",
+      "compatibleSettings": [
+        "village",
+        "forest",
+        "meadow"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "friendship"
+      ],
+      "tags": [
+        "animal",
+        "loyal"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.0,
+      "habitat": [
+        "garden",
+        "forest",
+        "mountain"
+      ],
+      "nature": "animal",
+      "traits": [
+        "canCarry",
+        "hasLocalKnowledge"
+      ],
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ],
+      "interests": [
+        "animals"
+      ]
+    },
+    {
+      "id": "companion_sparrow_001",
+      "name": "Cıvıl",
+      "type": "serçe",
+      "personality": "çevik ve sabırlı",
+      "description": "Bahçenin her köşesini bilen küçük serçe.",
+      "visualDescription": "kahverengi benekli küçük serçe",
+      "compatibleSettings": [
+        "garden",
+        "forest",
+        "meadow"
+      ],
+      "compatibleThemes": [
+        "friendship",
+        "kindness"
+      ],
+      "tags": [
+        "animal",
+        "bird"
+      ],
+      "cooldownWeight": 1.0,
+      "noveltyWeight": 1.1,
+      "habitat": [
+        "garden",
+        "forest"
+      ],
+      "nature": "animal",
+      "traits": [
+        "isSmall",
+        "isQuick",
+        "isPatient",
+        "hasLocalKnowledge"
+      ],
+      "castRoles": [
+        "needsCare",
+        "hesitant"
+      ],
+      "interests": [
+        "animals"
+      ]
+    },
+    {
+      "id": "companion_fox_pilot_001",
+      "interests": [
+        "animals"
+      ],
+      "name": "Tarçın",
+      "type": "tilki",
+      "personality": "Sakin ve güven veren.",
+      "description": "Ormanı iyi bilen, acele ettirmeyen bir tilki.",
+      "visualDescription": "warm russet fox, calm eyes, soft brush tail",
+      "compatibleSettings": [
+        "forest"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "forest"
+      ],
+      "traits": [
+        "hasLocalKnowledge",
+        "isPlayful",
+        "isQuick"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "forest",
+        "garden",
+        "mountain"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_hedgehog_pilot_001",
+      "interests": [
+        "animals"
+      ],
+      "name": "Kestane",
+      "type": "kirpi",
+      "personality": "Ürkek ama cesaretlendirici.",
+      "description": "Kendi de çekingen olduğu için anlayışlı bir kirpi.",
+      "visualDescription": "small round hedgehog, gentle face, soft quills",
+      "compatibleSettings": [
+        "garden"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "helping_others"
+      ],
+      "tags": [
+        "garden"
+      ],
+      "traits": [
+        "isSmall",
+        "isPatient"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "garden",
+        "forest"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "hesitant",
+        "reassuring",
+        "needsCare"
+      ]
+    },
+    {
+      "id": "companion_owl_pilot_001",
+      "interests": [
+        "animals"
+      ],
+      "name": "Yıldız",
+      "type": "baykuş",
+      "personality": "Sabırlı, az konuşan.",
+      "description": "Yükseklerden bakan ama acele etmeyen bir baykuş.",
+      "visualDescription": "soft grey owl, round patient eyes",
+      "compatibleSettings": [
+        "mountain",
+        "forest"
+      ],
+      "compatibleThemes": [
+        "discovery"
+      ],
+      "tags": [
+        "mountain"
+      ],
+      "traits": [
+        "canFly",
+        "isPatient",
+        "hasLocalKnowledge"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "forest",
+        "mountain"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "guide",
+        "reassuring",
+        "needsCare"
+      ]
+    },
+    {
+      "id": "companion_dolphin_pilot_001",
+      "interests": [
+        "animals",
+        "sea"
+      ],
+      "name": "Köpük",
+      "type": "yunus",
+      "personality": "Neşeli ve yardımsever.",
+      "description": "Denizi seven, oyuncu bir yunus.",
+      "visualDescription": "smooth blue-grey dolphin, bright eye",
+      "compatibleSettings": [
+        "sea"
+      ],
+      "compatibleThemes": [
+        "friendship"
+      ],
+      "tags": [
+        "sea"
+      ],
+      "traits": [
+        "canCarry",
+        "canSwim",
+        "isPlayful"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "sea"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_rabbit_pilot_001",
+      "interests": [
+        "animals"
+      ],
+      "name": "Pamuk",
+      "type": "tavşan",
+      "personality": "Çekingen ve her şeyi düz anlayan.",
+      "description": "Söyleneni harfiyen anlayan, ürkek bir tavşan.",
+      "visualDescription": "small white rabbit, long attentive ears",
+      "compatibleSettings": [
+        "forest",
+        "garden"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "forest"
+      ],
+      "traits": [
+        "isSmall",
+        "isLiteralMinded",
+        "isQuick"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "forest",
+        "garden"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "hesitant",
+        "needsCare"
+      ]
+    },
+    {
+      "id": "companion_baker_001",
+      "interests": [
+        "jobs"
+      ],
+      "name": "Fırıncı Nazlı",
+      "type": "fırıncı",
+      "personality": "Elleri hamurlu, sesi yumuşak.",
+      "description": "Köyün fırınında her sabah ekmek çıkaran, herkesi tanıyan biri.",
+      "visualDescription": "warm-faced baker in a flour-dusted apron, sleeves rolled up",
+      "compatibleSettings": [
+        "village"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "village"
+      ],
+      "traits": [
+        "hasLocalKnowledge",
+        "isPatient"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "village"
+      ],
+      "nature": "person",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ],
+      "occupation": "baker",
+      "factID": "fact_baker_rests_the_dough"
+    },
+    {
+      "id": "companion_postman_001",
+      "interests": [
+        "jobs"
+      ],
+      "name": "Postacı Remzi",
+      "type": "postacı",
+      "personality": "Hep aceleyle ama hep güler yüzle.",
+      "description": "Köyün bütün sokaklarını ve bütün kapılarını bilen postacı.",
+      "visualDescription": "cheerful postman with a worn satchel, cap pushed back",
+      "compatibleSettings": [
+        "village"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "village"
+      ],
+      "traits": [
+        "hasLocalKnowledge",
+        "isQuick"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "village"
+      ],
+      "nature": "person",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ],
+      "occupation": "postman",
+      "factID": "fact_postman_sorts_by_street"
+    },
+    {
+      "id": "companion_teacher_001",
+      "interests": [
+        "jobs"
+      ],
+      "name": "Öğretmen Suna",
+      "type": "öğretmen",
+      "personality": "Soruyu cevaptan çok sever.",
+      "description": "Köy okulunda ders veren, merak edeni asla aceleye getirmeyen öğretmen.",
+      "visualDescription": "teacher with a book under one arm, kind unhurried eyes",
+      "compatibleSettings": [
+        "village"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "village"
+      ],
+      "traits": [
+        "isPatient"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "village"
+      ],
+      "nature": "person",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ],
+      "occupation": "teacher",
+      "factID": "fact_teacher_writes_the_order"
+    },
+    {
+      "id": "companion_robot_sky_001",
+      "interests": [
+        "robots",
+        "space"
+      ],
+      "name": "Vida",
+      "type": "robot",
+      "personality": "Meraklı ve biraz çekingen.",
+      "description": "Ay Kıyısı'nda yaşayan, ışıklarıyla göz kırpan küçük bir robot.",
+      "visualDescription": "small round silver robot, soft blue eye lights, one short antenna",
+      "editorialNote": "E5 (16 Kasım 2026): Gökyüzü ve uzay dünyası. Taslak, Batuhan okuyacak. Rolleri hesitant ve reassuring: bakım isteyen (needsCare) değil, ki bahçe ve bakım masalları uzaya taşınmasın.",
+      "compatibleSettings": [
+        "space",
+        "sky"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "space"
+      ],
+      "traits": [
+        "isSmall",
+        "isPatient"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "sky"
+      ],
+      "nature": "fantastic",
+      "castRoles": [
+        "hesitant",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_space_cat_001",
+      "interests": [
+        "animals",
+        "space"
+      ],
+      "name": "Ayçörek",
+      "type": "kedi",
+      "personality": "Sakin ve yol bilen.",
+      "description": "Yıldızların arasında gezmeyi seven, minik şeffaf kasklı bir kedi.",
+      "visualDescription": "small cream-colored cat wearing a tiny clear bubble helmet, calm green eyes",
+      "editorialNote": "E5 (16 Kasım 2026): Gökyüzü ve uzay dünyası. Taslak, Batuhan okuyacak. Rolleri guide ve reassuring. hasLocalKnowledge bilerek yok: iz süren masallar (absence) onu yasaklıyor.",
+      "compatibleSettings": [
+        "space",
+        "sky"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "space"
+      ],
+      "traits": [
+        "isQuick",
+        "isPlayful"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "sky"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_coach_001",
+      "interests": [
+        "sports",
+        "jobs"
+      ],
+      "name": "Beden Öğretmeni Defne",
+      "type": "beden öğretmeni",
+      "personality": "Sabırlı, düdüğünü nadiren çalar.",
+      "description": "Köyün çocuklarına koşmayı, zıplamayı ve dengede durmayı oyunla öğreten öğretmen.",
+      "visualDescription": "friendly sports teacher in a tracksuit, whistle on a cord, relaxed smile",
+      "editorialNote": "Sporlar (19 Kasım 2026). Taslak, Batuhan okuyacak. İnsan yol arkadaşı, meslek: coach. Meslekler masallarına da girer; zanaat satırları occupationRequire: coach.",
+      "compatibleSettings": [
+        "village"
+      ],
+      "compatibleThemes": [
+        "courage"
+      ],
+      "tags": [
+        "village"
+      ],
+      "traits": [
+        "isPatient",
+        "hasLocalKnowledge"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "village"
+      ],
+      "nature": "person",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ],
+      "occupation": "coach",
+      "factID": "fact_coach_shows_slowly"
+    },
+    {
+      "id": "companion_goat_001",
+      "interests": [
+        "sports",
+        "animals"
+      ],
+      "name": "Zıpzıp",
+      "type": "keçi",
+      "personality": "Yerinde duramaz, zıplamayı her şeyden çok sever.",
+      "description": "Köy çayırında kayadan kayaya sekmeyi seven, kıvırcık tüylü küçük bir keçi.",
+      "visualDescription": "small curly-haired white goat mid-hop, tiny horns, cheerful eyes",
+      "editorialNote": "Sporlar (19 Kasım 2026). Taslak, Batuhan okuyacak. Spor masallarının yol arkadaşı (isQuick + isPlayful, yalnızca köyde).",
+      "compatibleSettings": [
+        "village"
+      ],
+      "compatibleThemes": [
+        "friendship",
+        "courage"
+      ],
+      "tags": [
+        "village"
+      ],
+      "traits": [
+        "isQuick",
+        "isPlayful"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "village"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_city_cat_001",
+      "interests": [
+        "city",
+        "animals"
+      ],
+      "name": "Simit",
+      "type": "kedi",
+      "personality": "Meraklı, hep bir adım önde.",
+      "description": "Saat Kuleli Meydan'ın her köşesini bilen, kuyruğu simit gibi kıvrık bir sokak kedisi.",
+      "visualDescription": "small tabby street cat with a curled tail, bright amber eyes",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir şehir. Taslak, Batuhan okuyacak.",
+      "compatibleSettings": [
+        "city"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "city"
+      ],
+      "traits": [
+        "isQuick",
+        "isPlayful"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "town"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_city_dog_001",
+      "interests": [
+        "city",
+        "animals"
+      ],
+      "name": "Pıtpıt",
+      "type": "köpek",
+      "personality": "Çekingen ama sadık.",
+      "description": "Kemerli Çarşı'da bir dükkânın kapısında uyuklayan, kulakları yumuşacık küçük bir köpek.",
+      "visualDescription": "small fluffy cream dog with floppy ears",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir şehir. Taslak, Batuhan okuyacak.",
+      "compatibleSettings": [
+        "city"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "city"
+      ],
+      "traits": [
+        "isSmall",
+        "isPatient"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "town"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "hesitant",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_llama_001",
+      "interests": [
+        "country",
+        "animals"
+      ],
+      "name": "Lolo",
+      "type": "lama",
+      "personality": "Sakin, sabırlı, hep gülümser gibi.",
+      "description": "Yel Değirmenleri Ülkesi'nde yaşayan, boynunda renkli bir kurdele olan yumuşak tüylü bir lama.",
+      "visualDescription": "soft white llama with a colourful woven ribbon around its neck",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir ülke. Taslak, Batuhan okuyacak.",
+      "compatibleSettings": [
+        "country"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "country"
+      ],
+      "traits": [
+        "isPatient",
+        "isPlayful"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "faraway"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_marmot_001",
+      "interests": [
+        "country",
+        "animals"
+      ],
+      "name": "Fındık",
+      "type": "dağ sıçanı",
+      "personality": "Utangaç, ama bir kez güvenince hiç bırakmaz.",
+      "description": "Kırmızı Kiremitli Kasaba'nın merdivenlerinde yaşayan, tombul yanaklı küçük bir dağ sıçanı.",
+      "visualDescription": "small round brown marmot with chubby cheeks",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Yeni bir ülke. Taslak, Batuhan okuyacak.",
+      "compatibleSettings": [
+        "country"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "country"
+      ],
+      "traits": [
+        "isSmall",
+        "isQuick"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "faraway"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "hesitant",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_tortoise_001",
+      "interests": [
+        "history",
+        "animals"
+      ],
+      "name": "Taşbaş",
+      "type": "kaplumbağa",
+      "personality": "Ağır, bilge, hiç acele etmez.",
+      "description": "Eski Kale'nin avlusunda yaşayan, kalenin neredeyse bütün hikâyelerini bilen yaşlı bir kaplumbağa.",
+      "visualDescription": "old tortoise with a moss-green patterned shell and kind eyes",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Tarih. Taslak, Batuhan okuyacak.",
+      "compatibleSettings": [
+        "history"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "history"
+      ],
+      "traits": [
+        "isPatient",
+        "hasLocalKnowledge"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "oldstone"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "id": "companion_dove_001",
+      "interests": [
+        "history",
+        "animals"
+      ],
+      "name": "Gugu",
+      "type": "kumru",
+      "personality": "Ürkek, yumuşak sesli.",
+      "description": "Eski Kale'nin surlarındaki bir taş oyuğunda yaşayan küçük bir kumru.",
+      "visualDescription": "small soft grey dove with a pale pink chest",
+      "editorialNote": "Yeni dünyalar (19 Kasım 2026): Tarih. Taslak, Batuhan okuyacak.",
+      "compatibleSettings": [
+        "history"
+      ],
+      "compatibleThemes": [
+        "courage",
+        "discovery"
+      ],
+      "tags": [
+        "history"
+      ],
+      "traits": [
+        "canFly",
+        "isSmall"
+      ],
+      "isProperNoun": true,
+      "habitat": [
+        "oldstone"
+      ],
+      "nature": "animal",
+      "castRoles": [
+        "hesitant",
+        "needsCare"
+      ]
+    }
+  ],
+  "matrix": [
+    {
+      "band": "3-4",
+      "mode": "learning",
+      "companionID": "companion_fox_pilot_001",
+      "blueprints": [
+        "bp_misreading_closerlook_age3_001",
+        "bp_sports_howitmoves_age3_001",
+        "bp_sports_wind_age3_001",
+        "bp_sports_together_age3_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "3-4",
+      "mode": "learning",
+      "companionID": "companion_hedgehog_pilot_001",
+      "blueprints": [
+        "blueprint_charge_tending_age3_001",
+        "bp_charge_release_age3_001",
+        "bp_unexplained_howitworks_age3_001",
+        "bp_appeal_together_age3_001"
+      ],
+      "roles": [
+        "hesitant",
+        "needsCare",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "3-4",
+      "mode": "learning",
+      "companionID": "companion_owl_pilot_001",
+      "blueprints": [
+        "blueprint_charge_tending_age3_001",
+        "bp_charge_release_age3_001",
+        "bp_misreading_closerlook_age3_001",
+        "bp_appeal_together_age3_001"
+      ],
+      "roles": [
+        "guide",
+        "needsCare"
+      ]
+    },
+    {
+      "band": "3-4",
+      "mode": "learning",
+      "companionID": "companion_city_cat_001",
+      "blueprints": [
+        "bp_unexplained_howitworks_age3_001",
+        "bp_misreading_closerlook_age3_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "3-4",
+      "mode": "learning",
+      "companionID": "companion_bear_001",
+      "blueprints": [
+        "bp_unexplained_howitworks_age3_001",
+        "bp_misreading_closerlook_age3_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "3-4",
+      "mode": "adventure",
+      "companionID": "companion_fox_pilot_001",
+      "blueprints": [
+        "bp_adventure_together_age3_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "3-4",
+      "mode": "adventure",
+      "companionID": "companion_hedgehog_pilot_001",
+      "blueprints": [
+        "bp_adventure_lookingtogether_age3_001",
+        "bp_adventure_lookingback_age3_001",
+        "bp_adventure_together_age3_001",
+        "bp_adventure_asking_age3_001"
+      ],
+      "roles": [
+        "hesitant",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "3-4",
+      "mode": "adventure",
+      "companionID": "companion_owl_pilot_001",
+      "blueprints": [
+        "bp_adventure_together_age3_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "3-4",
+      "mode": "adventure",
+      "companionID": "companion_city_cat_001",
+      "blueprints": [
+        "bp_adventure_lookingtogether_age3_001",
+        "bp_adventure_lookingback_age3_001",
+        "bp_adventure_together_age3_001",
+        "bp_adventure_asking_age3_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "3-4",
+      "mode": "adventure",
+      "companionID": "companion_bear_001",
+      "blueprints": [
+        "bp_adventure_lookingtogether_age3_001",
+        "bp_adventure_lookingback_age3_001",
+        "bp_adventure_together_age3_001",
+        "bp_adventure_asking_age3_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "3-4",
+      "mode": "bedtime",
+      "companionID": "companion_fox_pilot_001",
+      "blueprints": [],
+      "roles": []
+    },
+    {
+      "band": "3-4",
+      "mode": "bedtime",
+      "companionID": "companion_hedgehog_pilot_001",
+      "blueprints": [
+        "bp_bedtime_lullaby_age3_001",
+        "bp_bedtime_goodnight_age3_001",
+        "bp_bedtime_listening_age3_001",
+        "bp_bedtime_countingday_age3_001"
+      ],
+      "roles": [
+        "needsCare"
+      ]
+    },
+    {
+      "band": "3-4",
+      "mode": "bedtime",
+      "companionID": "companion_owl_pilot_001",
+      "blueprints": [
+        "bp_bedtime_lullaby_age3_001",
+        "bp_bedtime_goodnight_age3_001",
+        "bp_bedtime_listening_age3_001",
+        "bp_bedtime_countingday_age3_001"
+      ],
+      "roles": [
+        "needsCare"
+      ]
+    },
+    {
+      "band": "3-4",
+      "mode": "bedtime",
+      "companionID": "companion_city_cat_001",
+      "blueprints": [],
+      "roles": []
+    },
+    {
+      "band": "3-4",
+      "mode": "bedtime",
+      "companionID": "companion_bear_001",
+      "blueprints": [],
+      "roles": []
+    },
+    {
+      "band": "5-6",
+      "mode": "learning",
+      "companionID": "companion_fox_pilot_001",
+      "blueprints": [
+        "bp_unexplained_moment_002",
+        "blueprint_misreading_tracks_001",
+        "bp_sports_tryagain_001",
+        "bp_sports_together_001",
+        "bp_sports_howitmoves_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "5-6",
+      "mode": "learning",
+      "companionID": "companion_hedgehog_pilot_001",
+      "blueprints": [
+        "blueprint_unexplained_reading_001",
+        "bp_unexplained_moment_002",
+        "bp_unexplained_askingout_003",
+        "blueprint_appeal_together_001",
+        "bp_appeal_speakingup_002",
+        "bp_appeal_sharing_003",
+        "bp_misreading_twosides_002",
+        "bp_charge_tending_001",
+        "bp_charge_release_002"
+      ],
+      "roles": [
+        "hesitant",
+        "needsCare",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "5-6",
+      "mode": "learning",
+      "companionID": "companion_owl_pilot_001",
+      "blueprints": [
+        "bp_unexplained_moment_002",
+        "blueprint_appeal_together_001",
+        "blueprint_misreading_tracks_001",
+        "bp_misreading_twosides_002"
+      ],
+      "roles": [
+        "guide",
+        "needsCare",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "5-6",
+      "mode": "learning",
+      "companionID": "companion_city_cat_001",
+      "blueprints": [
+        "blueprint_unexplained_reading_001",
+        "bp_unexplained_moment_002",
+        "bp_unexplained_askingout_003",
+        "blueprint_misreading_tracks_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "5-6",
+      "mode": "learning",
+      "companionID": "companion_bear_001",
+      "blueprints": [
+        "blueprint_unexplained_reading_001",
+        "bp_unexplained_moment_002",
+        "bp_unexplained_askingout_003",
+        "blueprint_misreading_tracks_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "5-6",
+      "mode": "adventure",
+      "companionID": "companion_fox_pilot_001",
+      "blueprints": [
+        "blueprint_threshold_crossing_001",
+        "bp_threshold_joining_002",
+        "bp_threshold_together_003"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "5-6",
+      "mode": "adventure",
+      "companionID": "companion_hedgehog_pilot_001",
+      "blueprints": [
+        "blueprint_threshold_crossing_001",
+        "bp_threshold_joining_002",
+        "blueprint_absence_looking_001",
+        "bp_absence_retracing_002",
+        "bp_threshold_together_003",
+        "bp_absence_asking_003"
+      ],
+      "roles": [
+        "hesitant",
+        "needsCare",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "5-6",
+      "mode": "adventure",
+      "companionID": "companion_owl_pilot_001",
+      "blueprints": [
+        "bp_threshold_joining_002",
+        "bp_threshold_together_003"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "5-6",
+      "mode": "adventure",
+      "companionID": "companion_city_cat_001",
+      "blueprints": [
+        "blueprint_threshold_crossing_001",
+        "blueprint_absence_looking_001",
+        "bp_threshold_together_003",
+        "bp_absence_asking_003"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "5-6",
+      "mode": "adventure",
+      "companionID": "companion_bear_001",
+      "blueprints": [
+        "bp_threshold_joining_002",
+        "blueprint_absence_looking_001",
+        "bp_absence_retracing_002",
+        "bp_threshold_together_003",
+        "bp_absence_asking_003"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "5-6",
+      "mode": "bedtime",
+      "companionID": "companion_fox_pilot_001",
+      "blueprints": [],
+      "roles": []
+    },
+    {
+      "band": "5-6",
+      "mode": "bedtime",
+      "companionID": "companion_hedgehog_pilot_001",
+      "blueprints": [
+        "bp_bedtime_lullaby_001",
+        "bp_bedtime_nightwalk_001",
+        "bp_bedtime_goodnight_001",
+        "bp_bedtime_listening_001"
+      ],
+      "roles": [
+        "needsCare"
+      ]
+    },
+    {
+      "band": "5-6",
+      "mode": "bedtime",
+      "companionID": "companion_owl_pilot_001",
+      "blueprints": [
+        "bp_bedtime_lullaby_001",
+        "bp_bedtime_nightwalk_001",
+        "bp_bedtime_goodnight_001",
+        "bp_bedtime_listening_001"
+      ],
+      "roles": [
+        "needsCare"
+      ]
+    },
+    {
+      "band": "5-6",
+      "mode": "bedtime",
+      "companionID": "companion_city_cat_001",
+      "blueprints": [],
+      "roles": []
+    },
+    {
+      "band": "5-6",
+      "mode": "bedtime",
+      "companionID": "companion_bear_001",
+      "blueprints": [],
+      "roles": []
+    },
+    {
+      "band": "7-8",
+      "mode": "learning",
+      "companionID": "companion_fox_pilot_001",
+      "blueprints": [
+        "bp_misreading_tracks_age7_001",
+        "bp_sports_tryagain_age7_001",
+        "bp_sports_together_age7_001",
+        "bp_sports_howitmoves_age7_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "7-8",
+      "mode": "learning",
+      "companionID": "companion_hedgehog_pilot_001",
+      "blueprints": [
+        "bp_unexplained_reading_age7_001",
+        "bp_appeal_together_age7_001",
+        "bp_charge_tending_age7_001"
+      ],
+      "roles": [
+        "hesitant",
+        "needsCare",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "7-8",
+      "mode": "learning",
+      "companionID": "companion_owl_pilot_001",
+      "blueprints": [
+        "bp_misreading_tracks_age7_001",
+        "bp_appeal_together_age7_001"
+      ],
+      "roles": [
+        "guide",
+        "needsCare"
+      ]
+    },
+    {
+      "band": "7-8",
+      "mode": "learning",
+      "companionID": "companion_city_cat_001",
+      "blueprints": [
+        "bp_misreading_tracks_age7_001",
+        "bp_unexplained_reading_age7_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "7-8",
+      "mode": "learning",
+      "companionID": "companion_bear_001",
+      "blueprints": [
+        "bp_misreading_tracks_age7_001",
+        "bp_unexplained_reading_age7_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "7-8",
+      "mode": "adventure",
+      "companionID": "companion_fox_pilot_001",
+      "blueprints": [
+        "bp_threshold_together_age7_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "7-8",
+      "mode": "adventure",
+      "companionID": "companion_hedgehog_pilot_001",
+      "blueprints": [
+        "bp_absence_retracing_age7_001",
+        "bp_absence_looking_age7_001",
+        "bp_absence_signs_age7_001",
+        "bp_threshold_together_age7_001"
+      ],
+      "roles": [
+        "hesitant",
+        "needsCare",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "7-8",
+      "mode": "adventure",
+      "companionID": "companion_owl_pilot_001",
+      "blueprints": [
+        "bp_threshold_together_age7_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "7-8",
+      "mode": "adventure",
+      "companionID": "companion_city_cat_001",
+      "blueprints": [
+        "bp_absence_looking_age7_001",
+        "bp_absence_signs_age7_001",
+        "bp_threshold_together_age7_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "7-8",
+      "mode": "adventure",
+      "companionID": "companion_bear_001",
+      "blueprints": [
+        "bp_absence_retracing_age7_001",
+        "bp_absence_looking_age7_001",
+        "bp_absence_signs_age7_001",
+        "bp_threshold_together_age7_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "7-8",
+      "mode": "bedtime",
+      "companionID": "companion_fox_pilot_001",
+      "blueprints": [],
+      "roles": []
+    },
+    {
+      "band": "7-8",
+      "mode": "bedtime",
+      "companionID": "companion_hedgehog_pilot_001",
+      "blueprints": [
+        "bp_bedtime_lullaby_age7_001",
+        "bp_bedtime_goodnight_age7_001",
+        "bp_bedtime_listening_age7_001",
+        "bp_bedtime_countingday_age7_001"
+      ],
+      "roles": [
+        "needsCare"
+      ]
+    },
+    {
+      "band": "7-8",
+      "mode": "bedtime",
+      "companionID": "companion_owl_pilot_001",
+      "blueprints": [
+        "bp_bedtime_lullaby_age7_001",
+        "bp_bedtime_goodnight_age7_001",
+        "bp_bedtime_listening_age7_001",
+        "bp_bedtime_countingday_age7_001"
+      ],
+      "roles": [
+        "needsCare"
+      ]
+    },
+    {
+      "band": "7-8",
+      "mode": "bedtime",
+      "companionID": "companion_city_cat_001",
+      "blueprints": [],
+      "roles": []
+    },
+    {
+      "band": "7-8",
+      "mode": "bedtime",
+      "companionID": "companion_bear_001",
+      "blueprints": [],
+      "roles": []
+    },
+    {
+      "band": "9-10",
+      "mode": "learning",
+      "companionID": "companion_fox_pilot_001",
+      "blueprints": [
+        "bp_misreading_tracks_age9_001",
+        "bp_sports_tryagain_age9_001",
+        "bp_sports_together_age9_001",
+        "bp_sports_howitmoves_age9_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "9-10",
+      "mode": "learning",
+      "companionID": "companion_hedgehog_pilot_001",
+      "blueprints": [
+        "bp_unexplained_reading_age9_001",
+        "bp_appeal_together_age9_001",
+        "bp_charge_tending_age9_001"
+      ],
+      "roles": [
+        "hesitant",
+        "needsCare",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "9-10",
+      "mode": "learning",
+      "companionID": "companion_owl_pilot_001",
+      "blueprints": [
+        "bp_misreading_tracks_age9_001",
+        "bp_appeal_together_age9_001"
+      ],
+      "roles": [
+        "guide",
+        "needsCare"
+      ]
+    },
+    {
+      "band": "9-10",
+      "mode": "learning",
+      "companionID": "companion_city_cat_001",
+      "blueprints": [
+        "bp_misreading_tracks_age9_001",
+        "bp_unexplained_reading_age9_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "9-10",
+      "mode": "learning",
+      "companionID": "companion_bear_001",
+      "blueprints": [
+        "bp_misreading_tracks_age9_001",
+        "bp_unexplained_reading_age9_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "9-10",
+      "mode": "adventure",
+      "companionID": "companion_fox_pilot_001",
+      "blueprints": [
+        "bp_threshold_together_age9_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "9-10",
+      "mode": "adventure",
+      "companionID": "companion_hedgehog_pilot_001",
+      "blueprints": [
+        "bp_absence_retracing_age9_001",
+        "bp_absence_looking_age9_001",
+        "bp_absence_signs_age9_001",
+        "bp_threshold_together_age9_001"
+      ],
+      "roles": [
+        "hesitant",
+        "needsCare",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "9-10",
+      "mode": "adventure",
+      "companionID": "companion_owl_pilot_001",
+      "blueprints": [
+        "bp_threshold_together_age9_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "9-10",
+      "mode": "adventure",
+      "companionID": "companion_city_cat_001",
+      "blueprints": [
+        "bp_absence_looking_age9_001",
+        "bp_absence_signs_age9_001",
+        "bp_threshold_together_age9_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "9-10",
+      "mode": "adventure",
+      "companionID": "companion_bear_001",
+      "blueprints": [
+        "bp_absence_retracing_age9_001",
+        "bp_absence_looking_age9_001",
+        "bp_absence_signs_age9_001",
+        "bp_threshold_together_age9_001"
+      ],
+      "roles": [
+        "guide",
+        "reassuring"
+      ]
+    },
+    {
+      "band": "9-10",
+      "mode": "bedtime",
+      "companionID": "companion_fox_pilot_001",
+      "blueprints": [],
+      "roles": []
+    },
+    {
+      "band": "9-10",
+      "mode": "bedtime",
+      "companionID": "companion_hedgehog_pilot_001",
+      "blueprints": [
+        "bp_bedtime_lullaby_age9_001",
+        "bp_bedtime_goodnight_age9_001",
+        "bp_bedtime_moontalk_age9_001",
+        "bp_bedtime_countingday_age9_001"
+      ],
+      "roles": [
+        "needsCare"
+      ]
+    },
+    {
+      "band": "9-10",
+      "mode": "bedtime",
+      "companionID": "companion_owl_pilot_001",
+      "blueprints": [
+        "bp_bedtime_lullaby_age9_001",
+        "bp_bedtime_goodnight_age9_001",
+        "bp_bedtime_moontalk_age9_001",
+        "bp_bedtime_countingday_age9_001"
+      ],
+      "roles": [
+        "needsCare"
+      ]
+    },
+    {
+      "band": "9-10",
+      "mode": "bedtime",
+      "companionID": "companion_city_cat_001",
+      "blueprints": [],
+      "roles": []
+    },
+    {
+      "band": "9-10",
+      "mode": "bedtime",
+      "companionID": "companion_bear_001",
+      "blueprints": [],
+      "roles": []
+    }
+  ],
+  "lostBlueprints": [
+    {
+      "id": "bp_jobs_askingwhoknows_001",
+      "band": "5-6",
+      "family": "unexplained",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained"
+          ],
+          "anyOf": [
+            [
+              "isFragmentary",
+              "emitsSignal"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      }
+    },
+    {
+      "id": "bp_jobs_craftspatience_002",
+      "band": "5-6",
+      "family": "unexplained",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isOpen",
+              "isTended"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained",
+            "emitsSignal"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed",
+          "isFragmentary"
+        ]
+      }
+    },
+    {
+      "id": "bp_jobs_twohalves_003",
+      "band": "5-6",
+      "family": "misreading",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isOpen",
+              "isTended"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "companion": [
+          "isLiteralMinded"
+        ]
+      }
+    },
+    {
+      "id": "bp_jobs_askingwhoknows_age7_001",
+      "band": "7-8",
+      "family": "unexplained",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained"
+          ],
+          "anyOf": [
+            [
+              "isFragmentary",
+              "emitsSignal"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      }
+    },
+    {
+      "id": "bp_jobs_craftspatience_age7_001",
+      "band": "7-8",
+      "family": "unexplained",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained",
+            "emitsSignal"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed",
+          "isFragmentary"
+        ]
+      }
+    },
+    {
+      "id": "bp_jobs_helpingatwork_age7_001",
+      "band": "7-8",
+      "family": "appeal",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      }
+    },
+    {
+      "id": "bp_jobs_askingwhoknows_age9_001",
+      "band": "9-10",
+      "family": "unexplained",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained"
+          ],
+          "anyOf": [
+            [
+              "isFragmentary",
+              "emitsSignal"
+            ]
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      }
+    },
+    {
+      "id": "bp_jobs_craftspatience_age9_001",
+      "band": "9-10",
+      "family": "unexplained",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "isUnexplained",
+            "emitsSignal"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed",
+          "isFragmentary"
+        ]
+      }
+    },
+    {
+      "id": "bp_jobs_helpingatwork_age9_001",
+      "band": "9-10",
+      "family": "appeal",
+      "requires": {
+        "setting": {
+          "anyOf": [
+            [
+              "isTended",
+              "isOpen",
+              "showsTraces"
+            ]
+          ]
+        },
+        "casting": [
+          "guide",
+          "reassuring"
+        ],
+        "nature": [
+          "person"
+        ],
+        "discovery": {
+          "allOf": [
+            "impliesPresence"
+          ]
+        }
+      },
+      "forbids": {
+        "discovery": [
+          "impliesNeed"
+        ]
+      }
+    }
+  ],
+  "date": "2026-11-22",
+  "sourceCommit": "1fed247a38ad872f9ed451d68c37bda84a1d3cc1",
+  "runtimeMeasuredThisSession": false,
+  "method": "Read-only static existence over merged shared-v2 and pilot records: band/mode/arc, nonempty traits, allOf/anyOf/forbids, nature, cast role, shared habitat, setting threshold and discovery explainedBy. Does not run Swift loader, selector, composer, prose/state/family/safety/topic gates or series. Counts are candidate upper bounds, not working-story counts.",
+  "sourceHashes": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "417174a67cb0cc69d82cce3fcdaa2b3580eda6ac2a7b1f88b3b809fd6a6b36b2"
+    },
+    {
+      "path": "MagicPaper/Screens/StoryCreation/CompanionStep.swift",
+      "sha256": "1f6ef0ecdb9c364ec7d97f7ce4ff3b280ba717f1e9b543486723a77377d656bf"
+    },
+    {
+      "path": "MagicPaper/StoryEngineBridge/StoryChoiceSource.swift",
+      "sha256": "d63dc0aa2fe266b4ee0828e30678daf6e69fafa9d5facb5614f3f7aa843eb1c0"
+    },
+    {
+      "path": "MagicPaper/StoryEngineBridge/WholeBookArtPolicy.swift",
+      "sha256": "8a77155954bdbc677dcbebf30289724f115a4a33876696f78826e330695c5b88"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Offline/OfflineSelection.swift",
+      "sha256": "abf8ebec162864e18dba21a5b37a5bed23b3a1e0645397c9e63a8f7a407040fd"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Offline/OfflineStoryComposer.swift",
+      "sha256": "dc36ab29dc8753b677034989b1dd86494e55631fcce36212421392d2c3e83a0a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/blueprints/occasion_library_v1.json",
+      "sha256": "f11174d092a03d4c5dde739a4079b8d1180091031c18a0824e3252b82a4c92e8"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/blueprints/pilot_library_v1.json",
+      "sha256": "d42824f84c2d93b2a9451dafea843f3494e2c46a96e4ab40236c6247aeb684a0"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/blueprints/recall_lines_v1.json",
+      "sha256": "f30b3c15254f353bc7ffe9c8806e4b73eb6ce555734648bb7893fc6a91552076"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/adventure_01.json",
+      "sha256": "2610e01e1b4b0ff026f9f1a168d5bd8565674f762c0947f6bde8e3941b77d376"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_companion_offers.json",
+      "sha256": "d7cb2b3fe7e0c7a2010a431272842628b58c4cbae855a70aaf22bc5f93c52208"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_establish_ordinary.json",
+      "sha256": "159539884691cc0c3db35c59f168c042b0f1148b97fc69c499d855ce8a301f32"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_examine.json",
+      "sha256": "f4864604cf97459e014d12a7f24fa019b130a5edc24fc450ecbf4097f540b10a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_let_go.json",
+      "sha256": "254cf04da962adf9b269fa5400c4715abc3093c3eecc1d0ac64b5df1b68e4099"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_meet_companion.json",
+      "sha256": "8164f06ac9ca472e72475e3e177f0af7f007b3878bee7d0b54d4b4cf445011a6"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_notice_anomaly.json",
+      "sha256": "f8ce0e24842b92550575815038cb949e76ae60d1c19aa2ada22be712145f3308"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_patient_wait.json",
+      "sha256": "6ca3d01983fbb6b49793d81aa10bd37687741b9f0ddd459acd870c791762f4a6"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_restore.json",
+      "sha256": "e5f58ddc9fd54f488a811bc742118ea802574f97aad22dfe3362619cac1d3888"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_take_charge.json",
+      "sha256": "a7691a17d4f3676b4cd1771517ed2bc749edd3e9c345fc498c6c4293d967007b"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_tend.json",
+      "sha256": "80162f0113607775a9164cc87b9f0ede7cdf929d497b290316294fa97a8128cc"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age3_warm_close.json",
+      "sha256": "bcb9570b2d9dc2fa828d779fbcbbb57844d569016dd1237b794df953c05423e9"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_companion_offers.json",
+      "sha256": "d4a52aaabc9e188ca4ebf83ed0bb586973e18aad2cf9b6ac43d096932d098e31"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_establish_ordinary.json",
+      "sha256": "eaee677ee801dd4e5811704813980ffe2901dc222d9182845fd52f79ad3c8490"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_examine.json",
+      "sha256": "e1474bb61a417f832226062a642dd18d85738423b5493de1946197015a0b293a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_let_go.json",
+      "sha256": "4d3aea445abccec9ffc691fb6c8b71dd8e77ac7e746f73f2ad68795fb3e4de65"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_meet_companion.json",
+      "sha256": "3e9ab7e57c5844877b0edfded6d11fe93bddf7bf927f4e1f3306e6a025e4bc4f"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_notice_anomaly.json",
+      "sha256": "40bf1eb640ee359e71e75e4484fde2ccafe6d7f04389be9068f8796521ef6643"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_patient_wait.json",
+      "sha256": "64a0b52be147faa911f3c79768e58f4ba75485bb09bca976bbe528974ffd7f7a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_restore.json",
+      "sha256": "3289cba1e9b4ab7fbd104004958b1b5cbd28af6ba4309056e82330baee506379"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_take_charge.json",
+      "sha256": "5575667097f204518675184d1c60ff8021db4f76a12796b3e6964d2f3e459361"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_tend.json",
+      "sha256": "5c885542e218a8c18251e78cd49e354d3892e3c7950f00eb674416cc2f929452"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age7_warm_close.json",
+      "sha256": "19bf83231488fdec9ec4d7149b5ae300d4732bf5b5c9f6b83d6ba73de5769bc2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_approach.json",
+      "sha256": "948b9a793a26cf8cbce82e15514120917fb962a1a9ae46d973e83e9417e75266"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_companion_offers.json",
+      "sha256": "114ad78094ddef0ec840da782bbe8c5a0c17665f38a5d85063e437499838b6dd"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_establish_ordinary.json",
+      "sha256": "d479ead35bbc7045a45b05844d2cc2ed820604199f78c26db278060831d40071"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_examine.json",
+      "sha256": "927750efa1bd31726c8a160b6ec6bc121a7aa9d3e9ebaa1ab31762046079cada"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_let_go.json",
+      "sha256": "add844eb61d076f59726a5855b5498005fdee10dad4474d7884132a2e1ded51c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_meet_companion.json",
+      "sha256": "3a11630ed7d87308ee5885082376124660d177e48975cd1693f99942e7d05076"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_notice_anomaly.json",
+      "sha256": "75958550db1835756c7a374633deec6fd061c8f56e6ca2bb7ebca72d0222764e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_patient_wait.json",
+      "sha256": "b909ca6ddf9acd1a3cb00a50d1dc3526bf82e2df2e13bdfab90d039170475909"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_restore.json",
+      "sha256": "b287f1f1e011d5e7b290f37649bf1a1f1a52019f95ae5cabfd4503b7a3b9aca8"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_self_recognize.json",
+      "sha256": "74c363cac8ee7f231f0279e1fe11c67c095feaad21f7601211d8297e6d8f53e8"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_take_charge.json",
+      "sha256": "3baee4ad736388e1c0e549bab345a8e4d536e9ff32eb061de647c260a03826ed"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_tend.json",
+      "sha256": "cd813ef6535aea5b2bfdd986bb359ed28efe3bedbdbde04615b29dc49158c3df"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_age9_warm_close.json",
+      "sha256": "51314cf850dc05e61f7631ed181ec64109de2eeab960eb12717c752bd2c82947"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_approach.json",
+      "sha256": "b70a3f1da111a590582b8e4ac6abdfc19d18d3b46c89a5851871a0775485f1f7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_establish_ordinary.json",
+      "sha256": "6f739567f2886768e2744c3b24316d25f6ef10a9c22499bc8337b75387533122"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_examine.json",
+      "sha256": "6d7f09324355ddfa6b89fea8816b8038abf83581f352e4c9821553afb0bbda36"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_let_go.json",
+      "sha256": "40b17f151354db62e32d1e3706c02f62a30e9237b7601fa2a300b62df32dfebc"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_meet_companion.json",
+      "sha256": "7131e74698c5cfc9d78b2e6e9bf79f77016380b4b3702afff280378e2d23eaf1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_notice_anomaly.json",
+      "sha256": "8f3e7b451be61a12cafbb9d1df34736e9d45d9b35cc48013a9bfbc8ba4de4688"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_patient_wait.json",
+      "sha256": "d3f1e2235214a2471d0e32285182e330c2d518aaabc0730ae43fd1e88203a860"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_restore.json",
+      "sha256": "cce5f0581411493f068145c6fb6e4eb4e7e8a289e7b65bf349612129eb7eead3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_commit.json",
+      "sha256": "65295087892c7e3ca58d7854ffe028fa199aab508740862371b87724c8fd4615"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_first_attempt.json",
+      "sha256": "b18ba552316c98c15341842dd42efdfefdf88e8ca2e76875b1951ec126cad449"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_let_go.json",
+      "sha256": "7441cc1fb2ff0f7ffe05aa5cc49074b9d5c0f1b45a43effc4605e041521b44e4"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_notice_anomaly.json",
+      "sha256": "c60820917c912d57a4733b23375fb45eb5171bbba630540cb07dc5fbaaad210f"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_patient_wait.json",
+      "sha256": "ce5f1e242b5596def6f12770ec20779040d56969bbb5b4cc941550ae17396014"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_receive_appeal.json",
+      "sha256": "e99072529b9ba0f2abdca3aa25c7c53be0b1a7943035ad13ce434b046519d7b3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_restore.json",
+      "sha256": "7d4a7402399b9a52e6f4c36c578a641ab3d080fb3ba284462d76f9fda1cbadb1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_revisit.json",
+      "sha256": "084a645f03a06e177619b19663f7701072d208c40f4559e733825c4a20d82d56"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_take_charge.json",
+      "sha256": "9918304b9e11c927849fa8524ed2cad50e2249657bdabdf295e6f8a44d6017fc"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_tend.json",
+      "sha256": "5dcc24af5f9223749833a63747172f4075c3e7fefed533ed89caee259e6417cc"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age3_warm_close.json",
+      "sha256": "164e4a653131f1ed01e0511ecd2ff8b1457d5c1f382f95c21432fec535cea5c2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age7_approach.json",
+      "sha256": "4be202b264db9e5c69e6208d5a92714edd63d68eaa36861aaa9c7a52991c6c01"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age7_commit.json",
+      "sha256": "f465ffdda098d948755138668d6cff520bfe527391e5453e45abbf81c6916daf"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age7_first_attempt.json",
+      "sha256": "a681f9dd0484f2fe32d98850c8ae691fd8be5c7aab7a869812c180f0d13f6b4f"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age7_notice_anomaly.json",
+      "sha256": "c498cd7368a00aaa27e70bc7776ccb711bbc056ca5f08f58c0b5a98c1d7b80ce"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age7_receive_appeal.json",
+      "sha256": "08e2009b9247a3fa7b11bd9e1b1b7e3ed4895a15968384d8f31d6cb2f0777721"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age7_revisit.json",
+      "sha256": "5c1360d3380a25f1986bc1aa89df6b8a6fc5284d0b164a3aa76e8a32b5baa2ac"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age7_warm_close.json",
+      "sha256": "dace5ecd67298c5c25afee9ba8ac73554c100be0f107c2af80522d44bbb11027"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age9_approach.json",
+      "sha256": "8a93db391e821363bdd27f42ecc6d0a95b016a1262d66ad69e2bb5b2f7a9a398"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age9_commit.json",
+      "sha256": "b142f05f6ce8e670470b6b04dea93bde2e325ec0d25ab9deb6459ef0ea0c23e5"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age9_first_attempt.json",
+      "sha256": "d85e5b5eead41d06b9ae5c1872dc65404bc6641d9965aba14598d274e5fb445a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age9_notice_anomaly.json",
+      "sha256": "1085df52c0717f7c00bdb02f8e9849bdae57b52b6fbf6a8fbf0543b18e413e4a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age9_receive_appeal.json",
+      "sha256": "fd714451ca162e3f9dc6ef98d02ce3a142e713c1bf2223738e581721ceb4297d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age9_revisit.json",
+      "sha256": "6f21dd56d6790dde054c2280aaf6ed8642baff3d417130bb08b8bcd86c282cb2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_age9_warm_close.json",
+      "sha256": "6e0e9adb79efa88b5d974cf5e97312f53fa98ef4751206fbf4c69ba477e311d5"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_approach.json",
+      "sha256": "7084cb5f204d2a122b91dd944578ae7bf6e105c3498f7c72e75187eeeaee1567"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_commit.json",
+      "sha256": "632aa64c79a4b5cdea4f31061a4662fbf728fdd06819d1975b4d73f224514f51"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_examine.json",
+      "sha256": "ade6d61c6d0a24d2d10a2b6742d473f999cc87337196d2ad619e64575ca3a260"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_first_attempt.json",
+      "sha256": "e9a220bb2ba318676429db08b7f8b03a546d18e77a19707a35f63c3309542321"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_let_go.json",
+      "sha256": "2a9e9656c50239a79f3a38352f62b8b173c891d1aa5c8543aca6e99ab144aca7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_notice_anomaly.json",
+      "sha256": "1644836458b498d26ccc7054b151028ccb99bc39a62f42d82f83e7ad7f9bcdfc"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_patient_wait.json",
+      "sha256": "5da695fc43dfdb7b3cbf0a3731d1ba43bbd3446cc177d86977111c940b5998fe"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_receive_appeal.json",
+      "sha256": "953ca2367911834ed3d04daf68a30d535a975c34089393ee4c134359531b8679"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_restore.json",
+      "sha256": "0085e2eeaf9cc332f841a3f10c438859ad8cc4ee4dfdb9cc5b209ed633bcb1ea"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_revisit.json",
+      "sha256": "f9f13b48feeb2fcd16e23ddaec93ae3f89f9465dc80361757c0aa1664a16a9ef"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_take_charge.json",
+      "sha256": "108c8047ce0f5923d925de4027afabe6924fcc3458d1a687878d4ba65b88892e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_tend.json",
+      "sha256": "08b7c03d956d661e19b384ac304a7563fc295c982e79f64e0c70a02874bdfaf8"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_series_warm_close.json",
+      "sha256": "5d792779bc68910c3d02fd933aac2b1f07e57b68c455f140006a5ad6bb15544d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_take_charge.json",
+      "sha256": "4b17db6a5c6d73043c7bf3a0211268d812536dcc167cf7983a0e80e149e51608"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_tend.json",
+      "sha256": "5bd749c8fd0636055c1f4cbb638d0a7a9beb63dcea0f55ef5fe966320b9f03cb"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_warm_close.json",
+      "sha256": "ccdd781dd058b96f01935a16d9f6b8fd38b7c573fd1d762c87883aaeae4a573b"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/adventure_courage_bridge_002.json",
+      "sha256": "e28b8ca367c19069d083bea88eb2a31ae910db6103037075ba5aee55b621cfb3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/adventure_courage_cave_001.json",
+      "sha256": "f6d7bebbd769f7bb148b3ca22aadc3b6a793ac51b826f8e970609987bf39ce93"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/adventure_courage_footprints_005.json",
+      "sha256": "1045c99e6475254da6c8d42c27d1c84869400db11fa66b505b60fa154951ca31"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/adventure_courage_garden_004.json",
+      "sha256": "6d8c54469c0c1022c820b5b6e50cac7fa42d166b245a7082c46114c4dae2a214"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/adventure_courage_map_003.json",
+      "sha256": "3d989c621cb37705be972a8a2d97827d9bea24b90abf35ff62b91088236c8a2d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/fantasy_magic_001.json",
+      "sha256": "5edb4e095ea66bdb6be013a6aad8d995ab273cf755bd2226b4db98ed3ac0788a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/fantasy_magic_002.json",
+      "sha256": "8c76dd5b48644838f5e58deb22a104fc4f7738afc65e71b24c8fd4c7de14cf46"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/hero_courage_001.json",
+      "sha256": "56d94ad9b3a8528a03282c94294e5d13f611b927d6bc08ff41f1acec9f06c6c0"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/shared_content_library.json",
+      "sha256": "f9b4064da53d5b8ea0558b72e2899083932095f2e2a2546f9e7ffc0b585802d3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/space_discovery_001.json",
+      "sha256": "830af64f345f01b473999be81a3d95ff78b0c1de38c8f40def6d09d3015b7d8b"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/space_discovery_002.json",
+      "sha256": "8a9d9afab9a03e3b258108ab9ce5cdde104aedfdf9a519dd8c0ba25b7ad2a0e0"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/underwater_friendship_001.json",
+      "sha256": "1d379a40ca792c9aa16e200d38fbb4cdc1d870bbf95c9b8ff00081114e1f024c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/underwater_friendship_002.json",
+      "sha256": "8f7c36c6d19161bfa5011f0ae47cae7f947ce6c4d2406f87fb1765d4de0d30db"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/offline/v2/shared_content_library_v2.json",
+      "sha256": "e5585160abb21c2cfb60a9e17d5e86469e03481aae7a884b4bd14f054793d0db"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_commit.json",
+      "sha256": "aa970b07083af10e4b0f2bf3d5bade7ed74f7c44b3ec237f92de97e5b2d6625c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_first_attempt.json",
+      "sha256": "ab9b2fa6968dbd5158ae9b5e3d896495c2346161a312c7089d0fb0596c86781c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_let_go.json",
+      "sha256": "39cbf58031858106569e261d6a0c241bd469a8822529d43f1256ac3ed6b52494"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_notice_anomaly.json",
+      "sha256": "e8ca3fd67fe77e12cc61527217245b98d60fd6518ff231b677e7745309273551"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_patient_wait.json",
+      "sha256": "911d3309dde953ab3ddc690a6f841d83282b18dab5fb22bfdc5f039c083b3bdb"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_receive_appeal.json",
+      "sha256": "658c962d4623f0e63aca6985f5c7319be624147351f8128a87373ba27a1cbab1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_restore.json",
+      "sha256": "d69affacaf712c4079bd8e7b18fc4a05b296ea34a09ca606937199a795f9269d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_revisit.json",
+      "sha256": "236ecfede91cdbedae33aa5357dd819bae428727737aca26baa21a39129cbdc5"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_take_charge.json",
+      "sha256": "c45fd09c43cf6db345146e19877ff0568101c12f3101d9a0cedab4f44fa00124"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_tend.json",
+      "sha256": "1c27a4f727113090b36d1a09fd4c90c14bc376059018629309aa713e050d60ce"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age3_warm_close.json",
+      "sha256": "d28482cd4ddbf7aaab7bf15434e3a0b1ed3df0197b5479139b766969bb76a15e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_commit.json",
+      "sha256": "8045d6bcee7bd6ae8be14693b04f42f360e89c98f35f60d3e0139ed9c11f52a1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_first_attempt.json",
+      "sha256": "0528be687b168815f5e98e015e3508fb498020e012b5d41b958717ae6526a5c0"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_let_go.json",
+      "sha256": "10944335d22eb2750f1351dd3e82ac0c919fa5e1be66e882c38244b8b205309c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_notice_anomaly.json",
+      "sha256": "28a81d5028afc40ed47eee50d1b43de98ce4058e72f5870f6592626c98d3be92"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_patient_wait.json",
+      "sha256": "b1c5e154f644d085992d05c42f538026630441df2d50dcaa784226eb879523ee"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_receive_appeal.json",
+      "sha256": "23c14211bf5f41003e14fe69665c5ea4206c28159c66b36fea71fa719841dd61"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_restore.json",
+      "sha256": "9d82b9000224cee4dd4579029f2061250604d6be0a908ecd601f8b859094ca50"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_revisit.json",
+      "sha256": "533df19e5633c24bec082526b88c79af742d94060dde4908dd5180afdc160aaf"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_take_charge.json",
+      "sha256": "b649c2be2db1250c1ff65bc062ed9a209e74ec511cced4fb45ee0377e0bb216c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_tend.json",
+      "sha256": "6e375cc39825359d31629b7e94339de156753d58c314844ed5e3d5b163a329c3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age7_warm_close.json",
+      "sha256": "572f8ad7c3aac56e3aed7e45f2232a80e929ba624f00a221f7f7da7bc083be3b"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_commit.json",
+      "sha256": "f33d330cfead5ef0fa851f58d0baee70da4789d41162ec4dc6b5032f7160e659"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_companion_offers.json",
+      "sha256": "5e5a05f833f348fcf2bc562812713641a00577d1e5e4862b640a5360e8b6e6c4"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_first_attempt.json",
+      "sha256": "0885ef32a0b9cf361644accebff51de2c0ed293a372cfca3a70bcb989f08e548"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_let_go.json",
+      "sha256": "1dc58ebed608a7bae6c3df63a65c031752af5f25723d69e5c8a39cf81725a3a4"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_notice_anomaly.json",
+      "sha256": "e916e182e173d6a4b5fa38454b84decc3d5a081bd71249fdf49cfbc19322e5a1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_patient_wait.json",
+      "sha256": "37e126075f8d9c2476f0d8d02c6da3da256407837f51c6907af6ef4d4f9d4c9d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_receive_appeal.json",
+      "sha256": "dda57159e60e9a4e0a55c77348485e97b8151cb8c2d738f767c8a66d9b7eed21"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_restore.json",
+      "sha256": "f82a82cc9f383f7bbeb369df406983dbab5a3903325e437ca288e168fa8be0e2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_revisit.json",
+      "sha256": "070e55d74f4916411402468a9eb925e6bcdbb4f66fddd9d50dcd4807e1bdc11a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_take_charge.json",
+      "sha256": "7bcb9e6f9183b33468004e33e53c664aae5516ec949b833081b0cdad659d7766"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_tend.json",
+      "sha256": "5d5627db4c2c44a702b91b189e75904e3e2c0c4a4f6c7557401350be534ea704"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_age9_warm_close.json",
+      "sha256": "2a725bfdfb9a4f53f93f0819d8abd152ac259d5bd2a4c41f48fa1be491a6109f"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_approach.json",
+      "sha256": "7eff207128517462cefefce75a0851dd605fcd9883de2fe8c322c5bc787a1b33"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_commit.json",
+      "sha256": "531819cdf2033c177cb5e0489c7d86ad9bbc73ff0a3f11dcfc68cca23875d8b1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_examine.json",
+      "sha256": "2f154e91b098d6d809a4e8fede6df311776e6dc5094510f3766b772f0c4d68d9"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_first_attempt.json",
+      "sha256": "5df3d49728a009f710e3fa2187e30244245083a9d2de9fb69420f4dbd9a4f9d0"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_let_go.json",
+      "sha256": "7e6eb6f28eec36588122edba1d61aab4da870dbfee91bdcf0498f37b3d7edf35"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_notice_anomaly.json",
+      "sha256": "b1373fb486da5216d7035d5891cf45f1af19f928da824e39ed76e7e830021ae7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_patient_wait.json",
+      "sha256": "6a7563ce1ee99c066df590e55ec23217722cd77a42d9485b2198db9535bd7b3e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_receive_appeal.json",
+      "sha256": "5a6d453155610b5426ef1dadfc13daabc0c7ac7af90b19c3a1c8484f59b108ba"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_restore.json",
+      "sha256": "893680d199700e7b1751fda479b7619ff314a596da96cc9c6ce29733fb86f1fb"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_revisit.json",
+      "sha256": "c86cc8f763d5bb3698355ca4121c6e54b053712051a4bf5abcd4c357dffc212f"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_take_charge.json",
+      "sha256": "85523a6d6a29293b0e91fa8fcefd9b6271dd8e6de4418bafd719be180ee00905"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_tend.json",
+      "sha256": "c569889a327862c685e9f9b78cb5ca6d706442769586c8eed8853a664bfdd094"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_warm_close.json",
+      "sha256": "eba8c18666f8524cec766a413e07d385ea56abf2584050fb98623c6120185213"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_ask_for_help.json",
+      "sha256": "3af1d5df2b5ce1574a9e6e5ca12ba0d967a5bb36e136e30fce464b3daa4a7a6a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_belief_fails.json",
+      "sha256": "02c089d833f25f640945bada1720a2bdbf762030cd0d7b98eb09ee5b3c553262"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_commit.json",
+      "sha256": "ce9dde98be9a69bc98a13d060802b2208f626dababefcb46f73e8ba985481998"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_cooperative_effort.json",
+      "sha256": "c66e19ef95252b633ea8857aaecaa759ebf77f7e2d3b1925f6091196d7e13873"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_first_attempt.json",
+      "sha256": "c74264dfca11d9b891ce466eb76dc6a940d7724acc2bb7b4244cc2ae73eb9e75"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_form_belief.json",
+      "sha256": "620acf9f4060641f1ea7864fa2963ac8541a4a332e8fa0964598924eabc48db3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_insight.json",
+      "sha256": "b2747da5a6bd3d46dcb3ac0c350d5a505640b6dbccf9d1efe5f2583b2473b84e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_let_go.json",
+      "sha256": "c5aaa40e34f51f3d078fd7d7e44ab38ec7510a8dc1c4607621a0399eb6e4c1cc"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_meet_companion.json",
+      "sha256": "21fd8a3b2c9375947b92b526d91e1dd5f06e08d3ef1253b55796661ee44ecd5a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_notice_anomaly.json",
+      "sha256": "bbc464c419f246792751da7b806d5129602948bda2dc14a7c6a97cdc5767bb61"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_obstacle_raises.json",
+      "sha256": "372931ff0d45808b4a43c39ddf7d848c6c44014913f891796ae0502da08383e3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_patient_wait.json",
+      "sha256": "65e6ed9e58157a8b32129f336647ad6d3e5ad7b3d9f6acb7f4b603628f1b0507"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_persist.json",
+      "sha256": "a402d0a65d62a2b51bdc7f8ed70e56d15305c7bf66d05953d053c3b7dba81fbb"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_receive_appeal.json",
+      "sha256": "254071e0e212eceb71259dc03d32f960b6511314852a885f17179c3733c629ea"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_restore.json",
+      "sha256": "9ecb8685494cc22a38faaf6a2b2ffc3a8987a8f4fa38b0f78b66d37298b612b9"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_retrace.json",
+      "sha256": "dfc118778abb665a82a56c8881095d3cca805b6fd47685b21beb8bcefc154974"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_reveal_truth.json",
+      "sha256": "3934965f635a0d2473a8b8541d5509cd75407436d4274a17d3d0d18a0c6e08d3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_succeed.json",
+      "sha256": "98634ff4eaeeebd7ca808a6688dbde3ad8adb70accc1562157780edd36723001"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_tend.json",
+      "sha256": "1f5eb6609cd62d26f306bb07448682f798dc90dbeee41c8c95858b638027c92d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age3/beat_age3_warm_close.json",
+      "sha256": "ec9914604d8e67f7ebcfc3a96b65e5ac2af0fc9873522513b34d2099eaef77d1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_ask_for_help.json",
+      "sha256": "8d8f67d07f491e1c5d1830ff70378c058cf82b70d4a1e193dbbc9c778473374d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_belief_fails.json",
+      "sha256": "6ed51b37ade90429b7b65bf6e6efc07b9f09755971543cf14ad810f7afa7af1a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_carry_forward.json",
+      "sha256": "f93bffcb6989f1aa1bd5b437f52e2159a461320750c7a48b1235b2be7e5bd47a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_commit.json",
+      "sha256": "7decacb8f887dc6662c7464c63515e5e164e9381edb2b321bb56d202dd4ded25"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_companion_offers.json",
+      "sha256": "3e416aee6d987ba632796b2806f7b7fe6af2ad2a82c8921e8d590b357560ad79"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_cooperative_effort.json",
+      "sha256": "d5854d93c1cf8294812932b63c52949fc31dc47435e5de0f19d0e973b7fae79a"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_examine.json",
+      "sha256": "60f7e64d2a6a4e01fa32cf15f9d38cf594e636c96854773227651e735ff31ca2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_first_attempt.json",
+      "sha256": "0ae96ae8379b335aa0166b7ac7a9396137ce1d814a2e09fab1e9bb93e0a189be"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_form_belief.json",
+      "sha256": "ca72d6e2b2beec9108685ea5cb87bf9bfd668ee4cd7a3e9d33b5f2ce7edc8072"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_insight.json",
+      "sha256": "1baf5b024723bb63ad66129b7f64610693bb240f726399fd4e49ec306890852b"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_meet_companion.json",
+      "sha256": "e9744cc83cdeca7da6af5ccc105b1f8eb1285b5e453a9a63bcaa5395265c6268"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_notice_anomaly.json",
+      "sha256": "100b24bf6503fa76b97b6db40e31f1f94e34b8e9a00c23bf1215dada4eeb58f7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_obstacle_raises.json",
+      "sha256": "5ee2ed54ef04a409fe3f462cbc49fe8f58bd2878a1e0c6eab12097e5b9155e67"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_patient_wait.json",
+      "sha256": "b81eac3ee5b3fff82c2b4a9ffe9b6a908db5c91d5b134b8526d42bd6a498df2c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_persist.json",
+      "sha256": "4ba4442bb1b885bde74cff74223bdac10b14c209e821700673aa3f0f8e52b780"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_receive_appeal.json",
+      "sha256": "34abbad542ea73b3547da6870af2bfe77c18afd34b2c917e1de7ca2f676187ec"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_restore.json",
+      "sha256": "57fe39003206ce56fd71f9cd75509f0f6dff3b68823a476aa3de9d55c16f4467"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_retrace.json",
+      "sha256": "669ddfadb29a6b539d0aae977a1f738ccdec50219129562176bc032dd23cada7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_reveal_truth.json",
+      "sha256": "79230f068c04436701a17369608583a0642e8a062980a822832c2339303c089e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_self_recognize.json",
+      "sha256": "b885e97b347b63b2a302d469a2a5aa75d95a19f0be4c5e3b1342c976b2f9237c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_succeed.json",
+      "sha256": "7893b3c6e53512e3e119891c11207371a55b1c4728b9638c391847eb97588844"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_take_charge.json",
+      "sha256": "222430cd9c2228c2fd540f68429ef0f5789d291ae46437eef9a12bb246edc9c5"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_tend.json",
+      "sha256": "10d329b5e068e7a2911ea6f8265d5cb7ef4e6fc8dfb1b3bfb79a8db33ea78e3e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age7/beat_age7_warm_close.json",
+      "sha256": "ffab31c3f7261a650a1c6949568dc370177cd62221da7e8802907beed888a410"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_approach.json",
+      "sha256": "a764e1bbaf4cb54e609bf349cacdeb4a1740209e29f6f65197746c15a5d80f9e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_ask_for_help.json",
+      "sha256": "bbf7363b2b77c64131dcdf63b898cca12c29bd959e461de01df20409442e76be"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_belief_fails.json",
+      "sha256": "f5900aa365892262007d866e7dff283b98c30f91db87eb2adeacf5597d4c6c48"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_carry_forward.json",
+      "sha256": "7b3912e0c1fd3c5d3c54e57e41426a2b83c57a011297e2790f9b0e27d83e8415"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_commit.json",
+      "sha256": "f2a82888068ea056bcd29db88b7c943f0449e420f6309cd33ae534153efd8922"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_companion_offers.json",
+      "sha256": "18381acf03ac21f58ac7edd616c3da7798466b19d2a7ad2c9eccb397bc6da20e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_cooperative_effort.json",
+      "sha256": "d38fa1608ebefaa2ef3161b5247c7798096a48277b8b287a773ca469a1c99ea7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_examine.json",
+      "sha256": "137b813ea09ba591d8962949185ac4422b956302d15cb7f9b37c57d5f3a8dd86"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_exchange_views.json",
+      "sha256": "221b107cac21bf1c3ed5a7c50047f61ba3e0e3d4f0d1c981e57a68e8795c23bd"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_first_attempt.json",
+      "sha256": "d1f6e3a097bcc780a94e6bff508a23f6c82de8cd8016ed8ce805322e8b6103bf"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_form_belief.json",
+      "sha256": "ea6644491ab6ac820ca4f62e78d39c1a55f7d01613cf6a1701f9c94577dba9ab"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_insight.json",
+      "sha256": "460a3868637bb0ad87d712495d8858fe15ecb4a9d4b3f95beb74cbf83501fd68"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_meet_companion.json",
+      "sha256": "e5d9d0ec0587f8048adfb65870f28a15d4d12dc6cd45fb2467fe92dda71376e2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_notice_anomaly.json",
+      "sha256": "75fd9e75f513d1c8e83ac2252e65cb20674e6b8c5ef5af3b828c9d78dafd961d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_obstacle_raises.json",
+      "sha256": "bc02578e0831921a25bf2243e8b429c3218bf14ceb0a30761db2d8cd8e29f080"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_patient_wait.json",
+      "sha256": "346098a422cdc0be70b6bb5d38217b73c01678349073a0b4302c911b793307b0"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_persist.json",
+      "sha256": "76393dafbe27a656406c80a969316b8627d908ca6ef5327e1759adfaa8412e85"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_receive_appeal.json",
+      "sha256": "fa3783101cee76fad4f825583e3f81e78f42ead7b5b6109a560e80398e5c6b9c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_restore.json",
+      "sha256": "5bec30a397b913634213b23843203e2324ee7593ad5df96fed754725c60049ce"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_retrace.json",
+      "sha256": "257ecc6590a6f3e73fbac94dd0015047f7c67c37415d94da983ab78ad265999d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_reveal_truth.json",
+      "sha256": "bb15aa66ca988b3e7097211ae39b71912eec76d82ba71f7b26d2c5425acd3572"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_self_recognize.json",
+      "sha256": "11c8c3283732642d97370dde2e1961cadaa23d63943a846417dfd46ac75745ac"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_succeed.json",
+      "sha256": "446da412e9516572dd66d93b80ee74de55d0bd5b12707dd0365f84c3f5bd4bf7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_take_charge.json",
+      "sha256": "4d61b0200e72c9ab2bd5fa66a7801d2586f44cc21fe1960d0e4e2788ffb046c5"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_tend.json",
+      "sha256": "907b8f4367993f70ec41c59772c495281dd4ebae8cddec35b936b48453bbe499"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3-age9/beat_age9_warm_close.json",
+      "sha256": "0d1a3737dba811f2c3cfad142768aac5f823709398d6c3929fdb9cbef3a6e206"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_approach.json",
+      "sha256": "607e87fddee1448bff7cadf9a52e47fd7833cc236256ec1968da1e43ae7d73b5"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_ask_for_help.json",
+      "sha256": "1d1bc386b2e7b6f19673dfd2e4be17c9c5d9014423f510634a1da130f25af5c8"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_belief_fails.json",
+      "sha256": "ec385323681ef3f58c339bf55e522ff89f068cfb4895ee7dd1411d021a1f49d6"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_carry_forward.json",
+      "sha256": "39e75391df558b6becff2365eadec08cfd2e440c03d5e4bda7a6322b729c19e3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_commit.json",
+      "sha256": "ebadd762bb3b67295733aa49211829185a4b88070b6b733c0ef04754a01f4bb7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_companion_offers.json",
+      "sha256": "1aa67b5f92bf090415eff537a43978ca2963c011cb135cc866dc2b8582d45960"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_cooperative_effort.json",
+      "sha256": "3397ccf8aad4d978e78cb8c9cd17ade5e67c485f8be87931dec0053ffe74b3c6"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_examine.json",
+      "sha256": "89c24fb7749e595036698f177443f7346d538f0ab185b90ec4ecff53dabe6007"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_exchange_views.json",
+      "sha256": "8ccc3341a4ed6391bd031f16cd1d3cdbe88ca990083f22a6363e42e0ac567d5c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_find_own_courage.json",
+      "sha256": "5b81de87d197c4cea238dc08ac7d7fb763d3e48587b435beeaf860c1fef05b16"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_first_attempt.json",
+      "sha256": "7f6b20e999b760975511f9e5b850eea341eb54c4ce4c0c8c09af39d0216801bc"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_form_belief.json",
+      "sha256": "65929d4c08f8fb06bb116c79373da41fc0c15ca4a19c4f015df7f0e08dc5af6d"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_give_up_something.json",
+      "sha256": "e8ad9c18ae60f36a6167b557d81855ad6a52d0b9d80fd45fbcfc7445935a9401"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_hesitate.json",
+      "sha256": "8830d21ef139fa77021431c33ea358888129bf4eacc046119f9df7fc525d2690"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_insight.json",
+      "sha256": "c26c600ec25f736ca71b13f4ccbbc2bf706b69fc55b6308a02a590fe524348d2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_let_go.json",
+      "sha256": "7cb4ea7cb31cf72211b311d1029e8e19f24e138f94e45fc51283915cabd8769e"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "sha256": "b6258321b1273b02a47ad42f29325a8dc04c0474e006052aa49772c19c517377"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_notice_anomaly.json",
+      "sha256": "84c8f9dd6f35124e1861ec7ecc38f5620bd4b17eb228e70a10a5363bd2dba3c3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_obstacle_raises.json",
+      "sha256": "0de8132da8b95a1e293edfd1ed753aaa3794b7757720213737587e9b380c5162"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_patient_wait.json",
+      "sha256": "e4ace537c5938acfcf17fdc8e324bdd6a9d90ff381aec3595214a628e98dc456"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_persist.json",
+      "sha256": "b50cacf7bb5403a9f98d421e00f4715c47f8894087d41f07a18bc4c44196deea"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_prepare.json",
+      "sha256": "4014ec9abe094f4526187f6b8b7c2eee7f1d10084578bddcb1e63930e724d582"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_receive_appeal.json",
+      "sha256": "8716e6e1e717c95e9a6adb23b6b92586d5cc3a919647784c3a7cf4f8d224c3a2"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_restore.json",
+      "sha256": "d8dcbdc56915ce38709ebdb566d8a87c3d158daf0208194e8b91aee80e25e9f3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_retrace.json",
+      "sha256": "3b12e5734b12bf9edd044918e4175fda04d1722883abb090e9057e31e46543c3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_reveal_truth.json",
+      "sha256": "675e04757e7e59b9aa0450e2a228c4093a216bf823be3d8e13a9cd60cc698855"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_self_recognize.json",
+      "sha256": "fd6fb9ade43af1b7c5d4d610eb3448fc4e423d126767103e77a2bf8fb2146e0c"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_small_step.json",
+      "sha256": "95263813d34055b88c47837e8dfcc20c5ad40436026f6d40c51cb6afe34730c3"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_speak_for.json",
+      "sha256": "a6783370326161e237bb7c415537d7bbc2fb239d8ea6d1f687029d33cc8e7ac1"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_succeed.json",
+      "sha256": "131de5768ddd53de86928cc4b70c30ee5d2c65993d9c758a4180c99d26b4ca44"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_take_charge.json",
+      "sha256": "abeee672685541269582d45d4b8de1f6b6d45f6c0f698a8434835753c5ceefb4"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_tend.json",
+      "sha256": "742b775d55082f87430d500a1de607e8e047991bf6fe582eb30ec3e8c7c91cc7"
+    },
+    {
+      "path": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_warm_close.json",
+      "sha256": "c0566b37b395bcbcbd3371d3e05af54a94ebb0a9c0b70b85ec092bae82cf2ec9"
+    },
+    {
+      "path": "design-handoff/proposals/2026-11-21-whole-book-art/after.json",
+      "sha256": "41f8b7668dccf04456fc86a6a2126a62b4107c08aeb66152d33d013aa0577c14"
+    },
+    {
+      "path": "design-handoff/proposals/2026-11-22-magicpaper-characters/MagicPaper-Karakterleri.html",
+      "sha256": "baff3f36e696dff038919d43a1dd37b4be5b0788dae465325eb258a939bba55e"
+    },
+    {
+      "path": "design-handoff/proposals/2026-11-22-magicpaper-characters/characters.json",
+      "sha256": "1b3ca3fce7a92c8fcf6f0d1606655832ba9855ec88de06e26e4359af0b05e98a"
+    },
+    {
+      "path": "design-handoff/proposals/2026-11-22-tarcin-pose-library/GENERATION_RECORD.json",
+      "sha256": "1708befee4be8c65e082860838aaa23ffe3c66dca73f0fd805997af3810baa7f"
+    },
+    {
+      "path": "docs/ANLATI_PLANI.md",
+      "sha256": "b832c64bbb0ccdd676db6fa323568ff57b3309297b248517bef6d458840a5574"
+    },
+    {
+      "path": "docs/GORSEL_ANLAM_SOZLESMESI.md",
+      "sha256": "9ddfafe43f3f63943e9107a109abdf39772768c6fcc840b1e469ec23f9560e81"
+    },
+    {
+      "path": "docs/PROJE_HAFIZASI.md",
+      "sha256": "5f8f3f36333aae83d2beeeff1b82d62f58ea21e4f7df3519ca4f5c8bcea9b900"
+    }
+  ],
+  "visualReviewCounts": {
+    "auto": 1396,
+    "unlabeled": 1057,
+    "reviewed": 268
+  },
+  "artSourceRows": [
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_let_go.json",
+      "pointer": "/variants/3",
+      "line": 55,
+      "age": "5-6",
+      "arc": "bedtime",
+      "beat": "let_go",
+      "id": "bt_lg_blanket_corner",
+      "visual": [
+        {
+          "subject": "companion",
+          "presence": "present",
+          "states": []
+        }
+      ],
+      "visualReview": "auto",
+      "text": "{{child.name}} ona yorganının küçük bir köşesini verdi, sonra elini usulca çekti. \"Şimdi sıra sende,\" dedi gülümseyerek. {{companion.name}} kendi yerinde rahatça kıvrıldı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_lg_blanket_corner",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_meet_companion.json",
+      "pointer": "/variants/1",
+      "line": 32,
+      "age": "5-6",
+      "arc": "bedtime",
+      "beat": "meet_companion",
+      "id": "bt_mc_02",
+      "visual": [
+        {
+          "subject": "companion",
+          "presence": "present",
+          "states": [
+            "greeting"
+          ]
+        }
+      ],
+      "visualReview": "auto",
+      "text": "Pencerenin önünde küçük bir {{companion.type}} vardı: {{companion.name}}. Esniyor, esniyor ama gözlerini bir türlü kapatamıyordu. \"Uyuyamıyorum,\" dedi yorgun bir sesle.",
+      "requiredSlots": [
+        "companion.type",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "bt_mc_yawning_awake",
+      "settingTraits": [
+        "isRestingPlace"
+      ],
+      "castRoles": [
+        "needsCare"
+      ]
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_restore.json",
+      "pointer": "/variants/5",
+      "line": 91,
+      "age": "5-6",
+      "arc": "bedtime",
+      "beat": "restore",
+      "id": "bt_rs_p_one_more_yawn",
+      "visual": [
+        {
+          "subject": "companion",
+          "presence": "present",
+          "states": []
+        }
+      ],
+      "visualReview": "auto",
+      "text": "Bir esneme daha, bir kıpırtı daha; sonra {{companion.name}} mışıl mışıl uyudu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt_rs_p_one_more_yawn",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/bedtime/beat_bedtime_restore.json",
+      "pointer": "/variants/6",
+      "line": 105,
+      "age": "5-6",
+      "arc": "bedtime",
+      "beat": "restore",
+      "id": "bt_rs_p_curls_up",
+      "visual": [
+        {
+          "subject": "companion",
+          "presence": "present",
+          "states": []
+        }
+      ],
+      "visualReview": "auto",
+      "text": "{{companion.name}} kıvrılıp tatlı bir uykuya daldı, yüzü rahat ve sakindi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "bt_rs_p_curls_up",
+      "settingTraits": [
+        "isRestingPlace"
+      ]
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/series/beat_series_first_attempt.json",
+      "pointer": "/variants/0",
+      "line": 13,
+      "age": "5-6",
+      "arc": "standard",
+      "beat": "first_attempt",
+      "id": "sfa_01",
+      "visual": [
+        {
+          "subject": "companion",
+          "presence": "present",
+          "states": []
+        }
+      ],
+      "visualReview": "auto",
+      "text": "{{child.name}} onu iki eliyle taşıdı. Her adımı dikkatle attı, hiç sallamadı. {{companion.name}} önden gidip yolu gösterdi. Arada bir dönüp arkasına baktı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "move": "sfa_01"
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_companion_offers.json",
+      "pointer": "/variants/6",
+      "line": 21,
+      "age": "5-6",
+      "arc": "standard",
+      "beat": "companion_offers",
+      "id": "co_p_07",
+      "visual": [
+        {
+          "subject": "companion",
+          "presence": "present",
+          "states": []
+        }
+      ],
+      "visualReview": "auto",
+      "text": "{{companion.name}} bir yeri gösterdi. \"Şuraya bak,\" dedi. Başka bir şey demedi.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "lengthClass": "paired",
+      "move": "points_without_explaining"
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "pointer": "/variants/0",
+      "line": 15,
+      "age": "5-6",
+      "arc": "standard",
+      "beat": "meet_companion",
+      "id": "mc_guide_01",
+      "visual": [
+        {
+          "subject": "companion",
+          "presence": "present",
+          "states": [
+            "greeting"
+          ]
+        }
+      ],
+      "visualReview": "auto",
+      "text": "Bir dal kımıldadı. Arkasından {{companion.name}} adında bir {{companion.type}} çıktı ortaya. \"Ben buralıyım,\" dedi. \"Sen kimsin? Daha önce hiç görmedim seni.\"",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "emerges_and_claims_the_place",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "pointer": "/variants/1",
+      "line": 36,
+      "age": "5-6",
+      "arc": "standard",
+      "beat": "meet_companion",
+      "id": "mc_guide_02",
+      "visual": [
+        {
+          "subject": "companion",
+          "presence": "present",
+          "states": [
+            "greeting"
+          ]
+        }
+      ],
+      "visualReview": "auto",
+      "text": "{{companion.name}} her sabah bu yoldan geçerdi. O gün {{child.name}}'i gördü ve durdu. Meraklı gözlerle ona baktı, sonra ileriye baktı.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "routine_of_its_own",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "pointer": "/variants/2",
+      "line": 57,
+      "age": "5-6",
+      "arc": "standard",
+      "beat": "meet_companion",
+      "id": "mc_guide_03",
+      "visual": [
+        {
+          "subject": "companion",
+          "presence": "present",
+          "states": [
+            "greeting"
+          ]
+        }
+      ],
+      "visualReview": "auto",
+      "text": "Yukarıdan bir kanat sesi geldi. {{companion.name}} adlı {{companion.type}} süzülerek indi. Burayı avucunun içi gibi bilirdi. \"Ben sana yardım edebilirim,\" dedi.",
+      "requiredSlots": [
+        "companion.name",
+        "companion.type"
+      ],
+      "castRoles": [
+        "guide"
+      ],
+      "settingTraits": [],
+      "capabilityRequire": [
+        "canFly"
+      ],
+      "capabilityForbid": [],
+      "move": "arrives_from_above",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "pointer": "/variants/7",
+      "line": 175,
+      "age": "5-6",
+      "arc": "standard",
+      "beat": "meet_companion",
+      "id": "mc_care_03",
+      "visual": [
+        {
+          "subject": "companion",
+          "presence": "present",
+          "states": [
+            "greeting"
+          ]
+        }
+      ],
+      "visualReview": "auto",
+      "text": "Bir şey titriyordu, çok hafifçe. {{child.name}} yavaşça yanına gitti. {{companion.name}} adında küçük bir {{companion.type}} kıpırdamadan duruyordu. Sonra başını kaldırdı.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name",
+        "companion.type"
+      ],
+      "castRoles": [
+        "needsCare"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "trembling_stillness",
+      "lengthClass": "solo",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_meet_companion.json",
+      "pointer": "/variants/13",
+      "line": 309,
+      "age": "5-6",
+      "arc": "standard",
+      "beat": "meet_companion",
+      "id": "mc_calm_01",
+      "visual": [
+        {
+          "subject": "companion",
+          "presence": "present",
+          "states": [
+            "greeting"
+          ]
+        }
+      ],
+      "visualReview": "auto",
+      "text": "{{companion.name}} hiç acele etmiyordu. {{child.name}}'in yanına geldi, yere oturdu ve bekledi. Hiçbir şey söylemedi. Böylece ikisi birlikte beklediler.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "castRoles": [
+        "reassuring"
+      ],
+      "settingTraits": [],
+      "capabilityForbid": [],
+      "move": "sits_down_and_waits",
+      "lengthClass": "paired",
+      "natureRequire": [
+        "animal",
+        "fantastic"
+      ]
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_receive_appeal.json",
+      "pointer": "/variants/14",
+      "line": 172,
+      "age": "5-6",
+      "arc": "standard",
+      "beat": "receive_appeal",
+      "id": "s56_ra_03",
+      "visual": [
+        {
+          "subject": "companion",
+          "presence": "present",
+          "states": []
+        }
+      ],
+      "visualReview": "auto",
+      "text": "\"Benimle oynar mısın?\" diye sordu {{companion.name}}. Çayırda tek başına koşup durmaktan sıkılmıştı. Oyun, birlikte oynanınca daha güzeldi; bunu ikisi de biliyordu.",
+      "requiredSlots": [
+        "companion.name"
+      ],
+      "move": "spor_s56_ra_03",
+      "lengthClass": "solo"
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_restore.json",
+      "pointer": "/variants/0",
+      "line": 17,
+      "age": "5-6",
+      "arc": "standard",
+      "beat": "restore",
+      "id": "rs_coop_01",
+      "visual": [
+        {
+          "subject": "companion",
+          "presence": "present",
+          "states": []
+        }
+      ],
+      "visualReview": "auto",
+      "text": "İkisi birlikte başardı. {{companion.name}} sonunda olması gereken yere ulaştı. {{child.name}} arkasından baktı ve içi rahatladı. İkisi de yorgundu ama mutluydu.",
+      "requiredSlots": [
+        "companion.name",
+        "child.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "cooperative_effort"
+      ],
+      "move": "together_it_worked"
+    },
+    {
+      "source": "StoryEngine/Sources/StoryEngine/Resources/templates/v3/beat_restore.json",
+      "pointer": "/variants/4",
+      "line": 77,
+      "age": "5-6",
+      "arc": "standard",
+      "beat": "restore",
+      "id": "rs_give_01",
+      "visual": [
+        {
+          "subject": "companion",
+          "presence": "present",
+          "states": []
+        }
+      ],
+      "visualReview": "auto",
+      "text": "{{child.name}} verdiğine hiç üzülmedi. {{companion.name}} çok sevindi. Artık ihtiyacı olan şey elindeydi ve bu yeterdi. {{child.name}} geri istemeyi hiç düşünmedi.",
+      "requiredSlots": [
+        "child.name",
+        "companion.name"
+      ],
+      "lengthClass": "solo",
+      "afterBeat": [
+        "give_up_something"
+      ],
+      "move": "gave_without_regret"
+    }
+  ],
+  "allCompanionStaticModeCandidates": [
+    {
+      "id": "companion_fox_001",
+      "name": "Kıpır",
+      "bands": {
+        "3-4": [],
+        "5-6": [],
+        "7-8": [],
+        "9-10": []
+      }
+    },
+    {
+      "id": "companion_rabbit_001",
+      "name": "Yonca",
+      "bands": {
+        "3-4": [],
+        "5-6": [],
+        "7-8": [],
+        "9-10": []
+      }
+    },
+    {
+      "id": "companion_owl_001",
+      "name": "Bilge",
+      "bands": {
+        "3-4": [],
+        "5-6": [],
+        "7-8": [],
+        "9-10": []
+      }
+    },
+    {
+      "id": "companion_hedgehog_001",
+      "name": "Dikenli",
+      "bands": {
+        "3-4": [],
+        "5-6": [],
+        "7-8": [],
+        "9-10": []
+      }
+    },
+    {
+      "id": "companion_dragon_001",
+      "name": "Kıvılcım",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_squirrel_001",
+      "name": "Fındık",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "5-6": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "7-8": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "9-10": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ]
+      }
+    },
+    {
+      "id": "companion_bear_001",
+      "name": "Böğürtlen",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_penguin_001",
+      "name": "Pofuduk",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_turtle_001",
+      "name": "Yavaş",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_dolphin_001",
+      "name": "Mavi",
+      "bands": {
+        "3-4": [],
+        "5-6": [],
+        "7-8": [],
+        "9-10": []
+      }
+    },
+    {
+      "id": "companion_firefly_001",
+      "name": "Pırıltı",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "5-6": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "7-8": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "9-10": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ]
+      }
+    },
+    {
+      "id": "companion_robot_001",
+      "name": "Zip",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_frog_001",
+      "name": "Zıpzıp",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "5-6": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "7-8": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "9-10": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ]
+      }
+    },
+    {
+      "id": "companion_cat_001",
+      "name": "Pati",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "5-6": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "7-8": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "9-10": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ]
+      }
+    },
+    {
+      "id": "companion_dog_001",
+      "name": "Cesur",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_sparrow_001",
+      "name": "Cıvıl",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "5-6": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "7-8": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "9-10": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ]
+      }
+    },
+    {
+      "id": "companion_fox_pilot_001",
+      "name": "Tarçın",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_hedgehog_pilot_001",
+      "name": "Kestane",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "5-6": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "7-8": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "9-10": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ]
+      }
+    },
+    {
+      "id": "companion_owl_pilot_001",
+      "name": "Yıldız",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "5-6": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "7-8": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "9-10": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ]
+      }
+    },
+    {
+      "id": "companion_dolphin_pilot_001",
+      "name": "Köpük",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_rabbit_pilot_001",
+      "name": "Pamuk",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "5-6": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "7-8": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ],
+        "9-10": [
+          "learning",
+          "adventure",
+          "bedtime"
+        ]
+      }
+    },
+    {
+      "id": "companion_baker_001",
+      "name": "Fırıncı Nazlı",
+      "bands": {
+        "3-4": [],
+        "5-6": [
+          "learning"
+        ],
+        "7-8": [
+          "learning"
+        ],
+        "9-10": [
+          "learning"
+        ]
+      }
+    },
+    {
+      "id": "companion_postman_001",
+      "name": "Postacı Remzi",
+      "bands": {
+        "3-4": [],
+        "5-6": [
+          "learning"
+        ],
+        "7-8": [
+          "learning"
+        ],
+        "9-10": [
+          "learning"
+        ]
+      }
+    },
+    {
+      "id": "companion_teacher_001",
+      "name": "Öğretmen Suna",
+      "bands": {
+        "3-4": [],
+        "5-6": [
+          "learning"
+        ],
+        "7-8": [
+          "learning"
+        ],
+        "9-10": [
+          "learning"
+        ]
+      }
+    },
+    {
+      "id": "companion_robot_sky_001",
+      "name": "Vida",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_space_cat_001",
+      "name": "Ayçörek",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_coach_001",
+      "name": "Beden Öğretmeni Defne",
+      "bands": {
+        "3-4": [],
+        "5-6": [
+          "learning"
+        ],
+        "7-8": [
+          "learning"
+        ],
+        "9-10": [
+          "learning"
+        ]
+      }
+    },
+    {
+      "id": "companion_goat_001",
+      "name": "Zıpzıp",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_city_cat_001",
+      "name": "Simit",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_city_dog_001",
+      "name": "Pıtpıt",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_llama_001",
+      "name": "Lolo",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_marmot_001",
+      "name": "Fındık",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_tortoise_001",
+      "name": "Taşbaş",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    },
+    {
+      "id": "companion_dove_001",
+      "name": "Gugu",
+      "bands": {
+        "3-4": [
+          "learning",
+          "adventure"
+        ],
+        "5-6": [
+          "learning",
+          "adventure"
+        ],
+        "7-8": [
+          "learning",
+          "adventure"
+        ],
+        "9-10": [
+          "learning",
+          "adventure"
+        ]
+      }
+    }
+  ]
+}

@@ -1136,3 +1136,16 @@ Doğrulama: uygulama 145 test/0 hata/1 skip; render 1/0, sekiz sabit viewport g�
 **21 Kasım — kitap boyunca görsel başlangıç ölçümü:** Kullanıcı yol haritasını uygulamayı istedi, Tarçın kimlik taslağını onayladı. `docs/STORY_ART_ROADMAP.md` aktif takip. Altı açık5–6macera blueprint×100sabitseed, doğrudan composer→appmapper→JSON:600/600temizbaşarılı,4.800sayfa,221kitap1pin/379kitap0pin; tüm pinler açılışta, orta/son0. `WholeBookArtCoverageTests`1testgeçti; mevcut UI/motor/seçim/metin değişmedi, tam paket/cihaz doğrulaması değil. HamJSON ve rapor `design-handoff/proposals/2026-11-21-whole-book-art/`. Otomatik kaynak etiketleri yalnız aday sayılır. Pilot üç nesnenin p2detayları ve kanonikTarçın pozları; kapanış/orta katkısı için tam sayfa kaynak onayı gerekli. Kimlik onayı runtimepozların tüm durumlara onayı değildir.
 
 **22 Kasım — kitap boyunca pilot politika3:**6yeni görünüm/poz,21tam-sayfa kaynak kuralı; eski1/2pinleri korunur, yeni3kaydedilir/4reddedilir. AX ve kompakt spot sayfası çizim+metin tek scroll.101seçili test100geçti/1skip/0hata. Sabit600masal251pin(221önce),orta9/son2;356kitap görselsiz. Metin/eskiart karşılaştırması geçti. Telefon/VoiceOver/eklerin elle matrisi bekliyor. Kanıt `design-handoff/proposals/2026-11-21-whole-book-art/VALIDATION.md`.
+
+
+---
+
+## bes-arkadas-k01
+
+**22 Kasım 2026 — B yaklaşımı kullanıcı tarafından onaylandı, kaynak koruma temeli uygulandı.** Beş ana arkadaş, gerektiğinde ayrı konuk/uzman; üç modda kişiliğe uygun repertuvar, bütün şablonlara zorlama yok. `ContentSourceReference` (tam payload SHA + `offline-legacy-v1`), kayıpsız `ContentSourceMetadata`, `CatalogSnapshotStore` ve tarihsel resolver eklendi. Origin/SeriesPlan kaynak kimliği taşıyor; devam/ailesiz yeniden yazım tarihsel kaynağı kullanıyor, unlock kayıtlı sayfayı kopyalıyor. Ref'siz geçmişe bugünkü 2.1.0 otomatik atanmaz: compatibility tablosu boş, yeniden yazımda missing/ambiguous açık sınırdır; saved text/precomposed episodes kalır.
+
+Sabit ID binder yolu tüm havuzu gereksiz denetlemeyecek biçimde ortaklaştırıldı; habitat/safety/cast/konu ve ilk uygun duplicate/red sözleşmesi korunuyor. `StoryPage.==` ID-only olduğundan eski istemcinin source metadata'sını koruma kontrolü tam encoded sayfa değeriyle yapılır. Hesap silmede history + service source cache sıfırlanır.
+
+P56, `Content/Pilots/five-friends-56-v1/` altında yalnız editoryal korpus: 9 kurgu,30 kitap,240sayfa,15hücre,1251kaynak; üretim bundle'ında değil.8sayfa inceleme düzeltmesi yeni `_v2` kimliği aldı, önceki metin/hash korundu. Runtime beat/state, kişiselleştirme,1500seed ve art kabulü yapılmadı. Meslek/deniz/uzay ayrı teslim; Ragi marka/Originals rolünde. Yeni beşli üretim politikası açılmadı, push/deploy yok.
+
+Ayrıntı ve güncel test sonuçları: `docs/research/five-friends-k01-baseline/IMPLEMENTATION_REPORT.md` + `verification-summary.json`; okunabilir pilot: `docs/research/five-friends-pilot/OKUMA_DOSYASI.md`. Testte eski9–10learning devam yok varsayımı düzeltilip desteklenen9–10 ve desteksiz11–12 ayrı kontrol edildi. Mevcut252motor içerik dosyası hash0değişim. Başka oturumun seçim portresi/UI değişiklikleri bu teslimin sahipliğinde değil.
