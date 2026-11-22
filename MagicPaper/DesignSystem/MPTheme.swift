@@ -215,6 +215,30 @@ enum MP {
         /// Ana sayfa zemini (22 Kasım 2026, İrem): başlık sahnesinin alt kenarı
         /// bu sıcak kâğıda erir; dalga kesimi ve beyaz zemin yerine.
         static let homePaper = Palette.kagit100
+        /// Sahne kenarı geçişinin sıcak ara tonu: koyu gece resmi kâğıda
+        /// erirken ara tonlar soğuk griye (sis) değil kâğıda dönsün.
+        static let homePaperShade = Palette.kagit300
+
+        /// Ana sayfa sahnesinin alt kenarı (22 Kasım 2026, İrem): son %12'de
+        /// yumuşatılmış eğriyle (smootherstep) `homePaperShade`'den `homePaper`'a
+        /// erir. Düz geçiş yarı saydam bölgeyi uzun tutup sisli bant yapıyordu.
+        /// İllüstrasyonun kenarıdır, arayüz yüzeyi değil.
+        static let homeSceneFade: [Gradient.Stop] = {
+            var from = (r: CGFloat(0), g: CGFloat(0), b: CGFloat(0), a: CGFloat(0))
+            var to = from
+            UIColor(MP.C.homePaperShade).getRed(&from.r, green: &from.g, blue: &from.b, alpha: &from.a)
+            UIColor(MP.C.homePaper).getRed(&to.r, green: &to.g, blue: &to.b, alpha: &to.a)
+            let start = 0.88
+            let steps = (0...10).map { i -> Gradient.Stop in
+                let t = Double(i) / 10
+                let eased = t * t * t * (t * (t * 6 - 15) + 10)
+                let mixed = Color(red: from.r + (to.r - from.r) * t,
+                                  green: from.g + (to.g - from.g) * t,
+                                  blue: from.b + (to.b - from.b) * t)
+                return Gradient.Stop(color: mixed.opacity(eased), location: start + (1 - start) * t)
+            }
+            return [Gradient.Stop(color: MP.C.homePaper.opacity(0), location: 0)] + steps
+        }()
 
         static let textTitle = MPColor.textPrimary
         static let textBody  = MPColor.textPrimary

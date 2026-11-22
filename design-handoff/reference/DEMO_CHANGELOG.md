@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · Ana sayfa sahnesi: yumuşatılmış, sıcak tonlu kenar
+
+- İrem: %86 maskede de gece sahnesinin altında beyaz, sisli bir bant kalıyordu. Neden: lacivert resim yarı saydamken kremle karışınca ara tonlar soğuk griye döner; düz (doğrusal) geçiş bu bölgeyi uzun tutar.
+- Prototipte dört geçiş karşılaştırıldı (düz %86, yumuşatılmış %80 ve %90, sıcak tonlu %84 ve %88). Seçilen: son %12, smootherstep eğrisi, renk `kagit300`'den `kagit100`'e. Bant en ince, ara ton gri değil kâğıt.
+- Saydamlık maskesi yerine resmin üstüne kâğıt rengi geçişi (`MP.C.homeSceneFade`, yeni token `MP.C.homePaperShade` = `kagit300`). Ragi ve başlık üstte, etkilenmez.
+- Dürüst not: gece resmi koyu olduğu için en altta ince açık bir şerit kalır; tamamen yok etmenin yolu çizimin alt kenarının kâğıda erir biçimde boyanmasıdır (illüstrasyon işi).
+- Test: çalıştırılmadı; `[ekran]` turu. Dosyalar: `DesignSystem/MPTheme.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `design-preview/app/app.css`.
+
 ### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · Ana sayfa sahnesinin geçişi aşağı alındı
 
 - İrem: gece sahnesinde %74'ten başlayan geçiş resmin alt çeyreğini sisli beyaza boğuyordu. `fadeMask` artık %86'ya kadar dolu, %93'te 0.7, en altta saydam. Prototip aynı (`app.css`), tarayıcıda bakıldı.

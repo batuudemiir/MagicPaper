@@ -237,14 +237,12 @@ struct HomeHeaderScene<Header: View>: View {
         }
     }
 
-    /// Manzaranın alt kenarı: en altta kâğıda erir. %86'dan önce dolu; geçişin
-    /// başı yavaş açılır, gece sahnesi sisli bir banda dönmesin (22 Kasım, İrem).
-    private var fadeMask: some View {
-        LinearGradient(stops: [.init(color: .white, location: 0),
-                               .init(color: .white, location: 0.86),
-                               .init(color: .white.opacity(0.7), location: 0.93),
-                               .init(color: .white.opacity(0), location: 1)],
-                       startPoint: .top, endPoint: .bottom)
+    /// Manzaranın alt kenarı: son %12'de, yumuşatılmış eğriyle ve sıcak kâğıt
+    /// tonundan geçerek sayfanın kâğıdına erir (`MP.C.homeSceneFade`). Düz
+    /// saydamlık maskesi gece sahnesinde soğuk, sisli bir bant bırakıyordu.
+    private var paperEdge: some View {
+        LinearGradient(stops: MP.C.homeSceneFade, startPoint: .top, endPoint: .bottom)
+            .allowsHitTesting(false)
     }
 
     /// Manzara ve Ragi. Kısa bantta manzaranın ortası görünür (alt kenarda
@@ -266,7 +264,7 @@ struct HomeHeaderScene<Header: View>: View {
             }
             .frame(height: height)
             .clipped()
-            .mask { fadeMask }
+            .overlay { paperEdge }
             .animation(MP.M.gated(MP.M.slow), value: isNight)
             .accessibilityHidden(true)
             HomeSceneMascot(isNight: isNight)
