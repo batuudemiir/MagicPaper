@@ -337,8 +337,10 @@ struct HomeHeroCard: View {
                         Text(eyebrow).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.actionPrimary)
                         Text(title).mpText(.section).foregroundStyle(MPColor.textPrimary)
                             .fixedSize(horizontal: false, vertical: true)
-                        Text(sub).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                            .fixedSize(horizontal: false, vertical: true)
+                        if showsSub {
+                            Text(sub).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -388,6 +390,18 @@ struct HomeHeroCard: View {
         .clipped()
     }
 
+
+    /// En büyük yazıda uyku ve "bugün okudun" durumlarının açıklama cümlesi
+    /// düşer: bilgi taşımaz, SE'de üç satıra yayılıp düğmeyi alt çubuğun
+    /// arkasına itiyordu (22 Kasım 2026, A5). Yarım masalın sayfası ve günün
+    /// masalının süresi kalır.
+    private var showsSub: Bool {
+        guard typeSize.isAccessibilitySize else { return true }
+        switch state {
+        case .resume, .unread: return true
+        case .readToday, .bedtime: return false
+        }
+    }
 
     /// Yarım masalda kapağın köşesinde ilerleme halkası (dar kapakta yazısız).
     private var coverBadge: MPBookCover.Badge? {

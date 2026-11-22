@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · En büyük yazıda SE'de kartın düğmesi (A5 tamamlama)
+
+- `4d0d569` turu: Pro Max en büyük yazıda kısa bant ve düğme ilk ekranda, doğru. SE'de "Kısa, sakin bir masalla günü kapatalım." üç satıra yayılıp "Uyku masalı yaz"ı alt çubuğun arkasına itiyordu.
+- `HomeHeroCard.showsSub`: erişilebilirlik boyutlarında uyku ve "bugün okudun" durumlarının açıklama cümlesi düşer. Yarım masalın sayfası ve günün masalının süresi kalır. Normal boyutlar aynı.
+- Kapak (A6) turda görülemedi: CI saatinde kart uyku durumunda, kapak yok. Batuhan gündüz cihazda bakmalı.
+- `81d741c` (main birleştirmesi) turu elle iptal edilmiş; bu commit'in turu birleşmiş hâli de derler.
+- Test: çalıştırılmadı; `[ekran]` turu. Dosya: `DesignSystem/Pastel/MPHomeChrome.swift`.
+
 ### 2026-11-22 · irem (dal, birleştirme commit'i) · Batuhan'ın main'i irem'e alındı
 
 - origin/main'in son 9 commit'i (`856cb88`'e kadar): kaynak izli görsel pilotu, kitap boyunca görsel (`WholeBookArtBinder`, `WholeBookArtPolicy`), Guaj nesne havuzu, okuyucu sayfa düzeni (`ReaderPageComposition`, `StoryPageView`), Release arşiv kaydı (TestFlight 2.0, 2026112201).
