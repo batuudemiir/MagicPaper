@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-22 · codex/design-system-catalog, commit yok · Standart arkadaş seçim satırına kanonik portre
+
+-5kanonik kimlik için uygulama-yerel CompanionPortraitCatalog ve MPCompanionPortrait; standart CompanionStep yalnız leadinggörseli değişti. Eski/bilinmeyen kimlikler mevcut MPIconTile,52ptaspectfit/dekoratifAX. Katalog/kadro/prefix3/simgetekilleştirme ve LittleSteps değişmedi; her modda5seçenek açıldığı iddia edilmiyor.
+-5sourcePNG SHA eşitliği ve bağımsız reviewer geçti. Seçili3XCTest/0hata;8hosted gerçek satır renderı375×667/440×956,light/dark,large/AX5 elle incelendi. AX satır mevcut davranışıyla dekoratifresmi gizler. VoiceOver etkileşim/telefon/tampaket yok. Motor oturumunun ayrı132testlik koşusundaki eski seriuygunluğu hatası bu testlerin sonucu değildir.
+-Kanıt: five-friends-selection/UI_INTEGRATION.json ve ui-validation/. Diğer oturumun model/mapper/motor/seri dosyaları korunup commit dışı bırakıldı.
+
+
 ### 2026-11-22 · codex/design-system-catalog, commit yok · Beşli seçim portreleri ve Tarçın v2 temizliği
 
 - Onaylı grup ve marka referanslarıyla5ayrı şeffaf seçim portresi; kimlik/SHAhandoff, gömülü görselli beyaz/gece HTML ve ZIP hazır.

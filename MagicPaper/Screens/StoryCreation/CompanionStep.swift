@@ -158,7 +158,7 @@ struct CompanionStep: View {
                             MPHaptics.selection()
                             selectedCompanionID = on ? nil : companion.id
                         },
-                        leading: { MPIconTile(systemImage: symbol(for: companion), tone: .lav, size: MPSize.minTouchKid - MPSpacing.xxs) }
+                        leading: { MPCompanionPortrait(companionID: companion.id, fallbackSymbol: symbol(for: companion)) }
                     )
                 }
             }

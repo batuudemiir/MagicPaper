@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-22",
+  "scope": "Existing standard CompanionStep row artwork only",
+  "canonicalIDs": [
+    "companion_fox_pilot_001",
+    "companion_hedgehog_pilot_001",
+    "companion_owl_pilot_001",
+    "companion_city_cat_001",
+    "companion_bear_001"
+  ],
+  "component": "MPCompanionPortrait",
+  "mapping": "CompanionPortraitCatalog",
+  "fallback": "Existing MPIconTile, same size/tone/symbol",
+  "footprintPoints": 52,
+  "eligibilityChanges": false,
+  "candidateLimitChanged": false,
+  "symbolDeduplicationChanged": false,
+  "littleStepsChanged": false,
+  "allFiveAvailableEverywhere": false,
+  "motorMigration": "Owned by story-engine session; active changes preserved",
+  "validation": "3 selected XCTest tests passed, 0 failures; 8 real hosted row renders visually inspected. Five bundled image decodes and legacy/unknown fallback mapping passed.",
+  "remaining": "Engine roster transition and little-age selection parity; actual VoiceOver pass",
+  "testLog": "/private/tmp/MagicPaper-portrait-ui-tests.log",
+  "xcresult": "/private/tmp/magicpaper-portrait-ui-build/Logs/Test/Test-MagicPaper-2026.11.22_16-26-16-+0300.xcresult",
+  "viewports": [
+    "375x667",
+    "440x956"
+  ],
+  "dynamicType": [
+    "large",
+    "accessibility5"
+  ],
+  "appearance": [
+    "light",
+    "dark"
+  ],
+  "limits": "Hosted test row fixtures are not production candidate lists. Existing AX behavior omits decorative leading art to preserve text. No VoiceOver interaction/physical install/full suite. Other session engine changes excluded from commit."
+}
