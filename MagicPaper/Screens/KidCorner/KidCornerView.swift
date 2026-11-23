@@ -29,6 +29,9 @@ struct KidCornerView: View {
     /// Çocuğun kahramanı (Faz 9); kurulmadıysa `nil`.
     @State private var heroLook: HeroLook?
     @State private var heroLooks: [UUID: HeroLook] = [:]
+    /// Okuma yolculuğum kartının verisi (24 Kasım 2026).
+    @State private var journey: ReadingJourney?
+    @ObservedObject private var streak = MPStreak.shared
     @Environment(\.dynamicTypeSize) private var typeSize
 
     private var profile: UserProfile? { profileManager.currentProfile }
@@ -43,6 +46,12 @@ struct KidCornerView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     header(topInset: geo.safeAreaInsets.top)
                     VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
+                        // Okuma yolculuğum'un önizlemesi, Büyükler için'in üstünde (24 Kasım 2026, İrem).
+                        if let journey, let profile {
+                            ReadingJourneyWidget(journey: journey) {
+                                app.router.openKidPage(.journey(profile.id))
+                            }
+                        }
                         grownUpsEntry
                         badgesSection
                         worldSection
@@ -64,6 +73,7 @@ struct KidCornerView: View {
         .onReceive(NotificationCenter.default.publisher(for: .mpHeroLookChanged)) { _ in refresh() }
         // Sekme açıkken okuyucu kapanıp yeni rozet kazanılabilir.
         .onChange(of: storyManager.stories) { _, _ in refresh() }
+        .onChange(of: streak.readDays) { _, _ in refresh() }
     }
 
     private func refresh() {
@@ -71,6 +81,7 @@ struct KidCornerView: View {
             HeroLookStore().look(for: p.id).map { (p.id, $0) }
         })
         heroLook = profile.flatMap { heroLooks[$0.id] }
+        journey = profile.map { ReadingJourney.live(for: $0) }
         guard let profile else { earned = []; earnedDates = [:]; familyNames = []; stickers = []; return }
         stickers = MPStickerAlbum.stickers(for: profile, stories: storyManager.stories)
             .sorted { $0.date > $1.date }
@@ -337,11 +348,8 @@ struct KidCornerView: View {
         if let profile {
             let freshSticker = stickerNews.isFresh(profile.id)
             VStack(alignment: .leading, spacing: MPSpacing.md) {
+                // Okuma yolculuğum yukarıda kendi kartında (24 Kasım 2026).
                 MPSectionHeader(title: "Masal dünyam")
-                HomeListRow(systemImage: "point.topleft.down.to.point.bottomright.curvepath", tone: .lav,
-                            title: "Okuma yolculuğum", subtitle: "Haftan ve okuma günlerin") {
-                    open(.journey(profile.id))
-                }
                 HomeListRow(systemImage: "seal", tone: .pink, title: "Çıkartma albümüm",
                             subtitle: freshSticker ? "Yeni çıkartma geldi" : stickerSubtitle,
                             emphasized: freshSticker) {

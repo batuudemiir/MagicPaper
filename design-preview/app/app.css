@@ -670,3 +670,17 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .pp-empty.big { width: 96px; height: 96px; }
 .pp-empty.bust { width: 64px; height: 64px; }
 .ap-me .pp-empty.big { width: 88px; height: 88px; }
+
+/* Profil: Okuma yolculuğum kartı (widget gibi önizleme), 24 Kasım 2026 */
+.pf-jr { display: grid; gap: 12px; width: 100%; padding: 16px; border-radius: 26px; background: #fff; text-align: left;
+         box-shadow: 0 4px 0 #DCD0F1; outline: 1px solid #EFE8F7; }
+.pf-jr .top { display: flex; align-items: center; gap: 14px; }
+.pf-jr .grow { display: grid; gap: 2px; flex: 1; }
+.pf-jr .eb { font: 800 calc(13px * var(--type)) "Nunito", sans-serif; color: var(--mp-action-primary); }
+.pf-jr b { font: 700 calc(21px * var(--type))/1.15 "Baloo 2", sans-serif; color: var(--mp-text-primary, #2E1E3E); }
+.pf-jr .chev { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #E2DAEE; display: grid; place-items: center; color: #9B8892; flex: none; }
+.pf-jr .chev .ico { width: 16px; height: 16px; }
+.pf-jr-ragi { width: 84px; height: 84px; flex: none; border-radius: 50%; background: var(--mp-world-yellow-soft); display: grid; place-items: center; overflow: hidden; }
+.pf-jr-ragi img { width: 74px; }
+.pf-jr .jr-week { margin: 0; }
+.pf-jr .jr-day .dot { width: 28px; height: 28px; }

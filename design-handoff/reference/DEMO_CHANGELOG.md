@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Profil'de Okuma yolculuğum kartı
+
+- İrem'in isteği: Okuma yolculuğum profilde "Büyükler için"in üstünde, kendi kartında, widget gibi önizlemeyle ve sayfadaki Ragi pozuyla görünsün.
+- Uygulama: `ReadingJourneyWidget` (yeni dosya) `ReadingJourney.live(for:)` ile beslenir; `KidCornerView` okuma günleri ve masallar değişince yeniler. Masal dünyam'daki "Okuma yolculuğum" satırı kalktı (menüde duruyor).
+- Kurallar aynı (ilke 7): okunmayan gün boş daire, "az kaldı" ya da geri sayım yok.
+- Bilinçli istisna: Profil'de iki Ragi (el sallayan + sevinçli). README madde 13.
+- Önizleme: `sayfalar.js` profilinde aynı kart (`pf-jr`), dokununca Okuma yolculuğum açılır. Headless Edge ile bakıldı. Uygulama testi çalıştırılmadı (Mac).
+
 ### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Boş profil resmi: kullanıcı kendisi seçer
 
 - İrem'in isteği: varsayılan erkek çocuk büstü profil resmi olmasın; yeni hesaplardaki gibi boş dursun, çocuk kendisi seçsin.

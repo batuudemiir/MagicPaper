@@ -150,12 +150,24 @@ VIEWS.profil = function () {
   const stats = [["star", "Yıldız", S.stars, "yıldız", "yellow"], ["book", "Masallarım", S.library.length, "masal", "lav"],
     ["award", "Rozetler", earnedCount(), "rozet", "peach"]];
   const shown = BADGES.slice(0, 6);
-  const world = [["route", "lav", "Okuma yolculuğum", "Haftan ve okuma günlerin", "journey"],
-    ["seal", "pink", "Çıkartma albümüm", `${STICKERS.length} çıkartma`, "stickers"],
+  const world = [["seal", "pink", "Çıkartma albümüm", `${STICKERS.length} çıkartma`, "stickers"],
     ["type", "mint", "Yeni kelimelerim", `${WORDS.length} kelime topladın`, "words"],
     ["map", "sky", "Masal haritam", "Gezdiğin masal dünyaları", "map"],
     ["users", "peach", "Masal ailem", "Anneanne, Dede, Pamuk", "family"],
     ["palette", "green", "Kitaplık renklerim", "Yıldızlarınla süsle", "decor"]];
+  // Okuma yolculuğum kartı (24 Kasım 2026): sayfanın widget gibi önizlemesi.
+  const w = weekModel();
+  const days = JOURNEY_DAYS.map((d, i) => {
+    const on = w.read.has(i), now = i === w.today, future = i > w.today;
+    return `<span class="jr-day ${now ? "now" : ""}"><span class="lbl">${d}</span>
+      <span class="dot ${on ? "on" : ""} ${future ? "future" : ""}">${on ? ic("check") : future ? w.dates[i] : ""}</span></span>`;
+  }).join("");
+  const widget = `<button class="pf-jr" data-act="skyPage" data-arg="journey" aria-label="Okuma yolculuğum, ${w.streak} gün üst üste">
+      <span class="top"><span class="pf-jr-ragi"><img src="${A}Brand/mascotCheer.imageset/mascotCheer.png" alt=""></span>
+        <span class="grow"><span class="eb">Okuma yolculuğum</span><b>${w.streak} gün üst üste</b>
+          <span class="t-footnote secondary">Bu hafta ${w.read.size} gün birlikte okudunuz</span></span>
+        <span class="chev">${ic("right")}</span></span>
+      <span class="jr-week">${days}</span></button>`;
   let html = `<div class="scroller">
     <div class="h2-hero pf-hero">
       <h1 class="pf-title">Profil</h1>
@@ -173,6 +185,7 @@ VIEWS.profil = function () {
           <span class="lbl">${label}</span><b>${value}</b><span class="unit">${unit}</span></div>`).join("")}</div>
     </div>
     <div class="sk-body">
+      ${widget}
       <button class="h2-row" data-act="gate"><span class="tile" style="${tone("sky")}">${ic("shield")}</span>
         <span class="grow"><span class="t-card-title">Büyükler için</span><span class="t-supporting secondary">Ayarlar, abonelik ve okuma özeti</span></span>
         <span class="chev">${ic("right")}</span></button>
