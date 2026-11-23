@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Prototip: menü ve "Okuma yolculuğum"; yeni Ragi pozu
+
+- İrem'in kararı: ana sayfadaki menü düğmesi aşağıdan kayan bir sayfa açar (`design-preview/app/yolculuk.js`): "Nereye gidelim, <ad>?" ve uygulamanın var olan sayfaları liste satırı olarak (Okuma yolculuğum, Rozetlerim, Çıkartma albümüm, Yeni kelimelerim, Masal haritam, Masal ailem, Kitaplık renklerim), en altta "Büyükler için" (ebeveyn kapısı). Ana sayfa satırlarıyla aynı dil.
+- "Okuma yolculuğum" (referans: alışkanlık uygulamasının tracker ekranı, kurallarımıza göre): mor başlık; sıcak ışıkta sevinçli Ragi, "N gün üst üste", "Birlikte okudunuz. Okuma yolculuğunuz devam ediyor."; Pazartesi–Pazar şeridi (okunan gün mor tik, bugün halkalı, okunmayan gün boş daire, gelecek günler tarih; çarpı ya da kırmızı yok); "Bu hafta N masal okundu"; okuma zamanı çubukları, yıldız katı (ilerleme yok), yeni kelimeler, son rozet. "Zayıf", "az kaldı", geri sayım, karşılaştırma yok (AGENTS.md ilke 7).
+- Yeni Ragi pozu `Brand/mascotCheer` (İrem'in gönderdiği, kollar havada): kenardaki düşük saydamlıklı artık pikseller temizlendi, 800 px. Henüz uygulama kodunda kullanılmıyor.
+- Prototip düzeltmesi: itilen sayfalar kendi stil sınıfını alır (`app.js` render).
+- Uygulama kodu değişmedi; tarayıcıda çerçeveli önizlemeyle bakıldı (`?menu=ac`, `?yolculuk=ac`).
+
 ### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Ana sayfa yeni düzen uygulamada (prototipten)
 
 - İrem onayladı ("bayıldım"); revizeler: konuşma balonu kalktı; bu akşamın kartında Ragi'nin ayakları kartın alt çizgisinde; cam düğmeler yerine bizim `MPCircleButton` ailesi (menü, bildirim, arama, artı ayrı lavanta daireler). Cam kalktığı için tasarım yasasıyla o çelişki yok.

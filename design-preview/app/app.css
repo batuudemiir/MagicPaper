@@ -452,3 +452,64 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .h2-tonight { align-items: stretch; }
 .h2-tonight img { align-self: flex-end; margin: -30px -4px -16px -6px; }
 .h2-tonight .body { align-self: center; }
+
+/* ---------- Menü ve Okuma yolculuğum (23 Kasım 2026, yolculuk.js) ---------- */
+.mn-scrim { position: absolute; inset: 0; z-index: 40; background: rgba(46, 30, 62, .44); }
+.mn-sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 41; display: grid; gap: 14px; padding: 10px var(--mp-space-screen-h) 28px;
+            background: #fff; border-radius: 32px 32px 0 0; max-height: 86%; overflow-y: auto; }
+.mn-grab { justify-self: center; width: 40px; height: 5px; border-radius: 3px; background: #E2DAEE; }
+.mn-head { display: flex; align-items: center; gap: 10px; }
+.mn-head img { width: 56px; }
+.mn-head .t-section { flex: 1; }
+.mn-grown { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border-radius: 16px; color: var(--mp-text-secondary, #6E5964);
+            font: 700 calc(15px * var(--type)) "Nunito", sans-serif; }
+.mn-grown .ico { width: 18px; height: 18px; }
+.mn-sheet.in { animation: mn-up .32s cubic-bezier(.2, .8, .3, 1) both; }
+.mn-scrim.in { animation: ap-fade .2s ease-out both; }
+.mn-sheet.out { animation: mn-down .2s ease-in both; }
+.mn-scrim.out { animation: ap-fade .2s ease-in reverse both; }
+@keyframes mn-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+@keyframes mn-down { to { transform: translateY(100%); } }
+@media (prefers-reduced-motion: reduce) { .mn-sheet.in, .mn-sheet.out { animation: ap-fade .18s ease-out both; } }
+
+.layer.journey { background: #fff; }
+.journey .statusbar { position: absolute; left: 0; right: 0; top: 0; z-index: 6; color: #fff; }
+.journey .scroller { padding-top: 0; }
+.jr-hero { margin: 0 calc(-1 * var(--mp-space-screen-h)); padding: calc(var(--status, 54px) + 6px) var(--mp-space-screen-h) 0;
+           background: linear-gradient(180deg, #5C3A8F 0%, #7653C2 30%, #DCD0F1 62%, #F2EDFA 80%, #FFFFFF 100%); }
+.jr-top { display: flex; align-items: center; gap: 12px; min-height: 48px; }
+.jr-top h1 { margin: 0; color: #fff; font: 700 calc(24px * var(--type)) "Baloo 2", sans-serif; }
+.jr-card { margin-top: 18px; padding: 16px 16px 18px; border-radius: 28px; background: #fff; display: grid; justify-items: center; gap: 6px; text-align: center;
+           box-shadow: 0 4px 0 #DCD0F1; }
+.jr-glow { width: 150px; height: 150px; border-radius: 50%; display: grid; place-items: center;
+           background: radial-gradient(circle, #FFF1C9 0%, #F6E3FF 55%, rgba(255, 255, 255, 0) 72%); }
+.jr-glow img { width: 138px; }
+.jr-big { font: 700 calc(24px * var(--type))/1.1 "Baloo 2", sans-serif; color: var(--mp-text-primary, #2E1E3E); margin-top: 2px; }
+.jr-week { display: grid; grid-template-columns: repeat(7, 1fr); width: 100%; margin: 12px 0 6px; padding: 6px 4px; border-radius: 22px; background: #F2EDFA; }
+.jr-day { display: grid; justify-items: center; gap: 6px; }
+.jr-day .lbl { font: 700 calc(12px * var(--type)) "Nunito", sans-serif; color: var(--mp-text-secondary, #6E5964); }
+.jr-day.now .lbl { color: var(--mp-action-primary); }
+.jr-day .dot { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: #fff; border: 2px solid #E2DAEE;
+               font: 700 calc(12px * var(--type)) "Nunito", sans-serif; color: #B3A6BF; }
+.jr-day .dot.on { background: var(--mp-action-primary); border-color: var(--mp-action-primary); color: #fff; }
+.jr-day .dot.future { background: transparent; border-color: transparent; }
+.jr-day.now .dot { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--mp-action-primary); }
+.jr-day .dot .ico { width: 16px; height: 16px; stroke-width: 3; }
+.jr-two { display: grid; grid-template-columns: 1.25fr 1fr; gap: 10px; margin-top: 16px; }
+.jr-tile { padding: 14px; border-radius: 24px; background: #fff; box-shadow: 0 4px 0 #EAE3F3; outline: 1px solid #EFE8F7; display: grid; gap: 8px; }
+.jr-tile.center { justify-items: center; align-content: center; text-align: center; }
+.jr-bars { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; height: 76px; align-items: end; }
+.jr-bars .bar { display: grid; grid-template-rows: 1fr auto; height: 100%; gap: 4px; justify-items: center; }
+.jr-bars i { width: 100%; border-radius: 6px; background: #EFE8F7; align-self: end; }
+.jr-bars i.on { background: linear-gradient(180deg, #8F6BD6, #6A47B8); }
+.jr-bars b { font: 700 calc(11px * var(--type)) "Nunito", sans-serif; color: #9B8892; }
+.jr-level { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: var(--mp-world-yellow-soft); color: #D8A220;
+            box-shadow: 0 0 0 6px #FFF8E1; }
+.jr-level .ico { width: 30px; height: 30px; fill: currentColor; }
+.jr-row { display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 20px; background: #F7F4FB; margin-top: 10px; }
+.jr-row .tile { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; flex: none; }
+.jr-row .tile .ico { width: 24px; height: 24px; }
+.jr-row .grow { display: grid; gap: 4px; flex: 1; }
+.jr-words { display: flex; gap: 6px; flex-wrap: wrap; }
+.jr-words i { font: 700 calc(13px * var(--type)) "Nunito", sans-serif; font-style: normal; padding: 3px 10px; border-radius: 10px; background: #fff; color: var(--mp-world-mint-deep); }
+.jr-count { padding: 6px 10px; border-radius: 12px; background: var(--mp-world-mint-soft); color: var(--mp-world-mint-deep); font: 800 calc(13px * var(--type)) "Nunito", sans-serif; }

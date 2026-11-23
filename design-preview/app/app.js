@@ -133,7 +133,7 @@ function render(anim) {
     html = v.html; parent = v.parent; extra = v.cls || ""; cls = anim === "cover" ? "cover-in" : anim === "push" ? "push-in" : "";
   } else if (S.stack.length) {
     const v = S.stack[S.stack.length - 1];
-    html = VIEWS[v.view](v).html + tabbar(); cls = anim === "push" ? "push-in" : "";
+    const sv = VIEWS[v.view](v); html = sv.html + tabbar(); extra = sv.cls || ""; cls = anim === "push" ? "push-in" : "";
   } else {
     const tv = VIEWS[S.tab](); html = tv.html + tabbar(); extra = tv.cls || ""; cls = anim === "fade" ? "fade-in" : "";
   }
