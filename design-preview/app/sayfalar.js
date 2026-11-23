@@ -207,3 +207,6 @@ Object.assign(ACTIONS, {
 // ?sayfa=badges|stickers|words|map|family|decor: menü sayfası açık başlar.
 const sayfa = Q.get("sayfa");
 if (sayfa && Object.values(MENU_PAGES).includes(sayfa)) { S.tab = "profil"; S.stack.push({ view: sayfa }); }
+
+// ?yuz=ragi-happy: avatar seçilmiş başlar (önizleme).
+if (Q.get("yuz") && avatarById(Q.get("yuz"))) S.avatar = Q.get("yuz");

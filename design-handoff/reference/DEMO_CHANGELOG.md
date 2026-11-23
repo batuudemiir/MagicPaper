@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Masal ailem kahraman kartında avatar kayması
+
+- İrem'in bulduğu hata: önizlemede avatar seçiliyken Masal ailem'in kahraman kartında yüz 104 pt boyutuyla 72 pt'lik daireden taşıyordu. `app.css`: `.sk-av` içindeki yüz 64 pt ve kırpılı. Profil kartındaki seçili avatar da köşeli kare yerine daire (uygulamadaki gibi).
+- Uygulama: `FamilyCharactersView` kahraman kartı baş harf yerine profildeki yüzü gösterir (`HeroAvatarView`, seçilen avatar ya da kahraman; kurulmadıysa eski `MPAvatar`).
+- Önizleme bağlantısı: `&yuz=ragi-happy` avatar seçili başlatır. Headless Edge ile Masal ailem ve Profil avatar seçiliyken bakıldı. Uygulama testi çalıştırılmadı (Mac).
+
 ### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Önizleme: menü sayfaları ve yeni Profil
 
 - İrem'in isteği: önizlemede (`design-preview`) menü sayfaları ve yeni profil de görünsün. Yeni `design-preview/app/sayfalar.js` (yükleme sırasında `yolculuk.js`'ten sonra) ve `app.css`'e `sk-*`, `pf-*` sınıfları.

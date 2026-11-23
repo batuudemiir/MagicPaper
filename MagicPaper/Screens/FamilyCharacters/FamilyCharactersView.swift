@@ -148,10 +148,18 @@ struct FamilyCharactersView: View {
     /// (görselli kitap açıkken).
     private var heroCard: some View {
         HStack(spacing: MPSpacing.lg) {
-            MPAvatar(name: profile.name, color: profile.mpColor, size: 64).accessibilityHidden(true)
-                .padding(MPSpacing.xxs)
-                .background(MPWorldTone.lav.soft, in: Circle())
-                .accessibilityHidden(true)
+            // Profildeki yüzün aynısı (seçilen avatar ya da kahraman; 24 Kasım 2026).
+            Group {
+                if let look = HeroLookStore().look(for: profile.id) {
+                    HeroAvatarView(look: look, backdrop: MPWorldTone.lav.soft)
+                        .frame(width: 64, height: 64)
+                } else {
+                    MPAvatar(name: profile.name, color: profile.mpColor, size: 64)
+                }
+            }
+            .padding(MPSpacing.xxs)
+            .background(MPWorldTone.lav.soft, in: Circle())
+            .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                 Text("Kahraman").mpText(.eyebrow).foregroundStyle(MPColor.actionPrimary)
                 Text(profile.name).mpText(.section).foregroundStyle(MPColor.textPrimary)

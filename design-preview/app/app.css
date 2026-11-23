@@ -571,7 +571,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .sk-ragi { width: 88px; height: 88px; flex: none; border-radius: 50%; display: grid; place-items: center; overflow: hidden; }
 .sk-ragi img { width: 80px; }
 .sk-av { width: 72px; height: 72px; flex: none; border-radius: 50%; background: var(--mp-world-lav-soft); display: grid; place-items: center; }
-.sk-av svg.bust { width: 64px; height: 64px; }
+.sk-av { overflow: hidden; }
+.sk-av svg.bust, .sk-av .ap-face { width: 64px; height: 64px; }
 .sk-body { display: grid; gap: 14px; padding-top: 22px; }
 .sk-sec { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; }
 .sk-sec h2 { margin: 0; font: 700 calc(21px * var(--type)) "Baloo 2", sans-serif; color: var(--mp-text-primary, #2E1E3E); }
@@ -642,7 +643,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
            box-shadow: 0 4px 0 #DCD0F1; outline: 1px solid #EFE8F7; }
 .pf-card .grow { display: grid; gap: 4px; }
 .pf-av { position: relative; width: 96px; height: 96px; flex: none; }
-.pf-av svg.bust, .pf-av .ap-face { width: 96px; height: 96px; }
+.pf-av svg.bust, .pf-av .ap-face { width: 96px; height: 96px; border-radius: 50%; }
 .pf-av .pen { position: absolute; top: 0; right: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--mp-action-primary); color: #fff; display: grid; place-items: center; }
 .pf-av .pen .ico { width: 14px; height: 14px; stroke-width: 2.6; }
 .pf-av .lv { position: absolute; right: -4px; bottom: -2px; width: 36px; height: 36px; border-radius: 50%; background: var(--mp-world-yellow-soft); color: #D8A220; display: grid; place-items: center; border: 2px solid #fff; }
