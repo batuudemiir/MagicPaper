@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Prototip: masal sonu yeni tasarım
+
+- İrem'in isteği (referans: oyunlardaki "Level up" ekranı, bizim dilimizle): `design-preview/app/ending.js`. Mor zemin (palet morları), büyük "Masal bitti!", yavaş dönen yumuşak ışık hüzmeleri ve sıcak parıltı önünde sevinçli Ragi (`mascotCheer`), "Bravo, <ad>!", sarı "Bir masal daha" hapı, yatay kayan kazanılanlar (çıkartma, masalın rozeti ortada, haftalık okuma dakikası, +1 yıldız), en altta "Ana sayfaya dön".
+- Kalabalık olmasın diye kartlar yalnızca simge, başlık ve tek satır; yalnızca kazanılan gösterilir, sayı baskısı ya da "az kaldı" yok. Hareketi Azalt açıkken hüzme dönmez, Ragi zıplamaz.
+- Uygulama kodu değişmedi (masal sonu okuyucunun içinde, Batuhan'ın `StoryEndingLeaf`'i). Tarayıcıda `?ortu=ending` ile bakıldı.
+
 ### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Menü ve "Okuma yolculuğum" uygulamada
 
 - İrem onayladı; prototipteki menü ve okuma yolculuğu SwiftUI'ye. Prototipte yolculuk kartının üstü daraltıldı, haftalık özet uygulamayla aynı cümle ("Bu hafta N gün birlikte okudunuz").

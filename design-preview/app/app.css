@@ -513,3 +513,45 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .jr-words { display: flex; gap: 6px; flex-wrap: wrap; }
 .jr-words i { font: 700 calc(13px * var(--type)) "Nunito", sans-serif; font-style: normal; padding: 3px 10px; border-radius: 10px; background: #fff; color: var(--mp-world-mint-deep); }
 .jr-count { padding: 6px 10px; border-radius: 12px; background: var(--mp-world-mint-soft); color: var(--mp-world-mint-deep); font: 800 calc(13px * var(--type)) "Nunito", sans-serif; }
+
+/* ---------- Masal sonu · yeni tasarım (23 Kasım 2026, ending.js) ---------- */
+.layer.ending2 { background: linear-gradient(180deg, #7653C2 0%, #6A47B8 45%, #5C3A8F 100%); color: #fff; }
+.ending2 .statusbar { color: #fff; background: transparent; }
+.en-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 8px 0 28px; overflow: hidden; }
+.en-title { margin: 18px 0 0; font: 800 calc(40px * var(--type))/1 "Baloo 2", sans-serif; color: #fff; letter-spacing: -.5px; }
+.en-hero { position: relative; width: 100%; height: 250px; display: grid; place-items: center; margin-top: 4px; }
+.en-rays { position: absolute; width: 520px; height: 520px; border-radius: 50%;
+           background: repeating-conic-gradient(from 0deg, rgba(255, 255, 255, .10) 0deg 9deg, rgba(255, 255, 255, 0) 9deg 22deg);
+           -webkit-mask-image: radial-gradient(circle, #000 18%, transparent 62%); mask-image: radial-gradient(circle, #000 18%, transparent 62%); }
+.en-glow { position: absolute; width: 210px; height: 210px; border-radius: 50%;
+           background: radial-gradient(circle, rgba(255, 241, 201, .75) 0%, rgba(220, 208, 241, .35) 45%, rgba(220, 208, 241, 0) 70%); }
+.en-hero img { position: relative; width: 190px; }
+.en-spark { position: absolute; color: #fff; font-style: normal; opacity: .85; }
+.en-spark.s1 { top: 26px; left: 24%; font-size: 18px; }
+.en-spark.s2 { top: 54px; right: 20%; font-size: 13px; }
+.en-spark.s3 { bottom: 34px; left: 18%; font-size: 12px; }
+.en-bravo { margin: 0; font: 700 calc(28px * var(--type))/1.1 "Baloo 2", sans-serif; color: #fff; }
+.en-again { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 0 22px; min-height: 48px; border-radius: 24px;
+            background: #FFD66B; color: #2E1E3E; font: 800 calc(16px * var(--type)) "Nunito", sans-serif; box-shadow: 0 4px 0 #D9A93A; }
+.en-again .ico { width: 18px; height: 18px; }
+.en-cards { display: flex; gap: 10px; width: calc(100% + 2 * var(--mp-space-screen-h)); margin: 22px calc(-1 * var(--mp-space-screen-h)) 0;
+            padding: 0 30%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.en-cards::-webkit-scrollbar { display: none; }
+.en-card { flex: none; width: 132px; scroll-snap-align: center; display: grid; justify-items: center; gap: 4px; padding: 16px 10px;
+           border-radius: 24px; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .22); }
+.en-card .tile { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; margin-bottom: 4px; }
+.en-card .tile .ico { width: 26px; height: 26px; }
+.en-card b { font: 800 calc(15px * var(--type)) "Nunito", sans-serif; color: #fff; }
+.en-card span:last-child { font: 600 calc(12px * var(--type)) "Nunito", sans-serif; color: rgba(255, 255, 255, .78); }
+.en-home { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 18px; color: rgba(255, 255, 255, .9);
+           font: 800 calc(15px * var(--type)) "Nunito", sans-serif; }
+.en-home .ico { width: 18px; height: 18px; }
+@media (prefers-reduced-motion: no-preference) {
+  .en-rays { animation: en-turn 40s linear infinite; }
+  .en-hero img { animation: en-pop .5s cubic-bezier(.2, .8, .3, 1.3) both; }
+}
+@keyframes en-turn { to { transform: rotate(360deg); } }
+@keyframes en-pop { from { transform: scale(.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.en-mid { flex: 1; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.en-cards { padding: 0 calc(50% - 66px); position: relative; }
+.en-home { margin-top: 8px; }
