@@ -555,3 +555,109 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .en-mid { flex: 1; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .en-cards { padding: 0 calc(50% - 66px); position: relative; }
 .en-home { margin-top: 8px; }
+
+/* ---------- Menü sayfaları (MPSkyPage) ve yeni Profil, 23 Kasım 2026 ---------- */
+.home2.sky .scroller { padding-bottom: 170px; }
+.sk-hero { margin: 0 calc(-1 * var(--mp-space-screen-h)); padding: calc(var(--status, 54px) + 6px) var(--mp-space-screen-h) 0;
+           background: linear-gradient(180deg, #5C3A8F 0%, #7653C2 38%, #DCD0F1 72%, #F2EDFA 88%, #FFFFFF 100%); /* MP.C.homeSky */ }
+.sk-top { display: flex; align-items: center; gap: 12px; min-height: 48px; }
+.sk-top h1 { margin: 0; flex: 1; color: #fff; font: 700 calc(24px * var(--type))/1.15 "Baloo 2", sans-serif; }
+.sk-bal { display: flex; align-items: center; gap: 4px; color: #fff; font: 800 calc(17px * var(--type)) "Nunito", sans-serif; }
+.sk-bal .ico { width: 18px; height: 18px; fill: #F5C542; stroke: #F5C542; }
+.sk-intro { display: flex; align-items: center; gap: 14px; margin-top: 14px; padding: 16px; border-radius: 24px; background: #fff;
+            box-shadow: 0 4px 0 #DCD0F1; outline: 1px solid #EFE8F7; }
+.sk-intro .grow { display: grid; gap: 4px; flex: 1; }
+.sk-intro b { font: 700 calc(21px * var(--type))/1.15 "Baloo 2", sans-serif; color: var(--mp-text-primary, #2E1E3E); }
+.sk-ragi { width: 88px; height: 88px; flex: none; border-radius: 50%; display: grid; place-items: center; overflow: hidden; }
+.sk-ragi img { width: 80px; }
+.sk-av { width: 72px; height: 72px; flex: none; border-radius: 50%; background: var(--mp-world-lav-soft); display: grid; place-items: center; }
+.sk-av svg.bust { width: 64px; height: 64px; }
+.sk-body { display: grid; gap: 14px; padding-top: 22px; }
+.sk-sec { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; }
+.sk-sec h2 { margin: 0; font: 700 calc(21px * var(--type)) "Baloo 2", sans-serif; color: var(--mp-text-primary, #2E1E3E); }
+.sk-sec .link { color: var(--mp-action-primary); font: 700 calc(15px * var(--type)) "Nunito", sans-serif; display: flex; align-items: center; gap: 2px; min-height: 44px; }
+.sk-sec .link .ico { width: 16px; height: 16px; }
+.sk-card { padding: 14px; border-radius: 22px; background: #fff; box-shadow: 0 4px 0 #EAE3F3; outline: 1px solid #EFE8F7; text-align: left; }
+.sk-level { display: flex; align-items: center; gap: 14px; }
+.sk-level .grow { display: grid; gap: 2px; flex: 1; }
+.sk-level .lv { position: relative; width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: var(--mp-world-yellow-soft); color: #D8A220; flex: none; }
+.sk-level .lv .ico { width: 30px; height: 30px; fill: currentColor; }
+.sk-level .lv i { position: absolute; right: -2px; bottom: -2px; font: 900 13px "Nunito", sans-serif; font-style: normal; padding: 0 7px; border-radius: 10px; background: var(--mp-world-yellow-soft); border: 2px solid #fff; color: #9A6A00; }
+.sk-level .chev { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #E2DAEE; display: grid; place-items: center; color: #9B8892; flex: none; }
+.sk-level .chev .ico { width: 16px; height: 16px; }
+.sk-row { display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 20px; background: #F7F4FB; }
+.sk-row .tile, .sk-place .tile { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; flex: none; }
+.sk-row .tile .ico, .sk-place .tile .ico { width: 24px; height: 24px; }
+.sk-row .grow { display: grid; gap: 2px; }
+.sk-chips { display: flex; gap: 8px; }
+.sk-chips .chip { background: #fff; border: 1.5px solid var(--mp-border-kid); }
+.sk-chips .chip.on { background: var(--mp-action-soft); border-color: var(--mp-action-primary); color: var(--mp-action-primary); font-weight: 700; }
+.sk-list { display: grid; gap: 10px; }
+.sk-word { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 22px; }
+.sk-word .grow { display: grid; gap: 2px; flex: 1; }
+.sk-word b { font: 700 calc(21px * var(--type)) "Baloo 2", sans-serif; color: var(--mp-text-primary, #2E1E3E); }
+.sk-word .h2-circle { background: #fff; flex: none; }
+.sk-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.sk-place { display: grid; gap: 4px; align-content: start; }
+.sk-place .tile { margin-bottom: 6px; }
+.sk-place.off { background: #F7F4FB; box-shadow: none; outline: 2px dashed #E2DAEE; }
+.sk-place.off .tile { background: #fff; color: #9B8892; }
+.sk-stickers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 10px; }
+.sk-stickers .st { display: grid; justify-items: center; gap: 6px; text-align: center; font: 700 calc(13px * var(--type)) "Nunito", sans-serif; color: var(--mp-text-primary, #2E1E3E); }
+.sk-stickers .disc { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; border: 4px solid #fff; box-shadow: 0 4px 0 #EAE3F3, 0 0 0 1px #EFE8F7; }
+.sk-stickers .disc .ico { width: 36px; height: 36px; }
+.sk-stickers .next { color: #9B8892; }
+.sk-stickers .next .disc { background: #fff; border: 2px dashed #D8CDE6; box-shadow: none; color: #B9A9C9; }
+.sk-fam { display: grid; justify-items: start; align-content: start; gap: 4px; padding: 14px; border-radius: 22px; text-align: left; min-height: 120px; border: 2px solid transparent; }
+.sk-fam.on { border-color: var(--mp-action-primary); }
+.sk-fam .ini { width: 44px; height: 44px; border-radius: 50%; background: #fff; display: grid; place-items: center; font: 800 20px "Baloo 2", sans-serif; margin-bottom: 4px; }
+.sk-fam.add { background: #fff; border: 2px dashed #D8CDE6; justify-items: center; align-content: center; color: var(--mp-text-secondary); }
+.sk-fam.add .ico { width: 24px; height: 24px; }
+.sk-shelf { height: 86px; border-radius: 18px; border-bottom: 8px solid; display: flex; align-items: flex-end; gap: 6px; padding: 0 18px 8px; }
+.sk-shelf i { width: 22px; border-radius: 4px 4px 0 0; }
+.sk-shelf i:nth-child(1) { height: 56px; } .sk-shelf i:nth-child(2) { height: 46px; } .sk-shelf i:nth-child(3) { height: 60px; }
+.sk-shelf i:nth-child(4) { height: 40px; } .sk-shelf i:nth-child(5) { height: 52px; }
+.sk-decor { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.sk-decor button { display: grid; justify-items: center; gap: 4px; padding: 12px 8px; border-radius: 20px; background: #fff; border: 1px solid #EAE3F3; }
+.sk-decor button.on { background: var(--mp-action-soft); border: 2px solid var(--mp-action-primary); }
+.sk-decor .sw { width: 100%; height: 34px; border-radius: 10px; border-bottom: 5px solid; }
+.sk-decor b { font: 700 calc(15px * var(--type)) "Nunito", sans-serif; }
+.sk-foot { position: absolute; left: 0; right: 0; bottom: 92px; z-index: 15; padding: 12px var(--mp-space-screen-h); background: #fff; display: grid; gap: 8px; justify-items: center;
+           box-shadow: 0 -1px 0 #EFE8F7; }
+.sk-foot .btn { width: 100%; }
+
+/* Profil */
+.pf-title { margin: 8px 0 0; color: #fff; font: 700 calc(32px * var(--type))/1.1 "Baloo 2", sans-serif; }
+.pf-who { display: flex; gap: 10px; margin-top: 14px; overflow-x: auto; scrollbar-width: none; }
+.pf-who .me { display: flex; align-items: center; gap: 8px; border: 2.5px solid var(--mp-action-primary); background: #fff; color: var(--mp-action-primary);
+              border-radius: 999px; padding: 4px 14px 4px 4px; min-height: 48px; font: 700 calc(15px * var(--type)) "Nunito", sans-serif; flex: none; }
+.pf-who .me .ico { width: 16px; height: 16px; stroke-width: 3; }
+.pf-who .me .av, .pf-who .me .ap-face { width: 38px; height: 38px; }
+.pf-who .add { display: flex; align-items: center; gap: 6px; border: 2px dashed #fff; color: #fff; border-radius: 999px; padding: 0 16px; min-height: 48px;
+               font: 700 calc(15px * var(--type)) "Nunito", sans-serif; flex: none; }
+.pf-who .add .ico { width: 16px; height: 16px; }
+.pf-id { position: relative; margin-top: 4px; padding-top: 64px; }
+.pf-ragi { position: absolute; right: 18px; top: 0; width: 112px; }
+.pf-card { position: relative; width: 100%; display: flex; align-items: center; gap: 16px; padding: 18px; border-radius: 26px; background: #fff; text-align: left;
+           box-shadow: 0 4px 0 #DCD0F1; outline: 1px solid #EFE8F7; }
+.pf-card .grow { display: grid; gap: 4px; }
+.pf-av { position: relative; width: 96px; height: 96px; flex: none; }
+.pf-av svg.bust, .pf-av .ap-face { width: 96px; height: 96px; }
+.pf-av .pen { position: absolute; top: 0; right: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--mp-action-primary); color: #fff; display: grid; place-items: center; }
+.pf-av .pen .ico { width: 14px; height: 14px; stroke-width: 2.6; }
+.pf-av .lv { position: absolute; right: -4px; bottom: -2px; width: 36px; height: 36px; border-radius: 50%; background: var(--mp-world-yellow-soft); color: #D8A220; display: grid; place-items: center; border: 2px solid #fff; }
+.pf-av .lv .ico { width: 18px; height: 18px; fill: currentColor; }
+.pf-edit { display: flex; align-items: center; gap: 4px; margin-top: 2px; color: var(--mp-action-primary); font: 800 calc(13px * var(--type)) "Nunito", sans-serif; }
+.pf-edit .ico { width: 14px; height: 14px; stroke-width: 2.6; }
+.pf-hero .h2-stats { margin-top: 18px; }
+.pf-badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px 10px; }
+.pf-badge { display: grid; justify-items: center; gap: 2px; text-align: center; }
+.pf-badge .arm { position: relative; width: 92px; height: 92px; border-radius: 50%; display: grid; place-items: center;
+                 box-shadow: inset 0 0 0 6px rgba(255, 255, 255, .7), 0 4px 0 rgba(46, 30, 62, .08); }
+.pf-badge .arm > .ico { width: 38px; height: 38px; stroke-width: 2.2; }
+.pf-badge b { font: 800 calc(15px * var(--type))/1.2 "Nunito", sans-serif; color: var(--mp-text-primary, #2E1E3E); margin-top: 6px; }
+.pf-badge > span:last-child { font: 600 calc(13px * var(--type)) "Nunito", sans-serif; color: var(--mp-text-secondary, #6E5964); }
+.pf-badge.off .arm { background: #F1ECE4; color: #BDB2A6; }
+.pf-badge.off b { color: var(--mp-text-secondary, #6E5964); }
+.pf-badge .lk { position: absolute; right: 2px; bottom: 2px; width: 28px; height: 28px; border-radius: 50%; background: #fff; display: grid; place-items: center; color: #9B8892; font-style: normal; }
+.pf-badge .lk .ico { width: 14px; height: 14px; }

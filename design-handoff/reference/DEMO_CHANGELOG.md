@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Önizleme: menü sayfaları ve yeni Profil
+
+- İrem'in isteği: önizlemede (`design-preview`) menü sayfaları ve yeni profil de görünsün. Yeni `design-preview/app/sayfalar.js` (yükleme sırasında `yolculuk.js`'ten sonra) ve `app.css`'e `sk-*`, `pf-*` sınıfları.
+- Uygulamadaki `MPSkyPage`/`MPSkyIntro`'nun prototipi: Rozetlerim, Çıkartma albümüm, Yeni kelimelerim (Bu hafta / Tümü çalışır), Masal haritam, Masal ailem (karakter seçilince alt çubuk), Kitaplık renklerim (seç, al, kullan çalışır). Menüdeki satırlar ve profildeki satırlar bu sayfaları açar; geri düğmesi döner.
+- Yeni Profil (`KidCornerView`'un prototipi): gök, kim okuyor, kimlik kartı ve arkasından Ragi, üç bilgi kartı, Büyükler için, açık rozet vitrini ("Tümü"), Masal dünyam. Avatar seçici aynen açılır.
+- Doğrudan bağlantı: `?ekran=profil&sayfa=badges|stickers|words|map|family|decor`. Veriler örnektir.
+- Uygulama kodu bu kayıtta değişmedi (önceki iki kayıtta). Headless Edge ile profil ve altı sayfa açılıp bakıldı; gök kenarındaki sert renk çizgisi düzeltildi.
+
 ### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Profil sekmesi ana sayfa diliyle
 
 - İrem'in isteği: profil diğer sayfalarla bütünlük sağlamıyordu; daha net, erişilebilir ve ana sayfaya uygun olsun, "Büyükler için" kalsın, rozetler Duolingo'daki gibi açık dursun ve "Tümü" Rozetlerim'e gitsin. `Screens/KidCorner/KidCornerView.swift` yeniden yazıldı.
