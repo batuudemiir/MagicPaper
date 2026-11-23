@@ -1,8 +1,8 @@
 import SwiftUI
 
 /// Profil'deki "Okuma yolculuğum" kartı (24 Kasım 2026, İrem): sayfanın
-/// küçük önizlemesi, widget gibi. Solda okuyan Ragi'nin yüzü, zeminsiz
-/// (`Avatars/ragi-reading`); sağda başlık, "N gün üst üste"
+/// küçük önizlemesi, widget gibi. Solda el sallayan Ragi, çerçevesiz (Profil'in
+/// tek Ragi'si); sağda başlık, "N gün üst üste"
 /// ve bu haftanın yedi günü. Kartın tamamı Okuma yolculuğum'u açar.
 ///
 /// Kurallar `ReadingJourney`'de (ilke 7): okunmayan gün boş daire, başarısızlık
@@ -13,7 +13,7 @@ struct ReadingJourneyWidget: View {
 
     @Environment(\.dynamicTypeSize) private var typeSize
 
-    private static let faceSize: CGFloat = MPSize.minTouchHero + MPSpacing.lg
+    private static let ragiWidth: CGFloat = MPSize.minTouchHero + MPSpacing.xl
 
     var body: some View {
         Button {
@@ -22,14 +22,10 @@ struct ReadingJourneyWidget: View {
         } label: {
             VStack(alignment: .leading, spacing: MPSpacing.md) {
                 HStack(alignment: .center, spacing: MPSpacing.md) {
-                    // Okuyan Ragi'nin yüzü, zeminsiz, doğrudan beyaz kartta (24 Kasım 2026, İrem).
-                    if !typeSize.isAccessibilitySize, let face = ProfileAvatar.named("ragi-reading") {
-                        Image(face.asset)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: Self.faceSize, height: Self.faceSize)
-                            .clipShape(Circle())
-                            .accessibilityHidden(true)
+                    // Ekranın tek Ragi'si: el sallayan, çerçevesiz, doğrudan
+                    // beyaz kartta (24 Kasım 2026, İrem).
+                    if !typeSize.isAccessibilitySize {
+                        MascotImage(mascot: .waving, width: Self.ragiWidth)
                     }
                     VStack(alignment: .leading, spacing: MPSpacing.xxs) {
                         Text("Okuma yolculuğum").mpText(.footnote).fontWeight(.bold)

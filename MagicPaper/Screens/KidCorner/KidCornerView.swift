@@ -5,8 +5,8 @@ import SwiftUI
 /// 23 Kasım 2026 (İrem): ana sayfa ve menü sayfalarıyla aynı dil.
 /// - Üstte ana sayfanın mor göğü saat çubuğunun altına uzanır: "Profil",
 ///   "Kim okuyor?" çipleri (tek dokunuş, 7 Kasım 2026), beyaz kimlik kartı
-///   (avatar, ad, yıldız katı; kartın tamamı "Profilini düzenle"yi açar) ve
-///   kartın arkasından el sallayan Ragi (ekranın tek Ragi'si).
+///   (avatar, ad, yıldız katı; kartın tamamı "Profilini düzenle"yi açar).
+///   Ekranın tek Ragi'si Okuma yolculuğum kartında (24 Kasım 2026).
 /// - Göğün altında ana sayfadaki üç bilgi kartı: yıldız, masal, rozet.
 /// - "Büyükler için" ilk ekranda, menü satırı dilinde (14 Kasım 2026 kararı:
 ///   ebeveynin tek girişi; basılı tutmayla açılır).
@@ -36,8 +36,6 @@ struct KidCornerView: View {
 
     private var profile: UserProfile? { profileManager.currentProfile }
 
-    /// Ragi'nin kimlik kartının üstünden görünen kısmı.
-    private static let ragiPeek: CGFloat = 44
 
     var body: some View {
         // Gök saat çubuğunun altına uzanır (ana sayfa ile aynı kurgu).
@@ -184,18 +182,10 @@ struct KidCornerView: View {
         return storyManager.stories.filter { $0.belongs(to: profile) }.count
     }
 
-    /// Kimlik kartı ve arkasından el sallayan Ragi. Ragi önce çizilir: kart
-    /// onun alt yarısını örter, başı ve eli kartın üstünden görünür.
+    /// Kimlik kartı. Ekranın tek Ragi'si Okuma yolculuğum kartında
+    /// (24 Kasım 2026, İrem; önceden kartın arkasından el sallıyordu).
     private func identityBlock(_ profile: UserProfile) -> some View {
-        ZStack(alignment: .topTrailing) {
-            if !typeSize.isAccessibilitySize {
-                MascotImage(mascot: .waving, width: MPSize.minTouchHero + MPSpacing.xxxl)
-                    .padding(.trailing, MPSpacing.md)
-                    .accessibilityHidden(true)
-            }
-            identityCard(profile)
-                .padding(.top, typeSize.isAccessibilitySize ? 0 : Self.ragiPeek)
-        }
+        identityCard(profile)
     }
 
     /// Çocuğun tek kimlik kartı. Kartın tamamı "Profilini düzenle"

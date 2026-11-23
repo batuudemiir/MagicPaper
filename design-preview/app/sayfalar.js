@@ -163,7 +163,7 @@ VIEWS.profil = function () {
       <span class="dot ${on ? "on" : ""} ${future ? "future" : ""}">${on ? ic("check") : future ? w.dates[i] : ""}</span></span>`;
   }).join("");
   const widget = `<button class="pf-jr" data-act="skyPage" data-arg="journey" aria-label="Okuma yolculuğum, ${w.streak} gün üst üste">
-      <span class="top"><span class="pf-jr-ragi"><img src="${avatarSrc("ragi-reading")}" alt=""></span>
+      <span class="top"><img class="pf-jr-ragi" src="${img.ragi("Waving")}" alt="">
         <span class="grow"><span class="eb">Okuma yolculuğum</span><b>${w.streak} gün üst üste</b>
           <span class="t-footnote secondary">Bu hafta ${w.read.size} gün birlikte okudunuz</span></span>
         <span class="chev">${ic("right")}</span></span>
@@ -174,7 +174,6 @@ VIEWS.profil = function () {
       <div class="pf-who" aria-label="Kim okuyor?"><button class="me" aria-label="${CHILD}, seçili">${face("av")}${CHILD} ${ic("check")}</button>
         <button class="add" data-act="gate">${ic("plus")}Ekle</button></div>
       <div class="pf-id">
-        <img class="pf-ragi" src="${img.ragi("Waving")}" alt="">
         <button class="pf-card" data-act="avatarOpen" aria-label="${CHILD}, Parlak yıldız katı. Profil resmini seçmeyi açar">
           <span class="pf-av">${face("big")}<span class="pen">${ic(av ? "pencil" : "plus")}</span><span class="lv">${ic("star")}</span></span>
           <span class="grow"><span class="t-page">${CHILD}</span><span class="t-supporting secondary" style="font-weight:700">Parlak yıldız katı</span>

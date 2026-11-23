@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Profil: tek Ragi, Okuma yolculuğum kartında
+
+- İrem'in son revizesi: kimlik kartının arkasından bakan el sallayan Ragi kalktı (başlık sıkılaşınca arkada kalıyordu); aynı Ragi çerçevesiz olarak Okuma yolculuğum kartına geçti, okuyan Ragi yüzü kalktı. Ekranda tek Ragi (yasa yeniden uyumlu).
+- Uygulama: `KidCornerView.identityBlock` yalnızca kart (`ragiPeek` kalktı); `ReadingJourneyWidget` solda `MascotImage(.waving)` (kukla hareketiyle, zeminsiz).
+- Önizleme: aynı düzen; kim okuyor ile kart arası 14 px. Headless Edge ile bakıldı. Uygulama testi çalıştırılmadı (Mac).
+
 ### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Profil: okuyan Ragi yüzü, daha sıkı başlık
 
 - İrem'in kararı: iki Ragi de kalsın (README madde 13). Okuma yolculuğum kartında sevinçli Ragi ve sarı daire yerine okuyan Ragi'nin yüzü (`Avatars/ragi-reading`), zeminsiz, doğrudan beyaz kartta, daireye kırpılı.
