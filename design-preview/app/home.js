@@ -1,6 +1,6 @@
 // Ana sayfa · yeni yön denemesi (23 Kasım 2026, İrem; referans: alışkanlık
 // uygulaması ekranı). Üstte mor gökten beyaza inen başlık: solda menü, yanında
-// bildirim ve arama (cam), büyük selam, sağda konuşan Ragi, üç bilgi kartı ve
+// bildirim ve arama (bizim yuvarlak düğmemiz, MPCircleButton), büyük selam, sağda Ragi, üç bilgi kartı ve
 // koyu mor "bu akşamın masalı" kartı. Altı bizim dilimiz, referansın düzeniyle:
 // liste satırları. Gece/gündüz yok, tek görünüm. Eski ana sayfa: ?anasayfa=eski
 "use strict";
@@ -19,12 +19,11 @@ if (Q.get("anasayfa") !== "eski") {
     return { cls: "home2", html: `<div class="scroller">
       <div class="h2-hero">
         <div class="h2-top">
-          <button class="glass round" data-soon="Menü" aria-label="Menü">${ic("menu")}</button>
-          <span class="glass pill">
-            <button data-soon="Bildirimler" aria-label="Bildirimler">${ic("bell")}<i class="dot"></i></button>
-            <button data-soon="Masal arama" aria-label="Masal ara">${ic("search")}</button>
+          <button class="h2-circle" data-soon="Menü" aria-label="Menü">${ic("menu")}</button>
+          <span class="h2-right">
+            <button class="h2-circle" data-soon="Bildirimler" aria-label="Bildirimler">${ic("bell")}<i class="dot"></i></button>
+            <button class="h2-circle" data-soon="Masal arama" aria-label="Masal ara">${ic("search")}</button>
           </span>
-          <span class="h2-say glass">Küçük bir masalla başlayalım!</span>
         </div>
         <div class="h2-hello">
           <h1>Merhaba, ${CHILD}</h1>
@@ -50,7 +49,7 @@ if (Q.get("anasayfa") !== "eski") {
       </div>
 
       <div class="section-h"><h2>Yeni bir masal yaz</h2>
-        <button class="h2-plus" data-act="create" aria-label="Masal yaz">${ic("plus")}</button></div>
+        <button class="h2-circle" data-act="create" aria-label="Masal yaz">${ic("plus")}</button></div>
       <div class="h2-list">${Object.entries(MODES).map(([k, m]) => `
         <button class="h2-row" data-act="createModeDirect" data-arg="${k}">
           <span class="tile" style="background:var(${m.soft});color:var(${m.deep})">${ic(m.icon)}</span>

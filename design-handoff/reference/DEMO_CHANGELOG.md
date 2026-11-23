@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Ana sayfa yeni düzen uygulamada (prototipten)
+
+- İrem onayladı ("bayıldım"); revizeler: konuşma balonu kalktı; bu akşamın kartında Ragi'nin ayakları kartın alt çizgisinde; cam düğmeler yerine bizim `MPCircleButton` ailesi (menü, bildirim, arama, artı ayrı lavanta daireler). Cam kalktığı için tasarım yasasıyla o çelişki yok.
+- Uygulama: `HomeView` yeniden yazıldı, yeni bileşenler `DesignSystem/Pastel/MPHomeBoard.swift` (`HomeStatCard`, `HomeTonightBoard`, `HomeModeRow`). Tokenlar `MP.C.homeSky` (mor600 → mor400 %45 → mor100 %75 → mor50 → beyaz; beyaz yazı koyu morun üstünde kalsın diye duraklı), `homeTonight`/`homeTonightEdge` (mor600/mor900), `homeProgressDone`/`homeProgressNow`. Yeni palet rengi yok.
+- Davranış: menü şimdilik sakin bir söz ("Menü çok yakında"), bildirim yeni rozet varsa marka noktası gösterir ve Profil'i açar, arama Masallar'da aramayı açar, artı baştan masal yazar, satırlar modla açar. Bu akşamın kartı dört durumun hepsini (`TonightState`) ve ücretsiz hak bitince "Kitaplığına bak"ı korur. Okul öncesi kademede bilgi kartları ve alt satır yok. En büyük yazıda kartlar alt alta, kartta Ragi çizilmez.
+- `HomeFeed.stories` (Masallarım kartı), `HomeFeedStore` doldurur. `HomeHeaderScene` artık kullanılmıyor (MPHomeChrome'da duruyor).
+- Prototip aynı renklere çekildi (palet tonları, aynı duraklar); bildirim noktası marka moru. Tarayıcıda çerçeveli önizlemeyle bakıldı.
+- Test: çalıştırılmadı (Mac). Tasarım yasası grep'leri boş. `[ekran]` turu derlemeyi ve görüntüyü verir.
+- Batuhan'a (README madde 7): gradient istisnası, ekranda iki Ragi, menü içeriği.
+
 ### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Prototip: ana sayfa yeni yön denemesi
 
 - İrem'in önerisi (alışkanlık uygulaması referansı): yalnızca prototipte, uygulama kodu değişmedi. `design-preview/app/home.js` ana sayfayı geçersiz kılar; eskisi `?anasayfa=eski`.

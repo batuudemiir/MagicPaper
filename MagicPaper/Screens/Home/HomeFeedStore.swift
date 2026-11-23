@@ -124,7 +124,8 @@ final class HomeFeedStore: ObservableObject {
             streak: MPStreak.shared.currentStreak,
             hasSeriesCard: profile.map { SeriesManager.shared.cardState(for: $0.id) != nil } ?? false,
             cover: HomeFeed.cover(for: tonight, resume: resolved.resumeStory, daily: resolved.daily,
-                                  original: original))
+                                  original: original),
+            stories: MPTonightSource.visibleStories().count)
     }
 
     /// Ücretsiz günün masalı yazıldıysa yenisinin açılacağı an.

@@ -217,6 +217,25 @@ enum MP {
         /// erir; kodla geçiş gerekmez.
         static let homePaper = Palette.kagit100
 
+        /// Ana sayfa başlığının göğü (23 Kasım 2026, İrem; yeni ana sayfa):
+        /// mordan beyaza inen geçiş. Tasarım yasası arayüz yüzeyinde gradient
+        /// istemiyor; İrem'in kararıyla tek istisna, Batuhan'ın onayına.
+        /// Duraklar: selam ve alt satır koyu morun üstünde kalsın (beyaz yazı
+        /// 4.5:1), lavanta bilgi kartlarının arkasında başlasın.
+        static let homeSky: [Gradient.Stop] = [
+            .init(color: Palette.mor600, location: 0),
+            .init(color: Palette.mor400, location: 0.45),
+            .init(color: Palette.mor100, location: 0.75),
+            .init(color: Palette.mor50, location: 0.9),
+            .init(color: Palette.kagit0, location: 1)
+        ]
+        /// Bu akşamın kartı: koyu mor yüzey ve sert alt kenarı.
+        static let homeTonight = Palette.mor600
+        static let homeTonightEdge = Palette.mor900
+        /// Kartın ilerleme çubuğu: okunan parçalar, şu anki parça.
+        static let homeProgressDone = Palette.mor100
+        static let homeProgressNow = MPColor.statusStarIcon
+
         static let textTitle = MPColor.textPrimary
         static let textBody  = MPColor.textPrimary
         static let textMuted = MPColor.textSecondary

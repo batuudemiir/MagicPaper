@@ -394,7 +394,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .home2 .statusbar { position: absolute; left: 0; right: 0; top: 0; z-index: 6; color: #fff; }
 .home2 .scroller { padding-top: 0; }
 .h2-hero { position: relative; margin: 0 calc(-1 * var(--mp-space-screen-h)); padding: calc(var(--status, 54px) + 6px) var(--mp-space-screen-h) 0;
-           background: linear-gradient(180deg, #5B3BAA 0%, #7B5CCB 34%, #B9A6E8 66%, #EFE8FA 86%, #FFFFFF 100%); }
+           background: linear-gradient(180deg, #5C3A8F 0%, #7653C2 45%, #DCD0F1 75%, #F2EDFA 90%, #FFFFFF 100%); /* MP.C.homeSky */ }
 .h2-top { display: flex; align-items: center; gap: 10px; min-height: 48px; }
 .glass { background: rgba(255, 255, 255, .22); border: 1px solid rgba(255, 255, 255, .45); color: #fff;
          -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%); }
@@ -403,8 +403,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .glass.pill button { position: relative; width: 40px; height: 40px; display: grid; place-items: center; color: #fff; }
 .glass .ico { width: 22px; height: 22px; }
 .glass .dot { position: absolute; top: 9px; right: 10px; width: 9px; height: 9px; border-radius: 50%; background: #F0577A; border: 2px solid #fff; }
-.h2-say { margin-left: auto; padding: 8px 14px; border-radius: 18px 18px 4px 18px; font: 800 calc(13px * var(--type)) "Nunito", sans-serif;
-          max-width: 150px; line-height: 1.25; position: relative; top: 8px; }
 .h2-hello { margin-top: 22px; max-width: 64%; }
 .h2-hello h1 { margin: 0; color: #fff; font: 700 calc(32px * var(--type))/1.1 "Baloo 2", sans-serif; }
 .h2-hello p { margin: 6px 0 0; color: rgba(255, 255, 255, .88); font: 600 calc(15px * var(--type)) "Nunito", sans-serif; }
@@ -418,19 +416,19 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .h2-stat b { font: 700 calc(24px * var(--type))/1.1 "Baloo 2", sans-serif; color: var(--mp-text-primary, #2E1E3E); }
 .h2-stat .unit { font: 600 calc(12px * var(--type)) "Nunito", sans-serif; color: var(--mp-text-secondary, #6E5964); }
 .h2-tonight { position: relative; display: flex; align-items: center; gap: 4px; margin-top: 22px; padding: 16px 16px 16px 0;
-              border-radius: 28px; background: #4A2F93; color: #fff; box-shadow: 0 5px 0 #2E1E5E; overflow: visible; }
+              border-radius: 28px; background: #5C3A8F; color: #fff; box-shadow: 0 4px 0 #3A2458; /* homeTonight, homeTonightEdge */ overflow: visible; }
 .h2-tonight img { width: 118px; margin: -26px -4px -16px -6px; flex: none; }
 .h2-tonight .body { display: grid; gap: 8px; flex: 1; min-width: 0; }
 .h2-tonight .eye { font: 700 calc(13px * var(--type)) "Nunito", sans-serif; color: rgba(255, 255, 255, .75); }
 .h2-tonight b { font: 700 calc(19px * var(--type))/1.15 "Baloo 2", sans-serif; }
 .h2-tonight .bar { display: flex; align-items: center; gap: 5px; }
 .h2-tonight .bar i { flex: 1; height: 10px; border-radius: 5px; background: rgba(255, 255, 255, .22); }
-.h2-tonight .bar i.on { background: #B9A6E8; }
+.h2-tonight .bar i.on { background: #DCD0F1; }
 .h2-tonight .bar i.now { background: #F6A04D; }
 .h2-tonight .bar span { font: 800 calc(13px * var(--type)) "Nunito", sans-serif; margin-left: 4px; }
 .h2-tonight .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .h2-tonight .tag { padding: 7px 12px; border-radius: 14px; background: rgba(255, 255, 255, .14); font: 700 calc(13px * var(--type)) "Nunito", sans-serif; }
-.h2-tonight .go { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 14px; background: #fff; color: #4A2F93;
+.h2-tonight .go { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 14px; background: #fff; color: #5C3A8F;
                   font: 800 calc(14px * var(--type)) "Nunito", sans-serif; min-height: 40px; }
 .h2-tonight .go .ico { width: 16px; height: 16px; }
 .h2-plus { width: 36px; height: 36px; border-radius: 50%; background: var(--mp-text-primary, #2E1E3E); color: #fff; display: grid; place-items: center; }
@@ -443,5 +441,14 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .h2-row .grow { display: grid; gap: 2px; flex: 1; }
 .h2-row .chev { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #E2DAEE; display: grid; place-items: center; color: #9B8892; }
 .h2-row .chev .ico { width: 16px; height: 16px; }
-@media (prefers-reduced-transparency: reduce) { .glass { background: rgba(255, 255, 255, .9); color: #4A2F93; -webkit-backdrop-filter: none; backdrop-filter: none; }
-  .glass.pill button { color: #4A2F93; } }
+@media (prefers-reduced-transparency: reduce) { .glass { background: rgba(255, 255, 255, .9); color: #5C3A8F; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .glass.pill button { color: #5C3A8F; } }
+
+/* 23 Kasım revize: cam yerine MPCircleButton (42, lavanta zemin, mor simge); balon kalktı; Ragi kartın alt çizgisine oturur. */
+.h2-right { margin-left: auto; display: flex; gap: 8px; }
+.h2-circle { position: relative; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--mp-action-soft); color: var(--mp-action-primary); }
+.h2-circle .ico { width: 20px; height: 20px; stroke-width: 2.2; }
+.h2-circle .dot { position: absolute; top: 8px; right: 9px; width: 9px; height: 9px; border-radius: 50%; background: var(--mp-action-primary); border: 2px solid #fff; }
+.h2-tonight { align-items: stretch; }
+.h2-tonight img { align-self: flex-end; margin: -30px -4px -16px -6px; }
+.h2-tonight .body { align-self: center; }

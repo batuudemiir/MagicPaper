@@ -22,6 +22,8 @@ struct HomeFeed: Equatable {
     var hasSeriesCard: Bool
     /// Bu akşamın kartındaki kapak (A6): okumayan çocuk masalı kapağından tanır.
     var cover: MPBookCover.Art?
+    /// Çocuğun kitaplığındaki masal sayısı (başlıktaki "Masallarım" kartı, 23 Kasım).
+    var stories: Int = 0
 
     struct Inputs: Equatable {
         var tonight: MPTonight
@@ -31,6 +33,7 @@ struct HomeFeed: Equatable {
         var streak: Int
         var hasSeriesCard: Bool
         var cover: MPBookCover.Art? = nil
+        var stories: Int = 0
     }
 
     static func make(_ inputs: Inputs, now: Date, calendar: Calendar = .current) -> HomeFeed {
@@ -43,7 +46,8 @@ struct HomeFeed: Equatable {
                         stars: inputs.stars,
                         streak: inputs.streak,
                         hasSeriesCard: inputs.hasSeriesCard,
-                        cover: inputs.cover)
+                        cover: inputs.cover,
+                        stories: inputs.stories)
     }
 
     /// `MPTonight` → kartın durumu.
