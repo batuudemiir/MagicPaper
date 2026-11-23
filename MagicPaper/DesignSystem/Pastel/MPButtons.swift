@@ -6,7 +6,9 @@
 import SwiftUI
 
 /// Roller: `docs/MARKA.md`. `outline` yalnızca giriş sağlayıcısı içindir.
-enum MPButtonKind { case primary, secondary, outline, ghost, danger }
+/// `onArt`: renkli ya da resimli zemin üstünde yazı düğmesi (`ghost`'un açık yazılısı,
+/// `MP.C.textOnArt`; 23 Kasım 2026, masal sonu).
+enum MPButtonKind { case primary, secondary, outline, ghost, danger, onArt }
 /// `hero`: çocuk ekranının tek birincil düğmesi, 64 pt (Faz 7).
 enum MPButtonSize { case regular, small, auth, hero }
 
@@ -68,7 +70,7 @@ struct MPButton: View {
         case .regular:
             switch kind {
             case .primary: MPSize.buttonHeight
-            case .ghost: MP.S.tapMin
+            case .ghost, .onArt: MP.S.tapMin
             case .secondary, .outline, .danger: MPSize.buttonHeightSecondary
             }
         }
@@ -80,13 +82,14 @@ struct MPButton: View {
         case .primary, .danger: MPColor.textOnAction
         // İkincil düğme lavanta zeminde mor yazı (karar: 22 Ekim 2026, A).
         case .secondary, .outline, .ghost: MPColor.actionPrimary
+        case .onArt: MP.C.textOnArt
         }
     }
 
     /// Devre dışı düz gri ve kenarsız: saydamlık altındaki zemini bulandırıyordu.
     @ViewBuilder private var background: some View {
         switch kind {
-        case .ghost: Color.clear
+        case .ghost, .onArt: Color.clear
         case _ where !isEnabled: MPColor.actionDisabled
         case .primary: MPColor.actionPrimary
         case .danger: MPColor.statusDanger

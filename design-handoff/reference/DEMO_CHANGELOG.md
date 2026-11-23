@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Masal sonu yeni gündüz tasarımı uygulamada
+
+- İrem onayladı (prototip `ending.js`); uygulamada `Screens/StoryReader/StoryEndingLeaf.swift` (Batuhan'ın dosyası, README madde 9). Yalnızca gündüz görünümü ve zemini değişti; gece yaprağı, rozet anı (`MPAwardMoment`), seri teklifi, bilgi, künye, ses, titreşim ve sırayla belirme aynen.
+- Gündüz: `MP.C.endingSky` (mor400 → mor500 → mor600) zemin; "Masal bitti!" (`displayXL`); `EndingRays` (16 dilim, dönmez, radyal maskeyle söner) ve sarı parıltı önünde `Mascot.cheer`; "Bravo, <ad>!" ve masalın adı; "Bir masal daha" (`MPButton .secondary`, hero); yatay kayan kazanılanlar (ortadan başlar, `viewAligned`): çıkartma, masalın yeni rozeti, +1 yıldız, haftalık okuma dakikası, yeni kelimeler; Ragi'nin sorusu tek satır; "Ana sayfaya dön" (`MPButton .onArt`; okuyucu kapanır, sekme ana sayfa).
+- Tasarım sistemi: `MPButtonKind.onArt` (renkli/resimli zeminde açık yazılı düğme, `MP.C.textOnArt`), `MP.C.endingSky`. Mor zeminde bilgi, künye ve seri gece temasıyla (`onSky`) okunur.
+- Bugün onaylananların hepsi uygulamada: profil avatarı, yeni manzaralar, yeni ana sayfa, menü, Okuma yolculuğum, masal sonu.
+- Test: çalıştırılmadı (Mac). Tasarım yasası grep'leri boş. `[ekran]` turu derlemeyi doğrular; masal sonu ekran turunda çekilmiyor, cihazda bakılmalı.
+
 ### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Prototip: masal sonu yeni tasarım
 
 - İrem'in isteği (referans: oyunlardaki "Level up" ekranı, bizim dilimizle): `design-preview/app/ending.js`. Mor zemin (palet morları), büyük "Masal bitti!", yavaş dönen yumuşak ışık hüzmeleri ve sıcak parıltı önünde sevinçli Ragi (`mascotCheer`), "Bravo, <ad>!", sarı "Bir masal daha" hapı, yatay kayan kazanılanlar (çıkartma, masalın rozeti ortada, haftalık okuma dakikası, +1 yıldız), en altta "Ana sayfaya dön".

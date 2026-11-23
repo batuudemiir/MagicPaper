@@ -229,6 +229,13 @@ enum MP {
             .init(color: Palette.mor50, location: 0.9),
             .init(color: Palette.kagit0, location: 1)
         ]
+        /// Masal sonunun gündüz zemini (23 Kasım 2026, İrem): paletin morları,
+        /// üstte açık, altta koyu. Gece masal sonu okuma kâğıdında kalır.
+        static let endingSky: [Gradient.Stop] = [
+            .init(color: Palette.mor400, location: 0),
+            .init(color: Palette.mor500, location: 0.45),
+            .init(color: Palette.mor600, location: 1)
+        ]
         /// Bu akşamın kartı: koyu mor yüzey ve sert alt kenarı.
         static let homeTonight = Palette.mor600
         static let homeTonightEdge = Palette.mor900
