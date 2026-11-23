@@ -16,24 +16,18 @@ struct ReadingJourneyView: View {
     @State private var journey: ReadingJourney?
 
     var body: some View {
-        GeometryReader { geo in
-            ScrollView(showsIndicators: false) {
+        // Menü sayfalarının ortak çatısı (`MPSkyPage`, 23 Kasım 2026).
+        MPSkyPage(title: "Okuma yolculuğum", onBack: { app.router.closeKidPage() }) {
+            if let journey { weekCard(journey) }
+        } content: {
+            if let journey {
                 VStack(alignment: .leading, spacing: MPSpacing.md) {
-                    header(topInset: geo.safeAreaInsets.top)
-                    if let journey {
-                        VStack(alignment: .leading, spacing: MPSpacing.md) {
-                            tiles(journey)
-                            wordsRow(journey)
-                            badgeRow(journey)
-                        }
-                        .padding(.horizontal, MPSpacing.screenH)
-                    }
+                    tiles(journey)
+                    wordsRow(journey)
+                    badgeRow(journey)
                 }
-                .padding(.bottom, GunlukLayout.bottomClearance)
             }
-            .ignoresSafeArea(edges: .top)
         }
-        .background(MPColor.backgroundSurface.ignoresSafeArea())
         .task(id: profile.id) { refresh() }
         .onChange(of: streak.readDays) { _, _ in refresh() }
         .onChange(of: storyManager.stories) { _, _ in refresh() }
@@ -42,22 +36,6 @@ struct ReadingJourneyView: View {
     private func refresh() { journey = ReadingJourney.live(for: profile) }
 
     // MARK: - Başlık ve hafta kartı
-
-    private func header(topInset: CGFloat) -> some View {
-        VStack(alignment: .leading, spacing: MPSpacing.md) {
-            HStack(spacing: MPSpacing.md) {
-                MPCircleButton(systemImage: "chevron.left", accessibilityLabel: "Geri") { app.router.closeKidPage() }
-                Text("Okuma yolculuğum").font(MP.F.displaySM()).foregroundStyle(MP.C.textOnArt)
-                    .accessibilityAddTraits(.isHeader)
-                Spacer(minLength: 0)
-            }
-            if let journey { weekCard(journey) }
-        }
-        .padding(.horizontal, MPSpacing.screenH)
-        .padding(.top, topInset + MPSpacing.xs)
-        .padding(.bottom, MPSpacing.xs)
-        .background(LinearGradient(stops: MP.C.homeSky, startPoint: .top, endPoint: .bottom).ignoresSafeArea(edges: .top))
-    }
 
     private func weekCard(_ journey: ReadingJourney) -> some View {
         VStack(spacing: MPSpacing.xs) {

@@ -65,6 +65,18 @@ struct ContentView: View {
                 if MPDebugLaunch.opensJourney, let id = profileManager.currentProfile?.id {
                     app.router.openKidPage(.journey(id))
                 }
+                if let page = MPDebugLaunch.kidPage, let id = profileManager.currentProfile?.id {
+                    let route: MPKidRoute? = switch page {
+                    case "badges": .badges(id)
+                    case "stickers": .stickers(id)
+                    case "newWords": .newWords(id)
+                    case "storyMap": .storyMap(id)
+                    case "family": .familyCharacters(id)
+                    case "decor": .decor(id)
+                    default: nil
+                    }
+                    if let route { app.router.openKidPage(route) }
+                }
             }
             #endif
             .task {

@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Menü sayfaları tek tasarım dilinde
+
+- İrem'in isteği: menüdeki her sayfa uygulamada çalışsın ve bir bütünün parçası olsun. Yeni ortak çatı `DesignSystem/Pastel/MPSkyPage.swift` (`MPSkyPage`, `MPSkyIntro`, `MPSkyLayout`): mor gök durum çubuğunun altına uzanır, geri + beyaz başlık (`displaySM`), göğün altında beyaz tanıtım kartı (sert alt kenar, lavanta), içerik beyaz zeminde, bölümler boşlukla.
+- Bu çatıya geçen yedi sayfa: Okuma yolculuğum (kendi başlığı kalktı), Rozetlerim ("N / 69 rozet" kartta), Çıkartma albümüm, Yeni kelimelerim ("Bu hafta / Tümü" içerikte, hiç kelime yokken gizli), Masal haritam, Masal ailem (kahraman kartı beyaz; alt seçim çubuğu `safeAreaInset`), Kitaplık renklerim (eski başlık "Süsler"; yıldız bakiyesi gökte, alt düğme `safeAreaInset`).
+- Bilerek değişmeyenler: sayfaların işlevi (rozet ve çıkartma pencereleri, ebeveyn kapısı, süs satın alma, kelime dinleme, "Bu karakterle masal yaz"), boş durumlar (`MPStateView`, kartsız), Masal ailem düzenleyicisi. Ebeveyn alanında Masal ailem `MPParentHeader` ile, göksüz ve Ragi'siz.
+- Ekran turu: `-mpOpenKidPage badges|stickers|newWords|storyMap|family|decor` (`MPDebugLaunch.kidPage`), `ci_screenshots.sh`'e altı ekran (demo kitaplıkla).
+- Test: çalıştırılmadı (Mac). Değişen dosyalarda tasarım yasası grep'leri boş. `[ekran]` turu derlemeyi ve görüntüleri doğrular. Prototip (`design-preview`) bu turda güncellenmedi.
+
 ### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Masal sonu yeni gündüz tasarımı uygulamada
 
 - İrem onayladı (prototip `ending.js`); uygulamada `Screens/StoryReader/StoryEndingLeaf.swift` (Batuhan'ın dosyası, README madde 9). Yalnızca gündüz görünümü ve zemini değişti; gece yaprağı, rozet anı (`MPAwardMoment`), seri teklifi, bilgi, künye, ses, titreşim ve sırayla belirme aynen.

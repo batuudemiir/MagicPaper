@@ -54,32 +54,26 @@ struct StoryMapView: View {
     var body: some View {
         let all = places
         let visitedCount = all.filter(\.visited).count
-        ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: MPSpacing.xxl) {
-                MPTopBar(title: "Masal haritam",
-                         subtitle: visitedCount == 0 ? nil : "\(visitedCount) yere gittin",
-                         onBack: { app.router.closeKidPage() }) { EmptyView() }
-
-                if visitedCount == 0 {
-                    MPStateView(mascot: .walking, title: "Haritan seni bekliyor",
-                                message: "Masalda gittiğin yerler bu haritada toplanır. İlk masalını yaz, ilk iğne buraya düşsün.") {
-                        MPButton(title: "Masal yaz", systemImage: "wand.and.sparkles") { app.startStoryCreation() }
-                    }
-                } else {
-                    MascotSays(mascot: .walking, text: "Gittiğin her yer burada. Yeniden gidince seni hatırlarlar.",
-                               mascotWidth: 64)
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md),
-                                             count: typeSize.isAccessibilitySize ? 1 : 2),
-                              spacing: MPSpacing.md) {
-                        ForEach(all) { place in pin(place) }
-                    }
+        // Menü sayfalarının ortak çatısı (23 Kasım 2026): mor gök, beyaz tanıtım kartı.
+        MPSkyPage(title: "Masal haritam", onBack: { app.router.closeKidPage() }) {
+            if visitedCount > 0 {
+                MPSkyIntro(mascot: .walking, headline: "\(visitedCount) yere gittin",
+                           message: "Gittiğin her yer burada. Yeniden gidince seni hatırlarlar.", tone: .green)
+            }
+        } content: {
+            if visitedCount == 0 {
+                MPStateView(mascot: .walking, title: "Haritan seni bekliyor",
+                            message: "Masalda gittiğin yerler bu haritada toplanır. İlk masalını yaz, ilk iğne buraya düşsün.") {
+                    MPButton(title: "Masal yaz", systemImage: "wand.and.sparkles") { app.startStoryCreation() }
+                }
+            } else {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md),
+                                         count: typeSize.isAccessibilitySize ? 1 : 2),
+                          spacing: MPSpacing.md) {
+                    ForEach(all) { place in pin(place) }
                 }
             }
-            .padding(.horizontal, MPSpacing.screenH)
-            .padding(.top, MPSpacing.lg)
-            .padding(.bottom, GunlukLayout.bottomClearance)
         }
-        .background(MPColor.backgroundSurface.ignoresSafeArea())
     }
 
     @ViewBuilder

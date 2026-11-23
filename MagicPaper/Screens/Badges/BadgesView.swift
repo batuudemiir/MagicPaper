@@ -19,27 +19,20 @@ struct BadgesView: View {
     private var score: Int { MPStars.score(for: profile, stories: storyManager.stories) }
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: MPSpacing.xxl) {
-                MPTopBar(title: "Rozetlerim",
-                         subtitle: "\(earned.count) / \(MPBadgeCatalog.all.count)",
-                         onBack: { app.router.closeKidPage() }) { EmptyView() }
-                    .accessibilityValue("\(MPBadgeCatalog.all.count) rozetten \(earned.count) tanesi kazanıldı")
-
-                MascotSays(mascot: .happy, text: MPBadgeCopy.greeting(earned: earned.count))
-
-                starLevelCard
-                pathsSection
-                ForEach(MPBadgeFamily.allCases.filter { !$0.isTiered }, id: \.self) { family in
-                    singlesSection(family)
-                }
-                memoriesSection
+        // Menü sayfalarının ortak çatısı (23 Kasım 2026): mor gök, beyaz tanıtım kartı.
+        MPSkyPage(title: "Rozetlerim", onBack: { app.router.closeKidPage() }) {
+            MPSkyIntro(mascot: .happy,
+                       headline: "\(earned.count) / \(MPBadgeCatalog.all.count) rozet",
+                       message: MPBadgeCopy.greeting(earned: earned.count))
+                .accessibilityValue("\(MPBadgeCatalog.all.count) rozetten \(earned.count) tanesi kazanıldı")
+        } content: {
+            starLevelCard
+            pathsSection
+            ForEach(MPBadgeFamily.allCases.filter { !$0.isTiered }, id: \.self) { family in
+                singlesSection(family)
             }
-            .padding(.horizontal, MPSpacing.screenH)
-            .padding(.top, MPSpacing.lg)
-            .padding(.bottom, GunlukLayout.bottomClearance)
+            memoriesSection
         }
-        .background(MPColor.backgroundSurface.ignoresSafeArea())
         .onAppear(perform: refresh)
         .onChange(of: storyManager.stories) { _, _ in refresh() }
         .sheet(item: $opened) { item in

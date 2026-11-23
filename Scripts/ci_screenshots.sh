@@ -119,6 +119,12 @@ SCREENS=(
   "profil-avatar|Profilini düzenle (avatar)|-mpStartTab corner -mpOpenAvatarPicker YES"
   "menu|Menü|-mpStartTab home -mpOpenMenu YES"
   "okuma-yolculugu|Okuma yolculuğum|-mpStartTab home -mpOpenJourney YES"
+  "rozetlerim|Rozetlerim|-mpStartTab home -mpDemoLibrary YES -mpOpenKidPage badges"
+  "cikartma-albumu|Çıkartma albümüm|-mpStartTab home -mpDemoLibrary YES -mpOpenKidPage stickers"
+  "yeni-kelimeler|Yeni kelimelerim|-mpStartTab home -mpDemoLibrary YES -mpOpenKidPage newWords"
+  "masal-haritam|Masal haritam|-mpStartTab home -mpDemoLibrary YES -mpOpenKidPage storyMap"
+  "masal-ailem|Masal ailem|-mpStartTab home -mpDemoLibrary YES -mpOpenKidPage family"
+  "kitaplik-renklerim|Kitaplık renklerim|-mpStartTab home -mpDemoLibrary YES -mpOpenKidPage decor"
   "tasarim-katalogu|Tasarım sistemi kataloğu|-mpDesignSystemCatalog YES"
 )
 SIZES=("normal|large" "en-buyuk-yazi|accessibility-extra-extra-extra-large")
