@@ -60,6 +60,38 @@ struct ProfileAvatar: Identifiable, Hashable {
     static func of(_ character: Character) -> [ProfileAvatar] { all.filter { $0.character == character } }
 }
 
+/// Profil resmi (24 Kasım 2026, İrem): çocuğun seçtiği avatar; seçilmediyse
+/// yeni hesaplardaki gibi boş yer: lavanta daire ve beyaz sade siluet.
+/// Kahramanın büstü profil resmi olarak kullanılmaz (kahraman kitabındır).
+/// Süs; etiketi çağırandan.
+struct ProfilePhoto: View {
+    let avatarID: String?
+    var size: CGFloat
+
+    var body: some View {
+        Group {
+            if let avatar = ProfileAvatar.named(avatarID) {
+                ProfileAvatarFace(avatar: avatar, circle: true)
+            } else {
+                ZStack(alignment: .bottom) {
+                    Circle().fill(MPWorldTone.lav.edge)
+                    MPIcon("person.fill", size: glyph, weight: .regular)
+                        .foregroundStyle(MPColor.backgroundSurface)
+                        .offset(y: glyph * 0.12)
+                }
+                .clipShape(Circle())
+            }
+        }
+        .frame(width: size, height: size)
+        .accessibilityHidden(true)
+    }
+
+    /// Siluet boyu `MP.G`'den, dairenin büyüklüğüne göre.
+    private var glyph: CGFloat {
+        size >= 88 ? MP.G.display : size >= 60 ? MP.G.hero : size >= 40 ? MP.G.xl : MP.G.md
+    }
+}
+
 /// Avatarın yüzü: renkli zeminde kırpılmış resim. Süs; etiketi çağırandan.
 struct ProfileAvatarFace: View {
     let avatar: ProfileAvatar
@@ -131,12 +163,12 @@ struct ProfileAvatarPicker: View {
             }
 
             HStack(spacing: MPSpacing.lg) {
+                // Seçim yokken boş profil resmi (24 Kasım 2026).
                 Group {
                     if let selected {
                         ProfileAvatarFace(avatar: selected)
                     } else {
-                        HeroAvatarView(look: HeroLookStore().look(for: profile.id) ?? .standard,
-                                       backdrop: MPWorldTone.lav.soft)
+                        ProfilePhoto(avatarID: nil, size: MPSize.minTouchHero * 1.4)
                     }
                 }
                 .frame(width: MPSize.minTouchHero * 1.4, height: MPSize.minTouchHero * 1.4)

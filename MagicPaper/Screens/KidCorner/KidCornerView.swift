@@ -112,15 +112,7 @@ struct KidCornerView: View {
                         profileManager.switchProfile(to: child)
                     } label: {
                         HStack(spacing: MPSpacing.xs) {
-                            Group {
-                                if let hero = heroLooks[child.id] {
-                                    HeroAvatarView(look: hero, backdrop: MPWorldTone.lav.soft)
-                                        .frame(width: MPSize.circleButton, height: MPSize.circleButton)
-                                } else {
-                                    MPAvatar(name: child.name, color: child.mpColor, size: MPSize.circleButton)
-                                }
-                            }
-                            .accessibilityHidden(true)
+                            ProfilePhoto(avatarID: heroLooks[child.id]?.avatar, size: MPSize.circleButton)
                             Text(child.name).mpText(.supporting).fontWeight(.bold).lineLimit(1)
                             if selected {
                                 MPIcon("checkmark", size: MP.G.sm, weight: .bold).accessibilityHidden(true)
@@ -172,6 +164,10 @@ struct KidCornerView: View {
 
     private var starLevel: MPStarLevel? { MPStarLevel.current(score: stars) }
 
+    /// Seçilen profil resmi; yoksa kart boş yeri ve "Profil resmini seç"i gösterir.
+    private var avatarID: String? { heroLook?.avatar }
+    private var hasPhoto: Bool { ProfileAvatar.named(avatarID) != nil }
+
     private var storyCount: Int {
         guard let profile else { return 0 }
         return storyManager.stories.filter { $0.belongs(to: profile) }.count
@@ -202,16 +198,17 @@ struct KidCornerView: View {
             app.avatarPickerProfileID = profile.id
         } label: {
             layout {
-                HeroAvatarView(look: heroLook ?? .standard, backdrop: MPWorldTone.lav.soft)
-                    .frame(width: 96, height: 96)
+                // Profil resmi: seçilmediyse boş yer ve "+" (24 Kasım 2026, İrem).
+                ProfilePhoto(avatarID: avatarID, size: 96)
                     .overlay(alignment: .bottomTrailing) {
                         if let starLevel { MPStarLevelArt(level: starLevel, size: 36) }
                     }
                     .overlay(alignment: .topTrailing) {
-                        MPIcon("pencil", size: MP.G.xs, weight: .bold)
+                        MPIcon(hasPhoto ? "pencil" : "plus", size: MP.G.xs, weight: .bold)
                             .foregroundStyle(MPColor.textOnAction)
                             .frame(width: MP.G.lg, height: MP.G.lg)
                             .background(MPColor.actionPrimary, in: Circle())
+                            .overlay(Circle().strokeBorder(MPColor.backgroundSurface, lineWidth: 2))
                     }
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: MPSpacing.xxs) {
@@ -220,8 +217,8 @@ struct KidCornerView: View {
                     Text(starLevel.map { "\($0.title) katı" } ?? "İlk yıldız katı yolda")
                         .mpText(.supporting).fontWeight(.bold).foregroundStyle(MPColor.textSecondary)
                     HStack(spacing: MPSpacing.xxs) {
-                        MPIcon("pencil", size: MP.G.xs, weight: .bold).accessibilityHidden(true)
-                        Text("Profilini düzenle").mpText(.footnote).fontWeight(.bold)
+                        MPIcon(hasPhoto ? "pencil" : "plus", size: MP.G.xs, weight: .bold).accessibilityHidden(true)
+                        Text(hasPhoto ? "Profilini düzenle" : "Profil resmini seç").mpText(.footnote).fontWeight(.bold)
                     }
                     .foregroundStyle(MPColor.actionPrimary)
                     .padding(.top, MPSpacing.xxs)

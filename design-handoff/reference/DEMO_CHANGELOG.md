@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Boş profil resmi: kullanıcı kendisi seçer
+
+- İrem'in isteği: varsayılan erkek çocuk büstü profil resmi olmasın; yeni hesaplardaki gibi boş dursun, çocuk kendisi seçsin.
+- Uygulama: `ProfilePhoto` (seçilen avatar ya da lavanta daire + beyaz siluet, siluet boyu `MP.G`'den). Kullanıldığı yerler: Profil kimlik kartı (boşken "+" rozeti ve "Profil resmini seç", seçilince kalem ve "Profilini düzenle"), "Kim okuyor?" çipleri (baş harfli renkli daire ve büst kalktı), Masal ailem kahraman kartı, "Profilini düzenle" penceresinin üst kısmı (seçim yokken).
+- Bilerek değişmeyen: kahraman dolabı ve kitap kahramanı (`HeroAvatarView`); seçilmiş avatarlar aynen.
+- Önizleme: `emptyPhoto()` (`avatar.js`), profil, çip, Masal ailem ve pencerede aynı boş resim. Headless Edge ile profil ve pencere açılıp bakıldı. Uygulama testi çalıştırılmadı (Mac).
+
 ### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Masal ailem kahraman kartında avatar kayması
 
 - İrem'in bulduğu hata: önizlemede avatar seçiliyken Masal ailem'in kahraman kartında yüz 104 pt boyutuyla 72 pt'lik daireden taşıyordu. `app.css`: `.sk-av` içindeki yüz 64 pt ve kırpılı. Profil kartındaki seçili avatar da köşeli kare yerine daire (uygulamadaki gibi).

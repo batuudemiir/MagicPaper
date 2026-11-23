@@ -34,9 +34,11 @@ function avatarFace(av, cls = "") {
 }
 
 const legacyBust = bust;
+/** Boş profil resmi (24 Kasım 2026, İrem): lavanta daire, beyaz siluet. */
+const emptyPhoto = (cls = "") => `<span class="pp-empty ${cls}" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="4.2"/><path d="M3.5 24c.6-5.6 4-8.6 8.5-8.6s7.9 3 8.5 8.6z"/></svg></span>`;
 bust = function () {
   const av = avatarById(S.avatar);
-  return av ? avatarFace(av, "round bust") : legacyBust();
+  return av ? avatarFace(av, "round bust") : emptyPhoto("bust");
 };
 
 function avatarPicker() {
@@ -49,7 +51,7 @@ function avatarPicker() {
   return `<div class="ap-scrim ${S.avatarBump ? "fade" : ""}" data-act="avatarClose" aria-hidden="true"></div>
     <div class="ap-panel ${S.avatarBump ? "bump" : ""}" role="dialog" aria-modal="true" aria-label="Profilini düzenle">
       <div class="ap-head"><h2>Profilini düzenle</h2><button class="circle" data-act="avatarClose" aria-label="Kapat">${ic("x")}</button></div>
-      <div class="ap-me">${draft ? avatarFace(draft, "big") : `<span class="ap-face big">${legacyBust()}</span>`}
+      <div class="ap-me">${draft ? avatarFace(draft, "big") : emptyPhoto("big")}
         <span><span class="t-page">${CHILD}</span><span class="t-supporting secondary">${draft ? esc(draft.name) : "Bir yüz seç"}</span></span></div>
       <div class="ap-tabs">${AVATAR_CHARACTERS.map(([k, t]) => `<button class="chip ${k === S.avatarTab ? "on" : ""}" data-act="avatarTab" data-arg="${k}">${t}</button>`).join("")}</div>
       <div class="ap-grid">${tiles}</div>

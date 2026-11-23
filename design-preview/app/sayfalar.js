@@ -146,7 +146,7 @@ VIEWS.decor = () => {
 // ---------- Profil (yeni) ----------
 VIEWS.profil = function () {
   const av = typeof avatarById === "function" ? avatarById(S.avatar) : null;
-  const face = (cls) => (av ? avatarFace(av, "round " + cls) : cls === "big" ? bust() : '<span class="av">İ</span>');
+  const face = (cls) => (av ? avatarFace(av, "round " + cls) : emptyPhoto(cls));
   const stats = [["star", "Yıldız", S.stars, "yıldız", "yellow"], ["book", "Masallarım", S.library.length, "masal", "lav"],
     ["award", "Rozetler", earnedCount(), "rozet", "peach"]];
   const shown = BADGES.slice(0, 6);
@@ -164,9 +164,9 @@ VIEWS.profil = function () {
       <div class="pf-id">
         <img class="pf-ragi" src="${img.ragi("Waving")}" alt="">
         <button class="pf-card" data-act="avatarOpen" aria-label="${CHILD}, Parlak yıldız katı. Profil resmini seçmeyi açar">
-          <span class="pf-av">${face("big")}<span class="pen">${ic("pencil")}</span><span class="lv">${ic("star")}</span></span>
+          <span class="pf-av">${face("big")}<span class="pen">${ic(av ? "pencil" : "plus")}</span><span class="lv">${ic("star")}</span></span>
           <span class="grow"><span class="t-page">${CHILD}</span><span class="t-supporting secondary" style="font-weight:700">Parlak yıldız katı</span>
-            <span class="pf-edit">${ic("pencil")}Profilini düzenle</span></span></button>
+            <span class="pf-edit">${ic(av ? "pencil" : "plus")}${av ? "Profilini düzenle" : "Profil resmini seç"}</span></span></button>
       </div>
       <div class="h2-stats">${stats.map(([i, label, value, unit, t]) => `
         <div class="h2-stat"><span class="ic" style="${tone(t)}">${ic(i)}</span>
