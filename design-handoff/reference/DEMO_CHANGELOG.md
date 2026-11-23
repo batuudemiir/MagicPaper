@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Profil sekmesi ana sayfa diliyle
+
+- İrem'in isteği: profil diğer sayfalarla bütünlük sağlamıyordu; daha net, erişilebilir ve ana sayfaya uygun olsun, "Büyükler için" kalsın, rozetler Duolingo'daki gibi açık dursun ve "Tümü" Rozetlerim'e gitsin. `Screens/KidCorner/KidCornerView.swift` yeniden yazıldı.
+- Gök: "Profil", "Kim okuyor?" çipleri (seçili beyaz + çerçeve + onay; "Ekle" kesikli beyaz), kimlik kartı (96 pt avatar, kalem, yıldız katı arması; ad, "<kat> katı", "Profilini düzenle"), kartın arkasından el sallayan Ragi (ekranın tek Ragi'si; en büyük yazıda gizli), üç bilgi kartı (Yıldız, Masallarım, Rozetler; `HomeStatCard`).
+- Göğün altı: "Büyükler için" satırı (`HomeListRow`, basılı tutma ipucu), Rozetlerim açık vitrin (3 sütun × 2 sıra, kartsız 80 pt arma yumuşak dairede, ad ve durum yazısı; kilitli gri + kilit + "Kilitli"; sayı baskısı, ilerleme çubuğu, "az kaldı" yok), Masal dünyam (menüyle aynı simge, ton ve sıra; taze çıkartma satırı vurgulu).
+- Kalkan: Ragi'nin balonu (rozet sözü), renkli karolar, "Süsler" adı (artık "Kitaplık renklerim").
+- Test: çalıştırılmadı (Mac). Tasarım yasası grep'leri boş. `[ekran]` turunda "profil" ve "profil-avatar" ekranları çekilir.
+
 ### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Menü sayfaları tek tasarım dilinde
 
 - İrem'in isteği: menüdeki her sayfa uygulamada çalışsın ve bir bütünün parçası olsun. Yeni ortak çatı `DesignSystem/Pastel/MPSkyPage.swift` (`MPSkyPage`, `MPSkyIntro`, `MPSkyLayout`): mor gök durum çubuğunun altına uzanır, geri + beyaz başlık (`displaySM`), göğün altında beyaz tanıtım kartı (sert alt kenar, lavanta), içerik beyaz zeminde, bölümler boşlukla.
