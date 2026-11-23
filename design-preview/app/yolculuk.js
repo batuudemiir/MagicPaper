@@ -76,7 +76,7 @@ VIEWS.journey = function () {
         <b class="jr-big">${w.streak} gün üst üste</b>
         <span class="t-supporting secondary">Birlikte okudunuz. Okuma yolculuğunuz devam ediyor.</span>
         <div class="jr-week">${days}</div>
-        <span class="t-footnote secondary">Bu hafta ${w.streak} masal okundu</span>
+        <span class="t-footnote secondary">${w.read.size ? `Bu hafta ${w.read.size} gün birlikte okudunuz` : "Bu hafta ilk masalı birlikte okuyalım"}</span>
       </div>
     </div>
     <div class="jr-two">

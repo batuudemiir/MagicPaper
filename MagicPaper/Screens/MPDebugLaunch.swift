@@ -26,6 +26,9 @@ enum MPDebugLaunch {
     static var opensPaywall: Bool { defaults.bool(forKey: "mpOpenPaywall") }
     /// `mpOpenAvatarPicker`: Profil'de "Profilini düzenle" açık (CI ekran görüntüleri, 23 Kasım).
     static var opensAvatarPicker: Bool { defaults.bool(forKey: "mpOpenAvatarPicker") }
+    /// `mpOpenMenu`: ana sayfanın menüsü açık; `mpOpenJourney`: Okuma yolculuğum (23 Kasım).
+    static var opensMenu: Bool { defaults.bool(forKey: "mpOpenMenu") }
+    static var opensJourney: Bool { defaults.bool(forKey: "mpOpenJourney") }
     /// Ragi'nin hareket ve ses vitrini (`RagiStudioView`); önizleme videosu buradan kaydedilir.
     static var ragiStudio: Bool { defaults.bool(forKey: "mpRagiStudio") }
     static var parentRoute: MPParentRoute? { defaults.string(forKey: "mpParentRoute").flatMap(MPParentRoute.init(debugName:)) }

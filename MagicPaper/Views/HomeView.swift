@@ -151,10 +151,10 @@ struct HomeView: View {
 
     private var hasNews: Bool { badgeNews.homeNote(for: profileManager.currentProfile?.id) != nil }
 
-    /// Menünün içeriği henüz karar değil (İrem, 23 Kasım): sakin bir söz.
+    /// Menü (23 Kasım 2026, `KidMenuSheet`): var olan sayfalar ve okuma yolculuğu.
     private func openMenu() {
         MPHaptics.tap()
-        app.showToast("Menü çok yakında", symbol: "sparkles")
+        app.router.sheet = .menu
     }
 
     /// Bildirim: yeni rozetler Profil'de.

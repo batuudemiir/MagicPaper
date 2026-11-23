@@ -165,12 +165,33 @@ struct HomeModeRow: View {
     let action: () -> Void
 
     var body: some View {
+        HomeListRow(systemImage: mode.symbol, tone: mode.tone, title: mode.title,
+                    subtitle: emphasized ? "Bu akşam için önerilen" : mode.promise,
+                    emphasized: emphasized,
+                    accessibilityLabel: emphasized ? "\(mode.title), bu akşam için önerilen" : mode.title,
+                    hint: "Masalda kimlerin olacağını seçmeye geçer", action: action)
+    }
+}
+
+/// Ana sayfa ve menünün ortak satırı (23 Kasım 2026): renkli simge karosu, ad,
+/// kısa açıklama ve çember içinde ok; zemin `surfaceSunken`.
+struct HomeListRow: View {
+    let systemImage: String
+    let tone: MPWorldTone
+    let title: String
+    let subtitle: String
+    var emphasized: Bool = false
+    var accessibilityLabel: String? = nil
+    var hint: String? = nil
+    let action: () -> Void
+
+    var body: some View {
         Button(action: action) {
             HStack(spacing: MPSpacing.md) {
-                MPIconTile(systemImage: mode.symbol, tone: mode.tone, size: MPSize.iconTile - MPSpacing.xxs)
+                MPIconTile(systemImage: systemImage, tone: tone, size: MPSize.iconTile - MPSpacing.xxs)
                 VStack(alignment: .leading, spacing: MPSpacing.xxs) {
-                    Text(mode.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                    Text(emphasized ? "Bu akşam için önerilen" : mode.promise)
+                    Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                    Text(subtitle)
                         .mpText(.supporting).foregroundStyle(MPColor.textSecondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
@@ -193,7 +214,7 @@ struct HomeModeRow: View {
         }
         .buttonStyle(MPPressStyle())
         .accessibilityElement(children: .combine)
-        .accessibilityLabel(emphasized ? "\(mode.title), bu akşam için önerilen" : mode.title)
-        .accessibilityHint("Masalda kimlerin olacağını seçmeye geçer")
+        .accessibilityLabel(accessibilityLabel ?? title)
+        .accessibilityHint(hint ?? "")
     }
 }

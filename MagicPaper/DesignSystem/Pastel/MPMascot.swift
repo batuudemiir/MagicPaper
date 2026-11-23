@@ -11,6 +11,8 @@ enum Mascot: String, CaseIterable {
     case happy, curious, calm, sleepy, surprised, thinking
     // poses (full body)
     case onBook, waving, pencil, reading, sleeping, walking, front, threeQuarter
+    /// Kollar havada, sevinçli (23 Kasım 2026, İrem'in getirdiği poz).
+    case cheer
 
     /// Asset name inside Assets.xcassets/Brand.
     var assetName: String {
@@ -29,6 +31,7 @@ enum Mascot: String, CaseIterable {
         case .walking: "Brand/mascotWalking"
         case .front: "Brand/mascotFront"
         case .threeQuarter: "Brand/mascotThreeQuarter"
+        case .cheer: "Brand/mascotCheer"
         }
     }
 
@@ -48,6 +51,7 @@ enum Mascot: String, CaseIterable {
         case .sleeping: "Uyku modu, Uyku kartı"
         case .walking: "Karşılama 3"
         case .front, .threeQuarter: "Yedek (rehber, pazarlama)"
+        case .cheer: "Okuma yolculuğum"
         }
     }
 }

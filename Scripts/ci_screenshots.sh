@@ -117,6 +117,8 @@ SCREENS=(
   "ayarlar|Ayarlar|-mpStartParent YES -mpParentTab settings"
   "abonelik|Abonelik (Paywall)|-mpStartParent YES -mpOpenPaywall YES"
   "profil-avatar|Profilini düzenle (avatar)|-mpStartTab corner -mpOpenAvatarPicker YES"
+  "menu|Menü|-mpStartTab home -mpOpenMenu YES"
+  "okuma-yolculugu|Okuma yolculuğum|-mpStartTab home -mpOpenJourney YES"
   "tasarim-katalogu|Tasarım sistemi kataloğu|-mpDesignSystemCatalog YES"
 )
 SIZES=("normal|large" "en-buyuk-yazi|accessibility-extra-extra-extra-large")

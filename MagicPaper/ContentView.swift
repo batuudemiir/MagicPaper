@@ -61,6 +61,10 @@ struct ContentView: View {
                     app.router.tab = .corner
                     app.avatarPickerProfileID = id
                 }
+                if MPDebugLaunch.opensMenu { app.router.sheet = .menu }
+                if MPDebugLaunch.opensJourney, let id = profileManager.currentProfile?.id {
+                    app.router.openKidPage(.journey(id))
+                }
             }
             #endif
             .task {
@@ -294,6 +298,8 @@ struct ContentView: View {
             ReminderSheet(childName: profileManager.currentProfile?.name ?? "")
         case .locked(let capability):
             MPLockedSheet(capability: capability)
+        case .menu:
+            KidMenuSheet()
         }
     }
 }
@@ -362,6 +368,8 @@ struct KidPageView: View {
             if let profile = profile(id) { StoryMapView(profile: profile) }
         case .badges(let id):
             if let profile = profile(id) { BadgesView(profile: profile) }
+        case .journey(let id):
+            if let profile = profile(id) { ReadingJourneyView(profile: profile) }
         }
     }
 

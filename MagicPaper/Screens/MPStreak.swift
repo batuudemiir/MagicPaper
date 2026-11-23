@@ -290,6 +290,17 @@ final class MPStreak: ObservableObject {
         }
     }
 
+    /// Bu haftanın günleri, Pazartesi'den Pazar'a: tarih ve o gün okundu mu
+    /// (Okuma yolculuğum, 23 Kasım 2026).
+    var daysThisWeek: [(date: Date, read: Bool)] {
+        let cal = weekCalendar
+        let today = cal.startOfDay(for: now())
+        guard let weekStart = cal.dateInterval(of: .weekOfYear, for: today)?.start else { return [] }
+        return (0..<7).compactMap { offset in
+            cal.date(byAdding: .day, value: offset, to: weekStart).map { ($0, readDays.contains(dayKey($0))) }
+        }
+    }
+
     /// Bu haftanın günlük okuma dakikaları, Pazartesi'den Pazar'a
     /// (Ebeveyn · Özet "Günlük okuma" grafiği).
     var minutesThisWeekByDay: [Int] {

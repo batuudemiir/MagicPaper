@@ -109,6 +109,7 @@ enum MPKidRoute: Hashable {
     case wardrobe(UUID)          // Faz 9 · Dolap (kahraman)
     case storyMap(UUID)          // Faz 10 · Masal haritam
     case badges(UUID)            // Rozet planı R3 · Rozetlerim
+    case journey(UUID)           // 23 Kasım 2026 · Okuma yolculuğum (menü)
 }
 
 // MARK: - Alt sayfalar (sheet)
@@ -122,6 +123,8 @@ enum MPSheetRoute: Identifiable, Equatable {
     case reminder
     /// Çocuk alanında kapalı bir şeye dokunuldu (E7): sakin kilit penceresi.
     case locked(Capability)
+    /// Ana sayfanın menüsü (23 Kasım 2026, `KidMenuSheet`).
+    case menu
 
     var id: String {
         switch self {
@@ -129,6 +132,7 @@ enum MPSheetRoute: Identifiable, Equatable {
         case .signOut: return "signOut"
         case .reminder: return "reminder"
         case .locked(let capability): return "locked-\(capability.rawValue)"
+        case .menu: return "menu"
         }
     }
 }
@@ -180,7 +184,7 @@ final class MPRouter: ObservableObject {
                 sheet = nil
                 parentRoute = .familyCharacters(id)
                 return
-            case .series, .newWords, .stickers, .decor, .wardrobe, .storyMap, .badges:
+            case .series, .newWords, .stickers, .decor, .wardrobe, .storyMap, .badges, .journey:
                 break
             }
         }

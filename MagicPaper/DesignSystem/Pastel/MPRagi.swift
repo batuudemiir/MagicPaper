@@ -166,6 +166,11 @@ struct RagiRig {
         case .thinking:
             RagiRig(head: bone(0.55, 0.58, 0.6, 0.33, 0.4), tail: bone(0.3, 0.82, 0.1, 0.78, 0.25),
                     eyes: [eye(0.56, 0.38, 0.065, 0.075), eye(0.775, 0.31, 0.05, 0.065)])
+        case .cheer:
+            // Kollar havada: kol kemiği yok, baş ve kuyruk sallanır. Gözler
+            // ızgaralı kırpımdan ölçüldü (23 Kasım 2026).
+            RagiRig(head: bone(0.53, 0.5, 0.525, 0.3, 0.33), tail: bone(0.32, 0.72, 0.18, 0.72, 0.2),
+                    eyes: [eye(0.5, 0.338, 0.047, 0.05), eye(0.673, 0.298, 0.04, 0.045)])
         case .sleeping, .sleepy:
             RagiRig()
         }

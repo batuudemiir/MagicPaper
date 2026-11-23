@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Menü ve "Okuma yolculuğum" uygulamada
+
+- İrem onayladı; prototipteki menü ve okuma yolculuğu SwiftUI'ye. Prototipte yolculuk kartının üstü daraltıldı, haftalık özet uygulamayla aynı cümle ("Bu hafta N gün birlikte okudunuz").
+- Menü: `Screens/Journey/KidMenuSheet.swift`, sistem sheet'i (`MPSheet`, `MPSheetRoute.menu`), Ragi'nin sorusu (`MascotSays`), yedi satır (`HomeListRow`) ve "Büyükler için" (`requestParentMode`). Seçim sheet kapanınca itilir (`closeSheet(then:)`). Ana sayfanın menü düğmesi bunu açar.
+- Okuma yolculuğum: `Screens/Journey/ReadingJourney.swift` (saf model + canlı yükleyici) ve `ReadingJourneyView.swift`; rota `MPKidRoute.journey`. Mor gök, sevinçli Ragi (`Mascot.cheer`), "N gün üst üste", sakin cümle, Pzt–Paz şeridi (okunan gün mor tik, bugün halkalı, okunmayan boş daire, gelecek tarih), okuma zamanı çubukları, yıldız katı (ilerleme yok), yeni kelimeler (Yeni kelimelerim'e gider), son rozet (Rozetlerim'e gider).
+- Altyapı: `MPStreak.daysThisWeek`; `Mascot.cheer` ve kuklası (`RagiRig`, gözler ızgaralı kırpımdan ölçüldü); `HomeListRow` (mod satırı da onu kullanır).
+- CI: `-mpOpenMenu`, `-mpOpenJourney`; ekran listesine "menu" ve "okuma-yolculugu".
+- Test: `ReadingJourneyTests` (hafta, bugün/gelecek, sakin dil, kelimeler, dakikalar); `RagiAndEndingTests` yeni pozun gözlerini de kapsar. **Çalıştırılmadı** (Mac). Tasarım yasası grep'leri boş. `[ekran]` turu derlemeyi doğrular.
+- Batuhan'a (README madde 8): yolculuk başlığı `MPTopBar` değil.
+
 ### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Prototip: menü ve "Okuma yolculuğum"; yeni Ragi pozu
 
 - İrem'in kararı: ana sayfadaki menü düğmesi aşağıdan kayan bir sayfa açar (`design-preview/app/yolculuk.js`): "Nereye gidelim, <ad>?" ve uygulamanın var olan sayfaları liste satırı olarak (Okuma yolculuğum, Rozetlerim, Çıkartma albümüm, Yeni kelimelerim, Masal haritam, Masal ailem, Kitaplık renklerim), en altta "Büyükler için" (ebeveyn kapısı). Ana sayfa satırlarıyla aynı dil.
