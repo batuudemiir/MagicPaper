@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Prototip: ana sayfa yeni yön denemesi
+
+- İrem'in önerisi (alışkanlık uygulaması referansı): yalnızca prototipte, uygulama kodu değişmedi. `design-preview/app/home.js` ana sayfayı geçersiz kılar; eskisi `?anasayfa=eski`.
+- Üst: mor gökten beyaza inen başlık; solda cam menü dairesi, yanında cam bildirim + arama kapsülü, sağda konuşma balonu "Küçük bir masalla başlayalım!" ve el sallayan Ragi; "Merhaba, <ad>" ve "Bu akşam hangi masalı okuyalım?"; üç beyaz bilgi kartı (Yıldız, Okuma gün üst üste, Masallarım).
+- Orta: koyu mor "bu akşamın masalı" kartı (okuyan Ragi, 5 parçalı ilerleme, "Sayfa 3 / 5", "Devam et"); yarım masal yoksa "Uyku masalı yaz".
+- Alt: bizim dilimiz, referansın düzeniyle: "Yeni bir masal yaz" + koyu artı, üç mod liste satırı (karo simge, ad, söz, ok). Gece/gündüz ayrımı yok.
+- Saydamlığı Azalt açıkken cam opak. Tarayıcıda çerçeveli önizlemeyle bakıldı.
+- Uygulamaya geçmeden önce Batuhan'a: başlıktaki mor geçiş (yasa: arayüz yüzeyinde gradient yok) ve üst başlıkta cam (yasa: cam yalnızca yüzen gezinme denetimlerinde; üst başlıklar henüz dahil değil).
+- Dosyalar: `design-preview/app/home.js`, `app.css`, `index.html`. Test yok (prototip).
+
 ### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Profil avatarı; tam boy dolap geri alındı; yeni ana sayfa manzaraları
 
 - İrem'in kararı: tam boy dolap (`c84a5ca`) iptal; `git revert` ile kod, 36 parça, prototip ve arşivlenen paket belgeleri kalktı (derlenmişti, `c84a5ca` turu başarılı). Günlükteki kaydı duruyor.
