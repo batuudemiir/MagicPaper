@@ -29,6 +29,8 @@ final class MPAppState: ObservableObject {
     @Published var creationFamilyID: UUID?
 
     @Published var showPaywall = false
+    /// "Profilini düzenle" penceresi açık olan çocuk (23 Kasım 2026, `ProfileAvatarPicker`).
+    @Published var avatarPickerProfileID: UUID?
     @Published var readerStory: Story?
     /// Okuyucu kitaplıktaki bu kapaktan açıldı: kapaktan büyüyerek gelir
     /// (Faz 13). Başka yerden açılınca nil, olağan geçiş.

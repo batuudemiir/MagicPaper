@@ -199,9 +199,9 @@ struct HomeStatLine: View {
 /// uzanan manzara, uyku saatinde gece; selam ve çocuğun adı sahnenin üstünde,
 /// ekranın tek Ragi'si sağ altta. Gece yazı açık (`onArt`), gündüz koyu: gündüz
 /// göğü açık mavi olduğu için açık yazı 4.5:1'i tutmaz. Karartma (gradient) yok.
-/// Alt kenar (22 Kasım 2026, İrem; dalga kesiminin yerine): manzara son
-/// çeyreğinde sayfanın kâğıdına (`MP.C.homePaper`) erir. Bu bir arayüz yüzeyi
-/// değil, illüstrasyonun kendi maskesi; Ragi ve başlık maskenin dışında.
+/// Alt kenar (22–23 Kasım 2026, İrem; dalga kesiminin yerine): manzaranın kendisi
+/// alt kenarda boyanarak sayfanın kâğıdına (`MP.C.homePaper`, #FFF8EE) erir
+/// (GPT "Gunduz-Gece-v2"). Kodda geçiş, maske ya da gradient yok.
 struct HomeHeaderScene<Header: View>: View {
     var isNight: Bool
     /// Üst güvenli alan: sahne saat çubuğunun altına uzanır, başlık onun altında başlar.
@@ -237,34 +237,25 @@ struct HomeHeaderScene<Header: View>: View {
         }
     }
 
-    /// Manzaranın alt kenarı: son %12'de, yumuşatılmış eğriyle ve sıcak kâğıt
-    /// tonundan geçerek sayfanın kâğıdına erir (`MP.C.homeSceneFade`). Düz
-    /// saydamlık maskesi gece sahnesinde soğuk, sisli bir bant bırakıyordu.
-    private var paperEdge: some View {
-        LinearGradient(stops: MP.C.homeSceneFade, startPoint: .top, endPoint: .bottom)
-            .allowsHitTesting(false)
-    }
-
-    /// Manzara ve Ragi. Kısa bantta manzaranın ortası görünür (alt kenarda
-    /// yalnızca çayır kalırdı) ve Ragi küçülür.
+    /// Manzara ve Ragi. Görsel hep alttan hizalı: boyanmış krem kenar iki
+    /// düzende de sayfaya oturur. Kısa bantta Ragi küçülür.
     private func band(height: CGFloat) -> some View {
         ZStack(alignment: .bottomTrailing) {
             // Görsel `overlay`'de: dolduran (fill) resim yerleşime genişliğini
             // dayatmasın. İlk turda sayfa ekrandan taştı (19 Kasım, CI görüntüsü).
             ZStack {
                 MPColor.sceneSkyDay
-                    .overlay(alignment: compact ? .center : .bottom) {
+                    .overlay(alignment: .bottom) {
                         Image("Scenes/homeSceneDay").resizable().aspectRatio(contentMode: .fill)
                     }
                 MPColor.sceneSkyNight
-                    .overlay(alignment: compact ? .center : .bottom) {
+                    .overlay(alignment: .bottom) {
                         Image("Scenes/homeSceneNight").resizable().aspectRatio(contentMode: .fill)
                     }
                     .opacity(isNight ? 1 : 0)
             }
             .frame(height: height)
             .clipped()
-            .overlay { paperEdge }
             .animation(MP.M.gated(MP.M.slow), value: isNight)
             .accessibilityHidden(true)
             HomeSceneMascot(isNight: isNight)

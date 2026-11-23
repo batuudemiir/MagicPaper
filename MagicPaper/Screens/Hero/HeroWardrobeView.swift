@@ -9,11 +9,6 @@ import SwiftUI
 /// "az kaldı", parayla yıldız yok; alınan eşya kaybolmaz.
 struct HeroWardrobeView: View {
     let profile: UserProfile
-    /// Yeni dolaptan (`HeroStudioView`) "Tür" rafında seçilen hayvan: kayıt
-    /// değişmeden önizlenir (22 Kasım 2026).
-    var initialKind: HeroLook.Kind? = nil
-    /// "Ben" rafında "Çocuk" seçilince tam boy dolaba geçilir (`HeroDressingRoom`).
-    var onChooseChild: (() -> Void)? = nil
 
     @EnvironmentObject private var app: MPAppState
     @ObservedObject private var settings = MPSettingsStore.shared
@@ -73,7 +68,6 @@ struct HeroWardrobeView: View {
             let stored = HeroLookStore().look(for: profile.id) ?? .standard
             look = stored
             saved = stored
-            if let initialKind { look.kind = initialKind }
             wallet = MPStarWalletStore().wallet(for: profile.id)
         }
     }
@@ -95,7 +89,7 @@ struct HeroWardrobeView: View {
         switch tab {
         case .me:
             group("Ben") {
-                grid(HeroLook.Kind.allCases, title: \.title, isOn: { look.kind == $0 }) { chooseKind($0) } preview: { var l = look; l.kind = $0; return l }
+                grid(HeroLook.Kind.allCases, title: \.title, isOn: { look.kind == $0 }) { look.kind = $0 } preview: { var l = look; l.kind = $0; return l }
             }
             if look.kind == .child {
                 group("Ten") { swatches(MP.C.heroSkin, selected: look.skin) { look.skin = $0 } }
@@ -135,15 +129,6 @@ struct HeroWardrobeView: View {
                 grid(available(HeroLook.Glasses.allCases, HeroShop.price), title: \.title, isOn: { look.glasses == $0 },
                      price: { HeroShop.price($0) }, owned: { wallet.owns(itemID: "hero.glasses.\($0.rawValue)") }) { look.glasses = $0 } preview: { var l = look; l.glasses = $0; return l }
             }
-        }
-    }
-
-    /// Çocuk kahraman tam boy dolapta giyinir; burada yalnızca hayvanlar.
-    private func chooseKind(_ kind: HeroLook.Kind) {
-        if kind == .child, let onChooseChild {
-            onChooseChild()
-        } else {
-            look.kind = kind
         }
     }
 

@@ -133,6 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Profil avatarı; tam boy dolap geri alındı; yeni ana sayfa manzaraları
+
+- İrem'in kararı: tam boy dolap (`c84a5ca`) iptal; `git revert` ile kod, 36 parça, prototip ve arşivlenen paket belgeleri kalktı (derlenmişti, `c84a5ca` turu başarılı). Günlükteki kaydı duruyor.
+- Profil avatarı: Profil'deki kimlik kartına dokununca "Profilini düzenle" zıplayarak açılır (`ProfileAvatarPicker`): seçili yüz ve ad, Ragi · Tarçın · Kestane sekmeleri, renkli yüz karoları (seçilene mor çerçeve, tik, kısa zıplama), tek mor "Kaydet"; karartmaya ya da X'e dokununca kapanır. Hareketi Azalt açıkken zıplama yok, solma. Pencere uygulamanın kökünde, alt çubuğun da üstünde (`MPAppState.avatarPickerProfileID`).
+- 21 yüz `Assets.xcassets/Avatars` (360 × 360, 5 MB): Ragi'nin 15 pozu (`Brand/mascot*`), Tarçın'ın 3 pozu (Batuhan'ın `whole-book-art` kimlik sayfası), Kestane'nin 3 pozu (Batuhan'ın karakter denemesi). Yüzler ızgaralı paftayla ölçülüp kırpıldı; Tarçın ve Kestane'nin beyaz zemini kenardan şeffaflaştırıldı.
+- `HeroLook.avatar` (isteğe bağlı): kayıt, eşitleme, silme aynı yoldan. `HeroAvatarView` avatar varsa onu yuvarlak çizer (Profil, "Kim okuyor?"). Kimlik kartından "Kahramanını giydir / Dolabı aç" satırı kalktı, avatarın köşesinde kalem.
+- Ana sayfa: GPT'nin yeni manzaraları ("Gunduz-Gece-v2", 1536 × 1024, alt kenarı tam #FFF8EE'ye boyalı) `homeSceneDay/Night` olarak (JPEG, kenar rengi ölçüldü). Koddaki geçiş katmanı ve `homeSceneFade`, `homePaperShade` tokenları kalktı; kısa bantta da görsel alttan hizalı.
+- Prototip: `design-preview/app/avatar.js` (aynı liste, Profil'de pencere; `?ekran=profil&avatar=ac`), stiller `app.css`; prototipin sahne geçişi kalktı. Tarayıcıda ekran görüntüsüyle bakıldı.
+- CI: `-mpOpenAvatarPicker`, ekran listesine "profil-avatar".
+- Test: `ProfileAvatarTests` (görseller, kimlikler, kayıt); **çalıştırılmadı** (Mac). Tasarım yasası grep'leri boş. `[ekran]` turu derlemeyi doğrular.
+- Batuhan'a (README madde 6): kendi çizdiğimiz pencere (sheet kuralı), Profil'de iki Ragi, Kestane'nin durumu.
+
 ### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · Masal dolabım: tam boy kahraman (Dolap paketleri)
 
 - İrem'in iki paketi: "MagicPaper-Tam-Dolap-v2" (asıl sistem) uygulamaya entegre edildi; "MagicPaper-Dolap-Handoff" (v1, sabit yüzlü demo) belgeleriyle arşivlendi, uygulamaya alınmadı (v2 onun tamamlanmış hali; yüzü resimde sabit). Belgeler ve referanslar `design-handoff/dolap/`.

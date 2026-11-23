@@ -4,13 +4,23 @@ import SwiftUI
 /// büyük yuvarlak baş, sade ama ifadeli yüz. 200 × 220 birimlik tuvalde katman
 /// katman çizilir: arka saç → kıyafet → boyun → kulak → baş → yüz → ön saç →
 /// başlık → gözlük. Hareket yok; süs öğesidir, etiketi çevresinden gelir.
-/// Tam boy kaydı olan çocuk kahraman (`HeroLook.figure`) o kaydın büstüyle çizilir.
 struct HeroAvatarView: View {
     let look: HeroLook
     /// Arkada yuvarlak zemin (sohbet balonu, kim okuyor dairesi).
     var backdrop: Color? = nil
 
     var body: some View {
+        // Profil avatarı seçildiyse (23 Kasım 2026, `ProfileAvatar`) büstün
+        // yerine o yüz, yuvarlak ve kendi renginde.
+        if let avatar = ProfileAvatar.named(look.avatar) {
+            ProfileAvatarFace(avatar: avatar, circle: true)
+                .aspectRatio(1, contentMode: .fit)
+        } else {
+            bust
+        }
+    }
+
+    private var bust: some View {
         Canvas { ctx, size in
             let s = min(size.width / HeroCanvas.width, size.height / HeroCanvas.height)
             ctx.translateBy(x: (size.width - HeroCanvas.width * s) / 2,
@@ -22,13 +32,7 @@ struct HeroAvatarView: View {
             } else {
                 ctx.clip(to: Path(CGRect(x: 0, y: 0, width: HeroCanvas.width, height: HeroCanvas.height)))
             }
-            if look.drawsFigure, let figure = look.figure {
-                // Tam boy kahramanın büstü: dolaptakiyle aynı kayıt ve çizim (22 Kasım 2026).
-                HeroFigureArt(figure: figure).draw(in: &ctx, frame: .bust,
-                                                   size: CGSize(width: HeroCanvas.width, height: HeroCanvas.height))
-            } else {
-                HeroCanvas(look: look).draw(in: &ctx)
-            }
+            HeroCanvas(look: look).draw(in: &ctx)
         }
         .aspectRatio(HeroCanvas.width / HeroCanvas.height, contentMode: .fit)
         .accessibilityHidden(true)

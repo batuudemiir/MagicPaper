@@ -284,8 +284,6 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
               padding: var(--status, 54px) var(--mp-space-screen-h) 0; }
 .home-scene-art { position: absolute; inset: 0; background-color: #0C215D; background-size: cover; background-position: center bottom;
                    }
-/* Kenar: son %12 smootherstep, kagit300 -> kagit100 (MP.C.homeSceneFade) */
-.home-scene-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(255,248,238,0) 88%, rgba(240,226,210,0.009) 89.2%, rgba(241,228,213,0.058) 90.4%, rgba(243,231,216,0.163) 91.6%, rgba(245,233,219,0.317) 92.8%, rgba(247,236,223,0.500) 94.0%, rgba(248,238,226,0.683) 95.2%, rgba(250,241,229,0.837) 96.4%, rgba(252,243,232,0.942) 97.6%, rgba(253,246,235,0.991) 98.8%, rgba(255,248,238,1.000) 100.0%); }
 .home-scene .tab-head { position: relative; z-index: 1; }
 .home-scene .scene-ragi { z-index: 1; }
 .home-scene .tab-head h1, .home-scene .eyebrow-greet { color: #fff; }
@@ -348,3 +346,45 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .pw-checks { display: grid; gap: 10px; margin-top: 22px; }
 .pw-checks > div { display: flex; gap: 10px; align-items: center; }
 .pw-checks .ico { color: var(--mp-status-success); stroke-width: 3; width: 20px; height: 20px; }
+
+/* ---------- Profilini düzenle: avatar penceresi (23 Kasım 2026) ---------- */
+.hero-card { width: 100%; text-align: left; }
+.hero-av { position: relative; flex: none; }
+.hero-av .pen { position: absolute; top: -2px; right: -2px; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+                background: var(--mp-action-primary); color: #fff; }
+.hero-av .pen .ico { width: 14px; height: 14px; stroke-width: 2.6; }
+.ap-face { display: block; overflow: hidden; border-radius: 14px; aspect-ratio: 1; }
+.ap-face img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ap-face.round { border-radius: 50%; }
+.ap-face.bust { width: 104px; height: 104px; }
+.ap-face.av { width: 28px; height: 28px; display: inline-block; vertical-align: middle; }
+.ap-face.big { width: 88px; height: 88px; flex: none; border-radius: 18px; }
+.ap-face.big svg { width: 100%; height: 100%; }
+.ap-scrim { position: absolute; inset: 0; z-index: 40; background: rgba(46, 30, 62, .44); }
+.ap-panel { position: absolute; left: 16px; right: 16px; top: 50%; transform: translateY(-50%); z-index: 41; display: grid; gap: 16px;
+            padding: 18px; border-radius: 32px; background: #fff; box-shadow: 0 5px 0 #d9cde9; max-height: 86%; }
+.ap-head { display: flex; align-items: center; justify-content: space-between; }
+.ap-head h2 { margin: 0; font: 700 calc(21px * var(--type)) "Baloo 2", sans-serif; }
+.ap-me { display: flex; gap: 16px; align-items: center; }
+.ap-me > span:last-child { display: grid; gap: 2px; }
+.ap-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.ap-tabs .chip { justify-content: center; min-height: 44px; }
+.ap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; overflow-y: auto; max-height: 300px; padding: 3px; }
+.ap-tile { position: relative; border-radius: 14px; padding: 0; outline: 1px solid var(--mp-border-kid); }
+.ap-tile.on { outline: 3px solid var(--mp-action-primary); }
+.ap-check { position: absolute; right: 6px; bottom: 6px; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+            background: var(--mp-action-primary); color: #fff; }
+.ap-check .ico { width: 16px; height: 16px; stroke-width: 3; }
+.ap-panel.bump { animation: ap-bump .42s cubic-bezier(.2, .8, .3, 1.2) both; }
+.ap-scrim.fade { animation: ap-fade .2s ease-out both; }
+.ap-panel.out { animation: ap-out .17s ease-in both; }
+.ap-scrim.out { animation: ap-fade .17s ease-in reverse both; }
+.ap-tile.pop { animation: ap-pop .28s cubic-bezier(.2, .8, .3, 1.4); }
+@keyframes ap-bump { 0% { transform: translateY(-50%) scale(.6); opacity: 0; } 60% { transform: translateY(-50%) scale(1.04); opacity: 1; } 100% { transform: translateY(-50%) scale(1); } }
+@keyframes ap-out { to { transform: translateY(-50%) scale(.9); opacity: 0; } }
+@keyframes ap-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ap-pop { 40% { transform: scale(1.08); } }
+@media (prefers-reduced-motion: reduce) {
+  .ap-panel.bump { animation: ap-fade .18s ease-out both; }
+  .ap-panel.out, .ap-tile.pop { animation: none; }
+}

@@ -57,9 +57,9 @@ struct ContentView: View {
                 }
                 if let route = MPDebugLaunch.parentRoute { app.router.parentRoute = route }
                 if MPDebugLaunch.opensPaywall { app.openPaywall() }
-                if MPDebugLaunch.opensWardrobe, let id = profileManager.currentProfile?.id {
+                if MPDebugLaunch.opensAvatarPicker, let id = profileManager.currentProfile?.id {
                     app.router.tab = .corner
-                    app.router.openKidPage(.wardrobe(id))
+                    app.avatarPickerProfileID = id
                 }
             }
             #endif
@@ -216,6 +216,13 @@ struct ContentView: View {
                     .transition(reduceMotion ? .opacity : .move(edge: .bottom))
                     .zIndex(1)
             }
+
+            // Profil avatarı: alt çubuğun da üstünde, zıplayarak açılır (23 Kasım 2026).
+            if let id = app.avatarPickerProfileID,
+               let profile = profileManager.profiles.first(where: { $0.id == id }) {
+                ProfileAvatarPicker(profile: profile) { app.avatarPickerProfileID = nil }
+                    .zIndex(2)
+            }
         }
         .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.router.isParentMode)
     }
@@ -344,13 +351,13 @@ struct KidPageView: View {
             if let profile = profile(id) { FamilyCharactersView(profile: profile) }
         case .bookCharacter(let id):
             // E4: kitap karakteri ayrı bir kimlik değil; kahraman düzenleyicisine gider.
-            if let profile = profile(id) { HeroDressingRoom(profile: profile) }
+            if let profile = profile(id) { HeroWardrobeView(profile: profile) }
         case .stickers(let id):
             if let profile = profile(id) { StickerAlbumView(profile: profile) }
         case .decor(let id):
             if let profile = profile(id) { DecorShopView(profile: profile) }
         case .wardrobe(let id):
-            if let profile = profile(id) { HeroDressingRoom(profile: profile) }
+            if let profile = profile(id) { HeroWardrobeView(profile: profile) }
         case .storyMap(let id):
             if let profile = profile(id) { StoryMapView(profile: profile) }
         case .badges(let id):

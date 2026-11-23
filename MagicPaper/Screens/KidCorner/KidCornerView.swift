@@ -203,16 +203,17 @@ struct KidCornerView: View {
         starLevel.map { "\($0.title) · \(stars) yıldız" } ?? "\(stars) yıldız"
     }
 
-    /// Çocuğun tek kimlik kartı: kahraman, ad, yıldız ve Dolap. Kartın tamamı
-    /// Dolap'ı açar; "Dolabı aç" ikincil düğme görünümünde ama ayrı hedef değil
-    /// (kart içinde düğme olmaz). En büyük yazı boyutlarında kahraman üste çıkar.
+    /// Çocuğun tek kimlik kartı: avatar, ad ve yıldız. Kartın tamamı "Profilini
+    /// düzenle" penceresini zıplayarak açar (23 Kasım 2026, İrem; önceki
+    /// "Kahramanını giydir / Dolabı aç" satırının yerine). Avatarın köşesindeki
+    /// kalem bunun ipucu. En büyük yazı boyutlarında avatar üste çıkar.
     private func identityCard(_ profile: UserProfile) -> some View {
         let layout = typeSize.isAccessibilitySize
             ? AnyLayout(VStackLayout(alignment: .leading, spacing: MPSpacing.md))
             : AnyLayout(HStackLayout(alignment: .center, spacing: MPSpacing.lg))
         return Button {
             MPHaptics.tap()
-            app.router.openKidPage(.wardrobe(profile.id))
+            app.avatarPickerProfileID = profile.id
         } label: {
             layout {
                 HeroAvatarView(look: heroLook ?? .standard, backdrop: MPWorldTone.lav.soft)
@@ -221,6 +222,12 @@ struct KidCornerView: View {
                     // Kartın tamamı Dolap'ı açar; katların listesi Rozetlerim'de.
                     .overlay(alignment: .bottomTrailing) {
                         if let starLevel { MPStarLevelArt(level: starLevel, size: 40) }
+                    }
+                    .overlay(alignment: .topTrailing) {
+                        MPIcon("pencil", size: MP.G.xs, weight: .bold)
+                            .foregroundStyle(MPColor.textOnAction)
+                            .frame(width: MP.G.lg, height: MP.G.lg)
+                            .background(MPColor.actionPrimary, in: Circle())
                     }
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: MPSpacing.xxs) {
@@ -231,14 +238,6 @@ struct KidCornerView: View {
                         Text(starLine).mpText(.supporting).fontWeight(.bold).monospacedDigit()
                             .foregroundStyle(MPColor.textSecondary)
                     }
-                    HStack(spacing: MPSpacing.xs) {
-                        MPIcon("sparkles", size: MP.G.sm, weight: .bold)
-                        Text(heroLook == nil ? "Kahramanını giydir" : "Dolabı aç").mpText(.button)
-                    }
-                    .foregroundStyle(MPColor.actionPrimary)
-                    .frame(maxWidth: .infinity, minHeight: MPSize.chipHeightKid)
-                    .background(MPColor.cardSoft, in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
-                    .padding(.top, MPSpacing.xs)
                 }
                 .fixedSize(horizontal: false, vertical: true)
             }
@@ -249,7 +248,7 @@ struct KidCornerView: View {
         .buttonStyle(MPPressStyle())
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("\(profile.name), \(starLine)")
-        .accessibilityHint("Dolabı açar")
+        .accessibilityHint("Profil resmini seçmeyi açar")
         .accessibilityAddTraits(.isButton)
     }
 
