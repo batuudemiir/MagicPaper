@@ -163,7 +163,7 @@ VIEWS.profil = function () {
       <span class="dot ${on ? "on" : ""} ${future ? "future" : ""}">${on ? ic("check") : future ? w.dates[i] : ""}</span></span>`;
   }).join("");
   const widget = `<button class="pf-jr" data-act="skyPage" data-arg="journey" aria-label="Okuma yolculuğum, ${w.streak} gün üst üste">
-      <span class="top"><span class="pf-jr-ragi"><img src="${A}Brand/mascotCheer.imageset/mascotCheer.png" alt=""></span>
+      <span class="top"><span class="pf-jr-ragi"><img src="${avatarSrc("ragi-reading")}" alt=""></span>
         <span class="grow"><span class="eb">Okuma yolculuğum</span><b>${w.streak} gün üst üste</b>
           <span class="t-footnote secondary">Bu hafta ${w.read.size} gün birlikte okudunuz</span></span>
         <span class="chev">${ic("right")}</span></span>

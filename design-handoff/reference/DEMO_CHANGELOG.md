@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Profil: okuyan Ragi yüzü, daha sıkı başlık
+
+- İrem'in kararı: iki Ragi de kalsın (README madde 13). Okuma yolculuğum kartında sevinçli Ragi ve sarı daire yerine okuyan Ragi'nin yüzü (`Avatars/ragi-reading`), zeminsiz, doğrudan beyaz kartta, daireye kırpılı.
+- "Profil" başlığı ile ilk beyaz kart arası daraldı: Ragi'nin kartın üstünden görünen payı 64 → 44 pt, göğün satır aralığı `lg` → `md`. Önizlemede Ragi uygulamadaki boyuta (96) indi.
+- Not: kartın yüzü `MascotImage` değil, avatar görseli (yüz kırpması); Ragi'nin hareket kuklası bu kartta yok. Yasa notu README madde 13'te.
+- Önizleme headless Edge ile açılıp bakıldı. Uygulama testi çalıştırılmadı (Mac).
+
 ### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Profil'de Okuma yolculuğum kartı
 
 - İrem'in isteği: Okuma yolculuğum profilde "Büyükler için"in üstünde, kendi kartında, widget gibi önizlemeyle ve sayfadaki Ragi pozuyla görünsün.

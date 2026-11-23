@@ -37,7 +37,7 @@ struct KidCornerView: View {
     private var profile: UserProfile? { profileManager.currentProfile }
 
     /// Ragi'nin kimlik kartının üstünden görünen kısmı.
-    private static let ragiPeek: CGFloat = 64
+    private static let ragiPeek: CGFloat = 44
 
     var body: some View {
         // Gök saat çubuğunun altına uzanır (ana sayfa ile aynı kurgu).
@@ -94,7 +94,7 @@ struct KidCornerView: View {
     // MARK: - Gök: başlık, kim okuyor, kimlik, bilgi kartları
 
     private func header(topInset: CGFloat) -> some View {
-        VStack(alignment: .leading, spacing: MPSpacing.lg) {
+        VStack(alignment: .leading, spacing: MPSpacing.md) {
             Text("Profil").font(MP.F.displayLG()).foregroundStyle(MP.C.textOnArt)
                 .accessibilityAddTraits(.isHeader)
             whoRow

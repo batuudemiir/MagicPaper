@@ -1,8 +1,8 @@
 import SwiftUI
 
 /// Profil'deki "Okuma yolculuğum" kartı (24 Kasım 2026, İrem): sayfanın
-/// küçük önizlemesi, widget gibi. Solda sevinçli Ragi (`Mascot.cheer`,
-/// Okuma yolculuğum'daki poz) sarı dairede; sağda başlık, "N gün üst üste"
+/// küçük önizlemesi, widget gibi. Solda okuyan Ragi'nin yüzü, zeminsiz
+/// (`Avatars/ragi-reading`); sağda başlık, "N gün üst üste"
 /// ve bu haftanın yedi günü. Kartın tamamı Okuma yolculuğum'u açar.
 ///
 /// Kurallar `ReadingJourney`'de (ilke 7): okunmayan gün boş daire, başarısızlık
@@ -13,6 +13,8 @@ struct ReadingJourneyWidget: View {
 
     @Environment(\.dynamicTypeSize) private var typeSize
 
+    private static let faceSize: CGFloat = MPSize.minTouchHero + MPSpacing.lg
+
     var body: some View {
         Button {
             MPHaptics.tap()
@@ -20,10 +22,13 @@ struct ReadingJourneyWidget: View {
         } label: {
             VStack(alignment: .leading, spacing: MPSpacing.md) {
                 HStack(alignment: .center, spacing: MPSpacing.md) {
-                    if !typeSize.isAccessibilitySize {
-                        MascotImage(mascot: .cheer, width: MPSize.minTouchHero + MPSpacing.lg)
-                            .padding(MPSpacing.xxs)
-                            .background(MPWorldTone.yellow.soft, in: Circle())
+                    // Okuyan Ragi'nin yüzü, zeminsiz, doğrudan beyaz kartta (24 Kasım 2026, İrem).
+                    if !typeSize.isAccessibilitySize, let face = ProfileAvatar.named("ragi-reading") {
+                        Image(face.asset)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: Self.faceSize, height: Self.faceSize)
+                            .clipShape(Circle())
                             .accessibilityHidden(true)
                     }
                     VStack(alignment: .leading, spacing: MPSpacing.xxs) {
