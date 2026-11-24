@@ -103,8 +103,11 @@ struct ContentView: View {
             .onChange(of: profileManager.currentProfile?.safety) { _, _ in
                 OfflineStoryService.shared.currentSafety = profileManager.currentProfile?.effectiveSafety
             }
-            .onChange(of: profileManager.currentProfile?.id, initial: true) { _, id in
-                app.router.closePagesOfPreviousChild()
+            .onChange(of: profileManager.currentProfile?.id, initial: true) { previous, id in
+                // Yalnızca çocuk gerçekten değişince: ilk çağrıda (initial) önceki
+                // çocuk yok. Açılışta itilmiş sayfayı silmesin (24 Kasım 2026: ekran
+                // turunda menü sayfaları bu yüzden ana sayfa olarak çekiliyordu).
+                if previous != id { app.router.closePagesOfPreviousChild() }
                 MPStreak.shared.activate(profileID: id)
             // İçerik güvenliği (FAZ 17) çocuk başına: her sorgu ve masal bunu okur.
             OfflineStoryService.shared.currentSafety = profileManager.currentProfile?.effectiveSafety
