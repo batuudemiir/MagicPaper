@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/design-system-catalog, commit yok · Beş karakter detay referansı
+
+- Onaylı grup+marka referanslı built-in image_gen ile5ayrı6görünümlü karakter sayfası; Kestane çiftburun hatası editv2 ile düzeltildi. PNG/tekdosyaHTML/ZIP, tam prompt ve SHA kayıtları character-details klasöründe.5seçiliPNGdecode ve görsel inceleme yapıldı; teknik ortografik model veya runtimeasset onayı değildir. App/motor değişmedi; test/simülatör çalıştırılmadı.
+
+
 ### 2026-11-22 · codex/design-system-catalog, commit yok · K0–K1 kaynak koruması ve P56 editoryal korpusu
 
 - Tam kaynak SHA-256/engine davranış kimliği, kayıpsız origin/seri metadata'sı, atomik katalog arşivi, exact tarihsel resolver ve eski istemci sync koruması uygulandı. Kaynak kanıtı olmadan aynı semver güncel kaynak sayılmaz; kayıtlı metin ve hazırlanmış bölümler korunur. Tarihsel doğrulanmış eşlemeler henüz boş, bu kitaplarda yeni devam/yeniden yazım desteklenmiş sayılmıyor.
