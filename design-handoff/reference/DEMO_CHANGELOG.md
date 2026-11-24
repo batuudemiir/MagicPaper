@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/design-system-catalog, plan commit'i · Beş arkadaş B hattı (Claude) TDD planı
+
+- Yeni `docs/superpowers/plans/2026-11-25-bes-arkadas-b-hatti-uygulama.md`: B1 P56 masalını `Story`'ye çevirme, B2 paketli payload, B3 yönlendirici (karar + neden kodu, yalnız DEBUG bayrak), B4 `StoryGenerationManager.createStory`'de tek dal ve aynı girdilerle eski yola düşüş, B5 `FiveFriendsChoiceSource` ile beş arkadaşlı seçim listesi, B6 P56 masalını seri ve hatırlamanın dışında tutma, B7 tek koşu doğrulaması. Test adları ve iddiaları yazıldı.
+- Kod okumasından çıkan iki not: P56 güvenlik ayarlı her isteği reddettiği için C3'e kadar böyle profiller eski motora gider; hatırlama girdisi `StoryContextBuilder.recallHistory`'de, bu dosya Claude hattına eklendi.
+- `docs/ortak/claude-durum.md`: Codex'e iki soru (sayfa kaynak izi, fingerprint).
+- Bilerek değişmeyen: kod, içerik, test. Kod C4 teslimini ve entegrasyon dalını bekliyor.
+- Test çalıştırılmadı, simülatör yok (yalnız belge).
+- Dosyalar: B hattı planı, ortak çalışma planı (sahiplik satırı), `docs/ortak/claude-durum.md`, bu kayıt.
+
 ### 2026-11-25 · codex/design-system-catalog, kabul commit'i · Beş arkadaş sözleşmesi: Codex netleştirmeleri kabul edildi
 
 - Codex'in `9865b81` incelemesi kabul edildi: `unsupportedReasons` compose garantisi değil; P56 kaynağı `ContentSourceMetadata.init(p56:)` + `p56Reference` ile, `.reference == nil` ve `.status == .unsupported`; payload yolu ve `P56PinnedSource.sha256`; köprü dosyaları Claude'a devredildi; entegrasyon dalını Codex açacak.

@@ -61,7 +61,7 @@ P56'nın uygulamaya girmesini bugün engelleyenler: hücre başına 2 sabit kita
 | Sahip | Yazar | Yalnız okur |
 |---|---|---|
 | **Codex** | `StoryEngine/Sources/StoryEngine/Pilots/P56/**`, `StoryEngine/Tests/**/P56*`, `Content/Pilots/**`, `docs/research/five-friends-*/**`, `StoryEngine/Sources/StoryEngine/Content/ContentSourceMetadata.swift` ve kaynak çözücü (`CatalogHistory/`, `RemoteContent/CatalogSourceResolver.swift`) | Uygulama köprüsü |
-| **Claude** | `MagicPaper/StoryEngineBridge/StoryRuntimeRouter.swift` (yeni), `MagicPaper/StoryEngineBridge/Pilots/P56/**` (mevcut iki dosya dahil; Codex'in onayıyla devralınır), `OfflineStoryService.swift`, `MagicPaper/Services/StoryGenerationManager.swift`, `StoryChoiceSource.swift`, `Screens/StoryCreation/CompanionStep.swift`, `SeriesManager.swift`, `StoryMemory.swift`, `MagicPaperTests/P56*` | Motor ve içerik |
+| **Claude** | `MagicPaper/StoryEngineBridge/StoryRuntimeRouter.swift` (yeni), `MagicPaper/StoryEngineBridge/Pilots/P56/**` (mevcut iki dosya dahil; Codex'in onayıyla devralınır), `OfflineStoryService.swift`, `MagicPaper/Services/StoryGenerationManager.swift`, `StoryContextBuilder.swift`, `StoryChoiceSource.swift`, `Screens/StoryCreation/CompanionStep.swift`, `SeriesManager.swift`, `StoryMemory.swift`, `MagicPaperTests/P56*` | Motor ve içerik |
 | **Ortak, tek seferde bir yazar** | `MagicPaper/Models/Story.swift`, `design-handoff/reference/DEMO_CHANGELOG.md` | İki ajan da |
 
 `Story.swift` bu planda değişmez: P56 kaydı mevcut `contentSource: ContentSourceMetadata?` alanına yazılır. Değişmesi gerekirse önce panoda sorulur.
