@@ -6,8 +6,7 @@ import SwiftUI
 ///
 /// 23 Kasım 2026 (İrem, yeni düzen; prototip `design-preview/app/home.js`,
 /// bileşenler `MPHomeBoard.swift`): üstte mor gökten beyaza inen başlık; solda
-/// menü, sağda bildirim ve arama (`MPCircleButton`), "Merhaba, <ad>", el sallayan
-/// Ragi ve üç bilgi kartı (yıldız, okuma günü, masallar). Ortada koyu mor bu
+/// menü, sağda bildirim ve arama (`MPCircleButton`), "Merhaba, <ad>" ve üç bilgi kartı (yıldız, okuma günü, masallar). Ortada koyu mor bu
 /// akşamın kartı (Ragi'nin ayakları kartın alt çizgisinde), altında "Yeni bir
 /// masal yaz" liste satırları ve varsa devam eden seri. Gece/gündüz sahnesi yok.
 /// Önceki düzenler (sahneli başlık, Okuma köşesi) için git geçmişi.
@@ -80,27 +79,31 @@ struct HomeView: View {
 
     // MARK: - Başlık
 
+    /// İki kat (24 Kasım 2026): üstte düğmeler ve selam koyu gökte (`homeSkyTop`,
+    /// yazı her kademede ve en büyük yazıda ≥ 4.5:1), altta kâğıda iniş
+    /// (`homeSkyFade`); bilgi kartları varsa inişin önünde. Ekranın tek Ragi'si
+    /// bu akşamın kartında (başlıktaki el sallayan Ragi kalktı).
     private func header(topInset: CGFloat) -> some View {
-        VStack(alignment: .leading, spacing: MPSpacing.lg) {
-            HStack(spacing: MPSpacing.sm) {
-                MPCircleButton(systemImage: "line.3.horizontal", accessibilityLabel: "Menü", action: openMenu)
-                Spacer(minLength: 0)
-                MPCircleButton(systemImage: "bell", accessibilityLabel: hasNews ? "Bildirimler, yeni rozet var" : "Bildirimler",
-                               action: openNews)
-                    .overlay(alignment: .topTrailing) {
-                        // Alt çubuktaki gibi sessiz marka noktası: yeni rozet var.
-                        if hasNews {
-                            Circle().fill(MP.C.brand)
-                                .frame(width: MP.S.x2 + MP.S.x1, height: MP.S.x2 + MP.S.x1)
-                                .overlay(Circle().strokeBorder(MPColor.backgroundSurface, lineWidth: 2))
-                                .offset(x: -MP.S.x1, y: MP.S.x1)
-                                .accessibilityHidden(true)
+        VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading, spacing: MPSpacing.lg) {
+                HStack(spacing: MPSpacing.sm) {
+                    MPCircleButton(systemImage: "line.3.horizontal", accessibilityLabel: "Menü", action: openMenu)
+                    Spacer(minLength: 0)
+                    MPCircleButton(systemImage: "bell", accessibilityLabel: hasNews ? "Bildirimler, yeni rozet var" : "Bildirimler",
+                                   action: openNews)
+                        .overlay(alignment: .topTrailing) {
+                            // Alt çubuktaki gibi sessiz marka noktası: yeni rozet var.
+                            if hasNews {
+                                Circle().fill(MP.C.brand)
+                                    .frame(width: MP.S.x2 + MP.S.x1, height: MP.S.x2 + MP.S.x1)
+                                    .overlay(Circle().strokeBorder(MPColor.backgroundSurface, lineWidth: 2))
+                                    .offset(x: -MP.S.x1, y: MP.S.x1)
+                                    .accessibilityHidden(true)
+                            }
                         }
-                    }
-                MPCircleButton(systemImage: "magnifyingglass", accessibilityLabel: "Masal ara", action: openSearch)
-            }
+                    MPCircleButton(systemImage: "magnifyingglass", accessibilityLabel: "Masal ara", action: openSearch)
+                }
 
-            HStack(alignment: .bottom, spacing: MPSpacing.sm) {
                 VStack(alignment: .leading, spacing: MPSpacing.xs) {
                     Text("Merhaba, \(activeName)").font(MP.F.displayLG()).foregroundStyle(MP.C.textOnArt)
                         .lineLimit(2).minimumScaleFactor(0.7)
@@ -110,24 +113,27 @@ struct HomeView: View {
                             .fixedSize(horizontal: false, vertical: true)
                     }
                 }
-                Spacer(minLength: 0)
-                if !typeSize.isAccessibilitySize {
-                    // Ragi bilgi kartlarının arkasına iner (kartlar sonra çizilir).
-                    MascotImage(mascot: .waving, width: MPSize.minTouchHero * 2)
-                        .padding(.bottom, -MPSpacing.xxxl)
-                        .accessibilityHidden(true)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, topInset + MPSpacing.xs)
+            .padding(.bottom, MPSpacing.lg)
+            .background(
+                LinearGradient(stops: MP.C.homeSkyTop, startPoint: .top, endPoint: .bottom)
+                    .ignoresSafeArea(edges: .top)
+            )
+
+            Group {
+                if showsStats {
+                    stats.padding(.bottom, MPSpacing.xs)
+                } else {
+                    Color.clear.frame(height: MPSpacing.xxxl)
                 }
             }
-
-            if showsStats { stats }
+            .padding(.horizontal, MPSpacing.screenH)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(LinearGradient(stops: MP.C.homeSkyFade, startPoint: .top, endPoint: .bottom))
         }
-        .padding(.horizontal, MPSpacing.screenH)
-        .padding(.top, topInset + MPSpacing.xs)
-        .padding(.bottom, MPSpacing.xs)
-        .background(
-            LinearGradient(stops: MP.C.homeSky, startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea(edges: .top)
-        )
     }
 
     private var stats: some View {
@@ -209,15 +215,11 @@ struct HomeView: View {
         StoryCreationSteps.shownModes(availableModes, emphasized: emphasizedMode)
     }
 
-    /// Başlık ve artı (baştan masal yazma), altında modlar liste satırı olarak.
+    /// Başlık, altında modlar liste satırı olarak.
     private var modeSection: some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            MPSectionHeader(title: "Yeni bir masal yaz") {
-                MPCircleButton(systemImage: "plus", accessibilityLabel: "Masal yaz") {
-                    MPHaptics.tap()
-                    app.startStoryCreation()
-                }
-            }
+            // "+" kalktı (24 Kasım 2026): "Masal yaz" dairesi ve mod satırları aynı işi yapıyor.
+            MPSectionHeader(title: "Yeni bir masal yaz")
             VStack(spacing: MPSpacing.sm) {
                 ForEach(shownModes, id: \.self) { mode in
                     HomeModeRow(mode: mode, emphasized: mode == emphasizedMode) {

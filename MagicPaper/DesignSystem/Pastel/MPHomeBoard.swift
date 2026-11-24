@@ -51,8 +51,8 @@ struct HomeTonightBoard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: MPSpacing.sm) {
-            Text(eyebrow).mpText(.footnote).fontWeight(.bold).foregroundStyle(MP.C.textOnArtMuted)
-            Text(title).font(MP.F.displaySM()).foregroundStyle(MP.C.textOnArt)
+            Text(copy.eyebrow).mpText(.footnote).fontWeight(.bold).foregroundStyle(MP.C.textOnArtMuted)
+            Text(copy.title).font(MP.F.displaySM()).foregroundStyle(MP.C.textOnArt)
                 .fixedSize(horizontal: false, vertical: true)
                 .accessibilityAddTraits(.isHeader)
             if case .resume(let progress, _, _) = state { progressBar(progress) }
@@ -79,14 +79,13 @@ struct HomeTonightBoard: View {
     }
 
     private var tag: some View {
-        Text(tagText).mpText(.footnote).fontWeight(.bold).foregroundStyle(MP.C.textOnArt)
-            .padding(.horizontal, MPSpacing.md)
+        // Yalnızca yazı (24 Kasım 2026): dolgulu kutu düğmeye benziyordu.
+        Text(copy.tag).mpText(.footnote).fontWeight(.bold).foregroundStyle(MP.C.textOnArtMuted)
             .frame(minHeight: MPSize.buttonHeightSmall)
-            .background(MP.C.textOnArt.opacity(0.14), in: RoundedRectangle(cornerRadius: MPRadius.md, style: .continuous))
     }
 
     private var button: some View {
-        MPButton(title: buttonTitle, systemImage: buttonIcon, kind: .secondary, size: .small, action: onPrimary)
+        MPButton(title: copy.button, systemImage: copy.icon, kind: .secondary, size: .small, action: onPrimary)
     }
 
     /// Beş parça: okunanlar açık mor, şu anki parça yıldız sarısı, kalanlar iz.
@@ -116,42 +115,32 @@ struct HomeTonightBoard: View {
         }
     }
 
-    private var eyebrow: String {
+    private var copy: HomeTonightCopy { .make(state) }
+}
+
+/// Bu akşamın kartının metinleri (24 Kasım 2026): görünüm yalnızca çizer.
+/// "Bugün okudun" sakin: masal bitirmek bir olay, kart yeni masal önermez,
+/// kitaplığa çağırır (Batuhan). Yazmak isteyen mod satırlarını kullanır.
+struct HomeTonightCopy: Equatable {
+    let eyebrow: String
+    let title: String
+    let tag: String
+    let button: String
+    let icon: String
+
+    static func make(_ state: TonightState) -> HomeTonightCopy {
         switch state {
-        case .resume: "Kaldığın yerden"
-        case .unread: "Bu akşamın masalı"
-        case .readToday: "Bugün okudun"
-        case .bedtime(let t): "Saat \(t)"
-        }
-    }
-    private var title: String {
-        switch state {
-        case .resume(_, let t, _), .unread(let t, _): t
-        case .readToday: "Yarın yeni bir masal var"
-        case .bedtime: "Uyku masalı zamanı"
-        }
-    }
-    private var tagText: String {
-        switch state {
-        case .resume(_, _, let m), .unread(_, let m): m
-        case .readToday(let canWrite): canWrite ? "Bir tane daha?" : "Kitaplığın hazır"
-        case .bedtime: "Kısa ve sakin"
-        }
-    }
-    private var buttonTitle: String {
-        switch state {
-        case .resume: "Devam et"
-        case .unread: "Masalı oku"
-        case .readToday(let canWrite): canWrite ? "Yeni masal yaz" : "Kitaplığına bak"
-        case .bedtime: "Uyku masalı yaz"
-        }
-    }
-    private var buttonIcon: String {
-        switch state {
-        case .resume: "play.fill"
-        case .unread: "book"
-        case .readToday(let canWrite): canWrite ? "wand.and.sparkles" : "books.vertical"
-        case .bedtime: "moon.fill"
+        case .resume(_, let title, let meta):
+            .init(eyebrow: "Kaldığın yerden", title: title, tag: meta, button: "Devam et", icon: "play.fill")
+        case .unread(let title, let meta):
+            .init(eyebrow: "Bu akşamın masalı", title: title, tag: meta, button: "Masalı oku", icon: "book")
+        case .readToday:
+            .init(eyebrow: "Bugün okudun", title: "Yarın yeni bir masal var", tag: "Kitaplığın hazır",
+                  button: "Kitaplığına bak", icon: "books.vertical")
+        case .bedtime(let time):
+            // Lucide ay (`MPIconMap`); "moon.fill" eşlemesizdi, düğmede boş yer kalıyordu.
+            .init(eyebrow: "Saat \(time)", title: "Uyku masalı zamanı", tag: "Kısa ve sakin",
+                  button: "Uyku masalı yaz", icon: "moon")
         }
     }
 }

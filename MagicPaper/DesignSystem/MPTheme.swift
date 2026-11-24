@@ -219,7 +219,7 @@ enum MP {
 
         /// Ana sayfa başlığının göğü (23 Kasım 2026, İrem; yeni ana sayfa):
         /// mordan beyaza inen geçiş. Tasarım yasası arayüz yüzeyinde gradient
-        /// istemiyor; İrem'in kararıyla tek istisna, Batuhan'ın onayına.
+        /// istemiyor; İrem'in kararı, Batuhan onayladı (24 Kasım 2026).
         /// Duraklar: selam ve alt satır koyu morun üstünde kalsın (beyaz yazı
         /// 4.5:1), lavanta bilgi kartlarının arkasında başlasın.
         static let homeSky: [Gradient.Stop] = [
@@ -227,6 +227,23 @@ enum MP {
             .init(color: Palette.mor400, location: 0.45),
             .init(color: Palette.mor100, location: 0.75),
             .init(color: Palette.mor50, location: 0.9),
+            .init(color: Palette.kagit0, location: 1)
+        ]
+        /// Ana sayfa başlığı iki kat (24 Kasım 2026): selamın oturduğu koyu gök ve
+        /// altında beyaza inen geçiş. Tek `homeSky` başlığın yüksekliğine göre
+        /// yayıldığı için bilgi kartları gizlenince (Küçük kademe) selam açık
+        /// morun üstüne düşüyordu. `textOnArt` ve `textOnArtMuted` her durakta ≥ 4.5:1
+        /// (`HomeTonightCopyTests`).
+        static let homeSkyTop: [Gradient.Stop] = [
+            .init(color: Palette.mor600, location: 0),
+            .init(color: Palette.mor500, location: 1)
+        ]
+        /// Selamın altından kâğıda iniş; bilgi kartları varsa arkasında.
+        static let homeSkyFade: [Gradient.Stop] = [
+            .init(color: Palette.mor500, location: 0),
+            .init(color: Palette.mor400, location: 0.2),
+            .init(color: Palette.mor100, location: 0.6),
+            .init(color: Palette.mor50, location: 0.82),
             .init(color: Palette.kagit0, location: 1)
         ]
         /// Masal sonunun gündüz zemini (23 Kasım 2026, İrem): paletin morları,

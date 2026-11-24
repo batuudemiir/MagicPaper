@@ -133,10 +133,11 @@ final class MPAppState: ObservableObject {
             if let daily = resolved.daily { readOriginal(daily) }
         case .readToday:
             guard !fromSurface else { return }
-            // Ücretsiz günün masalı da yazıldıysa kart kilide değil kitaplığa
-            // götürür (21 Kasım 2026, ANA_SAYFA_HAZIRLIK A2). Masal yaz dairesi
-            // ve mod karoları kilit penceresine gitmeye devam eder.
-            if canWriteNewStoryToday { startStoryCreation() } else { router.tab = .library }
+            // Bugün okundu: kart her zaman kitaplığa çağırır (24 Kasım 2026,
+            // Batuhan: masal bitirmek bir olay, hemen yenisi önerilmez). Yazmak
+            // isteyen "Masal yaz" dairesini ve mod satırlarını kullanır; ücretsiz
+            // hak bitmişse onlar kilit penceresine gider (21 Kasım, A2).
+            router.tab = .library
         }
     }
 
