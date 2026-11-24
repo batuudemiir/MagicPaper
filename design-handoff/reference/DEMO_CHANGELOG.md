@@ -133,6 +133,19 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-24 · irem-aktarim (dal, commit yok: bu kayıtla gelir) · İrem'in tasarımları uygulamaya aktarıldı
+
+- **Ne:** İrem'in 21-24 Kasım işi (`irem` dalı) inceleme bulgularıyla düzeltilerek `irem-aktarim` dalında. Tasarım belgesi `docs/superpowers/specs/2026-11-24-irem-tasarim-aktarimi-design.md`, plan `docs/superpowers/plans/2026-11-24-irem-tasarim-aktarimi.md`.
+- **Masal sonu:** "Bir masal daha" ve haftalık dakika kartı kalktı; tek eylem "Ana sayfaya dön" (Batuhan: masal bitirmek bir olay). Kazanılanlar `StoryEndingEarned.ids`.
+- **Ana sayfa:** başlık iki kat (`MP.C.homeSkyTop` + `homeSkyFade`): selam her kademede koyu gökte, Küçük kademede okunmuyordu. Başlıktaki el sallayan Ragi kalktı (tek Ragi akşam kartında). Akşam kartı metinleri `HomeTonightCopy`; "Bugün okudun" her zaman kitaplığa çağırır, "Bir tane daha?" yok. "Kısa ve sakin" yalnız yazı. Uyku düğmesi Lucide ay. "Yeni bir masal yaz" başlığındaki artı kalktı.
+- **Menü:** Ragi'siz, soru sheet başlığında (`KidMenuSheet`).
+- **Profil resmi:** Ragi pozları seçiciden çıktı (Batuhan: Ragi maskottur); Tarçın ve Kestane kaldı, eski `ragi-*` seçimi boş resme düşer.
+- **Ekran turu:** menü sayfaları ana sayfa olarak çekiliyordu. Kök neden `ContentView`'da `currentProfile` id'sinin `onChange(initial: true)`'i açılışta yığını boşaltıyordu; artık yalnız çocuk değişince.
+- **Kanun:** AGENTS.md ve kök CLAUDE.md'ye mor gök istisnası ve 24 Kasım kararları.
+- **Bilerek değişmedi:** Paywall yerleşimi, gece masal sonu, İrem'in mantık değişiklikleri (günün masalı her zaman ücretsiz, seri `.locked`, deneme uygunluğu), `Avatars/ragi-*` görselleri (kullanılmıyor, silinmedi), `AfterReader.create` yolu (artık çağıranı yok).
+- **Test:** TEST_SONUCU
+- **Dosyalar:** `StoryEndingLeaf.swift`, `StoryLeafView.swift`, `StoryReaderView.swift`, `SeriesEndingSection.swift`, `HomeView.swift`, `MPHomeBoard.swift`, `MPTheme.swift`, `MPAppState.swift`, `KidMenuSheet.swift`, `ProfileAvatar.swift`, `ContentView.swift`, `AGENTS.md`; testler `StoryEndingEarnedTests`, `HomeTonightCopyTests`, `ProfileAvatarTests`.
+
 ### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Profil: tek Ragi, Okuma yolculuğum kartında
 
 - İrem'in son revizesi: kimlik kartının arkasından bakan el sallayan Ragi kalktı (başlık sıkılaşınca arkada kalıyordu); aynı Ragi çerçevesiz olarak Okuma yolculuğum kartına geçti, okuyan Ragi yüzü kalktı. Ekranda tek Ragi (yasa yeniden uyumlu).

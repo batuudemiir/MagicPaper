@@ -49,6 +49,7 @@ Where an older doc disagrees with that plan, the plan wins.
 - Parent account: Google + Apple sign-in, required in onboarding.
 - Action color #6A47B8. Fonts: Baloo 2 + Nunito.
 - Mascot: raccoon "Ragi".
+- Masal sonu ve profil resmi (karar: 24 Kasım 2026, Batuhan; İrem'in 21-24 Kasım tasarımlarının aktarımı): masal sonunda tek eylem "Ana sayfaya dön"; "Bir masal daha" yok, çocuğa okuma süresi gösterilmez, ana sayfanın akşam kartı okunduktan sonra yeni masal önermez (masal bitirmek bir olay). Profil resmi masal arkadaşlarının yüzlerinden (Tarçın, Kestane); Ragi maskottur, profil resmi olmaz.
 
 ---
 
@@ -237,7 +238,7 @@ history: `docs/MagicPaper_Design_System.md`.
 - Sistemin imzası sert alt kenar: `mpEdge`. Kart derinliği gölgeden gelmez. Dokunulan kart ve birincil düğme kenar taşır.
 - Düğme yalnızca `MPButton` ve `MPCircleButton` (karar: 7 Kasım 2026): `primary` 56 pt, ekranda bir tane, basınca yüzü kenarın üstüne iner (`MPPressStyle.onEdge`); `secondary` lavanta 52; `ghost` 48; `danger` yalnızca ebeveyn alanı; `outline` yalnızca giriş sağlayıcısı. Devre dışı düz gri ve kenarsız, saydamlık yok.
 - Gölge yalnızca `mpShadow(MP.Sh.*)`; çıplak `.shadow(...)` yok.
-- Gradient arayüz yüzeyinde ve butonda yok. Yalnızca malzeme taklidinde: kâğıt gölgelemesi, sayfa kıvrımı, kapak sanatı, parlaklık maskesi — ve illüstrasyon üstü metnin karartması (`MP.Scrim`, yalnızca `MPArtHero`; metin `MP.C.textOnArt*`).
+- Gradient arayüz yüzeyinde ve butonda yok. Yalnızca malzeme taklidinde: kâğıt gölgelemesi, sayfa kıvrımı, kapak sanatı, parlaklık maskesi — ve illüstrasyon üstü metnin karartması (`MP.Scrim`, yalnızca `MPArtHero`; metin `MP.C.textOnArt*`). Tek arayüz istisnası çocuk alanındaki mor gök (karar: 24 Kasım 2026, Batuhan; İrem'in tasarımı): ana sayfa başlığı (`MP.C.homeSkyTop` + `homeSkyFade`), Profil ve menü sayfalarının tepesi (`MP.C.homeSky`, `MPSkyPage`) ve gündüz masal sonu (`MP.C.endingSky`); yazı her zaman koyu durağın üstünde, ≥ 4.5:1.
 - Cam (Liquid Glass) yalnızca içeriğin üstünde yüzen gezinme kontrollerinde: alt sekme çubuğu ve okuyucunun yüzen kontrolleri: kapat, favori/ayarlar kapsülü, alt çubuk ve sayfa kaydırıcısı (karar: 21 Ekim 2026). Yalnızca sistemin `glassEffect`'i, ayarı `MP.Glass`'tan; elle yapılmış cam taklidi yok. Çocuk alanının alt çubuğu bütün sürümlerde kendi çubuğumuz (`KidTabBar`; karar: 13 Kasım 2026, Batuhan, 22 Ekim'deki "iOS 26'da sistemin `TabView`'ı" kararının yerine): dört sekme cam kapsülde, "Masal yaz" yanında ayrı, marka renginde sert kenarlı dairede (cam değil), seçilmez, masal yazmayı açar; sürükleyerek seçme bizde, lavanta seçim yastığı parmağı izleyerek kayar. Kart, sayfa, sheet ve içerik butonu cam olmaz. iOS 26 öncesi yedek `.ultraThinMaterial` + `MP.C.edgeGlass`; Saydamlığı Azalt açıkken opak `MP.C.surfaceCard`. Üst başlıklar henüz bu kurala dahil değil.
 
 **Hareket**
