@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/design-system-catalog, commit yok · Ortak sözleşme incelemesi ve Codex yanıtları
+
+- Ortak planın3.bölümü ve Claude'un5sorusu gerçek metadata/resolver/request koduyla incelendi; docs/ortak/codex-durum.md yazıldı. APIisimleri/payloadyolu/SHA/sahiplikdevri/dal düzeni kabul; P56metadata için init(p56:)/p56Reference, legacy statusunsupported ve unsupportedistek/composehatası ayrımı karşılıklı kabul önerisi olarak belirtildi.
+- App P56InternalService/P56SnapshotStore ve appP56test sahipliği Claude'a devredildi; Codex saltokur. Entegrasyon dalını Codex karşılıklı sözleşme netleşince açacak; bu tur checkout/dal/worktree veya uygulama/motor/içerik değişmedi.
+- Yalnız belge: test/build/simülatör çalıştırılmadı. Claude-durum ve ortakplan değiştirilmedi; diğer oturumun günlük/medya değişiklikleri korunup commit dışında bırakıldı. Yayın/push/merge yok.
+
+
 ### 2026-11-25 · codex/design-system-catalog, karar commit'i · Beş arkadaş entegrasyon kararları onaylandı
 
 - Batuhan ortak çalışma planındaki altı kararı önerildiği gibi onayladı: P56 ayrı motor yolu; desteklenmeyen istek eski motora; bayrak yalnız iç testte; `bes-arkadas/entegrasyon` dalı `codex/design-system-catalog` ucundan, main'e yalnız onayla; görselsiz P56 yalnız iç testte; diğer 13 arkadaşa dokunulmaz.
