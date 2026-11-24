@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/design-system-catalog, commit yok · Beş ayrı tam vücut karakter paketi
+
+- Kullanıcı onayıyla5karakter tekil built-in image_gen çağrılarıyla, detay/grup/marka referanslı şeffafPNG hazırlandı. Grup görselinden kesilmedi. PNG/istem/SHA/tekdosyagaleri/ZIP single-character-pack klasöründe.5RGBA dosya decode ve görsel inceleme yapıldı; kullanıcı/runtimesayfauyumu onayı değildir. App/motor değişmedi; test/simülatör çalıştırılmadı.
+
+
 ### 2026-11-25 · codex/design-system-catalog, commit yok · Beş arkadaş internal P56 motoru ve Claude koordinasyonu
 
 - Beş arkadaş × üç mod × 5–6 yaş için ayrı offline-p56-v1 runtime:9gerçek kurgu/30izinli eşleşme/15hücrede2mekanizma. Explicit ad-slot türevleri, full-byteSHA/source/book/causalquote lineage, tipli nedensel faktlar, Türkçe kişiselleştirme ve yaş/sakinson kontrolleri; legacy composer/validator/ContentPackage/252kanonik kaynak dosyası değişmedi.
