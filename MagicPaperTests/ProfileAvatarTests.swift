@@ -16,7 +16,6 @@ final class ProfileAvatarTests: XCTestCase {
         for character in ProfileAvatar.Character.allCases {
             XCTAssertFalse(ProfileAvatar.of(character).isEmpty, character.title)
         }
-        XCTAssertEqual(ProfileAvatar.of(.ragi).count, 15)
     }
 
     func testTheAvatarRoundTripsInsideTheHero() throws {
@@ -31,5 +30,10 @@ final class ProfileAvatarTests: XCTestCase {
         XCTAssertNil(old.avatar)
         XCTAssertNil(ProfileAvatar.named("silinmis-avatar"))
         XCTAssertNil(ProfileAvatar.named(nil))
+    }
+
+    func testRagiIsTheMascotNeverTheChildsPicture() {
+        XCTAssertTrue(ProfileAvatar.all.allSatisfy { !$0.id.hasPrefix("ragi-") })
+        XCTAssertNil(ProfileAvatar.named("ragi-happy"))   // eski seçim boş resme düşer
     }
 }

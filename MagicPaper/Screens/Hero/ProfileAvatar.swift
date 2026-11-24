@@ -1,9 +1,10 @@
 import SwiftUI
 
-/// Profil avatarı (23 Kasım 2026, İrem): çocuk profil resmini Ragi'nin
-/// pozlarından ya da masal arkadaşlarının yüzlerinden seçer. Yalnızca yüz,
+/// Profil avatarı (23 Kasım 2026, İrem): çocuk profil resmini masal
+/// arkadaşlarının yüzlerinden seçer. Ragi maskottur, çocuğun kimliği olmaz;
+/// Ragi pozları seçiciden çıktı, eski seçim boş resme düşer (24 Kasım 2026, Batuhan). Yalnızca yüz,
 /// beden yok; renkli zeminli kare karo. Görseller `Assets.xcassets/Avatars`
-/// (Ragi'nin `Brand/mascot*` pozlarından ve karakter sayfalarından kırpıldı).
+/// (karakter sayfalarından kırpıldı; `Avatars/ragi-*` dosyaları artık kullanılmıyor).
 ///
 /// Tarçın: Batuhan'ın masal görsellerindeki tilki (`whole-book-art`).
 /// Kestane: Batuhan'ın karakter denemesi (`2026-11-18-character-comparison`);
@@ -17,11 +18,10 @@ struct ProfileAvatar: Identifiable, Hashable {
     var asset: String { "Avatars/\(id)" }
 
     enum Character: String, CaseIterable, Identifiable {
-        case ragi, tarcin, kestane
+        case tarcin, kestane
         var id: String { rawValue }
         var title: String {
             switch self {
-            case .ragi: "Ragi"
             case .tarcin: "Tarçın"
             case .kestane: "Kestane"
             }
@@ -29,21 +29,6 @@ struct ProfileAvatar: Identifiable, Hashable {
     }
 
     static let all: [ProfileAvatar] = [
-        .init(id: "ragi-happy", name: "Neşeli Ragi", character: .ragi, tone: .yellow),
-        .init(id: "ragi-calm", name: "Sakin Ragi", character: .ragi, tone: .lav),
-        .init(id: "ragi-waving", name: "El sallayan Ragi", character: .ragi, tone: .mint),
-        .init(id: "ragi-curious", name: "Meraklı Ragi", character: .ragi, tone: .sky),
-        .init(id: "ragi-reading", name: "Okuyan Ragi", character: .ragi, tone: .pink),
-        .init(id: "ragi-surprised", name: "Şaşıran Ragi", character: .ragi, tone: .peach),
-        .init(id: "ragi-front", name: "Gülümseyen Ragi", character: .ragi, tone: .green),
-        .init(id: "ragi-onbook", name: "Kitapçı Ragi", character: .ragi, tone: .yellow),
-        .init(id: "ragi-pencil", name: "Yazan Ragi", character: .ragi, tone: .lav),
-        .init(id: "ragi-thinking", name: "Düşünen Ragi", character: .ragi, tone: .mint),
-        .init(id: "ragi-peek", name: "Saklanan Ragi", character: .ragi, tone: .sky),
-        .init(id: "ragi-threequarter", name: "Yandan Ragi", character: .ragi, tone: .pink),
-        .init(id: "ragi-walking", name: "Yürüyen Ragi", character: .ragi, tone: .peach),
-        .init(id: "ragi-sleepy", name: "Uykulu Ragi", character: .ragi, tone: .green),
-        .init(id: "ragi-sleeping", name: "Uyuyan Ragi", character: .ragi, tone: .lav),
         .init(id: "tarcin-standing", name: "Tarçın", character: .tarcin, tone: .mint),
         .init(id: "tarcin-sitting", name: "Bakan Tarçın", character: .tarcin, tone: .sky),
         .init(id: "tarcin-resting", name: "Mutlu Tarçın", character: .tarcin, tone: .lav),
@@ -124,7 +109,7 @@ struct ProfileAvatarPicker: View {
     @Environment(\.dynamicTypeSize) private var typeSize
 
     @State private var shown = false
-    @State private var character: ProfileAvatar.Character = .ragi
+    @State private var character: ProfileAvatar.Character = .tarcin
     @State private var selected: ProfileAvatar?
     @State private var saved: ProfileAvatar?
     /// Son seçilen karo kısa bir zıplama yapar.
@@ -148,7 +133,7 @@ struct ProfileAvatarPicker: View {
             let current = ProfileAvatar.named(look?.avatar)
             selected = current
             saved = current
-            character = current?.character ?? .ragi
+            character = current?.character ?? .tarcin
             withAnimation(reduceMotion ? MP.M.easeOut : MP.M.spring) { shown = true }
         }
     }
