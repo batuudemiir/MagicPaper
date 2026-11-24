@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Ana sayfa → menü (23 Kasım 2026, İrem; prototip `yolculuk.js`). Sistem sheet'i
-/// (`MPSheet`): üstte Ragi'nin sorusu, altında uygulamanın var olan sayfaları ana
+/// (`MPSheet`): başlıkta soru, altında uygulamanın var olan sayfaları ana
 /// sayfanın liste satırlarıyla (`HomeListRow`), en altta ebeveyn kapısı. Seçince
 /// sheet kapanır, sayfa açık sekmenin yığınına itilir (`closeSheet(then:)`).
 struct KidMenuSheet: View {
@@ -35,9 +35,10 @@ struct KidMenuSheet: View {
     ]
 
     var body: some View {
-        MPSheet(onClose: close) {
+        // Ragi'siz (24 Kasım 2026): arkadaki ana sayfanın Ragi'si yeter,
+        // ekranda tek Ragi. Soru sheet'in başlığı.
+        MPSheet(title: "Nereye gidelim, \(name)?", onClose: close) {
             VStack(alignment: .leading, spacing: MPSpacing.lg) {
-                MascotSays(mascot: .waving, text: "Nereye gidelim, \(name)?", mascotWidth: MPSize.minTouchHero)
                 VStack(spacing: MPSpacing.sm) {
                     ForEach(Self.items) { item in
                         HomeListRow(systemImage: item.systemImage, tone: item.tone, title: item.title,
