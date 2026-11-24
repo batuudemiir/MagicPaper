@@ -8,19 +8,35 @@ import SwiftUI
 /// Gündüz bir başarı anı: Ragi sevinçle zıplar, arkasında kâğıt yıldızlar bir kez
 /// patlar, kısa ses ve tek titreşim; kazanılanlar (ilk kez bitiyorsa yıldız, üst üste
 /// günler, yeni kelimeler, rozet) tek tek sesle belirir. Sonra Ragi'nin balonu bir soru
-/// sorar ("Birlikte konuşalım", puansız). Yollar: "Bir masal daha", "Bitir". FAZ 13:
+/// sorar ("Birlikte konuşalım", puansız). Tek yol: "Ana sayfaya dön". FAZ 13:
 /// seri devam ettirilebiliyorsa "Devam ettir" burada. Künye kazanılanların altında.
 ///
 /// 23 Kasım 2026 (İrem, yeni gündüz tasarımı; prototip `design-preview/app/ending.js`):
 /// mor zemin (`MP.C.endingSky`), "Masal bitti!", ışık hüzmeleri önünde sevinçli Ragi
-/// (`Mascot.cheer`), "Bravo, <ad>!", "Bir masal daha", yatay kayan kazanılanlar
-/// (çıkartma, masalın rozeti, yıldız, haftalık dakika, kelimeler), Ragi'nin sorusu tek
+/// (`Mascot.cheer`), "Bravo, <ad>!", yatay kayan kazanılanlar
+/// (çıkartma, masalın rozeti, yıldız, kelimeler), Ragi'nin sorusu tek
 /// satır, en altta "Ana sayfaya dön" ("Bitir"in yerine). Rozet anı, gece yaprağı, seri,
 /// bilgi ve künye aynen; gece yaprağı değişmedi.
+///
+/// 24 Kasım 2026 (Batuhan): "Bir masal daha" ve haftalık dakika kartı kalktı. Masal
+/// bitirmek bir olay; hemen yenisi önerilmez, çocuğa okuma süresi gösterilmez.
 ///
 /// Uyku vaktinde bir kitabın son sayfası kadar sade: uyuyan Ragi, "Son", "İyi geceler,
 /// <ad>." ve varsa tek satır rozet. Ses, titreşim, patlama ve soru yok; "İyi geceler"
 /// ekranı karartıp kapatır. Reduce Motion'da her şey yalnızca belirir.
+/// Masal sonunda kazanılanların sırası (24 Kasım 2026): çıkartma, masalın rozeti,
+/// yıldız, yeni kelimeler. Okuma süresi burada yok; o ebeveynin özetinde.
+enum StoryEndingEarned {
+    static func ids(isFinished: Bool, hasBadge: Bool, newWords: Int) -> [String] {
+        var ids: [String] = []
+        if !isFinished { ids.append("sticker") }
+        if hasBadge { ids.append("badge") }
+        if !isFinished { ids.append("star") }
+        if newWords > 0 { ids.append("words") }
+        return ids
+    }
+}
+
 struct StoryEndingLeaf: View {
 
     let story: Story
@@ -29,7 +45,6 @@ struct StoryEndingLeaf: View {
     /// Okuyucu sonraki yaprağı önceden çizebilir; kutlama yaprak gerçekten açılınca başlar.
     let isCurrent: Bool
     let onClose: () -> Void
-    var onAnother: () -> Void = {}
     var onGoodNight: () -> Void = {}
 
     @EnvironmentObject private var app: MPAppState
@@ -122,34 +137,33 @@ struct StoryEndingLeaf: View {
     /// her biten masal bir yıldız). Tekrar okumada yıldız sözü verilmez.
     ///
     /// 23 Kasım 2026 (İrem, yeni masal sonu): sıra çıkartma, masalın rozeti,
-    /// yıldız, haftalık okuma dakikası, yeni kelimeler; yatay kayar, ortadan
+    /// yıldız, yeni kelimeler; yatay kayar, ortadan
     /// başlar. Rozet gündüz tam ekran anda söylendiyse de burada küçük kartıyla
     /// durur (kazanılanların hepsi bir arada). Üst üste günler Okuma yolculuğum'da.
     private var earned: [Earned] {
-        var items: [Earned] = []
-        if !story.isFinished {
-            // Faz 9: masalın çıkartması albüme girer (okumaya yakın ödül).
-            items.append(.init(id: "sticker", icon: "star", tone: .lav, value: "Çıkartma", label: "albümüne eklendi"))
-        }
-        if let badge = news.fresh.first {
-            items.append(.init(id: "badge", icon: badge.icon, tone: badge.tone, value: badge.title, label: "yeni rozet"))
-        }
-        if !story.isFinished {
-            items.append(.init(id: "star", icon: "star.fill", tone: .yellow, value: "+1",
-                               label: starScore.map { "yıldız · toplam \($0)" } ?? "yıldız"))
-        }
-        if streak.minutesThisWeek > 0 {
-            items.append(.init(id: "minutes", icon: "clock", tone: .mint, value: "\(streak.minutesThisWeek) dk",
-                               label: "bu hafta okuma"))
-        }
         let others = StoryGenerationManager.shared.stories.filter {
             $0.id != story.id && $0.childProfileID == story.childProfileID
         }
         let words = MPVocabulary.newWordCount(in: story, comparedTo: others)
-        if words > 0 {
-            items.append(.init(id: "words", icon: "book.closed", tone: .sky, value: "\(words)", label: "yeni kelime"))
-        }
-        return items
+        let badge = news.fresh.first
+        return StoryEndingEarned.ids(isFinished: story.isFinished, hasBadge: badge != nil, newWords: words)
+            .compactMap { id -> Earned? in
+                switch id {
+                case "sticker":
+                    // Faz 9: masalın çıkartması albüme girer (okumaya yakın ödül).
+                    return .init(id: id, icon: "star", tone: .lav, value: "Çıkartma", label: "albümüne eklendi")
+                case "badge":
+                    guard let badge else { return nil }
+                    return .init(id: id, icon: badge.icon, tone: badge.tone, value: badge.title, label: "yeni rozet")
+                case "star":
+                    return .init(id: id, icon: "star.fill", tone: .yellow, value: "+1",
+                                 label: starScore.map { "yıldız · toplam \($0)" } ?? "yıldız")
+                case "words":
+                    return .init(id: id, icon: "book.closed", tone: .sky, value: "\(words)", label: "yeni kelime")
+                default:
+                    return nil
+                }
+            }
     }
 
     private var question: String? { StoryTalkPrompts.questions(for: story).first }
@@ -191,7 +205,7 @@ struct StoryEndingLeaf: View {
 
     /// 23 Kasım 2026 (İrem; referans: oyunlardaki "Level up" ekranı, prototip
     /// `design-preview/app/ending.js`): mor zeminde "Masal bitti!", ışık hüzmeleri
-    /// ve sıcak parıltı önünde sevinçli Ragi, "Bravo, <ad>!", "Bir masal daha",
+    /// ve sıcak parıltı önünde sevinçli Ragi, "Bravo, <ad>!",
     /// yatay kayan kazanılanlar, Ragi'nin sorusu, bilgi, künye, seri ve en altta
     /// "Ana sayfaya dön". Yazılar `MP.C.textOnArt`; kâğıt dili bileşenler gece
     /// temasıyla (`onSky`) okunur kalır.
@@ -215,10 +229,6 @@ struct StoryEndingLeaf: View {
                     .multilineTextAlignment(.center)
             }
             .opacity(revealed > 0 ? 1 : 0)
-
-            MPButton(title: "Bir masal daha", systemImage: "wand.and.sparkles", kind: .secondary, size: .hero,
-                     action: onAnother)
-                .opacity(revealed > 0 ? 1 : 0)
 
             earnedRow
 

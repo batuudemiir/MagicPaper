@@ -231,10 +231,6 @@ struct StoryReaderView: View {
             story: story,
             model: model,
             onClose: close,
-            onAnother: {
-                app.afterReader = .create
-                close()
-            },
             onGoodNight: {
                 app.sayGoodNight(after: story)
                 close()
