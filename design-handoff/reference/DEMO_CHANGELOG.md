@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/design-system-catalog, plan commit'i · Beş arkadaş entegrasyonu: Claude + Codex ortak çalışma planı
+
+- Ne değişti: yeni `docs/superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md`. P56'yı bayrak arkasında "Masal yaz" akışına bağlamak için iki hat: Codex motor/içerik/P56 kapıları (C1–C5), Claude uygulama entegrasyonu (B1–B6: kalıcı kayıt, paketli payload, yönlendirici, masal yazma yolu, seçim ekranı, seri/hatırlama korumaları). Hatlar arası sözleşme (`P56Support`, `StoryRuntimeRouter`), dosya sahipliği, ayrı worktree'ler, durum dosyalarıyla haberleşme ve birleştirme sırası yazıldı. Altı karar (K-A…K-F) Batuhan'ı bekliyor.
+- Bugünkü durum plana kanıtla yazıldı: P56 uygulamaya bağlı değil, masallar eski motor ve 18 arkadaşla yazılıyor; beş arkadaş işi main'de ve origin'de yok.
+- Bilerek değişmeyen: kod, içerik, testler. 22 Kasım geçiş planı (K0–K6) yerinde; bu plan onun K2–K5'ini hatlara böler.
+- Test çalıştırılmadı, simülatör yok (yalnız belge).
+- Dosyalar: `docs/superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md`, bu kayıt.
+
 ### 2026-11-25 · codex/design-system-catalog, commit yok · Beş ayrı tam vücut karakter paketi
 
 - Kullanıcı onayıyla5karakter tekil built-in image_gen çağrılarıyla, detay/grup/marka referanslı şeffafPNG hazırlandı. Grup görselinden kesilmedi. PNG/istem/SHA/tekdosyagaleri/ZIP single-character-pack klasöründe.5RGBA dosya decode ve görsel inceleme yapıldı; kullanıcı/runtimesayfauyumu onayı değildir. App/motor değişmedi; test/simülatör çalıştırılmadı.
