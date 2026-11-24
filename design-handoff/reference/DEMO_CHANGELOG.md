@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-24 · story-engine/refrain-validator@be24cf2 · İlan edilmiş nakarat tekrar uyarısı almaz
+
+- Batuhan'ın onayıyla (24 Kasım; iş paketi `p_repeated_line`, kural m003): `RepetitionValidator` artık blueprint'te ilan edilmiş nakarat satırının kendisi olan cümleleri n-gram sayımından çıkarıyor. `ValidationContext`'e isteğe bağlı `declaredRefrains` (varsayılan boş), `RefrainSpec.declaredLines` eklendi.
+- Bilerek değişmeyen: genel tekrar kapısı gevşemedi; nakaratın kelimeleri başka bir cümlede geçerse, yuvalı (`{{`) satır ve ilan edilmemiş her tekrar yine işaretlenir. Nakaratsız masallarda çıktı birebir aynı. `repeated_openers` ve `validate_beat_corpus.py` değişmedi (nakarat sayfanın son cümlesi, beat korpusuna girmiyor).
+- Not: bugün bu doğrulayıcı yalnızca `StoryOrchestrator` (görsel/bulut) yolunda çalışıyor; çevrimdışı composer onu çalıştırmıyor. Yani değişiklik şimdilik hazırlık: nakaratlı bir masal bu yoldan geçerse çağıranın `declaredRefrains: spec.declaredLines` vermesi gerekir.
+- Test: yeni `RefrainRepetitionValidatorTests` 7 test + `RefrainExperimentTests` 8 test geçti; tüm StoryEngine paketi 1118 test, 2 atlanan, 0 hata. Main ayrıca koşulmadı (disk). Uygulama derlenmedi, simülatör yok.
+- Dosyalar: `StoryEngine/Sources/StoryEngine/Services/Validators/DeterministicValidators.swift`, `.../Validators/StoryValidator.swift`, `.../Content/CatalogBlueprint.swift`, `StoryEngine/Tests/StoryEngineTests/RefrainRepetitionValidatorTests.swift`. Merge ve push yok.
+
 ### 2026-11-21 · main, commit bu kayıtla · anlati-provenance, evren-7-yetkiler ve codex/design-system-catalog main'e birleşti
 - Birleşenler (Batuhan'ın isteğiyle, sırayla, `--no-ff`): `anlati-provenance` (71d4893: sayfa kaynak izi, Anlatı planı A0-A8, katmanlı sayfa resmi kararı, pilot çizim listesi), `evren-7-yetkiler` (7fc4231: aynı plan belgelerinin eski kopyaları), `codex/design-system-catalog` (bbbc522: yayımlanmış Original'lara sayfa çizimleri, incelenmiş çan görseli, görsel kaynak denetimi).
 - Çakışma çözümü: `ANLATI_PLANI.md`'de anlati-provenance'ın yeni sürümü kaldı (evren-7'deki A0/A1 öncesi hâli). codex dalı `c742ea7`'yi yama olarak almıştı; çakışan 20 dosyanın (StoryPageProvenance, 18 notice_anomaly şablonu, VisualMeaningTests, GORSEL_ANLAM_SOZLESMESI) codex sürümü `c742ea7` ile birebir aynıydı, bu yüzden anlati-provenance'ın ilerlemiş sürümü (`visualReview: "reviewed"`) kaldı. Günlükte iki tarafın kayıtları tarihe göre birleşti, hiçbiri silinmedi.
