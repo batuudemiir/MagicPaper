@@ -63,7 +63,7 @@
             "sourceID": "pilot56_source_a3_cat_p01_v1",
             "sourceTextDigest": "6f8d8fddeb21305db06aa204be47a74eb48acf6590c54e7cbd0b5899f4c17431",
             "templateID": "pilot56_blueprint_a3_v1",
-            "sourcePointer": "sources.json#/sources/1169",
+            "sourcePointer": "sources.json#/sources/1170",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -93,6 +93,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -121,10 +122,14 @@
         "propDescription": "çocuğun küçük mendili ve çatallı kök; iz takip eden hayvan yok",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
             "description": "cebindeki mendilin eksikliğini fark eder",
             "evidenceSourceID": "pilot56_source_a3_cat_p01_v1",
-            "evidenceText": "Deniz ile Simit, Fısıldayan Orman’daki açıklıkta durdu. Deniz cebine baktığında küçük mendilinin olmadığını fark etti. Biraz önce patikada yürümüşlerdi. Mendil evden getirdiği, kendine ait bir eşyaydı. Simit şehirden bugün ziyarete gelmişti."
+            "evidenceText": "Deniz ile Simit, Fısıldayan Orman’daki açıklıkta durdu. Deniz cebine baktığında küçük mendilinin olmadığını fark etti. Biraz önce patikada yürümüşlerdi. Mendil evden getirdiği, kendine ait bir eşyaydı. Simit şehirden bugün ziyarete gelmişti.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -181,7 +186,7 @@
             "sourceID": "pilot56_source_a3_cat_p02_v1",
             "sourceTextDigest": "ac86dfd094036b99088e1e6c1fada6c70c0a8f1d5743345c70f32ccd98ad2b95",
             "templateID": "pilot56_blueprint_a3_v1",
-            "sourcePointer": "sources.json#/sources/1175",
+            "sourcePointer": "sources.json#/sources/1176",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -211,6 +216,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -253,10 +259,14 @@
         "propDescription": "çocuğun küçük mendili ve çatallı kök; iz takip eden hayvan yok",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
             "description": "önceki kökü hatırlar; henüz burada görmez",
             "evidenceSourceID": "pilot56_source_a3_cat_p02_v1",
-            "evidenceText": "Deniz durup düşündü. \"Ayakkabımdaki toprağı silerken çıkarmıştım,\" dedi. Yanında çatallı bir kök gördüğünü hatırlıyordu. Şimdi kök burada değildi; görüntüsü yalnız aklındaydı. Mendilin nerede kaldığını henüz bilmiyorlardı."
+            "evidenceText": "Deniz durup düşündü. \"Ayakkabımdaki toprağı silerken çıkarmıştım,\" dedi. Yanında çatallı bir kök gördüğünü hatırlıyordu. Şimdi kök burada değildi; görüntüsü yalnız aklındaydı. Mendilin nerede kaldığını henüz bilmiyorlardı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -313,7 +323,7 @@
             "sourceID": "pilot56_source_a3_cat_p03_v1",
             "sourceTextDigest": "de07c0a7701e01f63a48bc0a0cd6afc9461c7611fd81c7c93037777866f78915",
             "templateID": "pilot56_blueprint_a3_v1",
-            "sourcePointer": "sources.json#/sources/1180",
+            "sourcePointer": "sources.json#/sources/1181",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -342,6 +352,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -377,10 +388,15 @@
         "propDescription": "çocuğun küçük mendili ve çatallı kök; iz takip eden hayvan yok",
         "actions": [
           {
-            "actorSubjectID": "companion_city_cat_001",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
             "description": "Şehirden ziyarete gelen Simit burnunu yere uzatıp sonra kaldırdı. \"Sen nerede durduğunu hatırlıyorsun,\" dedi. Mendilin kokusunu bildiğini söylemedi. Deniz kendi gördüğü kökü anlatırken kedi sakin biçimde dinledi.",
             "evidenceSourceID": "pilot56_source_a3_cat_p03_v1",
-            "evidenceText": "Şehirden ziyarete gelen Simit burnunu yere uzatıp sonra kaldırdı. \"Sen nerede durduğunu hatırlıyorsun,\" dedi. Mendilin kokusunu bildiğini söylemedi. Deniz kendi gördüğü kökü anlatırken kedi sakin biçimde dinledi."
+            "evidenceText": "Şehirden ziyarete gelen Simit burnunu yere uzatıp sonra kaldırdı. \"Sen nerede durduğunu hatırlıyorsun,\" dedi. Mendilin kokusunu bildiğini söylemedi. Deniz kendi gördüğü kökü anlatırken kedi sakin biçimde dinledi.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -437,7 +453,7 @@
             "sourceID": "pilot56_source_a3_cat_p04_v1",
             "sourceTextDigest": "005c38f916b7ca328abfda81639cd828ae4369653598b76c2be2973b686df2f4",
             "templateID": "pilot56_blueprint_a3_v1",
-            "sourcePointer": "sources.json#/sources/1186",
+            "sourcePointer": "sources.json#/sources/1187",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -467,6 +483,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -495,10 +512,14 @@
         "propDescription": "çocuğun küçük mendili ve çatallı kök; iz takip eden hayvan yok",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
             "description": "kendi önceki yolunu seçer",
             "evidenceSourceID": "pilot56_source_a3_cat_p04_v1",
-            "evidenceText": "Deniz geldikleri patikayı gösterdi. \"Kökü aramak için bu taraftan döneceğim,\" dedi. Yavaşça yürümeye başladı. Arkadaşı yolu tahmin ederek başka yöne sapmadı. Aradıkları, yalnız bu yürüyüşte bırakılmış küçük bir eşyaydı."
+            "evidenceText": "Deniz geldikleri patikayı gösterdi. \"Kökü aramak için bu taraftan döneceğim,\" dedi. Yavaşça yürümeye başladı. Arkadaşı yolu tahmin ederek başka yöne sapmadı. Aradıkları, yalnız bu yürüyüşte bırakılmış küçük bir eşyaydı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -555,7 +576,7 @@
             "sourceID": "pilot56_source_a3_cat_p05_v1",
             "sourceTextDigest": "31fbff9d35fdb391eb832d6c1a51727360d4e80a419cd7f8705e306bd3e86077",
             "templateID": "pilot56_blueprint_a3_v1",
-            "sourcePointer": "sources.json#/sources/1191",
+            "sourcePointer": "sources.json#/sources/1192",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -584,6 +605,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -619,10 +641,15 @@
         "propDescription": "çocuğun küçük mendili ve çatallı kök; iz takip eden hayvan yok",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
             "description": "Simit birkaç adım sonra dönüp Deniz’e doğru baktı; önden koşmayı bıraktı. Çocuk geniş patikanın yanındaki çatallı kökü tanıdı. \"Burayı görüyorum,\" dedi. Kedi başka izlerin peşine sapmadı.",
             "evidenceSourceID": "pilot56_source_a3_cat_p05_v1",
-            "evidenceText": "Simit birkaç adım sonra dönüp Deniz’e doğru baktı; önden koşmayı bıraktı. Çocuk geniş patikanın yanındaki çatallı kökü tanıdı. \"Burayı görüyorum,\" dedi. Kedi başka izlerin peşine sapmadı."
+            "evidenceText": "Simit birkaç adım sonra dönüp Deniz’e doğru baktı; önden koşmayı bıraktı. Çocuk geniş patikanın yanındaki çatallı kökü tanıdı. \"Burayı görüyorum,\" dedi. Kedi başka izlerin peşine sapmadı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -679,7 +706,7 @@
             "sourceID": "pilot56_source_a3_cat_p06_v1",
             "sourceTextDigest": "e587b7d3b898bd07dcda1ea5ea6da661a42b73acf9c70bd3cc52c103b1b3a8bc",
             "templateID": "pilot56_blueprint_a3_v1",
-            "sourcePointer": "sources.json#/sources/1196",
+            "sourcePointer": "sources.json#/sources/1197",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -708,6 +735,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -743,10 +771,15 @@
         "propDescription": "çocuğun küçük mendili ve çatallı kök; iz takip eden hayvan yok",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
             "description": "Deniz kökün açık yanındaki mendili gördü. Simit patisini uzatmadı; çocuk kendi eşyasını aldı. Kıvrık kuyruk kökten uzaktaydı. Yavaşlayıp geriye bakmak, aradıkları küçük yeri kaçırmamalarını sağlamıştı.",
             "evidenceSourceID": "pilot56_source_a3_cat_p06_v1",
-            "evidenceText": "Deniz kökün açık yanındaki mendili gördü. Simit patisini uzatmadı; çocuk kendi eşyasını aldı. Kıvrık kuyruk kökten uzaktaydı. Yavaşlayıp geriye bakmak, aradıkları küçük yeri kaçırmamalarını sağlamıştı."
+            "evidenceText": "Deniz kökün açık yanındaki mendili gördü. Simit patisini uzatmadı; çocuk kendi eşyasını aldı. Kıvrık kuyruk kökten uzaktaydı. Yavaşlayıp geriye bakmak, aradıkları küçük yeri kaçırmamalarını sağlamıştı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -803,7 +836,7 @@
             "sourceID": "pilot56_source_a3_cat_p07_v1",
             "sourceTextDigest": "092bcfe19ff5ec0e68ce8c76f62e38864a29ee8c4b16400a82bfa9c103840f8f",
             "templateID": "pilot56_blueprint_a3_v1",
-            "sourcePointer": "sources.json#/sources/1202",
+            "sourcePointer": "sources.json#/sources/1203",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -833,6 +866,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -867,10 +901,14 @@
         "propDescription": "çocuğun küçük mendili ve çatallı kök; iz takip eden hayvan yok",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
             "description": "mendili silkeleyip cebine koyar",
             "evidenceSourceID": "pilot56_source_a3_cat_p07_v1",
-            "evidenceText": "Deniz mendili silkeleyip cebine koydu. Kökün üstünde başka bir şey bırakmamıştı. Arkadaşına baktı, sonra boş kalan yere. Durup hatırlamak, geçtiği yolu yeniden okumasına yardım etmişti. Arama bitmişti."
+            "evidenceText": "Deniz mendili silkeleyip cebine koydu. Kökün üstünde başka bir şey bırakmamıştı. Arkadaşına baktı, sonra boş kalan yere. Durup hatırlamak, geçtiği yolu yeniden okumasına yardım etmişti. Arama bitmişti.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -927,7 +965,7 @@
             "sourceID": "pilot56_source_a3_cat_p08_v1",
             "sourceTextDigest": "5f568c167e060da496ecdf1dfe51145d9c004dc76de27c5d1bf2971de64b8e25",
             "templateID": "pilot56_blueprint_a3_v1",
-            "sourcePointer": "sources.json#/sources/1207",
+            "sourcePointer": "sources.json#/sources/1208",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -956,6 +994,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -981,19 +1020,25 @@
           },
           {
             "subjectID": "pilot56_object_forked_root_v1",
-            "presence": "present",
+            "presence": "off-scene",
             "states": [
-              "fixed-on-ground"
+              "left-at-search-location",
+              "not-current-clearing-prop"
             ]
           }
         ],
         "propDescription": "çocuğun küçük mendili ve çatallı kök; iz takip eden hayvan yok",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz + companion_city_cat_001",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
             "description": "aramanın bittiği yürüyüşü tamamlar",
             "evidenceSourceID": "pilot56_source_a3_cat_p08_v1",
-            "evidenceText": "Deniz ile arkadaşı geniş patikadan açıklığa geri döndü. Mendil bu kez cebindeydi. Onu bulan arkadaşının orman bilgisi değil, Deniz’in hatırladığı küçük ayrıntı olmuştu. İkisi yan yana sakin bir yürüyüşü tamamladı."
+            "evidenceText": "Deniz ile arkadaşı geniş patikadan açıklığa geri döndü. Mendil bu kez cebindeydi. Onu bulan arkadaşının orman bilgisi değil, Deniz’in hatırladığı küçük ayrıntı olmuştu. İkisi yan yana sakin bir yürüyüşü tamamladı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."

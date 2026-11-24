@@ -32,7 +32,7 @@
       "orderedBeatIDs": [
         "pilot56_beat_u1_1_v1"
       ],
-      "text": "Deniz, Orman Kıyısındaki Oda’da yatağına oturdu. Tarçın de odadaydı. Pencere kapalıydı; akşamın soluk ışığı yerde duruyordu. Bu gece hiçbir yere gitmeleri gerekmiyordu.",
+      "text": "Deniz, Orman Kıyısındaki Oda’da yatağına oturdu. Tarçın da odadaydı. Pencere kapalıydı; akşamın soluk ışığı yerde duruyordu. Bu gece hiçbir yere gitmeleri gerekmiyordu.",
       "context": {
         "ageBand": "5-6",
         "mode": "bedtime",
@@ -60,8 +60,8 @@
           {
             "order": 0,
             "sourceKind": "pilotAuthoredFullPage",
-            "sourceID": "pilot56_source_u1_fox_p01_v1",
-            "sourceTextDigest": "93c5b8a2b15e61b73b3c1dda70629c22de252030a3a0a879cc92d57f531b6d7c",
+            "sourceID": "pilot56_source_u1_fox_p01_v2",
+            "sourceTextDigest": "0e86d2b92aba3c3eb6aeb0b5041f8258b1a1351e3541c81022b297aac58ce078",
             "templateID": "pilot56_blueprint_u1_v1",
             "sourcePointer": "sources.json#/sources/4",
             "contexts": {
@@ -84,14 +84,15 @@
         ]
       },
       "sentenceSourceIDs": [
-        "pilot56_source_u1_fox_p01_v1_s01",
-        "pilot56_source_u1_fox_p01_v1_s02",
-        "pilot56_source_u1_fox_p01_v1_s03",
-        "pilot56_source_u1_fox_p01_v1_s04"
+        "pilot56_source_u1_fox_p01_v2_s01",
+        "pilot56_source_u1_fox_p01_v2_s02",
+        "pilot56_source_u1_fox_p01_v2_s03",
+        "pilot56_source_u1_fox_p01_v2_s04"
       ],
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -119,10 +120,14 @@
         "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
             "description": "yatağa oturur",
-            "evidenceSourceID": "pilot56_source_u1_fox_p01_v1",
-            "evidenceText": "Deniz, Orman Kıyısındaki Oda’da yatağına oturdu. Tarçın de odadaydı. Pencere kapalıydı; akşamın soluk ışığı yerde duruyordu. Bu gece hiçbir yere gitmeleri gerekmiyordu."
+            "evidenceSourceID": "pilot56_source_u1_fox_p01_v2",
+            "evidenceText": "Deniz, Orman Kıyısındaki Oda’da yatağına oturdu. Tarçın da odadaydı. Pencere kapalıydı; akşamın soluk ışığı yerde duruyordu. Bu gece hiçbir yere gitmeleri gerekmiyordu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -208,6 +213,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -235,10 +241,14 @@
         "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
             "description": "tanıdık perde sesini seçer",
             "evidenceSourceID": "pilot56_source_u1_fox_p02_v1",
-            "evidenceText": "Perdenin ucu duvara usulca değdi. Deniz bu sesi biliyordu. \"Önce bunu dinleyelim,\" dedi. Örtüsünü dizlerine çekti; sesi aramak için kalkmadı. Odadaki her şey yerli yerindeydi."
+            "evidenceText": "Perdenin ucu duvara usulca değdi. Deniz bu sesi biliyordu. \"Önce bunu dinleyelim,\" dedi. Örtüsünü dizlerine çekti; sesi aramak için kalkmadı. Odadaki her şey yerli yerindeydi.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -323,6 +333,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -350,10 +361,14 @@
         "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
         "actions": [
           {
-            "actorSubjectID": "companion_fox_pilot_001",
+            "actorSubjectIDs": [
+              "companion_fox_pilot_001"
+            ],
             "description": "Tarçın yere uzanmadan önce Deniz’in seçtiği sesi dinledi. \"Perdeyi duydum,\" dedi. Başka ses aramadı. Deniz konuşmak isterse bekleyecek kadar sessizdi; odada bir soru çözmeleri gerekmiyordu.",
             "evidenceSourceID": "pilot56_source_u1_fox_p03_v1",
-            "evidenceText": "Tarçın yere uzanmadan önce Deniz’in seçtiği sesi dinledi. \"Perdeyi duydum,\" dedi. Başka ses aramadı. Deniz konuşmak isterse bekleyecek kadar sessizdi; odada bir soru çözmeleri gerekmiyordu."
+            "evidenceText": "Tarçın yere uzanmadan önce Deniz’in seçtiği sesi dinledi. \"Perdeyi duydum,\" dedi. Başka ses aramadı. Deniz konuşmak isterse bekleyecek kadar sessizdi; odada bir soru çözmeleri gerekmiyordu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -438,6 +453,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -465,10 +481,14 @@
         "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
             "description": "kendi nefesini fark eder",
             "evidenceSourceID": "pilot56_source_u1_fox_p04_v1",
-            "evidenceText": "Deniz başını yastığa yaklaştırdı. Kendi nefesinin örtüye değen sesini duydu. \"Bu da benim sesim,\" dedi. Bir sesi ötekinden ayırmak için acele etmesine gerek yoktu."
+            "evidenceText": "Deniz başını yastığa yaklaştırdı. Kendi nefesinin örtüye değen sesini duydu. \"Bu da benim sesim,\" dedi. Bir sesi ötekinden ayırmak için acele etmesine gerek yoktu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -553,6 +573,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -580,10 +601,15 @@
         "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
             "description": "Deniz perdenin ikinci yumuşak dokunuşunda gülümsedi. Tarçın da kulaklarını rahat bıraktı. Bu, cevap bekleyen bir oyun değildi. İkisi tanıdık sesi duyup olduğu yerde bırakabildi.",
             "evidenceSourceID": "pilot56_source_u1_fox_p05_v1",
-            "evidenceText": "Deniz perdenin ikinci yumuşak dokunuşunda gülümsedi. Tarçın da kulaklarını rahat bıraktı. Bu, cevap bekleyen bir oyun değildi. İkisi tanıdık sesi duyup olduğu yerde bırakabildi."
+            "evidenceText": "Deniz perdenin ikinci yumuşak dokunuşunda gülümsedi. Tarçın da kulaklarını rahat bıraktı. Bu, cevap bekleyen bir oyun değildi. İkisi tanıdık sesi duyup olduğu yerde bırakabildi.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -668,6 +694,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -696,10 +723,15 @@
         "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
             "description": "\"Dinlemeyi bitirdim,\" dedi Deniz. Tarçın geniş minderine yerleşti, gözleri açıktı. Deniz ışığı biraz kıstı. Sonra örtüsünün altına girdi; hiçbir sesi yeniden yakalamaya çalışmadı.",
             "evidenceSourceID": "pilot56_source_u1_fox_p06_v1",
-            "evidenceText": "\"Dinlemeyi bitirdim,\" dedi Deniz. Tarçın geniş minderine yerleşti, gözleri açıktı. Deniz ışığı biraz kıstı. Sonra örtüsünün altına girdi; hiçbir sesi yeniden yakalamaya çalışmadı."
+            "evidenceText": "\"Dinlemeyi bitirdim,\" dedi Deniz. Tarçın geniş minderine yerleşti, gözleri açıktı. Deniz ışığı biraz kıstı. Sonra örtüsünün altına girdi; hiçbir sesi yeniden yakalamaya çalışmadı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -784,6 +816,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -812,10 +845,15 @@
         "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz + companion_fox_pilot_001",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
             "description": "uyanık dinlenir",
             "evidenceSourceID": "pilot56_source_u1_fox_p07_v1",
-            "evidenceText": "Deniz artık sesleri saymıyordu. Örtü omuzlarında hafifti. Arkadaşı da kendi yerinde uyanık ve rahattı. Odanın tanıdık sesleri, ilgilenmeleri gereken işler olmadan sürüp gidiyordu."
+            "evidenceText": "Deniz artık sesleri saymıyordu. Örtü omuzlarında hafifti. Arkadaşı da kendi yerinde uyanık ve rahattı. Odanın tanıdık sesleri, ilgilenmeleri gereken işler olmadan sürüp gidiyordu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -901,6 +939,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -930,10 +969,14 @@
         "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
             "description": "gözlerini kapatır; uykuya daldığı iddia edilmez",
             "evidenceSourceID": "pilot56_source_u1_fox_p08_v1",
-            "evidenceText": "Orman Kıyısındaki Oda sessizce dinleniyordu. Deniz gözlerini kapattı. Arkadaşı rahat yerinde kaldı. Söylenecek son bir söz, bulunacak son bir ses yoktu. Bu akşam tamamlanmıştı."
+            "evidenceText": "Orman Kıyısındaki Oda sessizce dinleniyordu. Deniz gözlerini kapattı. Arkadaşı rahat yerinde kaldı. Söylenecek son bir söz, bulunacak son bir ses yoktu. Bu akşam tamamlanmıştı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."

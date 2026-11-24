@@ -63,7 +63,7 @@
             "sourceID": "pilot56_source_l3_bear_p01_v1",
             "sourceTextDigest": "deda5709d0c0d6ffb6d42bc900337d3d172d5d0a00d6dd45b972ffb49e9d77f8",
             "templateID": "pilot56_blueprint_l3_v1",
-            "sourcePointer": "sources.json#/sources/787",
+            "sourcePointer": "sources.json#/sources/788",
             "contexts": {
               "ageBand": "5-6",
               "mode": "learning",
@@ -92,6 +92,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -119,10 +120,15 @@
         "propDescription": "yaprağın ucundaki yağmur suyu damlası, yapraktaki ince su yolu, yassı taş",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz + companion_bear_001",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
             "description": "damlayı yerinde gözler",
             "evidenceSourceID": "pilot56_source_l3_bear_p01_v1",
-            "evidenceText": "Fısıldayan Orman’da Deniz ile Böğürtlen, alçak bir yaprağın yanında durdu. Sabah yağmurundan kalan su, yaprağın ucunda toplanıyordu. Küçük damla henüz yere düşmemişti. Patikanın zemini düzdü."
+            "evidenceText": "Fısıldayan Orman’da Deniz ile Böğürtlen, alçak bir yaprağın yanında durdu. Sabah yağmurundan kalan su, yaprağın ucunda toplanıyordu. Küçük damla henüz yere düşmemişti. Patikanın zemini düzdü.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -179,7 +185,7 @@
             "sourceID": "pilot56_source_l3_bear_p02_v1",
             "sourceTextDigest": "072456f60713200ae7388548cff264b30e1fe6418ab095711283e73736483dcb",
             "templateID": "pilot56_blueprint_l3_v1",
-            "sourcePointer": "sources.json#/sources/792",
+            "sourcePointer": "sources.json#/sources/793",
             "contexts": {
               "ageBand": "5-6",
               "mode": "learning",
@@ -208,6 +214,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -235,10 +242,14 @@
         "propDescription": "yaprağın ucundaki yağmur suyu damlası, yapraktaki ince su yolu, yassı taş",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
             "description": "dokunmayı bırakır",
             "evidenceSourceID": "pilot56_source_l3_bear_p02_v1",
-            "evidenceText": "Deniz damlanın ince ucuna baktı. \"Biraz uzadı mı?\" diye sordu. Parmaklarını kendine çekti. Yaprağı sallarsa damla düşebilirdi, ama kendi kendine nasıl değiştiğini artık göremezdi."
+            "evidenceText": "Deniz damlanın ince ucuna baktı. \"Biraz uzadı mı?\" diye sordu. Parmaklarını kendine çekti. Yaprağı sallarsa damla düşebilirdi, ama kendi kendine nasıl değiştiğini artık göremezdi.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -295,7 +306,7 @@
             "sourceID": "pilot56_source_l3_bear_p03_v1",
             "sourceTextDigest": "8bb5dc832cc822ba2b276271e97ad834c29fa157a5916ff7e7537db4179cd6fa",
             "templateID": "pilot56_blueprint_l3_v1",
-            "sourcePointer": "sources.json#/sources/798",
+            "sourcePointer": "sources.json#/sources/799",
             "contexts": {
               "ageBand": "5-6",
               "mode": "learning",
@@ -325,6 +336,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -352,10 +364,15 @@
         "propDescription": "yaprağın ucundaki yağmur suyu damlası, yapraktaki ince su yolu, yassı taş",
         "actions": [
           {
-            "actorSubjectID": "companion_bear_001",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
             "description": "Böğürtlen geniş patikanın kenarında durdu. Büyük pençelerini yapraktan uzakta tuttu. \"Ben dokunmadan bekleyebilirim,\" dedi. Deniz çömeldi. Bu küçük değişimi ayının gücü değil, ikisinin sabrı görünür kılacaktı.",
             "evidenceSourceID": "pilot56_source_l3_bear_p03_v1",
-            "evidenceText": "Böğürtlen geniş patikanın kenarında durdu. Büyük pençelerini yapraktan uzakta tuttu. \"Ben dokunmadan bekleyebilirim,\" dedi. Deniz çömeldi. Bu küçük değişimi ayının gücü değil, ikisinin sabrı görünür kılacaktı."
+            "evidenceText": "Böğürtlen geniş patikanın kenarında durdu. Büyük pençelerini yapraktan uzakta tuttu. \"Ben dokunmadan bekleyebilirim,\" dedi. Deniz çömeldi. Bu küçük değişimi ayının gücü değil, ikisinin sabrı görünür kılacaktı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -412,7 +429,7 @@
             "sourceID": "pilot56_source_l3_bear_p04_v1",
             "sourceTextDigest": "40761b294f50cc7f3db731ae5b9826ee0a93e459d1630096b1c2624a62ae6af9",
             "templateID": "pilot56_blueprint_l3_v1",
-            "sourcePointer": "sources.json#/sources/803",
+            "sourcePointer": "sources.json#/sources/804",
             "contexts": {
               "ageBand": "5-6",
               "mode": "learning",
@@ -441,6 +458,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -468,10 +486,14 @@
         "propDescription": "yaprağın ucundaki yağmur suyu damlası, yapraktaki ince su yolu, yassı taş",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
             "description": "aynı bakış noktasını seçer",
             "evidenceSourceID": "pilot56_source_l3_bear_p04_v1",
-            "evidenceText": "\"Aynı yerden bakalım,\" dedi Deniz. Patikadaki yassı taşın yanına çömeldi. Yaprağa dokunmadı. İlk gördüğü küçük, yuvarlak damlayı aklında tuttu; şimdi yalnız yeniden bakmak için bekleyecekti."
+            "evidenceText": "\"Aynı yerden bakalım,\" dedi Deniz. Patikadaki yassı taşın yanına çömeldi. Yaprağa dokunmadı. İlk gördüğü küçük, yuvarlak damlayı aklında tuttu; şimdi yalnız yeniden bakmak için bekleyecekti.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -528,7 +550,7 @@
             "sourceID": "pilot56_source_l3_bear_p05_v1",
             "sourceTextDigest": "cdf0d1641052cebdf19337808dec14a822c669d55682c9814a66ba3f2232e75a",
             "templateID": "pilot56_blueprint_l3_v1",
-            "sourcePointer": "sources.json#/sources/808",
+            "sourcePointer": "sources.json#/sources/809",
             "contexts": {
               "ageBand": "5-6",
               "mode": "learning",
@@ -557,6 +579,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -584,10 +607,15 @@
         "propDescription": "yaprağın ucundaki yağmur suyu damlası, yapraktaki ince su yolu, yassı taş",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
             "description": "Yapraktaki ince su yolu damlaya katıldı. Deniz uzayan ucu gördü. Böğürtlen gövdesini kıpırdatmadan durdu; yaprağa gölge düşürmüyordu. Çocuk ilk küçük biçimle şimdikini karşılaştırmak için sözünü yavaşça kurdu.",
             "evidenceSourceID": "pilot56_source_l3_bear_p05_v1",
-            "evidenceText": "Yapraktaki ince su yolu damlaya katıldı. Deniz uzayan ucu gördü. Böğürtlen gövdesini kıpırdatmadan durdu; yaprağa gölge düşürmüyordu. Çocuk ilk küçük biçimle şimdikini karşılaştırmak için sözünü yavaşça kurdu."
+            "evidenceText": "Yapraktaki ince su yolu damlaya katıldı. Deniz uzayan ucu gördü. Böğürtlen gövdesini kıpırdatmadan durdu; yaprağa gölge düşürmüyordu. Çocuk ilk küçük biçimle şimdikini karşılaştırmak için sözünü yavaşça kurdu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -644,7 +672,7 @@
             "sourceID": "pilot56_source_l3_bear_p06_v1",
             "sourceTextDigest": "50227b71c726eed71a3619a18ee10173c8f98224b28c853a192b57dfe7be6a44",
             "templateID": "pilot56_blueprint_l3_v1",
-            "sourcePointer": "sources.json#/sources/813",
+            "sourcePointer": "sources.json#/sources/814",
             "contexts": {
               "ageBand": "5-6",
               "mode": "learning",
@@ -673,6 +701,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -700,10 +729,15 @@
         "propDescription": "yaprağın ucundaki yağmur suyu damlası, yapraktaki ince su yolu, yassı taş",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
             "description": "\"Su buradan geliyor, damla burada birikiyor,\" dedi Deniz. Böğürtlen başını hafifçe eğdi. Hiçbir şeyi taşımadı ya da sıkmadı. Çocuğun gösterdiği küçük değişim, yalnız bekleyince görülebilmişti.",
             "evidenceSourceID": "pilot56_source_l3_bear_p06_v1",
-            "evidenceText": "\"Su buradan geliyor, damla burada birikiyor,\" dedi Deniz. Böğürtlen başını hafifçe eğdi. Hiçbir şeyi taşımadı ya da sıkmadı. Çocuğun gösterdiği küçük değişim, yalnız bekleyince görülebilmişti."
+            "evidenceText": "\"Su buradan geliyor, damla burada birikiyor,\" dedi Deniz. Böğürtlen başını hafifçe eğdi. Hiçbir şeyi taşımadı ya da sıkmadı. Çocuğun gösterdiği küçük değişim, yalnız bekleyince görülebilmişti.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -760,7 +794,7 @@
             "sourceID": "pilot56_source_l3_bear_p07_v1",
             "sourceTextDigest": "e74e94baeea179eb92375c8fefce4bdd3b4fbe92304120c22453c8c1463fbbb1",
             "templateID": "pilot56_blueprint_l3_v1",
-            "sourcePointer": "sources.json#/sources/818",
+            "sourcePointer": "sources.json#/sources/819",
             "contexts": {
               "ageBand": "5-6",
               "mode": "learning",
@@ -789,6 +823,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -817,10 +852,15 @@
         "propDescription": "yaprağın ucundaki yağmur suyu damlası, yapraktaki ince su yolu, yassı taş",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz + companion_bear_001",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
             "description": "damlanın kendiliğinden düştüğünü görür",
             "evidenceSourceID": "pilot56_source_l3_bear_p07_v1",
-            "evidenceText": "Sonunda damla yapraktan ayrılıp toprağa düştü. Deniz yaprağın ucunda kalan küçücük ıslaklığı gördü. Hiç kimse dalı çekmemişti. Beklemek de değişimi görmenin bir yolu olmuştu."
+            "evidenceText": "Sonunda damla yapraktan ayrılıp toprağa düştü. Deniz yaprağın ucunda kalan küçücük ıslaklığı gördü. Hiç kimse dalı çekmemişti. Beklemek de değişimi görmenin bir yolu olmuştu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -877,7 +917,7 @@
             "sourceID": "pilot56_source_l3_bear_p08_v1",
             "sourceTextDigest": "9791d935ec177032311f7260d8aa19cee2a936609ef15c896027b8ff9697bd96",
             "templateID": "pilot56_blueprint_l3_v1",
-            "sourcePointer": "sources.json#/sources/823",
+            "sourcePointer": "sources.json#/sources/824",
             "contexts": {
               "ageBand": "5-6",
               "mode": "learning",
@@ -906,6 +946,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -934,10 +975,15 @@
         "propDescription": "yaprağın ucundaki yağmur suyu damlası, yapraktaki ince su yolu, yassı taş",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz + companion_bear_001",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
             "description": "tek gözlemden genel biyolojik zaman iddiası kurmadan ayrılır",
             "evidenceSourceID": "pilot56_source_l3_bear_p08_v1",
-            "evidenceText": "Deniz doğrulup arkadaşına gülümsedi. Tek bir damlanın zamanını izlemişlerdi; bütün damlaların aynı sürede düşeceğini söylemediler. Yaprak yerinde kaldı. İkisi de sakin adımlarla orman patikasına döndü."
+            "evidenceText": "Deniz doğrulup arkadaşına gülümsedi. Tek bir damlanın zamanını izlemişlerdi; bütün damlaların aynı sürede düşeceğini söylemediler. Yaprak yerinde kaldı. İkisi de sakin adımlarla orman patikasına döndü.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."

@@ -1,0 +1,15 @@
+# P56 internal runtime derivative v1
+
+Internal explicit-data pilot only. No bundle resources, runtime activation, art binding or release approval.
+
+`python3 Content/Pilots/five-friends-56-runtime-v1/build_runtime_package.py` exports the corrected authored source corpus into `payload.json` and its full exact-byte SHA-256 manifest. Root runs export and final verification together after implementation. The payload retains exact authored sources JSON, parent IDs/digests/pointers, new immutable child-slot templates, canonical companion/setting/world data and full authored semantics/art handoffs. The generator accepts only explicit synthetic proper-name grammar forms and fails unexpected Deniz forms.
+
+Load with `P56PackageLoader.load(payload:expectedSHA256:)`; only a trusted full digest plus valid schema/behavior is accepted. Use `P56StoryComposer(package:).compose(P56Request(...))`. The output is a separate `P56ComposedStory`, never legacy `ComposedStory`. It carries immutable source identity, eight ordered page templates and rendered digests, separate authored and personalized semantics/art annotations, page causal traces, canonical companion profiles and an optional opaque canonical character identity reference.
+
+Supported: ages 5–6, three modes, five canonical companions, exact 30 allowed pairs. Nil mode/companion is surprise selection within the pilot. Explicit forced structure is for fixtures. The seeded draw happens once; validation failures never retry. Existing AgeBand/TextMetrics page and sentence budgets are enforced without lowering legacy limits.
+
+Any supplied family, guest, recall, occasion, series or topic context is unsupported; all supplied reasons are retained. Supplied ContentSafety currently returns `content-safety-not-reviewed`: this authored corpus lacks independently reviewed SafetyTopic/emotion annotations and cannot honestly enforce those protections. This is an internal fixture limitation, not a production safety policy. Production remains disabled.
+
+Typed editorial page beats are distinct from atomic actions. Original full-page actor context remains explicitly non-atomic. Dedicated U3 fact transitions track memory selection/sharing/limit/release/awake rest/closure. A3 tracks prior observation, recognition at page 5, cloth recovery at page 6 and pocketing at page 7. The compiler checks prior facts, ordered structure, declared actor ownership and exact source evidence; it is not an NLP verifier of arbitrary authored prose. Full-page evidence is not presented as independently approved atomic annotation. Closed eyes do not establish sleep.
+
+`P56Sampler.run(package:count:)` balances 1,500 first attempts over 15 cells, reports failures in the denominator, mechanisms, fixed books, structural signatures, source/text repetition and first-repeat windows. Only two fixed books per cell exist; this is not a combinatorial diversity claim. Set `P56_REPORT_DIRECTORY` for tests to export `sampling.json` and separate `forced-books.json`; optional `P56_REPORT_PATH` writes only the sampling report. No private input is logged. All art approvals remain false.

@@ -10,9 +10,9 @@ Kaynak: [tam kitap ve görsel bağlam](../../../Content/Pilots/five-friends-56-v
 
 ### Sayfa 1
 
-Deniz, Orman Kıyısındaki Oda’da yatağına oturdu. Tarçın de odadaydı. Pencere kapalıydı; akşamın soluk ışığı yerde duruyordu. Bu gece hiçbir yere gitmeleri gerekmiyordu.
+Deniz, Orman Kıyısındaki Oda’da yatağına oturdu. Tarçın da odadaydı. Pencere kapalıydı; akşamın soluk ışığı yerde duruyordu. Bu gece hiçbir yere gitmeleri gerekmiyordu.
 
-Kaynak: `pilot56_source_u1_fox_p01_v1`.
+Kaynak: `pilot56_source_u1_fox_p01_v2`.
 
 ### Sayfa 2
 
@@ -62,9 +62,9 @@ Kaynak: [tam kitap ve görsel bağlam](../../../Content/Pilots/five-friends-56-v
 
 ### Sayfa 1
 
-Deniz, Orman Kıyısındaki Oda’da yatağına oturdu. Yıldız de odadaydı. Pencere kapalıydı; akşamın soluk ışığı yerde duruyordu. Bu gece hiçbir yere gitmeleri gerekmiyordu.
+Deniz, Orman Kıyısındaki Oda’da yatağına oturdu. Yıldız da odadaydı. Pencere kapalıydı; akşamın soluk ışığı yerde duruyordu. Bu gece hiçbir yere gitmeleri gerekmiyordu.
 
-Kaynak: `pilot56_source_u1_owl_p01_v1`.
+Kaynak: `pilot56_source_u1_owl_p01_v2`.
 
 ### Sayfa 2
 
@@ -202,7 +202,7 @@ Kaynak: `pilot56_source_u2_hedgehog_p06_v1`.
 
 ### Sayfa 7
 
-Arkadaşı seçtiği yerde uyanık dinleniyordu. Deniz kendi yatağına döndü. Yaptığı hazırlığı yeniden düzeltmedi; rahatlığın nasıl olacağını artık arkadaşı biliyordu. Odada geniş, sakin bir boşluk kaldı.
+Arkadaşı seçtiği yerde uyanık dinleniyordu. Deniz kendi yatağında rahattı. Yaptığı hazırlığı yeniden düzeltmedi; rahatlığın nasıl olacağını artık arkadaşı biliyordu. Odada geniş, sakin bir boşluk kaldı.
 
 Kaynak: `pilot56_source_u2_hedgehog_p07_v1`.
 
@@ -254,7 +254,7 @@ Kaynak: `pilot56_source_u2_cat_p06_v2`.
 
 ### Sayfa 7
 
-Arkadaşı seçtiği yerde uyanık dinleniyordu. Deniz kendi yatağına döndü. Yaptığı hazırlığı yeniden düzeltmedi; rahatlığın nasıl olacağını artık arkadaşı biliyordu. Odada geniş, sakin bir boşluk kaldı.
+Arkadaşı seçtiği yerde uyanık dinleniyordu. Deniz kendi yatağında rahattı. Yaptığı hazırlığı yeniden düzeltmedi; rahatlığın nasıl olacağını artık arkadaşı biliyordu. Odada geniş, sakin bir boşluk kaldı.
 
 Kaynak: `pilot56_source_u2_cat_p07_v1`.
 
@@ -306,9 +306,9 @@ Kaynak: `pilot56_source_u2_bear_p06_v1`.
 
 ### Sayfa 7
 
-Arkadaşı seçtiği yerde uyanık dinleniyordu. Deniz kendi yatağına döndü. Yaptığı hazırlığı yeniden düzeltmedi; rahatlığın nasıl olacağını artık arkadaşı biliyordu. Odada geniş, sakin bir boşluk kaldı.
+Arkadaşı seçtiği yerde uyanık dinleniyordu. Deniz kendi yatağında rahattı. Yaptığı hazırlığı yeniden düzeltmedi; rahatlığın nasıl olacağını artık arkadaşı biliyordu. Odada geniş, sakin bir boşluk kaldı.
 
-Kaynak: `pilot56_source_u2_bear_p07_v1`.
+Kaynak: `pilot56_source_u2_bear_p07_v2`.
 
 ### Sayfa 8
 
@@ -820,9 +820,9 @@ Kaynak: `pilot56_source_l2_bear_p05_v1`.
 
 ### Sayfa 6
 
-"Senin gördüğün de benim gördüğüm de burada," dedi Deniz. Böğürtlen sessizce dinledi. Çocuk yaprağın sapını görebileceği aralığa eğildi; bütününü anlamak için dala ya da ayının gücüne ihtiyaç duymadı.
+"Senin gördüğün de benim gördüğüm de burada," dedi Deniz. Böğürtlen sessizce dinledi. Çocuk yaprağın sapını görebileceği aralığa eğildi. Bütününü anlamak için dala ya da ayının gücüne ihtiyaç duymadı.
 
-Kaynak: `pilot56_source_l2_bear_p06_v1`.
+Kaynak: `pilot56_source_l2_bear_p06_v2`.
 
 ### Sayfa 7
 

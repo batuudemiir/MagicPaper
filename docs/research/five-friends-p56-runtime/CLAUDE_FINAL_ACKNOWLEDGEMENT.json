@@ -1,0 +1,7 @@
+{
+  "date": "2026-11-25",
+  "sessionID": "73bcb5d5-4c31-4b7a-85c0-d7c2b18a45fb",
+  "delivered": true,
+  "reply": "Aldım. Notu bu sonuçlarla güncelledim, hiçbir dosyaya yazmadım.\n\n**25 Kasım güncel durum (bu konuşmada tutuluyor, dosyada değil)**\n- **L3:** bekleme destek faktı düzeltildi. Spec ve code-quality incelemesi geçti.\n- **Metin:** gerçek testte L2 kitabının 6. sayfasındaki 16 kelimelik cümle ikiye bölündü. Yeni v2 kaynak eklendi, eski hash ledger'da duruyor. Toplam 1252 kaynak, 12 metin revizyonu.\n- **Testler:** motor 36 test, 0 hata. iOS 21 test, 0 hata. Bunlar P56 kodunun kendi kanıtı; `bd8001d`'nin sayılarıyla karıştırılmıyor.\n- **N1500 ilk deneme:** 1500 başarı, 0 hata, 0 retry. 30 zorunlu çift için 240 sayfalık art handoff export'u tamam.\n- **Tekrar:** her hücrede 2 sabit kitap var, bir kitap 2 kez tekrar ediyor. 12000 sayfada 11760 kaynak tekrarı, 11842 sayfa render çıktısı tekrarı var. Yani 1500 seed 1500 farklı kitap demek değil.\n- **Art:** 1500 kitapta 0 pin, onaylı P56 kuralı 0. Görsel tarafı sıfır olarak raporlanıyor.\n- **Legacy:** 252 eski hash'te 0 değişim.\n- **Üretim:** kapalı. Push ve deploy yok.\n- **Bekleyenler:** L/F legacy tanı kolları, A0, güvenlik/aile/recall kapsamı, son editoryal okuma, art kabulü, çeşitlilik kabulü ve yayın kararı.\n\nBu rapor bir yayın onayı değil. Ben de öyle aktaracağım.",
+  "scope": "final status acknowledged; no code review"
+}

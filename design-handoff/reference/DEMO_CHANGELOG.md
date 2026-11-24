@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/design-system-catalog, commit yok · Beş arkadaş internal P56 motoru ve Claude koordinasyonu
+
+- Beş arkadaş × üç mod × 5–6 yaş için ayrı offline-p56-v1 runtime:9gerçek kurgu/30izinli eşleşme/15hücrede2mekanizma. Explicit ad-slot türevleri, full-byteSHA/source/book/causalquote lineage, tipli nedensel faktlar, Türkçe kişiselleştirme ve yaş/sakinson kontrolleri; legacy composer/validator/ContentPackage/252kanonik kaynak dosyası değişmedi.
+- Internal app servis/snapshot explicit source injection ile çalışır, currentfallback/singleton/UI/bundle aktivasyonu yok. Kayıtlı eski kitap/seri/art korunur; P56draft legacyStory/Series diye saklanmaz. Sağlanan güvenlik ve diğer desteksiz bağlamlar gerekçeleriyle reddedilir, sessizce atılmaz. Üretim kapalı; meslek/deniz/uzay ve yayın kararı ayrı.
+-30kitap240sayfa bağımsız okundu;12toplammetin revizyonu eskiID/metin/hash ledger'ıyla korundu, metadataaktör/temporal/prop ayrımı düzeltildi. İlk testin yakaladığı L2ayı16kelime cümle bölünmesi yeniv2kaynak aldı; sınır gevşetilmedi. Source1252. Sonseçili motor36test0hata; gerçek iOS21test0hata. Tam1122motor/tümUIpaketi bu tur yeniden koşulmadı.
+-1500ilkdeneme1500başarı/0hata/0retry, ayrı30forcedpair; yalnız30sabitkitap. Herhücrede ilkbookrepeat2;12000sayfada11760source/11842globalrenderedpagerepeat. Art1500kitap0pin, approvedP56rule0; tammetin/kaynak/önce-sonra/poz/aktör/temporal handoff240sayfa. Çeşitlilik/art/soneditoryalkabulü yok. L/FveA0kolları henüz çalıştırılmadı.
+- Kullanıcıisteğiyle ClaudeCode'a koordinasyonözeti iletildi ve yanıt alındı; araçsızClaude kod incelemesi yapmış sayılmıyor. Not/yanıt/session ve güncel rapor docs/research/five-friends-p56-runtime altında. Push/deploy yok. Diğer oturum medya/UI/günlük işleri korunup commit dışında bırakıldı.
+
+
 ### 2026-11-25 · codex/design-system-catalog, commit yok · Beş karakter detay referansı
 
 - Onaylı grup+marka referanslı built-in image_gen ile5ayrı6görünümlü karakter sayfası; Kestane çiftburun hatası editv2 ile düzeltildi. PNG/tekdosyaHTML/ZIP, tam prompt ve SHA kayıtları character-details klasöründe.5seçiliPNGdecode ve görsel inceleme yapıldı; teknik ortografik model veya runtimeasset onayı değildir. App/motor değişmedi; test/simülatör çalıştırılmadı.

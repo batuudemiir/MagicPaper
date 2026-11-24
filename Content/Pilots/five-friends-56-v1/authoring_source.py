@@ -118,7 +118,7 @@ TAILORED={
 'L2':{
 'hedgehog':('Kestane kısa ayaklarıyla dalın öte yanındaki açık zemine geçti. "Buradan yuvarlak bir kıvrım görünüyor," dedi. Çekinmeden gördüğünü anlattı. Deniz ince ucu görüyordu; ikisi henüz aynı şeyi görmüyordu.', 'Deniz bir adım yana kaydı. Kestane bulunduğu açık yerden kıvrımı yeniden tarif etti. "Uç burada, kıvrım orada," dedi Deniz. İkisinin söylediklerini zihninde yan yana koydu; dal yerinde kaldı.', '"İki ayrı şey sanmıştım," dedi Deniz. "Ama aynı yaprağın iki yanı olabilir." Kestane dar aralığı gösteren yere başını çevirdi. Deniz sapın devamını görmek için kendi bakışını biraz alçalttı.'),
 'owl':('Yıldız açık zemine konmuş kalın bir kökün üstünde durdu. Kanatları kapalıydı. "Bu yanda yuvarlak," dedi. Deniz öbür tarafta ince uç görmüştü. Uçmak yerine aynı alçak düzlemden karşılaştırabilirlerdi.', 'Deniz kökün yanındaki açık yere geçti. Yıldız başını çevirdi; yerini değiştirmeden kıvrıma baktı. Çocuk iki görünüşü karşılaştırdı. Baykuşun yüksekten her şeyi bildiğini varsaymadı; ikinci görüş de yalnız bir parçaydı.', 'Deniz "İkimizin gördüğü birleşiyor," dedi. Yıldız yalnız başını eğdi. Çocuk sapın göründüğü aralığa çömeldi. İki görüşten bir bütün kurmak için son bakışı kendisi seçmişti.'),
-'bear':('Böğürtlen geniş gövdesiyle dala basmadan açık yerden dolaştı. "Bu yanda yuvarlak bir kenar var," dedi. Gücüyle dalı kaldırmadı. Deniz bulunduğu taraftan gördüğü ince ucu ona anlattı.', 'Deniz ayının yanında, görüşü kapanmayacak bir yere geçti. Böğürtlen bir adım geri çekildi. Çocuk yuvarlak kenarı kendi gördü. İki farklı bakışın aynı dalın altına uzandığını fark etti.', '"Senin gördüğün de benim gördüğüm de burada," dedi Deniz. Böğürtlen sessizce dinledi. Çocuk yaprağın sapını görebileceği aralığa eğildi; bütününü anlamak için dala ya da ayının gücüne ihtiyaç duymadı.')},
+'bear':('Böğürtlen geniş gövdesiyle dala basmadan açık yerden dolaştı. "Bu yanda yuvarlak bir kenar var," dedi. Gücüyle dalı kaldırmadı. Deniz bulunduğu taraftan gördüğü ince ucu ona anlattı.', 'Deniz ayının yanında, görüşü kapanmayacak bir yere geçti. Böğürtlen bir adım geri çekildi. Çocuk yuvarlak kenarı kendi gördü. İki farklı bakışın aynı dalın altına uzandığını fark etti.', '"Senin gördüğün de benim gördüğüm de burada," dedi Deniz. Böğürtlen sessizce dinledi. Çocuk yaprağın sapını görebileceği aralığa eğildi. Bütününü anlamak için dala ya da ayının gücüne ihtiyaç duymadı.')},
 'L3':{
 'fox':('Tarçın çocuğun yanına oturdu. "İstersen birlikte bekleriz," dedi. Damlanın ne zaman düşeceğini söylemedi. Deniz düşünmek için zamanı olduğunu hissetti; arkadaşının sakinliği, gözlemin yerine geçmiyordu.', 'Yaprakta biriken su uca doğru süzüldü. Deniz damlanın altının uzadığını gördü. Tarçın sessizce durdu. Çocuk ilk görünüşle şimdikini karşılaştırabilmek için bakışını aynı noktada tuttu.', '"Önce yuvarlaktı, şimdi aşağı doğru uzadı," dedi Deniz. Tarçın çocuğun sözünü bitirmesini bekledi. Kimse yaprağı düzeltmedi. Deniz farkı kendi gözleriyle bulmuştu; sonucu zorlamalarına gerek kalmadı.'),
 'hedgehog':('Kestane yassı taşın yanında durdu. "Ben de buradan bakabilirim," dedi. Rahattı; dikenlerini kabartmıyordu. Deniz ile aynı damlayı izleyecek, fakat değiştiğini söylemek için çocuğun bakmasını bekleyecekti.', 'Deniz damlanın altının incelip uzadığını gördü. Kestane kısa ayakları üstünde yerini korudu. Çocuk damlanın ilk yuvarlak halini anlattı. Arkadaşı dinleyince iki görünüş arasındaki fark daha belirginleşti.', '"Büyüdü, çünkü yapraktan su geliyor," dedi Deniz, ince su yolunu izleyerek. Kestane yaprağa dokunmadan başını kaldırdı. Çocuk gördüğünü anlatmıştı; her bitkinin aynı zamanda büyüdüğünü söylemiyordu.'),
@@ -168,6 +168,12 @@ def dump(path, value):
 
 EDITORIAL_REVISED_PAGES={('U3','fox',1),('U3','hedgehog',1),('U3','owl',1),('U3','cat',1),('U3','hedgehog',5),('U2','cat',6),('A2','owl',7),('A3','owl',3)}
 
+CORRECTION_REVISED_PAGES={('U1','fox',1),('U1','owl',1),('U2','bear',7),('L2','bear',6)}
+U2_PROPS={
+ 'hedgehog':'çocuğun yatağı ve örtüsü; püskülsüz düz minder ve katlı bez',
+ 'cat':'çocuğun yatağı ve örtüsü; geniş minder ve minderden alınan katlı bez',
+ 'bear':'çocuğun yatağı ve örtüsü; geniş yer döşeği ve ince bez'}
+
 def export():
     sources=[]; books=[]; contracts=[]
     for shape, spec in SHAPES.items():
@@ -184,6 +190,10 @@ def export():
             for index, text in zip([2,4,5],TAILORED[shape][key]): texts[index]=text
             if shape=='A2' and key=='owl':
                 texts[6]='Çizgi ok ucuyla birleşince işaret tamamlandı. Ok, yanlarındaki düz açıklığı gösteriyordu. Deniz iki parçayı doğru sıraya koymuştu. Yıldız’ın yandan gördüğü aralığı söylemesi, çocuğun parça yönünü seçmesine yardım etmişti.'
+            if shape=='U1' and key in ('fox','owl'):
+                texts[0]=texts[0].replace(name+' de odadaydı',name+' da odadaydı')
+            if shape=='U2' and key=='bear':
+                texts[6]=texts[6].replace('Deniz kendi yatağına döndü.', 'Deniz kendi yatağında rahattı.')
             # Simit forest visit must be known before a local-context implication.
             if key=='cat' and not shape.startswith('U'):
                 texts[0]+=' Simit şehirden bugün ziyarete gelmişti.'
@@ -194,7 +204,7 @@ def export():
               'syntheticChildID':'pilot56_synthetic_child_deniz','syntheticChildName':'Deniz'}
             pages=[]
             for n,text in enumerate(texts,1):
-                revision=2 if (shape,key,n) in EDITORIAL_REVISED_PAGES else 1
+                revision=2 if (shape,key,n) in EDITORIAL_REVISED_PAGES | CORRECTION_REVISED_PAGES else 1
                 sid=f'pilot56_source_{shape.lower()}_{key}_p{n:02}_v{revision}'
                 # Segments are orthographic sentence units, not reusable grammar slots.
                 segments=re.split(r'(?<=[.!?])\s+(?=[^\s])',text)
@@ -220,7 +230,11 @@ def export():
                     if n<=5: intentions=[{'subjectID':propid,'presence':'intended','states':['cloth-location-not-yet-known','not-available-as-visible-prop']}]
                     else: present.append({'subjectID':propid,'presence':'present','states':['cloth-in-child-hand','recovered-from-visible-root'] if n==6 else ['cloth-in-child-pocket']})
                     if n==2: memories=[{'subjectID':'pilot56_object_forked_root_v1','presence':'remembered','states':['not-yet-currently-visible']}, {'subjectID':'pilot56_synthetic_child_deniz','presence':'remembered','states':['earlier-shoe-wiping-action']}]
-                    if n>=5: present.append({'subjectID':'pilot56_object_forked_root_v1','presence':'present','states':['fixed-on-ground']})
+                    if 5<=n<=7: present.append({'subjectID':'pilot56_object_forked_root_v1','presence':'present','states':['fixed-on-ground']})
+                    if n==8: present.append({'subjectID':'pilot56_object_forked_root_v1','presence':'off-scene','states':['left-at-search-location','not-current-clearing-prop']})
+                    if key=='owl' and n==3:
+                        present.append({'subjectID':'pilot56_object_current_rest_root_v1','presence':'present','states':['owl-current-perch','distinct-from-sought-forked-root']})
+                        memories.append({'subjectID':'pilot56_object_forked_root_v1','presence':'remembered','states':['not-yet-currently-visible','distinct-from-current-perch']})
                     if key=='cat' and n==3: intentions.append({'subjectID':propid,'presence':'intended','states':['smell-knowledge-explicitly-not-asserted']})
                 else:
                     state=['scene-prop']
@@ -229,6 +243,8 @@ def export():
                     present.append({'subjectID':propid,'presence':'present','states':state})
                 actor,action=ACTION_TABLE[shape][n-1]
                 concrete=text if n in (3,5,6) else action
+                actor_ids=['pilot56_synthetic_child_deniz',cid] if actor=='both' or n in (3,5,6) else ['pilot56_synthetic_child_deniz' if actor=='child' else cid]
+                if (shape,key,n) in {('U1','fox',3),('U1','bear',3),('L3','hedgehog',3),('A3','bear',3)}: actor_ids=[cid]
                 roles={'child':'pilot56_synthetic_child_deniz','companion':cid,'both':'pilot56_synthetic_child_deniz + '+cid}
                 no_draw=['No unmentioned prop or extra character.','An intention or memory must not become a current physical action.']
                 if key=='owl': no_draw.append('No four-legged curl, hands, or unsupported flight; flight only explicit A3 p5. A2 p3 landing is explicit.')
@@ -241,8 +257,8 @@ def export():
                   'provenance':{'complete':True,'partCount':1,'parts':[{'order':0,'sourceKind':'pilotAuthoredFullPage','sourceID':sid,
                     'sourceTextDigest':sha(text),'templateID':bp,'sourcePointer':'sources.json#/sources/'+str(len(sources)-1), 'contexts':context}]},
                   'sentenceSourceIDs':sentence_ids,'semantics':{'annotationStatus':'author-reviewed-not-independently-approved','inventoryScope':'All named/pronominal story actors; prop groups enumerated, not a render whitelist.',
-                    'subjects':present+memories+intentions,'propDescription':PROP_LABELS[spec['prop']],
-                    'actions':[{'actorSubjectID':roles[actor],'description':concrete,'evidenceSourceID':sid,'evidenceText':text}],
+                    'metadataRevision':2,'subjects':present+memories+intentions,'propDescription':U2_PROPS[key] if shape=='U2' else PROP_LABELS[spec['prop']],
+                    'actions':[{'actorSubjectIDs':actor_ids,'description':concrete,'evidenceSourceID':sid,'evidenceText':text,'scope':'page-context; multiple actors on tailored pages; not atomic executable action','atomicActionMappingApproved':False}],
                     'temporalNote':'Past recollection stays remembered; potential actions and explicit negations are not present actions.'},
                   'artHandoff':{'contentMeaningStatus':'author-reviewed','visualIdentityStatus':'not-reviewed-for-this-page','assetRuleApproval':False,
                     'runtimeArt':None,'actionNeed':concrete,'anatomyAndScale':anatomy,'doNotDraw':no_draw},

@@ -1149,3 +1149,14 @@ Sabit ID binder yolu tüm havuzu gereksiz denetlemeyecek biçimde ortaklaştır�
 P56, `Content/Pilots/five-friends-56-v1/` altında yalnız editoryal korpus: 9 kurgu,30 kitap,240sayfa,15hücre,1251kaynak; üretim bundle'ında değil.8sayfa inceleme düzeltmesi yeni `_v2` kimliği aldı, önceki metin/hash korundu. Runtime beat/state, kişiselleştirme,1500seed ve art kabulü yapılmadı. Meslek/deniz/uzay ayrı teslim; Ragi marka/Originals rolünde. Yeni beşli üretim politikası açılmadı, push/deploy yok.
 
 Ayrıntı ve güncel test sonuçları: `docs/research/five-friends-k01-baseline/IMPLEMENTATION_REPORT.md` + `verification-summary.json`; okunabilir pilot: `docs/research/five-friends-pilot/OKUMA_DOSYASI.md`. Testte eski9–10learning devam yok varsayımı düzeltilip desteklenen9–10 ve desteksiz11–12 ayrı kontrol edildi. Mevcut252motor içerik dosyası hash0değişim. Başka oturumun seçim portresi/UI değişiklikleri bu teslimin sahipliğinde değil.
+
+
+## bes-arkadas-p56-runtime
+
+**25 Kasım 2026 — internal motor uygulanıp ölçüldü; üretim hâlâ kapalı.** Ayrı `offline-p56-v1` davranış/codec ve `P56ComposedStory`; legacy ContentPackage/StoryBeat/validator/katalog değişmez. Full payloadSHA, embedded authored source/book/causal evidence, açık ad-slot türevleri ve typed9kurgu faktları; U3 sahte need/anomaly kullanmaz, L3 bekleme gözlem değil destektir.15hücrede2mekanizma/30eşleşme; tek seededseçim/retry0. App P56InternalService yalnız explicit repo/payload/ref alır; singleton/UI/bundle kaydı yok. P56draft legacyStory/Series'e sahte ref ile yazılmaz. Kayıp/bozuk exactkaynağa currentfallback yok.
+
+Authoring30kitap240sayfa bağımsız okundu.4yeni metin düzeltmesi (2bağlaç, U2ayıçiftdönüş, gerçektestteyakalanan L2ayı16kelime cümlesinin bölünmesi) önceki8ile12revizyon; eskiID/metin/SHA ledger'da.240metadatarevizyonu aktör dizileri/kitap özeliprops/A3offscene kökleri ayırır.1252source. Atomicartmapping/soneditorialapproval yok.
+
+Sonuçlar `docs/research/five-friends-p56-runtime/verification-summary.json`, rapor `REPORT.md`. Seçili motor36test0hata; seçili iOS21test0hata;1500ilkdeneme1500başarı/0hata/0retry/30sabitkitap. İlk kitap tekrarı herhücrede2istek; sayfatekrarlarıglobaldir, hücrede1görünebilir. Bu genişkombinatoryalçeşitlilik değildir. Art1500kitap0pin; onaylıP56ruleyok;30tamkitap240sayfanın metin/kaynak/önce-sonra/eylem/temporalkanıtı art-handoff.json içinde. Görseliçinseeddeğişmez.
+
+SağlananContentSafety bağımsızetiketlerhenüzyokken unsupported; aile/konuk/recall/özelgün/seri/konu/diğeryaşbağlamları sessizce atılmaz, nedenlerbiriktirilir. L/FveA0kolları çalıştırılmadı.252legacyresourcehash0değişim; K1'in ref'siztarihselkaynak sınırı sürer. Meslek/deniz/uzay ayrıteslimler. Claude'a kullanıcıisteğiyle araçsızClaudeCodeüzerinden koordinasyonnotu iletildi ve yanıt alındı; bu bağımsızkodreviewdeğil. Detay/session `CLAUDE_ACKNOWLEDGEMENT.json`. Üretimyayını/artkabulü/çeşitlilikkabulü yok; push/deployyok.

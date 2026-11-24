@@ -20,7 +20,7 @@ def validate():
     assert len(structures)==9
     allowed={(s['planLabel'],c) for s in structures for c in s['allowedCompanionIDs']}
     assert len(allowed)==30
-    actual=set(); pages=0; cells={}; warnings=[]
+    actual=set(); pages=0; cells={}; warnings=[]; page_by_key={}
     for entry in manifest['books']:
         path=ROOT/entry['file']
         assert entry['sha256FileBytes']==hashlib.sha256(path.read_bytes()).hexdigest(),path
@@ -37,7 +37,27 @@ def validate():
             assert source['text']==page['text'] and parts[0]['sourceTextDigest']==digest(page['text'])
             pointer_index=int(parts[0]['sourcePointer'].rsplit('/',1)[1]); assert sources[pointer_index]['id']==source['id']
             assert ' '.join(by_id[x]['text'] for x in page['sentenceSourceIDs'])==page['text']
-            assert page['semantics']['subjects'] and page['semantics']['actions']
+            semantics=page['semantics']
+            page_by_key[(book['id'],i)]=page
+            assert semantics['metadataRevision']==2
+            assert semantics['subjects'] and semantics['actions']
+            present_ids={subject['subjectID'] for subject in semantics['subjects'] if subject['presence']=='present'}
+            for action in semantics['actions']:
+                actors=action['actorSubjectIDs']
+                assert isinstance(actors,list) and actors and len(actors)==len(set(actors))
+                assert all(actor in present_ids for actor in actors), 'action actor must be currently present'
+                assert 'actorSubjectID' not in action, 'obsolete scalar/composite actor field'
+                assert action['atomicActionMappingApproved'] is False
+                assert action['evidenceSourceID']==source['id'] and action['evidenceText']==page['text']
+            if book['planLabel']=='A3' and i==8:
+                root=[subject for subject in semantics['subjects'] if subject['subjectID']=='pilot56_object_forked_root_v1']
+                assert len(root)==1 and root[0]['presence']=='off-scene'
+            if book['id']=='pilot56_book_a3_owl_v1' and i==3:
+                assert 'pilot56_object_current_rest_root_v1' in present_ids
+                assert any(subject['subjectID']=='pilot56_object_forked_root_v1' and subject['presence']=='remembered' for subject in semantics['subjects'])
+            if book['planLabel']=='U2':
+                assert '(kirpi)' not in semantics['propDescription'] and '(kedi)' not in semantics['propDescription'] and '(ayı)' not in semantics['propDescription'], 'cross-species prop list'
+
             assert page['artHandoff']['assetRuleApproval'] is False and page['artHandoff']['runtimeArt'] is None
             assert page['previousPageNumber']==(i-1 if i>1 else None)
             assert page['nextPageNumber']==(i+1 if i<8 else None)
@@ -50,6 +70,25 @@ def validate():
         words=sum(len(p['text'].split()) for p in book['pages'])
         assert words==entry['wordCountWhitespace']
         if not 144<=words<=304: warnings.append({'book':book['id'],'words':words,'reason':'outside historical 144–304 reference; runtime age budget unverified'})
+    ledger=read(ROOT/'editorial-revisions.json')
+    assert ledger['revision']==3 and len(ledger['changes'])==12
+    for change in ledger['changes']:
+        assert digest(change['supersededText'])==change['supersededSHA256']
+        assert digest(change['newText'])==change['newSHA256']
+        assert change['supersededSourceID']!=change['newSourceID']
+        current=by_id[change['newSourceID']]
+        assert current['text']==change['newText'] and current['sha256UTF8']==change['newSHA256']
+        assert change['supersededSourceID'] not in by_id
+    revisions=ledger['metadataRevisions']
+    assert len(revisions)==1 and revisions[0]['revision']==2
+    metadata_entries=revisions[0]['pages']; metadata_keys=set()
+    for item in metadata_entries:
+        key=(item['bookID'],item['pageNumber']); assert key not in metadata_keys
+        metadata_keys.add(key); page=page_by_key[key]
+        assert item['previousSemantics']!=item['newSemantics']
+        assert item['newSemantics']==page['semantics']
+        assert item['sourceID']==page['provenance']['parts'][0]['sourceID']
+    assert metadata_keys==set(page_by_key) and len(metadata_entries)==240
     assert actual==allowed and len(manifest['books'])==30 and pages==240
     assert len(cells)==15 and all(len(mechanisms)==2 for mechanisms in cells.values())
     return {'status':'offline-authoring-integrity-only','books':30,'pages':pages,'structures':9,'cells':15,

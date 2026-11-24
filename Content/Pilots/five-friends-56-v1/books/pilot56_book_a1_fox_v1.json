@@ -63,7 +63,7 @@
             "sourceID": "pilot56_source_a1_fox_p01_v1",
             "sourceTextDigest": "48f97501dfd2dea04e1b58f661e1de33ca7e12e5fd800865437dc04916b681fb",
             "templateID": "pilot56_blueprint_a1_v1",
-            "sourcePointer": "sources.json#/sources/828",
+            "sourcePointer": "sources.json#/sources/829",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -92,6 +92,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -119,10 +120,15 @@
         "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz + companion_fox_pilot_001",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
             "description": "düz açıklıktaki güvenli hedefi seçer",
             "evidenceSourceID": "pilot56_source_a1_fox_p01_v1",
-            "evidenceText": "Deniz ile Tarçın, Fısıldayan Orman’daki geniş patikadaydı. Yanlarında düz, güneşli bir açıklık uzanıyordu. Karşı kıyıdaki büyük ağacın gölgesine gidip geri dönmek istediler. Uçurum ya da su yoktu."
+            "evidenceText": "Deniz ile Tarçın, Fısıldayan Orman’daki geniş patikadaydı. Yanlarında düz, güneşli bir açıklık uzanıyordu. Karşı kıyıdaki büyük ağacın gölgesine gidip geri dönmek istediler. Uçurum ya da su yoktu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -178,7 +184,7 @@
             "sourceID": "pilot56_source_a1_fox_p02_v1",
             "sourceTextDigest": "58d20ad430ad9fbdbef3e79eb1f0fae94302ecd10cb9a26b424c7bc2dc08dfc2",
             "templateID": "pilot56_blueprint_a1_v1",
-            "sourcePointer": "sources.json#/sources/834",
+            "sourcePointer": "sources.json#/sources/835",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -208,6 +214,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -235,10 +242,14 @@
         "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
             "description": "zemini gözler",
             "evidenceSourceID": "pilot56_source_a1_fox_p02_v1",
-            "evidenceText": "Deniz açıklığın başında durdu. Güneşli yer ona patikadan daha geniş görünmüştü. Acele etmeden zemine baktı. Kuru ve düzdü. Nerede duracağını kendisi seçebilirdi; ağaca birden varması gerekmiyordu."
+            "evidenceText": "Deniz açıklığın başında durdu. Güneşli yer ona patikadan daha geniş görünmüştü. Acele etmeden zemine baktı. Kuru ve düzdü. Nerede duracağını kendisi seçebilirdi; ağaca birden varması gerekmiyordu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -294,7 +305,7 @@
             "sourceID": "pilot56_source_a1_fox_p03_v1",
             "sourceTextDigest": "498d8facd3fed210db86fab48d5e680ceba4bdfabf68e3ffef239b9646a3fd0c",
             "templateID": "pilot56_blueprint_a1_v1",
-            "sourcePointer": "sources.json#/sources/839",
+            "sourcePointer": "sources.json#/sources/840",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -323,6 +334,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -350,10 +362,15 @@
         "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
         "actions": [
           {
-            "actorSubjectID": "companion_fox_pilot_001",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
             "description": "Tarçın çocuğun yanında, patikanın kenarında durdu. \"Adımını sen seç,\" dedi. Önden koşmadı; Deniz’in çizeceği görünmez sınırı bekledi. Çocuk gölgeye gitmek için önce yakın bir yer seçebilecekti.",
             "evidenceSourceID": "pilot56_source_a1_fox_p03_v1",
-            "evidenceText": "Tarçın çocuğun yanında, patikanın kenarında durdu. \"Adımını sen seç,\" dedi. Önden koşmadı; Deniz’in çizeceği görünmez sınırı bekledi. Çocuk gölgeye gitmek için önce yakın bir yer seçebilecekti."
+            "evidenceText": "Tarçın çocuğun yanında, patikanın kenarında durdu. \"Adımını sen seç,\" dedi. Önden koşmadı; Deniz’in çizeceği görünmez sınırı bekledi. Çocuk gölgeye gitmek için önce yakın bir yer seçebilecekti.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -409,7 +426,7 @@
             "sourceID": "pilot56_source_a1_fox_p04_v1",
             "sourceTextDigest": "30e4028e369d1493f776771e43e2875254e9a32fef5bfd54c09747f8882548ef",
             "templateID": "pilot56_blueprint_a1_v1",
-            "sourcePointer": "sources.json#/sources/845",
+            "sourcePointer": "sources.json#/sources/846",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -439,6 +456,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -466,10 +484,14 @@
         "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
             "description": "bir adımlık sınırı seçer",
             "evidenceSourceID": "pilot56_source_a1_fox_p04_v1",
-            "evidenceText": "Deniz önündeki açık toprağa baktı. \"Önce buraya kadar,\" dedi. Bir adımlık yer seçti. Arkadaşı onu çekmedi, önünden çağırmadı. Açıklığın kenarı, isterse bekleyebileceği kadar yakındı."
+            "evidenceText": "Deniz önündeki açık toprağa baktı. \"Önce buraya kadar,\" dedi. Bir adımlık yer seçti. Arkadaşı onu çekmedi, önünden çağırmadı. Açıklığın kenarı, isterse bekleyebileceği kadar yakındı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -525,7 +547,7 @@
             "sourceID": "pilot56_source_a1_fox_p05_v1",
             "sourceTextDigest": "68a55a337448a75fcb5edb569978a4a3c0332bee9b33a1935ae99003b9dc9959",
             "templateID": "pilot56_blueprint_a1_v1",
-            "sourcePointer": "sources.json#/sources/851",
+            "sourcePointer": "sources.json#/sources/852",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -555,6 +577,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -582,10 +605,15 @@
         "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
             "description": "Deniz ilk adımını attı, sonra durdu. Tarçın onun hizasında kaldı. Çocuk yere baktı; dengedeydi. Bir sonraki yer biraz ilerideydi, ama yine kendi adımı kadar yakındı. Kimse onu acele ettirmedi.",
             "evidenceSourceID": "pilot56_source_a1_fox_p05_v1",
-            "evidenceText": "Deniz ilk adımını attı, sonra durdu. Tarçın onun hizasında kaldı. Çocuk yere baktı; dengedeydi. Bir sonraki yer biraz ilerideydi, ama yine kendi adımı kadar yakındı. Kimse onu acele ettirmedi."
+            "evidenceText": "Deniz ilk adımını attı, sonra durdu. Tarçın onun hizasında kaldı. Çocuk yere baktı; dengedeydi. Bir sonraki yer biraz ilerideydi, ama yine kendi adımı kadar yakındı. Kimse onu acele ettirmedi.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -641,7 +669,7 @@
             "sourceID": "pilot56_source_a1_fox_p06_v1",
             "sourceTextDigest": "7b6eaef5e02f12fcd5fbe84d67ac1e4d3fd70fc1dfb9e813504f273490ce13ba",
             "templateID": "pilot56_blueprint_a1_v1",
-            "sourcePointer": "sources.json#/sources/857",
+            "sourcePointer": "sources.json#/sources/858",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -671,6 +699,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -698,10 +727,15 @@
         "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
             "description": "Deniz bir adım daha seçti. Sonra bir tane daha. Tarçın yalnız yanında yürüdü. Çocuk taşınmadan, çekilmeden, kendi ayaklarının üstünde açıklığı geçti. Ne zaman duracağına da kendisi karar verdi.",
             "evidenceSourceID": "pilot56_source_a1_fox_p06_v1",
-            "evidenceText": "Deniz bir adım daha seçti. Sonra bir tane daha. Tarçın yalnız yanında yürüdü. Çocuk taşınmadan, çekilmeden, kendi ayaklarının üstünde açıklığı geçti. Ne zaman duracağına da kendisi karar verdi."
+            "evidenceText": "Deniz bir adım daha seçti. Sonra bir tane daha. Tarçın yalnız yanında yürüdü. Çocuk taşınmadan, çekilmeden, kendi ayaklarının üstünde açıklığı geçti. Ne zaman duracağına da kendisi karar verdi.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -757,7 +791,7 @@
             "sourceID": "pilot56_source_a1_fox_p07_v1",
             "sourceTextDigest": "71421f2dfde9403d688ceef12f7a5c89bac150d514dd75c13cdff5ad99129031",
             "templateID": "pilot56_blueprint_a1_v1",
-            "sourcePointer": "sources.json#/sources/862",
+            "sourcePointer": "sources.json#/sources/863",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -786,6 +820,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -813,10 +848,15 @@
         "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz + companion_fox_pilot_001",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
             "description": "ağaç gölgesine varır",
             "evidenceSourceID": "pilot56_source_a1_fox_p07_v1",
-            "evidenceText": "Büyük ağacın gölgesine kendi ayaklarıyla vardığında Deniz geriye baktı. Biraz önce uzak gelen açıklık, birkaç küçük adımdan oluşmuştu. Arkadaşı yanındaydı. İkisi de ağacın serin gölgesinde durdu."
+            "evidenceText": "Büyük ağacın gölgesine kendi ayaklarıyla vardığında Deniz geriye baktı. Biraz önce uzak gelen açıklık, birkaç küçük adımdan oluşmuştu. Arkadaşı yanındaydı. İkisi de ağacın serin gölgesinde durdu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
@@ -872,7 +912,7 @@
             "sourceID": "pilot56_source_a1_fox_p08_v1",
             "sourceTextDigest": "d526c70ab31300208fe91109583a3f6b8573d3a5fcb0961808321932638d4ef3",
             "templateID": "pilot56_blueprint_a1_v1",
-            "sourcePointer": "sources.json#/sources/867",
+            "sourcePointer": "sources.json#/sources/868",
             "contexts": {
               "ageBand": "5-6",
               "mode": "adventure",
@@ -901,6 +941,7 @@
       "semantics": {
         "annotationStatus": "author-reviewed-not-independently-approved",
         "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -928,10 +969,15 @@
         "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
         "actions": [
           {
-            "actorSubjectID": "pilot56_synthetic_child_deniz + companion_fox_pilot_001",
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
             "description": "aynı düz yoldan döner",
             "evidenceSourceID": "pilot56_source_a1_fox_p08_v1",
-            "evidenceText": "Deniz ile arkadaşı aynı düz yoldan patikaya döndü. Güneşli açıklık aralarında kaldı. Yarış yapmamışlardı; bir yere yetişmeleri gerekmiyordu. Deniz ne kadar ilerleyeceğine karar vermiş, istediği yere varmıştı."
+            "evidenceText": "Deniz ile arkadaşı aynı düz yoldan patikaya döndü. Güneşli açıklık aralarında kaldı. Yarış yapmamışlardı; bir yere yetişmeleri gerekmiyordu. Deniz ne kadar ilerleyeceğine karar vermiş, istediği yere varmıştı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
           }
         ],
         "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
