@@ -15,10 +15,10 @@ final class ReadingJourneyTests: XCTestCase {
     }
 
     /// 23–29 Kasım 2026 (Pazartesi–Pazar); bugün Çarşamba 25.
-    private func journey(read: Set<Int>, streak: Int, minutes: [Int] = [9, 14, 11, 0, 0, 0, 0],
+    private func journey(read: Set<Int>, streak: Int,
                          words: [String] = []) -> ReadingJourney {
         let week = (23...29).map { (date: date($0), read: read.contains($0)) }
-        return ReadingJourney.make(week: week, minutes: minutes, streak: streak, stars: 12,
+        return ReadingJourney.make(week: week, streak: streak, stars: 12,
                                    words: words, wordCount: words.count, lastBadge: nil,
                                    now: date(25), calendar: calendar)
     }
@@ -36,11 +36,10 @@ final class ReadingJourneyTests: XCTestCase {
         XCTAssertEqual(j.headline, "3 gün üst üste")
         XCTAssertEqual(j.message, "Birlikte okudunuz. Okuma yolculuğunuz devam ediyor.")
         XCTAssertEqual(j.weekSummary, "Bu hafta 3 gün birlikte okudunuz")
-        XCTAssertEqual(j.minutesThisWeek, 34)
     }
 
     func testNoStreakInvitesWithoutPressure() {
-        let j = journey(read: [], streak: 0, minutes: [0, 0, 0, 0, 0, 0, 0])
+        let j = journey(read: [], streak: 0)
         XCTAssertEqual(j.headline, "Okuma yolculuğun")
         XCTAssertEqual(j.message, "Bugün bir masalla yolculuğa başlayalım.")
         XCTAssertEqual(j.weekSummary, "Bu hafta ilk masalı birlikte okuyalım")
@@ -55,11 +54,6 @@ final class ReadingJourneyTests: XCTestCase {
         let j = journey(read: [25], streak: 1, words: ["fener", "usulca", "pırıltı", "yamaç"])
         XCTAssertEqual(j.words, ["fener", "usulca", "pırıltı"])
         XCTAssertEqual(j.wordCount, 4)
-    }
-
-    func testNegativeMinutesNeverShow() {
-        let j = journey(read: [], streak: 0, minutes: [-5, 3])
-        XCTAssertEqual(j.days.map(\.minutes), [0, 3, 0, 0, 0, 0, 0])
     }
 
     func testTheStarLevelNeverAsksForMore() {

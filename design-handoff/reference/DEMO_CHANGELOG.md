@@ -143,8 +143,10 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Ekran turu:** menü sayfaları ana sayfa olarak çekiliyordu. Kök neden `ContentView`'da `currentProfile` id'sinin `onChange(initial: true)`'i açılışta yığını boşaltıyordu; artık yalnız çocuk değişince.
 - **Kanun:** AGENTS.md ve kök CLAUDE.md'ye mor gök istisnası ve 24 Kasım kararları.
 - **Bilerek değişmedi:** Paywall yerleşimi, gece masal sonu, İrem'in mantık değişiklikleri (günün masalı her zaman ücretsiz, seri `.locked`, deneme uygunluğu), `Avatars/ragi-*` görselleri (kullanılmıyor, silinmedi), `AfterReader.create` yolu (artık çağıranı yok).
-- **Test:** TEST_SONUCU
-- **Dosyalar:** `StoryEndingLeaf.swift`, `StoryLeafView.swift`, `StoryReaderView.swift`, `SeriesEndingSection.swift`, `HomeView.swift`, `MPHomeBoard.swift`, `MPTheme.swift`, `MPAppState.swift`, `KidMenuSheet.swift`, `ProfileAvatar.swift`, `ContentView.swift`, `AGENTS.md`; testler `StoryEndingEarnedTests`, `HomeTonightCopyTests`, `ProfileAvatarTests`.
+- **Okuma yolculuğum:** "Okuma zamanı" kartı ve "Bu hafta N dakika" kalktı; `ReadingJourney` artık dakika taşımıyor (son incelemenin önemli bulgusu: çocuğa süre gösteriliyordu). Dakika yalnızca ebeveyn özetinde.
+- **Test: çalıştırılmadı.** Disk 1,6 GB boş; Firebase ve swift-syntax ile 22 paketli temiz derleme sığmıyor. Derleme, birim testleri (`StoryEndingEarnedTests`, `HomeTonightCopyTests`, `ProfileAvatarTests`, `ReadingJourneyTests`) ve simülatör ekran turu yapılmadı. Kanun grep'leri değişen dosyalarda temiz. Kod bağımsız bir incelemeyle okundu (derleme engeli bulunmadı; kontrast hesabı: `textOnArtMuted` koyu gökte en az 4.75:1).
+- **Açık riskler:** `MPSkyPage` hâlâ tek `homeSky` kullanıyor; en büyük yazıda çok satırlı başlık açık mora inebilir (ekran turunda bakılmalı). `TonightState.readToday(canWrite:)` değeri artık kart tarafından okunmuyor. `AfterReader.create` ve "Önce masal" yolu ölü kod; ayrı turda temizlenmeli.
+- **Dosyalar:** `StoryEndingLeaf.swift`, `StoryLeafView.swift`, `StoryReaderView.swift`, `SeriesEndingSection.swift`, `HomeView.swift`, `MPHomeBoard.swift`, `MPTheme.swift`, `MPAppState.swift`, `KidMenuSheet.swift`, `ProfileAvatar.swift`, `ContentView.swift`, `ReadingJourney.swift`, `ReadingJourneyView.swift`, `AGENTS.md`; testler `StoryEndingEarnedTests`, `HomeTonightCopyTests`, `ProfileAvatarTests`, `ReadingJourneyTests`.
 
 ### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Profil: tek Ragi, Okuma yolculuğum kartında
 

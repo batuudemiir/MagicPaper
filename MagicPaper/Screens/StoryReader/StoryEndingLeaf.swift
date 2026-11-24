@@ -24,19 +24,6 @@ import SwiftUI
 /// Uyku vaktinde bir kitabın son sayfası kadar sade: uyuyan Ragi, "Son", "İyi geceler,
 /// <ad>." ve varsa tek satır rozet. Ses, titreşim, patlama ve soru yok; "İyi geceler"
 /// ekranı karartıp kapatır. Reduce Motion'da her şey yalnızca belirir.
-/// Masal sonunda kazanılanların sırası (24 Kasım 2026): çıkartma, masalın rozeti,
-/// yıldız, yeni kelimeler. Okuma süresi burada yok; o ebeveynin özetinde.
-enum StoryEndingEarned {
-    static func ids(isFinished: Bool, hasBadge: Bool, newWords: Int) -> [String] {
-        var ids: [String] = []
-        if !isFinished { ids.append("sticker") }
-        if hasBadge { ids.append("badge") }
-        if !isFinished { ids.append("star") }
-        if newWords > 0 { ids.append("words") }
-        return ids
-    }
-}
-
 struct StoryEndingLeaf: View {
 
     let story: Story
@@ -562,5 +549,18 @@ struct EndingRays: Shape {
             p.closeSubpath()
         }
         return p
+    }
+}
+
+/// Masal sonunda kazanılanların sırası (24 Kasım 2026): çıkartma, masalın rozeti,
+/// yıldız, yeni kelimeler. Okuma süresi burada yok; o ebeveynin özetinde.
+enum StoryEndingEarned {
+    static func ids(isFinished: Bool, hasBadge: Bool, newWords: Int) -> [String] {
+        var ids: [String] = []
+        if !isFinished { ids.append("sticker") }
+        if hasBadge { ids.append("badge") }
+        if !isFinished { ids.append("star") }
+        if newWords > 0 { ids.append("words") }
+        return ids
     }
 }

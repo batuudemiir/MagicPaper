@@ -4,8 +4,9 @@ import SwiftUI
 ///
 /// Üstte ana sayfanın mor göğü, geri ve başlık; beyaz kartta sevinçli Ragi,
 /// "N gün üst üste", sakin cümle ve Pazartesi–Pazar şeridi (okunan gün mor tik,
-/// bugün halkalı, okunmayan gün boş daire, gelecek gün tarih). Altında okuma
-/// zamanı, yıldız katı, yeni kelimeler ve son rozet. Kurallar `ReadingJourney`.
+/// bugün halkalı, okunmayan gün boş daire, gelecek gün tarih). Altında yıldız
+/// katı, yeni kelimeler ve son rozet (okuma zamanı 24 Kasım 2026'da kalktı).
+/// Kurallar `ReadingJourney`.
 struct ReadingJourneyView: View {
     let profile: UserProfile
 
@@ -110,42 +111,13 @@ struct ReadingJourneyView: View {
         return "\(name)\(today), \(day.read ? "okundu" : "okunmadı")"
     }
 
-    // MARK: - Okuma zamanı ve yıldız katı
+    // MARK: - Yıldız katı
 
+    /// Okuma zamanı kartı kalktı (24 Kasım 2026, Batuhan): çocuğa dakika
+    /// gösterilmez; yıldız katı tek başına, tam genişlikte.
     private func tiles(_ journey: ReadingJourney) -> some View {
-        let layout = typeSize.isAccessibilitySize
-            ? AnyLayout(VStackLayout(spacing: MPSpacing.sm))
-            : AnyLayout(HStackLayout(alignment: .top, spacing: MPSpacing.sm))
-        return layout {
-            readingTime(journey)
-            starTile(journey)
-        }
-        .fixedSize(horizontal: false, vertical: true)
-    }
-
-    private func readingTime(_ journey: ReadingJourney) -> some View {
-        let peak = max(journey.days.map(\.minutes).max() ?? 0, 1)
-        return VStack(alignment: .leading, spacing: MPSpacing.sm) {
-            Text("Okuma zamanı").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-            HStack(alignment: .bottom, spacing: MPSpacing.xxs) {
-                ForEach(Array(journey.days.enumerated()), id: \.offset) { _, day in
-                    VStack(spacing: MPSpacing.xxs) {
-                        Capsule()
-                            .fill(day.minutes > 0 ? MPColor.actionPrimary : MPColor.borderKid)
-                            .frame(height: max(MPSpacing.sm, MPSize.minTouchHero * CGFloat(day.minutes) / CGFloat(peak)))
-                        Text(String(day.label.prefix(1))).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                    }
-                    .frame(maxWidth: .infinity)
-                }
-            }
-            .frame(height: MPSize.minTouchHero + MPSpacing.xl, alignment: .bottom)
-            .accessibilityHidden(true)
-            Text("Bu hafta \(journey.minutesThisWeek) dakika").mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(MPSpacing.md)
-        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
-        .accessibilityElement(children: .combine)
+        starTile(journey)
+            .fixedSize(horizontal: false, vertical: true)
     }
 
     /// Yıldız katı: yalnızca bugünkü kat, bir sonrakine ilerleme yok.
