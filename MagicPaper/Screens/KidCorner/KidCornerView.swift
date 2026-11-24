@@ -256,7 +256,8 @@ struct KidCornerView: View {
     /// Ebeveyn odasının tek girişi (14 Kasım 2026): ilk ekranda, tam satır.
     /// Giriş basılı tutmayla açılır (`ParentalGateView.Kind.hold`).
     private var grownUpsEntry: some View {
-        HomeListRow(systemImage: "lock.shield", tone: .sky, title: "Büyükler için",
+        // Lucide kalkan (24 Kasım 2026): "lock.shield" eşlemesizdi, karo boş çiziliyordu.
+        HomeListRow(systemImage: "shield", tone: .sky, title: "Büyükler için",
                     subtitle: "Ayarlar, abonelik ve okuma özeti",
                     hint: "Bir büyüğün basılı tutmasıyla açılır") {
             MPHaptics.tap()

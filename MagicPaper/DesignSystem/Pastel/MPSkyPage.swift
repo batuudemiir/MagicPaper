@@ -48,8 +48,12 @@ struct MPSkyPage<Trailing: View, Hero: View, Content: View>: View {
         .background(MPColor.backgroundSurface.ignoresSafeArea())
     }
 
+    /// İki kat (24 Kasım 2026, ana sayfanınki gibi): başlık satırı koyu gökte
+    /// (`homeSkyTop`), tanıtım kartı kâğıda inişin önünde (`homeSkyFade`). Tek
+    /// `homeSky` sabit 240 pt'ye yayıldığı için en büyük yazıda iki satırlık
+    /// başlık açık mora, sonra beyaza taşıyordu.
     private func header(topInset: CGFloat) -> some View {
-        VStack(alignment: .leading, spacing: MPSpacing.md) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: MPSpacing.md) {
                 MPCircleButton(systemImage: "chevron.left", accessibilityLabel: "Geri", action: onBack)
                 Text(title).font(MP.F.displaySM()).foregroundStyle(MP.C.textOnArt)
@@ -58,15 +62,20 @@ struct MPSkyPage<Trailing: View, Hero: View, Content: View>: View {
                 Spacer(minLength: 0)
                 trailing
             }
+            .padding(.horizontal, MPSpacing.screenH)
+            .padding(.top, topInset + MPSpacing.xs)
+            .padding(.bottom, MPSpacing.md)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(LinearGradient(stops: MP.C.homeSkyTop, startPoint: .top, endPoint: .bottom))
+
             hero
-        }
-        .padding(.horizontal, MPSpacing.screenH)
-        .padding(.top, topInset + MPSpacing.xs)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(alignment: .top) {
-            LinearGradient(stops: MP.C.homeSky, startPoint: .top, endPoint: .bottom)
-                .frame(height: topInset + MPSkyLayout.skyHeight)
-                .accessibilityHidden(true)
+                .padding(.horizontal, MPSpacing.screenH)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(alignment: .top) {
+                    LinearGradient(stops: MP.C.homeSkyFade, startPoint: .top, endPoint: .bottom)
+                        .frame(height: MPSkyLayout.fadeHeight)
+                        .accessibilityHidden(true)
+                }
         }
     }
 }
@@ -83,9 +92,8 @@ extension MPSkyPage where Trailing == EmptyView {
 }
 
 enum MPSkyLayout {
-    /// Göğün durum çubuğunun altındaki boyu: başlık satırı koyu morda, tanıtım
-    /// kartının alt yarısı beyaza sönmüş zeminde.
-    static let skyHeight: CGFloat = 240
+    /// Başlığın altındaki kâğıda iniş: tanıtım kartının üst yarısı morda kalır.
+    static let fadeHeight: CGFloat = 160
 }
 
 /// Göğün altındaki beyaz tanıtım kartı: Ragi yumuşak bir dairede, kısa başlık
