@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-11-24 · irem-aktarim (dal, commit yok: bu kayıtla gelir) · İrem'in tasarımları uygulamaya aktarıldı
+### 2026-11-24 · irem-aktarim (dal, bu kayıtla gelen commit) · İrem'in tasarımları uygulamaya aktarıldı
 
 - **Ne:** İrem'in 21-24 Kasım işi (`irem` dalı) inceleme bulgularıyla düzeltilerek `irem-aktarim` dalında. Tasarım belgesi `docs/superpowers/specs/2026-11-24-irem-tasarim-aktarimi-design.md`, plan `docs/superpowers/plans/2026-11-24-irem-tasarim-aktarimi.md`.
 - **Masal sonu:** "Bir masal daha" ve haftalık dakika kartı kalktı; tek eylem "Ana sayfaya dön" (Batuhan: masal bitirmek bir olay). Kazanılanlar `StoryEndingEarned.ids`.
@@ -144,8 +144,9 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - **Kanun:** AGENTS.md ve kök CLAUDE.md'ye mor gök istisnası ve 24 Kasım kararları.
 - **Bilerek değişmedi:** Paywall yerleşimi, gece masal sonu, İrem'in mantık değişiklikleri (günün masalı her zaman ücretsiz, seri `.locked`, deneme uygunluğu), `Avatars/ragi-*` görselleri (kullanılmıyor, silinmedi), `AfterReader.create` yolu (artık çağıranı yok).
 - **Okuma yolculuğum:** "Okuma zamanı" kartı ve "Bu hafta N dakika" kalktı; `ReadingJourney` artık dakika taşımıyor (son incelemenin önemli bulgusu: çocuğa süre gösteriliyordu). Dakika yalnızca ebeveyn özetinde.
-- **Test: çalıştırılmadı.** Disk 1,6 GB boş; Firebase ve swift-syntax ile 22 paketli temiz derleme sığmıyor. Derleme, birim testleri (`StoryEndingEarnedTests`, `HomeTonightCopyTests`, `ProfileAvatarTests`, `ReadingJourneyTests`) ve simülatör ekran turu yapılmadı. Kanun grep'leri değişen dosyalarda temiz. Kod bağımsız bir incelemeyle okundu (derleme engeli bulunmadı; kontrast hesabı: `textOnArtMuted` koyu gökte en az 4.75:1).
-- **Açık riskler:** `MPSkyPage` hâlâ tek `homeSky` kullanıyor; en büyük yazıda çok satırlı başlık açık mora inebilir (ekran turunda bakılmalı). `TonightState.readToday(canWrite:)` değeri artık kart tarafından okunmuyor. `AfterReader.create` ve "Önce masal" yolu ölü kod; ayrı turda temizlenmeli.
+- **Test:** MagicPaperTests 1138 test, 1 atlandı, 25 hata. Hataların hepsi 12 testte (DesignSystemSnapshot ×5, IllustratedBookFlow, InterestProfile, LibraryCutover ×2, OriginalPageIllustration, ReadingEvent, SeriesManager) ve aynı 12 test aynı 25 hatayla bu işten önceki commit'te (`34293b6`, İrem'in hâli) de başarısız: bu iş yeni hata getirmedi, eski hatalar ayrı turda. Yeni testler (`StoryEndingEarnedTests`, `HomeTonightCopyTests`, `ProfileAvatarTests`, `ReadingJourneyTests`) geçti. Simülatör: `Scripts/ci_screenshots.sh` yerelde, iPhone SE + iPhone 18 Pro Max, normal + en büyük yazı, 68 görüntü, kopya ya da boş yok; ana sayfa, menü, Masal ailem, Okuma yolculuğum, Profil ve menü sayfaları en büyük yazıda gözle bakıldı. Masal sonu turda yok (açılış kancası yok), simülatörde görülmedi. UI testleri koşulmadı. Kod bağımsız bir incelemeden geçti (bir önemli bulgu: Okuma yolculuğum'daki dakika, düzeltildi).
+- **Turda görülüp düzeltilenler:** menü sayfalarının başlığı en büyük yazıda beyaza taşıyordu (`MPSkyPage` iki kat gök); Profil'de "Büyükler için" karosu boştu (`lock.shield` eşlemesiz → Lucide `shield`).
+- **Açık:** `TonightState.readToday(canWrite:)` değeri artık kart tarafından okunmuyor. `AfterReader.create` ve "Önce masal" yolu ölü kod; ayrı turda temizlenmeli.
 - **Dosyalar:** `StoryEndingLeaf.swift`, `StoryLeafView.swift`, `StoryReaderView.swift`, `SeriesEndingSection.swift`, `HomeView.swift`, `MPHomeBoard.swift`, `MPTheme.swift`, `MPAppState.swift`, `KidMenuSheet.swift`, `ProfileAvatar.swift`, `ContentView.swift`, `ReadingJourney.swift`, `ReadingJourneyView.swift`, `AGENTS.md`; testler `StoryEndingEarnedTests`, `HomeTonightCopyTests`, `ProfileAvatarTests`, `ReadingJourneyTests`.
 
 ### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Profil: tek Ragi, Okuma yolculuğum kartında
