@@ -71,6 +71,12 @@ public struct StructuralValidator: DeterministicValidator {
 
 /// Catches the book repeating itself — the classic failure of writing pages
 /// independently, and worth checking even though we no longer do that.
+///
+/// A declared refrain (`ValidationContext.declaredRefrains`, book research
+/// `p_repeated_line`, rule m003) is the one exemption: a sentence that *is* a
+/// declared, slot-free refrain line is left out of the phrase count. The gate
+/// itself is not loosened: the refrain's words inside any other sentence, and
+/// every undeclared repeat, still count.
 public struct RepetitionValidator: DeterministicValidator {
     public let id = ValidatorID.repetition
     public init() {}
@@ -81,10 +87,12 @@ public struct RepetitionValidator: DeterministicValidator {
         let pages = context.orderedPages
         guard pages.count > 1 else { return [] }
 
+        let refrains = Self.refrainKeys(context.declaredRefrains)
         var seenNGrams: [String: Int] = [:]
         var repeats: [String: Int] = [:]
         for page in pages {
-            for gram in Set(TextMetrics.nGrams(page.text, size: rules.repetitionNGramSize)) {
+            let text = Self.withoutRefrains(page.text, refrains)
+            for gram in Set(TextMetrics.nGrams(text, size: rules.repetitionNGramSize)) {
                 seenNGrams[gram, default: 0] += 1
             }
         }
@@ -120,6 +128,25 @@ public struct RepetitionValidator: DeterministicValidator {
         }
 
         return issues
+    }
+
+    /// A refrain line as lowercased words, so punctuation and case do not
+    /// decide whether a sentence is the refrain. A line still carrying a slot
+    /// is not a valid refrain (CatalogIntegrity `refrain_has_slot`) and gets no
+    /// exemption.
+    private static func refrainKeys(_ lines: [String]) -> Set<[String]> {
+        Set(lines.filter { !$0.contains("{{") }
+            .map { TextMetrics.words($0).map { $0.lowercased() } }
+            .filter { !$0.isEmpty })
+    }
+
+    /// The page with every sentence that is exactly a declared refrain line
+    /// removed. With no refrains the text is returned untouched.
+    private static func withoutRefrains(_ text: String, _ refrains: Set<[String]>) -> String {
+        guard !refrains.isEmpty else { return text }
+        return TextMetrics.sentences(text)
+            .filter { !refrains.contains(TextMetrics.words($0).map { $0.lowercased() }) }
+            .joined(separator: " ")
     }
 }
 

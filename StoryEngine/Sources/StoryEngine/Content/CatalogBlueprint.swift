@@ -116,6 +116,10 @@ public struct RefrainSpec: Codable, Sendable, Hashable {
         self.finalPage = finalPage
     }
 
+    /// Both lines, as `ValidationContext.declaredRefrains` takes them: the
+    /// repetition validator leaves exactly these sentences out of its count.
+    public var declaredLines: [String] { [line, finalLine] }
+
     /// The refrain sentence a page ends with, if it carries one.
     public func text(onPage page: Int) -> String? {
         if page == finalPage { return finalLine }
