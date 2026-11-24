@@ -61,7 +61,7 @@ P56'nın uygulamaya girmesini bugün engelleyenler: hücre başına 2 sabit kita
 | Sahip | Yazar | Yalnız okur |
 |---|---|---|
 | **Codex** | `StoryEngine/Sources/StoryEngine/Pilots/P56/**`, `StoryEngine/Tests/**/P56*`, `Content/Pilots/**`, `docs/research/five-friends-*/**`, `StoryEngine/Sources/StoryEngine/Content/ContentSourceMetadata.swift` ve kaynak çözücü (`CatalogHistory/`, `RemoteContent/CatalogSourceResolver.swift`) | Uygulama köprüsü |
-| **Claude** | `MagicPaper/StoryEngineBridge/StoryRuntimeRouter.swift` (yeni), `MagicPaper/StoryEngineBridge/Pilots/P56/**` (mevcut iki dosya dahil; Codex'in onayıyla devralınır), `OfflineStoryService.swift`, `StoryChoiceSource.swift`, `Screens/StoryCreation/CompanionStep.swift`, `SeriesManager.swift`, `StoryMemory.swift`, `MagicPaperTests/P56*` | Motor ve içerik |
+| **Claude** | `MagicPaper/StoryEngineBridge/StoryRuntimeRouter.swift` (yeni), `MagicPaper/StoryEngineBridge/Pilots/P56/**` (mevcut iki dosya dahil; Codex'in onayıyla devralınır), `OfflineStoryService.swift`, `MagicPaper/Services/StoryGenerationManager.swift`, `StoryChoiceSource.swift`, `Screens/StoryCreation/CompanionStep.swift`, `SeriesManager.swift`, `StoryMemory.swift`, `MagicPaperTests/P56*` | Motor ve içerik |
 | **Ortak, tek seferde bir yazar** | `MagicPaper/Models/Story.swift`, `design-handoff/reference/DEMO_CHANGELOG.md` | İki ajan da |
 
 `Story.swift` bu planda değişmez: P56 kaydı mevcut `contentSource: ContentSourceMetadata?` alanına yazılır. Değişmesi gerekirse önce panoda sorulur.
@@ -96,17 +96,20 @@ Hatların tek buluşma noktası budur. İsimler ve tipler iki hatta da aynen kul
 
 ```swift
 public enum P56Support {
-    /// Compose etmeden, isteğin neden desteklenmediğini söyler. Boş dizi = destekleniyor.
-    /// `P56StoryComposer.compose` aynı istek için reddederken aynı nedenleri verir.
+    /// Compose etmeden, isteğin neden desteklenmediğini söyler; tekil, alfabetik.
+    /// Boş dizi = destek kapsamında; başarılı compose garantisi değil (bütçe, yapı,
+    /// kaynak bütünlüğü ve depolama hataları ayrı kalır). Compose desteksiz isteği
+    /// aynı fonksiyonla ve aynı dizgilerle reddeder.
     public static func unsupportedReasons(for request: P56Request, package: P56Package) -> [String]
-    /// Bu yaş ve modda gösterilebilecek ana arkadaş kimlikleri, sabit sırayla.
+    /// Bu yaş ve modda ana arkadaş kimlikleri, kanonik sırayla: Tarçın, Kestane, Yıldız,
+    /// Simit, Böğürtlen. Desteksiz yaşta boş. Bir isteğin desteğini tek başına kanıtlamaz.
     public static func companionIDs(age: Int, mode: P56Mode, package: P56Package) -> [String]
 }
 public enum P56Engine { public static let behaviorID = "offline-p56-v1" }
 ```
 
 - `P56Request`, `P56ComposedStory`, `P56SourceReference`, `P56StoryComposer.compose(_:)` bugünkü haliyle donar. Değişiklik Bölüm 2.3'teki sözleşme yoluyla.
-- Codex, `ContentSourceMetadata`'yı `engineBehaviorID == P56Engine.behaviorID` olan kaydı tanıyacak şekilde genişletir; tarihsel çözücü böyle bir kaydı eski katalog sanıp yeniden yazmaya kalkmaz, `unsupported` döner.
+- Codex, `ContentSourceMetadata`'ya `public init(p56 reference: P56SourceReference)` ve `public var p56Reference: P56SourceReference? { get }` ekler (kabul: 25 Kasım, `9865b81` + Claude kabulü). P56 kaydında `.reference == nil` ve `.status == .unsupported`; tarihsel çözücü `.unsupported` döner, eski kataloğa ya da semver tahminine gitmez. Bozuk P56 alanı `.malformed`, ileri şema kayıpsız korunur.
 - Codex, uygulamaya paketlenecek payload'ı ve SHA'sını sabit bir yerde verir: `Content/Pilots/five-friends-56-runtime-v1/payload.json` + `P56PinnedSource.sha256` (motor paketinde public sabit).
 
 **Claude üretir (uygulama tarafı):**
@@ -115,8 +118,10 @@ public enum P56Engine { public static let behaviorID = "offline-p56-v1" }
 enum StoryRuntimeRoute: Equatable { case legacy, p56(P56SourceReference) }
 struct StoryRuntimeRequest { let age: Int; let mode: StoryMode; let companionID: String?
     let family: FamilyCharacter?; let topicID: String?; let occasion: String?; let safety: ContentSafety? }
-struct StoryRuntimeRouter { func route(_ request: StoryRuntimeRequest) -> StoryRuntimeRoute }
-enum StoryRuntimeFlags { static var fiveFriendsPilot: Bool }   // launch arg -mpFiveFriendsPilot, varsayılan false
+enum StoryRuntimeReason: String { case flagOff, unsupportedAge, unsupportedRequest, payloadUnavailable, composeFailed }
+struct StoryRuntimeDecision: Equatable { let route: StoryRuntimeRoute; let reason: StoryRuntimeReason? }  // reason çocuk verisi taşımaz
+struct StoryRuntimeRouter { func decide(_ request: StoryRuntimeRequest) -> StoryRuntimeDecision }
+enum StoryRuntimeFlags { static var fiveFriendsPilot: Bool }   // yalnız #if DEBUG, launch arg -mpFiveFriendsPilot; Release'te her zaman false
 enum P56StoryMapper { static func story(from composed: P56ComposedStory, profileID: UUID) -> Story }
 ```
 
@@ -141,7 +146,8 @@ Claude bu görevler için `docs/superpowers/plans/` altında ayrıntılı TDD pl
 **Dosyalar:** Yeni `MagicPaper/StoryEngineBridge/Pilots/P56/P56StoryMapper.swift`, test `MagicPaperTests/P56StoryMapperTests.swift`
 **Kullanır:** `P56ComposedStory`, `P56Engine.behaviorID`. **Üretir:** `P56StoryMapper.story(from:profileID:) -> Story`.
 
-- [ ] Testler: 8 sayfa, sayfa metinleri birebir aynı; `contentSource` P56 davranış kimliğini ve `payloadSHA256`'yı taşır; sayfalarda görsel anahtarı yok (görsel onaysız); çocuğun adı ve kimliği kayıtta bulunur ama log'a yazılmaz; kaydedilip geri okunan P56 masalı aynı kalır; eski bir `Story` JSON'u aynen decode/encode olur.
+- [ ] `StoryOrigin`: `contentSource = .init(p56: composed.sourceReference)`, `catalogVersion = sourceReference.packageVersion`, `blueprintID = structureID`, `settingID = worldID`, `companionID = companion.id`, `discoveryID`, `seed = String(seed)`.
+- [ ] Testler: 8 sayfa, sayfa metinleri birebir aynı; `origin.contentSource?.p56Reference` kaynakla aynı, `.reference == nil`; sayfalarda görsel anahtarı yok (görsel onaysız); çocuğun adı ve kimliği kayıtta bulunur ama log'a yazılmaz; kaydedilip geri okunan P56 masalı aynı kalır; eski bir `Story` JSON'u aynen decode/encode olur.
 - [ ] Uygulama, testler, commit.
 
 ### B2. Paketlenmiş payload'ı yükleme
@@ -157,15 +163,15 @@ Claude bu görevler için `docs/superpowers/plans/` altında ayrıntılı TDD pl
 **Dosyalar:** Yeni `MagicPaper/StoryEngineBridge/StoryRuntimeRouter.swift`, test `MagicPaperTests/StoryRuntimeRouterTests.swift`
 **Kullanır:** `P56Support.unsupportedReasons`, `P56BundledSource`. **Üretir:** Bölüm 3'teki `StoryRuntimeRouter`, `StoryRuntimeFlags`.
 
-- [ ] Testler: bayrak kapalı → her istek `legacy`; bayrak açık + 5–6 yaş + desteklenen istek → `p56`; bayrak açık + Masal ailem seçili → `legacy`; bayrak açık + 3–4 yaş → `legacy`; payload bozuk → `legacy`; aynı istek iki kez aynı yönü verir.
+- [ ] Testler: bayrak kapalı → `legacy`/`flagOff`; bayrak açık + 5–6 yaş + desteklenen istek → `p56`, neden yok; bayrak açık + Masal ailem seçili → `legacy`/`unsupportedRequest`; bayrak açık + 3–4 yaş → `legacy`/`unsupportedAge`; payload bozuk → `legacy`/`payloadUnavailable`; aynı istek iki kez aynı kararı verir. Destek kontrolü çocuk adı yerine anonim sabit kullanır.
 - [ ] Uygulama, testler, commit.
 
 ### B4. Masal yazma yoluna bağlama
 
-**Dosyalar:** `MagicPaper/StoryEngineBridge/OfflineStoryService.swift` (`compose` girişi, satır ~379 ve ~468: başa tek dal), test `MagicPaperTests/P56CompositionPathTests.swift`
+**Dosyalar:** `MagicPaper/Services/StoryGenerationManager.swift` (`service.compose(context, seed:)` çağrısının önüne tek dal; masalı yazan asıl çağıran burası), gerekirse `OfflineStoryService.swift`; test `MagicPaperTests/P56CompositionPathTests.swift`
 **Kullanır:** B1–B3, `P56InternalService`.
 
-- [ ] Testler: bayrak kapalıyken eski yol çıktısı değişmez (aynı tohum, aynı metin); `p56` yönünde masal P56'dan yazılır ve B1 ile kaydedilir; P56 `compose` reddederse eski yola düşülür ve neden kaydedilir (çocuk verisi olmadan).
+- [ ] Testler: bayrak kapalıyken eski yol çıktısı değişmez (aynı tohum, aynı metin); `p56` yönünde masal P56'dan yazılır ve B1 ile kaydedilir; P56 `compose` reddederse eski yola düşülür, neden `composeFailed` olur (çocuk verisi olmadan) ve arkadaş, yaş, mod, konu, aile, güvenlik girdileri aynen korunur; başka arkadaşa çevrilmez.
 - [ ] Uygulama, testler, commit.
 
 ### B5. "Masalda kimler olsun?" ekranı

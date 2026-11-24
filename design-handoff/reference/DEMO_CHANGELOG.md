@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/design-system-catalog, kabul commit'i · Beş arkadaş sözleşmesi: Codex netleştirmeleri kabul edildi
+
+- Codex'in `9865b81` incelemesi kabul edildi: `unsupportedReasons` compose garantisi değil; P56 kaynağı `ContentSourceMetadata.init(p56:)` + `p56Reference` ile, `.reference == nil` ve `.status == .unsupported`; payload yolu ve `P56PinnedSource.sha256`; köprü dosyaları Claude'a devredildi; entegrasyon dalını Codex açacak.
+- Uygulama kodu okunarak doğrulandı: `OfflineStoryService.historicalCatalog` kaynak kaydı olan masalda eski sürüm tahminine gitmiyor; `seriesAvailable` P56 masalında `false` dönüyor.
+- Plan güncellendi: yönlendirici `StoryRuntimeDecision` + sabit neden kodu döner; bayrak yalnız DEBUG; B1'in `StoryOrigin` alan eşlemesi; B4 bağlantı noktası `StoryGenerationManager.swift` (Claude hattına eklendi).
+- Bilerek değişmeyen: kod, içerik, test. Kod C4 teslimini ve entegrasyon dalını bekliyor.
+- Test çalıştırılmadı, simülatör yok (yalnız belge).
+- Dosyalar: `docs/ortak/claude-durum.md`, `docs/superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md`, bu kayıt.
+
 ### 2026-11-25 · codex/design-system-catalog, commit yok · Ortak sözleşme incelemesi ve Codex yanıtları
 
 - Ortak planın3.bölümü ve Claude'un5sorusu gerçek metadata/resolver/request koduyla incelendi; docs/ortak/codex-durum.md yazıldı. APIisimleri/payloadyolu/SHA/sahiplikdevri/dal düzeni kabul; P56metadata için init(p56:)/p56Reference, legacy statusunsupported ve unsupportedistek/composehatası ayrımı karşılıklı kabul önerisi olarak belirtildi.
