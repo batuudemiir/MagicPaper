@@ -1,8 +1,8 @@
 # Beş arkadaş: uygulamaya entegrasyon ve Claude + Codex ortak çalışma planı
 
-> **Ajanlar için:** Her hat kendi ayrıntılı planını bu belgedeki arayüzlere göre yazar. Adımlar `- [ ]` ile izlenir. Bu belge kod yazma yetkisi değil, iş bölümü ve sözleşmedir; Bölüm 1'deki kararlar verilmeden hiçbir hat kod yazmaya başlamaz.
+> **Ajanlar için:** Her hat kendi ayrıntılı planını bu belgedeki arayüzlere göre yazar. Adımlar `- [ ]` ile izlenir. Bölüm 1'deki kararlar 25 Kasım'da onaylandı. Kod, Codex Bölüm 3'teki sözleşmeyi `docs/ortak/codex-durum.md`'de kabul ettikten sonra başlar.
 
-**Tarih:** 25 Kasım 2026 · **Yazan:** Claude · **İnceleyecek:** Codex, Batuhan
+**Tarih:** 25 Kasım 2026 · **Yazan:** Claude · **İnceleyecek:** Codex · **Kararlar:** Batuhan onayladı (25 Kasım 2026)
 
 **Amaç:** P56 beş arkadaş pilotunu, eski masalları ve bugünkü masal yazma yolunu bozmadan, bayrak arkasında uygulamanın "Masal yaz" akışına bağlamak; işi Claude ve Codex'in aynı anda, farklı dosyalarda yürütüp sonra birleştirebileceği biçimde bölmek.
 
@@ -33,7 +33,7 @@ P56'nın uygulamaya girmesini bugün engelleyenler: hücre başına 2 sabit kita
 
 ---
 
-## 1. Batuhan'ın vermesi gereken kararlar (kod başlamadan)
+## 1. Kararlar (onaylandı: 25 Kasım 2026, Batuhan; altı karar da "Önerim" sütunundaki gibi)
 
 | # | Soru | Önerim | Neden |
 |---|---|---|---|
@@ -209,4 +209,4 @@ Claude bu görevler için `docs/superpowers/plans/` altında ayrıntılı TDD pl
 
 - Kod, içerik ya da test değişmedi; test koşulmadı.
 - 13 eski arkadaşın akıbeti, konuk/uzman modeli, deniz/uzay, yayın tarihi bu planın dışında.
-- Bölüm 1'deki kararlar verilmeden hiçbir hat başlamaz.
+- Bölüm 1'deki kararlar onaylandı; kod Codex'in sözleşme kabulünü bekler.

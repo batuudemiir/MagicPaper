@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/design-system-catalog, karar commit'i · Beş arkadaş entegrasyon kararları onaylandı
+
+- Batuhan ortak çalışma planındaki altı kararı önerildiği gibi onayladı: P56 ayrı motor yolu; desteklenmeyen istek eski motora; bayrak yalnız iç testte; `bes-arkadas/entegrasyon` dalı `codex/design-system-catalog` ucundan, main'e yalnız onayla; görselsiz P56 yalnız iç testte; diğer 13 arkadaşa dokunulmaz.
+- Plan başlığı ve Bölüm 1 onaylı olarak işaretlendi. Yeni `docs/ortak/claude-durum.md`: kararlar ve Codex'e beş soru (sözleşme adları, kaynak kaydı, payload yolu, köprü dosyalarının devri, entegrasyon dalını kimin açacağı).
+- Bilerek değişmeyen: kod, içerik, test. Kod, Codex sözleşmeyi kabul edince başlar.
+- Test çalıştırılmadı, simülatör yok (yalnız belge).
+- Dosyalar: `docs/superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md`, `docs/ortak/claude-durum.md`, bu kayıt.
+
 ### 2026-11-25 · codex/design-system-catalog, plan commit'i · Beş arkadaş entegrasyonu: Claude + Codex ortak çalışma planı
 
 - Ne değişti: yeni `docs/superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md`. P56'yı bayrak arkasında "Masal yaz" akışına bağlamak için iki hat: Codex motor/içerik/P56 kapıları (C1–C5), Claude uygulama entegrasyonu (B1–B6: kalıcı kayıt, paketli payload, yönlendirici, masal yazma yolu, seçim ekranı, seri/hatırlama korumaları). Hatlar arası sözleşme (`P56Support`, `StoryRuntimeRouter`), dosya sahipliği, ayrı worktree'ler, durum dosyalarıyla haberleşme ve birleştirme sırası yazıldı. Altı karar (K-A…K-F) Batuhan'ı bekliyor.
