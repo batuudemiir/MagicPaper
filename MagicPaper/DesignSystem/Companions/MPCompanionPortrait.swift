@@ -5,8 +5,8 @@ import UIKit
 struct MPCompanionPortrait: View {
     let companionID: String
     let fallbackSymbol: String
-
-    private var size: CGFloat { MPSize.minTouchKid - MPSpacing.xxs }
+    /// Okul öncesi ızgarasında büyük portre (26 Kasım 2026); varsayılan satır boyu.
+    var size: CGFloat = MPSize.minTouchKid - MPSpacing.xxs
 
     var body: some View {
         Group {

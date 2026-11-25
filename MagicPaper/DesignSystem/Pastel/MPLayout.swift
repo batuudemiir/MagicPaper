@@ -50,6 +50,11 @@ enum MPSize {
     static let minTouchParent: CGFloat = 48
     /// Çocuk ekranının tek birincil öğesi (Faz 7): düğme ve ana kart eylemi.
     static let minTouchHero: CGFloat = 64
+    /// Okul öncesi masal yazmada geri oku ve ses tekrar düğmesi: en az 2×2 cm
+    /// (karar: 26 Kasım 2026, Batuhan; `cocuk-akisi-is-tanimi.md`).
+    static let kidBackLarge: CGFloat = 80
+    /// Okul öncesi "Kim gelsin?" ızgarasında arkadaş portresi.
+    static let littlePortrait: CGFloat = 96
     static let iconTile: CGFloat = 52
     static let segmentHeight: CGFloat = 40
     static let inputHeight: CGFloat = 52
