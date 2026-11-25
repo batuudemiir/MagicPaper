@@ -302,7 +302,22 @@ final class MPAppState: ObservableObject {
     }
 
     func openPaywall() {
+        pendingUnlock = nil
         showPaywall = true
+    }
+
+    /// Paywall'ı açtıran iş (değer önerisi 1, 26 Kasım 2026): ebeveyn Premium
+    /// alınca aynı şeye yeniden dokunmak zorunda kalmasın. Paywall kapanınca
+    /// yetki gerçekten açıldıysa iş kendiliğinden çalışır; satın alma yoksa,
+    /// iptal ya da hata olduysa hiçbir şey olmaz.
+    private var pendingUnlock: (capability: Capability, usage: EntitlementUsage, action: () -> Void)?
+
+    /// `ContentView`'daki Paywall örtüsünün `onDismiss`'i çağırır.
+    func paywallDismissed() {
+        guard let pending = pendingUnlock else { return }
+        pendingUnlock = nil
+        guard isUnlocked(pending.capability, usage: pending.usage) else { return }
+        pending.action()
     }
 
     // MARK: - Yetki kapısı (E7)
@@ -315,6 +330,7 @@ final class MPAppState: ObservableObject {
         if isUnlocked(capability, usage: usage) { action(); return }
         if router.isParentMode {
             openPaywall()
+            pendingUnlock = (capability, usage, action)
         } else if router.sheet == nil {
             router.sheet = .locked(capability)
         } else {

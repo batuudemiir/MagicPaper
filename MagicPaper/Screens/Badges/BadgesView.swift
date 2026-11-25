@@ -22,9 +22,10 @@ struct BadgesView: View {
         // Menü sayfalarının ortak çatısı (23 Kasım 2026): mor gök, beyaz tanıtım kartı.
         MPSkyPage(title: "Rozetlerim", onBack: { app.router.closeKidPage() }) {
             MPSkyIntro(mascot: .happy,
-                       headline: "\(earned.count) / \(MPBadgeCatalog.all.count) rozet",
+                       // 26 Kasım 2026: "x / 69" kalktı; çocuk eksik saymasın, biriktirdiğini görsün.
+                       headline: "\(earned.count) rozet",
                        message: MPBadgeCopy.greeting(earned: earned.count))
-                .accessibilityValue("\(MPBadgeCatalog.all.count) rozetten \(earned.count) tanesi kazanıldı")
+                .accessibilityValue("\(earned.count) rozet kazanıldı")
         } content: {
             starLevelCard
             pathsSection

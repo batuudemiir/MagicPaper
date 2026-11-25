@@ -48,6 +48,25 @@ struct PaywallView: View {
         return percent >= 5 ? percent : nil
     }
 
+    /// Aynı avantajın tutarı: aylık × 12 − yıllık, mağaza para birimiyle
+    /// (₺149 × 12 − ₺999 = ₺789). Yüzde tek başına küçük fiyatta büyük,
+    /// büyük fiyatta küçük görünebilir; ikisi yan yana yazılır.
+    private var yearlySavingAmount: String? {
+        guard yearlySaving != nil,
+              let yearly = revenueCat.priceAmount(for: tier, period: .yearly),
+              let monthly = revenueCat.priceAmount(for: tier, period: .monthly) else { return nil }
+        return revenueCat.localizedAmount(monthly * 12 - yearly, for: tier, period: .yearly)
+    }
+
+    /// Çocuğun kitaplığındaki gerçek masal sayısı (değer önerisi 4, 26 Kasım
+    /// 2026). Masal yoksa sahiplik cümlesi kurulmaz.
+    private var libraryLine: String? {
+        guard let profile = ProfileManager.shared.currentProfile else { return nil }
+        let count = StoryGenerationManager.shared.stories.filter { $0.isReadable && $0.belongs(to: profile) }.count
+        guard count > 0 else { return nil }
+        return "\(SeriesCopy.genitive(profile.name)) kitaplığında \(count) masal var."
+    }
+
     /// Seçilen plan için gerçek bir StoreKit ürünü var mı?
     private var hasLiveProduct: Bool {
         revenueCat.hasPackage(for: tier, period: period)
@@ -112,7 +131,8 @@ struct PaywallView: View {
         VStack(alignment: .leading, spacing: MPSpacing.xs) {
             Text("MagicPaper Premium").mpText(.page).foregroundStyle(MPColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
-            Text("Ritüel ücretsiz kalır. Premium kitaplığı büyütür.")
+            Text([libraryLine, "Her akşamın masalı ücretsiz kalır. Premium kitaplığı büyütür."]
+                    .compactMap { $0 }.joined(separator: " "))
                 .mpText(.body).foregroundStyle(MPColor.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
         }
@@ -135,8 +155,10 @@ struct PaywallView: View {
 
     private func planCard(_ c: Cycle) -> some View {
         let selected = cycle == c
+        let perMonth = revenueCat.localizedPricePerMonth(for: tier, period: .yearly).map { "Ayda \($0)" }
+        let yearlyParts = [perMonth, yearlySavingAmount.map { "aylığa göre yılda \($0) az" }].compactMap { $0 }
         let note = c == .yearly
-            ? revenueCat.localizedPricePerMonth(for: tier, period: .yearly).map { "Ayda \($0)" } ?? "Yılda bir ödeme"
+            ? (yearlyParts.isEmpty ? "Yılda bir ödeme" : yearlyParts.joined(separator: ", "))
             : "İstediğin ay bırak"
         return Button {
             withAnimation(MP.M.gated(MP.M.press)) { cycle = c }

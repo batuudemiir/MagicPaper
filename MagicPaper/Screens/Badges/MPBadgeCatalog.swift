@@ -273,8 +273,10 @@ struct MPStarLevel: Identifiable, Hashable {
     let threshold: Int
     let title: String
 
-    /// Kilitliyken eşik yazılır, kalan yazılmaz (plan 5b).
-    var lockedHint: String { "\(threshold) yıldızda açılır." }
+    /// Kilitliyken eşik de yazılmaz (26 Kasım 2026): çocuğa sayı hedefi
+    /// gösterilmez; beklenen, sayıya bağlı ödül okuma isteğini dış ödüle
+    /// kaydırabilir (Deci, Koestner, Ryan 1999).
+    var lockedHint: String { "Masal okudukça açılır." }
 
     static let all: [MPStarLevel] = [
         (10, "Kıvılcım"), (25, "Yıldız tozu"), (50, "Parıltı"), (100, "Küçük yıldız"),

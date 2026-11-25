@@ -241,7 +241,7 @@ Ritim (bugünkü kural, haftada 4 masal ≈ haftada 11 yıldız): ilk hafta Kıv
 - Puan ve kat yalnızca yıldızdan gelir; yıldız yalnızca okumadan gelir (karar 11). Parayla puan yok, abonelikle puan yok.
 - Puan ve kat **asla düşmez**: harcama, masal silme, profil değiştirme, cihaz değiştirme etkilemez.
 - **Kıyas yok:** "Kim okuyor?" seçicisinde ve ebeveyn odasında kardeşlerin puanı ya da katı yan yana gösterilmez; her çocuk kendi Profil sayfasında kendi katını görür. Liderlik tablosu yok.
-- Kilitli katta eşik yazar ("100 yıldızda açılır"), kalan yazmaz: "12 yıldız kaldı", ilerleme çubuğu, yüzde yok (R0 kararı 2'nin aynısı).
+- ~~Kilitli katta eşik yazar ("100 yıldızda açılır")~~ 26 Kasım 2026: kilitli kat eşik de yazmaz, "Masal okudukça açılır." der; Rozetlerim başlığı "x / 69" değil "x rozet". Çocuğa sayı hedefi gösterilmez (`docs/DEGER_ALGISI_ILKELERI.md`). Kalan, ilerleme çubuğu, yüzde zaten yok.
 - Kat atlama bildirimle duyurulmaz.
 
 ### Görünüm

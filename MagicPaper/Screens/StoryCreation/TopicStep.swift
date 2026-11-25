@@ -34,7 +34,7 @@ struct TopicStep: View {
                                          systemImage: locked ? "lock.fill" : topic.symbol,
                                          tone: mode.tone,
                                          accessibilityLabel: locked
-                                             ? "\(topic.name), büyüklerle açılır" : topic.name) {
+                                             ? "\(topic.name), şimdilik kapalı" : topic.name) {
                             MPHaptics.selection()
                             onChoose(topic.id)
                         }
@@ -50,7 +50,7 @@ struct TopicStep: View {
 
                 // Kimler adımındaki Masal ailem deseni: kapalı karo soluk, altında tek not.
                 if topics.contains(where: { lockedTopicIDs.contains($0.id) }) {
-                    Text("Kilitli olanlar büyüklerle açılır.")
+                    Text("Kilitli olanlar şimdilik kapalı.")
                         .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
