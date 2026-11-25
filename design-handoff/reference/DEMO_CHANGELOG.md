@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, karar commit'i · b099d9b kenarda kalır
+
+- Batuhan kararı: `bes-arkadas` dalındaki `b099d9b` ("Kadro beş arkadaşa indi", 24 Kasım) birleştirilmez; dal silinmez, değiştirilmez. Eski motorun kadrosu ve konuları bugünkü gibi kalır (K-F, K-B).
+- `docs/ortak/claude-durum.md`'ye işlendi. Kod, içerik, test değişmedi; test çalıştırılmadı.
+
 ### 2026-11-25 · codex/bes-arkadas/claude-uygulama, inceleme commit'i · C4 v1 karşı incelemesi ve Claude hattının açılması
 
 - Claude hattı açıldı: worktree `~/MagicPaper-worktrees/claude-uygulama`, dal `codex/bes-arkadas/claude-uygulama`, taban `951f5ce`; B planı (`859313b`) `cherry-pick -x` ile taşındı.

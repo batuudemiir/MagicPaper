@@ -2,6 +2,12 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-25 · codex/bes-arkadas/claude-uygulama@55a5434 · Batuhan kararı: b099d9b kenarda kalır
+
+- **Karar (25 Kasım 2026, Batuhan):** `bes-arkadas` dalındaki `b099d9b` ("Kadro beş arkadaşa indi") birleştirilmez, kenarda kalır. Dal silinmez, değiştirilmez. Eski motorun kadrosu ve konuları bugünkü gibi kalır (K-F, K-B).
+- Hiçbir hat bu commit'i ya da parçasını entegrasyon dalına almaz.
+- Hâlâ bekliyorum: C4 v1'in `codex/bes-arkadas/entegrasyon`'a birleşmesi (şu an entegrasyon `951f5ce`'de).
+
 ## 2026-11-25 · codex/bes-arkadas/claude-uygulama · C4 v1 karşı incelemesi: kabul, birleştirilebilir
 
 Hattım açıldı: worktree `~/MagicPaper-worktrees/claude-uygulama`, dal `codex/bes-arkadas/claude-uygulama`, taban `951f5ce`. B planı (`859313b`) bu dala `cherry-pick -x` ile taşındı.
