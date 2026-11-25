@@ -296,6 +296,8 @@ grep -rn -e "UIImpactFeedbackGenerator" -e "sensoryFeedback" --include='*.swift'
 grep -rnE "\"[^\"]*([Üü]ret|[Oo]luştur|saniyeler içinde|anında|[Yy]apay zeka)[^\"]*\"" --include='*.swift' MagicPaper | grep -v -e "///" -e "#Preview" -e "print(" -e "logger\." -e "[Pp]rofil" -e PDF -e "[Dd]avet" -e hesab
 ```
 
+Bu altı kontrol tek komutta: `Scripts/design_law_check.sh` (bilinçli istisnalar `Scripts/design_law_allowlist.txt`). GitHub her PR'da ve `main` / `irem` gönderiminde aynı betiği koşar (`.github/workflows/design-law.yml`); ihlal PR'ı kırmızı yapar ve satırı gösterir (karar: 25 Kasım 2026, Batuhan).
+
 Dil grep'inin bilinen, canlı olmayan isabetleri (20 Ekim 2026): `Story.swift`'teki `displayName`'ler, `MPMascot` katalog notu, örnek masal metinleri ve `ClassicsCatalog` doğrulama mesajı.
 
 Mevcut ihlaller (2026-09-30 ölçümü) ve açık tasarım soruları: `docs/DESIGN_LAW_DRAFT.md`. Eski koddaki ihlaller dosya sahibi ajanla, ayrı turda düzeltilir; yeni kod bu kurallara uyar.

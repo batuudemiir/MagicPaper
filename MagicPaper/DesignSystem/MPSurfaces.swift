@@ -98,8 +98,8 @@ struct MPToast: View {
         }
         .font(MP.F.bodySM(.bold))
         .foregroundStyle(colors.fg)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 13)
+        .padding(.horizontal, MP.S.x4)
+        .padding(.vertical, MP.S.x3)
         .mpEdge(fill: colors.bg, edge: MP.C.edgeOnColor, radius: MP.R.md)
         .mpShadow(MP.Sh.lifted)
         .padding(.horizontal, MP.S.screenGutter)
@@ -116,7 +116,7 @@ struct MPToastHost: ViewModifier {
         content.overlay(alignment: .bottom) {
             if let toast {
                 MPToast(message: toast.message, symbol: toast.symbol, tone: toast.tone)
-                    .padding(.bottom, 96)
+                    .padding(.bottom, MP.S.tabBarHeight + MP.S.x5)
                     .transition(.opacity.combined(with: .offset(y: 8)))
                     .task(id: toast.id) {
                         try? await Task.sleep(nanoseconds: 2_200_000_000)
