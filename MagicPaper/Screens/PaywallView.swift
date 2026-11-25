@@ -58,13 +58,19 @@ struct PaywallView: View {
         return revenueCat.localizedAmount(monthly * 12 - yearly, for: tier, period: .yearly)
     }
 
+    /// Çocuğun kitaplığındaki masallar, en son okunan önce.
+    private var childStories: [Story] {
+        guard let profile = ProfileManager.shared.currentProfile else { return [] }
+        return StoryGenerationManager.shared.stories
+            .filter { $0.isReadable && $0.belongs(to: profile) }
+            .sorted { ($0.lastReadAt ?? $0.createdAt) > ($1.lastReadAt ?? $1.createdAt) }
+    }
+
     /// Çocuğun kitaplığındaki gerçek masal sayısı (değer önerisi 4, 26 Kasım
     /// 2026). Masal yoksa sahiplik cümlesi kurulmaz.
     private var libraryLine: String? {
-        guard let profile = ProfileManager.shared.currentProfile else { return nil }
-        let count = StoryGenerationManager.shared.stories.filter { $0.isReadable && $0.belongs(to: profile) }.count
-        guard count > 0 else { return nil }
-        return "\(SeriesCopy.genitive(profile.name)) kitaplığında \(count) masal var."
+        guard let profile = ProfileManager.shared.currentProfile, !childStories.isEmpty else { return nil }
+        return "\(SeriesCopy.genitive(profile.name)) kitaplığında \(childStories.count) masal var."
     }
 
     /// Seçilen plan için gerçek bir StoreKit ürünü var mı?
@@ -135,6 +141,16 @@ struct PaywallView: View {
                     .compactMap { $0 }.joined(separator: " "))
                 .mpText(.body).foregroundStyle(MPColor.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
+            // Çocuğun gerçek kapakları, en fazla üç: büyüyecek kitaplık bu.
+            if !childStories.isEmpty {
+                HStack(spacing: MPSpacing.sm) {
+                    ForEach(childStories.prefix(3), id: \.id) { story in
+                        MPBookCover(art: LibraryShelfModel.coverArt(story), width: 64)
+                    }
+                }
+                .padding(.top, MPSpacing.xs)
+                .accessibilityHidden(true)
+            }
         }
         // Kapat düğmesinin altından başlar.
         .padding(.top, MPSize.minTouchHero)
