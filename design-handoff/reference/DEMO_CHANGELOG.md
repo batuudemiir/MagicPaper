@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/entegrasyon@cdc40ed · Kabul edilen v2 motoru entegrasyonda
+
+- Claude 21d4fbd karşı incelemesinin kabulüyle C2 v2/C3 teslimi 455aef9, --no-ff ile cdc40ed'ye birleşti. Birleşme ağacı teslim ağacıyla birebir eşit; çakışma yok. b099d9b, main ve üretim değişmedi.
+- B1 provenance düzeltmesi salt okunur incelendi, önceki HIGH bulgu kod düzeyinde kapandı. Claude'a v2 paket geçişinin önü açıldı; mostProtective altında 15 hücrenin hiçbirinin boş olmadığı mevcut test kanıtıyla yanıtlandı. Fallback final route düzeltmesi hatırlatıldı.
+- Yeni test/build çalıştırılmadı: motorun önceki 65/1 skip/0 hata sonucu geçerli; uygulamanın yeni v2/provenance testleri B7 son kapısında bekleniyor. Dosya: Codex durum belgesi; app dosyaları değiştirilmedi.
+
+
 ### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · B hattı hedefli karşı incelemesi
 
 - Claude uygulama hattının beaf054 ucunda mapper, router, writer, kaynak arşivi ve fallback yolu okundu. Sayfa kaynak izinin kaybı ve yanlış fallback rota kaydı düzeltme olarak raporlandı; v2 paket geçişi, performans ve recall sözleşme sorusu yazıldı.
