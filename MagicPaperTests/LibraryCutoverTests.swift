@@ -86,6 +86,18 @@ final class LibraryCutoverTests: XCTestCase {
 
     private var legacyBlob: Data? { defaults.data(forKey: LibraryMigration.LegacyKeys.stories) }
 
+    /// JSON'u yapısıyla karşılaştırır. `JSONEncoder` sözlük anahtarlarının
+    /// sırasını sabitlemez (Swift'in `Dictionary` hash tohumu her süreçte
+    /// değişir), bu yüzden aynı değer iki kodlamada farklı baytlar verebilir:
+    /// CI'da "967 bytes ≠ 967 bytes". Aynı içerik, aynı nesne ağacı demektir.
+    private func assertSameJSON(_ written: Data?, _ expected: Data,
+                                file: StaticString = #filePath, line: UInt = #line) throws {
+        let written = try XCTUnwrap(written, "Eski blob yazılmadı.", file: file, line: line)
+        let a = try JSONSerialization.jsonObject(with: written) as? NSObject
+        let b = try JSONSerialization.jsonObject(with: expected) as? NSObject
+        XCTAssertEqual(a, b, file: file, line: line)
+    }
+
     private func storyFile(_ id: UUID) -> URL {
         root.appendingPathComponent("Stories/\(id.uuidString).json")
     }
@@ -286,7 +298,7 @@ final class LibraryCutoverTests: XCTestCase {
         let next = [story("İki"), first]
         shelf.save(next)
 
-        XCTAssertEqual(legacyBlob, try JSONEncoder().encode(next))
+        try assertSameJSON(legacyBlob, try JSONEncoder().encode(next))
         XCTAssertEqual(migration.store.storyIDsOnDisk(), Set(next.map(\.id)))
         XCTAssertTrue(shelf.lastWrittenStoryIDs.isEmpty)
     }
@@ -500,7 +512,7 @@ final class LibraryCutoverTests: XCTestCase {
 
         let next = [story("İki"), first]
         shelf.save(next)
-        XCTAssertEqual(legacyBlob, try JSONEncoder().encode(next))
+        try assertSameJSON(legacyBlob, try JSONEncoder().encode(next))
     }
 
     // MARK: - Favourites
