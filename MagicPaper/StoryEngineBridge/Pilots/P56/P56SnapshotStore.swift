@@ -37,7 +37,7 @@ struct P56SnapshotStore {
 
     private func url(for reference: P56SourceReference) throws -> URL {
         guard reference.schemaVersion == 1,
-              reference.packageVersion == "five-friends-56-runtime-v1",
+              ["five-friends-56-runtime-v1", "five-friends-56-runtime-v2"].contains(reference.packageVersion),
               reference.engineBehaviorID == "offline-p56-v1" else { throw StoreError.unsupported }
         let digest = reference.payloadSHA256
         guard digest.utf8.count == 64,

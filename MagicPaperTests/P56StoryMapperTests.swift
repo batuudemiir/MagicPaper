@@ -69,6 +69,56 @@ final class P56StoryMapperTests: XCTestCase {
         }
     }
 
+    func testFingerprintEdges() {
+        let a = String(repeating: "a", count: 64), b = String(repeating: "b", count: 64)
+        XCTAssertEqual(P56StoryMapper.fingerprint(ofRenderedDigests: [a, b]),
+                       P56StoryMapper.fingerprint(ofRenderedDigests: [a, b]))
+        XCTAssertNotEqual(P56StoryMapper.fingerprint(ofRenderedDigests: [a, b]),
+                          P56StoryMapper.fingerprint(ofRenderedDigests: [b, a]), "sıra değişimi")
+        XCTAssertNotEqual(P56StoryMapper.fingerprint(ofRenderedDigests: [a, b]),
+                          P56StoryMapper.fingerprint(ofRenderedDigests: [a, String(repeating: "c", count: 64)]), "metin değişimi")
+        XCTAssertNotEqual(P56StoryMapper.fingerprint(ofRenderedDigests: []),
+                          P56StoryMapper.fingerprint(ofRenderedDigests: [a]), "boş liste")
+        XCTAssertEqual(P56StoryMapper.fingerprint(ofRenderedDigests: []).count, 64)
+    }
+
+    func testEveryPageKeepsItsP56SourceChain() throws {
+        let composed = try composed()
+        let story = story(composed)
+        for (stored, page) in zip(story.pages, composed.pages.sorted { $0.number < $1.number }) {
+            let chain = try XCTUnwrap(stored.provenance?.p56)
+            XCTAssertEqual(chain.packageVersion, composed.sourceReference.packageVersion)
+            XCTAssertEqual(chain.templateID, page.provenance.templateID)
+            XCTAssertEqual(chain.templateSHA256, page.provenance.templateSHA256)
+            XCTAssertEqual(chain.parentSourceID, page.provenance.parentSourceID)
+            XCTAssertEqual(chain.parentSHA256, page.provenance.parentSHA256)
+            XCTAssertEqual(chain.parentPointer, page.provenance.parentPointer)
+            XCTAssertEqual(chain.renderedSHA256, page.provenance.renderedSHA256)
+            XCTAssertEqual(chain.order, page.provenance.order)
+            XCTAssertEqual(stored.provenance?.parts, [], "P56 sayfası beat_line gibi görünmez")
+            XCTAssertEqual(stored.provenance?.beatLineIDs, [])
+        }
+    }
+
+    func testP56ChainSurvivesSaveAndLegacyProvenanceIsUnchanged() throws {
+        let original = story(try composed())
+        let decoded = try JSONDecoder().decode(MagicPaper.Story.self, from: JSONEncoder().encode(original))
+        XCTAssertEqual(decoded.pages.map { $0.provenance?.p56 }, original.pages.map { $0.provenance?.p56 })
+
+        let legacy = Data(#"{"schemaVersion":1,"partCount":1,"parts":[{"sourceKind":"beat_line","sourceID":"x","sourceTextDigest":"0123456789abcdef"}]}"#.utf8)
+        let provenance = try JSONDecoder().decode(StoryPageProvenance.self, from: legacy)
+        XCTAssertNil(provenance.p56)
+        XCTAssertEqual(provenance.beatLineIDs, ["x"])
+        XCTAssertTrue(provenance.isComplete)
+    }
+
+    func testMalformedP56ChainDropsOnlyTheChain() throws {
+        let broken = Data(#"{"schemaVersion":1,"partCount":0,"parts":[],"p56":{"templateID":"t"}}"#.utf8)
+        let provenance = try JSONDecoder().decode(StoryPageProvenance.self, from: broken)
+        XCTAssertNil(provenance.p56)
+        XCTAssertEqual(provenance.parts, [])
+    }
+
     func testEncodeDecodeRoundTripKeepsP56Reference() throws {
         let composed = try composed()
         let original = story(composed)

@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, inceleme ve B1 eki commit'i · C2 v2 + C3 karşı incelemesi, P56 sayfa kaynak izi
+
+- Codex'in `455aef9` teslimi (90 kitap, C3 güvenlik süzgeci) uygulama tarafından incelendi ve kabul edildi; engelleyici bulgu yok. Birleşmeden sonra uygulamada yapılacaklar durum dosyasına yazıldı: paketi v2'ye geçirmek (yoksa SHA tutmaz ve P56 hiç devreye girmez) ve seçim ekranında güvenliğe göre arkadaş süzmek. Codex'e soru: en korumalı politikada tamamen boşalan arkadaş × mod hücresi var mı.
+- Codex'in isteğiyle her P56 sayfasının kaynak zinciri kalıcı saklanıyor: `StoryPageProvenance.p56` (paket sürümü, şablon ve üst kaynak kimliği/SHA-256, işaretçi, işlenmiş metin SHA-256'sı, sıra). `parts` boş, P56 sayfası `beat_line` sayılmaz, görsel bağlayıcı ona bir şey bağlamaz. Bozuk iz yalnız izi düşürür. `Story.swift` değişmedi. Sınır: bu alanı bilmeyen eski sürüm kaydı yeniden yazarken izi düşürür; metin ve `contentSource` kalır.
+- Parmak izi `fingerprint(ofRenderedDigests:)` oldu (kaynak kimliği değil, içerik özeti). `P56SnapshotStore` v1 ve v2 paket sürümlerini kabul ediyor.
+- Test: `P56StoryMapperTests` +4 (parmak izi sınırları, sayfa zinciri, kaydet/oku ve eski iz, bozuk iz); 8 süit, 53 test, 0 hata, 1 eski atlanan.
+- Dosyalar: `StoryEngineBridge/StoryPageProvenance.swift`, `Pilots/P56/P56StoryMapper.swift`, `Pilots/P56/P56SnapshotStore.swift`, `MagicPaperTests/P56StoryMapperTests.swift`, `docs/ortak/claude-durum.md`, bu kayıt.
+
 ### 2026-11-25 · codex/bes-arkadas/claude-uygulama, düzeltme commit'i · Bayrak açıkken ilk seçimdeki donma
 
 - Ne değişti: `StoryRuntimeRouter.shared` açılışta, bayrak açıksa P56 paketini arka planda (`.userInitiated`) önceden okur; `ContentView` kitaplığı kurarken yönlendirici de kurulur. Karar yolu paketi tek kez okuyup doğrular (`P56BundledSource.loadPackage`); arşive yazma kararın dışına, arka plana alındı. Önce 3,3 MB üç kez çözülüyordu (arşive yaz, doğrula, yeniden oku) ve ilk ön yükleme `.utility` öncelikte kilit üstünde ana iş parçacığını bekletiyordu.

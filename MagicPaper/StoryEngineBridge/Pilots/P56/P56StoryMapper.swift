@@ -26,7 +26,7 @@ enum P56StoryMapper {
             theme: .custom,
             language: .turkish,
             status: .completed,
-            pages: pages.map { MagicPaper.StoryPage(id: UUID(), title: "", text: $0.text, imagePrompt: "") },
+            pages: pages.map { page(from: $0, packageVersion: composed.sourceReference.packageVersion) },
             origin: StoryOrigin(
                 seed: String(composed.seed),
                 storyIdeaID: nil,
@@ -34,7 +34,7 @@ enum P56StoryMapper {
                 settingID: pages.first?.settingID ?? "",
                 companionID: composed.companion.id,
                 discoveryID: composed.discoveryID,
-                fingerprint: fingerprint(of: pages),
+                fingerprint: fingerprint(ofRenderedDigests: pages.map(\.provenance.renderedSHA256)),
                 catalogVersion: composed.sourceReference.packageVersion,
                 contentSource: ContentSourceMetadata(p56: composed.sourceReference),
                 worldID: MP.World(rawValue: composed.worldID)?.rawValue,
@@ -47,9 +47,23 @@ enum P56StoryMapper {
         return story
     }
 
+    /// One page as the app keeps it: the composed text and the page's full P56
+    /// source chain (Codex isteği, 25 Kasım), no art.
+    static func page(from page: P56ComposedPage, packageVersion: String) -> MagicPaper.StoryPage {
+        var stored = MagicPaper.StoryPage(id: UUID(), title: "", text: page.text, imagePrompt: "")
+        let trace = page.provenance
+        stored.provenance = StoryPageProvenance(p56: .init(
+            packageVersion: packageVersion, templateID: trace.templateID, templateSHA256: trace.templateSHA256,
+            parentSourceID: trace.parentSourceID, parentSHA256: trace.parentSHA256,
+            parentPointer: trace.parentPointer, renderedSHA256: trace.renderedSHA256, order: trace.order))
+        return stored
+    }
+
     /// Stable over the rendered text: the pages' rendered digests, in order.
-    static func fingerprint(of pages: [P56ComposedPage]) -> String {
-        let joined = pages.map(\.provenance.renderedSHA256).joined(separator: "|")
-        return SHA256.hash(data: Data(joined.utf8)).map { String(format: "%02x", $0) }.joined()
+    /// A content fingerprint, not the source identity: two books with the same
+    /// text from different sources share it; `contentSource` and the page
+    /// chains tell them apart.
+    static func fingerprint(ofRenderedDigests digests: [String]) -> String {
+        SHA256.hash(data: Data(digests.joined(separator: "|").utf8)).map { String(format: "%02x", $0) }.joined()
     }
 }

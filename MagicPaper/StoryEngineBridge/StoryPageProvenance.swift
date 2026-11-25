@@ -18,6 +18,24 @@ struct StoryPageProvenance: Codable, Equatable {
     /// `parts` bundan kısa kalır ve sayfa eksik sayılır (`isComplete`);
     /// yeniden kaydedilince beyan korunur, eksiklik kaybolmaz.
     let partCount: Int
+    /// Beş arkadaş P56 sayfasının izi (B1, Codex isteği 25 Kasım). P56 sayfasında
+    /// `parts` boştur: P56 kaynağı `beat_line` değildir ve görsel bağlayıcı ona
+    /// bir şey bağlamaz. Bu alanı bilmeyen eski sürüm onu okurken atlar, yeniden
+    /// yazarken düşürür.
+    let p56: P56Page?
+
+    /// One P56 page's source chain, exactly as the engine composed it. Digests
+    /// are full SHA-256 hex, not the legacy 16-hex text digest.
+    struct P56Page: Codable, Equatable {
+        let packageVersion: String
+        let templateID: String
+        let templateSHA256: String
+        let parentSourceID: String
+        let parentSHA256: String
+        let parentPointer: String
+        let renderedSHA256: String
+        let order: Int
+    }
 
     /// Bütün parçalar okundu mu. Eksik sayfaya otomatik görsel bağlanmamalı:
     /// kalan parçalar sayfanın bütün kaynağı değildir.
@@ -84,6 +102,15 @@ struct StoryPageProvenance: Codable, Equatable {
         self.schemaVersion = schemaVersion
         self.parts = parts
         self.partCount = parts.count
+        self.p56 = nil
+    }
+
+    /// A P56 page: no legacy parts, only the P56 chain.
+    init(p56: P56Page) {
+        self.schemaVersion = PageSourcePart.schemaVersion
+        self.parts = []
+        self.partCount = 0
+        self.p56 = p56
     }
 
     /// Motorun parçalarından; boşsa nil (bu alandan önce kurulmuş sayfa).
@@ -101,7 +128,7 @@ struct StoryPageProvenance: Codable, Equatable {
         })
     }
 
-    private enum CodingKeys: String, CodingKey { case schemaVersion, parts, partCount }
+    private enum CodingKeys: String, CodingKey { case schemaVersion, parts, partCount, p56 }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -110,6 +137,8 @@ struct StoryPageProvenance: Codable, Equatable {
         let raw = (try? values.decode([FailableDecodable<Part>].self, forKey: .parts)) ?? []
         parts = raw.compactMap(\.value)
         partCount = max((try? values.decode(Int.self, forKey: .partCount)) ?? raw.count, raw.count)
+        // Bozuk P56 izi sayfayı düşürmez; yalnız iz okunmaz.
+        p56 = try? values.decode(P56Page.self, forKey: .p56)
     }
 
     /// Satır kimlikleri, beat satırlarıyla sınırlı, sırayla.
