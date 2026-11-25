@@ -310,6 +310,14 @@ class RevenueCatManager: ObservableObject {
         getPackage(for: tier, period: period)?.storeProduct.localizedPricePerMonth
     }
 
+    /// Bir tutarı ürünün kendi mağaza para birimiyle yazar ("₺789"). Paywall
+    /// yıllık avantajı yüzdenin yanında tutar olarak da gösterir (26 Kasım 2026).
+    func localizedAmount(_ amount: Decimal, for tier: SubscriptionManager.SubscriptionTier,
+                         period: BillingPeriod) -> String? {
+        getPackage(for: tier, period: period)?.storeProduct.priceFormatter?
+            .string(from: NSDecimalNumber(decimal: amount))
+    }
+
     /// Denemeye uygun olmayan ürünler: Apple aynı abonelik grubunda daha önce
     /// deneme ya da tanıtım fiyatı kullanmış hesaba yeniden deneme vermez
     /// (21 Kasım 2026). "Bilinmiyor" cevabında deneme gösterilmeye devam eder;
@@ -400,6 +408,9 @@ class RevenueCatManager: ObservableObject {
 
     func priceAmount(for tier: SubscriptionManager.SubscriptionTier,
                      period: BillingPeriod) -> Decimal? { nil }
+
+    func localizedAmount(_ amount: Decimal, for tier: SubscriptionManager.SubscriptionTier,
+                         period: BillingPeriod) -> String? { nil }
 
     func localizedPricePerMonth(for tier: SubscriptionManager.SubscriptionTier,
                                 period: BillingPeriod) -> String? { nil }

@@ -192,7 +192,7 @@ struct ContentView: View {
                     .mpZoomDestination(story.id.uuidString,
                                        in: app.readerZoomID == story.id && !reduceMotion ? readerZoom : nil)
             }
-            .fullScreenCover(isPresented: $app.showPaywall) {
+            .fullScreenCover(isPresented: $app.showPaywall, onDismiss: { app.paywallDismissed() }) {
                 PaywallView().environmentObject(app)
             }
             .fullScreenCover(isPresented: $app.router.showGate, onDismiss: { app.router.gateDismissed() }) {

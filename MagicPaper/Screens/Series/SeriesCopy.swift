@@ -40,12 +40,13 @@ enum SeriesCopy {
     static let cardEyebrow = "SERİ"
     static func readyTitle(_ number: Int) -> String { "\(number). bölüm hazır" }
     static func waitingTitle(_ number: Int) -> String { "\(number). bölüm yarın" }
-    /// Günü gelmiş ama plan açmıyor (E7): satış yok, büyüğe yönlendirir.
-    static func lockedTitle(_ number: Int) -> String { "\(number). bölüm büyüklerle açılır" }
+    /// Günü gelmiş ama plan açmıyor (E7): satış yok, çocuğu büyüğe de
+    /// yönlendirmez (26 Kasım 2026); ebeveyn bunu Büyükler için'de görür.
+    static func lockedTitle(_ number: Int) -> String { "\(number). bölüm şimdilik kapalı" }
     static func lockedAccessibility(_ number: Int, _ title: String) -> String {
-        "\(title), \(number). bölüm büyüklerle açılır"
+        "\(title), \(number). bölüm şimdilik kapalı"
     }
-    static let lockedHint = "Bir büyüğe göstermek için açar"
+    static let lockedHint = "Ayrıntı için açar"
     static func cardSubtitle(_ title: String) -> String { title }
     static let readyAction = "Oku"
     static let waitingNote = "Bir önceki bölüm okununca, ertesi gün açılır."

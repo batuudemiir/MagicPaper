@@ -1,5 +1,6 @@
 import SwiftUI
 import StoreKit
+import StoryEngine
 
 /// 29 · Büyükler için (eski Özet, `EbeveynPaneli`).
 ///
@@ -19,6 +20,8 @@ struct ParentOverviewView: View {
     @StateObject private var streak = MPStreak.shared
 
     @State private var showsLapse = false
+    /// Çocuğun son dokunduğu kapalı şey (`MPLockedInterest`); "Tamam" deyince silinir.
+    @State private var lockedInterest = MPLockedInterest.latest()
     @Environment(\.requestReview) private var requestReview
 
     var body: some View {
@@ -32,13 +35,14 @@ struct ParentOverviewView: View {
 
                 if profileManager.profiles.count > 1 { childPicker }
                 // Sayılardan önce tek cümle (Faz 7).
-                Text(ParentInsight.sentence(stories: readThisWeek, minutes: streak.minutesThisWeek,
-                                            streak: streak.currentStreak))
+                // 26 Kasım 2026: dakika ve "üst üste" değil, haftanın kazançları.
+                Text(ParentInsight.sentence(weekGains, childName: profileManager.currentProfile?.name ?? ""))
                     .mpText(.body).foregroundStyle(MPColor.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
                 statsGrid
                 dailyChart
                 if !recentStories.isEmpty { recentSection }
+                if let story = ParentQuestion.story(in: childStories) { questionCard(for: story) }
                 ParentReadingRules()
                 subscriptionSection
                 moreSection
@@ -48,6 +52,7 @@ struct ParentOverviewView: View {
             .padding(.bottom, MPSpacing.xxxl)
         }
         .background(MPColor.backgroundParent.ignoresSafeArea())
+        .onAppear { lockedInterest = MPLockedInterest.latest() }
         .navigationDestination(isPresented: $showsLapse) {
             SubscriptionExpiredView(onRenew: {
                 showsLapse = false
@@ -119,15 +124,28 @@ struct ParentOverviewView: View {
             .filter { week.contains($0.date) }.count
     }
 
+    /// Bu haftanın kazançları: akşamlar, ilk kez karşılaşılan kelimeler, masal arkadaşları.
+    private var weekGains: ParentInsight.WeekGains {
+        let evenings = streak.thisWeek.filter { $0 }.count
+        guard let week = ParentInsight.weekInterval() else {
+            return .init(evenings: evenings, finished: 0, words: [], friends: [])
+        }
+        let service = OfflineStoryService.shared
+        return ParentInsight.gains(stories: childStories, evenings: evenings, week: week,
+                                   companionName: { service.companionName(id: $0) })
+    }
+
     private var statsGrid: some View {
         let columns = [GridItem(.flexible(), spacing: MPSpacing.md), GridItem(.flexible(), spacing: MPSpacing.md)]
         return LazyVGrid(columns: columns, spacing: MPSpacing.md) {
-            MPStatTile(systemImage: "clock", tone: .green, value: "\(streak.minutesThisWeek)",
-                       unit: "dk", label: "Okuma süresi", area: .parent)
+            // 26 Kasım 2026: "Üst üste gün" (alev) kalktı. Sıfırlanan sayı yerine
+            // haftanın akşamları; dakikalar aşağıdaki grafikte duruyor.
             MPStatTile(systemImage: "book", tone: .lav, value: "\(readThisWeek)",
                        label: "Okunan masal", area: .parent)
-            MPStatTile(systemImage: "flame", tone: .peach, value: "\(streak.currentStreak)",
-                       unit: "gün", label: "Üst üste gün", area: .parent)
+            MPStatTile(systemImage: "moon.stars", tone: .peach, value: "\(weekGains.evenings)",
+                       unit: "akşam", label: "Bu hafta okuma", area: .parent)
+            MPStatTile(systemImage: "character.book.closed", tone: .green, value: "\(weekGains.words.count)",
+                       label: "Yeni kelime", area: .parent)
             // Vizyon planı düzen 11: ebeveyn çocuğun bu hafta ne topladığını görür.
             // Kelimeler çocuğun "Yeni kelimelerim" sayfasında duruyor.
             MPStatTile(systemImage: "star", tone: .yellow, value: "\(stickersThisWeek)",
@@ -215,6 +233,24 @@ struct ParentOverviewView: View {
         return "\(story.childName) · \(day) · " + (unfinished ? "yarım kaldı" : "\(story.pages.count) sayfa")
     }
 
+    // MARK: - Bu akşamın sorusu
+
+    private func questionCard(for story: Story) -> some View {
+        let companion = story.origin.flatMap { OfflineStoryService.shared.companionName(id: $0.companionID) }
+        let question = ParentQuestion.question(mode: story.origin?.mode, companion: companion)
+        return MPCard(area: .parent) {
+            VStack(alignment: .leading, spacing: MPSpacing.xs) {
+                Text("Bu akşamın sorusu").mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
+                    .accessibilityAddTraits(.isHeader)
+                Text("“\(question)”").mpText(.body).foregroundStyle(MPColor.textPrimary)
+                    .fixedSize(horizontal: false, vertical: true)
+                Text("\(story.title) için. Doğru cevabı yok; birlikte konuşmak için.")
+                    .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+    }
+
     // MARK: - Daha fazla
 
     private var moreSection: some View {
@@ -241,9 +277,9 @@ struct ParentOverviewView: View {
                     MPIconTile(systemImage: "crown", tone: .yellow, size: 48)
                         .accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: 1) {
-                        Text(subscriptionManager.isPremium ? "Hikaye Kahramanı" : "Ücretsiz plan")
+                        Text(subscriptionManager.isPremium ? "MagicPaper Premium" : "Ücretsiz plan")
                             .mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                        Text(subscriptionManager.isPremium ? "Aylık yenilenir"
+                        Text(subscriptionManager.isPremium ? "Abonelik açık"
                              : (subscriptionManager.hasUnseenLapse ? "Premium süren doldu" : "Temel masallar"))
                             .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                     }
@@ -252,6 +288,26 @@ struct ParentOverviewView: View {
                         MPButton(title: "Ayrıntı", kind: .secondary, size: .small) { showsLapse = true }
                     } else {
                         MPButton(title: "Planlar", kind: .secondary, size: .small) { app.openPaywall() }
+                    }
+                }
+            }
+            // Çocuğun dokunduğu kapalı şey: bilgi, satış değil. "Tamam" siler.
+            if let entry = lockedInterest, !subscriptionManager.isPremium {
+                MPCard(area: .parent) {
+                    VStack(alignment: .leading, spacing: MPSpacing.sm) {
+                        Text(MPLockedInterest.sentence(for: entry))
+                            .mpText(.body).foregroundStyle(MPColor.textPrimary)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Text("Bu Premium'da açık. Çocuğa fiyat ya da teklif gösterilmedi; karar senin.")
+                            .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                        HStack(spacing: MPSpacing.sm) {
+                            MPButton(title: "Planlara bak", kind: .secondary, size: .small) { app.openPaywall() }
+                            MPButton(title: "Tamam", kind: .ghost, size: .small) {
+                                MPLockedInterest.clear()
+                                lockedInterest = nil
+                            }
+                        }
                     }
                 }
             }

@@ -48,6 +48,31 @@ struct PaywallView: View {
         return percent >= 5 ? percent : nil
     }
 
+    /// Aynı avantajın tutarı: aylık × 12 − yıllık, mağaza para birimiyle
+    /// (₺149 × 12 − ₺999 = ₺789). Yüzde tek başına küçük fiyatta büyük,
+    /// büyük fiyatta küçük görünebilir; ikisi yan yana yazılır.
+    private var yearlySavingAmount: String? {
+        guard yearlySaving != nil,
+              let yearly = revenueCat.priceAmount(for: tier, period: .yearly),
+              let monthly = revenueCat.priceAmount(for: tier, period: .monthly) else { return nil }
+        return revenueCat.localizedAmount(monthly * 12 - yearly, for: tier, period: .yearly)
+    }
+
+    /// Çocuğun kitaplığındaki masallar, en son okunan önce.
+    private var childStories: [Story] {
+        guard let profile = ProfileManager.shared.currentProfile else { return [] }
+        return StoryGenerationManager.shared.stories
+            .filter { $0.isReadable && $0.belongs(to: profile) }
+            .sorted { ($0.lastReadAt ?? $0.createdAt) > ($1.lastReadAt ?? $1.createdAt) }
+    }
+
+    /// Çocuğun kitaplığındaki gerçek masal sayısı (değer önerisi 4, 26 Kasım
+    /// 2026). Masal yoksa sahiplik cümlesi kurulmaz.
+    private var libraryLine: String? {
+        guard let profile = ProfileManager.shared.currentProfile, !childStories.isEmpty else { return nil }
+        return "\(SeriesCopy.genitive(profile.name)) kitaplığında \(childStories.count) masal var."
+    }
+
     /// Seçilen plan için gerçek bir StoreKit ürünü var mı?
     private var hasLiveProduct: Bool {
         revenueCat.hasPackage(for: tier, period: period)
@@ -112,9 +137,20 @@ struct PaywallView: View {
         VStack(alignment: .leading, spacing: MPSpacing.xs) {
             Text("MagicPaper Premium").mpText(.page).foregroundStyle(MPColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
-            Text("Ritüel ücretsiz kalır. Premium kitaplığı büyütür.")
+            Text([libraryLine, "Her akşamın masalı ücretsiz kalır. Premium kitaplığı büyütür."]
+                    .compactMap { $0 }.joined(separator: " "))
                 .mpText(.body).foregroundStyle(MPColor.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
+            // Çocuğun gerçek kapakları, en fazla üç: büyüyecek kitaplık bu.
+            if !childStories.isEmpty {
+                HStack(spacing: MPSpacing.sm) {
+                    ForEach(childStories.prefix(3), id: \.id) { story in
+                        MPBookCover(art: LibraryShelfModel.coverArt(story), width: 64)
+                    }
+                }
+                .padding(.top, MPSpacing.xs)
+                .accessibilityHidden(true)
+            }
         }
         // Kapat düğmesinin altından başlar.
         .padding(.top, MPSize.minTouchHero)
@@ -135,8 +171,10 @@ struct PaywallView: View {
 
     private func planCard(_ c: Cycle) -> some View {
         let selected = cycle == c
+        let perMonth = revenueCat.localizedPricePerMonth(for: tier, period: .yearly).map { "Ayda \($0)" }
+        let yearlyParts = [perMonth, yearlySavingAmount.map { "aylığa göre yılda \($0) az" }].compactMap { $0 }
         let note = c == .yearly
-            ? revenueCat.localizedPricePerMonth(for: tier, period: .yearly).map { "Ayda \($0)" } ?? "Yılda bir ödeme"
+            ? (yearlyParts.isEmpty ? "Yılda bir ödeme" : yearlyParts.joined(separator: ", "))
             : "İstediğin ay bırak"
         return Button {
             withAnimation(MP.M.gated(MP.M.press)) { cycle = c }
