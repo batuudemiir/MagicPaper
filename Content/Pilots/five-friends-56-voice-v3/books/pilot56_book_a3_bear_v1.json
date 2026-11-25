@@ -1,0 +1,1186 @@
+{
+  "id": "pilot56_book_a3_bear_v1",
+  "title": "Böğürtlen'in Çantası",
+  "blueprintID": "pilot56_blueprint_a3_v1",
+  "planLabel": "A3",
+  "mechanismKey": "retrace-child-specific-observation",
+  "status": "v3-approved-text-metadata-review-candidate",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "adventure",
+    "arc": "editorial-adventure",
+    "companionID": "companion_bear_001",
+    "settingID": "setting_whispering_forest_001",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Sakin ve güçlü; çocuğun fikrini dinler; güç cevap yerine geçmez.",
+  "physicalContract": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+  "childAgency": "Çocuk dönüşte kendi gördüğü çatallı kökü tanır ve mendili alır.",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "personal_loss",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_1_v1"
+      ],
+      "text": "Deniz ile Böğürtlen açıklıkta durdu. Deniz cebine baktı; küçük mendili orada değildi! En sevdiği mendildi. Biraz önce patikada yürümüşlerdi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "personal_loss",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_bear_v1_p01",
+            "sourceTextDigest": "3df96a739b8bd20aaba9e74376cb3817b2cebf8bc2c272f314fad61dc89b544d",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/232",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "intended",
+            "states": [
+              "cloth-location-not-yet-known",
+              "not-available-as-visible-prop"
+            ]
+          }
+        ],
+        "propDescription": "mendil",
+        "propMentions": [
+          {
+            "label": "mendil",
+            "evidenceQuotes": [
+              "Deniz cebine baktı; küçük mendili orada değildi!",
+              "En sevdiği mendildi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz ile Böğürtlen açıklıkta durdu. Deniz cebine baktı; küçük mendili orada değildi! En sevdiği mendildi. Biraz önce patikada yürümüşlerdi.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_bear_v1_p01",
+            "evidenceText": "Deniz ile Böğürtlen açıklıkta durdu. Deniz cebine baktı; küçük mendili orada değildi! En sevdiği mendildi. Biraz önce patikada yürümüşlerdi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ile Böğürtlen açıklıkta durdu. Deniz cebine baktı; küçük mendili orada değildi! En sevdiği mendildi. Biraz önce patikada yürümüşlerdi.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Deniz ile Böğürtlen açıklıkta durdu.",
+          "Deniz cebine baktı; küçük mendili orada değildi!",
+          "En sevdiği mendildi.",
+          "Biraz önce patikada yürümüşlerdi."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 2,
+      "role": "last_seen_recalled",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_2_v1"
+      ],
+      "text": "Deniz düşündü. \"Ayakkabımı silerken çıkarmıştım,\" dedi. O sırada yanında çatallı bir kök vardı. Kökün resmi şimdi aklındaydı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "personal_loss",
+      "stateAfter": "last_seen_recalled",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_bear_v1_p02",
+            "sourceTextDigest": "1b5c48d2c1b2dcaa9b220a724972fcc6e596aad24b0890b92ca3829006a24e85",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/233",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "intended",
+            "states": [
+              "cloth-location-not-yet-known",
+              "not-available-as-visible-prop"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_forked_root_v1",
+            "presence": "remembered",
+            "states": [
+              "remembered-search-landmark"
+            ]
+          }
+        ],
+        "propDescription": "çatallı kök",
+        "propMentions": [
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "O sırada yanında çatallı bir kök vardı.",
+              "Kökün resmi şimdi aklındaydı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz düşündü. \"Ayakkabımı silerken çıkarmıştım,\" dedi. O sırada yanında çatallı bir kök vardı. Kökün resmi şimdi aklındaydı.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_bear_v1_p02",
+            "evidenceText": "Deniz düşündü. \"Ayakkabımı silerken çıkarmıştım,\" dedi. O sırada yanında çatallı bir kök vardı. Kökün resmi şimdi aklındaydı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz düşündü. \"Ayakkabımı silerken çıkarmıştım,\" dedi. O sırada yanında çatallı bir kök vardı. Kökün resmi şimdi aklındaydı.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Deniz düşündü.",
+          "\"Ayakkabımı silerken çıkarmıştım,\" dedi.",
+          "O sırada yanında çatallı bir kök vardı.",
+          "Kökün resmi şimdi aklındaydı."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_waits",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_3_v1"
+      ],
+      "text": "Böğürtlen yanına oturdu. \"Acele yok, ben buradayım,\" dedi. Sonra kendi çantasını karıştırdı. \"Bende yalnız böğürtlen var,\" dedi üzgün üzgün. Deniz gülümsedi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "last_seen_recalled",
+      "stateAfter": "friend_waits",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_bear_v1_p03",
+            "sourceTextDigest": "00528b7f3975a9a6564697494b0c653296ee6ec99e99f957b16a965348874dc7",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/234",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "intended",
+            "states": [
+              "cloth-location-not-yet-known",
+              "not-available-as-visible-prop"
+            ]
+          }
+        ],
+        "propDescription": "çanta/askı; böğürtlen meyvesi",
+        "propMentions": [
+          {
+            "label": "çanta/askı",
+            "evidenceQuotes": [
+              "Sonra kendi çantasını karıştırdı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "böğürtlen meyvesi",
+            "evidenceQuotes": [
+              "\"Bende yalnız böğürtlen var,\" dedi üzgün üzgün."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen yanına oturdu. \"Acele yok, ben buradayım,\" dedi. Sonra kendi çantasını karıştırdı. \"Bende yalnız böğürtlen var,\" dedi üzgün üzgün. Deniz gülümsedi.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_bear_v1_p03",
+            "evidenceText": "Böğürtlen yanına oturdu. \"Acele yok, ben buradayım,\" dedi. Sonra kendi çantasını karıştırdı. \"Bende yalnız böğürtlen var,\" dedi üzgün üzgün. Deniz gülümsedi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen yanına oturdu. \"Acele yok, ben buradayım,\" dedi. Sonra kendi çantasını karıştırdı. \"Bende yalnız böğürtlen var,\" dedi üzgün üzgün. Deniz gülümsedi.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Böğürtlen yanına oturdu.",
+          "\"Acele yok, ben buradayım,\" dedi.",
+          "Sonra kendi çantasını karıştırdı.",
+          "\"Bende yalnız böğürtlen var,\" dedi üzgün üzgün.",
+          "Deniz gülümsedi."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_selects_route",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_4_v1"
+      ],
+      "text": "Deniz geldikleri patikayı gösterdi. \"Kökü bulmak için bu taraftan döneceğim,\" dedi. Yavaşça yürümeye başladı. Böğürtlen ağır ağır, mırıldanarak arkasından geldi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_waits",
+      "stateAfter": "child_selects_route",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_bear_v1_p04",
+            "sourceTextDigest": "d62f886dfa2b778c27f7eba085bbd8f27ef198aa6b6070959c64533a321c3313",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/235",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "intended",
+            "states": [
+              "cloth-location-not-yet-known",
+              "not-available-as-visible-prop"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_forked_root_v1",
+            "presence": "intended",
+            "states": [
+              "not-current-clearing-prop"
+            ]
+          }
+        ],
+        "propDescription": "çatallı kök",
+        "propMentions": [
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "\"Kökü bulmak için bu taraftan döneceğim,\" dedi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz geldikleri patikayı gösterdi. \"Kökü bulmak için bu taraftan döneceğim,\" dedi. Yavaşça yürümeye başladı. Böğürtlen ağır ağır, mırıldanarak arkasından geldi.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_bear_v1_p04",
+            "evidenceText": "Deniz geldikleri patikayı gösterdi. \"Kökü bulmak için bu taraftan döneceğim,\" dedi. Yavaşça yürümeye başladı. Böğürtlen ağır ağır, mırıldanarak arkasından geldi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz geldikleri patikayı gösterdi. \"Kökü bulmak için bu taraftan döneceğim,\" dedi. Yavaşça yürümeye başladı. Böğürtlen ağır ağır, mırıldanarak arkasından geldi.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Deniz geldikleri patikayı gösterdi.",
+          "\"Kökü bulmak için bu taraftan döneceğim,\" dedi.",
+          "Yavaşça yürümeye başladı.",
+          "Böğürtlen ağır ağır, mırıldanarak arkasından geldi."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "retrace",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_5_v1"
+      ],
+      "text": "Deniz çatallı bir kök arıyordu. Gözleri patikanın kenarındaydı. İki ucu ayrılan bir kök görünce yavaşladı. \"Ben burada durmuştum!\" dedi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_selects_route",
+      "stateAfter": "retrace",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_bear_v1_p05",
+            "sourceTextDigest": "dc2f1736e00562cd3b04c7c61058516168494f5b8433ad5418857ff6d136baa9",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/236",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "intended",
+            "states": [
+              "cloth-location-not-yet-known",
+              "not-available-as-visible-prop"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_forked_root_v1",
+            "presence": "present",
+            "states": [
+              "fixed-on-ground"
+            ]
+          }
+        ],
+        "propDescription": "çatallı kök",
+        "propMentions": [
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "Deniz çatallı bir kök arıyordu.",
+              "İki ucu ayrılan bir kök görünce yavaşladı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz çatallı bir kök arıyordu. Gözleri patikanın kenarındaydı. İki ucu ayrılan bir kök görünce yavaşladı. \"Ben burada durmuştum!\" dedi.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_bear_v1_p05",
+            "evidenceText": "Deniz çatallı bir kök arıyordu. Gözleri patikanın kenarındaydı. İki ucu ayrılan bir kök görünce yavaşladı. \"Ben burada durmuştum!\" dedi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz çatallı bir kök arıyordu. Gözleri patikanın kenarındaydı. İki ucu ayrılan bir kök görünce yavaşladı. \"Ben burada durmuştum!\" dedi.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Deniz çatallı bir kök arıyordu.",
+          "Gözleri patikanın kenarındaydı.",
+          "İki ucu ayrılan bir kök görünce yavaşladı.",
+          "\"Ben burada durmuştum!\" dedi."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "child_recognizes",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_6_v1"
+      ],
+      "text": "Deniz kökün yanına eğildi. Mendil oradaydı! Kendi eliyle alıp silkeledi. Böğürtlen sevinçle kocaman patilerini birbirine vurdu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "retrace",
+      "stateAfter": "child_recognizes",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_bear_v1_p06",
+            "sourceTextDigest": "d32f47839a46815117e3ed162cded70c46ca4ce8daa24e12a993617c3d6e1d46",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/237",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "present",
+            "states": [
+              "cloth-in-child-hand",
+              "recovered-from-visible-root"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_forked_root_v1",
+            "presence": "present",
+            "states": [
+              "fixed-on-ground"
+            ]
+          }
+        ],
+        "propDescription": "mendil; çatallı kök",
+        "propMentions": [
+          {
+            "label": "mendil",
+            "evidenceQuotes": [
+              "Mendil oradaydı!"
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "Deniz kökün yanına eğildi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz kökün yanına eğildi. Mendil oradaydı! Kendi eliyle alıp silkeledi. Böğürtlen sevinçle kocaman patilerini birbirine vurdu.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_bear_v1_p06",
+            "evidenceText": "Deniz kökün yanına eğildi. Mendil oradaydı! Kendi eliyle alıp silkeledi. Böğürtlen sevinçle kocaman patilerini birbirine vurdu.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kökün yanına eğildi. Mendil oradaydı! Kendi eliyle alıp silkeledi. Böğürtlen sevinçle kocaman patilerini birbirine vurdu.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Deniz kökün yanına eğildi.",
+          "Mendil oradaydı!",
+          "Kendi eliyle alıp silkeledi.",
+          "Böğürtlen sevinçle kocaman patilerini birbirine vurdu."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 7,
+      "role": "object_recovered",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_7_v1"
+      ],
+      "text": "Deniz mendili katlayıp cebine koydu. \"Kökü hatırladım, mendili buldum,\" dedi. Böğürtlen başını salladı. \"Ben yalnız böğürtlenleri hatırlarım, sen her şeyi,\" dedi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "child_recognizes",
+      "stateAfter": "object_recovered",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_bear_v1_p07",
+            "sourceTextDigest": "bbe207458781240358eede750d25349e55c141125c3d85831307f674b68642b7",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/238",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "present",
+            "states": [
+              "cloth-in-child-pocket"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_forked_root_v1",
+            "presence": "present",
+            "states": [
+              "fixed-on-ground"
+            ]
+          }
+        ],
+        "propDescription": "mendil; çatallı kök; böğürtlen meyvesi",
+        "propMentions": [
+          {
+            "label": "mendil",
+            "evidenceQuotes": [
+              "Deniz mendili katlayıp cebine koydu.",
+              "\"Kökü hatırladım, mendili buldum,\" dedi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "\"Kökü hatırladım, mendili buldum,\" dedi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "böğürtlen meyvesi",
+            "evidenceQuotes": [
+              "\"Ben yalnız böğürtlenleri hatırlarım, sen her şeyi,\" dedi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz mendili katlayıp cebine koydu. \"Kökü hatırladım, mendili buldum,\" dedi. Böğürtlen başını salladı. \"Ben yalnız böğürtlenleri hatırlarım, sen her şeyi,\" dedi.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_bear_v1_p07",
+            "evidenceText": "Deniz mendili katlayıp cebine koydu. \"Kökü hatırladım, mendili buldum,\" dedi. Böğürtlen başını salladı. \"Ben yalnız böğürtlenleri hatırlarım, sen her şeyi,\" dedi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz mendili katlayıp cebine koydu. \"Kökü hatırladım, mendili buldum,\" dedi. Böğürtlen başını salladı. \"Ben yalnız böğürtlenleri hatırlarım, sen her şeyi,\" dedi.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Deniz mendili katlayıp cebine koydu.",
+          "\"Kökü hatırladım, mendili buldum,\" dedi.",
+          "Böğürtlen başını salladı.",
+          "\"Ben yalnız böğürtlenleri hatırlarım, sen her şeyi,\" dedi."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_return",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_8_v1"
+      ],
+      "text": "İkisi açıklığa geri yürüdü. Böğürtlen çantasından bir avuç böğürtlen çıkardı. Birini kendi ağzına, birini Deniz’in avucuna koydu. Mendil cepte, avuç tatlıydı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "object_recovered",
+      "stateAfter": "closed_return",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_bear_v1_p08",
+            "sourceTextDigest": "52aa96cbfd72ae1b6933877ece72200da8429ab0a02043e91bcbc3606e206da1",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/239",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "present",
+            "states": [
+              "cloth-in-child-pocket"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_forked_root_v1",
+            "presence": "off-scene",
+            "states": [
+              "not-current-clearing-prop"
+            ]
+          }
+        ],
+        "propDescription": "mendil; çanta/askı; böğürtlen meyvesi",
+        "propMentions": [
+          {
+            "label": "mendil",
+            "evidenceQuotes": [
+              "Mendil cepte, avuç tatlıydı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "çanta/askı",
+            "evidenceQuotes": [
+              "Böğürtlen çantasından bir avuç böğürtlen çıkardı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "böğürtlen meyvesi",
+            "evidenceQuotes": [
+              "Böğürtlen çantasından bir avuç böğürtlen çıkardı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "İkisi açıklığa geri yürüdü. Böğürtlen çantasından bir avuç böğürtlen çıkardı. Birini kendi ağzına, birini Deniz’in avucuna koydu. Mendil cepte, avuç tatlıydı.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_bear_v1_p08",
+            "evidenceText": "İkisi açıklığa geri yürüdü. Böğürtlen çantasından bir avuç böğürtlen çıkardı. Birini kendi ağzına, birini Deniz’in avucuna koydu. Mendil cepte, avuç tatlıydı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "İkisi açıklığa geri yürüdü. Böğürtlen çantasından bir avuç böğürtlen çıkardı. Birini kendi ağzına, birini Deniz’in avucuna koydu. Mendil cepte, avuç tatlıydı.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "İkisi açıklığa geri yürüdü.",
+          "Böğürtlen çantasından bir avuç böğürtlen çıkardı.",
+          "Birini kendi ağzına, birini Deniz’in avucuna koydu.",
+          "Mendil cepte, avuç tatlıydı."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    }
+  ],
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "sourceBookID": "pilot56_book_a3_bear_v1",
+  "variantID": "event01",
+  "baseBookID": "pilot56_book_a3_bear_v1"
+}

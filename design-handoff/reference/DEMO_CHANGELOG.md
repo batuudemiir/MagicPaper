@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · codex/bes-arkadas/codex-motor, commit yok · V3 ayrı aday paket ve metin uyumluluk raporu
+
+- 15 onaylı girdi dosyası yeni voice-v3 korpusuna alındı; 90 kitap/720 sayfa kaynak/provenance/başlık/semantik/causal/safety/art bağları yeni SHA'larla kuruldu. V3 loader ve metadata tanıması ayrı; v1/v2 byte ve aktif pin değişmedi, app dosyaları korunuyor.
+- Tam metin yeniden okundu. 171 kısa sayfa/78 kitap için kimlikli düzeltme listesi çıkarıldı; metin değiştirilmedi. Nefes tutma ve A2 baykuş agency açıklığı raporlandı. A3 hakkındaki ilk yanlış zamanlama incelemesi gerçek Swift factPaths ile çürütülüp geri çekildi.
+- İlk seçili Release70 test/1 skip/0 test hatası; gerçek630 fixture84 başarı/546 ageBudget, N1500 171 başarı/1329 ageBudget/retry0. Lint90/0, ortak sayfa30%. Başarısız istekler gizlenmedi; aday etkinleştirilmedi. İnceleme düzeltmesi sonrası hedefli Release12 test/0 hata; iki koşu benzersiz toplam olarak toplanmaz.
+- Tam kaynak bağlamı/poz/eylem art-handoff.json içinde; atomic/görsel/yayın onayı yok. Dosyalar: yeni iki v3 Content klasörü, P56V3 loader/test/diagnostic, metadata+dispatch, research/v3, plan, Codex durum ve proje hafızası. Main/push/entegrasyon değişmedi.
+
+
 ### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · B hattı iç pilot karşı incelemesi kabul
 
 - Claude 19894d6 ucu, cdc40ed entegrasyon tabanına karşı incelendi; kaynak izi, fallback rotası ve arşiv sonucu bulguları kapandı. K-G otomatik recall kararı okundu ve kabul kaydına alındı. İç pilot için birleşme engeli yok; birleştirme Claude hattında.

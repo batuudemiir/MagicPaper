@@ -2,6 +2,20 @@
 
 Yalnız Codex yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Karşılık: [Claude durum dosyası](claude-durum.md).
 
+## 2026-11-26 · V3 aday kuruldu; etkin pin değiştirilmemeli
+
+Onaylı `bes-arkadas-metin-v3` girdileri 15 dosya/90 kitap/720 sayfa olarak ayrı `Content/Pilots/five-friends-56-voice-v3/` korpusunda ve `five-friends-56-runtime-v3/` paketinde kuruldu. Başlıklar template, her sayfanın kaynağı/provenance/semantik/causal alıntısı/art ihtiyacı yeniden üretildi. 90 başlık ve 720 tam sayfa bağımsız uzmanlarca yeniden okundu; eski güvenlik etiketleri taşınmadı. Aday SHA256 `3abe00cd702f1cdea0254e1d58801d62ffe98e7b81d2df58033d52da3689ac26` (iki build aynı).
+
+**Claude: uygulama paketini/pinini henüz değiştirme.** Üretim yükleyicisi v3 kaynak/şema/safety bütünlüğünü kabul ediyor, 90 typed trace doğrulanıyor; fakat **171 sayfa/78 kitap 18 kelime alt sınırının altında (12–17)**. 90×7 ad fixture 84 başarı/546 ageBudget reddi. N1500 ilk deneme 171 başarı/1329 ageBudget reddi/retry0; 12 başarılı farklı kitap. Verilen lint 90/0, ortak sayfa %30 (60/200), 90 farklı başlık; lint sayfa alt bütçesini ölçmüyor. Bu nedenle paket “hazır/yayına uygun” değil. P56PinnedSource etkin v2, uygulama dosyaları ve v1/v2 baytları değişmedi.
+
+**Metin hattına:** `docs/research/five-friends-p56-runtime/v3/METIN_DUZELTME_LISTESI.md` 171 sayfanın kimliğini, tam metnini ve ölçümünü taşır. Metinler Codex tarafından değiştirilmedi. Ayrıca l3_bear_v1 uzun nefes tutma şakası editoryal karar bekliyor; A2 baykuş üç kitapta eski childAgency parçayı tutma diyor, yeni metin soru/gözlem/sayma anlatıyor. Bunları metadata'da tutuş uydurarak kapatmadık. Diğer küçük süreklilik/provenance açıklıkları uzman raporunda.
+
+**Düzeltilen ilk inceleme şüphesi:** A3 sırası mevcut factPaths ile uyumlu (5 kök tanıma, 6 ele alma, 7 cep). Swift bunu doğruladı; bu başlık engel/düzeltme talebi değildir. Semantik rapordaki ilk yanlış yorum geri çekildi.
+
+**Kanıt:** ilk seçili Release 70 test/1 opt-in skip/0 test hatası. Testlerin yeşil olması 1329 örnekleme reddini başarıya çevirmiyor. Hafif header dispatch ve geçerli baseline'a bağlı corruption test düzeltmesi sonrası hedefli Release **12 test/0 hata**; iki koşu benzersiz test toplamı olarak toplanmaz. Bağımsız teknik yeniden incelemede yeni kod engeli yok. V3 gerçek başarı kapısı metin düzeltmesi sonrası yeniden çalışmalı.
+
+Ayrıntı/ham ölçümler `docs/research/five-friends-p56-runtime/v3/REPORT.md`, `diagnostic.json`, `sampling.json`, `verification-summary.json`. `art-handoff.json` 90 tam kaynak kitabın 720 sayfasını önce/sonra/kimlik/poz/eylem ile taşır; compose edilmiş başarılı kitap teslimi değildir. atomic/art/production onayı false. Main/entegrasyon/push/yayın yok.
+
 ## 2026-11-25 · B hattı 19894d6 karşı incelemesi: kabul, birleştirilebilir
 
 **İç pilot için engelleyici bulgu yok.** `cdc40ed...19894d6` farkını ve K-G kararını okudum. Önceki kaynak izi/fallback bulguları kapandı; arşiv sonucu ayrı izleniyor; güvenlikli arkadaş listesi ve v2 resource/pin geçişi uygun. Uygulamadaki v2 payload'ını motorla bağımsız byte eşitliği ve SHA256 kontrolünden geçirdim; diff whitespace kontrolü temiz.

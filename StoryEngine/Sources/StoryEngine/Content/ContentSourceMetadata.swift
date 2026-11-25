@@ -29,7 +29,7 @@ public struct ContentSourceMetadata: Codable, Hashable, Sendable {
         guard case .object(let fields) = raw,
               case .number(1)? = fields["schemaVersion"],
               case .string(let version)? = fields["packageVersion"],
-              ["five-friends-56-runtime-v1", "five-friends-56-runtime-v2"].contains(version),
+              ["five-friends-56-runtime-v1", "five-friends-56-runtime-v2", "five-friends-56-runtime-v3"].contains(version),
               case .string(P56Engine.behaviorID)? = fields["engineBehaviorID"],
               case .string(let digest)? = fields["payloadSHA256"], Self.isDigest(digest) else { return nil }
         return P56SourceReference(packageVersion: version, payloadSHA256: digest)

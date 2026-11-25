@@ -1,0 +1,1191 @@
+{
+  "id": "pilot56_book_a3_hedgehog_event03_v1",
+  "title": "Kestane'nin Yoncası",
+  "blueprintID": "pilot56_blueprint_a3_v1",
+  "planLabel": "A3",
+  "mechanismKey": "retrace-child-specific-observation",
+  "status": "v3-approved-text-metadata-review-candidate",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "adventure",
+    "arc": "editorial-adventure",
+    "companionID": "companion_hedgehog_pilot_001",
+    "settingID": "setting_whispering_forest_001",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Küçük adımlarla cesaretlenir; her sahnede kaygılı değildir.",
+  "physicalContract": "Dört kısa ayak; dikenler korunur.",
+  "childAgency": "Çocuk dönüşte kendi gördüğü çatallı kökü tanır ve mendili alır.",
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "baseBookID": "pilot56_book_a3_hedgehog_v1",
+  "variantID": "event03",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "personal_loss",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_1_v1"
+      ],
+      "text": "Deniz açıklıkta cebine dokundu. Mendili orada değildi! Kestane yanındaydı. Biraz önce kısa patikada durduklarını hatırladılar.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "personal_loss",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p01",
+            "sourceTextDigest": "7c7638299d2564bdf57364575d7c2c86d0ae8c01c7de1637e84ee597aaa0afc5",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/664",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "intended",
+            "states": [
+              "cloth-location-not-yet-known",
+              "not-available-as-visible-prop"
+            ]
+          }
+        ],
+        "propDescription": "mendil",
+        "propMentions": [
+          {
+            "label": "mendil",
+            "evidenceQuotes": [
+              "Mendili orada değildi!"
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz açıklıkta cebine dokundu. Mendili orada değildi! Kestane yanındaydı. Biraz önce kısa patikada durduklarını hatırladılar.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p01",
+            "evidenceText": "Deniz açıklıkta cebine dokundu. Mendili orada değildi! Kestane yanındaydı. Biraz önce kısa patikada durduklarını hatırladılar.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz açıklıkta cebine dokundu. Mendili orada değildi! Kestane yanındaydı. Biraz önce kısa patikada durduklarını hatırladılar.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "Deniz açıklıkta cebine dokundu.",
+          "Mendili orada değildi!",
+          "Kestane yanındaydı.",
+          "Biraz önce kısa patikada durduklarını hatırladılar."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 2,
+      "role": "last_seen_recalled",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_2_v1"
+      ],
+      "text": "Deniz o anı düşündü. Önce çatallı kökü geçmiş, sonra geri dönmüştü. Mendili de dönünce bırakmıştı. \"Önce geçtim, sonra döndüm,\" dedi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "personal_loss",
+      "stateAfter": "last_seen_recalled",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p02",
+            "sourceTextDigest": "0b3baccbbb4852cc8541c3b782c3aaa9cd8d4774db0dfb40c7fa905264c5a041",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/665",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "intended",
+            "states": [
+              "cloth-location-not-yet-known",
+              "not-available-as-visible-prop"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_forked_root_v1",
+            "presence": "remembered",
+            "states": [
+              "remembered-search-landmark"
+            ]
+          }
+        ],
+        "propDescription": "mendil; çatallı kök",
+        "propMentions": [
+          {
+            "label": "mendil",
+            "evidenceQuotes": [
+              "Mendili de dönünce bırakmıştı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "Önce çatallı kökü geçmiş, sonra geri dönmüştü."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz o anı düşündü. Önce çatallı kökü geçmiş, sonra geri dönmüştü. Mendili de dönünce bırakmıştı. \"Önce geçtim, sonra döndüm,\" dedi.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p02",
+            "evidenceText": "Deniz o anı düşündü. Önce çatallı kökü geçmiş, sonra geri dönmüştü. Mendili de dönünce bırakmıştı. \"Önce geçtim, sonra döndüm,\" dedi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz o anı düşündü. Önce çatallı kökü geçmiş, sonra geri dönmüştü. Mendili de dönünce bırakmıştı. \"Önce geçtim, sonra döndüm,\" dedi.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "Deniz o anı düşündü.",
+          "Önce çatallı kökü geçmiş, sonra geri dönmüştü.",
+          "Mendili de dönünce bırakmıştı.",
+          "\"Önce geçtim, sonra döndüm,\" dedi."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_waits",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_3_v1"
+      ],
+      "text": "Kestane bu sözü çok sevdi. \"Önce geçtim, sonra döndüm!\" diye tekrarladı. Söylerken kendi etrafında küçük bir tur attı. Dikenine bir yonca takıldı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "last_seen_recalled",
+      "stateAfter": "friend_waits",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p03",
+            "sourceTextDigest": "02eb2fd5caee1c200f1c8ef1e6b0abd36422f6dbf601c0dec681f9680862199f",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/666",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "intended",
+            "states": [
+              "cloth-location-not-yet-known",
+              "not-available-as-visible-prop"
+            ]
+          }
+        ],
+        "propDescription": "papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Dikenine bir yonca takıldı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane bu sözü çok sevdi. \"Önce geçtim, sonra döndüm!\" diye tekrarladı. Söylerken kendi etrafında küçük bir tur attı. Dikenine bir yonca takıldı.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p03",
+            "evidenceText": "Kestane bu sözü çok sevdi. \"Önce geçtim, sonra döndüm!\" diye tekrarladı. Söylerken kendi etrafında küçük bir tur attı. Dikenine bir yonca takıldı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane bu sözü çok sevdi. \"Önce geçtim, sonra döndüm!\" diye tekrarladı. Söylerken kendi etrafında küçük bir tur attı. Dikenine bir yonca takıldı.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "Kestane bu sözü çok sevdi.",
+          "\"Önce geçtim, sonra döndüm!\" diye tekrarladı.",
+          "Söylerken kendi etrafında küçük bir tur attı.",
+          "Dikenine bir yonca takıldı."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_selects_route",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_4_v1"
+      ],
+      "text": "Deniz geldiği patikaya döndü. \"Kendi adımlarımı izleyeceğim,\" dedi. Yolda gördüğü her şeye dikkatle baktı. Kestane yoncasıyla yanında yürüdü.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_waits",
+      "stateAfter": "child_selects_route",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p04",
+            "sourceTextDigest": "4bd4155ddfd0c09a18fc30a3a2c4885636b06859dfc1bcbf74b85daa0fdec652",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/667",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "intended",
+            "states": [
+              "cloth-location-not-yet-known",
+              "not-available-as-visible-prop"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_forked_root_v1",
+            "presence": "intended",
+            "states": [
+              "not-current-clearing-prop"
+            ]
+          }
+        ],
+        "propDescription": "papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Kestane yoncasıyla yanında yürüdü."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz geldiği patikaya döndü. \"Kendi adımlarımı izleyeceğim,\" dedi. Yolda gördüğü her şeye dikkatle baktı. Kestane yoncasıyla yanında yürüdü.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p04",
+            "evidenceText": "Deniz geldiği patikaya döndü. \"Kendi adımlarımı izleyeceğim,\" dedi. Yolda gördüğü her şeye dikkatle baktı. Kestane yoncasıyla yanında yürüdü.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz geldiği patikaya döndü. \"Kendi adımlarımı izleyeceğim,\" dedi. Yolda gördüğü her şeye dikkatle baktı. Kestane yoncasıyla yanında yürüdü.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "Deniz geldiği patikaya döndü.",
+          "\"Kendi adımlarımı izleyeceğim,\" dedi.",
+          "Yolda gördüğü her şeye dikkatle baktı.",
+          "Kestane yoncasıyla yanında yürüdü."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "retrace",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_5_v1"
+      ],
+      "text": "Deniz çatallı kökü görünce durdu. Kökün yanında küçük bir dönüş yeri vardı. \"O dönüş buradaydı!\" dedi. Mendili aramak için doğru yana yaklaştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_selects_route",
+      "stateAfter": "retrace",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p05",
+            "sourceTextDigest": "7f24c6f7fda290df5988615de6c52e543ba6036bd2b468f3e03ddc2becf59379",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/668",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "intended",
+            "states": [
+              "cloth-location-not-yet-known",
+              "not-available-as-visible-prop"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_forked_root_v1",
+            "presence": "present",
+            "states": [
+              "fixed-on-ground"
+            ]
+          }
+        ],
+        "propDescription": "mendil; çatallı kök",
+        "propMentions": [
+          {
+            "label": "mendil",
+            "evidenceQuotes": [
+              "Mendili aramak için doğru yana yaklaştı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "Deniz çatallı kökü görünce durdu.",
+              "Kökün yanında küçük bir dönüş yeri vardı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz çatallı kökü görünce durdu. Kökün yanında küçük bir dönüş yeri vardı. \"O dönüş buradaydı!\" dedi. Mendili aramak için doğru yana yaklaştı.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p05",
+            "evidenceText": "Deniz çatallı kökü görünce durdu. Kökün yanında küçük bir dönüş yeri vardı. \"O dönüş buradaydı!\" dedi. Mendili aramak için doğru yana yaklaştı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz çatallı kökü görünce durdu. Kökün yanında küçük bir dönüş yeri vardı. \"O dönüş buradaydı!\" dedi. Mendili aramak için doğru yana yaklaştı.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "Deniz çatallı kökü görünce durdu.",
+          "Kökün yanında küçük bir dönüş yeri vardı.",
+          "\"O dönüş buradaydı!\" dedi.",
+          "Mendili aramak için doğru yana yaklaştı."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "child_recognizes",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_6_v1"
+      ],
+      "text": "Mendil kökün dibindeydi. Deniz onu eliyle yerden aldı. \"Mendilimi buldum,\" dedi, sıkıca tuttu. Kestane ön ayaklarıyla yere pıt pıt vurarak sevindi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "retrace",
+      "stateAfter": "child_recognizes",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p06",
+            "sourceTextDigest": "d5417d662def8cf3c669bf591a22585ca8f77f132dd65dec9dcdff83386c0c7f",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/669",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "present",
+            "states": [
+              "cloth-in-child-hand",
+              "recovered-from-visible-root"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_forked_root_v1",
+            "presence": "present",
+            "states": [
+              "fixed-on-ground"
+            ]
+          }
+        ],
+        "propDescription": "mendil; çatallı kök",
+        "propMentions": [
+          {
+            "label": "mendil",
+            "evidenceQuotes": [
+              "Mendil kökün dibindeydi.",
+              "\"Mendilimi buldum,\" dedi, sıkıca tuttu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "Mendil kökün dibindeydi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Mendil kökün dibindeydi. Deniz onu eliyle yerden aldı. \"Mendilimi buldum,\" dedi, sıkıca tuttu. Kestane ön ayaklarıyla yere pıt pıt vurarak sevindi.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p06",
+            "evidenceText": "Mendil kökün dibindeydi. Deniz onu eliyle yerden aldı. \"Mendilimi buldum,\" dedi, sıkıca tuttu. Kestane ön ayaklarıyla yere pıt pıt vurarak sevindi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Mendil kökün dibindeydi. Deniz onu eliyle yerden aldı. \"Mendilimi buldum,\" dedi, sıkıca tuttu. Kestane ön ayaklarıyla yere pıt pıt vurarak sevindi.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "Mendil kökün dibindeydi.",
+          "Deniz onu eliyle yerden aldı.",
+          "\"Mendilimi buldum,\" dedi, sıkıca tuttu.",
+          "Kestane ön ayaklarıyla yere pıt pıt vurarak sevindi."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 7,
+      "role": "object_recovered",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_7_v1"
+      ],
+      "text": "Deniz mendili katlayıp cebine yerleştirdi. Kök ve çevresi olduğu gibi kaldı. Kestane yoncasını Deniz’e gösterdi. \"Ben de bir şey buldum,\" dedi gururla.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "child_recognizes",
+      "stateAfter": "object_recovered",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p07",
+            "sourceTextDigest": "ffafacd6dc3aba8f6300a496ed957e7c88900e282edfed6dd177e3b755774653",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/670",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "present",
+            "states": [
+              "cloth-in-child-pocket"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_forked_root_v1",
+            "presence": "present",
+            "states": [
+              "fixed-on-ground"
+            ]
+          }
+        ],
+        "propDescription": "mendil; çatallı kök; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "mendil",
+            "evidenceQuotes": [
+              "Deniz mendili katlayıp cebine yerleştirdi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "Kök ve çevresi olduğu gibi kaldı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Kestane yoncasını Deniz’e gösterdi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz mendili katlayıp cebine yerleştirdi. Kök ve çevresi olduğu gibi kaldı. Kestane yoncasını Deniz’e gösterdi. \"Ben de bir şey buldum,\" dedi gururla.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p07",
+            "evidenceText": "Deniz mendili katlayıp cebine yerleştirdi. Kök ve çevresi olduğu gibi kaldı. Kestane yoncasını Deniz’e gösterdi. \"Ben de bir şey buldum,\" dedi gururla.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır. Benzetme, şehir anısı ve koku tahmini sahneye yeni yiyecek, eşya, bina veya karakter eklemez."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz mendili katlayıp cebine yerleştirdi. Kök ve çevresi olduğu gibi kaldı. Kestane yoncasını Deniz’e gösterdi. \"Ben de bir şey buldum,\" dedi gururla.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "Deniz mendili katlayıp cebine yerleştirdi.",
+          "Kök ve çevresi olduğu gibi kaldı.",
+          "Kestane yoncasını Deniz’e gösterdi.",
+          "\"Ben de bir şey buldum,\" dedi gururla."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Benzetme, şehir anısı ve koku tahmini sahneye yeni yiyecek, eşya, bina veya karakter eklemez.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_return",
+      "orderedBeatIDs": [
+        "pilot56_beat_a3_8_v1"
+      ],
+      "text": "Aynı kısa patikadan açıklığa döndüler. Deniz cebindeki mendile, Kestane dikenindeki yoncaya dokundu. Küçük arama bitmişti. Orman yapraklarını usulca hışırdatıyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "object_recovered",
+      "stateAfter": "closed_return",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p08",
+            "sourceTextDigest": "1d8924b396b4d1785542099de3e8f2be2ac59ecc1881310b3bc137154aded317",
+            "templateID": "pilot56_blueprint_a3_v1",
+            "sourcePointer": "sources.json#/sources/671",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_child_cloth_at_root_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_child_cloth_at_root_v1",
+            "presence": "present",
+            "states": [
+              "cloth-in-child-pocket"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_forked_root_v1",
+            "presence": "off-scene",
+            "states": [
+              "not-current-clearing-prop"
+            ]
+          }
+        ],
+        "propDescription": "mendil; yaprak; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "mendil",
+            "evidenceQuotes": [
+              "Deniz cebindeki mendile, Kestane dikenindeki yoncaya dokundu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Orman yapraklarını usulca hışırdatıyordu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Deniz cebindeki mendile, Kestane dikenindeki yoncaya dokundu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Aynı kısa patikadan açıklığa döndüler. Deniz cebindeki mendile, Kestane dikenindeki yoncaya dokundu. Küçük arama bitmişti. Orman yapraklarını usulca hışırdatıyordu.",
+            "evidenceSourceID": "p56_v3_pilot56_book_a3_hedgehog_event03_v1_p08",
+            "evidenceText": "Aynı kısa patikadan açıklığa döndüler. Deniz cebindeki mendile, Kestane dikenindeki yoncaya dokundu. Küçük arama bitmişti. Orman yapraklarını usulca hışırdatıyordu.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Aynı kısa patikadan açıklığa döndüler. Deniz cebindeki mendile, Kestane dikenindeki yoncaya dokundu. Küçük arama bitmişti. Orman yapraklarını usulca hışırdatıyordu.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "Aynı kısa patikadan açıklığa döndüler.",
+          "Deniz cebindeki mendile, Kestane dikenindeki yoncaya dokundu.",
+          "Küçük arama bitmişti.",
+          "Orman yapraklarını usulca hışırdatıyordu."
+        ],
+        "doNotDraw": [
+          "Mendil p1–p5 henüz görünür bulunmuş nesne değildir; p2 geçmiş kullanım/bırakma hatırasıdır. Bu metinde p5 kök tanınır, p6 mendil ele alınır, p7 cebe konur, p8 cepte kalır.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    }
+  ],
+  "sourceBookID": "pilot56_book_a3_hedgehog_event03_v1"
+}

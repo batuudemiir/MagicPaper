@@ -1,0 +1,3 @@
+# Teknik inceleme
+
+Bağımsız reviewer ilk ve son incelemeyi salt okunur yaptı. Son karar: yeni runtime/schema implementation engeli yok. Hafif sürüm header'ı çift tam payload decode maliyetini kaldırır. Corruption testleri gerçek baseline'ın önce yüklenmesini doğrular. Aday loader/safety/trace geçse de compose bütçe başarısızlıkları içerik kabulünü engeller. Aktif pin v2, v1/v2 değişmedi. Semantik incelemedeki yanlış A3 sırası yorumu gerçek Swift factPaths ve testle geri çekildi. İnceleme testleri kendi çalıştırmadı; Release kanıtı root'un iki gerçek koşusudur. Edebî/görsel/yayın kabulü verilmedi.
