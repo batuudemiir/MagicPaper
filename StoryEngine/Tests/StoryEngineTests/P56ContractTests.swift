@@ -8,10 +8,10 @@ func loadP56ContractPackage() throws -> P56Package {
     let payload = try Data(contentsOf: root.appendingPathComponent("payload.json"))
     let manifest = try JSONDecoder().decode(P56RuntimeManifest.self,
         from: Data(contentsOf: root.appendingPathComponent("manifest.json")))
-    XCTAssertEqual(P56Digest.sha256(payload), P56PinnedSource.sha256)
-    XCTAssertEqual(manifest.payloadSHA256, P56PinnedSource.sha256)
+    XCTAssertEqual(P56Digest.sha256(payload), P56PinnedSource.v1SHA256)
+    XCTAssertEqual(manifest.payloadSHA256, P56PinnedSource.v1SHA256)
     XCTAssertEqual(manifest.engineBehaviorID, P56Engine.behaviorID)
-    return try P56PackageLoader.load(payload: payload, expectedSHA256: P56PinnedSource.sha256)
+    return try P56PackageLoader.load(payload: payload, expectedSHA256: P56PinnedSource.v1SHA256)
 }
 
 final class P56ContractTests: XCTestCase {

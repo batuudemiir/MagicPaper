@@ -28,10 +28,11 @@ public struct ContentSourceMetadata: Codable, Hashable, Sendable {
     public var p56Reference: P56SourceReference? {
         guard case .object(let fields) = raw,
               case .number(1)? = fields["schemaVersion"],
-              case .string("five-friends-56-runtime-v1")? = fields["packageVersion"],
+              case .string(let version)? = fields["packageVersion"],
+              ["five-friends-56-runtime-v1", "five-friends-56-runtime-v2"].contains(version),
               case .string(P56Engine.behaviorID)? = fields["engineBehaviorID"],
               case .string(let digest)? = fields["payloadSHA256"], Self.isDigest(digest) else { return nil }
-        return P56SourceReference(payloadSHA256: digest)
+        return P56SourceReference(packageVersion: version, payloadSHA256: digest)
     }
 
     private static func isDigest(_ value: String) -> Bool {

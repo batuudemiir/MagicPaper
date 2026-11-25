@@ -1,0 +1,1002 @@
+{
+  "id": "pilot56_book_u3_hedgehog_event02_v1",
+  "title": "Durduğum Küçük An",
+  "blueprintID": "pilot56_blueprint_u3_v1",
+  "planLabel": "U3",
+  "mechanismKey": "one-memory-then-release",
+  "status": "authored-internal-review-required",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "bedtime",
+    "arc": "charge-bedtime-editorial",
+    "companionID": "companion_hedgehog_pilot_001",
+    "settingID": "pilot56_setting_forest_edge_room_v1",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Küçük adımlarla cesaretlenir; her sahnede kaygılı değildir.",
+  "physicalContract": "Dört kısa ayak; dikenler korunur.",
+  "childAgency": "Çocuk bir ayrıntı seçer ve anlatının bittiğine kendisi karar verir.",
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "baseBookID": "pilot56_book_u3_hedgehog_v1",
+  "variantID": "event02",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "settled_room",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_1_v1"
+      ],
+      "text": "Deniz yatağında oturmuş, akşamı dinliyordu. Kestane odada kendi yerindeydi. Gündüzün yürüyüşü bitmişti. Şimdi ikisi de dışarı çıkmak yerine tanıdık odalarında uyanık dinleniyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "settled_room",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u3_hedgehog_event02_p01_v1",
+            "sourceTextDigest": "99c9a0ce2305115d2a130e301f65eeea3ee1ed548546d20ad4cd9f77dcb07d38",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/574",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u3_hedgehog_event02_p01_v1_s01",
+        "pilot56_source_u3_hedgehog_event02_p01_v1_s02",
+        "pilot56_source_u3_hedgehog_event02_p01_v1_s03",
+        "pilot56_source_u3_hedgehog_event02_p01_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "remembered-day-detail"
+            ]
+          }
+        ],
+        "propDescription": "odada yatak, örtü ve kapalı pencere; gündüz durmuş gölge yalnız hatırlanan görüntü",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz yatağında oturmuş, akşamı dinliyordu. Kestane odada kendi yerindeydi. Gündüzün yürüyüşü bitmişti. Şimdi ikisi de dışarı çıkmak yerine tanıdık odalarında uyanık dinleniyordu.",
+            "evidenceSourceID": "pilot56_source_u3_hedgehog_event02_p01_v1",
+            "evidenceText": "Deniz yatağında oturmuş, akşamı dinliyordu. Kestane odada kendi yerindeydi. Gündüzün yürüyüşü bitmişti. Şimdi ikisi de dışarı çıkmak yerine tanıdık odalarında uyanık dinleniyordu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yatağında oturmuş, akşamı dinliyordu. Kestane odada kendi yerindeydi. Gündüzün yürüyüşü bitmişti. Şimdi ikisi de dışarı çıkmak yerine tanıdık odalarında uyanık dinleniyordu.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 2,
+      "role": "one_memory_selected",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_2_v1"
+      ],
+      "text": "Deniz gündüz yürürken durduğu tek bir anı seçti. O sırada gölgesi de ayaklarının yanında durmuştu. \"Bugünden bunu anlatacağım,\" dedi. Bu görüntü yalnız aklındaydı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "settled_room",
+      "stateAfter": "one_memory_selected",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u3_hedgehog_event02_p02_v1",
+            "sourceTextDigest": "45f0b997439e15f1a179217dec2ff0da54f289dca1d14563f37efec529e9f9b3",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/579",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u3_hedgehog_event02_p02_v1_s01",
+        "pilot56_source_u3_hedgehog_event02_p02_v1_s02",
+        "pilot56_source_u3_hedgehog_event02_p02_v1_s03",
+        "pilot56_source_u3_hedgehog_event02_p02_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "remembered-day-detail"
+            ]
+          }
+        ],
+        "propDescription": "odada yatak, örtü ve kapalı pencere; gündüz durmuş gölge yalnız hatırlanan görüntü",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz gündüz yürürken durduğu tek bir anı seçti. O sırada gölgesi de ayaklarının yanında durmuştu. \"Bugünden bunu anlatacağım,\" dedi. Bu görüntü yalnız aklındaydı.",
+            "evidenceSourceID": "pilot56_source_u3_hedgehog_event02_p02_v1",
+            "evidenceText": "Deniz gündüz yürürken durduğu tek bir anı seçti. O sırada gölgesi de ayaklarının yanında durmuştu. \"Bugünden bunu anlatacağım,\" dedi. Bu görüntü yalnız aklındaydı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz gündüz yürürken durduğu tek bir anı seçti. O sırada gölgesi de ayaklarının yanında durmuştu. \"Bugünden bunu anlatacağım,\" dedi. Bu görüntü yalnız aklındaydı.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_receives_memory",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_3_v1"
+      ],
+      "text": "Deniz hatırladığı küçük duruşu arkadaşına anlattı. \"Ben durdum, gölgem de durdu,\" dedi. Kestane sessizce dinledi. Odada bir yürüyüş başlamamıştı, yalnız gündüzden bir anı paylaşıyorlardı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "one_memory_selected",
+      "stateAfter": "friend_receives_memory",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u3_hedgehog_event02_p03_v1",
+            "sourceTextDigest": "efbc736f9441a3472386a867f338bcb291c40ea1f4b68be3b00f23acf32d0435",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/584",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u3_hedgehog_event02_p03_v1_s01",
+        "pilot56_source_u3_hedgehog_event02_p03_v1_s02",
+        "pilot56_source_u3_hedgehog_event02_p03_v1_s03",
+        "pilot56_source_u3_hedgehog_event02_p03_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "remembered-day-detail"
+            ]
+          }
+        ],
+        "propDescription": "odada yatak, örtü ve kapalı pencere; gündüz durmuş gölge yalnız hatırlanan görüntü",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz hatırladığı küçük duruşu arkadaşına anlattı. \"Ben durdum, gölgem de durdu,\" dedi. Kestane sessizce dinledi. Odada bir yürüyüş başlamamıştı, yalnız gündüzden bir anı paylaşıyorlardı.",
+            "evidenceSourceID": "pilot56_source_u3_hedgehog_event02_p03_v1",
+            "evidenceText": "Deniz hatırladığı küçük duruşu arkadaşına anlattı. \"Ben durdum, gölgem de durdu,\" dedi. Kestane sessizce dinledi. Odada bir yürüyüş başlamamıştı, yalnız gündüzden bir anı paylaşıyorlardı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz hatırladığı küçük duruşu arkadaşına anlattı. \"Ben durdum, gölgem de durdu,\" dedi. Kestane sessizce dinledi. Odada bir yürüyüş başlamamıştı, yalnız gündüzden bir anı paylaşıyorlardı.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_limits_telling",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_4_v1"
+      ],
+      "text": "Deniz yürüyüşün geri kalanını anlatmak üzereyken durdu. \"Bu akşam yalnız durduğum an,\" dedi. Öncesindeki ve sonrasındaki adımları eklemedi. Seçtiği ayrıntı kendi başına yeterliydi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_receives_memory",
+      "stateAfter": "child_limits_telling",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u3_hedgehog_event02_p04_v1",
+            "sourceTextDigest": "af705f17707fd7eee162bf571832b86c06f2cb3c427d9483a7cd9e673b51f267",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/589",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u3_hedgehog_event02_p04_v1_s01",
+        "pilot56_source_u3_hedgehog_event02_p04_v1_s02",
+        "pilot56_source_u3_hedgehog_event02_p04_v1_s03",
+        "pilot56_source_u3_hedgehog_event02_p04_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "remembered-day-detail"
+            ]
+          }
+        ],
+        "propDescription": "odada yatak, örtü ve kapalı pencere; gündüz durmuş gölge yalnız hatırlanan görüntü",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz yürüyüşün geri kalanını anlatmak üzereyken durdu. \"Bu akşam yalnız durduğum an,\" dedi. Öncesindeki ve sonrasındaki adımları eklemedi. Seçtiği ayrıntı kendi başına yeterliydi.",
+            "evidenceSourceID": "pilot56_source_u3_hedgehog_event02_p04_v1",
+            "evidenceText": "Deniz yürüyüşün geri kalanını anlatmak üzereyken durdu. \"Bu akşam yalnız durduğum an,\" dedi. Öncesindeki ve sonrasındaki adımları eklemedi. Seçtiği ayrıntı kendi başına yeterliydi.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yürüyüşün geri kalanını anlatmak üzereyken durdu. \"Bu akşam yalnız durduğum an,\" dedi. Öncesindeki ve sonrasındaki adımları eklemedi. Seçtiği ayrıntı kendi başına yeterliydi.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 5,
+      "role": "soft_shared_memory",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_5_v1"
+      ],
+      "text": "Deniz hatırladığı duruşu düşünerek hafifçe gülümsedi. Arkadaşı anlattığı küçük anı dinlemişti. İkisi de odada yerinden kalkmadı. Gündüzün görüntüsü şimdi yalnız paylaşılan bir anıydı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_limits_telling",
+      "stateAfter": "soft_shared_memory",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u3_hedgehog_event02_p05_v1",
+            "sourceTextDigest": "2fb5aeadd62ce4cd313cf092ab13b027eeeac119fa5d72a118f51c371455356d",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/594",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u3_hedgehog_event02_p05_v1_s01",
+        "pilot56_source_u3_hedgehog_event02_p05_v1_s02",
+        "pilot56_source_u3_hedgehog_event02_p05_v1_s03",
+        "pilot56_source_u3_hedgehog_event02_p05_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "remembered-day-detail"
+            ]
+          }
+        ],
+        "propDescription": "odada yatak, örtü ve kapalı pencere; gündüz durmuş gölge yalnız hatırlanan görüntü",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz hatırladığı duruşu düşünerek hafifçe gülümsedi. Arkadaşı anlattığı küçük anı dinlemişti. İkisi de odada yerinden kalkmadı. Gündüzün görüntüsü şimdi yalnız paylaşılan bir anıydı.",
+            "evidenceSourceID": "pilot56_source_u3_hedgehog_event02_p05_v1",
+            "evidenceText": "Deniz hatırladığı duruşu düşünerek hafifçe gülümsedi. Arkadaşı anlattığı küçük anı dinlemişti. İkisi de odada yerinden kalkmadı. Gündüzün görüntüsü şimdi yalnız paylaşılan bir anıydı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz hatırladığı duruşu düşünerek hafifçe gülümsedi. Arkadaşı anlattığı küçük anı dinlemişti. İkisi de odada yerinden kalkmadı. Gündüzün görüntüsü şimdi yalnız paylaşılan bir anıydı.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 6,
+      "role": "story_released",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_6_v1"
+      ],
+      "text": "Deniz anlatmayı bırakıp ellerini örtüsüne koydu. \"Anlatacağım bu kadardı,\" dedi. Gündüzün adımlarını yeniden sıralamadı. Hatırladığı duruş, odada sürdürmesi gereken bir oyun haline gelmemişti.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "soft_shared_memory",
+      "stateAfter": "story_released",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u3_hedgehog_event02_p06_v1",
+            "sourceTextDigest": "3e25415418c48a41498e9b7ab3248c993566b51922566df0ee23172eba2a8b90",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/599",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u3_hedgehog_event02_p06_v1_s01",
+        "pilot56_source_u3_hedgehog_event02_p06_v1_s02",
+        "pilot56_source_u3_hedgehog_event02_p06_v1_s03",
+        "pilot56_source_u3_hedgehog_event02_p06_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "remembered-day-detail"
+            ]
+          }
+        ],
+        "propDescription": "odada yatak, örtü ve kapalı pencere; gündüz durmuş gölge yalnız hatırlanan görüntü",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz anlatmayı bırakıp ellerini örtüsüne koydu. \"Anlatacağım bu kadardı,\" dedi. Gündüzün adımlarını yeniden sıralamadı. Hatırladığı duruş, odada sürdürmesi gereken bir oyun haline gelmemişti.",
+            "evidenceSourceID": "pilot56_source_u3_hedgehog_event02_p06_v1",
+            "evidenceText": "Deniz anlatmayı bırakıp ellerini örtüsüne koydu. \"Anlatacağım bu kadardı,\" dedi. Gündüzün adımlarını yeniden sıralamadı. Hatırladığı duruş, odada sürdürmesi gereken bir oyun haline gelmemişti.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz anlatmayı bırakıp ellerini örtüsüne koydu. \"Anlatacağım bu kadardı,\" dedi. Gündüzün adımlarını yeniden sıralamadı. Hatırladığı duruş, odada sürdürmesi gereken bir oyun haline gelmemişti.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 7,
+      "role": "awake_rest",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_7_v1"
+      ],
+      "text": "Deniz yatağında uyanık ve rahattı, arkadaşı kendi yerindeydi. Gölgeyi artık konuşmuyorlardı. Hatırlanan görüntü odanın içinde belirmedi. Tanıdık akşam eşyaları arasında sessizce dinlendiler.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "story_released",
+      "stateAfter": "awake_rest",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u3_hedgehog_event02_p07_v1",
+            "sourceTextDigest": "957ffa143fb36908fc73505de148e86239e4ff61609e28f940b9471784c67dd0",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/604",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u3_hedgehog_event02_p07_v1_s01",
+        "pilot56_source_u3_hedgehog_event02_p07_v1_s02",
+        "pilot56_source_u3_hedgehog_event02_p07_v1_s03",
+        "pilot56_source_u3_hedgehog_event02_p07_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "remembered-day-detail"
+            ]
+          }
+        ],
+        "propDescription": "odada yatak, örtü ve kapalı pencere; gündüz durmuş gölge yalnız hatırlanan görüntü",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz yatağında uyanık ve rahattı, arkadaşı kendi yerindeydi. Gölgeyi artık konuşmuyorlardı. Hatırlanan görüntü odanın içinde belirmedi. Tanıdık akşam eşyaları arasında sessizce dinlendiler.",
+            "evidenceSourceID": "pilot56_source_u3_hedgehog_event02_p07_v1",
+            "evidenceText": "Deniz yatağında uyanık ve rahattı, arkadaşı kendi yerindeydi. Gölgeyi artık konuşmuyorlardı. Hatırlanan görüntü odanın içinde belirmedi. Tanıdık akşam eşyaları arasında sessizce dinlendiler.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yatağında uyanık ve rahattı, arkadaşı kendi yerindeydi. Gölgeyi artık konuşmuyorlardı. Hatırlanan görüntü odanın içinde belirmedi. Tanıdık akşam eşyaları arasında sessizce dinlendiler.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_calm",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_8_v1"
+      ],
+      "text": "Deniz gözlerini kapattı, örtüsü dizlerinin üzerindeydi. Arkadaşı sakin yerinde kaldı. Günden seçilen küçük an anlatılmış ve bitmişti. Bu akşamın sonuna başka bir söz eklemediler.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "awake_rest",
+      "stateAfter": "closed_calm",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u3_hedgehog_event02_p08_v1",
+            "sourceTextDigest": "3c4ddd85437871e65e38c976e1e30d820e8ed8d1aea3958224f92ef14bc7d88d",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/609",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u3_hedgehog_event02_p08_v1_s01",
+        "pilot56_source_u3_hedgehog_event02_p08_v1_s02",
+        "pilot56_source_u3_hedgehog_event02_p08_v1_s03",
+        "pilot56_source_u3_hedgehog_event02_p08_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "remembered-day-detail"
+            ]
+          }
+        ],
+        "propDescription": "odada yatak, örtü ve kapalı pencere; gündüz durmuş gölge yalnız hatırlanan görüntü",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz gözlerini kapattı, örtüsü dizlerinin üzerindeydi. Arkadaşı sakin yerinde kaldı. Günden seçilen küçük an anlatılmış ve bitmişti. Bu akşamın sonuna başka bir söz eklemediler.",
+            "evidenceSourceID": "pilot56_source_u3_hedgehog_event02_p08_v1",
+            "evidenceText": "Deniz gözlerini kapattı, örtüsü dizlerinin üzerindeydi. Arkadaşı sakin yerinde kaldı. Günden seçilen küçük an anlatılmış ve bitmişti. Bu akşamın sonuna başka bir söz eklemediler.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz gözlerini kapattı, örtüsü dizlerinin üzerindeydi. Arkadaşı sakin yerinde kaldı. Günden seçilen küçük an anlatılmış ve bitmişti. Bu akşamın sonuna başka bir söz eklemediler.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    }
+  ]
+}
