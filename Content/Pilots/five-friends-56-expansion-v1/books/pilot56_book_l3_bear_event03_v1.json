@@ -1,0 +1,1002 @@
+{
+  "id": "pilot56_book_l3_bear_event03_v1",
+  "title": "Damar Boyunca Bir Damla",
+  "blueprintID": "pilot56_blueprint_l3_v1",
+  "planLabel": "L3",
+  "mechanismKey": "wait-and-reobserve",
+  "status": "authored-internal-review-required",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "learning",
+    "arc": "editorial-learning",
+    "companionID": "companion_bear_001",
+    "settingID": "setting_whispering_forest_001",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Sakin ve güçlü; çocuğun fikrini dinler; güç cevap yerine geçmez.",
+  "physicalContract": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+  "childAgency": "Çocuk dokunmadan bekler, önceki ve sonraki damla durumunu kendi karşılaştırır.",
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "baseBookID": "pilot56_book_l3_bear_v1",
+  "variantID": "event03",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "drop_noticed",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_1_v1"
+      ],
+      "text": "Deniz alçak yaprağın ortasında duran bir damla gördü. Böğürtlen düz patikada yanındaydı. İnce yaprak damarı suyun altında görünüyordu. Damla henüz yaprağın ucuna ulaşmamıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "drop_noticed",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l3_bear_event03_p01_v1",
+            "sourceTextDigest": "c1f8ae0714fa280c1b3286457a9e7b3b6d35915fe48d20d710b2447076e4c01f",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/1586",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l3_bear_event03_p01_v1_s01",
+        "pilot56_source_l3_bear_event03_p01_v1_s02",
+        "pilot56_source_l3_bear_event03_p01_v1_s03",
+        "pilot56_source_l3_bear_event03_p01_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "alçak yaprakta damar boyunca ilerleyen tek damla; yaprak damarı ve toprak",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz alçak yaprağın ortasında duran bir damla gördü. Böğürtlen düz patikada yanındaydı. İnce yaprak damarı suyun altında görünüyordu. Damla henüz yaprağın ucuna ulaşmamıştı.",
+            "evidenceSourceID": "pilot56_source_l3_bear_event03_p01_v1",
+            "evidenceText": "Deniz alçak yaprağın ortasında duran bir damla gördü. Böğürtlen düz patikada yanındaydı. İnce yaprak damarı suyun altında görünüyordu. Damla henüz yaprağın ucuna ulaşmamıştı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz alçak yaprağın ortasında duran bir damla gördü. Böğürtlen düz patikada yanındaydı. İnce yaprak damarı suyun altında görünüyordu. Damla henüz yaprağın ucuna ulaşmamıştı.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 2,
+      "role": "first_observation",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_2_v1"
+      ],
+      "text": "Deniz damlanın yerini yaprak damarıyla birlikte düşündü. \"Şimdi ortasında duruyor,\" dedi. Parmağını uzatmak yerine geri çekti. Damlayı iterse kendi hareketini mi gördüğünü ayıramayacaktı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "drop_noticed",
+      "stateAfter": "first_observation",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l3_bear_event03_p02_v1",
+            "sourceTextDigest": "76fab5acef4661155060e175ca144582fd07dc6904d2ae77e48ed711ce8fd30a",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/1591",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l3_bear_event03_p02_v1_s01",
+        "pilot56_source_l3_bear_event03_p02_v1_s02",
+        "pilot56_source_l3_bear_event03_p02_v1_s03",
+        "pilot56_source_l3_bear_event03_p02_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "alçak yaprakta damar boyunca ilerleyen tek damla; yaprak damarı ve toprak",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz damlanın yerini yaprak damarıyla birlikte düşündü. \"Şimdi ortasında duruyor,\" dedi. Parmağını uzatmak yerine geri çekti. Damlayı iterse kendi hareketini mi gördüğünü ayıramayacaktı.",
+            "evidenceSourceID": "pilot56_source_l3_bear_event03_p02_v1",
+            "evidenceText": "Deniz damlanın yerini yaprak damarıyla birlikte düşündü. \"Şimdi ortasında duruyor,\" dedi. Parmağını uzatmak yerine geri çekti. Damlayı iterse kendi hareketini mi gördüğünü ayıramayacaktı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz damlanın yerini yaprak damarıyla birlikte düşündü. \"Şimdi ortasında duruyor,\" dedi. Parmağını uzatmak yerine geri çekti. Damlayı iterse kendi hareketini mi gördüğünü ayıramayacaktı.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_waits",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_3_v1"
+      ],
+      "text": "Böğürtlen geniş patikanın yanında sakin biçimde durdu. \"Beklemek için yerimiz var,\" dedi. Büyük pençelerini yaprağa uzatmadı. Deniz’in kendi gözlemini tamamlamasına yalnız yanında durarak eşlik ediyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "first_observation",
+      "stateAfter": "friend_waits",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l3_bear_event03_p03_v1",
+            "sourceTextDigest": "aefaeb72ea22d947b56b920dd7760f95eab4e2592918adf9f60dd9dc9c58115d",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/1596",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l3_bear_event03_p03_v1_s01",
+        "pilot56_source_l3_bear_event03_p03_v1_s02",
+        "pilot56_source_l3_bear_event03_p03_v1_s03",
+        "pilot56_source_l3_bear_event03_p03_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "alçak yaprakta damar boyunca ilerleyen tek damla; yaprak damarı ve toprak",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen geniş patikanın yanında sakin biçimde durdu. \"Beklemek için yerimiz var,\" dedi. Büyük pençelerini yaprağa uzatmadı. Deniz’in kendi gözlemini tamamlamasına yalnız yanında durarak eşlik ediyordu.",
+            "evidenceSourceID": "pilot56_source_l3_bear_event03_p03_v1",
+            "evidenceText": "Böğürtlen geniş patikanın yanında sakin biçimde durdu. \"Beklemek için yerimiz var,\" dedi. Büyük pençelerini yaprağa uzatmadı. Deniz’in kendi gözlemini tamamlamasına yalnız yanında durarak eşlik ediyordu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen geniş patikanın yanında sakin biçimde durdu. \"Beklemek için yerimiz var,\" dedi. Büyük pençelerini yaprağa uzatmadı. Deniz’in kendi gözlemini tamamlamasına yalnız yanında durarak eşlik ediyordu.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_observation_plan",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_4_v1"
+      ],
+      "text": "Deniz aynı damarı işaret olarak seçti. \"Yerini buraya bakarak karşılaştıracağım,\" dedi. Yaprağa elini sürmedi. İlk damarın yanındaki damlayı aklında tutup aynı noktadan izlemeyi sürdürdü.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_waits",
+      "stateAfter": "child_observation_plan",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l3_bear_event03_p04_v1",
+            "sourceTextDigest": "9aa8c4d8b2ae4e9e780136dabd5d77de23dd328eb548d5a890209163dd9e6ed6",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/1601",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l3_bear_event03_p04_v1_s01",
+        "pilot56_source_l3_bear_event03_p04_v1_s02",
+        "pilot56_source_l3_bear_event03_p04_v1_s03",
+        "pilot56_source_l3_bear_event03_p04_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "alçak yaprakta damar boyunca ilerleyen tek damla; yaprak damarı ve toprak",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz aynı damarı işaret olarak seçti. \"Yerini buraya bakarak karşılaştıracağım,\" dedi. Yaprağa elini sürmedi. İlk damarın yanındaki damlayı aklında tutup aynı noktadan izlemeyi sürdürdü.",
+            "evidenceSourceID": "pilot56_source_l3_bear_event03_p04_v1",
+            "evidenceText": "Deniz aynı damarı işaret olarak seçti. \"Yerini buraya bakarak karşılaştıracağım,\" dedi. Yaprağa elini sürmedi. İlk damarın yanındaki damlayı aklında tutup aynı noktadan izlemeyi sürdürdü.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz aynı damarı işaret olarak seçti. \"Yerini buraya bakarak karşılaştıracağım,\" dedi. Yaprağa elini sürmedi. İlk damarın yanındaki damlayı aklında tutup aynı noktadan izlemeyi sürdürdü.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "visible_change",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_5_v1"
+      ],
+      "text": "Deniz damlanın damar boyunca uca doğru ilerlediğini gördü. İlk baktığı damar artık suyun gerisindeydi. Damla hâlâ aynı yaprağın üzerindeydi. Çocuk ellerini yanında sakin tuttu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_observation_plan",
+      "stateAfter": "visible_change",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l3_bear_event03_p05_v1",
+            "sourceTextDigest": "bb0a3817d6c7426819648dbe449ab78ec44b423ee56555e90587e0fa683313d5",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/1606",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l3_bear_event03_p05_v1_s01",
+        "pilot56_source_l3_bear_event03_p05_v1_s02",
+        "pilot56_source_l3_bear_event03_p05_v1_s03",
+        "pilot56_source_l3_bear_event03_p05_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "alçak yaprakta damar boyunca ilerleyen tek damla; yaprak damarı ve toprak",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz damlanın damar boyunca uca doğru ilerlediğini gördü. İlk baktığı damar artık suyun gerisindeydi. Damla hâlâ aynı yaprağın üzerindeydi. Çocuk ellerini yanında sakin tuttu.",
+            "evidenceSourceID": "pilot56_source_l3_bear_event03_p05_v1",
+            "evidenceText": "Deniz damlanın damar boyunca uca doğru ilerlediğini gördü. İlk baktığı damar artık suyun gerisindeydi. Damla hâlâ aynı yaprağın üzerindeydi. Çocuk ellerini yanında sakin tuttu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz damlanın damar boyunca uca doğru ilerlediğini gördü. İlk baktığı damar artık suyun gerisindeydi. Damla hâlâ aynı yaprağın üzerindeydi. Çocuk ellerini yanında sakin tuttu.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "child_compares",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_6_v1"
+      ],
+      "text": "Deniz damlanın önceki ve şimdiki yerini karşılaştırdı. \"Önce ortadaydı, şimdi uçta,\" dedi. Yaprak damarı yerinde kalmıştı. Değişen yerin, gözlediği damlaya ait olduğunu anlayabiliyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "visible_change",
+      "stateAfter": "child_compares",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l3_bear_event03_p06_v1",
+            "sourceTextDigest": "80b0d9987d1d5412e8ea4232b1be988d9034eb81987b63f234fc14f951c85274",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/1611",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l3_bear_event03_p06_v1_s01",
+        "pilot56_source_l3_bear_event03_p06_v1_s02",
+        "pilot56_source_l3_bear_event03_p06_v1_s03",
+        "pilot56_source_l3_bear_event03_p06_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "alçak yaprakta damar boyunca ilerleyen tek damla; yaprak damarı ve toprak",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz damlanın önceki ve şimdiki yerini karşılaştırdı. \"Önce ortadaydı, şimdi uçta,\" dedi. Yaprak damarı yerinde kalmıştı. Değişen yerin, gözlediği damlaya ait olduğunu anlayabiliyordu.",
+            "evidenceSourceID": "pilot56_source_l3_bear_event03_p06_v1",
+            "evidenceText": "Deniz damlanın önceki ve şimdiki yerini karşılaştırdı. \"Önce ortadaydı, şimdi uçta,\" dedi. Yaprak damarı yerinde kalmıştı. Değişen yerin, gözlediği damlaya ait olduğunu anlayabiliyordu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz damlanın önceki ve şimdiki yerini karşılaştırdı. \"Önce ortadaydı, şimdi uçta,\" dedi. Yaprak damarı yerinde kalmıştı. Değişen yerin, gözlediği damlaya ait olduğunu anlayabiliyordu.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 7,
+      "role": "drop_falls",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_7_v1"
+      ],
+      "text": "Deniz uçta toplanan damlanın yapraktan ayrıldığını gördü. Su toprağa düştü, yaprak damarı açık kaldı. Çocuk yaprağı itmemişti. Beklediği süre boyunca aynı damlanın yerini izlemişti.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "child_compares",
+      "stateAfter": "drop_falls",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l3_bear_event03_p07_v1",
+            "sourceTextDigest": "2dd4d2950e23ac810dbbcb4b42dbbfe8e92f7026648598476034de73adc52104",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/1616",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l3_bear_event03_p07_v1_s01",
+        "pilot56_source_l3_bear_event03_p07_v1_s02",
+        "pilot56_source_l3_bear_event03_p07_v1_s03",
+        "pilot56_source_l3_bear_event03_p07_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "drop-fallen-to-soil"
+            ]
+          }
+        ],
+        "propDescription": "alçak yaprakta damar boyunca ilerleyen tek damla; yaprak damarı ve toprak",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz uçta toplanan damlanın yapraktan ayrıldığını gördü. Su toprağa düştü, yaprak damarı açık kaldı. Çocuk yaprağı itmemişti. Beklediği süre boyunca aynı damlanın yerini izlemişti.",
+            "evidenceSourceID": "pilot56_source_l3_bear_event03_p07_v1",
+            "evidenceText": "Deniz uçta toplanan damlanın yapraktan ayrıldığını gördü. Su toprağa düştü, yaprak damarı açık kaldı. Çocuk yaprağı itmemişti. Beklediği süre boyunca aynı damlanın yerini izlemişti.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz uçta toplanan damlanın yapraktan ayrıldığını gördü. Su toprağa düştü, yaprak damarı açık kaldı. Çocuk yaprağı itmemişti. Beklediği süre boyunca aynı damlanın yerini izlemişti.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_result",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_8_v1"
+      ],
+      "text": "Deniz patikaya döndü, arkadaşı yanında sakin biçimde ilerledi. Tek damlanın geçtiği yeri karşılaştırmışlardı. Bütün damlaların aynı yolu izleyeceğini söylemediler. Bu küçük gözlem tamamlanmıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "drop_falls",
+      "stateAfter": "closed_result",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l3_bear_event03_p08_v1",
+            "sourceTextDigest": "d58c28f2c9833a96d766cd22ba24c911804fdb037dbb484e329e8e17b43d1e58",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/1621",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l3_bear_event03_p08_v1_s01",
+        "pilot56_source_l3_bear_event03_p08_v1_s02",
+        "pilot56_source_l3_bear_event03_p08_v1_s03",
+        "pilot56_source_l3_bear_event03_p08_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "drop-fallen-to-soil"
+            ]
+          }
+        ],
+        "propDescription": "alçak yaprakta damar boyunca ilerleyen tek damla; yaprak damarı ve toprak",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz patikaya döndü, arkadaşı yanında sakin biçimde ilerledi. Tek damlanın geçtiği yeri karşılaştırmışlardı. Bütün damlaların aynı yolu izleyeceğini söylemediler. Bu küçük gözlem tamamlanmıştı.",
+            "evidenceSourceID": "pilot56_source_l3_bear_event03_p08_v1",
+            "evidenceText": "Deniz patikaya döndü, arkadaşı yanında sakin biçimde ilerledi. Tek damlanın geçtiği yeri karşılaştırmışlardı. Bütün damlaların aynı yolu izleyeceğini söylemediler. Bu küçük gözlem tamamlanmıştı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz patikaya döndü, arkadaşı yanında sakin biçimde ilerledi. Tek damlanın geçtiği yeri karşılaştırmışlardı. Bütün damlaların aynı yolu izleyeceğini söylemediler. Bu küçük gözlem tamamlanmıştı.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    }
+  ]
+}

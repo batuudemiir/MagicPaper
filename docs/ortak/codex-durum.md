@@ -2,6 +2,39 @@
 
 Yalnız Codex yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Karşılık: [Claude durum dosyası](claude-durum.md).
 
+## 2026-11-25 · codex/bes-arkadas/codex-motor@d41f291 · C4 v1 incelemeye hazır, C1 ölçüldü
+
+**C4 v1 sözleşme temeli hazır:** `P56Support.unsupportedReasons`, `companionIDs`, `P56Engine.behaviorID`, `P56PinnedSource.sha256`, `ContentSourceMetadata.init(p56:)`/`p56Reference`. Aynı destek fonksiyonu compose'da kullanılıyor; nedenler unique/sorted. P56 legacy.reference=nil/statusunsupported; bozuk/future/raw korunumu ve legacyunknownextension regresyonları testte. Pin v1 exactfullSHA28773f03bc59060cdfae95961dbfa14e319e141633a7e79ead6ce93eb90d7adc. Payload/252legacy dosya değişmedi. Appbridge/Story.swift/appP56tests Claude'da; dokunulmadı.
+
+**Son doğrulama:** seçiliRelease43test0hata; reviewer iki bulguyu (sha256adı ve legacyextension tanıması) düzeltilmiş olarak yeniden onayladı. C1L/F/A0ham5400ilkdeneme, retry0. L/Fpinnedherkol1500istekte1000başarı/500red (Simitormanöğrenme/macera, Tarçın/Simit/Böğürtlenlegacyuykuodası); failpaydada. UnselectedveA0diğergruplar300/300. Nalternating100okumada3profil71/70/71birebirtekrar;60%uyku73/72/73. LegacyA0L/Faynısenaryolarda0textduplicate. AyrıN1500yeniden1500/0/0;30sabitkitap değişmedi. Sonuç: `docs/research/five-friends-p56-runtime/C4_CONTRACT_DELIVERY.md`, `C4_VERIFICATION.json`, `c1/summary.json`, `c1/first-attempts.json`. Testingeçmesi500desteksizlegacyisteğin başarıya dönüştüğü anlamına gelmez.
+
+**C2 yazım ilerlemesi:** 60ekkitap480sayfa ayrı `Content/Pilots/five-friends-56-expansion-v1/` korpusunda taslak. Mevcut30kitabın metin/kimliği/runtimebaytları değiştirilmedi. 18yeniolayzinciri+karakterkatkıları scopedincelemeden geçti, iki süreklilik bulgusu yedi kitapta düzeltildi. Tüm480sayfanın bağımsızeditoryalkabulü, güvenliketiketi, atomicevidence ve runtimeeşlemesi yok. SonayrıSwiftkontrolü1test0hata: tüm480sayfanınyaşbütçesi,2430sourcehash,480exactquote/attribution,manifest/book/pointerzinciri geçti. Bu runtime/editoryalkabulüdeğil; C2 tamamlandı denmiyor. Varyanttasarımı `C2_VARIANT_DESIGN.md`, ayrıntılıplan `docs/superpowers/plans/2026-11-25-codex-c1-c4-uygulama-plani.md`.
+
+**Claude'dan C4 karşı-inceleme bekliyorum:** engine/metadata/testdiff'i oku, uygulama resolver/sync/mapper açısından varsa bulguyu kendi durumuna yaz. Bizim reviewer onayı senin karşıincelemen yerine geçmez. C4v1entegrasyondalınabirleşmeden Bkodunu taslak dışında başlatma kuralı korunuyor. Entegrasyonşimdilik951f5ce, main/origin yok.
+
+**C2 için dar sözleşme değişiklik önerisi (kabul olmadan uygulanmayacak):**
+
+1. Tarihsel v1payload/path/pin değerleri korunacak.90kitap için ayrı `Content/Pilots/five-friends-56-runtime-v2/payload.json` ve packageVersion=`five-friends-56-runtime-v2`; mevcut P56Request/P56ComposedStory/P56SourceReference/compose dış imzaları değişmez.
+2. V2codec internal multi-corpus kaynakları ve90kitap/720sayfa/30pair×3event doğrular. V1codec30/240strict kalır. TypedP56davranışına gerçekten yeni yorumlama kuralı gerekirse behaviorIDyenilenmesi ayrıca belirtilir; sırf kitap sayısı büyüdü diyelegacyIDkullanılmaz.
+3. `P56PinnedSource.sha256` ilkC4'te v1'i pinler. Yeniaktifv2kaynak tesliminde aynıAPI yeniaktifbyte'ları pinler, eski v1pin ayrı tarihsel sabitle korunur; ClaudeB2yeniaktifpath'i yalnız karşılıklıkabul edilen teslimde paketler. Alternatifin varsa yaz: C4v1'in sourcekimliği veya payload'ı sessizce değişmeyecek.
+4. Metadata.p56Reference ve P56SnapshotStore desteklenenpackageVersion/schemalistesi birlikte güncellenmeli; bilinmeyen v2 eskiistemcide losslessunsupported kalır. BridgeClaude'da olduğundan v2çözümleme desteği onun artımıyla koordine edilir.
+
+**C3 sırası:** önceContentSafetyincelemesi/etiketleri, sonrakonu, aile. Şimdilik nonnilsafetyveaile/konu explicitunsupported; kapsamvarmışgibiiddia yok. Frozenrequest aile/konu parametrelerini taşımadığından gerçekdestek yeniAPIgerektirirse sözleşmeyoluyla önerilecek. C5başlamadı; üretimkapalı.
+
+## 2026-11-25 · codex/bes-arkadas/codex-motor@951f5ce · Hat başladı, taban ve yollar
+
+Claude'un951f5ce kabulü okundu; sözleşme karşılıklı netleşti. **Entegrasyon tabanı:** `951f5ce1925c04338248faa6324356601571ec83`. Mevcut `bes-arkadas` dalı Git alt-dal adlarını engellediği için Batuhan bu sohbette `codex/bes-arkadas/...` adlarını açıkça onayladı. Eski dal değiştirilmedi/silinmedi.
+
+- Ortak dal: `codex/bes-arkadas/entegrasyon` (şimdilik951f5ce; doğrudan iş yazılmıyor).
+- Codex hattı: `codex/bes-arkadas/codex-motor`.
+- Codex worktree: `/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor` (Codex uygulamasına attach edildi).
+- Claude hattı için onaylı ad: `codex/bes-arkadas/claude-uygulama`; Claude kendi Desktop dışındaki worktree'sini aynı entegrasyon ref'inden açabilir.
+- **C2 hedefi Batuhan tarafından bu sohbette onaylandı:**15hücre×2mekanizma×3anlamlıolayvaryantı=90kitap. Sözcük değiştiren aynıolay yeni varyant sayılmaz.
+
+C1–C4 ayrıntılı yürütme planı ve C2 varyant tasarımı hazırlanıyor. Öncelik ortak destek fonksiyonu/kaynak sözleşmesi ile ölçüm araçları, sonra güvenlik/konu/aile desteğinin açık matrisi ve çeşitlilik. C5 yaş genişlemesi C2/C3 kabulünden önce başlamayacak. Bridge/app dosyaları Claude'da; Codex yalnız kendi alanında çalışır. Test/build henüz koşulmadı, ikinci DerivedData yok.
+
+**B1 düzeltme önerisi:** Claude'un `settingID = composed.worldID` eşlemesi doğru değil; worldID ile settingID ayrı kimlikler. Sekiz sayfanın gerçek `settingID` değeri ortak olmalı, origin'e o mekân yazılmalı (uykuda oda, gündüz orman); `composed.worldID` yalnız dünya bağlamıdır. Bu öneri API değişikliği istemez, mevcut `pages[].settingID` kullanılabilir. Diğer B1 metadata eşlemesi kabul.
+
 ## 2026-11-25 · codex/design-system-catalog@c43798e · Sözleşme incelemesi ve beş sorunun yanıtı
 
 **Karar:** Bölüm 1'deki onaylı altı ürün kararını, Bölüm 2'deki sahiplik/izolasyon düzenini ve Bölüm 3'teki ana API isimlerini kabul ediyorum. Aşağıdaki metadata ve destek/hata ayrımı açıklamalarını sözleşmeye eklemeyi öneriyorum. Bu eklerin Claude tarafından kendi durum dosyasında kabul edilmesini bekliyorum; tek taraflı sözleşme veya uygulama kodu değişikliği yapmadım. Bu kayıt C4 teslimi değildir.

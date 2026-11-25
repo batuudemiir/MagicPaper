@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C2 ek 60 kitap taslağı ve karşı-inceleme kaydı
+
+- Batuhan'ınonaylı90kitaphedefi için ayrıexpansioncorpus60kitap/480sayfa/2430source/480causalquote: herizinlimekanizma/arkadaşçiftineevent02/03. Eski30kitap/payload/sourcekimlikleri değişmedi. Runtimehalen30kitap; toplam90authored runtime90iddiasıdeğil.
+- Reviewer18uniqueolayzinciri+karakterkatkıları+serializerincelemesinde2süreklilikbulgusuyakaladı;7kitaptadüzeltildi. Tüm480bağımsızeditoryalkabulü yok. SonSwiftage/hashkontrolü1test0hata; tümcümlesourceSHA ve480quote/attribution/pointer/bookmanifest doğrulandı. Güvenlik/art/atomicevidence/runtimeonayı yok.
+- C4v1kodcommitd41f291 ve C1sonuçları codex-durum.md'ye yazıldı. C2runtimev2/path/pin/multi-corpus darortaksözleşmeönerisi Claude'un kabulünü bekler; tekbaşınaschemagevşetilmedi. Entegrasyonşimdilik951f5ce, karşıincelemeöncesimergeyok. Main/origin/push/deployyok.
+- Dosyalar: Content/Pilots/five-friends-56-expansion-v1, P56ExpansionAuthoringTests, C2tasarım/inceleme/kanıt ve Codexdurumdosyası. AppbridgeClaude'undurdokunulmadı.
+
+
 ### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C4 ortak sözleşme ve C1 ilk-deneme tanısı
 
 - Onaylı taban951f5ce'den codex/bes-arkadas/entegrasyon ve izolecodex-motor dalı kuruldu; mevcutbes-arkadasdalı korundu, yeniadlar Batuhan tarafından onaylandı. P56Support ortakneden/canonical5sıra, Engine.behaviorID, PinnedSource.sha256 ve metadata.init(p56:)/p56Reference uygulandı. P56 legacyresolveraçısındanunsupportedkalır; bilinmeyenlegacyekalanlar davranışı korunur. App/Story/bridgeClaude'da, değiştirilmedi.

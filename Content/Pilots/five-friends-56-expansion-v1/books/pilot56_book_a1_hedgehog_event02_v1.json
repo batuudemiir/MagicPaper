@@ -1,0 +1,1002 @@
+{
+  "id": "pilot56_book_a1_hedgehog_event02_v1",
+  "title": "Aydınlıkta Seçtiğim Mola",
+  "blueprintID": "pilot56_blueprint_a1_v1",
+  "planLabel": "A1",
+  "mechanismKey": "self-paced-safe-threshold",
+  "status": "authored-internal-review-required",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "adventure",
+    "arc": "editorial-adventure",
+    "companionID": "companion_hedgehog_pilot_001",
+    "settingID": "setting_whispering_forest_001",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "H",
+  "personalityContract": "Küçük adımlarla cesaretlenir; her sahnede kaygılı değildir.",
+  "physicalContract": "Dört kısa ayak; dikenler korunur.",
+  "childAgency": "Çocuk adımlarının büyüklüğünü seçerek düz açıklığı kendisi geçer.",
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "baseBookID": "pilot56_book_a1_hedgehog_v1",
+  "variantID": "event02",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "safe_goal",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_1_v1"
+      ],
+      "text": "Deniz gölgeli patikadan düz açıklığa baktı. Kestane yanındaydı. Güneş alan açıklığın ötesinde geniş bir ağaç gölgesi vardı. İkisi oraya yürüyüp aynı yoldan dönmek istiyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "safe_goal",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event02_p01_v1",
+            "sourceTextDigest": "e2ef1ca629a50e8f2d51a3728b32b9fd9c7688414e25acf2a21ff0bb65328ab1",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1706",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event02_p01_v1_s01",
+        "pilot56_source_a1_hedgehog_event02_p01_v1_s02",
+        "pilot56_source_a1_hedgehog_event02_p01_v1_s03",
+        "pilot56_source_a1_hedgehog_event02_p01_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_light_transition_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "gölgeli patika, güneşli düz kuru açıklık, hedef geniş ağaç gölgesi",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz gölgeli patikadan düz açıklığa baktı. Kestane yanındaydı. Güneş alan açıklığın ötesinde geniş bir ağaç gölgesi vardı. İkisi oraya yürüyüp aynı yoldan dönmek istiyordu.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event02_p01_v1",
+            "evidenceText": "Deniz gölgeli patikadan düz açıklığa baktı. Kestane yanındaydı. Güneş alan açıklığın ötesinde geniş bir ağaç gölgesi vardı. İkisi oraya yürüyüp aynı yoldan dönmek istiyordu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz gölgeli patikadan düz açıklığa baktı. Kestane yanındaydı. Güneş alan açıklığın ötesinde geniş bir ağaç gölgesi vardı. İkisi oraya yürüyüp aynı yoldan dönmek istiyordu.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 2,
+      "role": "approach",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_2_v1"
+      ],
+      "text": "Deniz gölgenin bittiği yerde durdu. Önündeki kuru zemin daha aydınlık görünüyordu. \"İlk adımda biraz durabilirim,\" dedi. Ağacın yanına bir kerede gitmesi gerekmiyordu; kendi hızını seçebilirdi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "safe_goal",
+      "stateAfter": "approach",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event02_p02_v1",
+            "sourceTextDigest": "b8d816c5e5e0c7d23877be3b4f887aba45fe7862c2f0746bb4a3feef699c42c7",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1711",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event02_p02_v1_s01",
+        "pilot56_source_a1_hedgehog_event02_p02_v1_s02",
+        "pilot56_source_a1_hedgehog_event02_p02_v1_s03",
+        "pilot56_source_a1_hedgehog_event02_p02_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_light_transition_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "gölgeli patika, güneşli düz kuru açıklık, hedef geniş ağaç gölgesi",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz gölgenin bittiği yerde durdu. Önündeki kuru zemin daha aydınlık görünüyordu. \"İlk adımda biraz durabilirim,\" dedi. Ağacın yanına bir kerede gitmesi gerekmiyordu; kendi hızını seçebilirdi.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event02_p02_v1",
+            "evidenceText": "Deniz gölgenin bittiği yerde durdu. Önündeki kuru zemin daha aydınlık görünüyordu. \"İlk adımda biraz durabilirim,\" dedi. Ağacın yanına bir kerede gitmesi gerekmiyordu; kendi hızını seçebilirdi.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz gölgenin bittiği yerde durdu. Önündeki kuru zemin daha aydınlık görünüyordu. \"İlk adımda biraz durabilirim,\" dedi. Ağacın yanına bir kerede gitmesi gerekmiyordu; kendi hızını seçebilirdi.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_support",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_3_v1"
+      ],
+      "text": "Kestane dört kısa ayağını sakin biçimde yere koydu. \"Küçük adımlarla eşlik edebilirim,\" dedi. Önce kendisi bir yer seçmedi. Deniz’in ilk duruşunu kararlaştırmasını yanında bekledi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "approach",
+      "stateAfter": "friend_support",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event02_p03_v1",
+            "sourceTextDigest": "cf2aa837de1cf70c9e1dca62de61af8513d9a90e5106f4916cb8e39ee43ccd1e",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1716",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event02_p03_v1_s01",
+        "pilot56_source_a1_hedgehog_event02_p03_v1_s02",
+        "pilot56_source_a1_hedgehog_event02_p03_v1_s03",
+        "pilot56_source_a1_hedgehog_event02_p03_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_light_transition_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "gölgeli patika, güneşli düz kuru açıklık, hedef geniş ağaç gölgesi",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane dört kısa ayağını sakin biçimde yere koydu. \"Küçük adımlarla eşlik edebilirim,\" dedi. Önce kendisi bir yer seçmedi. Deniz’in ilk duruşunu kararlaştırmasını yanında bekledi.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event02_p03_v1",
+            "evidenceText": "Kestane dört kısa ayağını sakin biçimde yere koydu. \"Küçük adımlarla eşlik edebilirim,\" dedi. Önce kendisi bir yer seçmedi. Deniz’in ilk duruşunu kararlaştırmasını yanında bekledi.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane dört kısa ayağını sakin biçimde yere koydu. \"Küçük adımlarla eşlik edebilirim,\" dedi. Önce kendisi bir yer seçmedi. Deniz’in ilk duruşunu kararlaştırmasını yanında bekledi.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_step_choice",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_4_v1"
+      ],
+      "text": "Deniz güneşli zeminin başında bir mola yeri seçti. \"Önce şu küçük yere,\" dedi. Ayağını nereye koyacağını kendisi belirledi. Arkadaşı onu önden çağırmak yerine yanında bekliyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_support",
+      "stateAfter": "child_step_choice",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event02_p04_v1",
+            "sourceTextDigest": "62697a31a83c25d7e0cbb4c9c5b62e7e52dd7719614c2130693eaaa1657d7622",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1721",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event02_p04_v1_s01",
+        "pilot56_source_a1_hedgehog_event02_p04_v1_s02",
+        "pilot56_source_a1_hedgehog_event02_p04_v1_s03",
+        "pilot56_source_a1_hedgehog_event02_p04_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_light_transition_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "gölgeli patika, güneşli düz kuru açıklık, hedef geniş ağaç gölgesi",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz güneşli zeminin başında bir mola yeri seçti. \"Önce şu küçük yere,\" dedi. Ayağını nereye koyacağını kendisi belirledi. Arkadaşı onu önden çağırmak yerine yanında bekliyordu.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event02_p04_v1",
+            "evidenceText": "Deniz güneşli zeminin başında bir mola yeri seçti. \"Önce şu küçük yere,\" dedi. Ayağını nereye koyacağını kendisi belirledi. Arkadaşı onu önden çağırmak yerine yanında bekliyordu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz güneşli zeminin başında bir mola yeri seçti. \"Önce şu küçük yere,\" dedi. Ayağını nereye koyacağını kendisi belirledi. Arkadaşı onu önden çağırmak yerine yanında bekliyordu.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "first_step",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_5_v1"
+      ],
+      "text": "Deniz aydınlık zemine ilk adımını atıp durdu. Toprak ayağının altında düzdü. Işığa alışırken çevresine baktı. Seçtiği mola gerçekten kendi kararıydı, daha ileri gitmek için acele etmedi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_step_choice",
+      "stateAfter": "first_step",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event02_p05_v1",
+            "sourceTextDigest": "4982d6607d8f0f0e78bf42ddd26902e0f3348a897dcd3640be80bdb2280f58be",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1726",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event02_p05_v1_s01",
+        "pilot56_source_a1_hedgehog_event02_p05_v1_s02",
+        "pilot56_source_a1_hedgehog_event02_p05_v1_s03",
+        "pilot56_source_a1_hedgehog_event02_p05_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_light_transition_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "gölgeli patika, güneşli düz kuru açıklık, hedef geniş ağaç gölgesi",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz aydınlık zemine ilk adımını atıp durdu. Toprak ayağının altında düzdü. Işığa alışırken çevresine baktı. Seçtiği mola gerçekten kendi kararıydı, daha ileri gitmek için acele etmedi.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event02_p05_v1",
+            "evidenceText": "Deniz aydınlık zemine ilk adımını atıp durdu. Toprak ayağının altında düzdü. Işığa alışırken çevresine baktı. Seçtiği mola gerçekten kendi kararıydı, daha ileri gitmek için acele etmedi.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz aydınlık zemine ilk adımını atıp durdu. Toprak ayağının altında düzdü. Işığa alışırken çevresine baktı. Seçtiği mola gerçekten kendi kararıydı, daha ileri gitmek için acele etmedi.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "child_crosses",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_6_v1"
+      ],
+      "text": "Deniz mola yerinden sonraki küçük adımlarını kendisi seçti. \"Şimdi devam ediyorum,\" dedi. Arkadaşı aynı sakin tempoda eşlik etti. Çocuk aydınlık açıklığı kendi ayaklarıyla geçip ağaca yaklaştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "first_step",
+      "stateAfter": "child_crosses",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event02_p06_v1",
+            "sourceTextDigest": "f8e6f62799430953f1253021e04f246bc5504d6dc3ef0f169b80a963d898e6ab",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1731",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event02_p06_v1_s01",
+        "pilot56_source_a1_hedgehog_event02_p06_v1_s02",
+        "pilot56_source_a1_hedgehog_event02_p06_v1_s03",
+        "pilot56_source_a1_hedgehog_event02_p06_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_light_transition_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "gölgeli patika, güneşli düz kuru açıklık, hedef geniş ağaç gölgesi",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz mola yerinden sonraki küçük adımlarını kendisi seçti. \"Şimdi devam ediyorum,\" dedi. Arkadaşı aynı sakin tempoda eşlik etti. Çocuk aydınlık açıklığı kendi ayaklarıyla geçip ağaca yaklaştı.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event02_p06_v1",
+            "evidenceText": "Deniz mola yerinden sonraki küçük adımlarını kendisi seçti. \"Şimdi devam ediyorum,\" dedi. Arkadaşı aynı sakin tempoda eşlik etti. Çocuk aydınlık açıklığı kendi ayaklarıyla geçip ağaca yaklaştı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz mola yerinden sonraki küçük adımlarını kendisi seçti. \"Şimdi devam ediyorum,\" dedi. Arkadaşı aynı sakin tempoda eşlik etti. Çocuk aydınlık açıklığı kendi ayaklarıyla geçip ağaca yaklaştı.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 7,
+      "role": "goal_reached",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_7_v1"
+      ],
+      "text": "Deniz geniş ağacın gölgesine varıp geriye baktı. İlk mola yeri açıklığın başında kalmıştı. Işığın değiştiği yerde durabilmiş, sonra yürümüştü. Arkadaşı şimdi yanında sessizce bekliyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "child_crosses",
+      "stateAfter": "goal_reached",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event02_p07_v1",
+            "sourceTextDigest": "af8ff36c41ad1819e0c65ca50b38a5c23567523f28f68d57eaadbb98fdbdf951",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1736",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event02_p07_v1_s01",
+        "pilot56_source_a1_hedgehog_event02_p07_v1_s02",
+        "pilot56_source_a1_hedgehog_event02_p07_v1_s03",
+        "pilot56_source_a1_hedgehog_event02_p07_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_light_transition_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "gölgeli patika, güneşli düz kuru açıklık, hedef geniş ağaç gölgesi",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz geniş ağacın gölgesine varıp geriye baktı. İlk mola yeri açıklığın başında kalmıştı. Işığın değiştiği yerde durabilmiş, sonra yürümüştü. Arkadaşı şimdi yanında sessizce bekliyordu.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event02_p07_v1",
+            "evidenceText": "Deniz geniş ağacın gölgesine varıp geriye baktı. İlk mola yeri açıklığın başında kalmıştı. Işığın değiştiği yerde durabilmiş, sonra yürümüştü. Arkadaşı şimdi yanında sessizce bekliyordu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz geniş ağacın gölgesine varıp geriye baktı. İlk mola yeri açıklığın başında kalmıştı. Işığın değiştiği yerde durabilmiş, sonra yürümüştü. Arkadaşı şimdi yanında sessizce bekliyordu.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_return",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_8_v1"
+      ],
+      "text": "Deniz aynı düz yoldan gölgeli patikaya döndü. Arkadaşı yanında ilerledi. Çocuk yolun başında mola seçmiş, sonra devam etmişti. Açıklığa yürüyüşleri bitmişti; bir yere yetişmeleri gerekmiyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "goal_reached",
+      "stateAfter": "closed_return",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event02_p08_v1",
+            "sourceTextDigest": "f2651e2910f4b0e2e969535b5913882bfe6b9f38e178eb721c417a579eab224a",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1741",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_light_transition_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event02_p08_v1_s01",
+        "pilot56_source_a1_hedgehog_event02_p08_v1_s02",
+        "pilot56_source_a1_hedgehog_event02_p08_v1_s03",
+        "pilot56_source_a1_hedgehog_event02_p08_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_light_transition_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "gölgeli patika, güneşli düz kuru açıklık, hedef geniş ağaç gölgesi",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz aynı düz yoldan gölgeli patikaya döndü. Arkadaşı yanında ilerledi. Çocuk yolun başında mola seçmiş, sonra devam etmişti. Açıklığa yürüyüşleri bitmişti; bir yere yetişmeleri gerekmiyordu.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event02_p08_v1",
+            "evidenceText": "Deniz aynı düz yoldan gölgeli patikaya döndü. Arkadaşı yanında ilerledi. Çocuk yolun başında mola seçmiş, sonra devam etmişti. Açıklığa yürüyüşleri bitmişti; bir yere yetişmeleri gerekmiyordu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz aynı düz yoldan gölgeli patikaya döndü. Arkadaşı yanında ilerledi. Çocuk yolun başında mola seçmiş, sonra devam etmişti. Açıklığa yürüyüşleri bitmişti; bir yere yetişmeleri gerekmiyordu.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    }
+  ]
+}
