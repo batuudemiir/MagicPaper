@@ -49,8 +49,14 @@ enum StoryRuntimeFlags {
 
 final class StoryRuntimeRouter {
     /// One router for the app, so the payload is read once for the selection
-    /// screen (B5) and the writer (B4).
-    static let shared = StoryRuntimeRouter()
+    /// screen (B5) and the writer (B4). Created at launch (the story library
+    /// asks for it), and with the pilot flag on it starts reading the payload
+    /// in the background right away.
+    static let shared: StoryRuntimeRouter = {
+        let router = StoryRuntimeRouter()
+        router.prewarm()
+        return router
+    }()
 
     private let isEnabled: Bool
     private let loadSource: () throws -> (P56SourceReference, P56Package)
@@ -73,6 +79,14 @@ final class StoryRuntimeRouter {
         return StoryRuntimeDecision(route: .legacy, reason: reasons == ["age"] ? .unsupportedAge : .unsupportedRequest)
     }
 
+    /// Reads and verifies the payload off the main thread (B7 bulgusu: ilk
+    /// kararda 3,3 MB ana iş parçacığında okunuyordu). A decision made while
+    /// the read is still running waits for it; with the flag off nothing is read.
+    func prewarm() {
+        guard isEnabled else { return }
+        DispatchQueue.global(qos: .userInitiated).async { [self] in _ = source() }
+    }
+
     /// The package behind a `.p56` decision, for the writer (B4).
     func package(for reference: P56SourceReference) -> P56Package? {
         guard case .success(let (cachedReference, package)) = source(), cachedReference == reference else { return nil }
@@ -92,9 +106,10 @@ final class StoryRuntimeRouter {
     }
 
     static func bundledSource() throws -> (P56SourceReference, P56Package) {
-        let reference = try P56BundledSource().load()
-        let package = try P56SnapshotStore(root: P56BundledSource.defaultStoreDirectory).load(reference)
-        return (reference, package)
+        let source = try P56BundledSource().loadPackage()
+        // Arşiv (v1 baytları ileride okunabilir kalsın) karardan bağımsız, arka planda.
+        DispatchQueue.global(qos: .utility).async { _ = try? P56BundledSource().load() }
+        return source
     }
 
     private func source() -> Result<(P56SourceReference, P56Package), Error> {

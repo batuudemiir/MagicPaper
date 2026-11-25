@@ -54,6 +54,19 @@ final class P56BundledSourceTests: XCTestCase {
         XCTAssertFalse(FileManager.default.fileExists(atPath: directory.path), "bozuk kaynak arşive yazılmaz")
     }
 
+    func testLoadPackageDecodesOnceWithoutArchiving() throws {
+        let (reference, package) = try P56BundledSource(store: P56SnapshotStore(root: directory)).loadPackage()
+        XCTAssertEqual(reference.payloadSHA256, P56PinnedSource.sha256)
+        XCTAssertEqual(package.sourceReference, reference)
+        XCTAssertFalse(FileManager.default.fileExists(atPath: directory.path), "karar yolu arşive yazmaz")
+    }
+
+    func testLoadPackageRefusesTamperedBytes() throws {
+        var bytes = try P56BundledSource.bundledBytes()
+        bytes[bytes.startIndex + 10] ^= 0x01
+        XCTAssertThrowsError(try P56BundledSource(bytes: { bytes }, store: P56SnapshotStore(root: directory)).loadPackage())
+    }
+
     func testMissingResourceThrows() {
         let source = P56BundledSource(bytes: { throw P56BundledSource.SourceError.missingResource },
                                       store: P56SnapshotStore(root: directory))

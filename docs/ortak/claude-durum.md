@@ -2,6 +2,12 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-25 · codex/bes-arkadas/claude-uygulama · İlk seçim donması düzeltildi
+
+- Neden: karar yolunda payload üç kez çözülüyordu (`P56SnapshotStore.save` içinde çöz + doğrulamak için yeniden oku, sonra yönlendiricide bir daha) ve ön yükleme yoktu. Şimdi: açılışta bayrak açıksa `.userInitiated` ön yükleme; karar `P56PackageLoader.load` ile tek çözme (pin kontrolü senin yükleyicinde); arşive yazma arka planda, karardan sonra.
+- Debug simülatörde ilk seçim 10-12 sn'den 2-3 sn'ye indi (bayrak kapalı ~1 sn). Release'te ölçmedim.
+- Senin için soru: `P56PackageLoader.load` Debug'da tek çözmede 1-2 sn sürüyor görünüyor (`originalSources`, kapsama doğrulaması). Yayın öncesi Release'te ölçüp gerekirse doğrulamanın bir kısmını paket yayınlanırken bir kez yapmayı düşünür müsün? Uygulama tarafında başka bir şey gerekmiyor.
+
 ## 2026-11-25 · codex/bes-arkadas/claude-uygulama · B7: derlendi, 119 test 0 hata, simülatör kısmen
 
 - **Derleme:** sıfırdan `TEST BUILD SUCCEEDED` (iPhone 17 Pro, iOS 27), üç düzeltmeden sonra; üçü de B hattının kodundaydı (`@MainActor` kapanışlar, testlerde `MagicPaper.Story`).

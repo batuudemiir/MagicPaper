@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, düzeltme commit'i · Bayrak açıkken ilk seçimdeki donma
+
+- Ne değişti: `StoryRuntimeRouter.shared` açılışta, bayrak açıksa P56 paketini arka planda (`.userInitiated`) önceden okur; `ContentView` kitaplığı kurarken yönlendirici de kurulur. Karar yolu paketi tek kez okuyup doğrular (`P56BundledSource.loadPackage`); arşive yazma kararın dışına, arka plana alındı. Önce 3,3 MB üç kez çözülüyordu (arşive yaz, doğrula, yeniden oku) ve ilk ön yükleme `.utility` öncelikte kilit üstünde ana iş parçacığını bekletiyordu.
+- Ölçüm (Debug, iPhone 17 Pro simülatörü, arşiv silinmiş temiz açılış): "Fark etmez" → "Kim gelsin?" geçişi önce yaklaşık 10-12 sn, şimdi yaklaşık 2-3 sn; bayrak kapalıyken yaklaşık 1 sn. Ekran görüntüsü yoklamasıyla ölçüldü, kesin değil. Release'te ölçülmedi.
+- Bilerek değişmeyen: bayrak kapalıyken hiçbir şey okunmaz; arşiv hâlâ yazılır (v1 baytları), yalnız karardan sonra; `P56SnapshotStore` değişmedi.
+- Test: `StoryRuntimeRouterTests` (+2: ön yükleme ana iş parçacığı dışında ve bir kez; bayrak kapalıyken ön yükleme yok), `P56BundledSourceTests` (+2: tek çözme arşive yazmaz; bozuk bayt reddedilir), `P56CompositionPathTests`, `CompanionStepChoicesTests`: 39 test, 0 hata.
+- Dosyalar: `StoryRuntimeRouter.swift`, `Pilots/P56/P56BundledSource.swift`, `MagicPaperTests/StoryRuntimeRouterTests.swift`, `MagicPaperTests/P56BundledSourceTests.swift`, `docs/ortak/claude-durum.md`, bu kayıt.
+
 ### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B7 commit'i · B hattı derleme, test ve simülatör sonucu
 
 - Derleme: sıfırdan `build-for-testing` (iPhone 17 Pro, iOS 27). Üç hata çıktı, üçü de B hattının kodundaydı ve düzeltildi: `FiveFriendsChoiceSource` varsayılan kapanışları `@MainActor` değildi; testlerde `Story` iki modülde birden vardı (`MagicPaper.Story` yapıldı). Sonuç: `TEST BUILD SUCCEEDED`.

@@ -94,6 +94,32 @@ final class StoryRuntimeRouterTests: XCTestCase {
         XCTAssertEqual(loads, 1)
     }
 
+    func testPrewarmLoadsOffTheMainThreadOnce() throws {
+        let loaded = expectation(description: "kaynak arka planda yüklendi")
+        let lock = NSLock()
+        var loads = 0
+        var onMain = true
+        let router = router(load: {
+            lock.lock(); loads += 1; onMain = Thread.isMainThread; lock.unlock()
+            loaded.fulfill()
+            return try Self.fixture.get()
+        })
+        router.prewarm()
+        wait(for: [loaded], timeout: 10)
+        let (reference, _) = try Self.fixture.get()
+        XCTAssertEqual(router.decide(request()).route, .p56(reference))
+        lock.lock(); defer { lock.unlock() }
+        XCTAssertFalse(onMain, "ön yükleme ana iş parçacığını tutmaz")
+        XCTAssertEqual(loads, 1, "karar ön yüklenen kaynağı kullanır")
+    }
+
+    func testPrewarmDoesNothingWhenFlagIsOff() {
+        let notLoaded = expectation(description: "bayrak kapalıyken yüklenmez")
+        notLoaded.isInverted = true
+        router(enabled: false, load: { notLoaded.fulfill(); return try Self.fixture.get() }).prewarm()
+        wait(for: [notLoaded], timeout: 1)
+    }
+
     func testPackageIsHandedOnlyForTheDecidedSource() throws {
         let (reference, _) = try Self.fixture.get()
         let router = router()

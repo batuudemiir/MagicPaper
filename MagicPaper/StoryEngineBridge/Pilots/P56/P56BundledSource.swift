@@ -40,4 +40,12 @@ struct P56BundledSource {
     func load() throws -> P56SourceReference {
         try store.save(payload: bytes(), expectedSHA256: P56PinnedSource.sha256)
     }
+
+    /// The pinned bytes verified and decoded once, without touching the
+    /// archive: what a decision needs. (B7: arşive yazıp yeniden okumak 3,3 MB'ı
+    /// üç kez çözüyordu.) The loader checks the pin itself.
+    func loadPackage() throws -> (P56SourceReference, P56Package) {
+        let package = try P56PackageLoader.load(payload: bytes(), expectedSHA256: P56PinnedSource.sha256)
+        return (package.sourceReference, package)
+    }
 }
