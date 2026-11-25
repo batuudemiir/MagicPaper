@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · codex/design-system-catalog · Çocuğun masal yolu görselleri
+
+- Beş arkadaşın uyku, macera ve öğrenme pozları ile Sürpriz kartı için 16 şeffaf PNG hazırlandı. HTML önizlemesi mevcut beş portreyi de gösteriyor.
+- 16 PNG tam çözünürlükte açıldı, alfa kanalları, galeri bağlantıları ve ZIP bütünlüğü kontrol edildi. Küçük boy görseller incelendi. Uygulama testi ve simülatör çalıştırılmadı.
+- Dosyalar: `design-handoff/proposals/2026-11-26-cocugun-masal-yolu/` ve bu günlük.
+
 ### 2026-11-25 · codex/design-system-catalog, plan commit'i · Beş arkadaş B hattı (Claude) TDD planı
 
 - Yeni `docs/superpowers/plans/2026-11-25-bes-arkadas-b-hatti-uygulama.md`: B1 P56 masalını `Story`'ye çevirme, B2 paketli payload, B3 yönlendirici (karar + neden kodu, yalnız DEBUG bayrak), B4 `StoryGenerationManager.createStory`'de tek dal ve aynı girdilerle eski yola düşüş, B5 `FiveFriendsChoiceSource` ile beş arkadaşlı seçim listesi, B6 P56 masalını seri ve hatırlamanın dışında tutma, B7 tek koşu doğrulaması. Test adları ve iddiaları yazıldı.
