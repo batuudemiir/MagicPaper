@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-25",
+  "codeBaseCommit": "811d0cf",
+  "C4IntegrationCommit": "d4cb8c1",
+  "parkedCommitExcluded": "b099d9b",
+  "engineSelected": {
+    "tests": 65,
+    "skipped": 1,
+    "failures": 0,
+    "exitCode": 0,
+    "log": "/private/tmp/magicpaper-c2v2-final-tests.log",
+    "scope": "P56 suites and source identity/legacy determinism/provenance; C1 long opt-in diagnostic skipped"
+  },
+  "activeSource": {
+    "schemaVersion": 2,
+    "packageVersion": "five-friends-56-runtime-v2",
+    "engineBehaviorID": "offline-p56-v1",
+    "payloadSHA256": "a060322180f45e81bb5be91f168b78bcebd4cd66783f9e434c9b8115454b6837",
+    "productionEnabled": false,
+    "artApproved": false
+  },
+  "historicalV1SHA256": "28773f03bc59060cdfae95961dbfa14e319e141633a7e79ead6ce93eb90d7adc",
+  "canonicalLegacyFiles": 252,
+  "canonicalLegacyChanges": 0,
+  "sourceCoverage": {
+    "books": 90,
+    "pages": 720,
+    "mechanisms": 9,
+    "allowedPairs": 30,
+    "eventsPerPair": 3,
+    "booksPerCell": 6,
+    "TurkishNamesPerFullBookFixture": 7
+  },
+  "unfilteredFirstAttempts": {
+    "attempts": 1500,
+    "successes": 1500,
+    "failures": 0,
+    "retries": 0,
+    "uniqueBooks": 90
+  },
+  "contentSafety": {
+    "pageReviewCount": 720,
+    "titleReviewCount": 90,
+    "uncertainPageAnnotations": 0,
+    "mostProtectiveAdmissibleBooks": 70,
+    "calmNoTopicAvoidanceAdmissibleBooks": 81,
+    "someExcitementAllTopicsAvoidedAdmissibleBooks": 79,
+    "unfilteredAdmissibleBooks": 90,
+    "mostProtectiveFirstAttemptSelectionsTested": 1500,
+    "failures": 0,
+    "sourceAndEvidenceGuards": "passed"
+  },
+  "art": {
+    "requests": 1500,
+    "successfulBooks": 1500,
+    "failedRequests": 0,
+    "zeroArtBooks": 1500,
+    "requestsWithoutBoundArtIncludingFailures": 1500,
+    "booksWithArt": 0,
+    "pagesWithArt": 0,
+    "successfulPages": 12000,
+    "positionCounts": {
+      "opening": 0,
+      "middle": 0,
+      "ending": 0
+    },
+    "repeatedAssets": 0,
+    "approvedP56Rules": 0,
+    "denialReasonCounts": {
+      "no-reviewed-p56-rule": 12000
+    },
+    "measurementMethod": "Every successful sampled draft has artApproved=false and no asset field; there is no P56 rule catalog. Production legacy binders were not run against incompatible P56 types.",
+    "retryCount": 0,
+    "textSelectionInfluencedByArt": false,
+    "artAcceptance": "not-approved"
+  },
+  "appTestsRun": false,
+  "fullEngineSuiteRun": false,
+  "productionEnabled": false,
+  "remaining": [
+    "C2 v2/app-line counter-review and integration approval",
+    "Literary quality and diversity product acceptance",
+    "Art rules/assets/coverage approval",
+    "Topic selection and family casting unsupported",
+    "Recall, series, occasion, other ages unsupported",
+    "B2 snapshot/bundled-source app updates belong to Claude",
+    "Full integration test/UI gate after B line completes"
+  ]
+}

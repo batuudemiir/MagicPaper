@@ -1,0 +1,1074 @@
+{
+  "id": "pilot56_book_a1_hedgehog_event03_v1",
+  "title": "Toprağın Renk Sınırı",
+  "blueprintID": "pilot56_blueprint_a1_v1",
+  "planLabel": "A1",
+  "mechanismKey": "self-paced-safe-threshold",
+  "status": "authored-internal-review-required",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "adventure",
+    "arc": "editorial-adventure",
+    "companionID": "companion_hedgehog_pilot_001",
+    "settingID": "setting_whispering_forest_001",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "H",
+  "personalityContract": "Küçük adımlarla cesaretlenir; her sahnede kaygılı değildir.",
+  "physicalContract": "Dört kısa ayak; dikenler korunur.",
+  "childAgency": "Çocuk adımlarının büyüklüğünü seçerek düz açıklığı kendisi geçer.",
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "baseBookID": "pilot56_book_a1_hedgehog_v1",
+  "variantID": "event03",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "safe_goal",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_1_v1"
+      ],
+      "text": "Deniz düz açıklıkta iki renk toprak gördü. Kestane yanındaydı. Açık ve koyu zemin aynı yükseklikte uzanıyordu. İlerideki geniş ağaca yürüyüp patikaya geri dönmek istiyorlardı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "safe_goal",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event03_p01_v1",
+            "sourceTextDigest": "1063b6bb044bb85cc953b082cb83dfcc134c3b7d58a54afb95d3c02e5f79516e",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1746",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event03_p01_v1_s01",
+        "pilot56_source_a1_hedgehog_event03_p01_v1_s02",
+        "pilot56_source_a1_hedgehog_event03_p01_v1_s03",
+        "pilot56_source_a1_hedgehog_event03_p01_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_color_boundary_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_ground_color_boundary_v1",
+            "presence": "present",
+            "states": [
+              "flat",
+              "dry",
+              "equal-height"
+            ]
+          }
+        ],
+        "propDescription": "aynı yükseklikte açık ve koyu kuru toprak, geniş hedef ağacı ve düz patika",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz düz açıklıkta iki renk toprak gördü. Kestane yanındaydı. Açık ve koyu zemin aynı yükseklikte uzanıyordu. İlerideki geniş ağaca yürüyüp patikaya geri dönmek istiyorlardı.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event03_p01_v1",
+            "evidenceText": "Deniz düz açıklıkta iki renk toprak gördü. Kestane yanındaydı. Açık ve koyu zemin aynı yükseklikte uzanıyordu. İlerideki geniş ağaca yürüyüp patikaya geri dönmek istiyorlardı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz düz açıklıkta iki renk toprak gördü. Kestane yanındaydı. Açık ve koyu zemin aynı yükseklikte uzanıyordu. İlerideki geniş ağaca yürüyüp patikaya geri dönmek istiyorlardı.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 2,
+      "role": "approach",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_2_v1"
+      ],
+      "text": "Deniz renklerin birleştiği yere yaklaşmadan iki yana baktı. \"Burada yol değişmiş gibi görünüyor,\" dedi. Zemin yine kuru ve düzdü. Çocuk bu yeni görünüşe kendi hızında yaklaşabilirdi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "safe_goal",
+      "stateAfter": "approach",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event03_p02_v1",
+            "sourceTextDigest": "142d06dc7890c8bf438cf5b662aa4417b40461bb3606c2b59a049fd76d8d3ef4",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1751",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event03_p02_v1_s01",
+        "pilot56_source_a1_hedgehog_event03_p02_v1_s02",
+        "pilot56_source_a1_hedgehog_event03_p02_v1_s03",
+        "pilot56_source_a1_hedgehog_event03_p02_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_color_boundary_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_ground_color_boundary_v1",
+            "presence": "present",
+            "states": [
+              "flat",
+              "dry",
+              "equal-height"
+            ]
+          }
+        ],
+        "propDescription": "aynı yükseklikte açık ve koyu kuru toprak, geniş hedef ağacı ve düz patika",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz renklerin birleştiği yere yaklaşmadan iki yana baktı. \"Burada yol değişmiş gibi görünüyor,\" dedi. Zemin yine kuru ve düzdü. Çocuk bu yeni görünüşe kendi hızında yaklaşabilirdi.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event03_p02_v1",
+            "evidenceText": "Deniz renklerin birleştiği yere yaklaşmadan iki yana baktı. \"Burada yol değişmiş gibi görünüyor,\" dedi. Zemin yine kuru ve düzdü. Çocuk bu yeni görünüşe kendi hızında yaklaşabilirdi.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz renklerin birleştiği yere yaklaşmadan iki yana baktı. \"Burada yol değişmiş gibi görünüyor,\" dedi. Zemin yine kuru ve düzdü. Çocuk bu yeni görünüşe kendi hızında yaklaşabilirdi.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_support",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_3_v1"
+      ],
+      "text": "Kestane dört kısa ayağını sakin biçimde yere koydu. \"Küçük adımlarla eşlik edebilirim,\" dedi. Önce kendisi bir yer seçmedi. Deniz’in ilk duruşunu kararlaştırmasını yanında bekledi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "approach",
+      "stateAfter": "friend_support",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event03_p03_v1",
+            "sourceTextDigest": "cf2aa837de1cf70c9e1dca62de61af8513d9a90e5106f4916cb8e39ee43ccd1e",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1756",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event03_p03_v1_s01",
+        "pilot56_source_a1_hedgehog_event03_p03_v1_s02",
+        "pilot56_source_a1_hedgehog_event03_p03_v1_s03",
+        "pilot56_source_a1_hedgehog_event03_p03_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_color_boundary_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_ground_color_boundary_v1",
+            "presence": "present",
+            "states": [
+              "flat",
+              "dry",
+              "equal-height"
+            ]
+          }
+        ],
+        "propDescription": "aynı yükseklikte açık ve koyu kuru toprak, geniş hedef ağacı ve düz patika",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane dört kısa ayağını sakin biçimde yere koydu. \"Küçük adımlarla eşlik edebilirim,\" dedi. Önce kendisi bir yer seçmedi. Deniz’in ilk duruşunu kararlaştırmasını yanında bekledi.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event03_p03_v1",
+            "evidenceText": "Kestane dört kısa ayağını sakin biçimde yere koydu. \"Küçük adımlarla eşlik edebilirim,\" dedi. Önce kendisi bir yer seçmedi. Deniz’in ilk duruşunu kararlaştırmasını yanında bekledi.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane dört kısa ayağını sakin biçimde yere koydu. \"Küçük adımlarla eşlik edebilirim,\" dedi. Önce kendisi bir yer seçmedi. Deniz’in ilk duruşunu kararlaştırmasını yanında bekledi.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_step_choice",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_4_v1"
+      ],
+      "text": "Deniz ilk adımını renklerin birleştiği yerde bitirmeyi seçti. \"Önce sınıra kadar,\" dedi. İki zemini de gözleriyle izledi. Arkadaşı önden çekmeden çocuğun seçtiği küçük adımı bekledi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_support",
+      "stateAfter": "child_step_choice",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event03_p04_v1",
+            "sourceTextDigest": "8a9df453537f56dad1f20137cec3aef1fa3adcaef3ac09e571069aa611884b0f",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1761",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event03_p04_v1_s01",
+        "pilot56_source_a1_hedgehog_event03_p04_v1_s02",
+        "pilot56_source_a1_hedgehog_event03_p04_v1_s03",
+        "pilot56_source_a1_hedgehog_event03_p04_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_color_boundary_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_ground_color_boundary_v1",
+            "presence": "present",
+            "states": [
+              "flat",
+              "dry",
+              "equal-height"
+            ]
+          }
+        ],
+        "propDescription": "aynı yükseklikte açık ve koyu kuru toprak, geniş hedef ağacı ve düz patika",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz ilk adımını renklerin birleştiği yerde bitirmeyi seçti. \"Önce sınıra kadar,\" dedi. İki zemini de gözleriyle izledi. Arkadaşı önden çekmeden çocuğun seçtiği küçük adımı bekledi.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event03_p04_v1",
+            "evidenceText": "Deniz ilk adımını renklerin birleştiği yerde bitirmeyi seçti. \"Önce sınıra kadar,\" dedi. İki zemini de gözleriyle izledi. Arkadaşı önden çekmeden çocuğun seçtiği küçük adımı bekledi.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ilk adımını renklerin birleştiği yerde bitirmeyi seçti. \"Önce sınıra kadar,\" dedi. İki zemini de gözleriyle izledi. Arkadaşı önden çekmeden çocuğun seçtiği küçük adımı bekledi.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "first_step",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_5_v1"
+      ],
+      "text": "Deniz ilk adımını toprakların birleştiği yere attı. Ayağının altındaki zemin aynı düzeyde kaldı. Bir an durup baktı. Renk değişmişti, fakat yolun yüksekliği değişmemişti.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_step_choice",
+      "stateAfter": "first_step",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event03_p05_v1",
+            "sourceTextDigest": "319a2c6c9e58a7f59d052b6a0d6827b25ccd1ff22b9c68ac456535de62d84aa0",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1766",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event03_p05_v1_s01",
+        "pilot56_source_a1_hedgehog_event03_p05_v1_s02",
+        "pilot56_source_a1_hedgehog_event03_p05_v1_s03",
+        "pilot56_source_a1_hedgehog_event03_p05_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_color_boundary_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_ground_color_boundary_v1",
+            "presence": "present",
+            "states": [
+              "flat",
+              "dry",
+              "equal-height"
+            ]
+          }
+        ],
+        "propDescription": "aynı yükseklikte açık ve koyu kuru toprak, geniş hedef ağacı ve düz patika",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz ilk adımını toprakların birleştiği yere attı. Ayağının altındaki zemin aynı düzeyde kaldı. Bir an durup baktı. Renk değişmişti, fakat yolun yüksekliği değişmemişti.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event03_p05_v1",
+            "evidenceText": "Deniz ilk adımını toprakların birleştiği yere attı. Ayağının altındaki zemin aynı düzeyde kaldı. Bir an durup baktı. Renk değişmişti, fakat yolun yüksekliği değişmemişti.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ilk adımını toprakların birleştiği yere attı. Ayağının altındaki zemin aynı düzeyde kaldı. Bir an durup baktı. Renk değişmişti, fakat yolun yüksekliği değişmemişti.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "child_crosses",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_6_v1"
+      ],
+      "text": "Deniz öteki renk toprağa sonraki adımını kendisi attı. \"Şimdi buradan devam ediyorum,\" dedi. Kendi temposunu koruyup ağaca yürüdü. Arkadaşı sakin adımlarla yanından eşlik ediyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "first_step",
+      "stateAfter": "child_crosses",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event03_p06_v1",
+            "sourceTextDigest": "dabe96d1df797a80fcd49fc324211e3544a762b07c3c87750c8a53f5cd7afe62",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1771",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event03_p06_v1_s01",
+        "pilot56_source_a1_hedgehog_event03_p06_v1_s02",
+        "pilot56_source_a1_hedgehog_event03_p06_v1_s03",
+        "pilot56_source_a1_hedgehog_event03_p06_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_color_boundary_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_ground_color_boundary_v1",
+            "presence": "present",
+            "states": [
+              "flat",
+              "dry",
+              "equal-height"
+            ]
+          }
+        ],
+        "propDescription": "aynı yükseklikte açık ve koyu kuru toprak, geniş hedef ağacı ve düz patika",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz öteki renk toprağa sonraki adımını kendisi attı. \"Şimdi buradan devam ediyorum,\" dedi. Kendi temposunu koruyup ağaca yürüdü. Arkadaşı sakin adımlarla yanından eşlik ediyordu.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event03_p06_v1",
+            "evidenceText": "Deniz öteki renk toprağa sonraki adımını kendisi attı. \"Şimdi buradan devam ediyorum,\" dedi. Kendi temposunu koruyup ağaca yürüdü. Arkadaşı sakin adımlarla yanından eşlik ediyordu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz öteki renk toprağa sonraki adımını kendisi attı. \"Şimdi buradan devam ediyorum,\" dedi. Kendi temposunu koruyup ağaca yürüdü. Arkadaşı sakin adımlarla yanından eşlik ediyordu.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 7,
+      "role": "goal_reached",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_7_v1"
+      ],
+      "text": "Deniz ağacın geniş gölgesine varıp renk sınırına baktı. İlk durduğu yer şimdi gerideydi. Gördüğü farkı incelemiş, adımlarını kendisi seçmişti. Arkadaşı yanında rahatça durdu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "child_crosses",
+      "stateAfter": "goal_reached",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event03_p07_v1",
+            "sourceTextDigest": "66a7a021c24a7ec16c7a6fdc4fe5eb7af44002aa7523a83a2edc3df678e6d2be",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1776",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event03_p07_v1_s01",
+        "pilot56_source_a1_hedgehog_event03_p07_v1_s02",
+        "pilot56_source_a1_hedgehog_event03_p07_v1_s03",
+        "pilot56_source_a1_hedgehog_event03_p07_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_color_boundary_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_ground_color_boundary_v1",
+            "presence": "present",
+            "states": [
+              "flat",
+              "dry",
+              "equal-height"
+            ]
+          }
+        ],
+        "propDescription": "aynı yükseklikte açık ve koyu kuru toprak, geniş hedef ağacı ve düz patika",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz ağacın geniş gölgesine varıp renk sınırına baktı. İlk durduğu yer şimdi gerideydi. Gördüğü farkı incelemiş, adımlarını kendisi seçmişti. Arkadaşı yanında rahatça durdu.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event03_p07_v1",
+            "evidenceText": "Deniz ağacın geniş gölgesine varıp renk sınırına baktı. İlk durduğu yer şimdi gerideydi. Gördüğü farkı incelemiş, adımlarını kendisi seçmişti. Arkadaşı yanında rahatça durdu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ağacın geniş gölgesine varıp renk sınırına baktı. İlk durduğu yer şimdi gerideydi. Gördüğü farkı incelemiş, adımlarını kendisi seçmişti. Arkadaşı yanında rahatça durdu.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_return",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_8_v1"
+      ],
+      "text": "Deniz aynı düz zeminden patikaya geri döndü. İki renk toprağın sınırını yeniden geçti. Bu kez nerede durduğunu hatırlıyordu. Arkadaşı yanında ilerledi; küçük yürüyüşleri sakin biçimde tamamlandı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "goal_reached",
+      "stateAfter": "closed_return",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_hedgehog_event03_p08_v1",
+            "sourceTextDigest": "711c3ac3c2f3dc7ddf7dcbc0f5c334afc4e033322595f58c439747e56c5c0558",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/1781",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_color_boundary_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_hedgehog_event03_p08_v1_s01",
+        "pilot56_source_a1_hedgehog_event03_p08_v1_s02",
+        "pilot56_source_a1_hedgehog_event03_p08_v1_s03",
+        "pilot56_source_a1_hedgehog_event03_p08_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_color_boundary_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          },
+          {
+            "subjectID": "pilot56_object_ground_color_boundary_v1",
+            "presence": "present",
+            "states": [
+              "flat",
+              "dry",
+              "equal-height"
+            ]
+          }
+        ],
+        "propDescription": "aynı yükseklikte açık ve koyu kuru toprak, geniş hedef ağacı ve düz patika",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz aynı düz zeminden patikaya geri döndü. İki renk toprağın sınırını yeniden geçti. Bu kez nerede durduğunu hatırlıyordu. Arkadaşı yanında ilerledi; küçük yürüyüşleri sakin biçimde tamamlandı.",
+            "evidenceSourceID": "pilot56_source_a1_hedgehog_event03_p08_v1",
+            "evidenceText": "Deniz aynı düz zeminden patikaya geri döndü. İki renk toprağın sınırını yeniden geçti. Bu kez nerede durduğunu hatırlıyordu. Arkadaşı yanında ilerledi; küçük yürüyüşleri sakin biçimde tamamlandı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz aynı düz zeminden patikaya geri döndü. İki renk toprağın sınırını yeniden geçti. Bu kez nerede durduğunu hatırlıyordu. Arkadaşı yanında ilerledi; küçük yürüyüşleri sakin biçimde tamamlandı.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    }
+  ]
+}

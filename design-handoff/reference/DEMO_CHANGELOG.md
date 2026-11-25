@@ -224,6 +224,30 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Bilerek değişmeyen: kod, içerik, test. Kod C4 teslimini ve entegrasyon dalını bekliyor.
 - Test çalıştırılmadı, simülatör yok (yalnız belge).
 - Dosyalar: B hattı planı, ortak çalışma planı (sahiplik satırı), `docs/ortak/claude-durum.md`, bu kayıt.
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C2 v2 ve kaynak bağlı güvenlik teslimi
+
+- Ayrı runtime-v2: 90 kitap, 720 sayfa, 15 hücrede 6 kitap; multi-corpus exact kaynak/olay soy zinciri doğrulaması. Etkin sürüm ve pin güncellendi; v1 baytları ve tarihsel referansları korundu.
+- 720 sayfa ve 90 başlığın kaynak bağlı güvenlik etiketleriyle gerçek ContentSafety süzgeci eklendi. Desteklenmeyen konu/aile/seri bağlamları açıkça reddedilir. Uygulama dosyaları, legacy kaynaklar ve yayın bayrağı değişmedi.
+- Seçili Release: 65 test, 1 opt-in skip, 0 hata. 630 tam fixture, 1500 v2 ilk deneme ve 1500 en korumalı politika denemesi geçti; retry 0. Tam app/UI çalıştırılmadı. Tekrar ve art kapsamı sınırları raporda açık.
+- 90 tam kitaplık görsel kaynak/bağlam/poz/eylem teslimi ve önce/sonra ham ölçümler yazıldı. C4 entegrasyonu d4cb8c1; yeni C2/C3 uygulama hattı karşı incelemesini bekliyor, üretim kapalı, b099d9b dışarıda.
+- Dosyalar: Engine P56 ve ContentSourceMetadata, P56 testleri, Content/Pilots/five-friends-56-runtime-v2, research/v2 ve c3-safety, Codex durum ve proje hafızası.
+
+
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C4 v1 entegrasyon birleşmesi ve v2 eklerinin kabulü
+
+- Batuhan/Claude karşıincelemekabulüyleyalnızd41f291 C4/C1teslimi codex/bes-arkadas/entegrasyon dalına --no-ffilebirleşti: d4cb8c1. Ağacıd41f291ileaynı;C2b6deb1dvekenardakib099d9bharicinde. Ekprodcode/testdeğişimiyok,mergeiçinyenitestkoşulmadı;tamsonkapıBhatsonunda.
+- C2v2ikiortaksözleşmeeki kabul: activepackageVersion+sha256,v1SHA256tarihselpin;v1/v2refayrımıvearşivkoruması. B1provenance'inorigin'denyenidenkurulmasıyetersizliği ve renderedcontentfingerprintayrımıCodexdurumunayazıldı. V2uygulamaplanıyazıldı;Claudeappdosyalarınadokunulmadı.
+- Main/origin,push/yayınyok;C2taslaklar90runtimeolduğuiddiaedilmedi. Dosyalar: codex-durum.md,v2uygulamaplanı,bugünlük.
+
+
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C2 ek 60 kitap taslağı ve karşı-inceleme kaydı
+
+- Batuhan'ınonaylı90kitaphedefi için ayrıexpansioncorpus60kitap/480sayfa/2430source/480causalquote: herizinlimekanizma/arkadaşçiftineevent02/03. Eski30kitap/payload/sourcekimlikleri değişmedi. Runtimehalen30kitap; toplam90authored runtime90iddiasıdeğil.
+- Reviewer18uniqueolayzinciri+karakterkatkıları+serializerincelemesinde2süreklilikbulgusuyakaladı;7kitaptadüzeltildi. Tüm480bağımsızeditoryalkabulü yok. SonSwiftage/hashkontrolü1test0hata; tümcümlesourceSHA ve480quote/attribution/pointer/bookmanifest doğrulandı. Güvenlik/art/atomicevidence/runtimeonayı yok.
+- C4v1kodcommitd41f291 ve C1sonuçları codex-durum.md'ye yazıldı. C2runtimev2/path/pin/multi-corpus darortaksözleşmeönerisi Claude'un kabulünü bekler; tekbaşınaschemagevşetilmedi. Entegrasyonşimdilik951f5ce, karşıincelemeöncesimergeyok. Main/origin/push/deployyok.
+- Dosyalar: Content/Pilots/five-friends-56-expansion-v1, P56ExpansionAuthoringTests, C2tasarım/inceleme/kanıt ve Codexdurumdosyası. AppbridgeClaude'undurdokunulmadı.
+
+
 ### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C4 ortak sözleşme ve C1 ilk-deneme tanısı
 
 - Onaylı taban951f5ce'den codex/bes-arkadas/entegrasyon ve izolecodex-motor dalı kuruldu; mevcutbes-arkadasdalı korundu, yeniadlar Batuhan tarafından onaylandı. P56Support ortakneden/canonical5sıra, Engine.behaviorID, PinnedSource.sha256 ve metadata.init(p56:)/p56Reference uygulandı. P56 legacyresolveraçısındanunsupportedkalır; bilinmeyenlegacyekalanlar davranışı korunur. App/Story/bridgeClaude'da, değiştirilmedi.

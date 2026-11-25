@@ -1,0 +1,1002 @@
+{
+  "id": "pilot56_book_a2_bear_event02_v1",
+  "title": "Dönen Parçanın Çizgisi",
+  "blueprintID": "pilot56_blueprint_a2_v1",
+  "planLabel": "A2",
+  "mechanismKey": "sequence-with-complementary-contribution",
+  "status": "authored-internal-review-required",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "adventure",
+    "arc": "editorial-adventure",
+    "companionID": "companion_bear_001",
+    "settingID": "setting_whispering_forest_001",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Sakin ve güçlü; çocuğun fikrini dinler; güç cevap yerine geçmez.",
+  "physicalContract": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+  "childAgency": "Çocuk parçaların yönünü ve sırasını karşılaştırıp işareti kendi tamamlar.",
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "baseBookID": "pilot56_book_a2_bear_v1",
+  "variantID": "event02",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "two_piece_goal",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_1_v1"
+      ],
+      "text": "Deniz yerdeki geniş kütükte iki hafif tahta parça gördü. Böğürtlen yanındaydı. Parçalardan birinde çizgi, diğerinde ok ucu vardı. Düz açıklığın yol işareti henüz tamamlanmamıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "two_piece_goal",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a2_bear_event02_p01_v1",
+            "sourceTextDigest": "c8da45f681316a1a6b051a468acf3182223c038539965f759d8040398f027445",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/2030",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a2_bear_event02_p01_v1_s01",
+        "pilot56_source_a2_bear_event02_p01_v1_s02",
+        "pilot56_source_a2_bear_event02_p01_v1_s03",
+        "pilot56_source_a2_bear_event02_p01_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yerde geniş kütük ve iki geniş yuva; hafif çizgili ve ok uçlu iki tahta parça",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz yerdeki geniş kütükte iki hafif tahta parça gördü. Böğürtlen yanındaydı. Parçalardan birinde çizgi, diğerinde ok ucu vardı. Düz açıklığın yol işareti henüz tamamlanmamıştı.",
+            "evidenceSourceID": "pilot56_source_a2_bear_event02_p01_v1",
+            "evidenceText": "Deniz yerdeki geniş kütükte iki hafif tahta parça gördü. Böğürtlen yanındaydı. Parçalardan birinde çizgi, diğerinde ok ucu vardı. Düz açıklığın yol işareti henüz tamamlanmamıştı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yerdeki geniş kütükte iki hafif tahta parça gördü. Böğürtlen yanındaydı. Parçalardan birinde çizgi, diğerinde ok ucu vardı. Düz açıklığın yol işareti henüz tamamlanmamıştı.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 2,
+      "role": "approach",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_2_v1"
+      ],
+      "text": "Deniz ok uçlu parçanın çizgiye ters durduğunu fark etti. Parçaların kenarları birbirine yakındı, ama çizgiler birleşmiyordu. \"Birini çevirmem gerekebilir,\" dedi. Önce iki parçayı birlikte incelemek istiyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "two_piece_goal",
+      "stateAfter": "approach",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a2_bear_event02_p02_v1",
+            "sourceTextDigest": "8cbb389640a448df11c2b3a691735b0ab7118a3c4930912e35ec01bca3af676a",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/2035",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a2_bear_event02_p02_v1_s01",
+        "pilot56_source_a2_bear_event02_p02_v1_s02",
+        "pilot56_source_a2_bear_event02_p02_v1_s03",
+        "pilot56_source_a2_bear_event02_p02_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yerde geniş kütük ve iki geniş yuva; hafif çizgili ve ok uçlu iki tahta parça",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz ok uçlu parçanın çizgiye ters durduğunu fark etti. Parçaların kenarları birbirine yakındı, ama çizgiler birleşmiyordu. \"Birini çevirmem gerekebilir,\" dedi. Önce iki parçayı birlikte incelemek istiyordu.",
+            "evidenceSourceID": "pilot56_source_a2_bear_event02_p02_v1",
+            "evidenceText": "Deniz ok uçlu parçanın çizgiye ters durduğunu fark etti. Parçaların kenarları birbirine yakındı, ama çizgiler birleşmiyordu. \"Birini çevirmem gerekebilir,\" dedi. Önce iki parçayı birlikte incelemek istiyordu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ok uçlu parçanın çizgiye ters durduğunu fark etti. Parçaların kenarları birbirine yakındı, ama çizgiler birleşmiyordu. \"Birini çevirmem gerekebilir,\" dedi. Önce iki parçayı birlikte incelemek istiyordu.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_contribution",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_3_v1"
+      ],
+      "text": "Böğürtlen geniş zeminden hafif parçanın kenarını pençesiyle tuttu. \"Bunu sabit tutabilirim,\" dedi. Parçayı zorlayıp çevirmedi. Büyük gücü yerine çocuğun karşılaştırmasına sakin bir destek sunuyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "approach",
+      "stateAfter": "friend_contribution",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a2_bear_event02_p03_v1",
+            "sourceTextDigest": "1e577de5ef1344df9f390b871069d12d6d76982ac4621d3062ba823603191b6f",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/2040",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a2_bear_event02_p03_v1_s01",
+        "pilot56_source_a2_bear_event02_p03_v1_s02",
+        "pilot56_source_a2_bear_event02_p03_v1_s03",
+        "pilot56_source_a2_bear_event02_p03_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yerde geniş kütük ve iki geniş yuva; hafif çizgili ve ok uçlu iki tahta parça",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen geniş zeminden hafif parçanın kenarını pençesiyle tuttu. \"Bunu sabit tutabilirim,\" dedi. Parçayı zorlayıp çevirmedi. Büyük gücü yerine çocuğun karşılaştırmasına sakin bir destek sunuyordu.",
+            "evidenceSourceID": "pilot56_source_a2_bear_event02_p03_v1",
+            "evidenceText": "Böğürtlen geniş zeminden hafif parçanın kenarını pençesiyle tuttu. \"Bunu sabit tutabilirim,\" dedi. Parçayı zorlayıp çevirmedi. Büyük gücü yerine çocuğun karşılaştırmasına sakin bir destek sunuyordu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen geniş zeminden hafif parçanın kenarını pençesiyle tuttu. \"Bunu sabit tutabilirim,\" dedi. Parçayı zorlayıp çevirmedi. Büyük gücü yerine çocuğun karşılaştırmasına sakin bir destek sunuyordu.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_orders",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_4_v1"
+      ],
+      "text": "Deniz ok ucunun yönünü çizginin ucuyla karşılaştırdı. \"Bunu çevirip sonra yerleştireceğim,\" dedi. Hangi parçanın önce duracağını kendisi seçti. Arkadaşının katkısı onun yerine sıralama kararı vermiyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_contribution",
+      "stateAfter": "child_orders",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a2_bear_event02_p04_v1",
+            "sourceTextDigest": "0127017b02f14b4eb9b2fde6fdfae45233c1ad2b882c64fbb8385a5c14e977d3",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/2045",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a2_bear_event02_p04_v1_s01",
+        "pilot56_source_a2_bear_event02_p04_v1_s02",
+        "pilot56_source_a2_bear_event02_p04_v1_s03",
+        "pilot56_source_a2_bear_event02_p04_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yerde geniş kütük ve iki geniş yuva; hafif çizgili ve ok uçlu iki tahta parça",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz ok ucunun yönünü çizginin ucuyla karşılaştırdı. \"Bunu çevirip sonra yerleştireceğim,\" dedi. Hangi parçanın önce duracağını kendisi seçti. Arkadaşının katkısı onun yerine sıralama kararı vermiyordu.",
+            "evidenceSourceID": "pilot56_source_a2_bear_event02_p04_v1",
+            "evidenceText": "Deniz ok ucunun yönünü çizginin ucuyla karşılaştırdı. \"Bunu çevirip sonra yerleştireceğim,\" dedi. Hangi parçanın önce duracağını kendisi seçti. Arkadaşının katkısı onun yerine sıralama kararı vermiyordu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ok ucunun yönünü çizginin ucuyla karşılaştırdı. \"Bunu çevirip sonra yerleştireceğim,\" dedi. Hangi parçanın önce duracağını kendisi seçti. Arkadaşının katkısı onun yerine sıralama kararı vermiyordu.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "first_piece",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_5_v1"
+      ],
+      "text": "Deniz çizgili parçayı kütüğün ilk geniş yuvasına koydu. Çizginin açık ucu ikinci yuvaya bakıyordu. Çocuk ok uçlu parçayı eline aldı. Şimdi çevireceği yönü açıkça görebiliyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_orders",
+      "stateAfter": "first_piece",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a2_bear_event02_p05_v1",
+            "sourceTextDigest": "57a56d94d6e655657b9d83065f167e0f050759a9fec108c28e862fd07027cf30",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/2050",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a2_bear_event02_p05_v1_s01",
+        "pilot56_source_a2_bear_event02_p05_v1_s02",
+        "pilot56_source_a2_bear_event02_p05_v1_s03",
+        "pilot56_source_a2_bear_event02_p05_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yerde geniş kütük ve iki geniş yuva; hafif çizgili ve ok uçlu iki tahta parça",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz çizgili parçayı kütüğün ilk geniş yuvasına koydu. Çizginin açık ucu ikinci yuvaya bakıyordu. Çocuk ok uçlu parçayı eline aldı. Şimdi çevireceği yönü açıkça görebiliyordu.",
+            "evidenceSourceID": "pilot56_source_a2_bear_event02_p05_v1",
+            "evidenceText": "Deniz çizgili parçayı kütüğün ilk geniş yuvasına koydu. Çizginin açık ucu ikinci yuvaya bakıyordu. Çocuk ok uçlu parçayı eline aldı. Şimdi çevireceği yönü açıkça görebiliyordu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz çizgili parçayı kütüğün ilk geniş yuvasına koydu. Çizginin açık ucu ikinci yuvaya bakıyordu. Çocuk ok uçlu parçayı eline aldı. Şimdi çevireceği yönü açıkça görebiliyordu.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "child_completes",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_6_v1"
+      ],
+      "text": "Deniz ok uçlu parçayı çevirip ikinci yuvaya yerleştirdi. Çizgi ve ok artık aynı yönde birleşiyordu. \"Tamamladım,\" dedi. Son parçanın yönünü kendi karşılaştırmasına göre seçmişti.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "first_piece",
+      "stateAfter": "child_completes",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a2_bear_event02_p06_v1",
+            "sourceTextDigest": "a3b5fc52a349d4148c82f389421da6893d8f8b25a4f75226230c8ddb83d972e3",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/2055",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a2_bear_event02_p06_v1_s01",
+        "pilot56_source_a2_bear_event02_p06_v1_s02",
+        "pilot56_source_a2_bear_event02_p06_v1_s03",
+        "pilot56_source_a2_bear_event02_p06_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yerde geniş kütük ve iki geniş yuva; hafif çizgili ve ok uçlu iki tahta parça",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz ok uçlu parçayı çevirip ikinci yuvaya yerleştirdi. Çizgi ve ok artık aynı yönde birleşiyordu. \"Tamamladım,\" dedi. Son parçanın yönünü kendi karşılaştırmasına göre seçmişti.",
+            "evidenceSourceID": "pilot56_source_a2_bear_event02_p06_v1",
+            "evidenceText": "Deniz ok uçlu parçayı çevirip ikinci yuvaya yerleştirdi. Çizgi ve ok artık aynı yönde birleşiyordu. \"Tamamladım,\" dedi. Son parçanın yönünü kendi karşılaştırmasına göre seçmişti.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ok uçlu parçayı çevirip ikinci yuvaya yerleştirdi. Çizgi ve ok artık aynı yönde birleşiyordu. \"Tamamladım,\" dedi. Son parçanın yönünü kendi karşılaştırmasına göre seçmişti.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 7,
+      "role": "route_confirmed",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_7_v1"
+      ],
+      "text": "Deniz tamamlanan okun düz açıklığı gösterdiğini gördü. Parçaların çizgisi kesintisizdi, ok ucu doğru taraftaydı. Çocuk arkadaşına teşekkür etti. Destek almakla son kararı vermek farklı işler olmuştu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "child_completes",
+      "stateAfter": "route_confirmed",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a2_bear_event02_p07_v1",
+            "sourceTextDigest": "3256d18aa99482f9fe4eac9394847ab45b25dc5ac083926ee3b52beac6b68a48",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/2060",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a2_bear_event02_p07_v1_s01",
+        "pilot56_source_a2_bear_event02_p07_v1_s02",
+        "pilot56_source_a2_bear_event02_p07_v1_s03",
+        "pilot56_source_a2_bear_event02_p07_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yerde geniş kütük ve iki geniş yuva; hafif çizgili ve ok uçlu iki tahta parça",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz tamamlanan okun düz açıklığı gösterdiğini gördü. Parçaların çizgisi kesintisizdi, ok ucu doğru taraftaydı. Çocuk arkadaşına teşekkür etti. Destek almakla son kararı vermek farklı işler olmuştu.",
+            "evidenceSourceID": "pilot56_source_a2_bear_event02_p07_v1",
+            "evidenceText": "Deniz tamamlanan okun düz açıklığı gösterdiğini gördü. Parçaların çizgisi kesintisizdi, ok ucu doğru taraftaydı. Çocuk arkadaşına teşekkür etti. Destek almakla son kararı vermek farklı işler olmuştu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz tamamlanan okun düz açıklığı gösterdiğini gördü. Parçaların çizgisi kesintisizdi, ok ucu doğru taraftaydı. Çocuk arkadaşına teşekkür etti. Destek almakla son kararı vermek farklı işler olmuştu.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_return",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_8_v1"
+      ],
+      "text": "Deniz açıklığa yürüyüp aynı patikaya geri döndü. Arkadaşı yanında ilerledi. İşaret kütüğün üzerinde kaldı. Çocuk parçayı çevirmiş, sırasını seçmiş ve küçük işini tamamlamıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "route_confirmed",
+      "stateAfter": "closed_return",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a2_bear_event02_p08_v1",
+            "sourceTextDigest": "22ff47491331d27e87be5b3e79cbcc371050cdcb5389e46f1a3f3ade0b084e6e",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/2065",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a2_bear_event02_p08_v1_s01",
+        "pilot56_source_a2_bear_event02_p08_v1_s02",
+        "pilot56_source_a2_bear_event02_p08_v1_s03",
+        "pilot56_source_a2_bear_event02_p08_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yerde geniş kütük ve iki geniş yuva; hafif çizgili ve ok uçlu iki tahta parça",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz açıklığa yürüyüp aynı patikaya geri döndü. Arkadaşı yanında ilerledi. İşaret kütüğün üzerinde kaldı. Çocuk parçayı çevirmiş, sırasını seçmiş ve küçük işini tamamlamıştı.",
+            "evidenceSourceID": "pilot56_source_a2_bear_event02_p08_v1",
+            "evidenceText": "Deniz açıklığa yürüyüp aynı patikaya geri döndü. Arkadaşı yanında ilerledi. İşaret kütüğün üzerinde kaldı. Çocuk parçayı çevirmiş, sırasını seçmiş ve küçük işini tamamlamıştı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz açıklığa yürüyüp aynı patikaya geri döndü. Arkadaşı yanında ilerledi. İşaret kütüğün üzerinde kaldı. Çocuk parçayı çevirmiş, sırasını seçmiş ve küçük işini tamamlamıştı.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 1
+    }
+  ]
+}

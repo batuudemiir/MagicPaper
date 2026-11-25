@@ -14,9 +14,22 @@ final class P56SourceMetadataTests: XCTestCase {
         XCTAssertEqual(try JSONDecoder().decode(ContentSourceMetadata.self, from: bytes).p56Reference, reference)
     }
 
+    func testBothRuntimeVersionsKeepTheirDistinctReferenceIdentity() throws {
+        for version in ["five-friends-56-runtime-v1", "five-friends-56-runtime-v2"] {
+            let digest = version.hasSuffix("v1") ? P56PinnedSource.v1SHA256 : P56PinnedSource.sha256
+            let reference = P56SourceReference(packageVersion: version, payloadSHA256: digest)
+            let metadata = ContentSourceMetadata(p56: reference)
+            XCTAssertEqual(metadata.p56Reference, reference)
+            XCTAssertEqual(metadata.status, .unsupported)
+            XCTAssertNil(metadata.reference)
+            XCTAssertEqual(try JSONDecoder().decode(ContentSourceMetadata.self,
+                from: JSONEncoder().encode(metadata)).p56Reference, reference)
+        }
+    }
+
     func testMalformedAndFutureSourcesRemainLosslessAndNeverResolve() throws {
         let base: [String: Any] = ["schemaVersion": 1, "packageVersion": "five-friends-56-runtime-v1",
-            "payloadSHA256": P56PinnedSource.sha256, "engineBehaviorID": P56Engine.behaviorID]
+            "payloadSHA256": P56PinnedSource.v1SHA256, "engineBehaviorID": P56Engine.behaviorID]
         let cases: [([String: Any], ContentSourceMetadata.Status)] = [
             (["payloadSHA256": "bad"], .malformed), (["payloadSHA256": String(repeating: "A", count: 64)], .malformed),
             (["packageVersion": 3], .malformed), (["schemaVersion": "1"], .malformed),
