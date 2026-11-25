@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · claude/project-thread-7igvjy-lint (PR) · Tasarım yasası denetimi CI'da
+
+- AGENTS.md'deki altı doğrulama grep'i (renk, gölge, boşluk, font, titreşim, dil) tek betikte: `Scripts/design_law_check.sh`. İsabet varsa satırları yazar, GitHub'da satıra not düşer ve 1 ile çıkar.
+- Bilinçli istisnalar tek listede: `Scripts/design_law_allowlist.txt` (kapak sanatı, `mpShadow`'un kendi gövdesi, geliştirici galerisi, dil grep'inin canlı olmayan üç dosyası).
+- Yeni iş `.github/workflows/design-law.yml`: her PR'da ve `main` / `irem` gönderiminde, `ubuntu-latest` (macOS dakikası harcamaz).
+- Mevcut ihlaller düzeltildi: `MPToast` boşlukları `MP.S`'e (yatay 16 → `x4`, dikey 13 → `x3`: toast 2 pt kısaldı; alttan 96 → `tabBarHeight + x5`, aynı), iki geliştirici önizlemesinde çıplak `.padding`.
+- AGENTS.md Doğrulama bölümüne betik ve CI satırı eklendi.
+- Test: betik Linux'ta koşturuldu: temiz; bilerek ihlal içeren geçici dosyayla üç kuralda yakaladı ve 1 ile çıktı. Uygulama derlenmedi (Linux); `MPToast` değişikliği simülatörde görülmedi.
+- Dosyalar: `Scripts/design_law_check.sh`, `Scripts/design_law_allowlist.txt`, `.github/workflows/design-law.yml`, `AGENTS.md`, `DesignSystem/MPSurfaces.swift`, `Screens/CoverSystem/MagicPaperCoverGalleryPreview.swift`, `Screens/StoryReader/PageTurn/MagicPaperPageTurnPreview.swift`.
+
 ### 2026-11-24 · irem-aktarim (dal, bu kayıtla gelen commit) · İrem'in tasarımları uygulamaya aktarıldı
 
 - **Ne:** İrem'in 21-24 Kasım işi (`irem` dalı) inceleme bulgularıyla düzeltilerek `irem-aktarim` dalında. Tasarım belgesi `docs/superpowers/specs/2026-11-24-irem-tasarim-aktarimi-design.md`, plan `docs/superpowers/plans/2026-11-24-irem-tasarim-aktarimi.md`.

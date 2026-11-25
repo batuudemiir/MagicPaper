@@ -35,7 +35,7 @@ struct MagicPaperCoverGalleryPreview: View {
                 if !testResults.isEmpty {
                     Text(testResults)
                         .font(.caption)
-                        .padding(8)
+                        .padding(MP.S.x2)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .background(testResults.contains("✗") ? Color.red.opacity(0.1) : Color.green.opacity(0.1))
                         .cornerRadius(8)
@@ -109,10 +109,10 @@ struct MagicPaperCoverGalleryPreview: View {
                 debugLine("M", sig.type.rawValue)
             }
         }
-        .padding(4)
+        .padding(MP.S.x1)
         .background(.ultraThinMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 4))
-        .padding(3)
+        .padding(MP.S.x1)
     }
 
     @ViewBuilder

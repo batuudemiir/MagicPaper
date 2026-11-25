@@ -30,7 +30,7 @@ struct MagicPaperPageTurnPreview: View {
         .overlay(alignment: .topTrailing) {
             Text("Page: \(leafIndex + 1) / \(leafCount)")
                 .font(MP.F.caption())
-                .padding(8)
+                .padding(MP.S.x2)
                 .background(Color.black.opacity(0.5))
                 .foregroundColor(.white)
                 .cornerRadius(8)
