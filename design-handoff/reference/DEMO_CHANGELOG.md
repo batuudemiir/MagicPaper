@@ -133,10 +133,10 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-11-26 · codex/bes-arkadas/codex-motor, commit yok · Düzeltilmiş V3 doğrulaması tamamlandı
+### 2026-11-26 · codex/bes-arkadas/codex-motor@708dfc0 · Düzeltilmiş V3 doğrulaması tamamlandı
 
 - Metin sahibinin177sayfa/1başlık düzeltmesi alındı;90başlık/720tam sayfa güvenlik/semantik/causal/art açısından yeniden okundu ve yeni hash'lere bağlandı. Eski onaylar taşınmadı, Codex metni değiştirmedi. Bütçe, nefes tutma ve baykuş katkı engelleri kapandı; tutuş pençeyle, kanatla değil.
-- SeçiliRelease10test/0hata;630/630kitap-adfixture;N15001500/1500başarı,0hata/0retry,90farklıkitap. Lint90/90,ortaksayfa30%,hücreöbekörtüşmesi en yüksek8.12%;720sayfaPython/Swiftmetrikfarkı0. App/UI çalıştırılmadı.
+- SeçiliRelease10test/0hata;630/630kitap-adfixture;N15001500/1500başarı,0hata/0retry,90farklıkitap. Lint90/90,ortaksayfa30%,hücreöbekörtüşmesi en yüksek8.16%;720sayfaPython/Swiftmetrikfarkı0. App/UI çalıştırılmadı.
 - Yeni90başarılıfixture'ın720sayfası kaynak/bağlam/poz-eylem art teslimine aktarıldı; görsel/atomic/yayın onayı yok. Dalga1 ayrıteslim. Pin Batuhan onayına kadar v2; v1/v2 veapp dosyaları değişmedi. Main/push/entegrasyon yok.
 - Dosyalar: v3korpus/payload/lint/manifest, V3diagnostic kabulassertion vefixturemetrikexportu, research/v3 güncel rapor/hamkanıt/art exporter, plan/durum/hafıza/günlük.
 
