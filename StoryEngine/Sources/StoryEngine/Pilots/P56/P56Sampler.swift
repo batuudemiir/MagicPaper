@@ -17,7 +17,7 @@ public struct P56SamplingReport: Codable, Sendable {
     public let bookCounts: [String: Int]
     public let mechanismCounts: [String: Int]
     public let cellAttempts: [String: Int]
-    /// First repeated fixed book within each cell; two books per cell is an explicit ceiling.
+    /// First repeated fixed book within each cell; the package reports its actual fixed-book count.
     public let firstRepeatAttemptByCell: [String: Int]
     public let uniqueBooks: Int
     public let fixedBooksPerCell: Int
@@ -79,7 +79,7 @@ public enum P56Sampler {
         let failed = failures.values.reduce(0, +)
         return P56SamplingReport(attempts: attempts, successes: attempts - failed, failures: failed,
             failureReasons: failures, bookCounts: books, mechanismCounts: mechanisms, cellAttempts: cellAttempts,
-            firstRepeatAttemptByCell: repeats, uniqueBooks: books.count, fixedBooksPerCell: 2, retries: 0,
+            firstRepeatAttemptByCell: repeats, uniqueBooks: books.count, fixedBooksPerCell: package.books.count / cells.count, retries: 0,
             attemptRecords: records, repeatedSourcePageOccurrences: sourceRepeats,
             repeatedRenderedPageOccurrences: textRepeats, firstRepeatedSourceAttemptByCell: firstSourceRepeat,
             firstRepeatedRenderedTextAttemptByCell: firstTextRepeat)

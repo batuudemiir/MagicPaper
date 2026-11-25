@@ -6,6 +6,10 @@ public enum P56PackageLoader {
         guard expectedSHA256.count == 64, P56Digest.sha256(payload) == expectedSHA256 else {
             throw P56Error.integrity("payload-sha256")
         }
+        let header = try JSONDecoder().decode(P56PayloadHeader.self, from: payload)
+        if header.schemaVersion == 2 {
+            return try P56V2PackageLoader.load(payload: payload, expectedSHA256: expectedSHA256)
+        }
         let raw = try JSONDecoder().decode(P56Payload.self, from: payload)
         guard raw.schemaVersion == 1, raw.packageVersion == "five-friends-56-runtime-v1",
               raw.engineBehaviorID == "offline-p56-v1", !raw.productionEnabled, !raw.artApproved,
@@ -25,12 +29,12 @@ public enum P56PackageLoader {
             settings: raw.settings, worldID: raw.worldID)
     }
 
-    private struct ParentSource: Decodable {
+    struct ParentSource: Decodable {
         let id: String
         let text: String
         let sha256UTF8: String
     }
-    private struct SourceDocument: Decodable { let sources: [ParentSource] }
+    struct SourceDocument: Decodable { let sources: [ParentSource] }
     private static func originalSources(_ raw: P56Payload) throws -> [ParentSource] {
         let data = Data(raw.authoredSourcesJSON.utf8)
         guard P56Digest.sha256(data) == raw.authoredSourcePayloadSHA256 else {
@@ -64,7 +68,7 @@ public enum P56PackageLoader {
         }
     }
 
-    private static func validateBook(_ book: P56Book, sources: [ParentSource], templateIDs: inout Set<String>) throws {
+    static func validateBook(_ book: P56Book, sources: [ParentSource], templateIDs: inout Set<String>, corpusID: String? = nil) throws {
         try validateAuthoredBook(book)
         let traces = try P56StructureValidator.compile(book)
         guard traces.count == 8, book.worldID == "pilot56_world_whispering_forest_v1" else {
@@ -76,7 +80,7 @@ public enum P56PackageLoader {
             let parent = sources[page.parentSourceIndex]
             guard parent.id == page.parentSourceID, parent.text == page.parentText,
                   parent.sha256UTF8 == page.parentSHA256,
-                  page.parentPointer == "sources.json#/sources/\(page.parentSourceIndex)",
+                  page.parentPointer == (corpusID.map { $0 + "/" } ?? "") + "sources.json#/sources/\(page.parentSourceIndex)",
                   page.templateID == "p56_runtime_" + parent.id,
                   P56Digest.sha256(Data(page.templateText.utf8)) == page.templateSHA256,
                   try P56Personalization.template(fromSyntheticText: parent.text) == page.templateText else {
@@ -94,7 +98,7 @@ public enum P56PackageLoader {
         }
     }
 
-    private static func validateAuthoredBook(_ book: P56Book) throws {
+    static func validateAuthoredBook(_ book: P56Book) throws {
         let data = Data(book.authoredBookJSON.utf8)
         guard P56Digest.sha256(data) == book.authoredBookSHA256 else { throw P56Error.integrity("authored-book-bytes") }
         let original = try JSONDecoder().decode(P56JSONValue.self, from: data)
@@ -138,7 +142,7 @@ public enum P56PackageLoader {
         guard cells.count == 15, cells.values.allSatisfy({ $0.count == 2 }) else { throw P56Error.integrity("cell-coverage") }
     }
 
-    private static func validateProfiles(_ profiles: [P56CompanionProfile]) throws {
+    static func validateProfiles(_ profiles: [P56CompanionProfile]) throws {
         guard profiles.count == 5, Set(profiles.map(\.id)).count == 5 else { throw P56Error.integrity("companion-count") }
         for profile in profiles {
             guard let expected = canonicalProfiles[profile.id], !profile.legacyRecordMutated,
@@ -148,7 +152,7 @@ public enum P56PackageLoader {
         }
     }
 
-    private static let allowed: [String: Set<String>] = [
+    static let allowed: [String: Set<String>] = [
         "U1": ["companion_fox_pilot_001", "companion_owl_pilot_001", "companion_bear_001"],
         "U2": ["companion_hedgehog_pilot_001", "companion_city_cat_001", "companion_bear_001"],
         "U3": ["companion_fox_pilot_001", "companion_hedgehog_pilot_001", "companion_owl_pilot_001", "companion_city_cat_001"],

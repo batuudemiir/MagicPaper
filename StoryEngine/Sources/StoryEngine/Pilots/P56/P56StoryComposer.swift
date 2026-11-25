@@ -70,14 +70,19 @@ public struct P56StoryComposer: Sendable {
 
     public func compose(_ request: P56Request) throws -> P56ComposedStory {
         try validateRequest(request)
-        let candidates = package.books.filter {
-            (request.mode == nil || $0.mode == request.mode) &&
-            (request.companionID == nil || $0.companionID == request.companionID) &&
-            (request.forcedStructure == nil || $0.structureID == request.forcedStructure)
-        }.sorted { $0.id < $1.id }
+        let candidates = P56Support.candidates(for: request, package: package)
         guard !candidates.isEmpty else { throw P56Error.unsupported("selection-outside-pilot") }
         // One deterministic draw, no retry or fallback after a validation failure.
         let book = candidates[Int(P56Selection.mix(request.seed) % UInt64(candidates.count))]
+        return try composeFixture(book: book, request: request)
+    }
+
+    /// Exact authored-book fixture for internal quality audits; never a selection retry.
+    func composeFixture(book: P56Book, request: P56Request) throws -> P56ComposedStory {
+        try validateRequest(request)
+        guard P56Support.candidates(for: request, package: package).contains(book) else {
+            throw P56Error.integrity("fixture-book-not-in-supported-source")
+        }
         let traces = try P56StructureValidator.compile(book)
         let pages = try zip(book.pages, traces).map { try composePage($0, transition: $1, mode: book.mode, request: request) }
         guard let companion = package.companions.first(where: { $0.id == book.companionID }) else {

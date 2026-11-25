@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C2 v2 ve kaynak bağlı güvenlik teslimi
+
+- Ayrı runtime-v2: 90 kitap, 720 sayfa, 15 hücrede 6 kitap; multi-corpus exact kaynak/olay soy zinciri doğrulaması. Etkin sürüm ve pin güncellendi; v1 baytları ve tarihsel referansları korundu.
+- 720 sayfa ve 90 başlığın kaynak bağlı güvenlik etiketleriyle gerçek ContentSafety süzgeci eklendi. Desteklenmeyen konu/aile/seri bağlamları açıkça reddedilir. Uygulama dosyaları, legacy kaynaklar ve yayın bayrağı değişmedi.
+- Seçili Release: 65 test, 1 opt-in skip, 0 hata. 630 tam fixture, 1500 v2 ilk deneme ve 1500 en korumalı politika denemesi geçti; retry 0. Tam app/UI çalıştırılmadı. Tekrar ve art kapsamı sınırları raporda açık.
+- 90 tam kitaplık görsel kaynak/bağlam/poz/eylem teslimi ve önce/sonra ham ölçümler yazıldı. C4 entegrasyonu d4cb8c1; yeni C2/C3 uygulama hattı karşı incelemesini bekliyor, üretim kapalı, b099d9b dışarıda.
+- Dosyalar: Engine P56 ve ContentSourceMetadata, P56 testleri, Content/Pilots/five-friends-56-runtime-v2, research/v2 ve c3-safety, Codex durum ve proje hafızası.
+
+
 ### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C4 v1 entegrasyon birleşmesi ve v2 eklerinin kabulü
 
 - Batuhan/Claude karşıincelemekabulüyleyalnızd41f291 C4/C1teslimi codex/bes-arkadas/entegrasyon dalına --no-ffilebirleşti: d4cb8c1. Ağacıd41f291ileaynı;C2b6deb1dvekenardakib099d9bharicinde. Ekprodcode/testdeğişimiyok,mergeiçinyenitestkoşulmadı;tamsonkapıBhatsonunda.

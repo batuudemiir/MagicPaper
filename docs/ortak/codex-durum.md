@@ -2,6 +2,22 @@
 
 Yalnız Codex yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Karşılık: [Claude durum dosyası](claude-durum.md).
 
+## 2026-11-25 · C2 v2 ve C3 ContentSafety karşı incelemeye hazır
+
+C4 v1 entegrasyonu tamamlandı: `codex/bes-arkadas/entegrasyon@d4cb8c1`. `b099d9b` kenarda korunuyor. Yeni C2/C3 teslimi yalnız motor dalında; uygulama hattının karşı incelemesi kabul edilmeden entegrasyona alınmayacak.
+
+**Etkin kaynak:** `Content/Pilots/five-friends-56-runtime-v2/payload.json`; `P56PinnedSource.packageVersion = five-friends-56-runtime-v2`, SHA256 `a060322180f45e81bb5be91f168b78bcebd4cd66783f9e434c9b8115454b6837`. V1 yolu/baytları korunuyor; `v1SHA256 = 28773f03bc59060cdfae95961dbfa14e319e141633a7e79ead6ce93eb90d7adc`. Metadata v1/v2 referanslarını ayrı tanıyor. Dış request/story/ref/compose imzaları değişmedi. Claude B2'de etkin paket ve pin birlikte güncellenmeli; tarihsel v1 snapshot arşivi korunmalı. Kayıtlı sayfalar kaynaksız okunabilir; eksik veya bozuk kaynak yeniden yazımda güncel kaynakla değiştirilemez.
+
+**C2:** 15 karakter×mod hücresinin her birinde 2 mekanizma×3 olay = 6 kitap; toplam 90 kitap/720 sayfa. 30 çift ve 9 farklı mekanizma var. V1'in 30 kitabı aynen korunuyor. V2 yükleyicisi iki korpusun kaynak, kitap, causal evidence ve olay soy zincirini doğruluyor.
+
+**C3 ContentSafety:** 90 kitabın 720 sayfası ve 90 başlığı kaynak/hash/alıntı bağlı etiketlerle incelendi. Gerçek güvenlik politikası tek seeded seçimden önce uygulanıyor; retry yok. MostProtective 70, calm+avoided=[] 81, someExcitement+avoided=nil 79 kitabı kabul ediyor; politikasız 90. Bilinmeyen konu veya incelenmemiş kaynak açık unsupported. V1 nonnil safety hâlâ unsupported. Konu seçimi, aile, recall, seri, occasion ve guest henüz desteklenmiyor; contexts simgeleri değişmedi. Sonraki konu/aile işi için typed veri sözleşmesi ayrıca karşılıklı kabul gerektiriyor; özel veriyi contexts içine kodlamayacağız.
+
+**Doğrulama:** seçili Release 65 test, 1 opt-in atlama, 0 hata. 90 kitap×7 Türkçe ad = 630 tam fixture geçti. Aynı 1500 ilk denemede v1/v2 başarı 1500/1500, retry 0; en korumalı politikada ayrıca 1500/1500. İlk kitap tekrarı 2→5; dönüşümlü 100 okumada üç profilin birebir kitap tekrarı 71/70/71→40/40/41. Tekrar hâlâ yüksek; bu yayın çeşitlilik kabulü değildir. 252 legacy resource değişmedi. Tam motor/app/UI bu artımda çalıştırılmadı; ortak son kapı B hattı sonunda.
+
+**Görsel teslim:** `docs/research/five-friends-p56-runtime/v2/art-handoff.json` 90 tam kitap/720 sayfa için kaynak kimliği, tam metin, önce/sonra bağlamı, aktör ve somut poz/eylem gereksinimlerini taşır. Onaylı P56 görsel kuralı 0; metin seçimi görsel için daraltılmadı. Edebî, atomic evidence, görsel ve yayın kabulleri açık.
+
+**Claude'dan istek:** bu motor teslimini kaynak/persistence/safety açısından karşı incele; bulguları kendi durum dosyana yaz. Salt okunur Claude Code ek incelemesinde teknik engel bulunmadı; bu, uygulama hattının kabulü yerine geçmiyor. Ayrıntı ve ham ölçümler: `docs/research/five-friends-p56-runtime/v2/REPORT.md`, `verification-summary.json`, `technical-reviews.json`. Üretim kapalı; C5 başlamadı.
+
 ## 2026-11-25 · codex/bes-arkadas/codex-motor@b6deb1d · C4 entegrasyonda, v2 ekleri kabul
 
 **C4v1 birleşti:** `codex/bes-arkadas/entegrasyon` artık `d4cb8c1` (parents951f5ce+d41f291, --no-ff). Ağaçd41f291ilebirebireşit; yeniC2taslakcommitb6deb1d ve kenardakib099d9b dahil değil. Batuhan'ın C4karşıincelemekabulü ve Claudehattındaki durumdosyası okundu. Claude B1'e bu entegrasyonref'inden başlayabilir. Main/originyok.

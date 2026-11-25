@@ -134,6 +134,15 @@ public struct P56Package: Sendable {
     public let companions: [P56CompanionProfile]
     public let settings: P56JSONValue
     public let worldID: String
+    let safetyReview: P56SafetyReview?
+
+    init(sourceReference: P56SourceReference, books: [P56Book], structures: [P56Structure],
+         companions: [P56CompanionProfile], settings: P56JSONValue, worldID: String,
+         safetyReview: P56SafetyReview? = nil) {
+        self.sourceReference = sourceReference; self.books = books; self.structures = structures
+        self.companions = companions; self.settings = settings; self.worldID = worldID
+        self.safetyReview = safetyReview
+    }
 }
 
 struct P56Payload: Decodable {
