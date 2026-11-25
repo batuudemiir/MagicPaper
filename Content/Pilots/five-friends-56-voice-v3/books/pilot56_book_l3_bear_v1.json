@@ -1,6 +1,6 @@
 {
   "id": "pilot56_book_l3_bear_v1",
-  "title": "Böğürtlen Nefesini Tutuyor",
+  "title": "Böğürtlen Böğürtlenle Sayıyor",
   "blueprintID": "pilot56_blueprint_l3_v1",
   "planLabel": "L3",
   "mechanismKey": "wait-and-reobserve",
@@ -143,7 +143,7 @@
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir."
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir. Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez."
       },
       "artHandoff": {
         "contentMeaningStatus": "v3-source-grounded-review",
@@ -161,6 +161,7 @@
         ],
         "doNotDraw": [
           "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez.",
           "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
         ]
       },
@@ -276,7 +277,7 @@
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir."
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir. Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez."
       },
       "artHandoff": {
         "contentMeaningStatus": "v3-source-grounded-review",
@@ -294,6 +295,7 @@
         ],
         "doNotDraw": [
           "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez.",
           "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
         ]
       },
@@ -305,7 +307,7 @@
       "orderedBeatIDs": [
         "pilot56_beat_l3_3_v1"
       ],
-      "text": "Böğürtlen burnunu damlaya yaklaştırdı. Sonra kocaman nefesini fark etti. Nefesini tuttu, yanakları şişti. Deniz kıkırdadı.",
+      "text": "Böğürtlen damlaya bakıp bordo çantasını açtı. \"Ben beklerken böğürtlenle sayarım,\" dedi. Yere bir böğürtlen koydu. Bir! Deniz kıkırdadı.",
       "context": {
         "ageBand": "5-6",
         "mode": "learning",
@@ -334,7 +336,7 @@
             "order": 0,
             "sourceKind": "pilotAuthoredFullPage",
             "sourceID": "p56_v3_pilot56_book_l3_bear_v1_p03",
-            "sourceTextDigest": "bb7ac88a46c43311de0a08ec33acf135501ac9b1361d3942b44e0fb9b6a345fd",
+            "sourceTextDigest": "c17580af4056478a93f3b8c3e3b4dc75666c83927a8becc11f11f87d0dbe21ed",
             "templateID": "pilot56_blueprint_l3_v1",
             "sourcePointer": "sources.json#/sources/154",
             "contexts": {
@@ -385,12 +387,26 @@
             ]
           }
         ],
-        "propDescription": "damla",
+        "propDescription": "damla; çanta/askı; böğürtlen meyvesi",
         "propMentions": [
           {
             "label": "damla",
             "evidenceQuotes": [
-              "Böğürtlen burnunu damlaya yaklaştırdı."
+              "Böğürtlen damlaya bakıp bordo çantasını açtı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "çanta/askı",
+            "evidenceQuotes": [
+              "Böğürtlen damlaya bakıp bordo çantasını açtı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "böğürtlen meyvesi",
+            "evidenceQuotes": [
+              "Yere bir böğürtlen koydu."
             ],
             "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
           }
@@ -401,31 +417,33 @@
               "pilot56_synthetic_child_deniz",
               "companion_bear_001"
             ],
-            "description": "Böğürtlen burnunu damlaya yaklaştırdı. Sonra kocaman nefesini fark etti. Nefesini tuttu, yanakları şişti. Deniz kıkırdadı.",
+            "description": "Böğürtlen damlaya bakıp bordo çantasını açtı. \"Ben beklerken böğürtlenle sayarım,\" dedi. Yere bir böğürtlen koydu. Bir! Deniz kıkırdadı.",
             "evidenceSourceID": "p56_v3_pilot56_book_l3_bear_v1_p03",
-            "evidenceText": "Böğürtlen burnunu damlaya yaklaştırdı. Sonra kocaman nefesini fark etti. Nefesini tuttu, yanakları şişti. Deniz kıkırdadı.",
+            "evidenceText": "Böğürtlen damlaya bakıp bordo çantasını açtı. \"Ben beklerken böğürtlenle sayarım,\" dedi. Yere bir böğürtlen koydu. Bir! Deniz kıkırdadı.",
             "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir."
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir. Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez."
       },
       "artHandoff": {
         "contentMeaningStatus": "v3-source-grounded-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "Böğürtlen burnunu damlaya yaklaştırdı. Sonra kocaman nefesini fark etti. Nefesini tuttu, yanakları şişti. Deniz kıkırdadı.",
+        "actionNeed": "Böğürtlen damlaya bakıp bordo çantasını açtı. \"Ben beklerken böğürtlenle sayarım,\" dedi. Yere bir böğürtlen koydu. Bir! Deniz kıkırdadı.",
         "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
         "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
         "poseAndActionEvidence": [
-          "Böğürtlen burnunu damlaya yaklaştırdı.",
-          "Sonra kocaman nefesini fark etti.",
-          "Nefesini tuttu, yanakları şişti.",
+          "Böğürtlen damlaya bakıp bordo çantasını açtı.",
+          "\"Ben beklerken böğürtlenle sayarım,\" dedi.",
+          "Yere bir böğürtlen koydu.",
+          "Bir!",
           "Deniz kıkırdadı."
         ],
         "doNotDraw": [
           "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez.",
           "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
         ]
       },
@@ -554,7 +572,7 @@
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir. İstek, olasılık ve henüz gerçekleşmeyen fiilleri bitmiş fiziksel eyleme dönüştürme; kesin eylem alıntının devamıyla belirlenir."
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir. İstek, olasılık ve henüz gerçekleşmeyen fiilleri bitmiş fiziksel eyleme dönüştürme; kesin eylem alıntının devamıyla belirlenir. Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez."
       },
       "artHandoff": {
         "contentMeaningStatus": "v3-source-grounded-review",
@@ -573,6 +591,7 @@
         "doNotDraw": [
           "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
           "İstek, olasılık ve henüz gerçekleşmeyen fiilleri bitmiş fiziksel eyleme dönüştürme; kesin eylem alıntının devamıyla belirlenir.",
+          "Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez.",
           "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
         ]
       },
@@ -584,7 +603,7 @@
       "orderedBeatIDs": [
         "pilot56_beat_l3_5_v1"
       ],
-      "text": "Yaprakta biriken su uca doğru süzüldü. Deniz damlanın altının uzadığını gördü. Böğürtlen hâlâ nefesini tutuyordu. \"Nefes alabilirsin,\" dedi Deniz gülerek.",
+      "text": "Yaprakta biriken su uca doğru süzüldü. Deniz damlanın altının uzadığını gördü. Böğürtlen yere dördüncü böğürtleni koydu. \"Uzun bir bekleyiş,\" dedi gülerek.",
       "context": {
         "ageBand": "5-6",
         "mode": "learning",
@@ -613,7 +632,7 @@
             "order": 0,
             "sourceKind": "pilotAuthoredFullPage",
             "sourceID": "p56_v3_pilot56_book_l3_bear_v1_p05",
-            "sourceTextDigest": "223893e34d6888751bf9e660ab7f91ba8b83b8c31b6c04df26c87034b3fbc8cc",
+            "sourceTextDigest": "44229115477f4dbcb81c75009ac25aa7078680d3785058e6f2e365fa1df22268",
             "templateID": "pilot56_blueprint_l3_v1",
             "sourcePointer": "sources.json#/sources/156",
             "contexts": {
@@ -664,7 +683,7 @@
             ]
           }
         ],
-        "propDescription": "yaprak; damla",
+        "propDescription": "yaprak; damla; böğürtlen meyvesi",
         "propMentions": [
           {
             "label": "yaprak",
@@ -679,6 +698,13 @@
               "Deniz damlanın altının uzadığını gördü."
             ],
             "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "böğürtlen meyvesi",
+            "evidenceQuotes": [
+              "Böğürtlen yere dördüncü böğürtleni koydu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
           }
         ],
         "actions": [
@@ -687,31 +713,32 @@
               "pilot56_synthetic_child_deniz",
               "companion_bear_001"
             ],
-            "description": "Yaprakta biriken su uca doğru süzüldü. Deniz damlanın altının uzadığını gördü. Böğürtlen hâlâ nefesini tutuyordu. \"Nefes alabilirsin,\" dedi Deniz gülerek.",
+            "description": "Yaprakta biriken su uca doğru süzüldü. Deniz damlanın altının uzadığını gördü. Böğürtlen yere dördüncü böğürtleni koydu. \"Uzun bir bekleyiş,\" dedi gülerek.",
             "evidenceSourceID": "p56_v3_pilot56_book_l3_bear_v1_p05",
-            "evidenceText": "Yaprakta biriken su uca doğru süzüldü. Deniz damlanın altının uzadığını gördü. Böğürtlen hâlâ nefesini tutuyordu. \"Nefes alabilirsin,\" dedi Deniz gülerek.",
+            "evidenceText": "Yaprakta biriken su uca doğru süzüldü. Deniz damlanın altının uzadığını gördü. Böğürtlen yere dördüncü böğürtleni koydu. \"Uzun bir bekleyiş,\" dedi gülerek.",
             "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir."
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir. Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez."
       },
       "artHandoff": {
         "contentMeaningStatus": "v3-source-grounded-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "Yaprakta biriken su uca doğru süzüldü. Deniz damlanın altının uzadığını gördü. Böğürtlen hâlâ nefesini tutuyordu. \"Nefes alabilirsin,\" dedi Deniz gülerek.",
+        "actionNeed": "Yaprakta biriken su uca doğru süzüldü. Deniz damlanın altının uzadığını gördü. Böğürtlen yere dördüncü böğürtleni koydu. \"Uzun bir bekleyiş,\" dedi gülerek.",
         "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
         "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
         "poseAndActionEvidence": [
           "Yaprakta biriken su uca doğru süzüldü.",
           "Deniz damlanın altının uzadığını gördü.",
-          "Böğürtlen hâlâ nefesini tutuyordu.",
-          "\"Nefes alabilirsin,\" dedi Deniz gülerek."
+          "Böğürtlen yere dördüncü böğürtleni koydu.",
+          "\"Uzun bir bekleyiş,\" dedi gülerek."
         ],
         "doNotDraw": [
           "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez.",
           "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
         ]
       },
@@ -723,7 +750,7 @@
       "orderedBeatIDs": [
         "pilot56_beat_l3_6_v1"
       ],
-      "text": "\"Önce yuvarlaktı, şimdi aşağı doğru uzadı,\" dedi Deniz. Farkı kendi gözleriyle bulmuştu.",
+      "text": "\"Önce yuvarlaktı, şimdi aşağı doğru uzadı,\" dedi Deniz. Farkı kendi gözleriyle bulmuştu. Aynı yerden bakıp beklemek gerçekten işe yaramıştı.",
       "context": {
         "ageBand": "5-6",
         "mode": "learning",
@@ -752,7 +779,7 @@
             "order": 0,
             "sourceKind": "pilotAuthoredFullPage",
             "sourceID": "p56_v3_pilot56_book_l3_bear_v1_p06",
-            "sourceTextDigest": "44c3ba998694435f5cfe946d2e9cc917d9b3cef38a137e565e3c9efc9a3e1494",
+            "sourceTextDigest": "c09173a4cbd973fc293a09ad66e1723525978febd23db975d286cb974860b003",
             "templateID": "pilot56_blueprint_l3_v1",
             "sourcePointer": "sources.json#/sources/157",
             "contexts": {
@@ -819,29 +846,31 @@
               "pilot56_synthetic_child_deniz",
               "companion_bear_001"
             ],
-            "description": "\"Önce yuvarlaktı, şimdi aşağı doğru uzadı,\" dedi Deniz. Farkı kendi gözleriyle bulmuştu.",
+            "description": "\"Önce yuvarlaktı, şimdi aşağı doğru uzadı,\" dedi Deniz. Farkı kendi gözleriyle bulmuştu. Aynı yerden bakıp beklemek gerçekten işe yaramıştı.",
             "evidenceSourceID": "p56_v3_pilot56_book_l3_bear_v1_p06",
-            "evidenceText": "\"Önce yuvarlaktı, şimdi aşağı doğru uzadı,\" dedi Deniz. Farkı kendi gözleriyle bulmuştu.",
+            "evidenceText": "\"Önce yuvarlaktı, şimdi aşağı doğru uzadı,\" dedi Deniz. Farkı kendi gözleriyle bulmuştu. Aynı yerden bakıp beklemek gerçekten işe yaramıştı.",
             "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir."
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir. Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez."
       },
       "artHandoff": {
         "contentMeaningStatus": "v3-source-grounded-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "\"Önce yuvarlaktı, şimdi aşağı doğru uzadı,\" dedi Deniz. Farkı kendi gözleriyle bulmuştu.",
+        "actionNeed": "\"Önce yuvarlaktı, şimdi aşağı doğru uzadı,\" dedi Deniz. Farkı kendi gözleriyle bulmuştu. Aynı yerden bakıp beklemek gerçekten işe yaramıştı.",
         "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
         "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
         "poseAndActionEvidence": [
           "\"Önce yuvarlaktı, şimdi aşağı doğru uzadı,\" dedi Deniz.",
-          "Farkı kendi gözleriyle bulmuştu."
+          "Farkı kendi gözleriyle bulmuştu.",
+          "Aynı yerden bakıp beklemek gerçekten işe yaramıştı."
         ],
         "doNotDraw": [
           "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez.",
           "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
         ]
       },
@@ -853,7 +882,7 @@
       "orderedBeatIDs": [
         "pilot56_beat_l3_7_v1"
       ],
-      "text": "Sonunda damla yapraktan ayrılıp toprağa düştü. Pıt! Böğürtlen derin bir nefes verdi. \"Ohh,\" dedi. \"Damla da ben de rahatladık.\"",
+      "text": "Sonunda damla yapraktan ayrılıp toprağa düştü. Pıt! Böğürtlen sıraladığı böğürtlenleri saydı. \"Damla beş böğürtlen sürdü,\" dedi. Sonra hepsini çantasına geri koydu.",
       "context": {
         "ageBand": "5-6",
         "mode": "learning",
@@ -882,7 +911,7 @@
             "order": 0,
             "sourceKind": "pilotAuthoredFullPage",
             "sourceID": "p56_v3_pilot56_book_l3_bear_v1_p07",
-            "sourceTextDigest": "e02fb9f0361c0f39cf2d35dcdb9890ddec11e81ad04d56579ef3c9c63fa32d72",
+            "sourceTextDigest": "6b828e106f34ef3671184279750ec52c35b29e0736e5fc15efa439e955224e33",
             "templateID": "pilot56_blueprint_l3_v1",
             "sourcePointer": "sources.json#/sources/158",
             "contexts": {
@@ -934,7 +963,7 @@
             ]
           }
         ],
-        "propDescription": "yaprak; damla; toprak",
+        "propDescription": "yaprak; damla; çanta/askı; böğürtlen meyvesi; toprak",
         "propMentions": [
           {
             "label": "yaprak",
@@ -947,7 +976,22 @@
             "label": "damla",
             "evidenceQuotes": [
               "Sonunda damla yapraktan ayrılıp toprağa düştü.",
-              "\"Damla da ben de rahatladık.\""
+              "\"Damla beş böğürtlen sürdü,\" dedi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "çanta/askı",
+            "evidenceQuotes": [
+              "Sonra hepsini çantasına geri koydu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "böğürtlen meyvesi",
+            "evidenceQuotes": [
+              "Böğürtlen sıraladığı böğürtlenleri saydı.",
+              "\"Damla beş böğürtlen sürdü,\" dedi."
             ],
             "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
           },
@@ -965,32 +1009,33 @@
               "pilot56_synthetic_child_deniz",
               "companion_bear_001"
             ],
-            "description": "Sonunda damla yapraktan ayrılıp toprağa düştü. Pıt! Böğürtlen derin bir nefes verdi. \"Ohh,\" dedi. \"Damla da ben de rahatladık.\"",
+            "description": "Sonunda damla yapraktan ayrılıp toprağa düştü. Pıt! Böğürtlen sıraladığı böğürtlenleri saydı. \"Damla beş böğürtlen sürdü,\" dedi. Sonra hepsini çantasına geri koydu.",
             "evidenceSourceID": "p56_v3_pilot56_book_l3_bear_v1_p07",
-            "evidenceText": "Sonunda damla yapraktan ayrılıp toprağa düştü. Pıt! Böğürtlen derin bir nefes verdi. \"Ohh,\" dedi. \"Damla da ben de rahatladık.\"",
+            "evidenceText": "Sonunda damla yapraktan ayrılıp toprağa düştü. Pıt! Böğürtlen sıraladığı böğürtlenleri saydı. \"Damla beş böğürtlen sürdü,\" dedi. Sonra hepsini çantasına geri koydu.",
             "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir."
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir. Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez."
       },
       "artHandoff": {
         "contentMeaningStatus": "v3-source-grounded-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "Sonunda damla yapraktan ayrılıp toprağa düştü. Pıt! Böğürtlen derin bir nefes verdi. \"Ohh,\" dedi. \"Damla da ben de rahatladık.\"",
+        "actionNeed": "Sonunda damla yapraktan ayrılıp toprağa düştü. Pıt! Böğürtlen sıraladığı böğürtlenleri saydı. \"Damla beş böğürtlen sürdü,\" dedi. Sonra hepsini çantasına geri koydu.",
         "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
         "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
         "poseAndActionEvidence": [
           "Sonunda damla yapraktan ayrılıp toprağa düştü.",
           "Pıt!",
-          "Böğürtlen derin bir nefes verdi.",
-          "\"Ohh,\" dedi.",
-          "\"Damla da ben de rahatladık.\""
+          "Böğürtlen sıraladığı böğürtlenleri saydı.",
+          "\"Damla beş böğürtlen sürdü,\" dedi.",
+          "Sonra hepsini çantasına geri koydu."
         ],
         "doNotDraw": [
           "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez.",
           "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
         ]
       },
@@ -1113,7 +1158,7 @@
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir."
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir. Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez."
       },
       "artHandoff": {
         "contentMeaningStatus": "v3-source-grounded-review",
@@ -1131,6 +1176,7 @@
         ],
         "doNotDraw": [
           "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "Böğürtlen bordo çantasından çıkardığı böğürtlenleri sayma işareti olarak yere koyar; p3 bir, p5 dördüncü, p7 toplam beş sayılıp çantaya geri konur. Nefes tutma, şişmiş yanak veya meyve yeme çizilmez.",
           "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
         ]
       },

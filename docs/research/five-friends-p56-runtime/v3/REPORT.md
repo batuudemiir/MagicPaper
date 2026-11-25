@@ -1,23 +1,38 @@
-# P56 v3 aday teslimi — etkinleştirme kapalı
+# Düzeltilmiş P56 v3 — doğrulandı, pin onayı bekliyor
 
-26 Kasım 2026. Onaylı 15 girdi dosyası yeni voice-v3 korpusunda byte/hash korunarak arşivlendi; 90 kitap/720 sayfa için yeni source/template kimlikleri, kaynak alıntıları, SHA, provenance, semantik, causal evidence ve görsel ihtiyaçlar üretildi. 90 başlık ve 720 tam sayfa yeniden okundu; v2 safety etiketleri taşınmadı. Runtime v3 ayrı schema2 paketidir; v1/v2 kaynakları değiştirilmedi.
+26 Kasım 2026. Metin sahibinin düzeltme notuyla 177 sayfa ve 1 başlık değişti. 15 girdi dosyası yeni byte/hash snapshot'ıyla alındı; 90 başlık ve 720 tam sayfa güvenlik/semantik/causal/art açısından baştan okundu. Eski etiketler yeni hash'lere onay olarak taşınmadı. Metinler Codex tarafından değiştirilmedi.
 
-## Gerçek sonuç
+## Son kapı
 
-Üretim yükleyicisi adayı kaynak/şema/kapsam ve safety hash bütünlüğü açısından kabul ediyor. 90 typed olay izi doğrulanıyor. A3 sırası 5 kök/6 ele alma/7 cep olarak kodla uyumludur; ilk okuma şüphesi doğrulanmadı ve geri çekildi.
+| Kontrol | Sonuç |
+|---|---|
+| Seçili Release | 10 test, 0 atlama, 0 hata |
+| 90 kitap × 7 Türkçe ad | 630 başarı, 0 hata |
+| Sayfa bütçesi / typed trace | 0 sorun / 0 sorun |
+| N1500 ilk deneme | 1500 başarı, 0 hata, 0 retry, 90 farklı kitap |
+| Verilen lint | 90/90, 90 farklı başlık |
+| Aynı iskelette ortak sayfa | %30 (60/200), kapı %40 |
+| Hücre içi 4 kelimelik öbek | en yüksek %8.16, kapı %20 |
+| Python–Swift TextMetrics | mevcut720 sayfada 0 fark |
 
-Ancak **171 sayfa (78 kitap) 12–17 kelime**, mevcut 18–38 bütçesinin altında. 90×7 ad = 630 tam fixture: **84 başarı, 546 ageBudget reddi**. 5040 sayfa/ad kontrolünün 1197'si aynı 171 sayfanın ad varyantlarıdır; 1197 ayrı kaynak sayfa değildir. N1500 tek deneme: **171 başarı, 1329 ageBudget reddi, retry 0**, 12 farklı başarılı kitap. Başarısız istekler paydadan çıkarılmadı; yeniden seed/arkadaş seçimi yapılmadı.
+Bu 90 kitaplık v3 teslimidir. Dalga1'in180kitap toplamı/öbek oranı bu koşunun sonucu diye sunulmaz. V1/v2 byte ve yolları korunur; aktif engine/app pin değiştirilmedi. App/UI veya genel yayın doğrulaması bu motor koşusunda yapılmadı.
 
-Verilen lint: **90 kitap, 0 başarısız, 90 farklı başlık, ortak sayfa %30 (60/200)**. Lint, sayfa alt kelime bütçesini ölçmediğinden motorun başarısını garanti etmiyor.
+## Kapanan bulgular ve kalan kapsam
 
-Ayrıca uzun nefes tutma davranışı için editoryal karar, A2 baykuş üç kitabında inherited childAgency/metin uyumu ve küçük süreklilik/atıştırmalık kaynak açıklıkları metin sahibine raporlandı. Kaybolan mendilleri çocuk bizzat buluyor; orman meyvesi toplama gösterilmiyor. Tam alıntılar safety-review.md ve semantic-review.md içinde. Metinler değiştirilmedi.
+171 kısa sayfa engeli kapandı; 177 değiştirilmiş sayfanın yeni metni bütçeyi karşılıyor. L3 ayıda uzun nefes tutma kaldırıldı: kendi çantasından gelen böğürtlenlerle sayıp çantasına geri koyuyor. A2 Yıldız üç kitapta parçayı pençeleriyle sabitliyor; yerleştiren Deniz. Yeni art ihtiyaçları kanatla tutuşu açıkça dışlar. Kaybolan mendilleri çocuk bizzat buluyor; orman meyvesi toplama/yeme gösterilmiyor.
 
-## Teslim ve sınırlar
+Bağımsız incelemelerde yeni engel yok. Küçük editoryal notlar (özellikle L2 bear/hedgehog/owl p6 dal/yaprak sözcüğü, eski küçük tekrar/provenance açıklıkları ve18beat-alignment notu) ilgili uzman raporlarında korunur. Metin değiştirilmedi; bunlar genel edebî/atomic/görsel/yayın kabulüne dönüşmez.
 
-`METIN_DUZELTME_LISTESI.md` 171 sayfayı kitap/sayfa kimliği, tam girdi metni ve ölçümüyle listeler. `diagnostic.json` ve `sampling.json` gerçek Swift çıktısıdır. `art-handoff.json` 90 tam kaynak kitap/720 sayfa için kaynak kimliği, önce/sonra, somut hareket/poz/prop ve temporal bilgileri verir; başarılı compose fixture teslimi diye sunulmaz, atomic veya görsel onayı yoktur.
+En korumalı politikanın mevcut etiketlerden türetilen havuzu60kitap;15karakter×mod hücresinin hiçbiri boş değil. Bu ayrı N1500 güvenlikli örnekleme sonucu değildir: yukarıdaki N1500 önceki ölçümle aynı politikasız ilk-deneme manifestidir. Uygulama gerçek politikayla arkadaş bazında destek kontrolüne devam etmeli.
 
-Etkin P56PinnedSource **v2 kalır**. V3 SHA yalnız aday manifestindedir; Claude henüz uygulama paketini/pinini değiştirmemeli. Metin hattı düzeltmeleri/kararları sonrası aynı builder ve doğrulama kapıları yeniden koşulmalı. Main/entegrasyon/yayın değişmedi; productionEnabled=false, artApproved=false.
+## Kaynak ve görsel teslim
 
-## Teknik son doğrulama
+- Paket: `Content/Pilots/five-friends-56-runtime-v3/payload.json`
+- SHA256: `855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3c`
+- Önceki aday SHA: `3abe00cd702f1cdea0254e1d58801d62ffe98e7b81d2df58033d52da3689ac26` (ff30587; geçmiş git snapshot'ı, güncel yerine kullanılamaz).
+- `art-handoff.json`: gerçek90başarılı İrem fixture'ının720tam sayfası, kaynak kimliği/SHA/pointer, önce/sonra, somut poz/eylem/prop ve temporal bağlam; ayrıN1500paydasıyla karıştırılmaz.
+- Onaylı P56 görsel kuralı0, art bağlı kitap0; metin seçimi görsel için daraltılmadı. `productionEnabled=false`, `artApproved=false`.
 
-İlk seçili Release70 test/1 opt-in skip/0 hata. İnceleme sonrası hafif dispatch header ve geçerli baseline ile corruption testleri için hedefli Release12 test/0 hata; bunlar benzersiz test toplamı olarak toplanmaz. İki koşunun logları bu klasörde. Yeni kod için bağımsız son incelemede engelleyici bulgu yok. Paket/tarihsel metadata guard'ları geçiyor; 171 kısa sayfa düzelmediğinden içerik kabul kapısı geçmiyor. App/UI testi bu motor artımında yapılmadı.
+**Batuhan onayına kadar pin v2 kalır.** Onay sonrası uygulama geçişi ayrı koordinasyonla: etkin sürüm/SHA ve exact bundle byte'ları birlikte, SnapshotStore v3 guard'ı v1/v2 arşivlerini koruyarak; engine v2 tarihsel pin/test referansları aktif v3 pininden ayrılmalı. Bu teslim bu adımları uygulamaz. Main/entegrasyon/push/yayın değişmedi.
+
+Ham kanıt: `corrected-tests.log`, `corrected-lint.txt`, `diagnostic.json`, `sampling.json`, `lint-parity.json`, `verification-summary.json`. Önceki final/followup logları geçmiş ilk aday koşularıdır, güncel sonucun yerine geçmez.

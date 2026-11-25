@@ -1,44 +1,41 @@
 {
   "packageVersion": "five-friends-56-runtime-v3",
-  "payloadSHA256": "3abe00cd702f1cdea0254e1d58801d62ffe98e7b81d2df58033d52da3689ac26",
-  "activationStatus": "blocked-by-authored-page-budgets-and-editorial-disposition",
+  "payloadSHA256": "855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3c",
+  "status": "validated-candidate-awaiting-batuhan-pin-approval",
+  "activationApproved": false,
   "activePinUnchanged": "five-friends-56-runtime-v2",
-  "sourceBooks": 90,
-  "sourcePages": 720,
-  "titles": 90,
-  "productionLoaderAccepted": true,
-  "safetyBindingValid": true,
-  "traceFailures": 0,
+  "books": 90,
+  "pages": 720,
+  "changedSourcePages": 177,
+  "changedTitles": 1,
   "fixtureAttempts": 630,
-  "fixtureSuccesses": 84,
-  "fixtureFailures": 546,
-  "uniquePagesOutsideBudget": 171,
-  "booksOutsideBudget": 78,
+  "fixtureSuccesses": 630,
+  "fixtureFailures": 0,
+  "pageBudgetIssues": 0,
+  "traceIssues": 0,
+  "safetyBindingError": null,
   "sampleAttempts": 1500,
-  "sampleSuccesses": 171,
-  "sampleFailures": 1329,
+  "sampleSuccesses": 1500,
+  "sampleFailures": 0,
   "sampleRetries": 0,
+  "sampledUniqueBooks": 90,
+  "tests": {
+    "configuration": "Release",
+    "tests": 10,
+    "skipped": 0,
+    "failures": 0
+  },
   "lint": {
     "failingBooks": 0,
     "uniqueTitles": 90,
     "sharedPages": 60,
     "comparedPages": 200,
-    "sharedPageShare": 0.3
+    "sharedPageShare": 0.3,
+    "highestCellOverlap": 0.08163265306122448
   },
-  "productionEnabled": false,
-  "artApproved": false,
-  "tests": {
-    "initialSelectedRelease": {
-      "tests": 70,
-      "skipped": 1,
-      "failures": 0
-    },
-    "afterReviewFocusedRelease": {
-      "tests": 12,
-      "skipped": 0,
-      "failures": 0
-    },
-    "countsAreSeparateRunsNotUniqueTotal": true
+  "lintParity": {
+    "comparedPages": 720,
+    "mismatches": 0
   },
   "historicalPayloads": {
     "1": {
@@ -49,5 +46,8 @@
       "sha256": "a060322180f45e81bb5be91f168b78bcebd4cd66783f9e434c9b8115454b6837",
       "unchanged": true
     }
-  }
+  },
+  "productionEnabled": false,
+  "artApproved": false,
+  "scope": "corrected v3 only; Dalga1 is a separate delivery"
 }

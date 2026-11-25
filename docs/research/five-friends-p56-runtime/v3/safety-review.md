@@ -1,27 +1,39 @@
-# V3 content safety review — 26 November 2026
+# Corrected v3: fresh content safety review
 
-## Coverage and status
+## Status and scope
 
-Read all 90 distinct titles and 720 complete pages from all 15 v3 files, including eight-page continuity. No v2 labels consulted. JSON preserves complete literal page quotes, individual topic dispositions/exclusions, engine EmotionalState and rationale. Reviewed means inspected, not release or illustration approval. Root must bind IDs/hashes before engine validation.
+Freshly read all 90 titles and all 720 full pages in the 15 corrected v3 files. Read metin-duzeltme-notu.md first. Dalga 1 is outside this review. Text was preserved; no old review JSON was loaded to inherit its labels. The JSON contains full exact source quotes, individual page emotions and rationales, title review, and explicit exclusion rationale for every omitted canonical topic. Source-file digests pin the reviewed input snapshot. Root must bind runtime book IDs, source IDs and SHA256 values. bookID currently equals sourceBookID as a binding placeholder.
 
-Weather uses a broad conservative definition: explicit sunshine, wind/breeze and rain references, including rain-smell jokes. Leaf droplets alone do not prove weather. Darkness includes explicit darkness/dim light or dimming a lamp, and night as title subject. Evening, goodnight greetings, colour names, ordinary daylight shade and remembered daytime shadows alone are excluded. Alone is separation/abandonment, not “yalnız” meaning “only”. Heights includes the miniature climb and roll off a folded blanket; low perches, tall-tree comparisons, ground-level steps and raised leaf edges are excluded. Playful droplet encouragement is not fear.
+Status reviewed means inspected; it does not confer production or art approval. No serious content safety blocker found in corrected v3. The former prolonged breath-holding issue is resolved. No handkerchief is found/recovered by the companion instead of Deniz. No forest berry is harvested/eaten.
 
-No character experiences fear/panic/grief/despair. No child is lost or abandoned alone. All handkerchief recoveries are performed personally by Deniz; companions supply company, humour/questions rather than finding the object. Emotional intensity never exceeds 2. Engine tenseEmotions currently contains only unease/hesitation; none was warranted here. Calm eligibility therefore remains true even with mild concern/puzzlement/patience.
+## Topic decisions and emotion policy
 
-## Findings for text owner — source unchanged
+Weather is conservative and includes explicit sunshine/wind/breeze/rain references, even harmless sunlight or rain-smell jokes. This is a topic filter, not a hazard severity claim. Water on a leaf alone does not prove rain. Darkness requires explicit darkness/dimness, dimming a lamp, or night as the title subject; evening, goodnight greetings, night-blue colour and ordinary daylight shade/remembered shadows alone are excluded. Alone requires separation/isolation; Turkish yalnız meaning only is excluded. Fear excludes comic surprise, mild object-loss concern, ordinary questions and playful encouragement of a droplet. Heights includes a tiny hedgehog explicitly climbing and rolling off a folded blanket; low owl perches, ground-level steps, raised leaf edges and a tall-tree comparison are excluded.
 
-1. **Editorial safety decision needed: pilot56_book_l3_bear_v1, title and p3/p5/p7.** Title: “Böğürtlen Nefesini Tutuyor”. P3: “Nefesini tuttu, yanakları şişti.” P5: “Böğürtlen hâlâ nefesini tutuyordu.” Deniz says “Nefes alabilirsin”. P7: “Böğürtlen derin bir nefes verdi.” Holding breath persists across waiting/observation, rather than one brief breath. No injury/acute fear is described, but imitation risk deserves editorial decision before child-facing release. Suggest normal quiet breathing or stepping back in the text-owner lane. The five canonical topics cannot express this risk; clean topic tags are not approval of the gag.
-2. **Minor provenance ambiguity: pilot56_book_a2_bear_v1 p3.** “dedi, ağzındaki böğürtleni yutarak.” P7 later establishes “Böğürtlen çantasından iki böğürtlen çıkardı.” Carried berries are established within the book and no foraging occurs. P3 does not explicitly identify that earlier berry as from the bag. Clarify p3 if same-page provenance for every eaten berry is mandatory; this is not evidence of eating wild fruit.
-3. **Minor provenance ambiguity: pilot56_book_l2_bear_event02_v1 p7.** “Böğürtlen sevinçle bir böğürtlen daha yedi.” P3 established “Çantasından bir böğürtlen çıkardı” and p5 follows chewing. Another carried snack is implied, but p7 does not explicitly repeat bag origin.
-4. **Minor discovery timing: pilot56_book_l2_owl_v1 p5.** Yıldız says “Ters bakınca da yaprak” before Deniz completes identification p6–7. Deniz still changes viewpoint and builds the result personally. Consider delaying the noun until after the child's conclusion if independent discovery is strict. No lost-object agency violation.
-5. **Minor repetition: pilot56_book_u2_cat_event02_v1 and pilot56_book_u2_hedgehog_event02_v1 p1–2.** Both pages say “Deniz yatağının yanına bir örtü serdi.” Blanket spreading appears twice without reset.
-6. **Minor surface-name continuity: pilot56_book_u2_cat_v1 p3/p5/p8.** Simit requests “düz bir yer”, tests a “minder”, and calls it “orman yastığı”. A flat cushion can fit the request; final pillow noun shifts. No safety blocker.
+Page counts: weather 58; darkness 7; heights 1; alone 0; fear 0. Title topics are reviewed separately and may add a book topic. Newly added dim light in pilot56_book_u3_fox_event03_v1 p7 is darkness (“ışık da loştu”). All emotions are existing engine EmotionalState values with intensity <=2. No fear/panic/grief/despair. Engine tenseEmotions is only unease/hesitation; neither is warranted here. Mild concern/puzzlement/patience do not make calmEligible false under that engine definition.
 
-All other eating scenes use own bag directly or follow a carried berry from bag to hand/mouth. In pilot56_book_l2_bear_event03_v1 a joke guesses berries inside a curled leaf, but the leaf remains untouched and p8 explicitly takes a berry from own bag. No forest fruit is eaten. No texts changed.
+## Resolved findings
 
-## Per-book/page ledger
+- **pilot56_book_l3_bear_v1, title/p3/p5/p7:** title is now “Böğürtlen Böğürtlenle Sayıyor”. P3: “Böğürtlen damlaya bakıp bordo çantasını açtı.” and “Yere bir böğürtlen koydu.” P5: “Böğürtlen yere dördüncü böğürtleni koydu.” P7: “Sonra hepsini çantasına geri koydu.” Counting replaces sustained breath-holding. This is a safe resolution of the previously identified imitation concern; no berry is eaten from the ground here.
+- **pilot56_book_a2_owl_v1 p5:** “Yıldız parçanın kenarına kondu ve pençeleriyle sabit tuttu.” Deniz places the first piece, Yıldız holds with talons, Deniz turns/places the second.
+- **pilot56_book_a2_owl_event02_v1 p5:** “Yıldız parçanın kenarına kondu, pençeleriyle sabit tuttu.”
+- **pilot56_book_a2_owl_event03_v1 p5:** “Yıldız kenarına kondu ve parçayı pençeleriyle sabit tuttu.” The friend supports rather than substitutes for the child's placement. Art must depict talons holding, not a wing.
 
-Full exact quotes, emotional rationales and explicit exclusions for every omitted topic are in safety-review-content.json. Every title has independent literal evidence/exclusions.
+## Remaining minor editorial concerns (not safety release blockers)
+
+1. **pilot56_book_a2_bear_v1 p3/p7, berry origin timing.** P3 says “dedi, ağzındaki böğürtleni yutarak.” P7 explicitly establishes “Böğürtlen çantasından iki böğürtlen çıkardı.” Carried berries are established within the book; no foraging occurs. If every eaten berry requires same-page origin, p3 should explicitly refer to own bag. This is an ambiguity, not evidence of eating forest fruit.
+2. **pilot56_book_l2_bear_event02_v1 p3/p5/p7, second snack origin.** P3 “Çantasından bir böğürtlen çıkardı”; p5 follows chewing; p7 “Böğürtlen sevinçle bir böğürtlen daha yedi.” Another carried snack is implied without repeating bag origin. Clarify only if same-page provenance is strict.
+3. **pilot56_book_l2_owl_v1 p5, early discovery noun.** Yıldız says “Ters bakınca da yaprak” before Deniz's formal identification at p6–7. Deniz still changes viewpoint and combines the evidence personally. Consider withholding explicit leaf noun if independent discovery timing is strict.
+4. **pilot56_book_u2_cat_event02_v1 and pilot56_book_u2_hedgehog_event02_v1 p1–2:** “Deniz yatağının yanına bir örtü serdi” occurs on both pages without a reset. Minor repeated action.
+5. **pilot56_book_u2_cat_v1 p3/p5/p8:** requested “düz bir yer”, tested “minder”, later called “orman yastığı”. Flat cushion can satisfy the request; surface noun shifts.
+6. **New wording concern: pilot56_book_l2_bear_v1, pilot56_book_l2_hedgehog_v1, pilot56_book_l2_owl_v1 p6:** added “Şimdi bütün dalı görüyordu.” The reasoning combines two parts of a hidden leaf; the next page establishes “tek bir yaprak”. This sentence switches the inferred object from leaf to branch and may confuse the learning explanation. Suggest text-owner review of dalı vs yaprağı. No physical safety issue.
+7. **Minor phrasing: pilot56_book_l2_hedgehog_event02_v1 p5:** “Kestane burnunu kıpırdatarak, hiç kıpırdamadan sabırla bekledi.” Could mean body still while nose moves, but absolute “hiç” creates a small literal inconsistency.
+
+No source edits were made. Remaining berry joke in pilot56_book_l2_bear_event03_v1 p3 guesses fruit inside a curled leaf, adds “Yaprağın içi boştu”; p8 explicitly uses own bag. Leaf stays untouched. No new child-agency substitution found.
+
+## Page ledger
+
+Each entry below maps to the complete exact quote and emotional rationale in JSON; every unassigned topic has its own exclusion there. Source references are sourceBookID plus pageNumber; runtime sourceID/hash binding remains for root.
 
 ### pilot56_book_a2_bear_v1 — Böğürtlen Tutuyor
 
@@ -123,7 +135,7 @@ Title topics: none. Status: reviewed.
 | 2 | weather | determination |
 | 3 | none | delight |
 | 4 | none | determination |
-| 5 | none | ease |
+| 5 | none | delight |
 | 6 | none | determination |
 | 7 | none | satisfaction |
 | 8 | none | warmth |
@@ -303,7 +315,7 @@ Title topics: none. Status: reviewed.
 | 2 | weather | determination |
 | 3 | none | delight |
 | 4 | none | determination |
-| 5 | none | ease |
+| 5 | none | delight |
 | 6 | none | determination |
 | 7 | none | satisfaction |
 | 8 | weather | warmth |
@@ -406,7 +418,7 @@ Title topics: none. Status: reviewed.
 |---|---|---|
 | 1 | none | concern |
 | 2 | none | curiosity |
-| 3 | none | delight |
+| 3 | none | curiosity |
 | 4 | none | determination |
 | 5 | none | certainty |
 | 6 | none | relief |
@@ -740,7 +752,7 @@ Title topics: none. Status: reviewed.
 | 4 | none | calm |
 | 5 | none | warmth |
 | 6 | none | calm |
-| 7 | none | calm |
+| 7 | darkness | calm |
 | 8 | none | calm |
 
 ### pilot56_book_u2_hedgehog_v1 — Kestane'nin Düz Yuvası
@@ -923,7 +935,7 @@ Title topics: none. Status: reviewed.
 | 7 | none | calm |
 | 8 | none | calm |
 
-### pilot56_book_l3_bear_v1 — Böğürtlen Nefesini Tutuyor
+### pilot56_book_l3_bear_v1 — Böğürtlen Böğürtlenle Sayıyor
 
 Title topics: none. Status: reviewed.
 
@@ -935,7 +947,7 @@ Title topics: none. Status: reviewed.
 | 4 | none | patience |
 | 5 | none | wonder |
 | 6 | none | insight |
-| 7 | none | relief |
+| 7 | none | satisfaction |
 | 8 | none | satisfaction |
 
 ### pilot56_book_l3_bear_event02_v1 — Böğürtlen Kadar Damla
@@ -1291,7 +1303,7 @@ Title topics: none. Status: reviewed.
 |---|---|---|
 | 1 | none | curiosity |
 | 2 | none | puzzlement |
-| 3 | none | delight |
+| 3 | none | curiosity |
 | 4 | none | determination |
 | 5 | none | curiosity |
 | 6 | none | insight |
@@ -1373,6 +1385,6 @@ Title topics: none. Status: reviewed.
 | 7 | none | satisfaction |
 | 8 | none | warmth |
 
-## Verification and open questions
+## Verification / open questions
 
-No tests/build/commit run as instructed. Structural transcription verification checks 90 titles, 720 ordered pages, exact literal quotes and complete five-topic dispositions. Runtime binding remains for root. Open: editorial decision on sustained breath-holding; same-page berry provenance requirement; illustration validation; runtime hashes. No application/storage/logging systems changed.
+Structural transcription checks verified 90 unique books, 90 exact titles, 720 exact full-page quotes, complete canonical-topic disposition, topic-linked evidence and current source-file digests. No tests, build or commit run, as instructed. Open questions: same-page bag provenance strictness; editorial handling of remaining minor continuity items; art talon depiction; runtime binding. No application/privacy/logging systems changed.

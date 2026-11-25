@@ -11,3 +11,8 @@ Onaylı girdi: bes-arkadas-metin-v3/metin-entegrasyon-is-tanimi.md; metin 26 Kas
 7. Tam kaynak/önce-sonra/somut poz-eylem görsel handoff, durum belgesi, günlük ve yalnız sahip olunan dosyalar commit. Karşılıklı kabul olmadan entegrasyon yok; yayın/art kapalı.
 
 Başlangıç incelemesi: 171 sayfa whitespace kelime sayımında mevcut 18–38 dışında görünüyor; kesin sayı Swift TextMetrics ile son kapıda doğrulanacak. A3 olaylarının sayfa sırası frozen typed trace ile çelişebilir. Bunlar etiketi uydurularak kapatılmayacak.
+
+
+## 26 Kasım düzeltme artımı
+
+Metin sahibinin düzeltme notuyla aynı90 kitapta177 sayfa ve1başlık değişti. Kaynak dosyaları güncellenir; semantik/causal/art ve tüm C3 güvenlik kanıtları yeni tam metinlerden yeniden okunur, eski hash onayları kullanılmaz. L3bear sayma/çanta, A2owl pençe tutuşu özellikle doğrulanır. Son kapı: seçili Release,630fixture,gerçek N1500, verilen yeni lint; başarısız fixture sayısı0 açık assertion olur. Pin geçse bile Batuhan onayına kadar v2. Dalga1'de yeni9iskelet ve geçmişkimlik listesi ayrı sözleşme/teslim; bu adayda180kitap iddiası yok.

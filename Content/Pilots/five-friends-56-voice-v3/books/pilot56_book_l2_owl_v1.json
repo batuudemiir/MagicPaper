@@ -707,7 +707,7 @@
       "orderedBeatIDs": [
         "pilot56_beat_l2_6_v1"
       ],
-      "text": "\"İkimizin gördüğü birleşiyor,\" dedi Deniz. Sapın göründüğü aralığa çömeldi. İki görüşten bir bütünü kendisi kurmuştu.",
+      "text": "\"İkimizin gördüğü birleşiyor,\" dedi Deniz. Sapın göründüğü aralığa çömeldi. İki görüşten bir bütünü kendisi kurmuştu. Şimdi bütün dalı görüyordu.",
       "context": {
         "ageBand": "5-6",
         "mode": "learning",
@@ -736,7 +736,7 @@
             "order": 0,
             "sourceKind": "pilotAuthoredFullPage",
             "sourceID": "p56_v3_pilot56_book_l2_owl_v1_p06",
-            "sourceTextDigest": "fcd4d3897ae41f0dfe330fbe42b73dcad366a4d9a81c1e94ee45ea6a3729d223",
+            "sourceTextDigest": "696eac1959dfb652ad2f25ac10f632e2b09d74f64ced8f6b60b6e7b85fd3f62e",
             "templateID": "pilot56_blueprint_l2_v1",
             "sourcePointer": "sources.json#/sources/117",
             "contexts": {
@@ -787,12 +787,19 @@
             ]
           }
         ],
-        "propDescription": "yaprak damarı/sapı",
+        "propDescription": "yaprak damarı/sapı; dal",
         "propMentions": [
           {
             "label": "yaprak damarı/sapı",
             "evidenceQuotes": [
               "Sapın göründüğü aralığa çömeldi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Şimdi bütün dalı görüyordu."
             ],
             "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
           }
@@ -803,9 +810,9 @@
               "pilot56_synthetic_child_deniz",
               "companion_owl_pilot_001"
             ],
-            "description": "\"İkimizin gördüğü birleşiyor,\" dedi Deniz. Sapın göründüğü aralığa çömeldi. İki görüşten bir bütünü kendisi kurmuştu.",
+            "description": "\"İkimizin gördüğü birleşiyor,\" dedi Deniz. Sapın göründüğü aralığa çömeldi. İki görüşten bir bütünü kendisi kurmuştu. Şimdi bütün dalı görüyordu.",
             "evidenceSourceID": "p56_v3_pilot56_book_l2_owl_v1_p06",
-            "evidenceText": "\"İkimizin gördüğü birleşiyor,\" dedi Deniz. Sapın göründüğü aralığa çömeldi. İki görüşten bir bütünü kendisi kurmuştu.",
+            "evidenceText": "\"İkimizin gördüğü birleşiyor,\" dedi Deniz. Sapın göründüğü aralığa çömeldi. İki görüşten bir bütünü kendisi kurmuştu. Şimdi bütün dalı görüyordu.",
             "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
             "atomicActionMappingApproved": false
           }
@@ -817,13 +824,14 @@
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "\"İkimizin gördüğü birleşiyor,\" dedi Deniz. Sapın göründüğü aralığa çömeldi. İki görüşten bir bütünü kendisi kurmuştu.",
+        "actionNeed": "\"İkimizin gördüğü birleşiyor,\" dedi Deniz. Sapın göründüğü aralığa çömeldi. İki görüşten bir bütünü kendisi kurmuştu. Şimdi bütün dalı görüyordu.",
         "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
         "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
         "poseAndActionEvidence": [
           "\"İkimizin gördüğü birleşiyor,\" dedi Deniz.",
           "Sapın göründüğü aralığa çömeldi.",
-          "İki görüşten bir bütünü kendisi kurmuştu."
+          "İki görüşten bir bütünü kendisi kurmuştu.",
+          "Şimdi bütün dalı görüyordu."
         ],
         "doNotDraw": [
           "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
