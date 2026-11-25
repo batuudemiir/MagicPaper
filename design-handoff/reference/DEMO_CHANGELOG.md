@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B2 commit'i · P56 payload'ı uygulamayla paketleme
+
+- Ne değişti: `Content/Pilots/five-friends-56-runtime-v1/payload.json` bayt bayt `MagicPaper/StoryEngineBridge/Pilots/P56/five-friends-56-runtime-v1.p56payload.json` olarak kopyalandı (SHA-256 `28773f03…`, `P56PinnedSource.sha256` ile aynı; `cmp` eşit). Senkron klasör olduğu için pbxproj değişmedi. Yeni `P56BundledSource`: baytları okur, pinle doğrular, `Application Support/P56Sources` arşivine yazar, doğrulanmış referansı döndürür; bozuk ya da eksikse hata verir ve arşive bir şey yazmaz.
+- Bilinmesi gereken: payload 3,3 MB ve bayrak kapalıyken de Release paketine giriyor. İç pilot için kabul edilebilir; yayın kararında (K6) yeniden bakılmalı.
+- Bilerek değişmeyen: `P56SnapshotStore`, motor, içerik. Uygulamada henüz kimse `P56BundledSource`'u çağırmıyor (B3).
+- Test: `P56BundledSourceTests` (6 test) yazıldı, proje kuralı gereği koşulmadı; derleme yok. B7'de tek koşu.
+- Dosyalar: `P56BundledSource.swift`, payload kopyası, `MagicPaperTests/P56BundledSourceTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
 ### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B1 commit'i · P56 masalını kalıcı Story'ye çevirme
 
 - Ne değişti: yeni `P56StoryMapper` (`MagicPaper/StoryEngineBridge/Pilots/P56/`). P56 masalı sayfaları birebir, görselsiz `Story` olur; `origin.contentSource` P56 kaynak referansını taşır (`.reference == nil`, durum `.unsupported`), `catalogVersion` paket sürümü, `settingID` sayfaların ortak mekânı, `fingerprint` sayfa metin özetlerinden. Entegrasyondaki C4 v1 hatta merge ile alındı.

@@ -104,8 +104,8 @@ func testUnknownWorldLeavesCoverNil()             // origin.worldID == nil iken 
 - Kullanır: `P56PinnedSource.sha256`, `P56SnapshotStore`.
 - Üretir: `struct P56BundledSource { init(bundle: Bundle = .main, store: P56SnapshotStore); func load() throws -> P56SourceReference }`; `static let resourceName = "five-friends-56-runtime-v1"`, uzantı `p56payload.json`. Varsayılan store kökü `Application Support/P56Sources`.
 
-- [ ] **Payload'ı kopyala:** `cp Content/Pilots/five-friends-56-runtime-v1/payload.json MagicPaper/StoryEngineBridge/Pilots/P56/five-friends-56-runtime-v1.p56payload.json`. Yeniden yazma, biçimleme yok.
-- [ ] **Test yaz.**
+- [x] **Payload'ı kopyala:** `cp Content/Pilots/five-friends-56-runtime-v1/payload.json MagicPaper/StoryEngineBridge/Pilots/P56/five-friends-56-runtime-v1.p56payload.json`. Yeniden yazma, biçimleme yok.
+- [x] **Test yaz.** (6 test; bayt kaynağı enjekte edilebilir, sahte bundle yerine)
 
 ```swift
 func testBundledBytesMatchPinnedAndContentCopy() // SHA(bundle bytes) == P56PinnedSource.sha256 == SHA(Content/... payload.json)
@@ -114,7 +114,7 @@ func testTamperedBundleThrows()                  // geçici bundle'da bir bayt d
 func testMissingResourceThrows()                 // kaynağı olmayan bundle → load() throws
 ```
 
-- [ ] **Uygula.** Bayt oku, `store.save(payload:expectedSHA256: P56PinnedSource.sha256)` döndür. Kaynak adı paket sürümünden türetilir; C2 v2 kabul edilirse `P56SnapshotStore` ve paket adı v1 + v2'yi tanır, v1 tarihsel kaynak olarak okunabilir kalır. Hata türleri: `missingResource`, store hataları aynen.
+- [x] **Uygula.** Bayt oku, `store.save(payload:expectedSHA256: P56PinnedSource.sha256)` döndür. Kaynak adı paket sürümünden türetilir; C2 v2 kabul edilirse `P56SnapshotStore` ve paket adı v1 + v2'yi tanır, v1 tarihsel kaynak olarak okunabilir kalır. Hata türleri: `missingResource`, store hataları aynen.
 - [ ] **Commit:** üç dosya; `"B2: P56 payload'ını uygulamayla paketle"`.
 
 ### B3: Yönlendirici

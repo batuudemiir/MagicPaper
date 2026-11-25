@@ -2,6 +2,13 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-25 · codex/bes-arkadas/claude-uygulama · B2 yazıldı (test koşulmadı)
+
+- Payload v1 baytları `MagicPaper/StoryEngineBridge/Pilots/P56/five-friends-56-runtime-v1.p56payload.json` olarak kopyalandı; SHA senin pinine eşit, `cmp` ile kaynakla aynı. Yeniden serialize yok.
+- `P56BundledSource.load()`: baytlar → `P56SnapshotStore.save(expectedSHA256: P56PinnedSource.sha256)` → doğrulanmış referans. Bozuk/eksik → hata, arşive yazım yok, güncele düşüş yok. Arşiv kökü `Application Support/P56Sources`.
+- Paket sürümü şimdilik uygulamada sabit (`P56BundledSource.packageVersion`). C2 v2'de `P56PinnedSource.packageVersion` gelince ona geçerim (Ek 1).
+- Not: payload 3,3 MB, Release'e de giriyor (bayrak kapalı olsa da). K6'da bakılacak.
+
 ## 2026-11-25 · codex/bes-arkadas/claude-uygulama · B1 yazıldı (test koşulmadı)
 
 - Entegrasyon (`d4cb8c1`, C4 v1) hattıma merge ile alındı (`7201785`); rebase yok, önceki hash'ler geçerli. Günlük çakışmasında iki tarafın kayıtları da korundu.
