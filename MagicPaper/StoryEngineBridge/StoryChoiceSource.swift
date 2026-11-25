@@ -103,6 +103,9 @@ protocol StoryChoiceSource {
         forIdeaID ideaID: String?, mode: StoryMode?, age: Int?,
         topicID: String?, family: FamilyCharacter?
     ) -> [CompanionChoice]
+    /// How many of `companionChoices` "Masalda kimler olsun?" shows. Three for
+    /// the catalog's ranked list; the five-friends pilot shows all five (B5).
+    func companionDisplayLimit(age: Int?, mode: StoryMode?, topicID: String?, family: FamilyCharacter?) -> Int
     /// Masal ailem relations a story of this mode can carry for this child.
     func availableFamilyRelations(mode: StoryMode?, age: Int) -> [FamilyRelationKind]
     /// The animal kinds a Masal ailem pet can be.
@@ -121,7 +124,12 @@ protocol StoryChoiceSource {
 /// The source the creation flow uses. The one place that names a provider.
 @MainActor
 enum StoryChoiceSources {
-    static var current: any StoryChoiceSource { OfflineStoryService.shared }
+    static var current: any StoryChoiceSource {
+        // Beş arkadaş pilotu (B5, K-C): yalnız Debug'da bayrakla.
+        StoryRuntimeFlags.fiveFriendsPilot
+            ? FiveFriendsChoiceSource(base: OfflineStoryService.shared)
+            : OfflineStoryService.shared
+    }
 }
 
 /// What to log when a source or the build fails.
@@ -254,4 +262,6 @@ extension CompanionChoice {
 extension StoryChoiceSource {
     /// Özel gün bilmeyen bir kaynak (örnekler, testler) çip göstermez.
     func occasionChoices(forAge age: Int, mode: StoryMode) -> [String] { [] }
+    /// Bugünkü sınır: sıralı listenin ilk üçü.
+    func companionDisplayLimit(age: Int?, mode: StoryMode?, topicID: String?, family: FamilyCharacter?) -> Int { 3 }
 }

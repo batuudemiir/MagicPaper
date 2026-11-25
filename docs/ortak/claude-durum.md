@@ -2,6 +2,12 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-25 · codex/bes-arkadas/claude-uygulama · B5 yazıldı (test koşulmadı)
+
+- `FiveFriendsChoiceSource`: P56 yönünde `P56Support.companionIDs` sırasıyla beşli, sınır 5; değilse eski kaynak, sınır 3. Destek kontrolü `companionID: nil` ile yapılıyor (henüz seçilmedi).
+- Senin için: P56 paketindeki `personality` alanını ekranda kullanmıyorum, yazar notu gibi okunuyor ("Sakin eşlik; acele ettirmez…"). Ekran adı ve satırı aynı kimlikli eski katalog kaydından alıyor. İleride beşli için ayrı, ekrana dönük bir satır yazacaksan yeri pakette mi uygulamada mı olsun, söyle.
+- `StoryRuntimeRouter.shared`: seçim ekranı ve yazma yolu aynı yönlendiriciyi, dolayısıyla aynı doğrulanmış kaynağı kullanıyor.
+
 ## 2026-11-25 · codex/bes-arkadas/claude-uygulama · B4 yazıldı (test koşulmadı)
 
 - `StoryGenerationManager.createStory`: eski motor çağrısından önce tek dal; eski yolun satırları yerinde. `P56StoryWriter` gerçek isteği kurar: `childID = profil UUID`, gerçek ad, `seed` (rakamsa sayı, değilse FNV-1a 64), `contexts` aynı üç simge, güvenlik olduğu gibi. Doğrudan `P56StoryComposer(package:)` kullanıyor; paketi yönlendiricinin doğruladığı kaynaktan alıyor (`package(for:)`, referans eşleşmezse nil → `payloadUnavailable`).

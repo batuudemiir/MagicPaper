@@ -192,7 +192,7 @@ Router ve writer `StoryGenerationManager`'a init parametresiyle verilir (varsay�
   - `StoryChoiceSources.current`: bayrak açıksa `FiveFriendsChoiceSource(base: OfflineStoryService.shared, …)`, değilse bugünkü gibi `OfflineStoryService.shared`.
   - `CompanionStep.candidates`: `.prefix(source.companionDisplayLimit(age: age, mode: mode, topicID: topicID, family: selectedFamily))`; `static let shown` silinir.
 
-- [ ] **Test yaz.**
+- [x] **Test yaz.** (7 test)
 
 ```swift
 func testFlagOffListIsTodays()           // current, OfflineStoryService.shared ile aynı tür; sınır 3
@@ -202,7 +202,7 @@ func testSafetySetRestoresLegacyList()   // safety .mostProtective → base'in l
 func testNamesComeFromPackage()          // choice.name ["Tarçın","Kestane","Yıldız","Simit","Böğürtlen"]
 ```
 
-- [ ] **Uygula.**
+- [x] **Uygula.** Adlar ve kişilik satırları uygulama kataloğundaki aynı kimlikli kayıttan (`OfflineStoryService.companionChoice(id:)`); P56'nın `personality` alanı yazar notu, ekranda gösterilmez. Tek yönlendirici: `StoryRuntimeRouter.shared` (B4 ve B5 aynı payload'ı bir kez okur).
 - [ ] **Commit:** `"B5: P56 yönünde seçim ekranında beş arkadaş"`.
 
 ### B6: Seri ve hatırlama korumaları

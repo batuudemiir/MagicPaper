@@ -39,7 +39,7 @@ class StoryGenerationManager: ObservableObject {
     private(set) var lastRuntimeDecision: StoryRuntimeDecision?
 
     init(library: LibraryShelf, notifications: NotificationCenter = .default,
-         runtime: StoryRuntimeRouter = StoryRuntimeRouter(),
+         runtime: StoryRuntimeRouter = .shared,
          p56Writer: P56StoryWriter = P56StoryWriter()) {
         self.library = library
         self.runtime = runtime

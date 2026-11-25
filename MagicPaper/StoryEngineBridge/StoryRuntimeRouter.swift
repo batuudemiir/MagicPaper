@@ -48,6 +48,10 @@ enum StoryRuntimeFlags {
 }
 
 final class StoryRuntimeRouter {
+    /// One router for the app, so the payload is read once for the selection
+    /// screen (B5) and the writer (B4).
+    static let shared = StoryRuntimeRouter()
+
     private let isEnabled: Bool
     private let loadSource: () throws -> (P56SourceReference, P56Package)
     private let lock = NSLock()

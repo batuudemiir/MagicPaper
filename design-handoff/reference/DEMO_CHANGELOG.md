@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B5 commit'i · "Masalda kimler olsun?" ekranında beş arkadaş
+
+- Ne değişti: yeni `FiveFriendsChoiceSource` (bayrak açıkken `StoryChoiceSources.current` bunu verir). Yönlendirici bu isteği P56'ya verecekse arkadaş listesi beşlidir, kanonik sırayla: Tarçın, Kestane, Yıldız, Simit, Böğürtlen; üç kart kesmesi ve simge tekilleştirmesi yok (her birinin portresi var). Masal ailem, konu, kart, başka yaş, mod yokluğu ya da C3 öncesi güvenlik politikası varsa liste bugünküyle aynı. `StoryChoiceSource`'a `companionDisplayLimit` gereksinimi (varsayılan 3); `CompanionStep` sabit `shown = 3` yerine bunu okur. Adlar ve kişilik satırları uygulama kataloğundan (`OfflineStoryService.companionChoice(id:)`), P56'nın yazar notları ekrana çıkmaz. `StoryRuntimeRouter.shared` eklendi; masal yazma yolu da onu kullanır.
+- Bilerek değişmeyen: ekranın görünüşü, portre bileşeni, eski yolun listesi ve sıralaması. Aynı ekrandaki özel gün çipi listeyi değiştirmez; özel gün seçilirse masalı eski motor seçilen arkadaşla yazar (B4).
+- Test: `CompanionStepChoicesTests` (7 test) yazıldı, proje kuralı gereği koşulmadı; derleme yok. C3 öncesi uygulamada liste fiilen bugünküyle aynı (varsayılan güvenlik).
+- Dosyalar: yeni `MagicPaper/StoryEngineBridge/FiveFriendsChoiceSource.swift`, `StoryChoiceSource.swift`, `OfflineStoryService.swift`, `StoryRuntimeRouter.swift`, `Services/StoryGenerationManager.swift`, `Screens/StoryCreation/CompanionStep.swift`, `MagicPaperTests/CompanionStepChoicesTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
 ### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B4 commit'i · P56'yı masal yazma yoluna bayrakla bağlama
 
 - Ne değişti: `StoryGenerationManager.createStory` içinde, eski motor çağrısından önce tek dal. Yönlendirici P56 derse yeni `P56StoryWriter` masalı aynı bağlamdan, çocuğun gerçek adı ve kimliğiyle yazar ve `P56StoryMapper` ile kaydeder; görselli kitap bağlayıcısı atlanır. P56 yazamazsa (`composeFailed`) ya da paket yoksa (`payloadUnavailable`) aynı bağlamla eski motor yazar; seçilen arkadaş, mod, konu, aile ve güvenlik değişmez. Seçilen kart (`storyIdeaID`) varsa P56 kullanılmaz. Log'a yalnız neden kodu yazılır.
