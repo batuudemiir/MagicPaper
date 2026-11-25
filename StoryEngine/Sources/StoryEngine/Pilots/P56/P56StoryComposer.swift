@@ -92,24 +92,7 @@ public struct P56StoryComposer: Sendable {
     }
 
     private func validateRequest(_ request: P56Request) throws {
-        var reasons = Set(request.contexts)
-        if !(5...6).contains(request.age) { reasons.insert("age") }
-        if request.childID.isEmpty { reasons.insert("child-id") }
-        if (try? P56Personalization.render("{{child.name}}", name: request.name)) == nil { reasons.insert("child-name") }
-        // No reviewed SafetyTopic/emotion tags exist; never silently discard a supplied protection.
-        if request.contentSafety != nil { reasons.insert("content-safety-not-reviewed") }
-        if let companion = request.companionID, !package.companions.contains(where: { $0.id == companion }) {
-            reasons.insert("companion")
-        }
-        if let structure = request.forcedStructure, !package.structures.contains(where: { $0.planLabel == structure }) {
-            reasons.insert("structure")
-        }
-        if !package.books.contains(where: {
-            (request.mode == nil || $0.mode == request.mode) &&
-            (request.companionID == nil || $0.companionID == request.companionID) &&
-            (request.forcedStructure == nil || $0.structureID == request.forcedStructure)
-        }) { reasons.insert("selection-outside-pilot") }
-        let ordered = reasons.sorted()
+        let ordered = P56Support.unsupportedReasons(for: request, package: package)
         if ordered.count == 1 { throw P56Error.unsupported(ordered[0]) }
         if !ordered.isEmpty { throw P56Error.unsupportedContexts(ordered) }
     }

@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C4 ortak sözleşme ve C1 ilk-deneme tanısı
+
+- Onaylı taban951f5ce'den codex/bes-arkadas/entegrasyon ve izolecodex-motor dalı kuruldu; mevcutbes-arkadasdalı korundu, yeniadlar Batuhan tarafından onaylandı. P56Support ortakneden/canonical5sıra, Engine.behaviorID, PinnedSource.sha256 ve metadata.init(p56:)/p56Reference uygulandı. P56 legacyresolveraçısındanunsupportedkalır; bilinmeyenlegacyekalanlar davranışı korunur. App/Story/bridgeClaude'da, değiştirilmedi.
+- SeçiliRelease43test0hata. Reviewiki bulgusu giderilip yeniden onaylandı. C1gerçekL/F/A0ilk5400istek retry0, tümfailureshamJSON'da. HerL/Fpinned1500istekte1000başarı500red; diğer300isteklikgruplar300/300. N A0textrepeat yüksek; güvenliknilfixture/scope5–6/legacyoda farkı/Nhistorydesteksiz sınırları raporda. ArtbuC1tanısındaölçülmedi. AyrıN1500yeniden1500/0/0,30kitap.
+-252legacyresource0değişim ve mevcut30kitap payloadSHAaynı. C1C2C3ayrıntılıplan görünür; C2runtimev2önerisi karşılıklıkabulbekler; C3gerçekgüvenlik/konu/aile henüzyokveaçıkunsupported. C5başlamadı. Entegrasyon/main/originmerge,push,yayınyok; Claude karşıincelemesi bekleniyor.
+- Dosyalar: engineP56support/pin/identity/metadata+testler, C1tanıtesti+ham/özet/README, C4_CONTRACT_DELIVERY/C4_VERIFICATION ve uygulamaplanı. Motorworktreeyerel, ikinciDerivedDataaçılmadı.
+
+
 ### 2026-11-25 · codex/design-system-catalog, kabul commit'i · Beş arkadaş sözleşmesi: Codex netleştirmeleri kabul edildi
 
 - Codex'in `9865b81` incelemesi kabul edildi: `unsupportedReasons` compose garantisi değil; P56 kaynağı `ContentSourceMetadata.init(p56:)` + `p56Reference` ile, `.reference == nil` ve `.status == .unsupported`; payload yolu ve `P56PinnedSource.sha256`; köprü dosyaları Claude'a devredildi; entegrasyon dalını Codex açacak.

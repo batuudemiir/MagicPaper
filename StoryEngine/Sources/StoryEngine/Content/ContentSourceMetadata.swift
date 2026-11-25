@@ -16,6 +16,47 @@ public struct ContentSourceMetadata: Codable, Hashable, Sendable {
         ])
     }
 
+    public init(p56 reference: P56SourceReference) {
+        raw = .object([
+            "schemaVersion": .number(Decimal(reference.schemaVersion)),
+            "packageVersion": .string(reference.packageVersion),
+            "payloadSHA256": .string(reference.payloadSHA256),
+            "engineBehaviorID": .string(reference.engineBehaviorID)
+        ])
+    }
+
+    public var p56Reference: P56SourceReference? {
+        guard case .object(let fields) = raw,
+              case .number(1)? = fields["schemaVersion"],
+              case .string("five-friends-56-runtime-v1")? = fields["packageVersion"],
+              case .string(P56Engine.behaviorID)? = fields["engineBehaviorID"],
+              case .string(let digest)? = fields["payloadSHA256"], Self.isDigest(digest) else { return nil }
+        return P56SourceReference(payloadSHA256: digest)
+    }
+
+    private static func isDigest(_ value: String) -> Bool {
+        value.utf8.count == 64 && value.utf8.allSatisfy { (48...57).contains($0) || (97...102).contains($0) }
+    }
+
+    private var p56Status: Status? {
+        guard case .object(let fields) = raw else { return nil }
+        let behavior: String
+        if case .string(let value)? = fields["engineBehaviorID"] { behavior = value } else { behavior = "" }
+        let isP56Behavior = behavior.hasPrefix("offline-p56-")
+        let isP56Package: Bool
+        if case .string(let value)? = fields["packageVersion"] {
+            isP56Package = value.hasPrefix("five-friends-56-runtime-")
+                && fields["catalogVersion"] == nil && fields["packageSchemaVersion"] == nil
+        } else { isP56Package = false }
+        guard isP56Behavior || isP56Package else { return nil }
+        if isP56Behavior && behavior != P56Engine.behaviorID { return .unsupported }
+        guard case .number(1)? = fields["schemaVersion"],
+              case .string(let package)? = fields["packageVersion"], !package.isEmpty,
+              case .string(let digest)? = fields["payloadSHA256"], Self.isDigest(digest),
+              case .string(P56Engine.behaviorID)? = fields["engineBehaviorID"] else { return .malformed }
+        return .unsupported
+    }
+
     public init(_ reference: ContentSourceReference) { self.init(known: reference) }
 
     private var decodedReference: ContentSourceReference? {
@@ -28,6 +69,7 @@ public struct ContentSourceMetadata: Codable, Hashable, Sendable {
            schema != Decimal(ContentSourceReference.currentSchemaVersion) {
             return .unsupported
         }
+        if let status = p56Status { return status }
         guard let reference = decodedReference else { return .malformed }
         return reference.isSupported ? .known : .unsupported
     }
