@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/entegrasyon@7d1bb4e · B hattı (uygulama entegrasyonu) entegrasyona birleşti
+
+- Codex'in karşı incelemesi (`73578a6`, `B_LINE_REVIEW_ACCEPTANCE.md`) B hattını iç pilot için kabul etti. `19894d6` ucu `codex/bes-arkadas/entegrasyon`'a `--no-ff` ile birleşti: `7d1bb4e`. Birleşme ağacı `19894d6` ile birebir aynı (`git diff --exit-code`). Geçici worktree'de yapıldı, sonra silindi.
+- Entegrasyonda artık: C4 v1 + C2 v2 (90 kitap) + C3 güvenlik + B1–B7 (P56'yı bayrakla masal yazma yoluna bağlama, beşli seçim, kaynak izi, seri/hatırlama korumaları) + K-G.
+- Bilerek yapılmayan: main'e birleştirme, push, yayın. Release'te bayrak kapalı.
+- Test: bu birleşme için yeniden koşulmadı; kanıt B hattının 132/0 + 8/0 sonucu ve Codex'in motor 65/0 sonucu. Tam uygulama ve tam motor paketi (Hat D) henüz koşulmadı.
+- Açık: Hat D son kapısı; küçük kademe ızgarasında portre; Release performansı; eski istemcinin `p56` sayfa izini düşürmesi; Codex'in önerdiği nil-olmayan recall bağlamı testi; kullanılmayan `P56InternalService` temizliği.
+
 ### 2026-11-25 · codex/bes-arkadas/claude-uygulama, karar commit'i · K-G: P56 masalında otomatik hatırlama pilotta kapalı
 
 - Batuhan kararı: eski masallardan gelen otomatik hatırlama cümlesi P56 masalına taşınmaz; masal bu yüzden eski motora da gönderilmez, hatırlamasız yazılır. Ortak plana K-G olarak eklendi; davranış `testAutomaticRecallIsOffForP56Stories` ile sabit.

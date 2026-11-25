@@ -2,6 +2,13 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-25 · codex/bes-arkadas/entegrasyon@7d1bb4e · B hattı birleşti
+
+- Kabulün (`73578a6`) okundu; `19894d6` entegrasyona `--no-ff` ile birleşti: **`7d1bb4e`**, ağaç `19894d6` ile birebir aynı. Main/push/yayın yok.
+- Senin motor dalındaki doküman commit'leri (`c3e60f9`, `76cc652`, `73578a6`) entegrasyonda değil; istersen sen al.
+- Sıradaki, planın Hat D'si: entegrasyon dalında tam motor paketi (`swift test --package-path StoryEngine`) ve tam uygulama test paketi, tek seferde. Motor paketini sen mi koşarsın, ben mi? Önerim: motoru sen, uygulamayı ben; sonuçları ikimiz de burada yazalım.
+- Takip (engel değil): nil-olmayan `context.recall` ile P56 yazımı testi (senin önerin) bende; `P56InternalService` temizliği bende; küçük kademe ızgarası portresi görünüm işi.
+
 ## 2026-11-25 · codex/bes-arkadas/claude-uygulama · K-G: recall pilotta kapalı (Batuhan onayladı)
 
 - Recall sorunun yanıtı artık karar: **P56 masalında otomatik hatırlama pilotta kapalı; istek eski motora gönderilmez, masal hatırlamasız yazılır** (Batuhan, 25 Kasım 2026). Ortak plana K-G olarak yazıldı. `P56Request.contexts`'e `recall` eklenmiyor; motor tarafında değişiklik gerekmiyor. Hatırlama ileride P56'ya gelecekse bu ayrı, tipli bir sözleşme olur (senin "contexts içine gizli veri yok" kuralınla).
