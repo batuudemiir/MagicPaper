@@ -9,7 +9,7 @@ import StoryEngine
 final class CompanionStepChoicesTests: XCTestCase {
     private static let fixture: Result<(P56SourceReference, P56Package), Error> = Result {
         let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
-        let bytes = try Data(contentsOf: root.appendingPathComponent("Content/Pilots/five-friends-56-runtime-v1/payload.json"))
+        let bytes = try Data(contentsOf: root.appendingPathComponent("Content/Pilots/\(P56PinnedSource.packageVersion)/payload.json"))
         let digest = SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
         let package = try P56PackageLoader.load(payload: bytes, expectedSHA256: digest)
         return (package.sourceReference, package)
@@ -21,7 +21,8 @@ final class CompanionStepChoicesTests: XCTestCase {
 
     private func source(safety: ContentSafety? = nil, enabled: Bool = true) -> FiveFriendsChoiceSource {
         FiveFriendsChoiceSource(base: base,
-                                router: StoryRuntimeRouter(isEnabled: enabled, loadSource: { try Self.fixture.get() }),
+                                router: StoryRuntimeRouter(isEnabled: enabled, loadSource: { try Self.fixture.get() },
+                                                           archive: nil),
                                 safety: { safety })
     }
 
@@ -61,8 +62,19 @@ final class CompanionStepChoicesTests: XCTestCase {
         XCTAssertEqual(source().companionDisplayLimit(forIdeaID: nil, age: 5, mode: .learning, topicID: nil, family: family), 3)
     }
 
-    func testDefaultSafetyRestoresLegacyList() {
-        XCTAssertEqual(ids(source(safety: .mostProtective)), ids(base), "C3 öncesi varsayılan güvenlik eski listeyi verir")
+    /// v2 (C3): varsayılan güvenlikle liste yalnız P56'nın gerçekten yazabileceği arkadaşlar.
+    func testDefaultSafetyListsOnlyWritableFriends() throws {
+        let router = StoryRuntimeRouter(isEnabled: true, loadSource: { try Self.fixture.get() }, archive: nil)
+        for mode in StoryMode.allCases {
+            let listed = ids(source(safety: .mostProtective), mode: mode)
+            XCTAssertFalse(listed.isEmpty, "\(mode)")
+            XCTAssertEqual(listed, five.filter(listed.contains), "kanonik sıra korunur")
+            for id in listed {
+                guard case .p56 = router.decide(StoryRuntimeRequest(age: 5, mode: mode, companionID: id, family: nil,
+                                                                    topicID: nil, occasion: nil, safety: .mostProtective)).route
+                else { return XCTFail("\(mode) \(id) listede ama P56 yazamaz") }
+            }
+        }
     }
 
     func testTopicIdeaAgeAndMissingModeRestoreLegacyList() throws {
@@ -72,6 +84,15 @@ final class CompanionStepChoicesTests: XCTestCase {
         XCTAssertEqual(ids(source(), idea: idea), ids(base, idea: idea))
         XCTAssertEqual(ids(source(), age: 3), ids(base, age: 3))
         XCTAssertEqual(ids(source(), mode: nil), ids(base, mode: nil))
+    }
+
+    /// Küçük kademe ızgarası (LittleSteps) altı karoyu geçmez; bugünkü üç arkadaş korunur.
+    func testLittleGridNeverExceedsSixTiles() {
+        XCTAssertEqual(LittleCompanionStep.shownCompanions(limit: 3, familyCount: 0), 3)
+        XCTAssertEqual(LittleCompanionStep.shownCompanions(limit: 3, familyCount: 2), 3)
+        XCTAssertEqual(LittleCompanionStep.shownCompanions(limit: 5, familyCount: 0), 5)
+        XCTAssertEqual(LittleCompanionStep.shownCompanions(limit: 5, familyCount: 1), 4)
+        XCTAssertEqual(LittleCompanionStep.shownCompanions(limit: 5, familyCount: 2), 3)
     }
 
     func testEverythingElseIsForwarded() {

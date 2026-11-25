@@ -3,7 +3,7 @@ import StoryEngine
 
 /// The P56 payload that ships with the app (B2, beş arkadaş B hattı).
 ///
-/// The bytes are a verbatim copy of `Content/Pilots/five-friends-56-runtime-v1/payload.json`
+/// The bytes are a verbatim copy of `Content/Pilots/<packageVersion>/payload.json`
 /// and must hash to `P56PinnedSource.sha256`. Loading archives them in the
 /// P56 snapshot store and returns the verified reference. A missing or altered
 /// payload is an error: the caller (B3) then writes with the legacy engine and
@@ -11,9 +11,9 @@ import StoryEngine
 struct P56BundledSource {
     enum SourceError: Error, Equatable { case missingResource }
 
-    /// The shipped package. When C2 v2 lands, Codex's pinned package version
-    /// replaces this constant; v1 stays readable from the archive.
-    static let packageVersion = "five-friends-56-runtime-v1"
+    /// The shipped package: the engine's pinned, active one (v2 since 25 Kasım).
+    /// v1 books stay readable from their saved pages and, if present, the archive.
+    static let packageVersion = P56PinnedSource.packageVersion
     static let resourceName = packageVersion + ".p56payload"
 
     static var defaultStoreDirectory: URL {

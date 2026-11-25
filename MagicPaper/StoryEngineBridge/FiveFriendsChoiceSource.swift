@@ -36,33 +36,40 @@ struct FiveFriendsChoiceSource: StoryChoiceSource {
         forIdeaID ideaID: String?, mode: StoryMode?, age: Int?,
         topicID: String?, family: FamilyCharacter?
     ) -> [CompanionChoice] {
-        guard let package = p56Package(ideaID: ideaID, mode: mode, age: age, topicID: topicID, family: family),
-              let mode, let age, let p56Mode = P56Mode(rawValue: mode.rawValue) else {
-            return base.companionChoices(forIdeaID: ideaID, mode: mode, age: age, topicID: topicID, family: family)
-        }
-        return P56Support.companionIDs(age: age, mode: p56Mode, package: package).map { id in
-            catalogChoice(id) ?? CompanionChoice(
-                id: id, name: package.companions.first { $0.id == id }?.name ?? id, kind: "", personality: "")
-        }
+        p56Choices(ideaID: ideaID, mode: mode, age: age, topicID: topicID, family: family)
+            ?? base.companionChoices(forIdeaID: ideaID, mode: mode, age: age, topicID: topicID, family: family)
     }
 
     func companionDisplayLimit(forIdeaID ideaID: String?, age: Int?, mode: StoryMode?,
                                topicID: String?, family: FamilyCharacter?) -> Int {
-        p56Package(ideaID: ideaID, mode: mode, age: age, topicID: topicID, family: family) == nil
+        p56Choices(ideaID: ideaID, mode: mode, age: age, topicID: topicID, family: family) == nil
             ? base.companionDisplayLimit(forIdeaID: ideaID, age: age, mode: mode, topicID: topicID, family: family)
             : 5
     }
 
-    /// The P56 package when P56 would write this request with no companion
-    /// chosen yet; nil sends the screen to the legacy list.
-    private func p56Package(ideaID: String?, mode: StoryMode?, age: Int?,
-                            topicID: String?, family: FamilyCharacter?) -> P56Package? {
-        guard ideaID == nil, let mode, let age else { return nil }
-        let decision = router.decide(StoryRuntimeRequest(
-            age: age, mode: mode, companionID: nil, family: family,
-            topicID: topicID, occasion: nil, safety: safety()))
-        guard case .p56(let reference) = decision.route else { return nil }
-        return router.package(for: reference)
+    /// The friends P56 can really write this request with, in canonical order;
+    /// nil sends the screen to the legacy list. Each friend is asked with its
+    /// own id, so a friend whose books the safety policy filters out entirely
+    /// in this mode is not offered (`companionIDs` knows no safety).
+    private func p56Choices(ideaID: String?, mode: StoryMode?, age: Int?,
+                            topicID: String?, family: FamilyCharacter?) -> [CompanionChoice]? {
+        guard ideaID == nil, let mode, let age, let p56Mode = P56Mode(rawValue: mode.rawValue) else { return nil }
+        let policy = safety()
+        func decision(_ companionID: String?) -> StoryRuntimeDecision {
+            router.decide(StoryRuntimeRequest(age: age, mode: mode, companionID: companionID, family: family,
+                                              topicID: topicID, occasion: nil, safety: policy))
+        }
+        guard case .p56(let reference) = decision(nil).route, let package = router.package(for: reference) else {
+            return nil
+        }
+        let ids = P56Support.companionIDs(age: age, mode: p56Mode, package: package).filter {
+            if case .p56 = decision($0).route { return true } else { return false }
+        }
+        guard !ids.isEmpty else { return nil }
+        return ids.map { id in
+            catalogChoice(id) ?? CompanionChoice(
+                id: id, name: package.companions.first { $0.id == id }?.name ?? id, kind: "", personality: "")
+        }
     }
 
     // MARK: - Forwarded

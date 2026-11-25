@@ -327,7 +327,8 @@ extension StoryGenerationManager {
                         MPFunnel().record(.firstStory)
                         return story
                     } catch {
-                        decision = StoryRuntimeDecision(route: decision.route, reason: .composeFailed)
+                        // Son rota gerçekten yazan motordur (Codex incelemesi, 25 Kasım).
+                        decision = StoryRuntimeDecision(route: .legacy, reason: .composeFailed)
                     }
                 } else {
                     decision = StoryRuntimeDecision(route: .legacy, reason: .payloadUnavailable)

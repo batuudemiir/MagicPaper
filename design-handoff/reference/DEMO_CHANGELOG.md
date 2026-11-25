@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, v2 commit'i · P56 v2 uygulamada: beş arkadaş seçimi ve P56 masalı ilk kez simülatörde
+
+- Entegrasyondaki v2 ve C3 (`cdc40ed`) hatta alındı. Uygulamayla gelen paket v2 oldu: `five-friends-56-runtime-v2.p56payload.json` (12 MB, SHA `a0603221…`, `P56PinnedSource` ile aynı, `cmp` eşit); paket adı pinlenen sürümden türetiliyor; v1 baytları uygulamadan çıktı (v1 masalları sayfalarından okunur).
+- Codex incelemesindeki düzeltmeler: P56 yazamazsa son karar `.legacy/composeFailed` (önce rota `.p56` kalıyordu); arşive yazmanın sonucu ayrı tutuluyor (`archiveOutcome`: `archived`/`failed`, log'a yalnız kod); sayfa kaynak izi `21d4fbd`'de yapılmıştı, v2 izi testi eklendi.
+- Seçim: her arkadaş yönlendiriciye kendi kimliğiyle soruluyor, liste yalnız P56'nın gerçekten yazabileceği arkadaşlar. Küçük kademe ızgarası (`LittleCompanionStep`) altı karo kuralını koruyarak kaynağın sınırını kullanıyor; eski yolda bugünkü gibi üç arkadaş.
+- Pilot kararı (Codex sorusuna yanıt, onay bekliyor): eski masallardan gelen otomatik hatırlama P56 masalına taşınmıyor ve masalı eski motora da göndermiyor; testle sabitlendi.
+- Simülatör (iPhone 17 Pro, Debug, demo İrem 6 yaş, varsayılan en korumalı güvenlik, bayrak açık): "Maceraya çıkalım" → "Fark etmez" → "Kim gelsin?" Tarçın, Kestane, Yıldız, Simit, Böğürtlen + Sürpriz; Tarçın seçildi, P56 masalı yazıldı ve açıldı (8 sayfa). Kayıtta `catalogVersion` ve kaynak v2, 8 sayfa zinciri, arşiv v2 SHA'sıyla yazılmış. "Fark etmez" sonrası ekran ~1 sn'de geldi.
+- Açık: küçük kademe ızgarası portre değil simge gösteriyor (Tarçın köpek simgesiyle); bu görünüm işi, ayrı ele alınmalı. Release ölçümü, koyu tema, en büyük Dynamic Type, SE/Pro Max yapılmadı. Paket 12 MB ve Release'e de giriyor.
+- Test: 15 süit, 132 test, 0 hata (1 eski atlanan); ardından ızgara değişikliğiyle `CompanionStepChoicesTests` 8/0.
+- Dosyalar: `StoryRuntimeRouter.swift`, `FiveFriendsChoiceSource.swift`, `Services/StoryGenerationManager.swift`, `Screens/StoryCreation/LittleSteps.swift`, `Pilots/P56/P56BundledSource.swift`, paket (v1 silindi, v2 eklendi), testler (`StoryRuntimeRouterTests`, `P56CompositionPathTests`, `CompanionStepChoicesTests`, `P56BundledSourceTests`, `P56StoryMapperTests`), `docs/ortak/claude-durum.md`, bu kayıt.
+
 ### 2026-11-25 · codex/bes-arkadas/claude-uygulama, inceleme ve B1 eki commit'i · C2 v2 + C3 karşı incelemesi, P56 sayfa kaynak izi
 
 - Codex'in `455aef9` teslimi (90 kitap, C3 güvenlik süzgeci) uygulama tarafından incelendi ve kabul edildi; engelleyici bulgu yok. Birleşmeden sonra uygulamada yapılacaklar durum dosyasına yazıldı: paketi v2'ye geçirmek (yoksa SHA tutmaz ve P56 hiç devreye girmez) ve seçim ekranında güvenliğe göre arkadaş süzmek. Codex'e soru: en korumalı politikada tamamen boşalan arkadaş × mod hücresi var mı.

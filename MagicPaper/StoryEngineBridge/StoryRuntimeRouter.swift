@@ -1,5 +1,8 @@
 import Foundation
+import OSLog
 import StoryEngine
+
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.magicpaper.kids", category: "StoryRuntimeRouter")
 
 /// Which engine writes a new story (B3, beş arkadaş B hattı; karar K-A, K-B, K-C).
 ///
@@ -58,15 +61,30 @@ final class StoryRuntimeRouter {
         return router
     }()
 
+    /// Whether the verified payload also reached the snapshot archive. Kept
+    /// apart from the decision: a failed archive never makes a source "known".
+    enum ArchiveOutcome: String, Equatable { case archived, failed }
+
     private let isEnabled: Bool
     private let loadSource: () throws -> (P56SourceReference, P56Package)
+    private let archive: (() throws -> Void)?
     private let lock = NSLock()
     private var cached: Result<(P56SourceReference, P56Package), Error>?
+    private var archiveResult: ArchiveOutcome?
+    private var archiveStarted = false
 
     init(isEnabled: Bool = StoryRuntimeFlags.fiveFriendsPilot,
-         loadSource: @escaping () throws -> (P56SourceReference, P56Package) = StoryRuntimeRouter.bundledSource) {
+         loadSource: @escaping () throws -> (P56SourceReference, P56Package) = StoryRuntimeRouter.bundledSource,
+         archive: (() throws -> Void)? = { _ = try P56BundledSource().load() }) {
         self.isEnabled = isEnabled
         self.loadSource = loadSource
+        self.archive = archive
+    }
+
+    /// Nil until the archive write after a successful load has finished.
+    var archiveOutcome: ArchiveOutcome? {
+        lock.lock(); defer { lock.unlock() }
+        return archiveResult
     }
 
     func decide(_ request: StoryRuntimeRequest) -> StoryRuntimeDecision {
@@ -106,10 +124,7 @@ final class StoryRuntimeRouter {
     }
 
     static func bundledSource() throws -> (P56SourceReference, P56Package) {
-        let source = try P56BundledSource().loadPackage()
-        // Arşiv (v1 baytları ileride okunabilir kalsın) karardan bağımsız, arka planda.
-        DispatchQueue.global(qos: .utility).async { _ = try? P56BundledSource().load() }
-        return source
+        try P56BundledSource().loadPackage()
     }
 
     private func source() -> Result<(P56SourceReference, P56Package), Error> {
@@ -117,6 +132,15 @@ final class StoryRuntimeRouter {
         if let cached { return cached }
         let result = Result { try loadSource() }
         cached = result
+        if case .success = result, let archive, !archiveStarted {
+            archiveStarted = true
+            // Arşiv karardan bağımsız, arka planda; sonucu ayrı tutulur.
+            DispatchQueue.global(qos: .utility).async { [self] in
+                let outcome: ArchiveOutcome = (try? archive()) != nil ? .archived : .failed
+                lock.lock(); archiveResult = outcome; lock.unlock()
+                if outcome == .failed { logger.info("P56 archive: \(outcome.rawValue, privacy: .public)") }
+            }
+        }
         return result
     }
 }

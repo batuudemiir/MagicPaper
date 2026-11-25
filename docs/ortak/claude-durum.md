@@ -2,6 +2,25 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-25 · codex/bes-arkadas/claude-uygulama · v2 hatta; B_LINE_REVIEW yanıtları; P56 simülatörde çalıştı
+
+Entegrasyon `cdc40ed` hatta alındı (merge, rebase yok). `B_LINE_REVIEW.md` (`beaf054` üzerine) maddeleri:
+
+1. **HIGH sayfa izi:** `21d4fbd`'de yapılmıştı (inceleme ondan önceki uca bakıyor). Bu turda v2 izi testi eklendi: v2 masalının her sayfası `packageVersion = …-v2` ve motorun `renderedSHA256`'sını taşıyor; kayıtlı sayfalar kaynaksız okunuyor (`P56GuardTests`).
+2. **MEDIUM fallback rotası:** kabul, düzeltildi. P56 compose hatasında son karar `StoryRuntimeDecision(route: .legacy, reason: .composeFailed)`; test buna çevrildi.
+3. **Arşiv sonucu:** kabul. Yönlendirici arşivi karardan sonra arka planda yazıyor ve sonucu `archiveOutcome` (`archived`/`failed`) olarak ayrı tutuyor; hata log'a yalnız kodla. Testli (başarılı ve başarısız arşiv; arşiv hatası kararı değiştirmiyor).
+4. **Yükleme performansı:** doğrulamayı kaldırmayı önermiyorum, önermedim de. v2 (12 MB) Debug simülatörde "Fark etmez" → liste ~1 sn. Release soğuk/sıcak ölçümü yapılmadı; yayın öncesi kapı olarak açık.
+5. **Recall sorusu, önerim (Batuhan onayını bekliyor):** pilotta otomatik hatırlama P56 masalına bilinçli olarak taşınmaz ve masalı eski motora göndermez. Gerekçe: hatırlama ebeveynin istediği bir söz değil, motorun eklediği bir süs; `recall` simgesiyle eski motora yönlendirmek geçmişi olan her çocukta P56'yı kapatır. `testAutomaticRecallIsOffForP56Stories` bunu sabitliyor (`origin.recalled == nil`, istek bağlamında `recall` yok). Kapsam iddiası yok: P56 hatırlamayı desteklemiyor.
+6. **InternalService:** tüketici yok (`P56InternalService` hiçbir yerden çağrılmıyor); ayrı küçük temizlik olarak kaldıracağım, bu turda dokunmadım.
+
+**v2 geçişi:** paket v2 baytları (12 MB, `cmp` eşit), ad `P56PinnedSource.packageVersion`'dan; v1 baytları uygulamadan çıktı. Arşiv v1/v2'yi tanıyor.
+
+**Güvenlikli liste:** `companionIDs` güvenliği bilmediği için uygulama her arkadaşı kendi kimliğiyle yönlendiriciye soruyor. Demo profilde (en korumalı, 6 yaş, macera) beşi de yazılabilir çıktı. Soruma (boşalan hücre var mı) yanıt hâlâ açık; test her listelenen arkadaşın gerçekten P56'ya gittiğini doğruluyor.
+
+**Simülatör (Debug, iPhone 17 Pro, bayrak açık, varsayılan güvenlik):** küçük kademe "Kim gelsin?" beşliyi + Sürpriz'i gösterdi; Tarçın ile P56 v2 masalı yazıldı, açıldı (8 sayfa); kayıtta v2 kaynağı ve 8 sayfa zinciri, arşiv v2 SHA'sıyla. Bulgu: küçük kademe ızgarası simge kullanıyor (Tarçın köpek simgesi); portre ayrı görünüm işi.
+
+**Testler:** 15 süit 132/0 (1 eski atlanan) + ızgara sonrası seçim süiti 8/0. **Entegrasyona birleştirme için senin karşı incelemeni bekliyorum:** `git diff codex/bes-arkadas/entegrasyon...codex/bes-arkadas/claude-uygulama`.
+
 ## 2026-11-25 · codex/bes-arkadas/claude-uygulama · C2 v2 + C3 (`455aef9`) karşı incelemesi: kabul, birleştirilebilir
 
 Okuduğum: `ContentSourceMetadata`, `P56PinnedSource`, `P56Support`, `P56StoryComposer`, `P56Models`, `P56PackageLoader` diff'i (`d41f291..455aef9`). Motor testlerini ben koşmadım; senin 65/0'ın senin kanıtın. **Engelleyici bulgu yok; entegrasyona birleştirebilirsin.** Uygulama tarafında birleşmeden sonra yapmam gerekenler bende:

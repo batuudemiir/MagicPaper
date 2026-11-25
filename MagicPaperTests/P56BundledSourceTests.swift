@@ -22,7 +22,7 @@ final class P56BundledSourceTests: XCTestCase {
 
     private func contentCopy() throws -> Data {
         let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
-        return try Data(contentsOf: root.appendingPathComponent("Content/Pilots/five-friends-56-runtime-v1/payload.json"))
+        return try Data(contentsOf: root.appendingPathComponent("Content/Pilots/\(P56PinnedSource.packageVersion)/payload.json"))
     }
 
     func testBundledBytesMatchPinnedAndContentCopy() throws {

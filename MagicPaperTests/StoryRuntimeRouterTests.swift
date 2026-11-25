@@ -7,7 +7,7 @@ import StoryEngine
 final class StoryRuntimeRouterTests: XCTestCase {
     private static let fixture: Result<(P56SourceReference, P56Package), Error> = Result {
         let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
-        let bytes = try Data(contentsOf: root.appendingPathComponent("Content/Pilots/five-friends-56-runtime-v1/payload.json"))
+        let bytes = try Data(contentsOf: root.appendingPathComponent("Content/Pilots/\(P56PinnedSource.packageVersion)/payload.json"))
         let digest = SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
         let package = try P56PackageLoader.load(payload: bytes, expectedSHA256: digest)
         return (package.sourceReference, package)
@@ -15,7 +15,7 @@ final class StoryRuntimeRouterTests: XCTestCase {
 
     private func router(enabled: Bool = true,
                         load: @escaping () throws -> (P56SourceReference, P56Package) = { try fixture.get() }) -> StoryRuntimeRouter {
-        StoryRuntimeRouter(isEnabled: enabled, loadSource: load)
+        StoryRuntimeRouter(isEnabled: enabled, loadSource: load, archive: nil)
     }
 
     private func request(age: Int = 5, mode: StoryMode = .learning,
@@ -62,10 +62,27 @@ final class StoryRuntimeRouterTests: XCTestCase {
         XCTAssertEqual(router().decide(request(occasion: "birthday")).reason, .unsupportedRequest)
     }
 
-    /// Profillerin varsayılanı `.mostProtective` (`UserProfile.effectiveSafety`); C3'e kadar P56 bunu reddeder.
-    func testDefaultProfileSafetyGoesLegacyUntilC3() {
-        XCTAssertEqual(router().decide(request(safety: .mostProtective)),
-                       StoryRuntimeDecision(route: .legacy, reason: .unsupportedRequest))
+    /// Profillerin varsayılanı `.mostProtective` (`UserProfile.effectiveSafety`). v2 (C3) bunu
+    /// inceler: kitap kalan arkadaş × mod P56'ya, hiç kitap kalmayan eski motora gider.
+    func testDefaultProfileSafetyRoutesByAdmissibleBooks() throws {
+        let (reference, package) = try Self.fixture.get()
+        var admitted = 0
+        for mode in StoryMode.allCases {
+            let p56Mode = try XCTUnwrap(P56Mode(rawValue: mode.rawValue))
+            for id in P56Support.companionIDs(age: 5, mode: p56Mode, package: package) {
+                let decision = router().decide(request(mode: mode, companionID: id, safety: .mostProtective))
+                let reasons = P56Support.unsupportedReasons(for: StoryRuntimeRouter.p56Request(
+                    for: request(mode: mode, companionID: id, safety: .mostProtective)), package: package)
+                if reasons.isEmpty {
+                    admitted += 1
+                    XCTAssertEqual(decision, StoryRuntimeDecision(route: .p56(reference), reason: nil))
+                } else {
+                    XCTAssertEqual(decision, StoryRuntimeDecision(route: .legacy, reason: .unsupportedRequest))
+                }
+            }
+        }
+        XCTAssertGreaterThan(admitted, 0, "en korumalı politikada P56 en az bir arkadaşla yazar")
+        XCTAssertEqual(router().decide(request(companionID: nil, safety: .mostProtective)).route, .p56(reference))
     }
 
     func testAgeAloneIsUnsupportedAge() {
@@ -74,7 +91,33 @@ final class StoryRuntimeRouterTests: XCTestCase {
     }
 
     func testAgeWithOtherReasonsIsUnsupportedRequest() {
-        XCTAssertEqual(router().decide(request(age: 3, safety: .mostProtective)).reason, .unsupportedRequest)
+        let family = FamilyCharacter(childID: UUID(), name: "Ela", relation: .sibling)
+        XCTAssertEqual(router().decide(request(age: 3, family: family)).reason, .unsupportedRequest)
+    }
+
+    func testArchiveOutcomeIsKeptApartFromTheDecision() throws {
+        let (reference, _) = try Self.fixture.get()
+        struct Full: Error {}
+        let failing = StoryRuntimeRouter(isEnabled: true, loadSource: { try Self.fixture.get() },
+                                         archive: { throw Full() })
+        XCTAssertEqual(failing.decide(request()).route, .p56(reference), "arşiv hatası kararı değiştirmez")
+        let done = expectation(description: "arşiv sonucu")
+        DispatchQueue.global().async {
+            while failing.archiveOutcome == nil { usleep(10_000) }
+            done.fulfill()
+        }
+        wait(for: [done], timeout: 10)
+        XCTAssertEqual(failing.archiveOutcome, .failed)
+
+        let ok = StoryRuntimeRouter(isEnabled: true, loadSource: { try Self.fixture.get() }, archive: {})
+        _ = ok.decide(request())
+        let okDone = expectation(description: "arşiv tamam")
+        DispatchQueue.global().async {
+            while ok.archiveOutcome == nil { usleep(10_000) }
+            okDone.fulfill()
+        }
+        wait(for: [okDone], timeout: 10)
+        XCTAssertEqual(ok.archiveOutcome, .archived)
     }
 
     func testUnknownCompanionGoesLegacy() {

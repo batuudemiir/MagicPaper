@@ -7,9 +7,9 @@ import StoryEngine
 final class P56StoryMapperTests: XCTestCase {
     private let profileID = UUID(uuidString: "00000000-0000-0000-0000-0000000000B1")!
 
-    private func package() throws -> P56Package {
+    private func package(_ version: String = "five-friends-56-runtime-v1") throws -> P56Package {
         let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
-        let bytes = try Data(contentsOf: root.appendingPathComponent("Content/Pilots/five-friends-56-runtime-v1/payload.json"))
+        let bytes = try Data(contentsOf: root.appendingPathComponent("Content/Pilots/\(version)/payload.json"))
         let digest = SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
         return try P56PackageLoader.load(payload: bytes, expectedSHA256: digest)
     }
@@ -67,6 +67,19 @@ final class P56StoryMapperTests: XCTestCase {
         if other.pages.map(\.text) != pagesOf7 {
             XCTAssertNotEqual(story(other).origin?.fingerprint, first, "farklı metin, farklı parmak izi")
         }
+    }
+
+    func testV2StoryCarriesV2SourceOnEveryPage() throws {
+        let composed = try P56StoryComposer(package: package("five-friends-56-runtime-v2")).compose(
+            P56Request(childID: "test-child", name: "Deniz", age: 6, seed: 11, mode: .adventure,
+                       contentSafety: .mostProtective))
+        let story = story(composed)
+        XCTAssertEqual(story.origin?.catalogVersion, "five-friends-56-runtime-v2")
+        XCTAssertEqual(story.origin?.contentSource?.p56Reference?.packageVersion, "five-friends-56-runtime-v2")
+        XCTAssertEqual(story.origin?.contentSource?.p56Reference?.payloadSHA256, P56PinnedSource.sha256)
+        XCTAssertEqual(story.pages.compactMap { $0.provenance?.p56?.renderedSHA256 },
+                       composed.pages.sorted { $0.number < $1.number }.map(\.provenance.renderedSHA256))
+        XCTAssertTrue(story.pages.allSatisfy { $0.provenance?.p56?.packageVersion == "five-friends-56-runtime-v2" })
     }
 
     func testFingerprintEdges() {
