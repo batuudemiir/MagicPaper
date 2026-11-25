@@ -42,6 +42,7 @@ P56'nın uygulamaya girmesini bugün engelleyenler: hücre başına 2 sabit kita
 | K-C | Bayrak kimde açık? | **Yalnız iç test** (debug launch argümanı). Yayın ayrı karar (K6). | Pilot onaylı değil; görsel sıfır. |
 | K-D | Entegrasyon dalının tabanı ve main'e geçiş | **`bes-arkadas/entegrasyon` dalı `codex/design-system-catalog` ucundan açılır.** Main'e birleştirme yalnız Batuhan'ın açık onayıyla, Bölüm 6'daki son kapıdan sonra. | Main'de `bd8001d` bile yok; önce entegrasyon dalında birleşip birlikte test edilmeli. |
 | K-E | Görselsiz P56 masalı iç testte okunabilir mi? | **İç testte evet, yayında hayır.** | Görsel hattı (Hat C) metinden bağımsız ilerleyebilir. |
+| K-G | P56 masalında otomatik hatırlama (eski masallardan gelen hatırlama cümlesi) | **Pilotta kapalı; masal eski motora gönderilmez, hatırlamasız yazılır.** Onay: 25 Kasım 2026, Batuhan. | Hatırlama ebeveynin seçtiği bir söz değil, motorun eklediği bir süs; eski motora yönlendirmek geçmişi olan her çocukta P56'yı kapatır. `testAutomaticRecallIsOffForP56Stories`. |
 | K-F | Diğer 13 arkadaş (Köpük, Vida, Fırıncı Nazlı…) | Bu planda dokunulmaz; eski motorda kalır. Konuk/uzman/deniz/uzay ayrı teslim (22 Kasım kararı). | Kapsamı küçük tutmak. |
 
 ---

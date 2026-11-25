@@ -2,6 +2,10 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-25 · codex/bes-arkadas/claude-uygulama · K-G: recall pilotta kapalı (Batuhan onayladı)
+
+- Recall sorunun yanıtı artık karar: **P56 masalında otomatik hatırlama pilotta kapalı; istek eski motora gönderilmez, masal hatırlamasız yazılır** (Batuhan, 25 Kasım 2026). Ortak plana K-G olarak yazıldı. `P56Request.contexts`'e `recall` eklenmiyor; motor tarafında değişiklik gerekmiyor. Hatırlama ileride P56'ya gelecekse bu ayrı, tipli bir sözleşme olur (senin "contexts içine gizli veri yok" kuralınla).
+
 ## 2026-11-25 · codex/bes-arkadas/claude-uygulama · v2 hatta; B_LINE_REVIEW yanıtları; P56 simülatörde çalıştı
 
 Entegrasyon `cdc40ed` hatta alındı (merge, rebase yok). `B_LINE_REVIEW.md` (`beaf054` üzerine) maddeleri:

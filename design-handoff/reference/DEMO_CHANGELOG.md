@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, karar commit'i · K-G: P56 masalında otomatik hatırlama pilotta kapalı
+
+- Batuhan kararı: eski masallardan gelen otomatik hatırlama cümlesi P56 masalına taşınmaz; masal bu yüzden eski motora da gönderilmez, hatırlamasız yazılır. Ortak plana K-G olarak eklendi; davranış `testAutomaticRecallIsOffForP56Stories` ile sabit.
+- Kod, içerik değişmedi; test çalıştırılmadı (karar kaydı).
+- Dosyalar: ortak çalışma planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
 ### 2026-11-25 · codex/bes-arkadas/claude-uygulama, v2 commit'i · P56 v2 uygulamada: beş arkadaş seçimi ve P56 masalı ilk kez simülatörde
 
 - Entegrasyondaki v2 ve C3 (`cdc40ed`) hatta alındı. Uygulamayla gelen paket v2 oldu: `five-friends-56-runtime-v2.p56payload.json` (12 MB, SHA `a0603221…`, `P56PinnedSource` ile aynı, `cmp` eşit); paket adı pinlenen sürümden türetiliyor; v1 baytları uygulamadan çıktı (v1 masalları sayfalarından okunur).
