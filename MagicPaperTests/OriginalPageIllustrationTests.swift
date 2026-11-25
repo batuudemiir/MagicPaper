@@ -53,15 +53,22 @@ final class OriginalPageIllustrationTests: XCTestCase {
 
     func testEveryPublishedOriginalPageHasUniqueLoadableArt() async throws {
         let originals = ClassicsCatalog.bundled.file.tales.filter { $0.origin == .orijinal }
-        XCTAssertEqual(Set(originals.map(\.slug)), ["saatin-icindeki-ninni", "kirmizi-atkidaki-kar-tanesi"])
+        // Yayımlanan Original'ler: yeni bir masal yayımlanınca bu liste bilerek
+        // güncellenir (21 Kasım 2026: Kar Tepesi'ndeki Yeşil Işık, 9 sayfa).
+        XCTAssertEqual(Set(originals.map(\.slug)),
+                       ["saatin-icindeki-ninni", "kirmizi-atkidaki-kar-tanesi", "kar-tepesindeki-yesil-isik"])
         var assets = Set<String>()
+        var pageTotal = 0
         for tale in originals {
             let story = ClassicReading.story(for: tale, narration: .soft, childID: nil,
                                              childName: "Deneme", savedPage: nil)
             let reader = ReaderStory(from: story)
-            XCTAssertEqual(reader.pageCount, 7)
+            XCTAssertEqual(reader.pageCount, tale.soft.pages.count, tale.slug)
+            pageTotal += tale.soft.pages.count
             for (index, page) in reader.leaves.compactMap(\.page).enumerated() {
-                let art = try XCTUnwrap(tale.soft.illustration(at: index))
+                // Kural: yayımlanan her Original sayfasının kendi resmi var.
+                let art = try XCTUnwrap(tale.soft.illustration(at: index),
+                                        "\(tale.slug) \(index + 1). sayfanın resmi yok")
                 XCTAssertTrue(assets.insert(art.asset).inserted)
                 XCTAssertEqual(page.imageLabel, art.altText)
                 let ref = try XCTUnwrap(page.imageRef)
@@ -70,7 +77,7 @@ final class OriginalPageIllustrationTests: XCTestCase {
                 XCTAssertLessThanOrEqual(max(loaded.size.width * loaded.scale, loaded.size.height * loaded.scale), 241)
             }
         }
-        XCTAssertEqual(assets.count, 14)
+        XCTAssertEqual(assets.count, pageTotal)
         let missing = await ReaderImageLoader.shared.image(named: "asset:original-missing", targetPixelWidth: 240)
         XCTAssertNil(missing)
     }

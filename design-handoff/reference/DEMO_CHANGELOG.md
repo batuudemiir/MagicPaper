@@ -133,6 +133,19 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · claude/project-thread-7igvjy-tests (PR) · Kırık yedi testin ayıklanması
+
+CI (#1) ilk kez koştu: 1131 test, 7 test kırık (görüntü testleri CI'da atlanıyor). Her biri ayrıldı:
+
+- `InterestProfileTests`: beklenti eski. H2b, Sporlar ve dünya satırları (19 Kasım) listeyi 10'dan 15'e çıkardı (Spor, Meslekler, Tarih, Ülkeler, Şehirler); o günkü test güncellemesi main'e ulaşmamıştı.
+- `SeriesManagerTests.testAModeNoContinuationServesMayNot`: beklenti eski. H4 9-10'a devam ekledi; test artık 9-10'u "var", motorun hiç tanımadığı bandı ("11-12") "yok" diye sınıyor.
+- `LibraryCutoverTests` ×2: test hatası. `JSONEncoder` sözlük anahtar sırasını sabitlemiyor; aynı içerik farklı bayt ("967 bytes ≠ 967 bytes"). Karşılaştırma bayt yerine JSON ağacıyla.
+- `ReadingEventTests.testDeleteProfileReachesTheLiveStores`: test hatası. Boş simülatörde tek profil kalıyordu, `deleteProfile` son profili silmez. Kalan bir kardeş profil eklendi.
+- `IllustratedBookFlowTests.testWithASavedAvatarTheRuleAPagesGetScenes`: seed kayması (ikinci kez): havuz büyüdü, aynı seed çizimi olmayan çarşıya düştü. Varsayılan masalın mekânı ormana sabitlendi.
+- `OriginalPageIllustrationTests`: **gerçek içerik açığı.** Kar Tepesi'ndeki Yeşil Işık (21 Kasım'da yayında) 9 sayfa, hiç sayfa resmi yok; öbür iki Original'in her sayfası resimli. Test artık sabit 2 masal / 7 sayfa / 14 resim yerine yayımlanan üç masalı ve her masalın kendi sayfa sayısını sınıyor; kural ("her sayfanın kendi resmi") aynen duruyor, bu yüzden test resimler gelene ya da Batuhan karar verene kadar kırmızı kalır.
+- Uygulama kodu değişmedi. Test çalıştırılmadı (Linux); doğrulama PR'ın CI koşusu. `DesignSystemSnapshotTests` ×5 (referans görüntüler eski) bu PR'da yok: iPhone 17 Pro'da yeniden kayıt Mac ister.
+- Dosyalar: `MagicPaperTests/{InterestProfileTests,SeriesTests,LibraryCutoverTests,ReadingEventTests,IllustratedBookFlowTests,OriginalPageIllustrationTests}.swift`.
+
 ### 2026-11-25 · claude/project-thread-7igvjy (PR) · CI yeniden test koşuyor
 
 - Sorun: `ios-build.yml` `actions/upload-artifact@v3` kullandığı için GitHub işi başlamadan reddediyordu (en az son 15 main koşusu 5 saniyede düştü); test adımı hiç koşmuyordu.
