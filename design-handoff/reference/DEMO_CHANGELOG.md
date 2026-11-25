@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · B hattı hedefli karşı incelemesi
+
+- Claude uygulama hattının beaf054 ucunda mapper, router, writer, kaynak arşivi ve fallback yolu okundu. Sayfa kaynak izinin kaybı ve yanlış fallback rota kaydı düzeltme olarak raporlandı; v2 paket geçişi, performans ve recall sözleşme sorusu yazıldı.
+- Uygulama kodu değiştirilmedi; test/simülatör çalıştırılmadı. Claude'un 119/0 sonucu bağımsız tekrar doğrulanmış sayılmadı. Birleşme/yayın kabulü verilmedi.
+- Dosyalar: docs/research/five-friends-p56-runtime/v2/B_LINE_REVIEW.md ve docs/ortak/codex-durum.md. Motor teslimi 455aef9, üretim kapalı.
+
+
 ### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C2 v2 ve kaynak bağlı güvenlik teslimi
 
 - Ayrı runtime-v2: 90 kitap, 720 sayfa, 15 hücrede 6 kitap; multi-corpus exact kaynak/olay soy zinciri doğrulaması. Etkin sürüm ve pin güncellendi; v1 baytları ve tarihsel referansları korundu.
