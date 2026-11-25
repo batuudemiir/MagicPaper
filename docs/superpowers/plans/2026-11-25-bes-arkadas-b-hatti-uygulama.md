@@ -61,9 +61,9 @@ C4 gelmeden bu planın hiçbir görevi başlamaz: altısı da C4 tiplerini kulla
 
 **Arayüzler:**
 - Kullanır: `P56ComposedStory`, `ContentSourceMetadata.init(p56:)`, `OfflineStoryMapper.storyWords` değil (P56 sözlük kelimesi taşımaz).
-- Üretir: `enum P56StoryMapper { static func story(from composed: P56ComposedStory, childProfileID: UUID, mode: StoryMode, strategy: StorySelectionStrategy?, ageBand: AgeBand?) -> Story }`
+- Üretir: `enum P56StoryMapper { static func story(from composed: P56ComposedStory, childProfileID: UUID, strategy: StorySelectionStrategy?) -> Story; static func fingerprint(of: [P56ComposedPage]) -> String }`. Mod ve yaş bandı `composed`'dan türetilir (`StoryMode` ham değerleri `P56Mode` ile aynı).
 
-- [ ] **Test yaz.** Fikstür: `Content/Pilots/five-friends-56-runtime-v1/payload.json` → `P56PackageLoader.load` → `P56StoryComposer(package:).compose(P56Request(childID: "test-child", name: "Deniz", age: 5, seed: 7, mode: .learning))` (`P56SnapshotTests`'teki yol çözümü).
+- [x] **Test yaz.** (legacy JSON testi mevcut testlere bırakıldı) Fikstür: `Content/Pilots/five-friends-56-runtime-v1/payload.json` → `P56PackageLoader.load` → `P56StoryComposer(package:).compose(P56Request(childID: "test-child", name: "Deniz", age: 5, seed: 7, mode: .learning))` (`P56SnapshotTests`'teki yol çözümü).
 
 ```swift
 func testMapsPagesAndOriginExactly() throws {
@@ -89,11 +89,11 @@ func testMapsPagesAndOriginExactly() throws {
 }
 func testFingerprintIsStableAndSeedSensitive()   // aynı girdi iki kez → aynı; seed 8 → farklı
 func testEncodeDecodeRoundTripKeepsP56Reference() // JSONEncoder/Decoder sonrası story == story, p56Reference aynı
-func testLegacyStoryJSONUnchanged()               // mevcut bir legacy Story JSON fikstürü decode→encode bayt eşit
+// Legacy Story JSON korunumu: B1 Story.swift'e dokunmuyor; mevcut FrozenLegacyBooksTests ve LegacyCloudStoryDecodingTests B7'de koşar.
 func testUnknownWorldLeavesCoverNil()             // origin.worldID == nil iken story oluşur, theme == .custom
 ```
 
-- [ ] **Uygula.** `title = composed.title`, `childName = composed.childName`, `theme = .custom`, `language = .turkish`, `status = .completed`. Sayfa: `StoryPage(id: UUID(), title: "", text: page.text, imagePrompt: "")` (alan isteğe bağlı değil; görsel niyeti yok), `provenance` nil (P56 izi `origin` + kaynak + seed ile yeniden kurulur). `fingerprint` = sayfaların `provenance.renderedSHA256` değerlerinin sırayla `|` ile birleşiminin SHA-256'sı. `settingID` = sayfaların ortak `settingID`'si (sekizi aynı; değilse ilk sayfanınki, test uyumu sabitler). `worldID = MP.World(rawValue: composed.worldID)?.rawValue`. `ageBand?.description`.
+- [x] **Uygula.** `title = composed.title`, `childName = composed.childName`, `theme = .custom`, `language = .turkish`, `status = .completed`. Sayfa: `StoryPage(id: UUID(), title: "", text: page.text, imagePrompt: "")` (alan isteğe bağlı değil; görsel niyeti yok), `provenance` nil (P56 izi `origin` + kaynak + seed ile yeniden kurulur). `fingerprint` = sayfaların `provenance.renderedSHA256` değerlerinin sırayla `|` ile birleşiminin SHA-256'sı. `settingID` = sayfaların ortak `settingID`'si (sekizi aynı; değilse ilk sayfanınki, test uyumu sabitler). `worldID = MP.World(rawValue: composed.worldID)?.rawValue`. `ageBand?.description`.
 - [ ] **Commit:** `git add` iki dosya; `"B1: P56 masalını Story'ye çevir"`.
 
 ### B2: Paketli payload

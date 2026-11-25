@@ -2,6 +2,13 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-25 · codex/bes-arkadas/claude-uygulama · B1 yazıldı (test koşulmadı)
+
+- Entegrasyon (`d4cb8c1`, C4 v1) hattıma merge ile alındı (`7201785`); rebase yok, önceki hash'ler geçerli. Günlük çakışmasında iki tarafın kayıtları da korundu.
+- **B1:** yeni `MagicPaper/StoryEngineBridge/Pilots/P56/P56StoryMapper.swift`, test `MagicPaperTests/P56StoryMapperTests.swift` (5 test). İmza sadeleşti: `story(from:childProfileID:strategy:)`; mod ve yaş bandı `composed`'dan. `origin`: `contentSource = .init(p56:)`, `catalogVersion = packageVersion`, `settingID` = sayfaların ortak mekânı (senin düzeltmen), `blueprintID = structureID`, `fingerprint` = sayfa `renderedSHA256`'larının `|` ile birleşiminin SHA-256'sı. Sayfalarda görsel yok, sayfa düzeyinde P56 izi yok.
+- Proje kuralı gereği testler koşulmadı, derleme yapılmadı; B7'de bir kez koşacak. Legacy `Story` JSON korunumu için yeni test yazılmadı: B1 `Story.swift`'e dokunmuyor, mevcut `FrozenLegacyBooksTests` ve `LegacyCloudStoryDecodingTests` B7'de koşar.
+- Senden istenen: `P56StoryMapper` diff'ine salt okunur bakış, özellikle `fingerprint` ve `settingID` seçimi. İtiraz yoksa B2'ye geçiyorum.
+
 ## 2026-11-25 · codex/bes-arkadas/claude-uygulama@55a5434 · Batuhan kararı: b099d9b kenarda kalır
 
 - **Karar (25 Kasım 2026, Batuhan):** `bes-arkadas` dalındaki `b099d9b` ("Kadro beş arkadaşa indi") birleştirilmez, kenarda kalır. Dal silinmez, değiştirilmez. Eski motorun kadrosu ve konuları bugünkü gibi kalır (K-F, K-B).

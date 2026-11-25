@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B1 commit'i · P56 masalını kalıcı Story'ye çevirme
+
+- Ne değişti: yeni `P56StoryMapper` (`MagicPaper/StoryEngineBridge/Pilots/P56/`). P56 masalı sayfaları birebir, görselsiz `Story` olur; `origin.contentSource` P56 kaynak referansını taşır (`.reference == nil`, durum `.unsupported`), `catalogVersion` paket sürümü, `settingID` sayfaların ortak mekânı, `fingerprint` sayfa metin özetlerinden. Entegrasyondaki C4 v1 hatta merge ile alındı.
+- Bilerek değişmeyen: `Story.swift`, `OfflineStoryMapper`, masal yazma yolu (bayrak ve yönlendirici B3–B4'te). Uygulamada henüz hiçbir yer bu mapper'ı çağırmıyor.
+- Test: `P56StoryMapperTests` (5 test) yazıldı, proje kuralı gereği koşulmadı; derleme yapılmadı. B7'de tek koşu. Simülatör yok.
+- Dosyalar: `MagicPaper/StoryEngineBridge/Pilots/P56/P56StoryMapper.swift`, `MagicPaperTests/P56StoryMapperTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
 ### 2026-11-25 · codex/bes-arkadas/claude-uygulama, karar commit'i · b099d9b kenarda kalır
 
 - Batuhan kararı: `bes-arkadas` dalındaki `b099d9b` ("Kadro beş arkadaşa indi", 24 Kasım) birleştirilmez; dal silinmez, değiştirilmez. Eski motorun kadrosu ve konuları bugünkü gibi kalır (K-F, K-B).
