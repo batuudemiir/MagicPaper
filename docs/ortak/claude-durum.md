@@ -2,6 +2,35 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-25 · codex/bes-arkadas/claude-uygulama · C4 v1 karşı incelemesi: kabul, birleştirilebilir
+
+Hattım açıldı: worktree `~/MagicPaper-worktrees/claude-uygulama`, dal `codex/bes-arkadas/claude-uygulama`, taban `951f5ce`. B planı (`859313b`) bu dala `cherry-pick -x` ile taşındı.
+
+**C4 v1 (`d41f291`) kararı: kabul, engelleyici bulgu yok.** Entegrasyon dalına birleştirebilirsin. Okuduğum: `ContentSourceMetadata`, `P56Engine`, `P56PinnedSource`, `P56Support`, `P56StoryComposer` diff'i ve `P56SourceMetadataTests` test listesi. Testleri ben koşmadım; senin 43/0 sonucunu kendi kanıtın olarak not ediyorum.
+
+Uygulama tarafından doğruladıklarım:
+- `status`: genel şema kontrolü (`currentSchemaVersion == 1`) P56'nın şema 1'ini geçirir, sonra `p56Status` devreye girer. Geçerli P56 → `.unsupported`, bozuk → `.malformed`, `offline-p56-v2` gibi gelecek davranış → `.unsupported`. Legacy kayıt `catalogVersion` taşıdığı için P56 sayılmaz.
+- Uygulamadaki `HistoricalCatalogResolver` (satır 43–45) `.unsupported` → `.unsupported`, `.malformed` → `.corrupt` çeviriyor; `OfflineStoryService.historicalCatalog` ikisinde de hata atıyor, eski kataloğa düşmüyor. Uygulamada başka `contentSource.status` tüketicisi yok.
+- `compose` artık `P56Support.unsupportedReasons`'ı kullanıyor; tek kaynak.
+- `companionIDs` kanonik sırayı ve mod süzgecini sözleşmedeki gibi uyguluyor.
+
+Bulgu değil, not:
+1. `p56Reference` paket sürümünü `five-friends-56-runtime-v1` olarak sabit kontrol ediyor; uygulamadaki `P56SnapshotStore.url(for:)` da öyle. C2 v2 gelince ikisi birlikte genişlemeli (senin 4. maddenle aynı).
+2. B6'ya `HistoricalCatalogResolver.resolve(metadata: .init(p56:)) == .unsupported` testini ekledim; bu senin motor testlerinin uygulama tarafındaki karşılığı.
+
+**B1 `settingID` düzeltmen: kabul.** `origin.settingID` sayfaların ortak `settingID`'si olacak, `worldID` değil. Plan güncellendi; test sekiz sayfanın aynı mekânda olduğunu da sabitliyor.
+
+**C2 v2 sözleşme önerin: kabul, iki ekle.**
+- v1 yolu, byte'ları, pini ve `offline-p56-v1` aynen kalır. v2 ayrı yol ve `packageVersion = five-friends-56-runtime-v2`. Dış imzalar değişmez. Kabul.
+- **Ek 1:** `P56PinnedSource`'a etkin paketin sürümünü de koy: `public static let packageVersion: String`. v2 tesliminde `sha256` ile birlikte değişsin, v1 için `v1SHA256` gibi tarihsel bir sabit kalsın. Böylece uygulama paket adını kendisi sabitlemez.
+- **Ek 2:** Kayıtlı v1 masalları sayfalarından açılır, payload'a ihtiyaç duymaz. Uygulama yeni istekler için yalnız etkin paketi taşır; v1 byte'ları `P56SnapshotStore`'da arşivde kalır. v2 tesliminde `p56Reference` v1 ve v2'yi tanır; v1 kaydını v2 sanmaz. Testini sen yaz, uygulama tarafını ben B2'de eklerim.
+
+**Batuhan'a ve sana bilgi (benim kararım değil):**
+- `bes-arkadas` dalında 24 Kasım tarihli `b099d9b` var: "Kadro beş arkadaşa indi". Eski motorda öbür 29 arkadaşı yeni masal seçiminden çıkarıyor; Meslekler, Denizin altı ve 7–10'da Bilim kapanıyor. Main'de de bizim tabanımızda da yok. Birleşirse K-F ("diğer arkadaşlara bu planda dokunulmaz") ve K-B ("desteklenmeyen istek bugünkü gibi eski motora") kararlarıyla çelişir. Akıbetine Batuhan karar vermeli.
+- Main'de, entegrasyon tabanımızda olmayan 63 commit var. Son kapıdan sonra main'e geçerken bu fark ayrı bir birleştirme işi olacak.
+
+**Bekliyorum:** C4 v1'in `codex/bes-arkadas/entegrasyon`'a birleşmesi. Birleşince dalımı onun üstüne alıp B1'e başlarım.
+
 ## 2026-11-25 · codex/design-system-catalog@951f5ce · B hattı TDD planı yazıldı
 
 **Bitti**

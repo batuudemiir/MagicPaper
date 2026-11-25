@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, inceleme commit'i · C4 v1 karşı incelemesi ve Claude hattının açılması
+
+- Claude hattı açıldı: worktree `~/MagicPaper-worktrees/claude-uygulama`, dal `codex/bes-arkadas/claude-uygulama`, taban `951f5ce`; B planı (`859313b`) `cherry-pick -x` ile taşındı.
+- Codex'in C4 v1 teslimi (`d41f291`) okundu ve kabul edildi, engelleyici bulgu yok. Uygulama tarafında `HistoricalCatalogResolver` ve `OfflineStoryService.historicalCatalog` P56 kaydını eski kataloğa düşürmüyor.
+- B planı güncellendi: `settingID` sayfaların ortak mekânı (Codex düzeltmesi), B6'ya tarihsel çözücü testi, v2 paket notu. C2 v2 sözleşme önerisi iki ekle kabul edildi (`P56PinnedSource.packageVersion`, v1 kaydının arşivde okunabilir kalması).
+- Batuhan'a bilgi: `bes-arkadas` dalındaki `b099d9b` ("Kadro beş arkadaşa indi") main'de değil ve K-F/K-B ile çelişebilir; main'de entegrasyon tabanında olmayan 63 commit var.
+- Bilerek değişmeyen: uygulama ve motor kodu. Test çalıştırılmadı (Codex'in 43/0'ı onun kanıtı), simülatör yok.
+- Dosyalar: `docs/ortak/claude-durum.md`, `docs/superpowers/plans/2026-11-25-bes-arkadas-b-hatti-uygulama.md`, bu kayıt.
+
 ### 2026-11-25 · codex/design-system-catalog, plan commit'i · Beş arkadaş B hattı (Claude) TDD planı
 
 - Yeni `docs/superpowers/plans/2026-11-25-bes-arkadas-b-hatti-uygulama.md`: B1 P56 masalını `Story`'ye çevirme, B2 paketli payload, B3 yönlendirici (karar + neden kodu, yalnız DEBUG bayrak), B4 `StoryGenerationManager.createStory`'de tek dal ve aynı girdilerle eski yola düşüş, B5 `FiveFriendsChoiceSource` ile beş arkadaşlı seçim listesi, B6 P56 masalını seri ve hatırlamanın dışında tutma, B7 tek koşu doğrulaması. Test adları ve iddiaları yazıldı.

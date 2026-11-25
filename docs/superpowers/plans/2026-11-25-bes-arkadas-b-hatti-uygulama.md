@@ -14,7 +14,7 @@
 
 - [ ] Codex `bes-arkadas/entegrasyon` dalını açtı ve commit'ini `docs/ortak/codex-durum.md`'ye yazdı.
 - [ ] C4 entegrasyon dalına birleşti: `P56Support`, `P56Engine.behaviorID`, `P56PinnedSource.sha256`, `ContentSourceMetadata.init(p56:)` / `p56Reference`.
-- [ ] `git worktree add ~/MagicPaper-worktrees/claude-uygulama -b bes-arkadas/claude-uygulama <entegrasyon ucu>`. Desktop dışında; ikinci DerivedData açılmaz (disk 4 GB).
+- [x] Worktree `~/MagicPaper-worktrees/claude-uygulama`, dal `codex/bes-arkadas/claude-uygulama` (taban `951f5ce`; `bes-arkadas` adı alt dal açmayı engellediği için `codex/` önekli adlar Batuhan onaylı). İkinci DerivedData açılmaz.
 
 C4 gelmeden bu planın hiçbir görevi başlamaz: altısı da C4 tiplerini kullanıyor.
 
@@ -79,7 +79,8 @@ func testMapsPagesAndOriginExactly() throws {
     XCTAssertNil(origin.contentSource?.reference)
     XCTAssertEqual(origin.catalogVersion, "five-friends-56-runtime-v1")
     XCTAssertEqual(origin.blueprintID, composed.structureID)
-    XCTAssertEqual(origin.settingID, composed.worldID)
+    XCTAssertEqual(Set(composed.pages.map(\.settingID)).count, 1)
+    XCTAssertEqual(origin.settingID, composed.pages[0].settingID)   // worldID değil (Codex düzeltmesi)
     XCTAssertEqual(origin.companionID, composed.companion.id)
     XCTAssertEqual(origin.discoveryID, composed.discoveryID)
     XCTAssertEqual(origin.seed, "7")
@@ -92,7 +93,7 @@ func testLegacyStoryJSONUnchanged()               // mevcut bir legacy Story JSO
 func testUnknownWorldLeavesCoverNil()             // origin.worldID == nil iken story oluşur, theme == .custom
 ```
 
-- [ ] **Uygula.** `title = composed.title`, `childName = composed.childName`, `theme = .custom`, `language = .turkish`, `status = .completed`. Sayfa: `StoryPage(id: UUID(), title: "", text: page.text, imagePrompt: "")` (alan isteğe bağlı değil; görsel niyeti yok), `provenance` nil (P56 izi `origin` + kaynak + seed ile yeniden kurulur). `fingerprint` = sayfaların `provenance.renderedSHA256` değerlerinin sırayla `|` ile birleşiminin SHA-256'sı. `worldID = MP.World(rawValue: composed.worldID)?.rawValue`. `ageBand?.description`.
+- [ ] **Uygula.** `title = composed.title`, `childName = composed.childName`, `theme = .custom`, `language = .turkish`, `status = .completed`. Sayfa: `StoryPage(id: UUID(), title: "", text: page.text, imagePrompt: "")` (alan isteğe bağlı değil; görsel niyeti yok), `provenance` nil (P56 izi `origin` + kaynak + seed ile yeniden kurulur). `fingerprint` = sayfaların `provenance.renderedSHA256` değerlerinin sırayla `|` ile birleşiminin SHA-256'sı. `settingID` = sayfaların ortak `settingID`'si (sekizi aynı; değilse ilk sayfanınki, test uyumu sabitler). `worldID = MP.World(rawValue: composed.worldID)?.rawValue`. `ageBand?.description`.
 - [ ] **Commit:** `git add` iki dosya; `"B1: P56 masalını Story'ye çevir"`.
 
 ### B2: Paketli payload
@@ -113,7 +114,7 @@ func testTamperedBundleThrows()                  // geçici bundle'da bir bayt d
 func testMissingResourceThrows()                 // kaynağı olmayan bundle → load() throws
 ```
 
-- [ ] **Uygula.** Bayt oku, `store.save(payload:expectedSHA256: P56PinnedSource.sha256)` döndür. Hata türleri: `missingResource`, store hataları aynen.
+- [ ] **Uygula.** Bayt oku, `store.save(payload:expectedSHA256: P56PinnedSource.sha256)` döndür. Kaynak adı paket sürümünden türetilir; C2 v2 kabul edilirse `P56SnapshotStore` ve paket adı v1 + v2'yi tanır, v1 tarihsel kaynak olarak okunabilir kalır. Hata türleri: `missingResource`, store hataları aynen.
 - [ ] **Commit:** üç dosya; `"B2: P56 payload'ını uygulamayla paketle"`.
 
 ### B3: Yönlendirici
@@ -215,6 +216,7 @@ func testNamesComeFromPackage()          // choice.name ["Tarçın","Kestane","Y
 func testP56StoryHasNoSeriesOffer()      // OfflineStoryService.shared.seriesAvailable(from: p56Story.origin!) == false
 func testP56StoryNotInRecallHistory()    // yalnız bitmiş P56 masalı olan çocuk → recallHistory(of:) == nil
 func testLegacyRecallUnchanged()         // bitmiş legacy masal + P56 masal → yalnız legacy arkadaş sayılır
+func testHistoricalResolverRefusesP56()  // HistoricalCatalogResolver.resolve(metadata: .init(p56: ref)) == .unsupported; eski kataloğa düşmez
 func testSourceLostP56StaysOutOfRecall() // contentSource nil, catalogVersion "five-friends-56-runtime-v1" → recall'a girmez, seriesAvailable false
 ```
 
