@@ -133,6 +133,114 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, karar commit'i · K-G: P56 masalında otomatik hatırlama pilotta kapalı
+
+- Batuhan kararı: eski masallardan gelen otomatik hatırlama cümlesi P56 masalına taşınmaz; masal bu yüzden eski motora da gönderilmez, hatırlamasız yazılır. Ortak plana K-G olarak eklendi; davranış `testAutomaticRecallIsOffForP56Stories` ile sabit.
+- Kod, içerik değişmedi; test çalıştırılmadı (karar kaydı).
+- Dosyalar: ortak çalışma planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, v2 commit'i · P56 v2 uygulamada: beş arkadaş seçimi ve P56 masalı ilk kez simülatörde
+
+- Entegrasyondaki v2 ve C3 (`cdc40ed`) hatta alındı. Uygulamayla gelen paket v2 oldu: `five-friends-56-runtime-v2.p56payload.json` (12 MB, SHA `a0603221…`, `P56PinnedSource` ile aynı, `cmp` eşit); paket adı pinlenen sürümden türetiliyor; v1 baytları uygulamadan çıktı (v1 masalları sayfalarından okunur).
+- Codex incelemesindeki düzeltmeler: P56 yazamazsa son karar `.legacy/composeFailed` (önce rota `.p56` kalıyordu); arşive yazmanın sonucu ayrı tutuluyor (`archiveOutcome`: `archived`/`failed`, log'a yalnız kod); sayfa kaynak izi `21d4fbd`'de yapılmıştı, v2 izi testi eklendi.
+- Seçim: her arkadaş yönlendiriciye kendi kimliğiyle soruluyor, liste yalnız P56'nın gerçekten yazabileceği arkadaşlar. Küçük kademe ızgarası (`LittleCompanionStep`) altı karo kuralını koruyarak kaynağın sınırını kullanıyor; eski yolda bugünkü gibi üç arkadaş.
+- Pilot kararı (Codex sorusuna yanıt, onay bekliyor): eski masallardan gelen otomatik hatırlama P56 masalına taşınmıyor ve masalı eski motora da göndermiyor; testle sabitlendi.
+- Simülatör (iPhone 17 Pro, Debug, demo İrem 6 yaş, varsayılan en korumalı güvenlik, bayrak açık): "Maceraya çıkalım" → "Fark etmez" → "Kim gelsin?" Tarçın, Kestane, Yıldız, Simit, Böğürtlen + Sürpriz; Tarçın seçildi, P56 masalı yazıldı ve açıldı (8 sayfa). Kayıtta `catalogVersion` ve kaynak v2, 8 sayfa zinciri, arşiv v2 SHA'sıyla yazılmış. "Fark etmez" sonrası ekran ~1 sn'de geldi.
+- Açık: küçük kademe ızgarası portre değil simge gösteriyor (Tarçın köpek simgesiyle); bu görünüm işi, ayrı ele alınmalı. Release ölçümü, koyu tema, en büyük Dynamic Type, SE/Pro Max yapılmadı. Paket 12 MB ve Release'e de giriyor.
+- Test: 15 süit, 132 test, 0 hata (1 eski atlanan); ardından ızgara değişikliğiyle `CompanionStepChoicesTests` 8/0.
+- Dosyalar: `StoryRuntimeRouter.swift`, `FiveFriendsChoiceSource.swift`, `Services/StoryGenerationManager.swift`, `Screens/StoryCreation/LittleSteps.swift`, `Pilots/P56/P56BundledSource.swift`, paket (v1 silindi, v2 eklendi), testler (`StoryRuntimeRouterTests`, `P56CompositionPathTests`, `CompanionStepChoicesTests`, `P56BundledSourceTests`, `P56StoryMapperTests`), `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, inceleme ve B1 eki commit'i · C2 v2 + C3 karşı incelemesi, P56 sayfa kaynak izi
+
+- Codex'in `455aef9` teslimi (90 kitap, C3 güvenlik süzgeci) uygulama tarafından incelendi ve kabul edildi; engelleyici bulgu yok. Birleşmeden sonra uygulamada yapılacaklar durum dosyasına yazıldı: paketi v2'ye geçirmek (yoksa SHA tutmaz ve P56 hiç devreye girmez) ve seçim ekranında güvenliğe göre arkadaş süzmek. Codex'e soru: en korumalı politikada tamamen boşalan arkadaş × mod hücresi var mı.
+- Codex'in isteğiyle her P56 sayfasının kaynak zinciri kalıcı saklanıyor: `StoryPageProvenance.p56` (paket sürümü, şablon ve üst kaynak kimliği/SHA-256, işaretçi, işlenmiş metin SHA-256'sı, sıra). `parts` boş, P56 sayfası `beat_line` sayılmaz, görsel bağlayıcı ona bir şey bağlamaz. Bozuk iz yalnız izi düşürür. `Story.swift` değişmedi. Sınır: bu alanı bilmeyen eski sürüm kaydı yeniden yazarken izi düşürür; metin ve `contentSource` kalır.
+- Parmak izi `fingerprint(ofRenderedDigests:)` oldu (kaynak kimliği değil, içerik özeti). `P56SnapshotStore` v1 ve v2 paket sürümlerini kabul ediyor.
+- Test: `P56StoryMapperTests` +4 (parmak izi sınırları, sayfa zinciri, kaydet/oku ve eski iz, bozuk iz); 8 süit, 53 test, 0 hata, 1 eski atlanan.
+- Dosyalar: `StoryEngineBridge/StoryPageProvenance.swift`, `Pilots/P56/P56StoryMapper.swift`, `Pilots/P56/P56SnapshotStore.swift`, `MagicPaperTests/P56StoryMapperTests.swift`, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, düzeltme commit'i · Bayrak açıkken ilk seçimdeki donma
+
+- Ne değişti: `StoryRuntimeRouter.shared` açılışta, bayrak açıksa P56 paketini arka planda (`.userInitiated`) önceden okur; `ContentView` kitaplığı kurarken yönlendirici de kurulur. Karar yolu paketi tek kez okuyup doğrular (`P56BundledSource.loadPackage`); arşive yazma kararın dışına, arka plana alındı. Önce 3,3 MB üç kez çözülüyordu (arşive yaz, doğrula, yeniden oku) ve ilk ön yükleme `.utility` öncelikte kilit üstünde ana iş parçacığını bekletiyordu.
+- Ölçüm (Debug, iPhone 17 Pro simülatörü, arşiv silinmiş temiz açılış): "Fark etmez" → "Kim gelsin?" geçişi önce yaklaşık 10-12 sn, şimdi yaklaşık 2-3 sn; bayrak kapalıyken yaklaşık 1 sn. Ekran görüntüsü yoklamasıyla ölçüldü, kesin değil. Release'te ölçülmedi.
+- Bilerek değişmeyen: bayrak kapalıyken hiçbir şey okunmaz; arşiv hâlâ yazılır (v1 baytları), yalnız karardan sonra; `P56SnapshotStore` değişmedi.
+- Test: `StoryRuntimeRouterTests` (+2: ön yükleme ana iş parçacığı dışında ve bir kez; bayrak kapalıyken ön yükleme yok), `P56BundledSourceTests` (+2: tek çözme arşive yazmaz; bozuk bayt reddedilir), `P56CompositionPathTests`, `CompanionStepChoicesTests`: 39 test, 0 hata.
+- Dosyalar: `StoryRuntimeRouter.swift`, `Pilots/P56/P56BundledSource.swift`, `MagicPaperTests/StoryRuntimeRouterTests.swift`, `MagicPaperTests/P56BundledSourceTests.swift`, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B7 commit'i · B hattı derleme, test ve simülatör sonucu
+
+- Derleme: sıfırdan `build-for-testing` (iPhone 17 Pro, iOS 27). Üç hata çıktı, üçü de B hattının kodundaydı ve düzeltildi: `FiveFriendsChoiceSource` varsayılan kapanışları `@MainActor` değildi; testlerde `Story` iki modülde birden vardı (`MagicPaper.Story` yapıldı). Sonuç: `TEST BUILD SUCCEEDED`.
+- Testler: 13 süit, 85 test → 1 hata (gerçek hata): kart seçiliyken liste eskiye dönüyor ama gösterilecek sayı 5 kalıyordu; `companionDisplayLimit` kart kimliğini almıyordu. `forIdeaID` eklendi. Düzeltilen süit + ilk koşuda yanlış adla atlanan `SeriesClockTests` ve `SeriesManagerTests`: 41 test, 0 hata. Toplam 119 farklı test, düzeltmeden sonra 0 hata; 1 atlanan test eskiden beri atlanan `OfflineStoryMappingTests` testi. P56 yolu (güvenlik testte nil) gerçekten masal yazıp kaydetti (`testP56RouteWritesAndSaves`).
+- Simülatör (iPhone 17 Pro, açık tema, demo çocuk İrem 6 yaş): bayrak kapalı ve açıkken "Maceraya çıkalım" → "Fark etmez" → "Kim gelsin?" ekranı aynı (Böğürtlen, Pati, Pıtpıt, Sürpriz); beklenen, çünkü varsayılan güvenlik `.mostProtective` ve C3 yok. Bulgu: bayrak açıkken ilk seçimde birkaç saniye donma; ikinci seferde anında. Yönlendirici 3,3 MB payload'ı ilk kararda ana iş parçacığında yüklüyor. Düzeltilmedi.
+- Yapılmayanlar: P56 yolunun simülatörde görülmesi (C3 gerekli), koyu tema, en büyük Dynamic Type, iPhone SE ve Pro Max ekran görüntüleri, tam uygulama test paketi, motor paketi testleri (B hattı motoru değiştirmedi).
+- Derleme için gitignore'lu `MagicPaper/Secrets.xcconfig` ve `MagicPaper/GoogleService-Info.plist` ana checkout'tan sembolik bağla verildi; commit'e girmedi. Disk 1,3 GB'a düştüğü için derleme klasörü (`~/MagicPaper-worktrees/dd`, 4,2 GB) silindi.
+- Dosyalar: `FiveFriendsChoiceSource.swift`, `StoryChoiceSource.swift`, `CompanionStep.swift`, `MagicPaperTests/CompanionStepChoicesTests.swift`, `MagicPaperTests/P56StoryMapperTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B6 commit'i · P56 masalını seri ve hatırlamanın dışında tutma
+
+- Ne değişti: `StoryContextBuilder.recallHistory` P56 masallarını saymaz; yeni `isP56(_:)` kaynağa (`p56Reference`) ya da kaynak düşmüşse paket sürümüne (`five-friends-56-runtime-`) bakar. Seri tarafında kod değişmedi: `seriesAvailable` P56 kaynağında zaten `false`; testle sabitlendi.
+- Bilerek değişmeyen: eski masalların hatırlanması (aynı sayım, aynı sıra), seri yazımı, rozet ve yıldız (masal okunduğu için sayılır; B7 simülatöründe bakılacak).
+- Test: `P56GuardTests` (6 test: seri yok, tarihsel çözücü reddeder, hatırlamada yok, eski hatırlama aynı, kaynağı düşmüş P56 yine dışarıda, kayıtlı sayfalar payload'sız okunur) yazıldı, proje kuralı gereği koşulmadı; derleme yok.
+- Dosyalar: `MagicPaper/StoryEngineBridge/StoryContextBuilder.swift`, `MagicPaperTests/P56GuardTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B5 commit'i · "Masalda kimler olsun?" ekranında beş arkadaş
+
+- Ne değişti: yeni `FiveFriendsChoiceSource` (bayrak açıkken `StoryChoiceSources.current` bunu verir). Yönlendirici bu isteği P56'ya verecekse arkadaş listesi beşlidir, kanonik sırayla: Tarçın, Kestane, Yıldız, Simit, Böğürtlen; üç kart kesmesi ve simge tekilleştirmesi yok (her birinin portresi var). Masal ailem, konu, kart, başka yaş, mod yokluğu ya da C3 öncesi güvenlik politikası varsa liste bugünküyle aynı. `StoryChoiceSource`'a `companionDisplayLimit` gereksinimi (varsayılan 3); `CompanionStep` sabit `shown = 3` yerine bunu okur. Adlar ve kişilik satırları uygulama kataloğundan (`OfflineStoryService.companionChoice(id:)`), P56'nın yazar notları ekrana çıkmaz. `StoryRuntimeRouter.shared` eklendi; masal yazma yolu da onu kullanır.
+- Bilerek değişmeyen: ekranın görünüşü, portre bileşeni, eski yolun listesi ve sıralaması. Aynı ekrandaki özel gün çipi listeyi değiştirmez; özel gün seçilirse masalı eski motor seçilen arkadaşla yazar (B4).
+- Test: `CompanionStepChoicesTests` (7 test) yazıldı, proje kuralı gereği koşulmadı; derleme yok. C3 öncesi uygulamada liste fiilen bugünküyle aynı (varsayılan güvenlik).
+- Dosyalar: yeni `MagicPaper/StoryEngineBridge/FiveFriendsChoiceSource.swift`, `StoryChoiceSource.swift`, `OfflineStoryService.swift`, `StoryRuntimeRouter.swift`, `Services/StoryGenerationManager.swift`, `Screens/StoryCreation/CompanionStep.swift`, `MagicPaperTests/CompanionStepChoicesTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B4 commit'i · P56'yı masal yazma yoluna bayrakla bağlama
+
+- Ne değişti: `StoryGenerationManager.createStory` içinde, eski motor çağrısından önce tek dal. Yönlendirici P56 derse yeni `P56StoryWriter` masalı aynı bağlamdan, çocuğun gerçek adı ve kimliğiyle yazar ve `P56StoryMapper` ile kaydeder; görselli kitap bağlayıcısı atlanır. P56 yazamazsa (`composeFailed`) ya da paket yoksa (`payloadUnavailable`) aynı bağlamla eski motor yazar; seçilen arkadaş, mod, konu, aile ve güvenlik değişmez. Seçilen kart (`storyIdeaID`) varsa P56 kullanılmaz. Log'a yalnız neden kodu yazılır.
+- Bilerek değişmeyen: eski yolun kendisi (aynı satırlar, aynı sıra), seri yazımı, `OfflineStoryService`. Bayrak kapalıyken (Release'te her zaman) davranış aynı. C3 güvenlik desteği gelene kadar uygulamada P56'ya istek gitmez (varsayılan güvenlik `.mostProtective`).
+- Test: `P56CompositionPathTests` (8 test) yazıldı; P56 yolunu sınamak için test içinde güvenlik geçici olarak nil. Proje kuralı gereği koşulmadı; derleme yok. B7'de tek koşu.
+- Dosyalar: `MagicPaper/Services/StoryGenerationManager.swift`, yeni `MagicPaper/StoryEngineBridge/Pilots/P56/P56StoryWriter.swift`, `MagicPaperTests/P56CompositionPathTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B3 commit'i · Eski motor / P56 yönlendiricisi
+
+- Ne değişti: yeni `MagicPaper/StoryEngineBridge/StoryRuntimeRouter.swift`. `StoryRuntimeFlags.fiveFriendsPilot` yalnız Debug'da `-mpFiveFriendsPilot YES` ile açılır; Release'te sabit kapalı. `StoryRuntimeRouter.decide` bayrak kapalıyken payload'a bakmadan eski motoru seçer; açıkken P56'nın destek fonksiyonuna anonim bir istekle (çocuk adı/kimliği yok, gerçek güvenlik politikası) sorar. Sonuç: `.p56(kaynak)` ya da `.legacy` + sabit neden (`flagOff`, `unsupportedAge`, `unsupportedRequest`, `payloadUnavailable`). Kaynak bir kez yüklenir.
+- Bulgu: `UserProfile.effectiveSafety` ayarsız profilde `.mostProtective` döner, hiçbir zaman nil değil. P56 güvenlik politikası taşıyan her isteği reddettiği için Codex'in C3 güvenlik desteği gelene kadar uygulamada hiçbir istek P56'ya gitmez. Güvenliği atlatan kestirme eklenmedi. Codex'e bildirildi; B7 simülatör adımı buna göre güncellendi.
+- Bilerek değişmeyen: masal yazma yolu ve seçim ekranı (B4, B5); henüz kimse yönlendiriciyi çağırmıyor.
+- Test: `StoryRuntimeRouterTests` (14 test) yazıldı, proje kuralı gereği koşulmadı; derleme yok. B7'de tek koşu.
+- Dosyalar: `StoryRuntimeRouter.swift`, `MagicPaperTests/StoryRuntimeRouterTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B2 commit'i · P56 payload'ı uygulamayla paketleme
+
+- Ne değişti: `Content/Pilots/five-friends-56-runtime-v1/payload.json` bayt bayt `MagicPaper/StoryEngineBridge/Pilots/P56/five-friends-56-runtime-v1.p56payload.json` olarak kopyalandı (SHA-256 `28773f03…`, `P56PinnedSource.sha256` ile aynı; `cmp` eşit). Senkron klasör olduğu için pbxproj değişmedi. Yeni `P56BundledSource`: baytları okur, pinle doğrular, `Application Support/P56Sources` arşivine yazar, doğrulanmış referansı döndürür; bozuk ya da eksikse hata verir ve arşive bir şey yazmaz.
+- Bilinmesi gereken: payload 3,3 MB ve bayrak kapalıyken de Release paketine giriyor. İç pilot için kabul edilebilir; yayın kararında (K6) yeniden bakılmalı.
+- Bilerek değişmeyen: `P56SnapshotStore`, motor, içerik. Uygulamada henüz kimse `P56BundledSource`'u çağırmıyor (B3).
+- Test: `P56BundledSourceTests` (6 test) yazıldı, proje kuralı gereği koşulmadı; derleme yok. B7'de tek koşu.
+- Dosyalar: `P56BundledSource.swift`, payload kopyası, `MagicPaperTests/P56BundledSourceTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B1 commit'i · P56 masalını kalıcı Story'ye çevirme
+
+- Ne değişti: yeni `P56StoryMapper` (`MagicPaper/StoryEngineBridge/Pilots/P56/`). P56 masalı sayfaları birebir, görselsiz `Story` olur; `origin.contentSource` P56 kaynak referansını taşır (`.reference == nil`, durum `.unsupported`), `catalogVersion` paket sürümü, `settingID` sayfaların ortak mekânı, `fingerprint` sayfa metin özetlerinden. Entegrasyondaki C4 v1 hatta merge ile alındı.
+- Bilerek değişmeyen: `Story.swift`, `OfflineStoryMapper`, masal yazma yolu (bayrak ve yönlendirici B3–B4'te). Uygulamada henüz hiçbir yer bu mapper'ı çağırmıyor.
+- Test: `P56StoryMapperTests` (5 test) yazıldı, proje kuralı gereği koşulmadı; derleme yapılmadı. B7'de tek koşu. Simülatör yok.
+- Dosyalar: `MagicPaper/StoryEngineBridge/Pilots/P56/P56StoryMapper.swift`, `MagicPaperTests/P56StoryMapperTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, karar commit'i · b099d9b kenarda kalır
+
+- Batuhan kararı: `bes-arkadas` dalındaki `b099d9b` ("Kadro beş arkadaşa indi", 24 Kasım) birleştirilmez; dal silinmez, değiştirilmez. Eski motorun kadrosu ve konuları bugünkü gibi kalır (K-F, K-B).
+- `docs/ortak/claude-durum.md`'ye işlendi. Kod, içerik, test değişmedi; test çalıştırılmadı.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, inceleme commit'i · C4 v1 karşı incelemesi ve Claude hattının açılması
+
+- Claude hattı açıldı: worktree `~/MagicPaper-worktrees/claude-uygulama`, dal `codex/bes-arkadas/claude-uygulama`, taban `951f5ce`; B planı (`859313b`) `cherry-pick -x` ile taşındı.
+- Codex'in C4 v1 teslimi (`d41f291`) okundu ve kabul edildi, engelleyici bulgu yok. Uygulama tarafında `HistoricalCatalogResolver` ve `OfflineStoryService.historicalCatalog` P56 kaydını eski kataloğa düşürmüyor.
+- B planı güncellendi: `settingID` sayfaların ortak mekânı (Codex düzeltmesi), B6'ya tarihsel çözücü testi, v2 paket notu. C2 v2 sözleşme önerisi iki ekle kabul edildi (`P56PinnedSource.packageVersion`, v1 kaydının arşivde okunabilir kalması).
+- Batuhan'a bilgi: `bes-arkadas` dalındaki `b099d9b` ("Kadro beş arkadaşa indi") main'de değil ve K-F/K-B ile çelişebilir; main'de entegrasyon tabanında olmayan 63 commit var.
+- Bilerek değişmeyen: uygulama ve motor kodu. Test çalıştırılmadı (Codex'in 43/0'ı onun kanıtı), simülatör yok.
+- Dosyalar: `docs/ortak/claude-durum.md`, `docs/superpowers/plans/2026-11-25-bes-arkadas-b-hatti-uygulama.md`, bu kayıt.
+
+### 2026-11-25 · codex/design-system-catalog, plan commit'i · Beş arkadaş B hattı (Claude) TDD planı
+
+- Yeni `docs/superpowers/plans/2026-11-25-bes-arkadas-b-hatti-uygulama.md`: B1 P56 masalını `Story`'ye çevirme, B2 paketli payload, B3 yönlendirici (karar + neden kodu, yalnız DEBUG bayrak), B4 `StoryGenerationManager.createStory`'de tek dal ve aynı girdilerle eski yola düşüş, B5 `FiveFriendsChoiceSource` ile beş arkadaşlı seçim listesi, B6 P56 masalını seri ve hatırlamanın dışında tutma, B7 tek koşu doğrulaması. Test adları ve iddiaları yazıldı.
+- Kod okumasından çıkan iki not: P56 güvenlik ayarlı her isteği reddettiği için C3'e kadar böyle profiller eski motora gider; hatırlama girdisi `StoryContextBuilder.recallHistory`'de, bu dosya Claude hattına eklendi.
+- `docs/ortak/claude-durum.md`: Codex'e iki soru (sayfa kaynak izi, fingerprint).
+- Bilerek değişmeyen: kod, içerik, test. Kod C4 teslimini ve entegrasyon dalını bekliyor.
+- Test çalıştırılmadı, simülatör yok (yalnız belge).
+- Dosyalar: B hattı planı, ortak çalışma planı (sahiplik satırı), `docs/ortak/claude-durum.md`, bu kayıt.
 ### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C2 v2 ve kaynak bağlı güvenlik teslimi
 
 - Ayrı runtime-v2: 90 kitap, 720 sayfa, 15 hücrede 6 kitap; multi-corpus exact kaynak/olay soy zinciri doğrulaması. Etkin sürüm ve pin güncellendi; v1 baytları ve tarihsel referansları korundu.

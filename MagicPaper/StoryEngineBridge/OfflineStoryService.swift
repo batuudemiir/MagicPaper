@@ -337,6 +337,12 @@ final class OfflineStoryService {
         (try? catalog())?.companions.first { $0.id.rawValue == id }?.name
     }
 
+    /// One catalog companion as a choice, by id (B5: the five friends' names
+    /// and lines on the selection screen).
+    func companionChoice(id: String) -> CompanionChoice? {
+        (try? catalog())?.companions.first { $0.id.rawValue == id }.map(CompanionChoice.init)
+    }
+
     /// The fixed list of animal kinds a pet can be, in catalog order.
     func familyAnimalKinds() -> [CatalogFamilyAnimalKind] {
         (try? catalog())?.familyAnimalKinds ?? []

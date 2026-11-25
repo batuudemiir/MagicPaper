@@ -31,8 +31,19 @@ class StoryGenerationManager: ObservableObject {
     private let library: LibraryShelf
     private var cancellables = Set<AnyCancellable>()
 
-    init(library: LibraryShelf, notifications: NotificationCenter = .default) {
+    /// Beş arkadaş pilotu (B4): yeni masalı eski motorun mu P56'nın mı yazacağı.
+    private let runtime: StoryRuntimeRouter
+    private let p56Writer: P56StoryWriter
+    /// The last `createStory` routing decision, reason code only; nil when the
+    /// request had no mode and the router was not asked.
+    private(set) var lastRuntimeDecision: StoryRuntimeDecision?
+
+    init(library: LibraryShelf, notifications: NotificationCenter = .default,
+         runtime: StoryRuntimeRouter = .shared,
+         p56Writer: P56StoryWriter = P56StoryWriter()) {
         self.library = library
+        self.runtime = runtime
+        self.p56Writer = p56Writer
         loadStories()
         auditStoriesMissingImageURLs()
         // A background launch on a locked device cannot read the story files
@@ -293,6 +304,42 @@ extension StoryGenerationManager {
             for: profile, library: stories, mode: mode, strategy: strategy,
             storyIdeaID: storyIdeaID, companionID: companionID,
             subOption: subOption, family: family, occasion: occasion)
+
+        // Beş arkadaş pilotu (B4, K-B): P56 yalnız isteğin tamamını taşıyabildiğinde
+        // yazar; taşıyamazsa ya da yazamazsa aynı bağlamla eski yol yazar.
+        lastRuntimeDecision = nil
+        if let mode {
+            var decision = runtime.decide(StoryRuntimeRequest(
+                age: profile.age, mode: mode, companionID: companionID, family: family,
+                topicID: subOption, occasion: occasion?.kind.rawValue, safety: service.currentSafety))
+            // Seçilen kart bir söz; P56 onu taşıyamaz.
+            if case .p56 = decision.route, storyIdeaID != nil {
+                decision = StoryRuntimeDecision(route: .legacy, reason: .unsupportedRequest)
+            }
+            if case .p56(let source) = decision.route {
+                if let package = runtime.package(for: source) {
+                    do {
+                        let story = try p56Writer.write(context: context, mode: mode, strategy: strategy,
+                                                        safety: service.currentSafety, package: package, seed: seed)
+                        lastRuntimeDecision = decision
+                        stories.insert(story, at: 0)
+                        saveStories()
+                        MPFunnel().record(.firstStory)
+                        return story
+                    } catch {
+                        // Son rota gerçekten yazan motordur (Codex incelemesi, 25 Kasım).
+                        decision = StoryRuntimeDecision(route: .legacy, reason: .composeFailed)
+                    }
+                } else {
+                    decision = StoryRuntimeDecision(route: .legacy, reason: .payloadUnavailable)
+                }
+            }
+            lastRuntimeDecision = decision
+            if let reason = decision.reason {
+                logger.info("Story runtime: legacy (\(reason.rawValue, privacy: .public))")
+            }
+        }
+
         let composed = try service.compose(context, seed: seed)
 
         let mapped = OfflineStoryMapper.appStory(

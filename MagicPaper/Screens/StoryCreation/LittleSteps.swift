@@ -104,14 +104,20 @@ struct LittleCompanionStep: View {
 
     @Environment(\.dynamicTypeSize) private var typeSize
 
-    /// Izgara altı karoyu geçmesin: üç arkadaş, en çok iki aile, bir sürpriz.
-    private static let shownCompanions = 3
+    /// Izgara altı karoyu geçmesin: arkadaşlar, en çok iki aile, bir sürpriz.
+    /// Arkadaş sayısını kaynak söyler (bugün üç; beş arkadaş pilotunda beş, B5).
+    static let maxTiles = 6
     private static let shownFamily = 2
+
+    static func shownCompanions(limit: Int, familyCount: Int) -> Int {
+        max(0, min(limit, maxTiles - 1 - familyCount))
+    }
 
     /// Adaylar moda, yaşa ve (seçildiyse) konuya göre süzülür.
     private var candidates: [CompanionChoice] {
-        Array(source.companionChoices(forIdeaID: nil, mode: mode, age: age, topicID: topicID, family: nil)
-            .prefix(Self.shownCompanions))
+        let limit = source.companionDisplayLimit(forIdeaID: nil, age: age, mode: mode, topicID: topicID, family: nil)
+        return Array(source.companionChoices(forIdeaID: nil, mode: mode, age: age, topicID: topicID, family: nil)
+            .prefix(Self.shownCompanions(limit: limit, familyCount: family.count)))
     }
 
     /// Yalnızca bu modun taşıyabildiği karakterler: seçilemeyen karo gösterilmez.
