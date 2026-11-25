@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B6 commit'i · P56 masalını seri ve hatırlamanın dışında tutma
+
+- Ne değişti: `StoryContextBuilder.recallHistory` P56 masallarını saymaz; yeni `isP56(_:)` kaynağa (`p56Reference`) ya da kaynak düşmüşse paket sürümüne (`five-friends-56-runtime-`) bakar. Seri tarafında kod değişmedi: `seriesAvailable` P56 kaynağında zaten `false`; testle sabitlendi.
+- Bilerek değişmeyen: eski masalların hatırlanması (aynı sayım, aynı sıra), seri yazımı, rozet ve yıldız (masal okunduğu için sayılır; B7 simülatöründe bakılacak).
+- Test: `P56GuardTests` (6 test: seri yok, tarihsel çözücü reddeder, hatırlamada yok, eski hatırlama aynı, kaynağı düşmüş P56 yine dışarıda, kayıtlı sayfalar payload'sız okunur) yazıldı, proje kuralı gereği koşulmadı; derleme yok.
+- Dosyalar: `MagicPaper/StoryEngineBridge/StoryContextBuilder.swift`, `MagicPaperTests/P56GuardTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
 ### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B5 commit'i · "Masalda kimler olsun?" ekranında beş arkadaş
 
 - Ne değişti: yeni `FiveFriendsChoiceSource` (bayrak açıkken `StoryChoiceSources.current` bunu verir). Yönlendirici bu isteği P56'ya verecekse arkadaş listesi beşlidir, kanonik sırayla: Tarçın, Kestane, Yıldız, Simit, Böğürtlen; üç kart kesmesi ve simge tekilleştirmesi yok (her birinin portresi var). Masal ailem, konu, kart, başka yaş, mod yokluğu ya da C3 öncesi güvenlik politikası varsa liste bugünküyle aynı. `StoryChoiceSource`'a `companionDisplayLimit` gereksinimi (varsayılan 3); `CompanionStep` sabit `shown = 3` yerine bunu okur. Adlar ve kişilik satırları uygulama kataloğundan (`OfflineStoryService.companionChoice(id:)`), P56'nın yazar notları ekrana çıkmaz. `StoryRuntimeRouter.shared` eklendi; masal yazma yolu da onu kullanır.

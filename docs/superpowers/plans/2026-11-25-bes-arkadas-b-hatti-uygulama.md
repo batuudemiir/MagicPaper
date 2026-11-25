@@ -211,7 +211,7 @@ func testNamesComeFromPackage()          // choice.name ["Tarçın","Kestane","Y
 
 **Arayüzler:** Kullanır: B1, `ContentSourceMetadata.p56Reference`, `OfflineStoryService.seriesAvailable(from:)`.
 
-- [ ] **Test yaz.**
+- [x] **Test yaz.** (6 test; rozet testi B7 simülatör adımına taşındı)
 
 ```swift
 func testP56StoryHasNoSeriesOffer()      // OfflineStoryService.shared.seriesAvailable(from: p56Story.origin!) == false
@@ -221,7 +221,7 @@ func testHistoricalResolverRefusesP56()  // HistoricalCatalogResolver.resolve(me
 func testSourceLostP56StaysOutOfRecall() // contentSource nil, catalogVersion "five-friends-56-runtime-v1" → recall'a girmez, seriesAvailable false
 ```
 
-- [ ] **Uygula.** `recallHistory`'deki süzgece: `origin.contentSource?.p56Reference == nil && origin.catalogVersion != "five-friends-56-runtime-v1"`. Seri tarafında kod değişmez; test mevcut davranışı sabitler.
+- [x] **Uygula.** `StoryContextBuilder.isP56(_:)` + `recallHistory`'deki süzgece: `origin.contentSource?.p56Reference == nil && origin.catalogVersion != "five-friends-56-runtime-v1"`. Seri tarafında kod değişmez; test mevcut davranışı sabitler.
 - [ ] **Commit:** `"B6: P56 masalını seri ve hatırlamanın dışında tut"`.
 
 ### B7: Hat sonu doğrulaması (tek koşu)

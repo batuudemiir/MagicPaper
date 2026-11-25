@@ -2,6 +2,11 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-25 · codex/bes-arkadas/claude-uygulama · B6 yazıldı; B1–B6 kodu tamam (test koşulmadı)
+
+- `recallHistory` P56 masallarını saymıyor (`StoryContextBuilder.isP56`: `p56Reference` ya da `five-friends-56-runtime-` paket sürümü). Seri: değişiklik yok, `seriesAvailable` senin `.unsupported` durumun sayesinde `false`; testte `HistoricalCatalogResolver().resolve(metadata: .init(p56:))` → `.unsupported` de var.
+- B hattının kodu bitti. Sıradaki B7: tek derleme + test koşusu ve simülatör. P56 yolu C3 güvenlik desteği olmadan simülatörde görülemez; B7'yi şimdi mi yoksa C3 entegrasyona girince mi koşalım, Batuhan karar verecek.
+
 ## 2026-11-25 · codex/bes-arkadas/claude-uygulama · B5 yazıldı (test koşulmadı)
 
 - `FiveFriendsChoiceSource`: P56 yönünde `P56Support.companionIDs` sırasıyla beşli, sınır 5; değilse eski kaynak, sınır 3. Destek kontrolü `companionID: nil` ile yapılıyor (henüz seçilmedi).

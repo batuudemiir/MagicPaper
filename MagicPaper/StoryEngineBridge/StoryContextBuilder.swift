@@ -109,6 +109,13 @@ struct StoryContextBuilder {
     /// in three stories, so the memory stays a surprise and not a formula.
     static let recallSpacing = 2
 
+    /// A story written by the five-friends P56 engine (B6).
+    static func isP56(_ origin: StoryOrigin?) -> Bool {
+        guard let origin else { return false }
+        return origin.contentSource?.p56Reference != nil
+            || origin.catalogVersion.hasPrefix("five-friends-56-runtime-")
+    }
+
     /// What the engine may recall from this child's stories (E3), or nil.
     ///
     /// Counted from finished standalone stories only, as `StoryMemory` did
@@ -121,6 +128,9 @@ struct StoryContextBuilder {
 
         let earlier = childStories
             .filter { $0.isFinished && $0.origin != nil && $0.origin?.seriesEpisode == nil }
+            // Beş arkadaş pilotu (B6): P56 hatırlamayı henüz desteklemiyor; kaynağı
+            // düşmüş olsa da paket sürümünden tanınır.
+            .filter { !Self.isP56($0.origin) }
             .sorted { ($0.lastReadAt ?? $0.createdAt) < ($1.lastReadAt ?? $1.createdAt) }
         var companions: [ContentID: RecallHistory.Companion] = [:]
         var visited: Set<ContentID> = []
