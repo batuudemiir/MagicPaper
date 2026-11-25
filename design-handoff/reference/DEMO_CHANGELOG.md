@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · claude/project-thread-7igvjy (PR) · CI yeniden test koşuyor
+
+- Sorun: `ios-build.yml` `actions/upload-artifact@v3` kullandığı için GitHub işi başlamadan reddediyordu (en az son 15 main koşusu 5 saniyede düştü); test adımı hiç koşmuyordu.
+- `ios-build.yml` yeniden yazıldı: tek iş "Build and Test", `actions/cache@v4`, hata olunca `.xcresult` `upload-artifact@v4` ile indirilebilir. Aynı dalda yeni gönderim eski koşuyu iptal eder. İmzasız Release arşivi ve içi boş `deploy` işi kalktı (yayın Xcode Cloud'dan).
+- `test-build.yml` silindi: var olmayan `develop` / `feature/*` dallarını dinliyordu.
+- Yeni `Scripts/ci_placeholders.sh`: depoda olmayan `Secrets.xcconfig` ve `GoogleService-Info.plist` için boş/sahte dosya (gizli ayar varsa gerçek plist). Ana iş bunlarsız derlenemezdi. `ci_screenshots.sh` aynı bloğu artık bu betikten çağırıyor (davranış aynı).
+- Bilerek değişmedi: testler `TestPlan.xctestplan`'dan (StoryEngine paket testleri dahil); görüntü testleri ve UI testleri CI'da atlanmaya devam ediyor; Xcode Cloud betikleri.
+- Test: yerelde çalıştırılmadı (Linux). Doğrulama PR'ın kendi CI koşusu. Bilinen 12 kırık test (25 hata) bu PR'dan sonra CI'da kırmızı görünecek; ayrı PR'da düzeltilecek.
+- Dosyalar: `.github/workflows/ios-build.yml`, `.github/workflows/test-build.yml` (silindi), `Scripts/ci_placeholders.sh`, `Scripts/ci_screenshots.sh`.
+
 ### 2026-11-24 · irem-aktarim (dal, bu kayıtla gelen commit) · İrem'in tasarımları uygulamaya aktarıldı
 
 - **Ne:** İrem'in 21-24 Kasım işi (`irem` dalı) inceleme bulgularıyla düzeltilerek `irem-aktarim` dalında. Tasarım belgesi `docs/superpowers/specs/2026-11-24-irem-tasarim-aktarimi-design.md`, plan `docs/superpowers/plans/2026-11-24-irem-tasarim-aktarimi.md`.
