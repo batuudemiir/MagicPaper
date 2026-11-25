@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C4 v1 entegrasyon birleşmesi ve v2 eklerinin kabulü
+
+- Batuhan/Claude karşıincelemekabulüyleyalnızd41f291 C4/C1teslimi codex/bes-arkadas/entegrasyon dalına --no-ffilebirleşti: d4cb8c1. Ağacıd41f291ileaynı;C2b6deb1dvekenardakib099d9bharicinde. Ekprodcode/testdeğişimiyok,mergeiçinyenitestkoşulmadı;tamsonkapıBhatsonunda.
+- C2v2ikiortaksözleşmeeki kabul: activepackageVersion+sha256,v1SHA256tarihselpin;v1/v2refayrımıvearşivkoruması. B1provenance'inorigin'denyenidenkurulmasıyetersizliği ve renderedcontentfingerprintayrımıCodexdurumunayazıldı. V2uygulamaplanıyazıldı;Claudeappdosyalarınadokunulmadı.
+- Main/origin,push/yayınyok;C2taslaklar90runtimeolduğuiddiaedilmedi. Dosyalar: codex-durum.md,v2uygulamaplanı,bugünlük.
+
+
 ### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C2 ek 60 kitap taslağı ve karşı-inceleme kaydı
 
 - Batuhan'ınonaylı90kitaphedefi için ayrıexpansioncorpus60kitap/480sayfa/2430source/480causalquote: herizinlimekanizma/arkadaşçiftineevent02/03. Eski30kitap/payload/sourcekimlikleri değişmedi. Runtimehalen30kitap; toplam90authored runtime90iddiasıdeğil.

@@ -2,6 +2,18 @@
 
 Yalnız Codex yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Karşılık: [Claude durum dosyası](claude-durum.md).
 
+## 2026-11-25 · codex/bes-arkadas/codex-motor@b6deb1d · C4 entegrasyonda, v2 ekleri kabul
+
+**C4v1 birleşti:** `codex/bes-arkadas/entegrasyon` artık `d4cb8c1` (parents951f5ce+d41f291, --no-ff). Ağaçd41f291ilebirebireşit; yeniC2taslakcommitb6deb1d ve kenardakib099d9b dahil değil. Batuhan'ın C4karşıincelemekabulü ve Claudehattındaki durumdosyası okundu. Claude B1'e bu entegrasyonref'inden başlayabilir. Main/originyok.
+
+**C2v2 iki ek kabul:** P56PinnedSource.packageVersion etkinpaketi bildirir; sha256ilebirlikte güncellenir, v1SHA256tarihselpinayrıkalır. Kayıtlıv1savedpageskaynakolmadanokunur; v1snapshotarşivdekalır. Motorcodec/metadata hemv1hemv2tanır, v1refv2yerinegeçmez. V1byte/path/behavioraynıkalır;v2ayrıpathvepackageVersion. APIimzalarıdonuk, kaynak/corpusşemasıiçselveversiyonlu. BridgeSnapshotStore/B2Claude'da; motorun desteklediği paketlistesini o da güncellemeli.
+
+**B1provenance sorusu:** Yalnızorigin+structureID+seed+companionID kaydı yeterli değil. V2'deaynıçiftin3olayıolacak; ilkisteğinsürpriz/süzgeçkapsamı yenidenkurulmazsa aynıtamkitap seçimi garanti değil. Snapshotyoksa zatenreplayyapılamaz; yenidenyazımkaynakizinin tekkanıtıolmamalı. SayfaP56PageProvenance'ı kalıcıolaraksaklamayıistiyorum. StoryPage'de `provenance: StoryPageProvenance?` alanızatenvar; `Story.swift` değiştirmeden `StoryPageProvenance.swift` içinde optionalP56zarfı/ayrıschemaile tamtemplateID/SHA,parentID/SHA/pointer,renderedSHA/order saklanabilir. SHA256'yılegacy16hexalgoritmasıgibiadlandırma veya bilinmeyenP56kind'ılegacybeat_linegibigösterme. AppprovenancetipinigenişletmesahipliğiClaude'a: legacydecodeaynı, yeniP56alanlaroldapp'tehamkorunumu/unknownfieldkaybısınırıtestleraport; yeniartbindingonayıverme. Darşemaönerinivemappertestlerinikendidurumunayaz; rootappdosyasına dokunmayacak.
+
+**B1fingerprint sorusu:** SıralırenderedSHA256değerlerini `|` ilebirleştiripSHA256almanı rendered-contentfingerprintolarakkabul. Bu authoredsourcekimliği/bytekanıtıdeğil; sourceReference/kalıcısayfaprovenanceyerinegeçmez. Aynımetnifarklıkaynaktanverenkitaplarıncontentfingerprint'ieşitolabilir; bumetadataçatışmasınıgizleyemez. Boşsayfa/sıradeğişimivemetinmutasyonutestiedilsin.
+
+C2v2runtimeplanı/koduna, sonraC3güvenliketiketlerine devam ediliyor. C2taslaklarınart/editoryalgüvenlikkabulühenüzyok;90authoredkaynak runtime90diyeiddiaedilmiyor. b099d9b dalına/commit'inedokunulmayacak.
+
 ## 2026-11-25 · codex/bes-arkadas/codex-motor@d41f291 · C4 v1 incelemeye hazır, C1 ölçüldü
 
 **C4 v1 sözleşme temeli hazır:** `P56Support.unsupportedReasons`, `companionIDs`, `P56Engine.behaviorID`, `P56PinnedSource.sha256`, `ContentSourceMetadata.init(p56:)`/`p56Reference`. Aynı destek fonksiyonu compose'da kullanılıyor; nedenler unique/sorted. P56 legacy.reference=nil/statusunsupported; bozuk/future/raw korunumu ve legacyunknownextension regresyonları testte. Pin v1 exactfullSHA28773f03bc59060cdfae95961dbfa14e319e141633a7e79ead6ce93eb90d7adc. Payload/252legacy dosya değişmedi. Appbridge/Story.swift/appP56tests Claude'da; dokunulmadı.

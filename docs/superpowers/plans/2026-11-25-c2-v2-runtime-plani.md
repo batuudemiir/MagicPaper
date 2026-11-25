@@ -1,0 +1,17 @@
+# C2 v2 runtime uygulama planı
+
+> REQUIRED: subagent-driven-development. Ortaksözleşmev2 Batuhan/Claudekabulü, Claudehattınıniki ekiyle yürütülür. Testsfirst; koşu yalnız buartımsonunda.
+
+**Goal:** Eski30kitapv1snapshot'ını değiştirmeden yeni60taslakla90kitapv2paketini internal motorda yüklemek ve aynıN1500/A0 girdileriyle ölçmek.
+**Architecture:** V1strictdecoderaynıkalır; yeni payloadschema2+packageVersionv2 explicitdispatch. Fullcorpus/book/causalbytes/hash kaynakkanıtıtekpayload'da. PublicP56Request/ComposedStory/SourceRef/compose imzalarıdeğişmez. Reference schemaVersion1kimlikşemasıdır; payloadşeması2ilekarıştırılmaz.
+**Tech:** FoundationSwift/mevcutSHA/render/metrics;offlinePythonserializer;appbridgeClaude.
+
+- [ ] Yeni Content/Pilots/five-friends-56-runtime-v2/{build_runtime_package.py,payload.json,manifest.json}: v1authoredveexpansioncorpusuayrıid/sourceJSON/SHAolarakgöm;herbookcorpusID/event01|02|03/baseBookIDveorijinalbookJSON/SHAtaşır. Kaynaklararasıindex/pointerkarışmasıreddedilir. V1filebyte'larıdeğişmez.
+- [ ] YeniP56V2PackageLoader: 90uniquebook,720page/evidence;30izinlipair×3distinctevent,15cell×2mechanism. Parentcorpus/sourceID/text/SHA/pointerveauthoredbooklineageexact. Unknownschema/behavior/versionreddi;immutableP56SourceReferencefullbyteSHA. Payloadschema2kimlikrefschema1kalır.
+- [ ] Mevcutloaderheaderversiondispatch;v1kontrol30/240/2 strictaynı. Ortakvalidatorgerçektypedönkoşul/aktör/temporal/quoteziçinyenidenkullanılır; yeniolmayanolayıvarmışgibigöstermekvevalidatorgevşetmekyok. Taslakmetin/annotationyetersizserevizyonnewsourceID/ledger.
+- [ ] Publicmodelleriadditiveinternaloptionalcorpus/eventmetadatailegenişlet;ComposedStory/PageProvenance dışalanlarıdeğişmez,parentPointercorpusileayırtedilebilir. SelectedbookIDçıktıdazatenvar. Sürprizreplayorigintekbaşınayeterlidiyeiddiaedilmez.
+- [ ] P56PinnedSource.packageVersion/sha256 etkinv2;v1SHA256sabit28773f03bc59060cdfae95961dbfa14e319e141633a7e79ead6ce93eb90d7adc korunur. Mevcutv1testleri v1SHA256ilehistoricalpin'idoğrular;activepintestiyeniv2ile. Metadata.p56Referenceikiversiyonuayrıtanır,statusunsupportedlegacy.reference=nilkalır.
+- [ ] Samplerbookpercellgerçeksayısı6;seed0...99aynı,N1500/30zorlanmışpair yerine90forcedbook exactfixtureseçimi seçilimoldAPIilemümkünolmayabilir. Testlerseparatev2bookfixturecompilerüzerindehertamkitabıdoğrular;seçimiçinyeniAPIzorunlugerekirsesözleşmeyoluyla. Randomseedbuluncayenidendenergibiyayınölçümüyok;N1500tekseeddraw.
+- [ ] TestsP56V2PackageTests+P56SourceMetadataTests: v1exactsource/replaydeğişmez,activepinversion/hash,90/720/6counts,corpus/pointer/hash/tamper/missingevent/duplicate/future/badactorreddi;7Turkishnamefullagebudgets,all90typedtrace;N1500aynıseed/A0önce-sonra. Artapprovedfalse/zeroartaynıayrıkapsamraporu.
+- [ ] Bağımsızspec+qualityincelemesonrasıtekfinaltestoturumu;gerçekhataolursadüzeltipilgilikontrolleritekrarla. KaynaktaslaklarısourceIDaltındasessizmetindeğişimi yok. C3safety/topic/familyhenüzdesteksizveaçıkretkalır;genelprodpolicykapalı.
+- [ ] Codexdurum/log/rapor/commit;v2paketvesürüm/hashClaude'averilir. SnapshotStore/B2Claudehattındagüncellenmedenuygulamadaaktifv2çalışıyoriddiasıyok. Karşıincelemekabulüsonrasıentegrasyon,main/originyok.
