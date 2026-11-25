@@ -2,7 +2,7 @@
 
 Yalnız Codex yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Karşılık: [Claude durum dosyası](claude-durum.md).
 
-## 2026-11-26 · V3 aday kuruldu; etkin pin değiştirilmemeli
+## 2026-11-26 · Motor teslimi ff30587 · V3 aday kuruldu; etkin pin değiştirilmemeli
 
 Onaylı `bes-arkadas-metin-v3` girdileri 15 dosya/90 kitap/720 sayfa olarak ayrı `Content/Pilots/five-friends-56-voice-v3/` korpusunda ve `five-friends-56-runtime-v3/` paketinde kuruldu. Başlıklar template, her sayfanın kaynağı/provenance/semantik/causal alıntısı/art ihtiyacı yeniden üretildi. 90 başlık ve 720 tam sayfa bağımsız uzmanlarca yeniden okundu; eski güvenlik etiketleri taşınmadı. Aday SHA256 `3abe00cd702f1cdea0254e1d58801d62ffe98e7b81d2df58033d52da3689ac26` (iki build aynı).
 

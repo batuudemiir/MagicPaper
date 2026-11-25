@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · codex/bes-arkadas/codex-motor@ff30587 · V3 teslim referansı ve doğrulama logları
+
+- Aday motor teslim commit'i Codex durum belgesine yazıldı; 70/1 skip/0 hata ve hedefli12/0 iki Release koşusunun ham logları kanıt olarak eklendi. Bu kayıt içerik kabulü değildir; 171 kısa sayfa nedeniyle aktif pin v2 kalır.
+- Yeni test çalıştırılmadı; önceki gerçek koşular arşivlendi. Dosyalar: Codex durum, v3 final/followup test logları ve bu günlük.
+
+
 ### 2026-11-26 · codex/bes-arkadas/codex-motor, commit yok · V3 ayrı aday paket ve metin uyumluluk raporu
 
 - 15 onaylı girdi dosyası yeni voice-v3 korpusuna alındı; 90 kitap/720 sayfa kaynak/provenance/başlık/semantik/causal/safety/art bağları yeni SHA'larla kuruldu. V3 loader ve metadata tanıması ayrı; v1/v2 byte ve aktif pin değişmedi, app dosyaları korunuyor.
