@@ -193,6 +193,7 @@ final class LittleFriendFirstTests: XCTestCase {
                 }
             }
         }
+        XCTAssertGreaterThan(checked, 0, "Simit ya da Böğürtlen en az bir konuda eski motorla yazılabilmeli")
         XCTAssertEqual(StoryCreationSteps.littleCast(chosen: simit, topicID: "t", legacyCandidates: [tarcin]),
                        .init(companionID: nil, keepsFriend: false))
         XCTAssertEqual(StoryCreationSteps.littleCast(chosen: simit, topicID: "t", legacyCandidates: [simit]),

@@ -75,9 +75,13 @@ final class MPSpeech: NSObject, ObservableObject {
         return AVSpeechSynthesisVoice(language: language) ?? AVSpeechSynthesisVoice(language: "tr-TR")
     }
 
+    func speak(_ text: String, language: String = "tr-TR", recording: URL? = nil) {
+        speak(text, language: language, recording: recording, pitch: 1.05)
+    }
+
     /// - Parameter pitch: okul öncesi akışta arkadaşları ayırmak için perde
-    ///   (26 Kasım 2026); varsayılan anlatıcının perdesi.
-    func speak(_ text: String, language: String = "tr-TR", recording: URL? = nil, pitch: Float = 1.05) {
+    ///   (26 Kasım 2026); anlatıcının perdesi 1.05.
+    func speak(_ text: String, language: String = "tr-TR", recording: URL? = nil, pitch: Float) {
         if let recording, play(recording) { return }
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
