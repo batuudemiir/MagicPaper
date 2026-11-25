@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B3 commit'i · Eski motor / P56 yönlendiricisi
+
+- Ne değişti: yeni `MagicPaper/StoryEngineBridge/StoryRuntimeRouter.swift`. `StoryRuntimeFlags.fiveFriendsPilot` yalnız Debug'da `-mpFiveFriendsPilot YES` ile açılır; Release'te sabit kapalı. `StoryRuntimeRouter.decide` bayrak kapalıyken payload'a bakmadan eski motoru seçer; açıkken P56'nın destek fonksiyonuna anonim bir istekle (çocuk adı/kimliği yok, gerçek güvenlik politikası) sorar. Sonuç: `.p56(kaynak)` ya da `.legacy` + sabit neden (`flagOff`, `unsupportedAge`, `unsupportedRequest`, `payloadUnavailable`). Kaynak bir kez yüklenir.
+- Bulgu: `UserProfile.effectiveSafety` ayarsız profilde `.mostProtective` döner, hiçbir zaman nil değil. P56 güvenlik politikası taşıyan her isteği reddettiği için Codex'in C3 güvenlik desteği gelene kadar uygulamada hiçbir istek P56'ya gitmez. Güvenliği atlatan kestirme eklenmedi. Codex'e bildirildi; B7 simülatör adımı buna göre güncellendi.
+- Bilerek değişmeyen: masal yazma yolu ve seçim ekranı (B4, B5); henüz kimse yönlendiriciyi çağırmıyor.
+- Test: `StoryRuntimeRouterTests` (14 test) yazıldı, proje kuralı gereği koşulmadı; derleme yok. B7'de tek koşu.
+- Dosyalar: `StoryRuntimeRouter.swift`, `MagicPaperTests/StoryRuntimeRouterTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
 ### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B2 commit'i · P56 payload'ı uygulamayla paketleme
 
 - Ne değişti: `Content/Pilots/five-friends-56-runtime-v1/payload.json` bayt bayt `MagicPaper/StoryEngineBridge/Pilots/P56/five-friends-56-runtime-v1.p56payload.json` olarak kopyalandı (SHA-256 `28773f03…`, `P56PinnedSource.sha256` ile aynı; `cmp` eşit). Senkron klasör olduğu için pbxproj değişmedi. Yeni `P56BundledSource`: baytları okur, pinle doğrular, `Application Support/P56Sources` arşivine yazar, doğrulanmış referansı döndürür; bozuk ya da eksikse hata verir ve arşive bir şey yazmaz.

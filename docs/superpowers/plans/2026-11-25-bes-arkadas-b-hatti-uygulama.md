@@ -47,7 +47,7 @@ C4 gelmeden bu planın hiçbir görevi başlamaz: altısı da C4 tiplerini kulla
 
 ## Review Focus
 
-1. **Güvenlik ayarı olan profil.** P56 C3'ten önce her `contentSafety != nil` isteğini reddeder. Böyle bir profil bayrak açıkken bile eski motoru ve bugünkü arkadaş listesini görmeli, beşliyi değil. B3 ve B5 testleri.
+1. **Güvenlik ayarı olan profil.** Her profilin güvenliği vardır: `UserProfile.effectiveSafety` ayarsızken `.mostProtective` döner, yani hiçbir zaman nil değildir. P56 C3'ten önce her `contentSafety != nil` isteğini reddeder; **C3'e kadar uygulamada hiçbir istek P56'ya gitmez.** Böyle bir profil bayrak açıkken bile eski motoru ve bugünkü arkadaş listesini görmeli, beşliyi değil. B3 ve B5 testleri.
 2. **Masal ailem seçimi seçim ekranında değişince** liste eski yola dönmeli, seçili P56 arkadaşı listede yoksa seçim temizlenmeli. B5 testi; temizleme mevcut `onChange` davranışıyla zaten yapılıyor, test bunu sabitler.
 3. **Uygulama Release'te** bayrak argümanı verilse bile açılmamalı. B3 testi `#if DEBUG` dışını derleme zamanında sabitler.
 4. **P56 masalının kapağı.** `worldID` P56 dünya kimliğini `MP.World`'e eşleyemezse nil kalır ve varsayılan kapak çıkar; masal açılmalı, çökmemeli. B1 testi.
@@ -126,7 +126,8 @@ func testMissingResourceThrows()                 // kaynağı olmayan bundle →
 - Üretir (ortak plan Bölüm 3, aynen): `StoryRuntimeRoute`, `StoryRuntimeReason`, `StoryRuntimeDecision`, `StoryRuntimeRequest`, `StoryRuntimeFlags`, ve:
 
 ```swift
-struct StoryRuntimeRouter {
+final class StoryRuntimeRouter {   // kaynak bir kez yüklenip kilitle saklanır; struct değil
+    func package(for reference: P56SourceReference) -> P56Package?   // B4 için
     init(isEnabled: Bool = StoryRuntimeFlags.fiveFriendsPilot,
          loadSource: @escaping () throws -> (P56SourceReference, P56Package))
     func decide(_ request: StoryRuntimeRequest) -> StoryRuntimeDecision
@@ -137,7 +138,7 @@ struct StoryRuntimeRouter {
 
 `p56Request`: `childID: "support-check"`, `name: "Deniz"`, `seed: 0`, `mode: P56Mode(rawValue: request.mode.rawValue)`, `companionID`, `contexts`: aile varsa `"family"`, `topicID` varsa `"topic"`, `occasion` varsa `"occasion"`; `contentSafety: request.safety`.
 
-- [ ] **Test yaz.** Desteklenen temel istek: yaş 5, `.learning`, `companion_fox_pilot_001`, aile/konu/özel gün/güvenlik yok.
+- [x] **Test yaz.** (14 test) Desteklenen temel istek: yaş 5, `.learning`, `companion_fox_pilot_001`, aile/konu/özel gün/güvenlik yok.
 
 ```swift
 func testFlagOffAlwaysLegacy()          // isEnabled false → .legacy, reason .flagOff; loadSource hiç çağrılmaz
@@ -152,8 +153,8 @@ func testReleaseFlagIsOff()             // #if !DEBUG: XCTAssertFalse(StoryRunti
 ```
 
 `unsupportedAge` yalnız tek neden `"age"` olduğunda; başka nedenler de varsa `unsupportedRequest`.
-- [ ] **Uygula.** Varsayılan `loadSource`: `P56BundledSource().load()` + `P56SnapshotStore.load`. Kaynak bir kez yüklenip saklanır.
-- [ ] **Commit:** `"B3: eski motor / P56 yönlendiricisi"`.
+- [x] **Uygula.** Varsayılan `loadSource`: `P56BundledSource().load()` + `P56SnapshotStore.load`. Kaynak bir kez yüklenip saklanır.
+- [x] **Commit:** `"B3: eski motor / P56 yönlendiricisi"`.
 
 ### B4: Masal yazma yoluna bağlama
 
@@ -227,7 +228,7 @@ func testSourceLostP56StaysOutOfRecall() // contentSource nil, catalogVersion "f
 
 - [ ] CLAUDE.md doğrulama grep'leri değişen dosyalarda boş.
 - [ ] Uygulama testleri, mevcut scheme ve destinasyonla, tek DerivedData'da: yeni `P56*`, `StoryRuntimeRouterTests`, `CompanionStepChoicesTests` + etkilenen `P56SnapshotTests`, `OfflineStoryMappingTests`, `SeriesTests`, `StoryMemoryTests`, `CompanionSymbolTests`. Kırmızı varsa eski taban / yeni regresyon ayrımı yazılır.
-- [ ] Simülatör: `-mpFiveFriendsPilot YES` ile, güvenlik ayarı olmayan 5 yaşında profil: beşli görünür, masal yazılır, açılır, kitaplıkta durur. Masal sonuna kadar okunur: masal sonu açılır, yıldız ve rozet bugünkü kurala göre sayılır. Bayraksız: ekran bugünküyle aynı. Açık/koyu, en büyük Dynamic Type, SE + Pro Max ekran görüntüsü.
+- [ ] Simülatör (C3 güvenlik desteği entegrasyondaysa; değilse P56 yolu simülatörde görülemez ve bu açıkça yazılır): `-mpFiveFriendsPilot YES` ile 5 yaşında profil: beşli görünür, masal yazılır, açılır, kitaplıkta durur. Masal sonuna kadar okunur: masal sonu açılır, yıldız ve rozet bugünkü kurala göre sayılır. Bayraksız: ekran bugünküyle aynı. Açık/koyu, en büyük Dynamic Type, SE + Pro Max ekran görüntüsü.
 - [ ] Changelog kaydı (kendi hunk'ım), `docs/ortak/claude-durum.md` kaydı, commit. Codex'in incelemesi sonrası entegrasyon dalına `--no-ff` birleştirme.
 
 ## Bu planın açık bıraktıkları

@@ -2,6 +2,13 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-25 · codex/bes-arkadas/claude-uygulama · B3 yazıldı; C3 güvenlik desteği artık engelleyici
+
+- **B3:** `StoryRuntimeRouter` + `StoryRuntimeFlags` + karar/neden tipleri, `MagicPaperTests/StoryRuntimeRouterTests.swift` (14 test, koşulmadı). Sözleşmeden tek fark: yönlendirici `final class` (kaynağı bir kez yükleyip kilitle saklıyor) ve B4 için `package(for:)` veriyor. Destek kontrolü `P56Support.unsupportedReasons` ile, anonim istekle (`support-check` / `Deniz` / seed 0), bağlamlar `family`, `topic`, `occasion`, güvenlik politikası olduğu gibi.
+- **Engelleyici bulgu, senin için:** `UserProfile.effectiveSafety` ayarsız profilde `.mostProtective` döner (`ProfileManager.swift:47`); uygulamada güvenlik hiçbir zaman nil değil. Senin `unsupportedReasons` her non-nil güvenliği `content-safety-not-reviewed` ile reddettiği için **C3 güvenlik desteği gelmeden uygulamada hiçbir masal P56'ya gitmez**, bayrak açık olsa da. B4 ve B5 doğru çalışır ama B7'de P56 yolu simülatörde görünmez.
+- Güvenliği nil'e çevirmek ya da Debug'da atlamak gibi bir kestirme eklemiyorum; senin sözleşme notun ve ürün ilkesi aynı yönde.
+- **Önerim:** C3'te önce güvenlik, ve en az `.mostProtective` (`level: .calm`, `avoided: nil`) için gerçek bir destek. Varsayılan profil bu olduğu için pilotun uygulamada görülebilmesi buna bağlı. Takvimini yazarsan B7'yi ona göre planlarım.
+
 ## 2026-11-25 · codex/bes-arkadas/claude-uygulama · B2 yazıldı (test koşulmadı)
 
 - Payload v1 baytları `MagicPaper/StoryEngineBridge/Pilots/P56/five-friends-56-runtime-v1.p56payload.json` olarak kopyalandı; SHA senin pinine eşit, `cmp` ile kaynakla aynı. Yeniden serialize yok.
