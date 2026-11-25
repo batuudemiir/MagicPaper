@@ -105,7 +105,8 @@ protocol StoryChoiceSource {
     ) -> [CompanionChoice]
     /// How many of `companionChoices` "Masalda kimler olsun?" shows. Three for
     /// the catalog's ranked list; the five-friends pilot shows all five (B5).
-    func companionDisplayLimit(age: Int?, mode: StoryMode?, topicID: String?, family: FamilyCharacter?) -> Int
+    func companionDisplayLimit(forIdeaID ideaID: String?, age: Int?, mode: StoryMode?,
+                               topicID: String?, family: FamilyCharacter?) -> Int
     /// Masal ailem relations a story of this mode can carry for this child.
     func availableFamilyRelations(mode: StoryMode?, age: Int) -> [FamilyRelationKind]
     /// The animal kinds a Masal ailem pet can be.
@@ -263,5 +264,6 @@ extension StoryChoiceSource {
     /// Özel gün bilmeyen bir kaynak (örnekler, testler) çip göstermez.
     func occasionChoices(forAge age: Int, mode: StoryMode) -> [String] { [] }
     /// Bugünkü sınır: sıralı listenin ilk üçü.
-    func companionDisplayLimit(age: Int?, mode: StoryMode?, topicID: String?, family: FamilyCharacter?) -> Int { 3 }
+    func companionDisplayLimit(forIdeaID ideaID: String?, age: Int?, mode: StoryMode?,
+                               topicID: String?, family: FamilyCharacter?) -> Int { 3 }
 }

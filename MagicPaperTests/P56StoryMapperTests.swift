@@ -19,7 +19,7 @@ final class P56StoryMapperTests: XCTestCase {
             P56Request(childID: "test-child", name: "Deniz", age: 5, seed: seed, mode: mode))
     }
 
-    private func story(_ composed: P56ComposedStory) -> Story {
+    private func story(_ composed: P56ComposedStory) -> MagicPaper.Story {
         P56StoryMapper.story(from: composed, childProfileID: profileID, strategy: nil)
     }
 
@@ -72,7 +72,7 @@ final class P56StoryMapperTests: XCTestCase {
     func testEncodeDecodeRoundTripKeepsP56Reference() throws {
         let composed = try composed()
         let original = story(composed)
-        let decoded = try JSONDecoder().decode(Story.self, from: JSONEncoder().encode(original))
+        let decoded = try JSONDecoder().decode(MagicPaper.Story.self, from: JSONEncoder().encode(original))
         XCTAssertEqual(decoded, original)
         XCTAssertEqual(decoded.pages.map(\.text), original.pages.map(\.text))
         XCTAssertEqual(decoded.origin?.contentSource?.p56Reference, composed.sourceReference)

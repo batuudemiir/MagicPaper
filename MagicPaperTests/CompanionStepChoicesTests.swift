@@ -27,7 +27,7 @@ final class CompanionStepChoicesTests: XCTestCase {
 
     private func ids(_ source: any StoryChoiceSource, idea: String? = nil, mode: StoryMode? = .learning,
                      age: Int? = 5, topic: String? = nil, family: FamilyCharacter? = nil) -> [String] {
-        let limit = source.companionDisplayLimit(age: age, mode: mode, topicID: topic, family: family)
+        let limit = source.companionDisplayLimit(forIdeaID: idea, age: age, mode: mode, topicID: topic, family: family)
         return Array(source.companionChoices(forIdeaID: idea, mode: mode, age: age, topicID: topic, family: family)
             .prefix(limit)).map(\.id)
     }
@@ -36,14 +36,14 @@ final class CompanionStepChoicesTests: XCTestCase {
         if !StoryRuntimeFlags.fiveFriendsPilot {
             XCTAssertTrue(StoryChoiceSources.current is OfflineStoryService)
         }
-        XCTAssertEqual(base.companionDisplayLimit(age: 5, mode: .learning, topicID: nil, family: nil), 3)
+        XCTAssertEqual(base.companionDisplayLimit(forIdeaID: nil, age: 5, mode: .learning, topicID: nil, family: nil), 3)
         XCTAssertEqual(ids(source(enabled: false)), ids(base), "bayrak kapalı sarmalayıcı bugünkü listeyi verir")
     }
 
     func testP56ListsFiveInCanonicalOrder() {
         for mode in StoryMode.allCases {
             XCTAssertEqual(ids(source(), mode: mode), five, "\(mode)")
-            XCTAssertEqual(source().companionDisplayLimit(age: 5, mode: mode, topicID: nil, family: nil), 5)
+            XCTAssertEqual(source().companionDisplayLimit(forIdeaID: nil, age: 5, mode: mode, topicID: nil, family: nil), 5)
         }
     }
 
@@ -58,7 +58,7 @@ final class CompanionStepChoicesTests: XCTestCase {
     func testFamilyRestoresLegacyList() {
         let family = FamilyCharacter(childID: UUID(), name: "Ela", relation: .sibling)
         XCTAssertEqual(ids(source(), family: family), ids(base, family: family))
-        XCTAssertEqual(source().companionDisplayLimit(age: 5, mode: .learning, topicID: nil, family: family), 3)
+        XCTAssertEqual(source().companionDisplayLimit(forIdeaID: nil, age: 5, mode: .learning, topicID: nil, family: family), 3)
     }
 
     func testDefaultSafetyRestoresLegacyList() {

@@ -17,13 +17,13 @@ import StoryEngine
 struct FiveFriendsChoiceSource: StoryChoiceSource {
     private let base: any StoryChoiceSource
     private let router: StoryRuntimeRouter
-    private let safety: () -> ContentSafety?
-    private let catalogChoice: (String) -> CompanionChoice?
+    private let safety: @MainActor () -> ContentSafety?
+    private let catalogChoice: @MainActor (String) -> CompanionChoice?
 
     init(base: any StoryChoiceSource,
          router: StoryRuntimeRouter = .shared,
-         safety: @escaping () -> ContentSafety? = { OfflineStoryService.shared.currentSafety },
-         catalogChoice: @escaping (String) -> CompanionChoice? = { OfflineStoryService.shared.companionChoice(id: $0) }) {
+         safety: @escaping @MainActor () -> ContentSafety? = { OfflineStoryService.shared.currentSafety },
+         catalogChoice: @escaping @MainActor (String) -> CompanionChoice? = { OfflineStoryService.shared.companionChoice(id: $0) }) {
         self.base = base
         self.router = router
         self.safety = safety
@@ -46,9 +46,10 @@ struct FiveFriendsChoiceSource: StoryChoiceSource {
         }
     }
 
-    func companionDisplayLimit(age: Int?, mode: StoryMode?, topicID: String?, family: FamilyCharacter?) -> Int {
-        p56Package(ideaID: nil, mode: mode, age: age, topicID: topicID, family: family) == nil
-            ? base.companionDisplayLimit(age: age, mode: mode, topicID: topicID, family: family)
+    func companionDisplayLimit(forIdeaID ideaID: String?, age: Int?, mode: StoryMode?,
+                               topicID: String?, family: FamilyCharacter?) -> Int {
+        p56Package(ideaID: ideaID, mode: mode, age: age, topicID: topicID, family: family) == nil
+            ? base.companionDisplayLimit(forIdeaID: ideaID, age: age, mode: mode, topicID: topicID, family: family)
             : 5
     }
 

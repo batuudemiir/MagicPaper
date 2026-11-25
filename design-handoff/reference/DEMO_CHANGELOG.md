@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B7 commit'i · B hattı derleme, test ve simülatör sonucu
+
+- Derleme: sıfırdan `build-for-testing` (iPhone 17 Pro, iOS 27). Üç hata çıktı, üçü de B hattının kodundaydı ve düzeltildi: `FiveFriendsChoiceSource` varsayılan kapanışları `@MainActor` değildi; testlerde `Story` iki modülde birden vardı (`MagicPaper.Story` yapıldı). Sonuç: `TEST BUILD SUCCEEDED`.
+- Testler: 13 süit, 85 test → 1 hata (gerçek hata): kart seçiliyken liste eskiye dönüyor ama gösterilecek sayı 5 kalıyordu; `companionDisplayLimit` kart kimliğini almıyordu. `forIdeaID` eklendi. Düzeltilen süit + ilk koşuda yanlış adla atlanan `SeriesClockTests` ve `SeriesManagerTests`: 41 test, 0 hata. Toplam 119 farklı test, düzeltmeden sonra 0 hata; 1 atlanan test eskiden beri atlanan `OfflineStoryMappingTests` testi. P56 yolu (güvenlik testte nil) gerçekten masal yazıp kaydetti (`testP56RouteWritesAndSaves`).
+- Simülatör (iPhone 17 Pro, açık tema, demo çocuk İrem 6 yaş): bayrak kapalı ve açıkken "Maceraya çıkalım" → "Fark etmez" → "Kim gelsin?" ekranı aynı (Böğürtlen, Pati, Pıtpıt, Sürpriz); beklenen, çünkü varsayılan güvenlik `.mostProtective` ve C3 yok. Bulgu: bayrak açıkken ilk seçimde birkaç saniye donma; ikinci seferde anında. Yönlendirici 3,3 MB payload'ı ilk kararda ana iş parçacığında yüklüyor. Düzeltilmedi.
+- Yapılmayanlar: P56 yolunun simülatörde görülmesi (C3 gerekli), koyu tema, en büyük Dynamic Type, iPhone SE ve Pro Max ekran görüntüleri, tam uygulama test paketi, motor paketi testleri (B hattı motoru değiştirmedi).
+- Derleme için gitignore'lu `MagicPaper/Secrets.xcconfig` ve `MagicPaper/GoogleService-Info.plist` ana checkout'tan sembolik bağla verildi; commit'e girmedi. Disk 1,3 GB'a düştüğü için derleme klasörü (`~/MagicPaper-worktrees/dd`, 4,2 GB) silindi.
+- Dosyalar: `FiveFriendsChoiceSource.swift`, `StoryChoiceSource.swift`, `CompanionStep.swift`, `MagicPaperTests/CompanionStepChoicesTests.swift`, `MagicPaperTests/P56StoryMapperTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
 ### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B6 commit'i · P56 masalını seri ve hatırlamanın dışında tutma
 
 - Ne değişti: `StoryContextBuilder.recallHistory` P56 masallarını saymaz; yeni `isP56(_:)` kaynağa (`p56Reference`) ya da kaynak düşmüşse paket sürümüne (`five-friends-56-runtime-`) bakar. Seri tarafında kod değişmedi: `seriesAvailable` P56 kaynağında zaten `false`; testle sabitlendi.

@@ -66,7 +66,8 @@ struct CompanionStep: View {
     private var candidates: [CompanionChoice] {
         Array(source.companionChoices(forIdeaID: ideaID, mode: mode, age: age,
                                       topicID: topicID, family: selectedFamily)
-            .prefix(source.companionDisplayLimit(age: age, mode: mode, topicID: topicID, family: selectedFamily)))
+            .prefix(source.companionDisplayLimit(forIdeaID: ideaID, age: age, mode: mode,
+                                                topicID: topicID, family: selectedFamily)))
     }
 
     var body: some View {

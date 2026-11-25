@@ -226,9 +226,9 @@ func testSourceLostP56StaysOutOfRecall() // contentSource nil, catalogVersion "f
 
 ### B7: Hat sonu doğrulaması (tek koşu)
 
-- [ ] CLAUDE.md doğrulama grep'leri değişen dosyalarda boş.
-- [ ] Uygulama testleri, mevcut scheme ve destinasyonla, tek DerivedData'da: yeni `P56*`, `StoryRuntimeRouterTests`, `CompanionStepChoicesTests` + etkilenen `P56SnapshotTests`, `OfflineStoryMappingTests`, `SeriesTests`, `StoryMemoryTests`, `CompanionSymbolTests`. Kırmızı varsa eski taban / yeni regresyon ayrımı yazılır.
-- [ ] Simülatör (C3 güvenlik desteği entegrasyondaysa; değilse P56 yolu simülatörde görülemez ve bu açıkça yazılır): `-mpFiveFriendsPilot YES` ile 5 yaşında profil: beşli görünür, masal yazılır, açılır, kitaplıkta durur. Masal sonuna kadar okunur: masal sonu açılır, yıldız ve rozet bugünkü kurala göre sayılır. Bayraksız: ekran bugünküyle aynı. Açık/koyu, en büyük Dynamic Type, SE + Pro Max ekran görüntüsü.
+- [x] CLAUDE.md doğrulama grep'leri değişen dosyalarda boş.
+- [x] Uygulama testleri (25 Kasım: 119 test; ilk koşuda 1 gerçek hata, düzeltildi, yeniden koşuldu; 0 hata, 1 eski atlanan), mevcut scheme ve destinasyonla, tek DerivedData'da: yeni `P56*`, `StoryRuntimeRouterTests`, `CompanionStepChoicesTests` + etkilenen `P56SnapshotTests`, `OfflineStoryMappingTests`, `SeriesTests`, `StoryMemoryTests`, `CompanionSymbolTests`. Kırmızı varsa eski taban / yeni regresyon ayrımı yazılır.
+- [ ] (kısmen, 25 Kasım: iPhone 17 Pro, açık tema, bayrak kapalı/açık seçim ekranı; P56 yolu, koyu tema, Dynamic Type, SE/Pro Max yapılmadı) Simülatör (C3 güvenlik desteği entegrasyondaysa; değilse P56 yolu simülatörde görülemez ve bu açıkça yazılır): `-mpFiveFriendsPilot YES` ile 5 yaşında profil: beşli görünür, masal yazılır, açılır, kitaplıkta durur. Masal sonuna kadar okunur: masal sonu açılır, yıldız ve rozet bugünkü kurala göre sayılır. Bayraksız: ekran bugünküyle aynı. Açık/koyu, en büyük Dynamic Type, SE + Pro Max ekran görüntüsü.
 - [ ] Changelog kaydı (kendi hunk'ım), `docs/ortak/claude-durum.md` kaydı, commit. Codex'in incelemesi sonrası entegrasyon dalına `--no-ff` birleştirme.
 
 ## Bu planın açık bıraktıkları
