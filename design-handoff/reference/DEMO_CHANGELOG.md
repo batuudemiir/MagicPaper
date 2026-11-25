@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B4 commit'i · P56'yı masal yazma yoluna bayrakla bağlama
+
+- Ne değişti: `StoryGenerationManager.createStory` içinde, eski motor çağrısından önce tek dal. Yönlendirici P56 derse yeni `P56StoryWriter` masalı aynı bağlamdan, çocuğun gerçek adı ve kimliğiyle yazar ve `P56StoryMapper` ile kaydeder; görselli kitap bağlayıcısı atlanır. P56 yazamazsa (`composeFailed`) ya da paket yoksa (`payloadUnavailable`) aynı bağlamla eski motor yazar; seçilen arkadaş, mod, konu, aile ve güvenlik değişmez. Seçilen kart (`storyIdeaID`) varsa P56 kullanılmaz. Log'a yalnız neden kodu yazılır.
+- Bilerek değişmeyen: eski yolun kendisi (aynı satırlar, aynı sıra), seri yazımı, `OfflineStoryService`. Bayrak kapalıyken (Release'te her zaman) davranış aynı. C3 güvenlik desteği gelene kadar uygulamada P56'ya istek gitmez (varsayılan güvenlik `.mostProtective`).
+- Test: `P56CompositionPathTests` (8 test) yazıldı; P56 yolunu sınamak için test içinde güvenlik geçici olarak nil. Proje kuralı gereği koşulmadı; derleme yok. B7'de tek koşu.
+- Dosyalar: `MagicPaper/Services/StoryGenerationManager.swift`, yeni `MagicPaper/StoryEngineBridge/Pilots/P56/P56StoryWriter.swift`, `MagicPaperTests/P56CompositionPathTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
 ### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B3 commit'i · Eski motor / P56 yönlendiricisi
 
 - Ne değişti: yeni `MagicPaper/StoryEngineBridge/StoryRuntimeRouter.swift`. `StoryRuntimeFlags.fiveFriendsPilot` yalnız Debug'da `-mpFiveFriendsPilot YES` ile açılır; Release'te sabit kapalı. `StoryRuntimeRouter.decide` bayrak kapalıyken payload'a bakmadan eski motoru seçer; açıkken P56'nın destek fonksiyonuna anonim bir istekle (çocuk adı/kimliği yok, gerçek güvenlik politikası) sorar. Sonuç: `.p56(kaynak)` ya da `.legacy` + sabit neden (`flagOff`, `unsupportedAge`, `unsupportedRequest`, `payloadUnavailable`). Kaynak bir kez yüklenir.

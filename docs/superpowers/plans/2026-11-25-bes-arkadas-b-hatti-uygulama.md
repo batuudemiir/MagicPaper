@@ -162,10 +162,10 @@ func testReleaseFlagIsOff()             // #if !DEBUG: XCTAssertFalse(StoryRunti
 
 **Arayüzler:**
 - Kullanır: B1, B3, `P56InternalService`, `StoryContext`.
-- Üretir: `struct P56StoryWriter { func write(context: StoryContext, source: P56SourceReference, seed: String?, ageBand: AgeBand?) throws -> Story }`; `static func seed(from: String?) -> UInt64` (rakamsa `UInt64(s)`, değilse FNV-1a 64; nil ise `UInt64.random`).
+- Üretir: `struct P56StoryWriter { init(compose: (P56Request, P56Package) throws -> P56ComposedStory = …); func write(context: StoryContext, mode: StoryMode, strategy: StorySelectionStrategy?, safety: ContentSafety?, package: P56Package, seed: String?) throws -> Story }`; `StoryGenerationManager.lastRuntimeDecision` (yalnız neden kodu). Seçilen kart (`storyIdeaID`) varsa eski yol (`unsupportedRequest`); mod yoksa yönlendiriciye sorulmaz.; `static func seed(from: String?) -> UInt64` (rakamsa `UInt64(s)`, değilse FNV-1a 64; nil ise `UInt64.random`).
 - `StoryGenerationManager` değişikliği: `StoryRuntimeRequest`'i `context` + `service.currentSafety` + `subOption` (konu) + `occasion`'dan kurar; karar `.p56` ise `P56StoryWriter.write` ile yazar, `IllustratedBookBinder`'ı atlar, aynı `stories.insert` / `saveStories` / `MPFunnel` yolunu kullanır. Writer hata atarsa karar `composeFailed` olur ve aynı `context` ile eski yol çalışır.
 
-- [ ] **Test yaz.**
+- [x] **Test yaz.** (8 test; ek: seçilen kart ve modsuz istek eski yolda kalır)
 
 ```swift
 func testFlagOffOutputUnchanged()        // aynı seed ve bağlam: router kapalıyken üretilen Story metinleri ve origin, değişiklik öncesi yolun çıktısıyla eşit
@@ -177,7 +177,7 @@ func testSeedBridgeIsDeterministic()     // seed(from: "123") == 123; seed(from:
 ```
 
 Router ve writer `StoryGenerationManager`'a init parametresiyle verilir (varsayılan: gerçekleri); testler sahte verir.
-- [ ] **Uygula.** `StoryGenerationManager`'daki değişiklik yalnız dallanma ve bağımlılık enjeksiyonu; mevcut eski yol kodu yer değiştirmez.
+- [x] **Uygula.** `StoryGenerationManager`'daki değişiklik yalnız dallanma ve bağımlılık enjeksiyonu; mevcut eski yol kodu yer değiştirmez.
 - [ ] **Commit:** `"B4: P56'yı masal yazma yoluna bayrakla bağla"`.
 
 ### B5: "Masalda kimler olsun?"
