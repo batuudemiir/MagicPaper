@@ -359,7 +359,10 @@ final class ReadingEventTests: XCTestCase {
             UserDefaults.standard.set(savedData, forKey: "user_profiles")
             UserDefaults.standard.set(savedCurrentID, forKey: "current_profile_id")
         }
-        manager.profiles = savedProfiles + [leaving]
+        // `deleteProfile` never removes the last profile. On a fresh simulator
+        // (CI) there are no saved profiles, so a sibling stays behind.
+        let staying = UserProfile(name: "Kalan", age: 7, profileType: .child)
+        manager.profiles = savedProfiles + [staying, leaving]
 
         ReadingSessionRecorder(story: story, isSharing: { true }, companionKind: { _ in nil })
             .close(furthestPage: 2, session: read)

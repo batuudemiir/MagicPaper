@@ -42,11 +42,19 @@ final class IllustratedBookFlowTests: XCTestCase {
     /// Bu seed ormana düşüyor, böylece "avatar varsa kural A sayfaları sahne
     /// alır" iddiası yine gerçekten sınanıyor. Boşluğun kendisi
     /// `testMostAdventureSettingsHaveNoSceneYet` ile ayrıca kayıtlı.
-    private func composed(seed: String = "b2-demo-002") throws -> ComposedStory {
+    ///
+    /// 25 Kasım 2026: havuz yine büyüdü ve aynı seed bu kez çarşıya
+    /// (`setting_arched_bazaar_001`, çizimi yok) düştü. Seed'i ikinci kez
+    /// taşımak yerine varsayılan masalın mekânı ormana sabitlendi: iddia "çizimi
+    /// olan mekânda kural A sayfaları sahne alır", seed'in hangi mekâna düştüğü
+    /// değil. Seed taraması yapan testler (`forest: false`) eskisi gibi serbest.
+    private func composed(seed: String = "b2-demo-002", forest: Bool = true) throws -> ComposedStory {
         let catalog = try ContentCatalogLoader().load().catalog
         return try OfflineStoryComposer().compose(
             catalog: catalog,
-            intent: OfflineStoryIntent(childName: profile.name, seed: seed, mode: .adventure,
+            intent: OfflineStoryIntent(childName: profile.name,
+                                       settingID: forest ? ContentID("setting_forest_001") : nil,
+                                       seed: seed, mode: .adventure,
                                        ageBand: AgeBand(lowerBound: 5, upperBound: 6)))
     }
 
@@ -155,7 +163,7 @@ final class IllustratedBookFlowTests: XCTestCase {
         var bare: [String] = []
         for index in 1...40 {
             let seed = "b2-demo-\(String(format: "%03d", index))"
-            let c = try composed(seed: seed)
+            let c = try composed(seed: seed, forest: false)
             let out = await illustrate(mapped(c), c)
             if out.pages.contains(where: { $0.scene != nil }) {
                 withScenes += 1

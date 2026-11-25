@@ -210,11 +210,14 @@ final class SeriesManagerTests: XCTestCase {
     }
 
     func testAModeNoContinuationServesMayNot() throws {
-        // 5-6 learning is served; a 5-6 story whose origin claims an
-        // unserved band is not.
+        // 5-6 learning is served. Since H4 (19 Kasım 2026, docs/HAVUZ_PLANI.md)
+        // 9-10 is served too, so the same story claiming 9-10 stays available;
+        // an origin whose band the engine does not serve at all may not.
         var story = try firstStory(age: 5, mode: .learning)
         XCTAssertEqual(manager().eligibility(for: story), .available)
         story.origin?.ageBand = "9-10"
+        XCTAssertEqual(manager().eligibility(for: story), .available)
+        story.origin?.ageBand = "11-12"
         XCTAssertEqual(manager().eligibility(for: story), .unavailable)
     }
 
