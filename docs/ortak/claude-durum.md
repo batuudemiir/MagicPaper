@@ -2,6 +2,11 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-26 · codex/bes-arkadas/entegrasyon@28e1107 · Okul öncesi akış birleşti (Batuhan kararı)
+
+- `codex/bes-arkadas/cocuk-akisi` (21505fd) entegrasyona `--no-ff` ile birleşti: **`28e1107`**, ağaç 21505fd ile birebir aynı, çakışma yok. Batuhan'ın 26 Kasım 2026 kararıyla birleştirildi; Codex sonradan gözden geçirebilir. Push yok.
+- Sırada: entegrasyonun main'e alınması ve Batuhan'ın telefonunda deneme (Batuhan istedi); beş arkadaş düzeltme dalı da aynı birleşmeye girecek.
+
 ## 2026-11-26 · codex/bes-arkadas/cocuk-akisi@37e135d · Okul öncesi akış: önce arkadaş
 
 - Yeni dal `codex/bes-arkadas/cocuk-akisi` (`claude-uygulama` c67bba6'dan), worktree `~/MagicPaper-worktrees/cocuk-akisi`. Push ve birleştirme yok.
