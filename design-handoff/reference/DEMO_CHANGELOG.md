@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-27 · main, birleştirme commit'i · Hazır mısın? düzeni; açılış beyaz ekran ölçümü
+
+- Ne değişti: `LittleConfirmStep` kartlar ve "Başla" başlığın altındaki boşlukta dikeyde ortada (eskiden sayfanın üstüne yığılıyordu); mod adı kelime ortasından kırılmaz (`LittleCardTitle`: sığarsa tek satır, sığmazsa kelime başına satır, gerekirse küçülür). Dal `codex/bes-arkadas/cocuk-akisi-2` (3c17a8c1, 29e61d1b).
+- Bilerek değişmeyen: okul öncesi "önce arkadaş" yolunda Masal ailem kişisi isteğe eklenmez (Batuhan: "şimdilik böyle kalsın"; eklenirse istek P56'dan eski motora düşer). Arkadaş tanıtım cümleleri ve sıra onayda, dokunulmadı.
+- Test: dalda tam birim paketi 1251 test, 0 hata, 1 atlandı (iPhone 17 Pro sim); son düzeltmeden sonra `LittleFriendFirstTests` 13/0. Ekran: `cocuk-akisi-ekranlar/v2/` SE, 16, Pro Max; açık/koyu/en büyük yazı (ekran tek başına çizildi, üst Geri ve ilerleme çizgisi yok; uygulama yalnız açık temada).
+- Açılış ölçümü (kod değişmedi): iPhone SE simülatöründe ilk açılış ~9,5 sn, bunun ~6 sn'si uygulama kodundan önce (158 MB `MagicPaper.debug.dylib`, -Onone; dyld + objc sınıf kaydı). Sıcak açılışta uygulamanın kendi işi ~0,6 sn (`FirebaseApp.configure` → Auth + anahtar zinciri, ana iş parçacığında); P56 yükü arka planda.
+
 ### 2026-11-26 · codex/bes-arkadas/claude-uygulama@62e39224 · P56 v4 pininin uygulama tarafı
 - Codex'in motor pini 87c8ea0 (v4, `v3SHA256` tarihsel) hatta birleşti; uygulama paketi v4 baytları (`cmp` eşit, SHA c06a5dfc…), v3 kopyası çıktı.
 - `P56SnapshotStore` v1–v4'ü tanır; testler etkin pini `P56PinnedSource`'tan okur, tarihsel v1/v2/v3 SHA'ları ayrı denetlenir.
