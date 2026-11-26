@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · main@b6865885 · Karakter kartları ve masal yolu görselleri main'e; son test disk yüzünden düştü
+
+- Ne değişti: `codex/karakter-kartlari` (1b59b69b, içinde `codex/cocugun-masal-yolu-gorselleri` b6d40b4d) main'e `--no-ff` (b6865885); çakışma yalnız bu günlükte. `SpecialDayTests` yardımcısı `contentSource` taşıyor (131bf55f). v3 motor pini 024b8a5 claude-uygulama ile zaten geldi; codex-motor'un v4/Dalga işi alınmadı.
+- Test: b6865885 üzerinde tam paket derlenemedi: "No space left on device" (disk 306 MB). Son geçerli sonuç 6a725c0a'da (1242 test, 5 bilinen DesignSystemSnapshotTests + 1 SpecialDay; 44 çocuk akışı testi 0 hata). Telefona kurulum yapılmadı. Push yok.
+
 ### 2026-11-26 · main, birleştirme commit'i · claude-uygulama (v3 + kod düzeltmeleri) main'e alındı (Batuhan isteği)
 
 - Ne değişti: `codex/bes-arkadas/claude-uygulama` (9eee71b3: v3 P56 paketi uygulama tarafı + beşli kod düzeltmeleri) yerel main'e `--no-ff` ile birleşti. Batuhan: "claude-uygulama dalını yerel main'e birleştir" (26 Kasım 2026).
