@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · main, commit bu kayıtla · 5 görüntü testinin referansları yenilendi
+- `DesignSystemSnapshotTests`'te eskimiş 5 test (düğmeler, seçim satırları, kahraman kartı, durum görünümü, beş kâğıtta okuyucu sayfası) iPhone 17 Pro (iOS 27) simülatöründe yeniden kaydedildi; 13 PNG. Bölüm ve sekme başlığı referansları değişmedi.
+- Görülen fark bilinçli tasarım değişiklikleri: örneğin devre dışı düğme sıcak griden soğuk lavanta griye geçmiş. Kod değişmedi.
+- Test: kayıt koşusundan sonra doğrulama koşusu 7 test, 0 hata.
+
 ### 2026-11-26 · main@30ab1db7 · Beşli Debug'da açık; tam paket ve iPhone 16 kurulumu
 
 - Ne değişti: beş arkadaş pilotu Debug'da varsayılan açık, `-mpFiveFriendsPilot NO` kapatır, Release kapalı, birim testlerde varsayılan bugünkü akış (919835f1, yeni test `testDebugPilotIsOnByDefaultAndLaunchArgumentWins`). `LittleFriendFirstTests` claude-uygulama'nın async yükleyicisine uyarlandı (30ab1db7); birleşmeden sonra derlenmiyordu.
