@@ -451,7 +451,7 @@ struct StoryEndingLeaf: View {
 /// Masal sonunda Ragi'nin arkasından bir kez fırlayan kâğıt yıldızlar ve kâğıt
 /// parçaları. Parıltı değil, kâğıt: marka tonlarında, yerçekimiyle düşer, söner.
 /// Sonsuz değil; bir kez oynar ve çizim durur.
-private struct PaperBurst: View {
+struct PaperBurst: View {
     @State private var start = Date()
 
     private struct Piece {

@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · claude/project-thread-mk1m05 · Kitap oluşturma akışı kısaldı, ses kaydı altyapısı, hareketli "Masal yazılıyor"
+- Okul öncesi "önce arkadaş" yolu tek sayfa: Kim gelsin? → {Arkadaş} ile ne yapalım? → Kitap oluştur. Seçim yapılınca sıradaki soru altta açılır ve sayfa oraya kayar; seçimler yukarıda seçili kalır, dokunarak değişir. Geri adımı yok, sol üstte X (Batuhan, 26 Kasım 2026).
+- Konu adımı ("Nereye gidelim?", "Neyi öğrenelim?") bu yoldan kalktı: istek her zaman beşliye gider, seçilen arkadaş masalda kalır. Ebeveyn akışındaki konu adımı bilerek değişmedi.
+- "Hazır mısın?" sorusu ve "Hazırsan Başla'ya dokun." kalktı; son bölüm tek cümle ("Kestane ile maceraya çıkıyoruz!") ve "Kitap oluştur" düğmesi. "Kitap oluştur" dil kuralının yazılı istisnası (AGENTS.md, allowlist).
+- Ses: her sesli cümle `MPVoiceLine` (dosya adı + metin). `DesignSystem/Sounds/Voice/<ad>.m4a|mp3` pakette varsa o çalar, yoksa cihaz sesi. 29 satırlık liste `docs/SESLENDIRME.md` (ElevenLabs için); arkadaş tanıtımları ve sıra onay bekliyor.
+- 21 · Masal yazılıyor: arkada moda göre süzülen kâğıt yıldızlar, açılan defter kapağı, her adımda çevrilen sayfa, adım noktaları yerine yıldız yolu, dönerek gelen kapak ve gündüz bir kez kâğıt yıldız patlaması. Sıra, süre ve metin (`StoryPreparationScript`) değişmedi. Hareketi Azalt'ta hepsi durur ya da çapraz geçiş.
+- İçinde yerel main'deki iki düzeltme yeniden uygulandı (3c17a8c1 Başla ortası, 29e61d1b kelime kırılmaması); `LittleCardTitle` artık mod kartlarında.
+- Test: Linux'ta tasarım yasası denetimi temiz. Derleme ve birim testleri Mac'te koşulacak (bu kayıt yazılırken koşulmadı).
+
 ### 2026-11-26 · main, commit bu kayıtla · 5 görüntü testinin referansları yenilendi
 - `DesignSystemSnapshotTests`'te eskimiş 5 test (düğmeler, seçim satırları, kahraman kartı, durum görünümü, beş kâğıtta okuyucu sayfası) iPhone 17 Pro (iOS 27) simülatöründe yeniden kaydedildi; 13 PNG. Bölüm ve sekme başlığı referansları değişmedi.
 - Görülen fark bilinçli tasarım değişiklikleri: örneğin devre dışı düğme sıcak griden soğuk lavanta griye geçmiş. Kod değişmedi.
