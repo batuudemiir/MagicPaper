@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · main@30ab1db7 · Beşli Debug'da açık; tam paket ve iPhone 16 kurulumu
+
+- Ne değişti: beş arkadaş pilotu Debug'da varsayılan açık, `-mpFiveFriendsPilot NO` kapatır, Release kapalı, birim testlerde varsayılan bugünkü akış (919835f1, yeni test `testDebugPilotIsOnByDefaultAndLaunchArgumentWins`). `LittleFriendFirstTests` claude-uygulama'nın async yükleyicisine uyarlandı (30ab1db7); birleşmeden sonra derlenmiyordu.
+- Test: main@30ab1db7 tam birim paketi: 1251 test, 1 atlandı, 13 hata, hepsi `DesignSystemSnapshotTests`'in 5 testinde (bilinen eski görüntüler, başka oturum yeniden kaydedecek). Başka düşen yok; 44 çocuk akışı testi ve `StoryRuntimeRouterTests` geçti.
+- Debug derlemesi Batuhan'ın iPhone 16'sına kuruldu ve açıldı. Push yok. Koyu mod, en büyük yazı, SE ve Pro Max görüntüleri alınmadı.
+
 ### 2026-11-26 · main@b6865885 · Karakter kartları ve masal yolu görselleri main'e; son test disk yüzünden düştü
 
 - Ne değişti: `codex/karakter-kartlari` (1b59b69b, içinde `codex/cocugun-masal-yolu-gorselleri` b6d40b4d) main'e `--no-ff` (b6865885); çakışma yalnız bu günlükte. `SpecialDayTests` yardımcısı `contentSource` taşıyor (131bf55f). v3 motor pini 024b8a5 claude-uygulama ile zaten geldi; codex-motor'un v4/Dalga işi alınmadı.
