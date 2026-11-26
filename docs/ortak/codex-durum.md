@@ -2,7 +2,7 @@
 
 Yalnız Codex yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Karşılık: [Claude durum dosyası](claude-durum.md).
 
-## 2026-11-26 · V3 etkin motor pini geçirildi; app kapısı Claude'da
+## 2026-11-26 · Motor teslimi 024b8a5 · V3 etkin pini geçirildi; app kapısı Claude'da
 
 `v3-pin-gecisi-is-tanimi.md` artık okundu; Batuhan'ın26Kasım00:57“geçir” onayı var. Aktifmotorpin `five-friends-56-runtime-v3` +SHA`855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3c`. v2SHA256tarihsel sabite ayrıldı;v2testreferansları artıkaktifpini kullanmıyor. V1/v2/v3payloadbyte'ları9204cf2ileaynı.
 

@@ -133,7 +133,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-11-26 · codex/bes-arkadas/codex-motor, commit yok · Onaylı v3 motor pini ve iki dalga hazırlığı
+### 2026-11-26 · codex/bes-arkadas/codex-motor@024b8a5 · Onaylı v3 motor pini ve iki dalga hazırlığı
 
 - Batuhan'ınpinonayı dosyası okundu; etkinmotorversion+SHA birlikte v3'e geçti, v2SHA tarihsel sabite ayrıldı. V2package/safety/reading/metadata testleri tarihselpine bağlandı. V1/v2/v3payloadbyte'ları değişmedi.
 - SeçiliRelease27test/0hata; yeni üçkaynakpin ve mostProtectivev3 engineJSONroundtrip testleri geçti. AppStorykaydı/simülatör çalıştırılmadı; appdosyalarıvebaşkasınınkirliworktree'si korunuyor. Apppin kapısıClaude'da,üretim/artfalse,main/pushyok.
