@@ -7,11 +7,11 @@ final class P56PinTransitionTests: XCTestCase {
         URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
             .deletingLastPathComponent().deletingLastPathComponent()
     }
-    func testApprovedActiveV3AndHistoricalPinsMatchExactBytes() throws {
-        XCTAssertEqual(P56PinnedSource.packageVersion, "five-friends-56-runtime-v3")
-        XCTAssertEqual(P56PinnedSource.sha256, "855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3c")
+    func testApprovedActiveV4AndHistoricalPinsMatchExactBytes() throws {
+        XCTAssertEqual(P56PinnedSource.packageVersion, "five-friends-56-runtime-v4")
+        XCTAssertEqual(P56PinnedSource.sha256, "c06a5dfc3f586eae5d837926cab915be6b22480c20e11e02c9ea7fd5894990d6")
         let versions = [("v1", P56PinnedSource.v1SHA256), ("v2", P56PinnedSource.v2SHA256),
-                        ("v3", P56PinnedSource.sha256)]
+                        ("v3", P56PinnedSource.v3SHA256), ("v4", P56PinnedSource.sha256)]
         for (version, digest) in versions {
             let bytes = try Data(contentsOf: root.appendingPathComponent("Content/Pilots/five-friends-56-runtime-\(version)/payload.json"))
             XCTAssertEqual(P56Digest.sha256(bytes), digest)
@@ -20,7 +20,7 @@ final class P56PinTransitionTests: XCTestCase {
             XCTAssertEqual(package.sourceReference.payloadSHA256, digest)
         }
     }
-    func testApprovedV3MostProtectiveOutputRoundTripsWithItsSource() throws {
+    func testApprovedV4MostProtectiveOutputRoundTripsWithItsSource() throws {
         let bytes = try Data(contentsOf: root.appendingPathComponent("Content/Pilots/\(P56PinnedSource.packageVersion)/payload.json"))
         let package = try P56PackageLoader.load(payload: bytes, expectedSHA256: P56PinnedSource.sha256)
         let request = P56Request(childID: "pin-transition-fixture", name: "İrem", age: 6, seed: 42,

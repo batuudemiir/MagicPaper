@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 26 Kasım 2026 — Codex: V4 motor pin geçişi
+
+- Etkin pin V4; v3 ayrı geçmiş hash sabitiyle korunur. V1–V4 paket baytları değişmedi.
+- Yeniden derlenmiş Release: 7 test/0 hata. Uygulama paketleme/simülatör teslimi açıldı; üretim/görsel onayları kapalı.
+- Kanıt: docs/research/five-friends-p56-runtime/v4/pin-transition.md.
+
+
 ### 26 Kasım 2026 — Codex: V4 ikinci metin düzeltmesi
 
 - 17 kitaptaki 18 sayfa, dalga envanteri ve hash bağlı semantik/causal/C3/art çıktıları yenilendi.
