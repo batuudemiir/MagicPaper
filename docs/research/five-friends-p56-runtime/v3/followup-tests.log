@@ -1,0 +1,343 @@
+[0/1] Planning build
+Building for production...
+[0/4] Write sources
+[2/4] Write swift-version--58304C5D6DBC2206.txt
+[4/5] Compiling StoryEngine AgeBandResolver.swift
+[5/7] Compiling StoryEngineTests BeatCorpusRenderTests.swift
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/CharacterNonInventionTests.swift:35:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 33 |         let harness = OrchestratorHarness.make(pageCount: 7)
+ 34 |         let job = try await harness.orchestrator.generate(harness.request())
+ 35 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 36 | 
+ 37 |         XCTAssertFalse(story.characters.isEmpty)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/CharacterNonInventionTests.swift:140:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+138 |         let harness = OrchestratorHarness.make(pageCount: 7, fallback: inventing)
+139 |         let job = try await harness.orchestrator.generate(harness.request())
+140 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+141 | 
+142 |         let validation = try XCTUnwrap(story.validation)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/ChildSafetyPolicyTests.swift:252:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+250 |         let harness = OrchestratorHarness.make(pageCount: 7, fallback: unsafeWriter)
+251 |         let job = try await harness.orchestrator.generate(harness.request())
+252 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+253 | 
+254 |         XCTAssertEqual(story.status, .failed)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/DataLifecycleTests.swift:63:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 61 |         _ = try? await harness.orchestrator.run(jobID: queued.id)
+ 62 | 
+ 63 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: queued.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 64 |         let service = StoryDataLifecycleService(
+ 65 |             storyRepository: harness.storyRepository, jobStore: harness.jobStore
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/DataLifecycleTests.swift:140:28: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+138 |         try await service.deleteCharacter(profile.id)
+139 | 
+140 |         let survivor = try await XCTUnwrapAsync(await repository.story(id: story.id))
+    |                            `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+141 |         XCTAssertFalse(survivor.characters.isEmpty)
+142 |         XCTAssertEqual(survivor.protagonist?.displayName, "Deniz")
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/Deterministic.swift:28:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+26 |     func sleep(for duration: TimeInterval) async throws {
+27 |         try Task.checkCancellation()
+28 |         lock.lock()
+   |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+29 |         sleeps.append(duration)
+30 |         current = current.addingTimeInterval(duration)
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:15:1: note: 'lock()' declared here
+ 13 | 
+ 14 | /// Attempts to acquire a lock, blocking a thread's execution until the lock can be acquired.
+ 15 | - (void)lock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'lock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/Deterministic.swift:31:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+29 |         sleeps.append(duration)
+30 |         current = current.addingTimeInterval(duration)
+31 |         lock.unlock()
+   |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+32 |     }
+33 | 
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:18:1: note: 'unlock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+ 18 | - (void)unlock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'unlock()' declared here
+ 19 | 
+ 20 | @end
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/FakeImageValidationProvider.swift:28:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+26 | 
+27 |     func validate(image: ImageRef, context: ImageValidationContext) async throws -> ImageValidationResult {
+28 |         lock.lock()
+   |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+29 |         contexts.append(context)
+30 |         images.append(image)
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:15:1: note: 'lock()' declared here
+ 13 | 
+ 14 | /// Attempts to acquire a lock, blocking a thread's execution until the lock can be acquired.
+ 15 | - (void)lock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'lock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/FakeImageValidationProvider.swift:38:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+36 |             result = fallback
+37 |         }
+38 |         lock.unlock()
+   |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+39 | 
+40 |         if let error { throw error }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:18:1: note: 'unlock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+ 18 | - (void)unlock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'unlock()' declared here
+ 19 | 
+ 20 | @end
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/FakeProviders.swift:54:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 52 | 
+ 53 |     func complete(_ request: AICompletionRequest) async throws -> AICompletionResponse {
+ 54 |         lock.lock()
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 55 |         requests.append(request)
+ 56 |         let scripted: ScriptedResult
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:15:1: note: 'lock()' declared here
+ 13 | 
+ 14 | /// Attempts to acquire a lock, blocking a thread's execution until the lock can be acquired.
+ 15 | - (void)lock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'lock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/FakeProviders.swift:76:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 74 |             recordedAt: usageTemplate.recordedAt
+ 75 |         )
+ 76 |         lock.unlock()
+    |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 77 | 
+ 78 |         switch scripted {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:18:1: note: 'unlock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+ 18 | - (void)unlock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'unlock()' declared here
+ 19 | 
+ 20 | @end
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/FakeProviders.swift:108:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+106 | 
+107 |     func generateImage(_ request: ImageGenerationRequest) async throws -> ImageGenerationResponse {
+108 |         lock.lock()
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+109 |         requests.append(request)
+110 |         let failure = failures.isEmpty ? nil : failures.removeFirst()
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:15:1: note: 'lock()' declared here
+ 13 | 
+ 14 | /// Attempts to acquire a lock, blocking a thread's execution until the lock can be acquired.
+ 15 | - (void)lock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'lock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/FakeProviders.swift:112:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+110 |         let failure = failures.isEmpty ? nil : failures.removeFirst()
+111 |         let index = requests.count
+112 |         lock.unlock()
+    |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+113 | 
+114 |         if let failure {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:18:1: note: 'unlock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+ 18 | - (void)unlock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'unlock()' declared here
+ 19 | 
+ 20 | @end
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/ImageValidationTests.swift:64:21: warning: immutable value 'request' was never used; consider replacing with '_' or removing it [#NoUsage]
+ 62 | 
+ 63 |     func testTheValidatorIsGivenIdentitySceneAndConstraints() async throws {
+ 64 |         let (story, request, base) = try StoryFixtures.completeStory()
+    |                     `- warning: immutable value 'request' was never used; consider replacing with '_' or removing it [#NoUsage]
+ 65 |         let resolved = template(base, mode: .advisory)
+ 66 |         let provider = FakeImageValidationProvider()
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/ImageValidationTests.swift:191:21: warning: immutable value 'request' was never used; consider replacing with '_' or removing it [#NoUsage]
+189 | 
+190 |     func testAThrowingProviderIsUnavailableRatherThanPassing() async throws {
+191 |         let (story, request, base) = try StoryFixtures.completeStory()
+    |                     `- warning: immutable value 'request' was never used; consider replacing with '_' or removing it [#NoUsage]
+192 |         let resolved = template(base, mode: .required)
+193 |         let provider = FakeImageValidationProvider(
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/ImageValidationTests.swift:207:21: warning: immutable value 'request' was never used; consider replacing with '_' or removing it [#NoUsage]
+205 | 
+206 |     func testAnExhaustedBudgetLeavesTheImageUnexaminedNotApproved() async throws {
+207 |         let (story, request, base) = try StoryFixtures.completeStory()
+    |                     `- warning: immutable value 'request' was never used; consider replacing with '_' or removing it [#NoUsage]
+208 |         let resolved = template(base, mode: .required)
+209 |         let provider = FakeImageValidationProvider(fallback: .passed)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/OrchestratorTests.swift:27:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 25 |         let harness = OrchestratorHarness.make(pageCount: 7)
+ 26 |         let job = try await harness.orchestrator.generate(harness.request())
+ 27 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 28 | 
+ 29 |         XCTAssertEqual(story.pages.count, 7)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/OrchestratorTests.swift:43:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 41 |         let harness = OrchestratorHarness.make(pageCount: 9)
+ 42 |         let job = try await harness.orchestrator.generate(harness.request(pageCount: 9))
+ 43 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 44 | 
+ 45 |         XCTAssertLessThan(harness.imageProvider.callCount, story.pages.count)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/OrchestratorTests.swift:52:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 50 |         let harness = OrchestratorHarness.make(pageCount: 7)
+ 51 |         let job = try await harness.orchestrator.generate(harness.request())
+ 52 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 53 | 
+ 54 |         XCTAssertEqual(
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/OrchestratorTests.swift:122:26: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+120 | 
+121 |         _ = try? await harness.orchestrator.run(jobID: queued.id)
+122 |         let failed = try await XCTUnwrapAsync(await harness.orchestrator.job(id: queued.id))
+    |                          `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+123 |         XCTAssertEqual(failed.state, .failed)
+124 |         XCTAssertEqual(failed.failedStage, .planStory)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/OrchestratorTests.swift:138:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+136 |         let harness = OrchestratorHarness.make(pageCount: 7, imageFailures: [.permanent])
+137 |         let job = try await harness.orchestrator.generate(harness.request())
+138 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+139 | 
+140 |         XCTAssertEqual(job.state, .completed, "The rest of the book still generated")
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/OrchestratorTests.swift:154:31: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+152 |         _ = try? await harness.orchestrator.run(jobID: queued.id)
+153 | 
+154 |         let interrupted = try await XCTUnwrapAsync(await harness.orchestrator.job(id: queued.id))
+    |                               `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+155 |         XCTAssertEqual(interrupted.checkpoint, .draftNarrative)
+156 |         XCTAssertTrue(interrupted.completedStages.contains(.planStory))
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/OrchestratorTests.swift:215:29: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+213 | 
+214 |         try await harness.orchestrator.cancel(jobID: queued.id)
+215 |         let cancelled = try await XCTUnwrapAsync(await harness.orchestrator.job(id: queued.id))
+    |                             `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+216 | 
+217 |         XCTAssertEqual(cancelled.state, .cancelled)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/PartialRegenerationTests.swift:12:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 10 |         let harness = OrchestratorHarness.make(pageCount: pageCount)
+ 11 |         let job = try await harness.orchestrator.generate(harness.request(pageCount: pageCount))
+ 12 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 13 |         return (harness, story)
+ 14 |     }
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/ProvenanceTests.swift:10:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+  8 |         let harness = OrchestratorHarness.make(pageCount: pageCount)
+  9 |         let job = try await harness.orchestrator.generate(harness.request(pageCount: pageCount))
+ 10 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 11 |         return (harness, story)
+ 12 |     }
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/ProvenanceTests.swift:52:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 50 |         let request = StoryFixtures.request(pageCount: 7, seedPolicy: .salted(4_242))
+ 51 |         let job = try await harness.orchestrator.generate(request)
+ 52 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 53 | 
+ 54 |         XCTAssertNil(try XCTUnwrap(story.provenance).seed,
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/SerializationTests.swift:148:26: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+146 |         _ = try? await harness.orchestrator.run(jobID: queued.id)
+147 | 
+148 |         let stored = try await XCTUnwrapAsync(await harness.jobStore.job(id: queued.id))
+    |                          `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+149 |         let reloaded = try decoder().decode(StoryGenerationJob.self, from: encoder().encode(stored))
+150 | 
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/SerializationTests.swift:161:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+159 |         let harness = OrchestratorHarness.make(pageCount: 7)
+160 |         let job = try await harness.orchestrator.generate(harness.request())
+161 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+162 | 
+163 |         let reloaded = try decoder().decode(Story.self, from: encoder().encode(story))
+
+[#NoUsage]: <https://docs.swift.org/compiler/documentation/diagnostics/no-usage>
+[#UnnecessaryEffectMarker]: <https://docs.swift.org/compiler/documentation/diagnostics/unnecessary-effect-marker>
+[6/8] Compiling StoryEnginePackageTests runner.swift
+[6/8] Write Objects.LinkFileList
+[7/8] Linking StoryEnginePackageTests
+Build complete! (120.97s)
+Test Suite 'Selected tests' started at 2026-11-26 00:23:38.563.
+Test Suite 'StoryEnginePackageTests.xctest' started at 2026-11-26 00:23:38.575.
+Test Suite 'P56ContractTests' started at 2026-11-26 00:23:38.575.
+Test Case '-[StoryEngineTests.P56ContractTests testCanonicalCompanionsUseOnlySupportedBooks]' started.
+Test Case '-[StoryEngineTests.P56ContractTests testCanonicalCompanionsUseOnlySupportedBooks]' passed (0.581 seconds).
+Test Case '-[StoryEngineTests.P56ContractTests testSupportReasonsMatchComposerAndAreUniqueSorted]' started.
+Test Case '-[StoryEngineTests.P56ContractTests testSupportReasonsMatchComposerAndAreUniqueSorted]' passed (0.549 seconds).
+Test Suite 'P56ContractTests' passed at 2026-11-26 00:23:39.705.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 1.129 (1.130) seconds
+Test Suite 'P56SourceMetadataTests' started at 2026-11-26 00:23:39.705.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testBothRuntimeVersionsKeepTheirDistinctReferenceIdentity]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testBothRuntimeVersionsKeepTheirDistinctReferenceIdentity]' passed (0.001 seconds).
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testLegacyExtensionFieldsKeepOriginalClassification]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testLegacyExtensionFieldsKeepOriginalClassification]' passed (0.001 seconds).
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testLegacySourceNeverBackfillsP56Reference]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testLegacySourceNeverBackfillsP56Reference]' passed (0.000 seconds).
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testMalformedAndFutureSourcesRemainLosslessAndNeverResolve]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testMalformedAndFutureSourcesRemainLosslessAndNeverResolve]' passed (0.001 seconds).
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testP56RoundTripUsesOnlyExactSourceFields]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testP56RoundTripUsesOnlyExactSourceFields]' passed (0.546 seconds).
+Test Suite 'P56SourceMetadataTests' passed at 2026-11-26 00:23:40.255.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.549 (0.550) seconds
+Test Suite 'P56V3DiagnosticTests' started at 2026-11-26 00:23:40.255.
+Test Case '-[StoryEngineTests.P56V3DiagnosticTests testReportEveryPageAndBookWithoutHidingLoaderFailures]' started.
+Test Case '-[StoryEngineTests.P56V3DiagnosticTests testReportEveryPageAndBookWithoutHidingLoaderFailures]' passed (8.482 seconds).
+Test Suite 'P56V3DiagnosticTests' passed at 2026-11-26 00:23:48.737.
+	 Executed 1 test, with 0 failures (0 unexpected) in 8.482 (8.482) seconds
+Test Suite 'P56V3PackageTests' started at 2026-11-26 00:23:48.737.
+Test Case '-[StoryEngineTests.P56V3PackageTests testHistoricalPackagesRemainExplicitlyLoadable]' started.
+Test Case '-[StoryEngineTests.P56V3PackageTests testHistoricalPackagesRemainExplicitlyLoadable]' passed (3.642 seconds).
+Test Case '-[StoryEngineTests.P56V3PackageTests testV3ExactLoadAndReferenceRoundTrip]' started.
+Test Case '-[StoryEngineTests.P56V3PackageTests testV3ExactLoadAndReferenceRoundTrip]' passed (3.056 seconds).
+Test Case '-[StoryEngineTests.P56V3PackageTests testV3RejectsLineageSourceAndAuthoredCorruption]' started.
+Test Case '-[StoryEngineTests.P56V3PackageTests testV3RejectsLineageSourceAndAuthoredCorruption]' passed (53.537 seconds).
+Test Case '-[StoryEngineTests.P56V3PackageTests testV3RequiresCompleteReviewedSafetyAndNoReleaseApproval]' started.
+Test Case '-[StoryEngineTests.P56V3PackageTests testV3RequiresCompleteReviewedSafetyAndNoReleaseApproval]' passed (21.260 seconds).
+Test Suite 'P56V3PackageTests' passed at 2026-11-26 00:25:10.234.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 81.495 (81.496) seconds
+Test Suite 'StoryEnginePackageTests.xctest' passed at 2026-11-26 00:25:10.241.
+	 Executed 12 tests, with 0 failures (0 unexpected) in 91.655 (91.665) seconds
+Test Suite 'Selected tests' passed at 2026-11-26 00:25:10.241.
+	 Executed 12 tests, with 0 failures (0 unexpewarning: '--build-system native' has been deprecated and will be removed in a future release; please report an issue at https://github.com/swiftlang/swift-package-manager/issues if you are unable to adopt the default build system.
+cted) in 91.655 (91.678) seconds

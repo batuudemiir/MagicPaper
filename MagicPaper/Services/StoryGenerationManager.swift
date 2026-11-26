@@ -309,7 +309,7 @@ extension StoryGenerationManager {
         // yazar; taşıyamazsa ya da yazamazsa aynı bağlamla eski yol yazar.
         lastRuntimeDecision = nil
         if let mode {
-            var decision = runtime.decide(StoryRuntimeRequest(
+            var decision = await runtime.decide(StoryRuntimeRequest(
                 age: profile.age, mode: mode, companionID: companionID, family: family,
                 topicID: subOption, occasion: occasion?.kind.rawValue, safety: service.currentSafety))
             // Seçilen kart bir söz; P56 onu taşıyamaz.

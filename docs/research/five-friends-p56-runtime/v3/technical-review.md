@@ -1,0 +1,3 @@
+# Düzeltilmiş v3 teknik karşı incelemesi
+
+Bağımsız reviewer salt okunur olarak90kitap/720sayfada güncel girdi metinlerini veSHA'larını,720güvenlik fullquote ve book/page hash bağını,15inputdigest'i,720semantik/causal fullpagequote'u kontrol etti. Yeni engel yok; eski onay taşınmadı. Üç baykuşun p5artactionNeed'inde açık pençe tutuşu var; kanat uydurulmuyor. Etkinpinv2;art/productionfalse. Yeni diagnostiktestler630/1500gerçekbaşarı ve0sorunuassert ediyor; örnekleme gerçekloader'ın doğruladığı paketten. Reviewer testleri kendisi koşmadı;10Release/0hata rootkanıtıdır. Genel edebî/atomic/görsel/yayın kabulü verilmedi.

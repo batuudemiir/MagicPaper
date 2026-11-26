@@ -34,7 +34,7 @@ final class P56CompositionPathTests: XCTestCase {
     private func manager(enabled: Bool, writer: P56StoryWriter = P56StoryWriter()) -> StoryGenerationManager {
         let shelf = LibraryShelf(defaults: UserDefaults(suiteName: suite)!, migration: nil)
         return StoryGenerationManager(library: shelf, notifications: NotificationCenter(),
-                                      runtime: StoryRuntimeRouter(isEnabled: enabled, loadSource: { try Self.fixture.get() },
+                                      runtime: StoryRuntimeRouter(isEnabled: enabled, loadSource: { P56VerifiedSource(try Self.fixture.get()) },
                                                                   archive: nil),
                                       p56Writer: writer)
     }
@@ -118,24 +118,27 @@ final class P56CompositionPathTests: XCTestCase {
         XCTAssertNil(manager.lastRuntimeDecision)
     }
 
-    /// Codex kapısı: varsayılan profil güvenliğiyle gerçek v2 yazımı, kaydı ve geri okunması.
-    func testDefaultSafetyWritesSavesAndReopensAV2Story() async throws {
+    /// Codex kapısı: varsayılan profil güvenliğiyle gerçek etkin paket (v3) yazımı, kaydı ve geri okunması.
+    func testDefaultSafetyWritesSavesAndReopensTheActiveStory() async throws {
         OfflineStoryService.shared.currentSafety = .mostProtective
         let (reference, _) = try Self.fixture.get()
-        let router = StoryRuntimeRouter(isEnabled: true, loadSource: { try Self.fixture.get() }, archive: nil)
-        let admissible = try XCTUnwrap(["companion_fox_pilot_001", "companion_hedgehog_pilot_001", "companion_owl_pilot_001",
-                                        "companion_city_cat_001", "companion_bear_001"].first { id in
-            if case .p56 = router.decide(StoryRuntimeRequest(age: 5, mode: .learning, companionID: id, family: nil,
-                                                             topicID: nil, occasion: nil, safety: .mostProtective)).route { return true }
-            return false
-        })
+        let router = StoryRuntimeRouter(isEnabled: true, loadSource: { P56VerifiedSource(try Self.fixture.get()) }, archive: nil)
+        var writable: String?
+        for id in ["companion_fox_pilot_001", "companion_hedgehog_pilot_001", "companion_owl_pilot_001",
+                   "companion_city_cat_001", "companion_bear_001"] where writable == nil {
+            if case .p56 = await router.decide(StoryRuntimeRequest(age: 5, mode: .learning, companionID: id, family: nil,
+                                                                   topicID: nil, occasion: nil, safety: .mostProtective)).route {
+                writable = id
+            }
+        }
+        let admissible = try XCTUnwrap(writable)
         let manager = manager(enabled: true)
         let story = try await manager.createStory(for: profile, mode: .learning, storyIdeaID: nil,
                                                   companionID: admissible, seed: "42")
         XCTAssertEqual(manager.lastRuntimeDecision, StoryRuntimeDecision(route: .p56(reference), reason: nil))
-        XCTAssertEqual(story.origin?.contentSource?.p56Reference?.packageVersion, "five-friends-56-runtime-v2")
-        XCTAssertEqual(story.origin?.catalogVersion, "five-friends-56-runtime-v2")
-        XCTAssertTrue(story.pages.allSatisfy { $0.provenance?.p56?.packageVersion == "five-friends-56-runtime-v2" })
+        XCTAssertEqual(story.origin?.contentSource?.p56Reference?.packageVersion, P56PinnedSource.packageVersion)
+        XCTAssertEqual(story.origin?.catalogVersion, P56PinnedSource.packageVersion)
+        XCTAssertTrue(story.pages.allSatisfy { $0.provenance?.p56?.packageVersion == P56PinnedSource.packageVersion })
         let reopened = try JSONDecoder().decode(MagicPaper.Story.self, from: JSONEncoder().encode(story))
         XCTAssertEqual(reopened.pages.map(\.text), story.pages.map(\.text))
         XCTAssertEqual(reopened.origin?.contentSource?.p56Reference, reference)

@@ -2,12 +2,16 @@ import Foundation
 
 /// Only explicit bytes are accepted. This never searches bundles or changes the production catalog.
 public enum P56PackageLoader {
+    private struct VersionHeader: Decodable { let schemaVersion: Int; let packageVersion: String }
     public static func load(payload: Data, expectedSHA256: String) throws -> P56Package {
         guard expectedSHA256.count == 64, P56Digest.sha256(payload) == expectedSHA256 else {
             throw P56Error.integrity("payload-sha256")
         }
-        let header = try JSONDecoder().decode(P56PayloadHeader.self, from: payload)
+        let header = try JSONDecoder().decode(VersionHeader.self, from: payload)
         if header.schemaVersion == 2 {
+            if header.packageVersion == "five-friends-56-runtime-v3" {
+                return try P56V3PackageLoader.load(payload: payload, expectedSHA256: expectedSHA256)
+            }
             return try P56V2PackageLoader.load(payload: payload, expectedSHA256: expectedSHA256)
         }
         let raw = try JSONDecoder().decode(P56Payload.self, from: payload)

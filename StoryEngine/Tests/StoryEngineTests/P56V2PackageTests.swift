@@ -10,7 +10,7 @@ final class P56V2PackageTests: XCTestCase {
     }
     func testV2CoverageAndEveryExactBookAcrossTurkishNames() throws {
         let bytes = try payload()
-        let package = try P56PackageLoader.load(payload: bytes, expectedSHA256: P56PinnedSource.sha256)
+        let package = try P56PackageLoader.load(payload: bytes, expectedSHA256: P56PinnedSource.v2SHA256)
         XCTAssertEqual(package.books.count, 90)
         XCTAssertEqual(package.books.flatMap(\.pages).count, 720)
         XCTAssertEqual(package.sourceReference.packageVersion, "five-friends-56-runtime-v2")
@@ -109,7 +109,7 @@ extension P56V2PackageTests {
     }
 
     func testV2SamplerUsesOneDrawPerCellSeedAndActualSixBookCount() throws {
-        let package = try P56PackageLoader.load(payload: payload(), expectedSHA256: P56PinnedSource.sha256)
+        let package = try P56PackageLoader.load(payload: payload(), expectedSHA256: P56PinnedSource.v2SHA256)
         let report = P56Sampler.run(package: package)
         XCTAssertEqual(report.attempts, 1500)
         XCTAssertEqual(report.successes, 1500)

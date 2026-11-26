@@ -11,8 +11,8 @@ import StoryEngine
 struct P56BundledSource {
     enum SourceError: Error, Equatable { case missingResource }
 
-    /// The shipped package: the engine's pinned, active one (v2 since 25 Kasım).
-    /// v1 books stay readable from their saved pages and, if present, the archive.
+    /// The shipped package: the engine's pinned, active one (v3 since 26 Kasım; v2 on 25 Kasım).
+    /// v1 and v2 books stay readable from their saved pages and, if present, the archive.
     static let packageVersion = P56PinnedSource.packageVersion
     static let resourceName = packageVersion + ".p56payload"
 
@@ -45,7 +45,15 @@ struct P56BundledSource {
     /// archive: what a decision needs. (B7: arşive yazıp yeniden okumak 3,3 MB'ı
     /// üç kez çözüyordu.) The loader checks the pin itself.
     func loadPackage() throws -> (P56SourceReference, P56Package) {
-        let package = try P56PackageLoader.load(payload: bytes(), expectedSHA256: P56PinnedSource.sha256)
-        return (package.sourceReference, package)
+        let source = try loadVerified()
+        return (source.reference, source.package)
+    }
+
+    /// `loadPackage` plus the verified bytes, so the archive can store them
+    /// without reading or decoding the payload again (kod düzeltmeleri, 26 Kasım).
+    func loadVerified() throws -> P56VerifiedSource {
+        let payload = try bytes()
+        let package = try P56PackageLoader.load(payload: payload, expectedSHA256: P56PinnedSource.sha256)
+        return P56VerifiedSource(reference: package.sourceReference, package: package, payload: payload)
     }
 }

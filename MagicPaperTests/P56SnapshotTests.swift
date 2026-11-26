@@ -24,7 +24,9 @@ final class P56SnapshotTests: XCTestCase {
         XCTAssertEqual(try FileManager.default.contentsOfDirectory(atPath: directory.path).count, 1)
         try Data("corrupt".utf8).write(to: directory.appendingPathComponent(reference.payloadSHA256 + ".p56catalog"))
         XCTAssertThrowsError(try store.load(reference))
-        XCTAssertThrowsError(try store.save(payload: bytes, expectedSHA256: digest(bytes)))
+        // Aynı özetin doğrulanmış baytları bozuk kaydı onarır; başka içerik yerine geçmez.
+        XCTAssertEqual(try store.save(payload: bytes, expectedSHA256: digest(bytes)), reference)
+        XCTAssertEqual(try store.load(reference).sourceReference, reference)
     }
 
     func testMissingSourceAndFailedWritesNeverSubstituteCurrentContent() throws {
@@ -50,23 +52,50 @@ final class P56SnapshotTests: XCTestCase {
         let invalid = P56SourceReference(payloadSHA256: "../../escape", engineBehaviorID: "future")
         XCTAssertThrowsError(try store.load(invalid))
         XCTAssertFalse(FileManager.default.fileExists(atPath: directory.path))
-        XCTAssertFalse(P56InternalService.productionEnabled)
     }
 
-    func testInternalReplayKeepsExactSourceAndPersonalization() throws {
+    /// Kod düzeltmeleri (26 Kasım): doğrulanmış baytlar arşive yeniden çözülmeden yazılır;
+    /// yalnız özet denetlenir, sağlam kayıt yerinde kalır, bozuk kayıt yenilenir.
+    func testVerifiedBytesAreArchivedWithoutDecodingAgain() throws {
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? FileManager.default.removeItem(at: directory) }
-        let service = P56InternalService(store: P56SnapshotStore(root: directory))
+        var store = P56SnapshotStore(root: directory)
         let bytes = try payload()
-        let reference = try service.prepare(payload: bytes, expectedSHA256: digest(bytes))
-        let request = P56Request(childID: "synthetic-child", name: "Işıl", age: 5, seed: 42)
-        let draft = try service.compose(request, source: reference)
-        XCTAssertEqual(draft.sourceReference, reference)
-        XCTAssertEqual(draft, try service.compose(request, source: reference))
-        XCTAssertTrue(draft.pages.contains { $0.text.contains("Işıl") })
-        XCTAssertFalse(draft.pages.contains { $0.text.contains("Deniz") })
-        XCTAssertEqual(try FileManager.default.contentsOfDirectory(atPath: directory.path).count, 1)
-        try Data("lost".utf8).write(to: directory.appendingPathComponent(reference.payloadSHA256 + ".p56catalog"))
-        XCTAssertThrowsError(try service.compose(request, source: reference))
+        let reference = try P56PackageLoader.load(payload: bytes, expectedSHA256: digest(bytes)).sourceReference
+        try store.save(data: bytes, reference: reference)
+        XCTAssertEqual(try store.load(reference).sourceReference, reference)
+
+        var writes = 0
+        store.writeAtomically = { data, url in writes += 1; try data.write(to: url, options: .atomic) }
+        try store.save(data: bytes, reference: reference)
+        XCTAssertEqual(writes, 0, "sağlam kayıt yeniden yazılmaz")
+
+        let file = directory.appendingPathComponent(reference.payloadSHA256 + ".p56catalog")
+        try Data("corrupt".utf8).write(to: file)
+        try store.save(data: bytes, reference: reference)
+        XCTAssertEqual(writes, 1, "bozuk kayıt doğrulanmış baytlarla yenilenir")
+        XCTAssertEqual(try store.load(reference).sourceReference, reference)
+
+        var other = bytes
+        other.append(10)
+        XCTAssertThrowsError(try store.save(data: other, reference: reference), "özeti tutmayan bayt yazılmaz")
+    }
+
+    /// v3 geçişi (26 Kasım): arşiv üç sürümü de tanır; v1 ve v2 kayıtları yerinde kalır.
+    func testArchiveKeepsV1V2AndAcceptsV3() throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let store = P56SnapshotStore(root: directory)
+        let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
+        var references: [P56SourceReference] = []
+        for version in ["v1", "v2", "v3"] {
+            let bytes = try Data(contentsOf: root.appendingPathComponent("Content/Pilots/five-friends-56-runtime-\(version)/payload.json"))
+            references.append(try store.save(payload: bytes, expectedSHA256: digest(bytes)))
+        }
+        XCTAssertEqual(references.map(\.payloadSHA256),
+                       [P56PinnedSource.v1SHA256, P56PinnedSource.v2SHA256, P56PinnedSource.sha256])
+        XCTAssertEqual(references.last?.packageVersion, P56PinnedSource.packageVersion)
+        for reference in references { XCTAssertEqual(try store.load(reference).sourceReference, reference) }
+        XCTAssertEqual(try FileManager.default.contentsOfDirectory(atPath: directory.path).count, 3)
     }
 }

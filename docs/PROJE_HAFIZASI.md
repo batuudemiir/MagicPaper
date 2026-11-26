@@ -1165,3 +1165,18 @@ SağlananContentSafety bağımsızetiketlerhenüzyokken unsupported; aile/konuk/
 ### 25 Kasım 2026 · P56 runtime v2 / ContentSafety (motor hattı)
 
 C4 v1 entegrasyonda `d4cb8c1`; b099d9b dışarıda. Ayrı runtime-v2 90 kitap/720 sayfa, hücre başına 6 kitap içerir; v1 exact bayt ve tarihsel kimliği korunur. P56PinnedSource etkin packageVersion+SHA, ayrı v1SHA256 taşır. Metadata iki sürümü birbirine dönüştürmez. Kaynak bağlı sayfa/başlık güvenlik incelemesi, sağlanan ContentSafety politikasını tek seçimden önce süzer; nil avoided bütün konulardan kaçınır. Konu/aile/seri/recall henüz unsupported. Seçili Release 65 test/1 skip/0 hata; uygulama ve tam entegrasyon kapısı açık. Ölçümler ve kapsam sınırları `docs/research/five-friends-p56-runtime/v2/REPORT.md`; görsel teslim aynı klasörde art-handoff.json. Yeni teslim karşı inceleme bekler, üretim kapalıdır.
+
+
+### 26 Kasım 2026 · V3 sesli karakter metinleri — aday, etkin değil
+
+Onaylı metin girişi yeni voice-v3 korpusuna ve runtime-v3 paketine taşındı; v1/v2 snapshot baytları ve aktif pin v2 korundu. 90 başlık/720 tam sayfa yeni safety/semantik/causal/art incelemesi aldı. Loader kaynak/safety bütünlüğünü kabul etse de 171 sayfa 12–17 kelime (5–6 bütçesi 18–38), 78 kitap composer'da reddediliyor. N1500:171 başarı/1329 ageBudget/retry0; lint90/0 ve ortak sayfa30% tek başına kabul değil. Metinler değiştirilmez; kimlikli düzeltme listesi research/five-friends-p56-runtime/v3/METIN_DUZELTME_LISTESI.md. L3 bear nefes tutma editoryal karar bekler; A2owl inherited agency açıklığı var. A3 sırası Swift ile uyumlu, ilk aksi inceleme geri çekildi. V3 etkinleştirilmez; app pin değişikliği Claude'da, doğrulama geçince ayrı teslim.
+
+
+### 26 Kasım 2026 · Düzeltilmiş V3 karakter sesi metinleri — kapılar geçti, pin v2
+
+Metin sahibinin177sayfa/1başlık düzeltmesi yeni kaynak/güvenlik/semantik/causal/art hash'leriyle yeniden kuruldu. V3güncelSHA855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3c. SonRelease10/0;630fixture630başarı;N15001500başarı/0hata/0retry. Lint90/90,ortaksayfa30%,720sayfadaPython–Swiftmetrikfarkı0. Önceki171kısa sayfa,L3bearnefes tutma,A2owlkatkıengelleri kapandı. Pençeyle tutuş açık;kanat tutuşu yok. Küçük editoryal notlar raporda. Pin Batuhan onayı olmadan değişmez; etkinv2,v1/v2baytları korunur. Uygulama/bundlegeçişi ayrı;SnapshotStorev3 ve tarihselv2pin/testayrımı geçişte unutulmaz. Dalga1yeniiskelet/historyAPI ayrıteslim;buaday90kitaptır. Görsel/yayınonayı yok.
+
+
+### 26 Kasım2026 · Onaylı v3 motor pin geçişi
+
+Batuhan'ın“geçir”onayıyla etkinP56pinv3/SHA855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3c. v2SHA ayrıimmutabletarihsel sabit; eskiV2testler aktifsabittenayrıldı.27Release/0hata;v1/v2/v3byteeşitliği korundu. Appbundle/SnapshotStorev3 ve gerçekappsave/reopensimülatör kapısı Claude'da,rootbunlarıkanıtlamadı. Kullanıcısırapin→dalga1→dalga2;appkapısıbeklenirken dalga runtimekoduyok,yalnızenvanter/typedhistoryplanıvar. Kaynak:research/five-friends-p56-runtime/v3-pin/REPORT.md.

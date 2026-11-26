@@ -50,7 +50,19 @@ enum StoryRuntimeFlags {
     }
 }
 
-final class StoryRuntimeRouter {
+/// The verified payload as the loader read it: the decoded package for
+/// decisions and the exact bytes for the archive, so the archive never reads
+/// or decodes the 12 MB a second time.
+struct P56VerifiedSource {
+    let reference: P56SourceReference
+    let package: P56Package
+    let payload: Data
+}
+
+/// Thread-safe: the lock guards only the load state (idle, loading, ready);
+/// the payload is read and decoded outside it, so nobody waits on the lock
+/// while 12 MB is decoded.
+final class StoryRuntimeRouter: @unchecked Sendable {
     /// One router for the app, so the payload is read once for the selection
     /// screen (B5) and the writer (B4). Created at launch (the story library
     /// asks for it), and with the pilot flag on it starts reading the payload
@@ -65,17 +77,28 @@ final class StoryRuntimeRouter {
     /// apart from the decision: a failed archive never makes a source "known".
     enum ArchiveOutcome: String, Equatable { case archived, failed }
 
+    private typealias Loaded = Result<(P56SourceReference, P56Package), Error>
+
+    /// The only thing the lock protects (kod düzeltmeleri, 26 Kasım 2026:
+    /// kilit yükleme boyunca tutuluyordu, ana iş parçacığı 2-3 sn bekliyordu).
+    /// A failed read is `.ready(.failure)`.
+    private enum LoadState {
+        case idle
+        case loading
+        case ready(Loaded)
+    }
+
     private let isEnabled: Bool
-    private let loadSource: () throws -> (P56SourceReference, P56Package)
-    private let archive: (() throws -> Void)?
+    private let loadSource: () throws -> P56VerifiedSource
+    private let archive: ((P56VerifiedSource) throws -> Void)?
     private let lock = NSLock()
-    private var cached: Result<(P56SourceReference, P56Package), Error>?
+    private var state: LoadState = .idle
+    private var waiters: [CheckedContinuation<Void, Never>] = []
     private var archiveResult: ArchiveOutcome?
-    private var archiveStarted = false
 
     init(isEnabled: Bool = StoryRuntimeFlags.fiveFriendsPilot,
-         loadSource: @escaping () throws -> (P56SourceReference, P56Package) = StoryRuntimeRouter.bundledSource,
-         archive: (() throws -> Void)? = { _ = try P56BundledSource().load() }) {
+         loadSource: @escaping () throws -> P56VerifiedSource = StoryRuntimeRouter.bundledSource,
+         archive: ((P56VerifiedSource) throws -> Void)? = StoryRuntimeRouter.archiveBundled) {
         self.isEnabled = isEnabled
         self.loadSource = loadSource
         self.archive = archive
@@ -87,27 +110,67 @@ final class StoryRuntimeRouter {
         return archiveResult
     }
 
-    func decide(_ request: StoryRuntimeRequest) -> StoryRuntimeDecision {
-        guard isEnabled else { return StoryRuntimeDecision(route: .legacy, reason: .flagOff) }
-        guard case .success(let (reference, package)) = source() else {
+    /// True once a decision can be made without waiting: the flag is off, or
+    /// the payload has been read (or failed to read).
+    var isReady: Bool {
+        guard isEnabled else { return true }
+        return readyResult() != nil
+    }
+
+    /// The decision for a new story. Waits, without blocking the caller's
+    /// thread, for a payload read that is still running.
+    func decide(_ request: StoryRuntimeRequest) async -> StoryRuntimeDecision {
+        guard isEnabled else { return Self.flagOff }
+        await waitUntilReady()
+        guard let loaded = readyResult() else {
             return StoryRuntimeDecision(route: .legacy, reason: .payloadUnavailable)
         }
-        let reasons = P56Support.unsupportedReasons(for: Self.p56Request(for: request), package: package)
-        if reasons.isEmpty { return StoryRuntimeDecision(route: .p56(reference), reason: nil) }
-        return StoryRuntimeDecision(route: .legacy, reason: reasons == ["age"] ? .unsupportedAge : .unsupportedRequest)
+        return decision(request, loaded: loaded)
+    }
+
+    /// The decision if it can be made now; nil while the payload is still
+    /// being read (the selection screen shows the five meanwhile and asks
+    /// again). Starts the read if nothing has started it yet.
+    func decideIfReady(_ request: StoryRuntimeRequest) -> StoryRuntimeDecision? {
+        guard isEnabled else { return Self.flagOff }
+        guard let loaded = readyResult() else { prewarm(); return nil }
+        return decision(request, loaded: loaded)
     }
 
     /// Reads and verifies the payload off the main thread (B7 bulgusu: ilk
-    /// kararda 3,3 MB ana iş parçacığında okunuyordu). A decision made while
-    /// the read is still running waits for it; with the flag off nothing is read.
+    /// kararda 3,3 MB ana iş parçacığında okunuyordu). With the flag off
+    /// nothing is read; a call while a read is running or done does nothing.
     func prewarm() {
         guard isEnabled else { return }
-        DispatchQueue.global(qos: .userInitiated).async { [self] in _ = source() }
+        lock.lock()
+        guard case .idle = state else { lock.unlock(); return }
+        state = .loading
+        lock.unlock()
+        DispatchQueue.global(qos: .userInitiated).async { [self] in finishLoading() }
     }
 
-    /// The package behind a `.p56` decision, for the writer (B4).
+    /// Returns once `isReady`; starts the read if needed.
+    func waitUntilReady() async {
+        guard isEnabled else { return }
+        prewarm()
+        await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in
+            lock.lock()
+            if case .ready = state {
+                lock.unlock()
+                continuation.resume()
+            } else {
+                waiters.append(continuation)
+                lock.unlock()
+            }
+        }
+    }
+
+    /// The package behind a `.p56` decision, for the writer (B4). Never waits:
+    /// a `.p56` decision exists only after the payload is ready.
     func package(for reference: P56SourceReference) -> P56Package? {
-        guard case .success(let (cachedReference, package)) = source(), cachedReference == reference else { return nil }
+        guard case .success(let (cachedReference, package)) = readyResult(), cachedReference == reference else {
+            return nil
+        }
         return package
     }
 
@@ -123,24 +186,51 @@ final class StoryRuntimeRouter {
                           contexts: contexts, contentSafety: request.safety)
     }
 
-    static func bundledSource() throws -> (P56SourceReference, P56Package) {
-        try P56BundledSource().loadPackage()
+    static func bundledSource() throws -> P56VerifiedSource {
+        try P56BundledSource().loadVerified()
     }
 
-    private func source() -> Result<(P56SourceReference, P56Package), Error> {
-        lock.lock(); defer { lock.unlock() }
-        if let cached { return cached }
-        let result = Result { try loadSource() }
-        cached = result
-        if case .success = result, let archive, !archiveStarted {
-            archiveStarted = true
-            // Arşiv karardan bağımsız, arka planda; sonucu ayrı tutulur.
-            DispatchQueue.global(qos: .utility).async { [self] in
-                let outcome: ArchiveOutcome = (try? archive()) != nil ? .archived : .failed
-                lock.lock(); archiveResult = outcome; lock.unlock()
-                if outcome == .failed { logger.info("P56 archive: \(outcome.rawValue, privacy: .public)") }
-            }
+    /// Archives the bytes the loader already verified and decoded: a hash
+    /// check and a write, no second read or decode.
+    static func archiveBundled(_ source: P56VerifiedSource) throws {
+        try P56SnapshotStore(root: P56BundledSource.defaultStoreDirectory)
+            .save(data: source.payload, reference: source.reference)
+    }
+
+    // MARK: - Private
+
+    private static let flagOff = StoryRuntimeDecision(route: .legacy, reason: .flagOff)
+
+    private func decision(_ request: StoryRuntimeRequest, loaded: Loaded) -> StoryRuntimeDecision {
+        guard case .success(let (reference, package)) = loaded else {
+            return StoryRuntimeDecision(route: .legacy, reason: .payloadUnavailable)
         }
-        return result
+        let reasons = P56Support.unsupportedReasons(for: Self.p56Request(for: request), package: package)
+        if reasons.isEmpty { return StoryRuntimeDecision(route: .p56(reference), reason: nil) }
+        return StoryRuntimeDecision(route: .legacy, reason: reasons == ["age"] ? .unsupportedAge : .unsupportedRequest)
+    }
+
+    private func readyResult() -> Loaded? {
+        lock.lock(); defer { lock.unlock() }
+        if case .ready(let loaded) = state { return loaded }
+        return nil
+    }
+
+    /// Runs once, on a background queue; the read and decode hold no lock.
+    private func finishLoading() {
+        let verified = Result { try loadSource() }
+        lock.lock()
+        state = .ready(verified.map { ($0.reference, $0.package) })
+        let resumed = waiters
+        waiters = []
+        lock.unlock()
+        resumed.forEach { $0.resume() }
+
+        // Arşiv karardan bağımsız, aynı arka plan işinde; sonucu ayrı tutulur.
+        // Doğrulanmış baytlar arşive doğrudan gider, ikinci kez okunmaz.
+        guard case .success(let source) = verified, let archive else { return }
+        let outcome: ArchiveOutcome = (try? archive(source)) != nil ? .archived : .failed
+        lock.lock(); archiveResult = outcome; lock.unlock()
+        if outcome == .failed { logger.info("P56 archive: \(outcome.rawValue, privacy: .public)") }
     }
 }

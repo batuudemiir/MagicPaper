@@ -1,0 +1,1146 @@
+{
+  "id": "pilot56_book_l2_bear_event02_v1",
+  "title": "Böğürtlen Düşünürken",
+  "blueprintID": "pilot56_blueprint_l2_v1",
+  "planLabel": "L2",
+  "mechanismKey": "combine-viewpoints",
+  "status": "v3-approved-text-metadata-review-candidate",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "learning",
+    "arc": "editorial-learning",
+    "companionID": "companion_bear_001",
+    "settingID": "setting_whispering_forest_001",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Sakin ve güçlü; çocuğun fikrini dinler; güç cevap yerine geçmez.",
+  "physicalContract": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+  "childAgency": "Çocuk iki bakış yerini seçer, görünüşleri birleştirir; yaprağı veya örtücüyü oynatmaz.",
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "baseBookID": "pilot56_book_l2_bear_v1",
+  "variantID": "event02",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "partial_shape",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_1_v1"
+      ],
+      "text": "Deniz yerde üst üste duran yapraklar gördü. Böğürtlen yanındaydı. İki kuru yaprak, yeşil bir yaprağın ortasını örtüyordu. İki yanda ayrı yeşil uçlar görünüyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "partial_shape",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p01",
+            "sourceTextDigest": "8928b3ea2e0f8fd593e8bdca72c282fac0ceedde01091e7ee4d9ef2ab9ac4d7d",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/480",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; örtü; tüy",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz yerde üst üste duran yapraklar gördü.",
+              "İki kuru yaprak, yeşil bir yaprağın ortasını örtüyordu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "İki kuru yaprak, yeşil bir yaprağın ortasını örtüyordu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "İki kuru yaprak, yeşil bir yaprağın ortasını örtüyordu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz yerde üst üste duran yapraklar gördü. Böğürtlen yanındaydı. İki kuru yaprak, yeşil bir yaprağın ortasını örtüyordu. İki yanda ayrı yeşil uçlar görünüyordu.",
+            "evidenceSourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p01",
+            "evidenceText": "Deniz yerde üst üste duran yapraklar gördü. Böğürtlen yanındaydı. İki kuru yaprak, yeşil bir yaprağın ortasını örtüyordu. İki yanda ayrı yeşil uçlar görünüyordu.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yerde üst üste duran yapraklar gördü. Böğürtlen yanındaydı. İki kuru yaprak, yeşil bir yaprağın ortasını örtüyordu. İki yanda ayrı yeşil uçlar görünüyordu.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Deniz yerde üst üste duran yapraklar gördü.",
+          "Böğürtlen yanındaydı.",
+          "İki kuru yaprak, yeşil bir yaprağın ortasını örtüyordu.",
+          "İki yanda ayrı yeşil uçlar görünüyordu."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 2,
+      "role": "first_view",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_2_v1"
+      ],
+      "text": "Deniz yakınındaki sivri yeşil uca baktı. \"Burada bir uç görüyorum,\" dedi. Yaprağın ortası görünmüyordu. Kuru yaprakları çekmek yerine çevresine baktı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "partial_shape",
+      "stateAfter": "first_view",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p02",
+            "sourceTextDigest": "876fe3912756a0a502a65b6476974d5d040adeb7c29c5c24650d8fc118633372",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/481",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Yaprağın ortası görünmüyordu.",
+              "Kuru yaprakları çekmek yerine çevresine baktı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz yakınındaki sivri yeşil uca baktı. \"Burada bir uç görüyorum,\" dedi. Yaprağın ortası görünmüyordu. Kuru yaprakları çekmek yerine çevresine baktı.",
+            "evidenceSourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p02",
+            "evidenceText": "Deniz yakınındaki sivri yeşil uca baktı. \"Burada bir uç görüyorum,\" dedi. Yaprağın ortası görünmüyordu. Kuru yaprakları çekmek yerine çevresine baktı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yakınındaki sivri yeşil uca baktı. \"Burada bir uç görüyorum,\" dedi. Yaprağın ortası görünmüyordu. Kuru yaprakları çekmek yerine çevresine baktı.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Deniz yakınındaki sivri yeşil uca baktı.",
+          "\"Burada bir uç görüyorum,\" dedi.",
+          "Yaprağın ortası görünmüyordu.",
+          "Kuru yaprakları çekmek yerine çevresine baktı."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_second_view",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_3_v1"
+      ],
+      "text": "Böğürtlen öbür yana ağır ağır yürüdü. \"Burada bir sap var,\" dedi. Çantasından bir böğürtlen çıkardı. \"Düşünürken atıştırırım,\" dedi. Deniz kıkırdadı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "first_view",
+      "stateAfter": "friend_second_view",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p03",
+            "sourceTextDigest": "7d12ad650e8c2cdd4cf1a81075f8917f9e9d4b9be015f4281bbda37da6d069df",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/482",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak damarı/sapı; çanta/askı; böğürtlen meyvesi",
+        "propMentions": [
+          {
+            "label": "yaprak damarı/sapı",
+            "evidenceQuotes": [
+              "\"Burada bir sap var,\" dedi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "çanta/askı",
+            "evidenceQuotes": [
+              "Çantasından bir böğürtlen çıkardı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "böğürtlen meyvesi",
+            "evidenceQuotes": [
+              "Çantasından bir böğürtlen çıkardı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen öbür yana ağır ağır yürüdü. \"Burada bir sap var,\" dedi. Çantasından bir böğürtlen çıkardı. \"Düşünürken atıştırırım,\" dedi. Deniz kıkırdadı.",
+            "evidenceSourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p03",
+            "evidenceText": "Böğürtlen öbür yana ağır ağır yürüdü. \"Burada bir sap var,\" dedi. Çantasından bir böğürtlen çıkardı. \"Düşünürken atıştırırım,\" dedi. Deniz kıkırdadı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen öbür yana ağır ağır yürüdü. \"Burada bir sap var,\" dedi. Çantasından bir böğürtlen çıkardı. \"Düşünürken atıştırırım,\" dedi. Deniz kıkırdadı.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Böğürtlen öbür yana ağır ağır yürüdü.",
+          "\"Burada bir sap var,\" dedi.",
+          "Çantasından bir böğürtlen çıkardı.",
+          "\"Düşünürken atıştırırım,\" dedi.",
+          "Deniz kıkırdadı."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_repositions",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_4_v1"
+      ],
+      "text": "Deniz yaprakların çevresinden öbür yana geçti. Şimdi sapı da görebiliyordu. \"İki yana da bakacağım,\" dedi. Yapraklara hiç dokunmadı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_second_view",
+      "stateAfter": "child_repositions",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p04",
+            "sourceTextDigest": "14ad5256bc38f610d138ffa93ce21b03f143ad3794c926b8b200b170f75874e4",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/483",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; yaprak damarı/sapı",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz yaprakların çevresinden öbür yana geçti.",
+              "Yapraklara hiç dokunmadı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "yaprak damarı/sapı",
+            "evidenceQuotes": [
+              "Şimdi sapı da görebiliyordu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz yaprakların çevresinden öbür yana geçti. Şimdi sapı da görebiliyordu. \"İki yana da bakacağım,\" dedi. Yapraklara hiç dokunmadı.",
+            "evidenceSourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p04",
+            "evidenceText": "Deniz yaprakların çevresinden öbür yana geçti. Şimdi sapı da görebiliyordu. \"İki yana da bakacağım,\" dedi. Yapraklara hiç dokunmadı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yaprakların çevresinden öbür yana geçti. Şimdi sapı da görebiliyordu. \"İki yana da bakacağım,\" dedi. Yapraklara hiç dokunmadı.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Deniz yaprakların çevresinden öbür yana geçti.",
+          "Şimdi sapı da görebiliyordu.",
+          "\"İki yana da bakacağım,\" dedi.",
+          "Yapraklara hiç dokunmadı."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "compare_views",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_5_v1"
+      ],
+      "text": "Deniz sivri uçtaki damarla sapın yanındaki damarı karşılaştırdı. Aralıktan aynı çizgi görünüyordu. Böğürtlen yavaş yavaş çiğniyor, sessizce bekliyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_repositions",
+      "stateAfter": "compare_views",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p05",
+            "sourceTextDigest": "0efde65ec354074f38c9253b167b820c04b206780d63b793394be0d418adeb5b",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/484",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak damarı/sapı",
+        "propMentions": [
+          {
+            "label": "yaprak damarı/sapı",
+            "evidenceQuotes": [
+              "Deniz sivri uçtaki damarla sapın yanındaki damarı karşılaştırdı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz sivri uçtaki damarla sapın yanındaki damarı karşılaştırdı. Aralıktan aynı çizgi görünüyordu. Böğürtlen yavaş yavaş çiğniyor, sessizce bekliyordu.",
+            "evidenceSourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p05",
+            "evidenceText": "Deniz sivri uçtaki damarla sapın yanındaki damarı karşılaştırdı. Aralıktan aynı çizgi görünüyordu. Böğürtlen yavaş yavaş çiğniyor, sessizce bekliyordu.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz sivri uçtaki damarla sapın yanındaki damarı karşılaştırdı. Aralıktan aynı çizgi görünüyordu. Böğürtlen yavaş yavaş çiğniyor, sessizce bekliyordu.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Deniz sivri uçtaki damarla sapın yanındaki damarı karşılaştırdı.",
+          "Aralıktan aynı çizgi görünüyordu.",
+          "Böğürtlen yavaş yavaş çiğniyor, sessizce bekliyordu."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "child_combines",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_6_v1"
+      ],
+      "text": "Deniz iki görünüşü birleştirdi. \"Bu uçla bu sap aynı yaprağın!\" dedi. Bütün biçimi kendisi çıkarmıştı. Yaprak da yerinde kalmıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "compare_views",
+      "stateAfter": "child_combines",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p06",
+            "sourceTextDigest": "7a1a2754e4128d689fbfd03cb352a81e5dfb34784e35dc55088cb8e24e864f26",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/485",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "\"Bu uçla bu sap aynı yaprağın!\" dedi.",
+              "Yaprak da yerinde kalmıştı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz iki görünüşü birleştirdi. \"Bu uçla bu sap aynı yaprağın!\" dedi. Bütün biçimi kendisi çıkarmıştı. Yaprak da yerinde kalmıştı.",
+            "evidenceSourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p06",
+            "evidenceText": "Deniz iki görünüşü birleştirdi. \"Bu uçla bu sap aynı yaprağın!\" dedi. Bütün biçimi kendisi çıkarmıştı. Yaprak da yerinde kalmıştı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz iki görünüşü birleştirdi. \"Bu uçla bu sap aynı yaprağın!\" dedi. Bütün biçimi kendisi çıkarmıştı. Yaprak da yerinde kalmıştı.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Deniz iki görünüşü birleştirdi.",
+          "\"Bu uçla bu sap aynı yaprağın!\" dedi.",
+          "Bütün biçimi kendisi çıkarmıştı.",
+          "Yaprak da yerinde kalmıştı."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 7,
+      "role": "whole_seen",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_7_v1"
+      ],
+      "text": "Deniz biraz yana geçip aralığa yeniden baktı. Uç ve sap aynı yeşil yaprağa uzanıyordu. \"Tek yaprak!\" dedi. Böğürtlen sevinçle bir böğürtlen daha yedi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "child_combines",
+      "stateAfter": "whole_seen",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p07",
+            "sourceTextDigest": "2596217b7c27bb496f3b25b275dc4456c1ca2332ca767de988b2e12f547f5b7b",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/486",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; böğürtlen meyvesi",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Uç ve sap aynı yeşil yaprağa uzanıyordu.",
+              "\"Tek yaprak!\" dedi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "böğürtlen meyvesi",
+            "evidenceQuotes": [
+              "Böğürtlen sevinçle bir böğürtlen daha yedi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz biraz yana geçip aralığa yeniden baktı. Uç ve sap aynı yeşil yaprağa uzanıyordu. \"Tek yaprak!\" dedi. Böğürtlen sevinçle bir böğürtlen daha yedi.",
+            "evidenceSourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p07",
+            "evidenceText": "Deniz biraz yana geçip aralığa yeniden baktı. Uç ve sap aynı yeşil yaprağa uzanıyordu. \"Tek yaprak!\" dedi. Böğürtlen sevinçle bir böğürtlen daha yedi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz biraz yana geçip aralığa yeniden baktı. Uç ve sap aynı yeşil yaprağa uzanıyordu. \"Tek yaprak!\" dedi. Böğürtlen sevinçle bir böğürtlen daha yedi.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Deniz biraz yana geçip aralığa yeniden baktı.",
+          "Uç ve sap aynı yeşil yaprağa uzanıyordu.",
+          "\"Tek yaprak!\" dedi.",
+          "Böğürtlen sevinçle bir böğürtlen daha yedi."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_result",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_8_v1"
+      ],
+      "text": "Deniz patikaya döndü, yapraklar yerde kaldı. Böğürtlen yanında yürüdü. Ağzının kenarı mordu. Deniz gülerek ona yaprak gibi bir mendil uzattı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_bear_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "whole_seen",
+      "stateAfter": "closed_result",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p08",
+            "sourceTextDigest": "117c83a7f3815f7e1b38bb8dacecd69ce2efcd571878705abcae3d87ccf54e11",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/487",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_bear_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v3-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v3 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_occluded_by_leaves_v1",
+            "presence": "off-scene",
+            "states": [
+              "left-at-observation-location"
+            ]
+          }
+        ],
+        "propDescription": "mendil; yaprak",
+        "propMentions": [
+          {
+            "label": "mendil",
+            "evidenceQuotes": [
+              "Deniz gülerek ona yaprak gibi bir mendil uzattı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz patikaya döndü, yapraklar yerde kaldı.",
+              "Deniz gülerek ona yaprak gibi bir mendil uzattı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz patikaya döndü, yapraklar yerde kaldı. Böğürtlen yanında yürüdü. Ağzının kenarı mordu. Deniz gülerek ona yaprak gibi bir mendil uzattı.",
+            "evidenceSourceID": "p56_v3_pilot56_book_l2_bear_event02_v1_p08",
+            "evidenceText": "Deniz patikaya döndü, yapraklar yerde kaldı. Böğürtlen yanında yürüdü. Ağzının kenarı mordu. Deniz gülerek ona yaprak gibi bir mendil uzattı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Benzetme, şehir anısı ve koku tahmini sahneye yeni yiyecek, eşya, bina veya karakter eklemez."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v3-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz patikaya döndü, yapraklar yerde kaldı. Böğürtlen yanında yürüdü. Ağzının kenarı mordu. Deniz gülerek ona yaprak gibi bir mendil uzattı.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "poseAndActionEvidence": [
+          "Deniz patikaya döndü, yapraklar yerde kaldı.",
+          "Böğürtlen yanında yürüdü.",
+          "Ağzının kenarı mordu.",
+          "Deniz gülerek ona yaprak gibi bir mendil uzattı."
+        ],
+        "doNotDraw": [
+          "Benzetme, şehir anısı ve koku tahmini sahneye yeni yiyecek, eşya, bina veya karakter eklemez.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    }
+  ],
+  "sourceBookID": "pilot56_book_l2_bear_event02_v1"
+}
