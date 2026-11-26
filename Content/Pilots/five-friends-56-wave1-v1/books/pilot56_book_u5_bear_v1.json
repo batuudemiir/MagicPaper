@@ -25,11 +25,11 @@
       "\"Resmine bir böğürtlen çizer misin?\" diye sordu Böğürtlen. \"Mor boya benden.\" Mor lekeli patisini gösterdi. Deniz’in yanakları gülümsemeyle kabardı. Böğürtlen patisini salladı. Mor kalem fikri ona çok komik gelmişti.",
       "\"Gerisi sabahı beklesin,\" dedi Deniz. Ağaç da kozalaklar da kaçmayacaktı. Böğürtlen kocaman esnedi. Deniz tek bir planla yatmanın ne rahat olduğunu fark etti.",
       "Böğürtlen yanına döndü. Alçak sesle bir ninni mırıldandı. Hım hım… Deniz’in gözleri ağırlaştı. Oda yumuşak ve sıcacıktı. Ninni yavaşça odayı doldurdu.",
-      "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Yarın resim vardı, şimdi uyku. Ayının ninnisi yavaşça sustu."
+      "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Resim seçilmişti, şimdi uyku vaktiydi. Ayının ninnisi yavaşça sustu."
     ],
     "sourceBookID": "pilot56_book_u5_bear_v1"
   },
-  "inputFileSHA256": "f59885cb291ebf2e69dc6d07630b7c7d34fafee4be0ed255494206b11e00eb1e",
+  "inputFileSHA256": "52c1780af3a8ba3eab7f8cc46a14662c7d930f1cfeec199e28bbd9c7f272abc6",
   "inputBookPointer": "input/bedtime-bear.json#/books/3",
   "pages": [
     {
@@ -818,7 +818,7 @@
       ],
       "semantics": {
         "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-        "metadataRevision": 1,
+        "metadataRevision": 2,
         "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
         "subjects": [
           {
@@ -845,34 +845,47 @@
             ]
           }
         ],
-        "propDescription": "No newly named prop on this page; preserve book context.",
-        "propMentions": [],
+        "propDescription": "seçilmiş resim planı: fiziksel çizim değil; ninni: ses, nesne değil",
+        "propMentions": [
+          {
+            "label": "seçilmiş resim planı: fiziksel çizim değil",
+            "evidenceQuotes": [
+              "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Resim seçilmişti, şimdi uyku vaktiydi. Ayının ninnisi yavaşça sustu."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          },
+          {
+            "label": "ninni: ses, nesne değil",
+            "evidenceQuotes": [
+              "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Resim seçilmişti, şimdi uyku vaktiydi. Ayının ninnisi yavaşça sustu."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          }
+        ],
         "actions": [
           {
             "actorSubjectIDs": [
               "pilot56_synthetic_child_deniz",
               "companion_bear_001"
             ],
-            "description": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Yarın resim vardı, şimdi uyku. Ayının ninnisi yavaşça sustu.",
+            "description": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Resim seçilmişti, şimdi uyku vaktiydi. Ayının ninnisi yavaşça sustu.",
             "evidenceSourceID": "p56_wave1_pilot56_book_u5_bear_v1_p08",
-            "evidenceText": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Yarın resim vardı, şimdi uyku. Ayının ninnisi yavaşça sustu.",
+            "evidenceText": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Resim seçilmişti, şimdi uyku vaktiydi. Ayının ninnisi yavaşça sustu.",
             "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
       },
       "artHandoff": {
         "contentMeaningStatus": "source-grounded-wave-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Yarın resim vardı, şimdi uyku. Ayının ninnisi yavaşça sustu.",
+        "actionNeed": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Resim seçilmişti, şimdi uyku vaktiydi. Ayının ninnisi yavaşça sustu.",
         "poseAndActionEvidence": [
-          "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen.",
-          "Deniz’in gözleri kapandı.",
-          "Yarın resim vardı, şimdi uyku.",
-          "Ayının ninnisi yavaşça sustu."
+          "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Resim seçilmişti, şimdi uyku vaktiydi. Ayının ninnisi yavaşça sustu."
         ],
         "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
         "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
@@ -885,18 +898,18 @@
       "intensity": 0,
       "causalEvidence": {
         "actorID": "child",
-        "quote": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Yarın resim vardı, şimdi uyku. Ayının ninnisi yavaşça sustu.",
+        "quote": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Resim seçilmişti, şimdi uyku vaktiydi. Ayının ninnisi yavaşça sustu.",
         "attributionQuote": "Deniz",
         "attributionPageNumber": 8,
         "kind": "sourceStatement",
         "parentSourceID": "p56_wave1_pilot56_book_u5_bear_v1_p08",
         "attributionSourceID": "p56_wave1_pilot56_book_u5_bear_v1_p08",
-        "quoteSHA256": "014989240a09c040260484d42a95ec87789d4d666742e34453de150dc10e9195",
+        "quoteSHA256": "0df7085a76f46eefca2e007ff8523da94f1517288bc520349a545264dc894673",
         "bookID": "pilot56_book_u5_bear_v1",
         "pageNumber": 8
       },
-      "sourceSHA256UTF8": "014989240a09c040260484d42a95ec87789d4d666742e34453de150dc10e9195",
-      "text": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Yarın resim vardı, şimdi uyku. Ayının ninnisi yavaşça sustu.",
+      "sourceSHA256UTF8": "0df7085a76f46eefca2e007ff8523da94f1517288bc520349a545264dc894673",
+      "text": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri kapandı. Resim seçilmişti, şimdi uyku vaktiydi. Ayının ninnisi yavaşça sustu.",
       "sourceID": "p56_wave1_pilot56_book_u5_bear_v1_p08",
       "sourcePointer": "input/bedtime-bear.json#/books/3/pages/7"
     }

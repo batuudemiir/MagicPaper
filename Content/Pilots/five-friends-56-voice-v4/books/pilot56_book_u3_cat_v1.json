@@ -979,7 +979,7 @@
       "orderedBeatIDs": [
         "pilot56_beat_u3_8_v1"
       ],
-      "text": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in gözleri kapandı. Gölge gündüzde kaldı. Akşam burada, bu odada sakince bitti.",
+      "text": "Simit, Deniz’in ayak ucunda kıvrılıp yumuşakça mırladı. Deniz’in gözleri kapandı. Gölge gündüzde kaldı. Akşam burada, bu odada sakince bitti.",
       "context": {
         "ageBand": "5-6",
         "mode": "bedtime",
@@ -1008,7 +1008,7 @@
             "order": 0,
             "sourceKind": "pilotAuthoredFullPage",
             "sourceID": "p56_v4_pilot56_book_u3_cat_v1_p08",
-            "sourceTextDigest": "e9de43d161e8d4d29126ba1573c36e75abd2798c77554af0e797e12fa12ba909",
+            "sourceTextDigest": "6a4c4a6ae7a313ac3e168809d24239d3908c9d0c4abeccfcd745cf1264883d01",
             "templateID": "pilot56_blueprint_u3_v1",
             "sourcePointer": "sources.json#/sources/79",
             "contexts": {
@@ -1034,7 +1034,7 @@
       "semantics": {
         "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
         "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
-        "metadataRevision": 3,
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -1060,14 +1060,21 @@
             ]
           }
         ],
-        "propDescription": "gölge",
+        "propDescription": "ayakucu; gündüzde kalan gölge: hatırlanan, odada fiziksel değil",
         "propMentions": [
           {
-            "label": "gölge",
+            "label": "ayakucu",
             "evidenceQuotes": [
-              "Gölge gündüzde kaldı."
+              "Simit, Deniz’in ayak ucunda kıvrılıp yumuşakça mırladı. Deniz’in gözleri kapandı. Gölge gündüzde kaldı. Akşam burada, bu odada sakince bitti."
             ],
-            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          },
+          {
+            "label": "gündüzde kalan gölge: hatırlanan, odada fiziksel değil",
+            "evidenceQuotes": [
+              "Simit, Deniz’in ayak ucunda kıvrılıp yumuşakça mırladı. Deniz’in gözleri kapandı. Gölge gündüzde kaldı. Akşam burada, bu odada sakince bitti."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           }
         ],
         "actions": [
@@ -1076,28 +1083,26 @@
               "pilot56_synthetic_child_deniz",
               "companion_city_cat_001"
             ],
-            "description": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in gözleri kapandı. Gölge gündüzde kaldı. Akşam burada, bu odada sakince bitti.",
+            "description": "Simit, Deniz’in ayak ucunda kıvrılıp yumuşakça mırladı. Deniz’in gözleri kapandı. Gölge gündüzde kaldı. Akşam burada, bu odada sakince bitti.",
             "evidenceSourceID": "p56_v4_pilot56_book_u3_cat_v1_p08",
-            "evidenceText": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in gözleri kapandı. Gölge gündüzde kaldı. Akşam burada, bu odada sakince bitti.",
+            "evidenceText": "Simit, Deniz’in ayak ucunda kıvrılıp yumuşakça mırladı. Deniz’in gözleri kapandı. Gölge gündüzde kaldı. Akşam burada, bu odada sakince bitti.",
             "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir."
+        "temporalNote": "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
       },
       "artHandoff": {
         "contentMeaningStatus": "v4-source-grounded-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in gözleri kapandı. Gölge gündüzde kaldı. Akşam burada, bu odada sakince bitti.",
+        "actionNeed": "Simit, Deniz’in ayak ucunda kıvrılıp yumuşakça mırladı. Deniz’in gözleri kapandı. Gölge gündüzde kaldı. Akşam burada, bu odada sakince bitti.",
         "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
         "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
         "poseAndActionEvidence": [
-          "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit.",
-          "Deniz’in gözleri kapandı.",
-          "Gölge gündüzde kaldı.",
-          "Akşam burada, bu odada sakince bitti."
+          "Simit, Deniz’in ayak ucunda kıvrılıp yumuşakça mırladı. Deniz’in gözleri kapandı. Gölge gündüzde kaldı. Akşam burada, bu odada sakince bitti."
         ],
         "doNotDraw": [
           "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir.",

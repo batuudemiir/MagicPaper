@@ -25,11 +25,11 @@
       "Simit zilini patisiyle tuttu. Damlaları Deniz gibi yavaş saydı. Kuyruğu her nefeste bir kıvrıldı. Deniz’in dudakları usulca kıvrıldı. Simit’in zili tın etti. Zil artık hiç ses çıkarmıyordu.",
       "Deniz saymayı bıraktı. Yağmur cama vurmaya devam etti. Simit de pervazdan inip yanına kıvrıldı. Deniz artık yalnız dinliyordu. Yağmur usul bir ninni söylüyordu.",
       "Simit cama sırtını döndü. Kuyruğunu burnuna doladı. Yağmur davulu sürüyordu, ama Simit artık yalnız dinliyordu. Gözleri yavaş yavaş kapanıyordu.",
-      "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in gözleri usulca kapandı. Yağmur camda yavaş bir ninni oldu. Kedi de kuyruğunu burnuna doladı."
+      "\"Uyu bakalım, Deniz,\" diye mırladı Simit. Deniz’in gözleri usulca kapandı. Yağmur camda yavaş bir ninni oldu. Kedi de kuyruğunu burnuna doladı."
     ],
     "sourceBookID": "pilot56_book_u4_cat_v1"
   },
-  "inputFileSHA256": "c18255861f6fc12514d55ddd8ad703c13fe41296db63331646230220f40b2ff6",
+  "inputFileSHA256": "b26e92d58b841e1da810e75abb5f80160d7fa3e9b5247e86f3023e4cb3075b35",
   "inputBookPointer": "input/bedtime-cat.json#/books/0",
   "pages": [
     {
@@ -784,7 +784,7 @@
       ],
       "semantics": {
         "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-        "metadataRevision": 1,
+        "metadataRevision": 2,
         "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
         "subjects": [
           {
@@ -804,14 +804,14 @@
             ]
           }
         ],
-        "propDescription": "yağmur/cam/oluk",
+        "propDescription": "camdaki yağmur; ninni ses benzetmesidir",
         "propMentions": [
           {
-            "label": "yağmur/cam/oluk",
+            "label": "camdaki yağmur; ninni ses benzetmesidir",
             "evidenceQuotes": [
-              "Yağmur camda yavaş bir ninni oldu."
+              "\"Uyu bakalım, Deniz,\" diye mırladı Simit. Deniz’in gözleri usulca kapandı. Yağmur camda yavaş bir ninni oldu. Kedi de kuyruğunu burnuna doladı."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           }
         ],
         "actions": [
@@ -820,26 +820,24 @@
               "pilot56_synthetic_child_deniz",
               "companion_city_cat_001"
             ],
-            "description": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in gözleri usulca kapandı. Yağmur camda yavaş bir ninni oldu. Kedi de kuyruğunu burnuna doladı.",
+            "description": "\"Uyu bakalım, Deniz,\" diye mırladı Simit. Deniz’in gözleri usulca kapandı. Yağmur camda yavaş bir ninni oldu. Kedi de kuyruğunu burnuna doladı.",
             "evidenceSourceID": "p56_wave1_pilot56_book_u4_cat_v1_p08",
-            "evidenceText": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in gözleri usulca kapandı. Yağmur camda yavaş bir ninni oldu. Kedi de kuyruğunu burnuna doladı.",
+            "evidenceText": "\"Uyu bakalım, Deniz,\" diye mırladı Simit. Deniz’in gözleri usulca kapandı. Yağmur camda yavaş bir ninni oldu. Kedi de kuyruğunu burnuna doladı.",
             "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
       },
       "artHandoff": {
         "contentMeaningStatus": "source-grounded-wave-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in gözleri usulca kapandı. Yağmur camda yavaş bir ninni oldu. Kedi de kuyruğunu burnuna doladı.",
+        "actionNeed": "\"Uyu bakalım, Deniz,\" diye mırladı Simit. Deniz’in gözleri usulca kapandı. Yağmur camda yavaş bir ninni oldu. Kedi de kuyruğunu burnuna doladı.",
         "poseAndActionEvidence": [
-          "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit.",
-          "Deniz’in gözleri usulca kapandı.",
-          "Yağmur camda yavaş bir ninni oldu.",
-          "Kedi de kuyruğunu burnuna doladı."
+          "\"Uyu bakalım, Deniz,\" diye mırladı Simit. Deniz’in gözleri usulca kapandı. Yağmur camda yavaş bir ninni oldu. Kedi de kuyruğunu burnuna doladı."
         ],
         "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
         "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
@@ -852,18 +850,18 @@
       "intensity": 0,
       "causalEvidence": {
         "actorID": "child",
-        "quote": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in gözleri usulca kapandı. Yağmur camda yavaş bir ninni oldu. Kedi de kuyruğunu burnuna doladı.",
+        "quote": "\"Uyu bakalım, Deniz,\" diye mırladı Simit. Deniz’in gözleri usulca kapandı. Yağmur camda yavaş bir ninni oldu. Kedi de kuyruğunu burnuna doladı.",
         "attributionQuote": "Deniz",
         "attributionPageNumber": 8,
         "kind": "sourceStatement",
         "parentSourceID": "p56_wave1_pilot56_book_u4_cat_v1_p08",
         "attributionSourceID": "p56_wave1_pilot56_book_u4_cat_v1_p08",
-        "quoteSHA256": "4c85e1a44d51b353ffd0ec8ad196591e5e81e8544b31407f9bda429d88ba711a",
+        "quoteSHA256": "cc70c745204bab1761dfb89a4c3d80a0de7ca74bed2e2cdd8b73951cf42bd508",
         "bookID": "pilot56_book_u4_cat_v1",
         "pageNumber": 8
       },
-      "sourceSHA256UTF8": "4c85e1a44d51b353ffd0ec8ad196591e5e81e8544b31407f9bda429d88ba711a",
-      "text": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in gözleri usulca kapandı. Yağmur camda yavaş bir ninni oldu. Kedi de kuyruğunu burnuna doladı.",
+      "sourceSHA256UTF8": "cc70c745204bab1761dfb89a4c3d80a0de7ca74bed2e2cdd8b73951cf42bd508",
+      "text": "\"Uyu bakalım, Deniz,\" diye mırladı Simit. Deniz’in gözleri usulca kapandı. Yağmur camda yavaş bir ninni oldu. Kedi de kuyruğunu burnuna doladı.",
       "sourceID": "p56_wave1_pilot56_book_u4_cat_v1_p08",
       "sourcePointer": "input/bedtime-cat.json#/books/0/pages/7"
     }

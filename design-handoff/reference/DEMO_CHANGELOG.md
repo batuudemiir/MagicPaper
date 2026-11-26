@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 26 Kasım 2026 — Codex: V4 ikinci metin düzeltmesi
+
+- 17 kitaptaki 18 sayfa, dalga envanteri ve hash bağlı semantik/causal/C3/art çıktıları yenilendi.
+- V4 630/630, N1500 1500/1500, Release 15 test/0 hata. Pin v3; eski paket baytları korunur, üretim/görsel kapalı. Dalga runtime kabulü beklemede.
+- Kanıt: docs/research/five-friends-p56-runtime/v4/REPORT.md.
+
+
 ### 2026-11-26 · codex/bes-arkadas/codex-motor, commit yok · V4 aday ve270güncel metin denetimi
 
 - V4yeni90kitaplık korpus/runtime/strictloader/metadatahazırlandı;v1/v2/v3byteveetkinpinv3korundu. İki dalga180kitap için authoring-onlykorpuslar ve güncelkaynakenvanteri üretildi;waveengine/typed/recencyuygulanmadı.

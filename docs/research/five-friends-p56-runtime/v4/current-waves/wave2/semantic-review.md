@@ -1,21 +1,11 @@
-# Wave 2 semantic and art review
+# wave2 revision2 source review
 
-Canonical 90 books / 720 pages reviewed. 4 blockers; 3 editorial/art concerns. Source prose unchanged. Raw pageMoves and mechanism retained; typedContractApproved=false, runtimeApproval=false, artApproved=false. No wave runtime delivery authorized.
+Revision2 delta review by root:18 changed pages and all8current pages of17affected books read; unchanged253books reused only with byte-identical title/pages and unchanged context. Source notes/book identities unchanged. No prose edits; no runtime/art approval.
 
-Canonical 15 source filenames only. All 90 books/720 pages read in page order; exact repeated sentences displayed once. Whole-book sequence retained for prop ownership/time. Every evidence/action/prop quote freshly extracted from current canonical sources. No prior annotation JSON copied. Raw structure pageMoves retained; no P56 typed compile claimed.
+Current changes:9pages. Known prior blockers resolved by the reviewed corrections; other minor editorial/constraint notes remain. Waves remain authoring-only, no typed/runtime approval.
 
-All actions/causal spans are exact full-page context, not executable atomized labels. Imagined U9 places remain mental scenes while room actors stay physically in the room. Wildlife is independent background life, never a sixth selectable friend; A9 crossings are self-propelled. Explicit sleep in source remains explicit in raw wave annotation; body/toy-sleep metaphors and half-closed eyes are not promoted to actual sleep.
+## Retained non-blocking editorial notes
 
-## Findings
-
-- **blocker** `pilot56_book_l8_cat_event02_v1` p6 `missing-bell-rings-before-recovered`: p1 bell missing; p6 bell makes sound, p7 found, p8 reattached. Do not silently restore bell early. Quote: Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. "Bu izler dereye gitmiş!" dedi. Yönü kendi izleriyle bulmuştu. Simit’in zili minik bir ses çıkardı.
-- **blocker** `pilot56_book_l9_bear_event03_v1` p6 `three-small-cones-called-two`: p2 one small cone each side; p4 replace one with large; p5 add one small to opposite existing small; p6 add another => three small cones, but conclusion says one large equals two small. Causal quantity needs source decision. Quote: Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallanıp ortada durdu. "Bir büyük, iki küçüğe denk!" dedi. Böğürtlen gururla başını salladı.
-- **blocker** `pilot56_book_l9_hedgehog_event03_v1` p6 `three-small-cones-called-two`: p2 one small cone each side; p4 replace one with large; p5 add one small to opposite existing small; p6 add another => three small cones, but conclusion says one large equals two small. Causal quantity needs source decision. Quote: Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. "Bir büyük, iki küçüğe denk!" dedi. Kestane küçük bir dans etti.
-- **blocker** `pilot56_book_l9_owl_event03_v1` p6 `three-small-cones-called-two`: p2 one small cone each side; p4 replace one with large; p5 add one small to opposite existing small; p6 add another => three small cones, but conclusion says one large equals two small. Causal quantity needs source decision. Quote: Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. "Bir büyük, iki küçüğe denk!" dedi. Bunu kendi denemesiyle bulmuştu.
-- **concern** `pilot56_book_a9_hedgehog_event03_v1` p4 `leaf-delivery-before-explicit-wake`: p3 Kestane falls asleep; p4 brings leaf; p5 says wakes and places signature leaf. Awakening order needs continuity decision. Quote: Deniz salyangoza dokunmadı. Geniş, ıslak bir yaprak buldu. "Bununla serin bir yol yaparım," dedi. Yaprağı salyangozun önüne koydu. Kestane bir yaprak daha getirdi.
-- **concern** `pilot56_book_a8_fox_event02_v1` p8 `bottle-not-accounted-for`: p2 water bottle included; p5 fox carries pillow; p6 child blanket+plates; p7 delivery; p8 says nothing left. Bottle transport omitted; do not add unstated carried prop to action. Quote: Tarçın yastığı kokladı. "Bu yastık piknik kokuyor," dedi. Deniz başını yana eğip gülümsedi. Tarçın da kuyruğunu salladı. Her şey eve gelmiş, hiçbir şey çayırda kalmamıştı.
-- **art-note** `pilot56_book_u9_owl_event02_v1` p1 `actual-snow-and-imaginary-snow-distinct`: p1 explicitly real snow outside room; p4–p6 child imagines snowy window. Both domains exist; keep real window weather separate from mental scene. Quote: Ağaç Ev Odası’nda kış akşamıydı, pencereye kar yağıyordu. Deniz yorganın altına girdi. Yıldız tavana yakın tüneğindeydi. Koyu mavi tüyleri gölgelere karışıyordu. Gözleri yuvarlak ve parlaktı.
-
-## Work boundaries
-
-No source prose, repository code, tests, builds or commits changed/run. SHA/pointer/package integration belongs to lead. Canonical files only; stale “ 2.json” copies excluded. Delivered wave2 is reviewed as delivered; no claim is made that delivered wave2 contained breath-holding.
+- pilot56_book_a9_hedgehog_event03_v1 p4: p3 Kestane falls asleep; p4 brings leaf; p5 says wakes and places signature leaf. Awakening order needs continuity decision.
+- pilot56_book_a8_fox_event02_v1 p8: p2 water bottle included; p5 fox carries pillow; p6 child blanket+plates; p7 delivery; p8 says nothing left. Bottle transport omitted; do not add unstated carried prop to action.
+- pilot56_book_u9_owl_event02_v1 p1: p1 explicitly real snow outside room; p4–p6 child imagines snowy window. Both domains exist; keep real window weather separate from mental scene.

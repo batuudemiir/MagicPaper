@@ -25,11 +25,11 @@
       "\"Saklambaçta iyiyim,\" dedi Yıldız. \"Ama yarın gündüz uyuyacağım.\" Deniz’in gözleri parladı. Yıldız’ın tüyleri kabardı. \"O zaman akşam oynarız.\" Yıldız memnun memnun öttü.",
       "\"Top da ip de sabaha kalsın,\" dedi Deniz. Yıldız tüylerini düzeltti. Şimdi yalnız bir plan vardı. Deniz planı yastığının altına koymuş gibi rahatladı.",
       "Yıldız kanatlarını gövdesine çekti. Yuvarlak bir top gibi oldu. Deniz de örtüsünün altına girdi. Dışarıda rüzgâr yaprakları hışırdattı. Yıldız'ın gözleri yavaşça kapandı.",
-      "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Yarın saklambaç vardı, şimdi uyku. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi."
+      "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Saklambaç seçilmişti, şimdi uyku vaktiydi. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi."
     ],
     "sourceBookID": "pilot56_book_u5_owl_event02_v1"
   },
-  "inputFileSHA256": "238ff5981f611da0185340e11380bf9188cd0a77e35069ffeb59cd17a1c61765",
+  "inputFileSHA256": "a7dc771d69f2fe43e953b6f2452e61ba64c5c28b225266108dcc1ae72966ec2f",
   "inputBookPointer": "input/bedtime-owl.json#/books/1",
   "pages": [
     {
@@ -847,7 +847,7 @@
       ],
       "semantics": {
         "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-        "metadataRevision": 1,
+        "metadataRevision": 2,
         "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
         "subjects": [
           {
@@ -874,21 +874,21 @@
             ]
           }
         ],
-        "propDescription": "tünek; lamba/fener/ışık",
+        "propDescription": "tünek; karanlık oda",
         "propMentions": [
           {
             "label": "tünek",
             "evidenceQuotes": [
-              "Yıldız tüneğinde hafifçe sallandı."
+              "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Saklambaç seçilmişti, şimdi uyku vaktiydi. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           },
           {
-            "label": "lamba/fener/ışık",
+            "label": "karanlık oda",
             "evidenceQuotes": [
-              "Yarın saklambaç vardı, şimdi uyku."
+              "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Saklambaç seçilmişti, şimdi uyku vaktiydi. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           }
         ],
         "actions": [
@@ -897,27 +897,24 @@
               "pilot56_synthetic_child_deniz",
               "companion_owl_pilot_001"
             ],
-            "description": "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Yarın saklambaç vardı, şimdi uyku. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi.",
+            "description": "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Saklambaç seçilmişti, şimdi uyku vaktiydi. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi.",
             "evidenceSourceID": "p56_wave1_pilot56_book_u5_owl_event02_v1_p08",
-            "evidenceText": "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Yarın saklambaç vardı, şimdi uyku. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi.",
+            "evidenceText": "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Saklambaç seçilmişti, şimdi uyku vaktiydi. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi.",
             "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
       },
       "artHandoff": {
         "contentMeaningStatus": "source-grounded-wave-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Yarın saklambaç vardı, şimdi uyku. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi.",
+        "actionNeed": "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Saklambaç seçilmişti, şimdi uyku vaktiydi. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi.",
         "poseAndActionEvidence": [
-          "\"İyi geceler,\" diye fısıldadı Yıldız.",
-          "Deniz’in gözleri usulca kapandı.",
-          "Yarın saklambaç vardı, şimdi uyku.",
-          "Yıldız tüneğinde hafifçe sallandı.",
-          "Oda karanlık ve sakindi."
+          "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Saklambaç seçilmişti, şimdi uyku vaktiydi. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi."
         ],
         "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
         "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
@@ -930,18 +927,18 @@
       "intensity": 0,
       "causalEvidence": {
         "actorID": "child",
-        "quote": "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Yarın saklambaç vardı, şimdi uyku. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi.",
+        "quote": "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Saklambaç seçilmişti, şimdi uyku vaktiydi. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi.",
         "attributionQuote": "Deniz",
         "attributionPageNumber": 8,
         "kind": "sourceStatement",
         "parentSourceID": "p56_wave1_pilot56_book_u5_owl_event02_v1_p08",
         "attributionSourceID": "p56_wave1_pilot56_book_u5_owl_event02_v1_p08",
-        "quoteSHA256": "a40ccccd9b5556d42d00094eb7d0efe9da8d526dab864172d0d59a90765daf74",
+        "quoteSHA256": "253a2dbc830abae0e1207e1a5616296ea7a6e9c675cc556c8615966b6a2467b3",
         "bookID": "pilot56_book_u5_owl_event02_v1",
         "pageNumber": 8
       },
-      "sourceSHA256UTF8": "a40ccccd9b5556d42d00094eb7d0efe9da8d526dab864172d0d59a90765daf74",
-      "text": "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Yarın saklambaç vardı, şimdi uyku. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi.",
+      "sourceSHA256UTF8": "253a2dbc830abae0e1207e1a5616296ea7a6e9c675cc556c8615966b6a2467b3",
+      "text": "\"İyi geceler,\" diye fısıldadı Yıldız. Deniz’in gözleri usulca kapandı. Saklambaç seçilmişti, şimdi uyku vaktiydi. Yıldız tüneğinde hafifçe sallandı. Oda karanlık ve sakindi.",
       "sourceID": "p56_wave1_pilot56_book_u5_owl_event02_v1_p08",
       "sourcePointer": "input/bedtime-owl.json#/books/1/pages/7"
     }

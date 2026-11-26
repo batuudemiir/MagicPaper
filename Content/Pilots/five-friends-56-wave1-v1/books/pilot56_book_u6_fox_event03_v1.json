@@ -25,11 +25,11 @@
       "Ay ışığı Tarçın'ın kuyruğuna düştü. Kuyruğu gümüş gibi parladı. Tarçın kuyruğuna şaşkın şaşkın baktı. Deniz bunu çok sevdi. Tarçın’ın kulakları dikildi. \"Ay seni süslemiş,\" dedi Deniz.",
       "Deniz perdeyi biraz daha araladı. \"Ay ışığı kalıyor,\" dedi. Yerdeki şerit genişledi. Deniz o gümüş şeride bakıp gülümsedi. Odaya serin, sakin bir ışık dolmuştu.",
       "Tarçın ay şeridinin içine kıvrıldı. Turkuaz boyunluğu da gümüşe döndü. Oda sakindi. Deniz perdeyi biraz daha açtı. Ay ışığı yatağa kadar uzandı.",
-      "\"Yarın görüşürüz, Deniz,\" diye fısıldadı Tarçın. Deniz gözlerini kapattı. Ay ışığı ikisini de usulca örttü. Tarçın'ın kuyruğu son kez kıpırdadı."
+      "\"Uyku vakti, Deniz,\" diye fısıldadı Tarçın. Deniz gözlerini kapattı. Ay ışığı ikisini de usulca örttü. Tarçın'ın kuyruğu son kez kıpırdadı."
     ],
     "sourceBookID": "pilot56_book_u6_fox_event03_v1"
   },
-  "inputFileSHA256": "ddc3a31bb034149ac002188f0d0db6ed089f5227a1a5420ed11ae00c9df8891d",
+  "inputFileSHA256": "f56ff7e7596017f2d7d3643c2f9b28404344b96bd13bfc7bf086d030f0bfe3a2",
   "inputBookPointer": "input/bedtime-fox.json#/books/5",
   "pages": [
     {
@@ -767,7 +767,7 @@
       ],
       "semantics": {
         "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-        "metadataRevision": 1,
+        "metadataRevision": 2,
         "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
         "subjects": [
           {
@@ -787,14 +787,14 @@
             ]
           }
         ],
-        "propDescription": "top/şapka/uçurtma",
+        "propDescription": "ay ışığı",
         "propMentions": [
           {
-            "label": "top/şapka/uçurtma",
+            "label": "ay ışığı",
             "evidenceQuotes": [
-              "Tarçın'ın kuyruğu son kez kıpırdadı."
+              "\"Uyku vakti, Deniz,\" diye fısıldadı Tarçın. Deniz gözlerini kapattı. Ay ışığı ikisini de usulca örttü. Tarçın'ın kuyruğu son kez kıpırdadı."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           }
         ],
         "actions": [
@@ -803,26 +803,24 @@
               "pilot56_synthetic_child_deniz",
               "companion_fox_pilot_001"
             ],
-            "description": "\"Yarın görüşürüz, Deniz,\" diye fısıldadı Tarçın. Deniz gözlerini kapattı. Ay ışığı ikisini de usulca örttü. Tarçın'ın kuyruğu son kez kıpırdadı.",
+            "description": "\"Uyku vakti, Deniz,\" diye fısıldadı Tarçın. Deniz gözlerini kapattı. Ay ışığı ikisini de usulca örttü. Tarçın'ın kuyruğu son kez kıpırdadı.",
             "evidenceSourceID": "p56_wave1_pilot56_book_u6_fox_event03_v1_p08",
-            "evidenceText": "\"Yarın görüşürüz, Deniz,\" diye fısıldadı Tarçın. Deniz gözlerini kapattı. Ay ışığı ikisini de usulca örttü. Tarçın'ın kuyruğu son kez kıpırdadı.",
+            "evidenceText": "\"Uyku vakti, Deniz,\" diye fısıldadı Tarçın. Deniz gözlerini kapattı. Ay ışığı ikisini de usulca örttü. Tarçın'ın kuyruğu son kez kıpırdadı.",
             "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
       },
       "artHandoff": {
         "contentMeaningStatus": "source-grounded-wave-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "\"Yarın görüşürüz, Deniz,\" diye fısıldadı Tarçın. Deniz gözlerini kapattı. Ay ışığı ikisini de usulca örttü. Tarçın'ın kuyruğu son kez kıpırdadı.",
+        "actionNeed": "\"Uyku vakti, Deniz,\" diye fısıldadı Tarçın. Deniz gözlerini kapattı. Ay ışığı ikisini de usulca örttü. Tarçın'ın kuyruğu son kez kıpırdadı.",
         "poseAndActionEvidence": [
-          "\"Yarın görüşürüz, Deniz,\" diye fısıldadı Tarçın.",
-          "Deniz gözlerini kapattı.",
-          "Ay ışığı ikisini de usulca örttü.",
-          "Tarçın'ın kuyruğu son kez kıpırdadı."
+          "\"Uyku vakti, Deniz,\" diye fısıldadı Tarçın. Deniz gözlerini kapattı. Ay ışığı ikisini de usulca örttü. Tarçın'ın kuyruğu son kez kıpırdadı."
         ],
         "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
         "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
@@ -835,18 +833,18 @@
       "intensity": 0,
       "causalEvidence": {
         "actorID": "child",
-        "quote": "\"Yarın görüşürüz, Deniz,\" diye fısıldadı Tarçın. Deniz gözlerini kapattı. Ay ışığı ikisini de usulca örttü. Tarçın'ın kuyruğu son kez kıpırdadı.",
+        "quote": "\"Uyku vakti, Deniz,\" diye fısıldadı Tarçın. Deniz gözlerini kapattı. Ay ışığı ikisini de usulca örttü. Tarçın'ın kuyruğu son kez kıpırdadı.",
         "attributionQuote": "Deniz",
         "attributionPageNumber": 8,
         "kind": "sourceStatement",
         "parentSourceID": "p56_wave1_pilot56_book_u6_fox_event03_v1_p08",
         "attributionSourceID": "p56_wave1_pilot56_book_u6_fox_event03_v1_p08",
-        "quoteSHA256": "d2613fb18985843b98ae8a561dccc8fd81ef965ca217adf7df6052c4580f07e1",
+        "quoteSHA256": "9c54029d626654c77635e775b2a7c244ed825084b0cda4df005a01e7c6f0ced2",
         "bookID": "pilot56_book_u6_fox_event03_v1",
         "pageNumber": 8
       },
-      "sourceSHA256UTF8": "d2613fb18985843b98ae8a561dccc8fd81ef965ca217adf7df6052c4580f07e1",
-      "text": "\"Yarın görüşürüz, Deniz,\" diye fısıldadı Tarçın. Deniz gözlerini kapattı. Ay ışığı ikisini de usulca örttü. Tarçın'ın kuyruğu son kez kıpırdadı.",
+      "sourceSHA256UTF8": "9c54029d626654c77635e775b2a7c244ed825084b0cda4df005a01e7c6f0ced2",
+      "text": "\"Uyku vakti, Deniz,\" diye fısıldadı Tarçın. Deniz gözlerini kapattı. Ay ışığı ikisini de usulca örttü. Tarçın'ın kuyruğu son kez kıpırdadı.",
       "sourceID": "p56_wave1_pilot56_book_u6_fox_event03_v1_p08",
       "sourcePointer": "input/bedtime-fox.json#/books/5/pages/7"
     }

@@ -24,12 +24,12 @@
       "\"Zilim kayboldu,\" dedi Simit. \"Bence izler ağaçlara gidiyor.\" Sonra izlere doğru zıpladı. Patileri ıslak kuma gömüldü. Deniz’in kahkahası çınladı.",
       "Deniz kuma basıp ileri yürüdü. Arkasına baktı. Ayakkabısının burnu hep yürüdüğü yöne bakıyordu. \"Burun önde, topuk arkada,\" dedi. Simit de kendi izlerine baktı.",
       "Simit de Deniz’in yanında yürüdü. Arkasında yuvarlak izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. \"Şehirde böyle değil ama,\" dedi Simit.",
-      "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit’in zili minik bir ses çıkardı.",
+      "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı.",
       "İzleri takip edip dereye vardılar. Suyun kenarındaki çakılların arasında küçük zil parlıyordu! \"Az önce burada balık izlemiştim,\" dedi Simit.",
       "Deniz zili Simit'in tasmasına taktı. Zil tın tın çaldı. \"İzler zilimi buldu,\" dedi Simit. Deniz bunu çok sevdi. Simit’in kuyruğu havaya kalktı. Yönü kendi izleriyle karşılaştırarak bulmuştu."
     ]
   },
-  "inputFileSHA256": "c4ad8ff1521c9fe6063e1d662be3358f70a0b2eba9fda0b31ea5097de97b4bc1",
+  "inputFileSHA256": "b2c8c63f92bb0e37061a91d6eb0733b0f69339203cf0db89088e4bdd4add7b79",
   "inputBookPointer": "input/learning-cat.json#/books/4",
   "pages": [
     {
@@ -390,7 +390,7 @@
       ],
       "semantics": {
         "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-        "metadataRevision": 1,
+        "metadataRevision": 2,
         "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
         "subjects": [
           {
@@ -411,22 +411,21 @@
             ]
           }
         ],
-        "propDescription": "top/şapka/uçurtma; iz/kum",
+        "propDescription": "ıslak kum; çocuğun ayağındaki ayakkabı ve yön gösteren ayakkabı izleri",
         "propMentions": [
           {
-            "label": "top/şapka/uçurtma",
+            "label": "ıslak kum",
             "evidenceQuotes": [
-              "\"Burun önde, topuk arkada,\" dedi."
+              "Deniz kuma basıp ileri yürüdü. Arkasına baktı. Ayakkabısının burnu hep yürüdüğü yöne bakıyordu. \"Burun önde, topuk arkada,\" dedi. Simit de kendi izlerine baktı."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Context-reviewed physical ground/footprint feature. topuk is heel, not a ball; yuvarlak describes pawprint, not a nest."
           },
           {
-            "label": "iz/kum",
+            "label": "çocuğun ayağındaki ayakkabı ve yön gösteren ayakkabı izleri",
             "evidenceQuotes": [
-              "Deniz kuma basıp ileri yürüdü.",
-              "Simit de kendi izlerine baktı."
+              "Deniz kuma basıp ileri yürüdü. Arkasına baktı. Ayakkabısının burnu hep yürüdüğü yöne bakıyordu. \"Burun önde, topuk arkada,\" dedi. Simit de kendi izlerine baktı."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Context-reviewed physical ground/footprint feature. topuk is heel, not a ball; yuvarlak describes pawprint, not a nest."
           }
         ],
         "actions": [
@@ -442,7 +441,8 @@
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+        "reviewDeltaDecision": "Unchanged source, affected8pagecontext manually reviewed; inherited lexical substring false-positive removed."
       },
       "artHandoff": {
         "contentMeaningStatus": "source-grounded-wave-review",
@@ -494,7 +494,7 @@
       ],
       "semantics": {
         "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-        "metadataRevision": 1,
+        "metadataRevision": 2,
         "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
         "subjects": [
           {
@@ -515,28 +515,14 @@
             ]
           }
         ],
-        "propDescription": "kütük/yuva; iz/kum; kuş yuvası/kuş evi",
+        "propDescription": "yuvarlak pati izleri",
         "propMentions": [
           {
-            "label": "kütük/yuva",
+            "label": "yuvarlak pati izleri",
             "evidenceQuotes": [
-              "Arkasında yuvarlak izler kaldı."
+              "Simit de Deniz’in yanında yürüdü. Arkasında yuvarlak izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. \"Şehirde böyle değil ama,\" dedi Simit."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
-          },
-          {
-            "label": "iz/kum",
-            "evidenceQuotes": [
-              "Arkasında yuvarlak izler kaldı."
-            ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
-          },
-          {
-            "label": "kuş yuvası/kuş evi",
-            "evidenceQuotes": [
-              "Arkasında yuvarlak izler kaldı."
-            ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Context-reviewed physical ground/footprint feature. topuk is heel, not a ball; yuvarlak describes pawprint, not a nest."
           }
         ],
         "actions": [
@@ -552,7 +538,8 @@
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+        "reviewDeltaDecision": "Unchanged source, affected8pagecontext manually reviewed; inherited lexical substring false-positive removed."
       },
       "artHandoff": {
         "contentMeaningStatus": "source-grounded-wave-review",
@@ -603,7 +590,7 @@
       ],
       "semantics": {
         "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-        "metadataRevision": 1,
+        "metadataRevision": 2,
         "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
         "subjects": [
           {
@@ -624,31 +611,21 @@
             ]
           }
         ],
-        "propDescription": "tasma/zil; su/birikinti; iz/kum",
+        "propDescription": "izler; dere yönü; zil henüz bulunmamış",
         "propMentions": [
           {
-            "label": "tasma/zil",
+            "label": "izler",
             "evidenceQuotes": [
-              "Simit’in zili minik bir ses çıkardı."
+              "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           },
           {
-            "label": "su/birikinti",
+            "label": "dere yönü; zil henüz bulunmamış",
             "evidenceQuotes": [
-              "Parmaklar dereye bakıyordu.",
-              "\"Bu izler dereye gitmiş!\" dedi."
+              "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
-          },
-          {
-            "label": "iz/kum",
-            "evidenceQuotes": [
-              "Deniz eski izleri bir kez daha inceledi.",
-              "\"Bu izler dereye gitmiş!\" dedi.",
-              "Yönü kendi izleriyle bulmuştu."
-            ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           }
         ],
         "actions": [
@@ -657,27 +634,24 @@
               "pilot56_synthetic_child_deniz",
               "companion_city_cat_001"
             ],
-            "description": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit’in zili minik bir ses çıkardı.",
+            "description": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı.",
             "evidenceSourceID": "p56_wave2_pilot56_book_l8_cat_event02_v1_p06",
-            "evidenceText": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit’in zili minik bir ses çıkardı.",
+            "evidenceText": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı.",
             "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
       },
       "artHandoff": {
         "contentMeaningStatus": "source-grounded-wave-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit’in zili minik bir ses çıkardı.",
+        "actionNeed": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı.",
         "poseAndActionEvidence": [
-          "Deniz eski izleri bir kez daha inceledi.",
-          "Parmaklar dereye bakıyordu.",
-          "\"Bu izler dereye gitmiş!\" dedi.",
-          "Yönü kendi izleriyle bulmuştu.",
-          "Simit’in zili minik bir ses çıkardı."
+          "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı."
         ],
         "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
         "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
@@ -690,18 +664,18 @@
       "intensity": 1,
       "causalEvidence": {
         "actorID": "child",
-        "quote": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit’in zili minik bir ses çıkardı.",
+        "quote": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı.",
         "attributionQuote": "Deniz",
         "attributionPageNumber": 6,
         "kind": "sourceStatement",
         "parentSourceID": "p56_wave2_pilot56_book_l8_cat_event02_v1_p06",
         "attributionSourceID": "p56_wave2_pilot56_book_l8_cat_event02_v1_p06",
-        "quoteSHA256": "96c93491e326d2b263b74aa3b1f50556a1e1c68f3410ce141bc1324da4d2b620",
+        "quoteSHA256": "7adc0f4aedbfa9a55bfbc2e350d89c7f8fb925c7cd30bb45711ce755ee4cc17a",
         "bookID": "pilot56_book_l8_cat_event02_v1",
         "pageNumber": 6
       },
-      "sourceSHA256UTF8": "96c93491e326d2b263b74aa3b1f50556a1e1c68f3410ce141bc1324da4d2b620",
-      "text": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit’in zili minik bir ses çıkardı.",
+      "sourceSHA256UTF8": "7adc0f4aedbfa9a55bfbc2e350d89c7f8fb925c7cd30bb45711ce755ee4cc17a",
+      "text": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı.",
       "sourceID": "p56_wave2_pilot56_book_l8_cat_event02_v1_p06",
       "sourcePointer": "input/learning-cat.json#/books/4/pages/5"
     },
@@ -929,16 +903,7 @@
     }
   ],
   "childAgencyAnnotation": "Deniz arkadaşından izini yanına basmasını ister, boyutu ve parmakları karşılaştırarak izleri eşleştirir.",
-  "contentBlockers": [
-    {
-      "sourceBookID": "pilot56_book_l8_cat_event02_v1",
-      "pageNumber": 6,
-      "code": "missing-bell-rings-before-recovered",
-      "severity": "blocker",
-      "detail": "p1 bell missing; p6 bell makes sound, p7 found, p8 reattached. Do not silently restore bell early.",
-      "quote": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit’in zili minik bir ses çıkardı."
-    }
-  ],
+  "contentBlockers": [],
   "runtimeCompatible": false,
   "typedContractApproved": false,
   "productionEnabled": false,

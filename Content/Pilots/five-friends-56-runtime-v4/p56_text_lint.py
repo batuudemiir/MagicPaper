@@ -67,13 +67,23 @@ def load(path, cell=None):
             a = json.loads(b["authoredBookJSON"])
             key = b["mode"] + "/" + b["companionID"]
             if cell and key != cell: continue
-            books.append(dict(id=b["id"], title=b["titleTemplate"], companion=b["companionID"],
+            books.append(dict(id=b["id"], title=b["titleTemplate"], companion=b["companionID"], mode=b["mode"],
                               frame=(b["structureID"], b.get("discoveryID")), pages=[p["text"] for p in a["pages"]]))
     else:
-        comp = data["cell"].split("/")[1]
+        mode, comp = data["cell"].split("/")
         for b in data["books"]:
-            books.append(dict(id=b["sourceBookID"] + " (yeni)", title=b["title"], companion=comp, frame=None, pages=b["pages"]))
+            books.append(dict(id=b["sourceBookID"] + " (yeni)", title=b["title"], companion=comp, mode=mode, frame=None, pages=b["pages"]))
     return books
+
+# Motorun CalmEnding.swift kuralı: uyku kitabının son sayfası kapanır.
+CALM_PREFIXES = ("yarın", "acaba", "birden")
+CALM_PHRASES = ("?", "sonra ne olacak")
+def calm_violations(text):
+    low = text.replace("I", "ı").replace("İ", "i").lower()
+    found = [p for p in CALM_PHRASES if p in low]
+    ws = re.findall(r"[^\W\d_]+", low)
+    found += [p for p in CALM_PREFIXES if any(w.startswith(p) for w in ws)]
+    return found
 
 def check(book):
     name, phrase = CATCHPHRASES.get(book["companion"], ("", None))
@@ -93,6 +103,9 @@ def check(book):
     rep = collections.Counter(x for p in book["pages"] for x in sentences(p) if len(words(x)) >= 3 and not (phrase and phrase in x))
     dup = [x for x, k in rep.items() if k > 1]
     if dup: issues.append(f"kitap içinde tekrar eden cümle: «{dup[0]}»")
+    if book.get("mode") == "bedtime" and book["pages"]:
+        bad = calm_violations(book["pages"][-1])
+        if bad: issues.append("uyku kapanışı açık (motor CalmEnding): " + ", ".join(bad))
     return dict(rules=len(rules), long=len(long), phrase=n_phrase, namePages=pages_with_name,
                 humor=bool(HUMOR_RE.search(text)), issues=issues)
 

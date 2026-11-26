@@ -26,10 +26,10 @@
       "Kestane dikenlerini yavaşça indirdi ve tavşanı bıraktı. \"Küçük bir adım, sonra bir tane daha,\" dedi. Kendi minderine geri yürüdü. Deniz başını yana eğip gülümsedi. Kestane minik bir top oldu.",
       "Deniz yalnız kumaş tavşanı yanına aldı. \"Bu benimle kalıyor,\" dedi. Ötekiler yerlerine yerleşmişti. Kestane halının ortasında kıvrıldı. Oda toplanmıştı.",
       "Kestane minderinde yuvarlak bir top oldu. Hardal yaprağı dikeninin ucunda duruyordu. Deniz kumaş tavşanı koynuna alıp yatağına uzandı.",
-      "\"Yarın görüşürüz, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
+      "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
     ]
   },
-  "inputFileSHA256": "be50740a18277453d3fee4b1afbbb393ba7f9adddd094497901713dd5b743cec",
+  "inputFileSHA256": "787799db801d5228514a484d3ad8e0c96ffc791001c39472752e001a79071bc8",
   "inputBookPointer": "input/bedtime-hedgehog.json#/books/0",
   "pages": [
     {
@@ -853,7 +853,7 @@
       ],
       "semantics": {
         "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-        "metadataRevision": 1,
+        "metadataRevision": 2,
         "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
         "subjects": [
           {
@@ -873,28 +873,28 @@
             ]
           }
         ],
-        "propDescription": "minder; oyuncak; top/şapka/uçurtma",
+        "propDescription": "minder; Deniz kolundaki kumaş tavşan; yerlerindeki diğer oyuncaklar",
         "propMentions": [
           {
             "label": "minder",
             "evidenceQuotes": [
-              "Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
+              "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           },
           {
-            "label": "oyuncak",
+            "label": "Deniz kolundaki kumaş tavşan",
             "evidenceQuotes": [
-              "Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
+              "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           },
           {
-            "label": "top/şapka/uçurtma",
+            "label": "yerlerindeki diğer oyuncaklar",
             "evidenceQuotes": [
-              "\"Yarın görüşürüz, Deniz,\" dedi küçük top."
+              "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           }
         ],
         "actions": [
@@ -903,25 +903,24 @@
               "pilot56_synthetic_child_deniz",
               "companion_hedgehog_pilot_001"
             ],
-            "description": "\"Yarın görüşürüz, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
+            "description": "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
             "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_v1_p08",
-            "evidenceText": "\"Yarın görüşürüz, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
+            "evidenceText": "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
             "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
       },
       "artHandoff": {
         "contentMeaningStatus": "source-grounded-wave-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "\"Yarın görüşürüz, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
+        "actionNeed": "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
         "poseAndActionEvidence": [
-          "\"Yarın görüşürüz, Deniz,\" dedi küçük top.",
-          "Deniz’in göz kapakları indi.",
-          "Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
+          "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
         ],
         "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
         "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
@@ -933,18 +932,18 @@
       "intensity": 0,
       "causalEvidence": {
         "actorID": "child",
-        "quote": "\"Yarın görüşürüz, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
+        "quote": "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
         "attributionQuote": "Deniz",
         "attributionPageNumber": 8,
         "kind": "sourceStatement",
         "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_v1_p08",
         "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_v1_p08",
-        "quoteSHA256": "b3eacf1ae7c0f389f431c77fa279441d2784701ffb3b3790970c9a6203c35891",
+        "quoteSHA256": "c6d10b866cb37605ea3af94a5d9cc71f1df580b471710bce43dfe708e801c57e",
         "bookID": "pilot56_book_u7_hedgehog_v1",
         "pageNumber": 8
       },
-      "sourceSHA256UTF8": "b3eacf1ae7c0f389f431c77fa279441d2784701ffb3b3790970c9a6203c35891",
-      "text": "\"Yarın görüşürüz, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
+      "sourceSHA256UTF8": "c6d10b866cb37605ea3af94a5d9cc71f1df580b471710bce43dfe708e801c57e",
+      "text": "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
       "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_v1_p08",
       "sourcePointer": "input/bedtime-hedgehog.json#/books/0/pages/7"
     }

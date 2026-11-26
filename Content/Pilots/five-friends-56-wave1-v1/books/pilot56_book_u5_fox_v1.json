@@ -25,11 +25,11 @@
       "\"Resmine bir çiçek çizer misin?\" diye sordu Tarçın. \"Ben de koklarım.\" Deniz gülümsedi. \"Resimler kokmaz ki.\" Tarçın burnunu kâğıda yaklaştırdı ve kıkırdadı.",
       "\"Ötekiler sabaha kalsın,\" dedi Deniz. Ağaç da, kozalaklar da yarın orada olacaktı. Şimdi yalnız bir plan vardı. Deniz bir planla yatmanın rahat olduğunu fark etti.",
       "Tarçın kuyruğunu burnunun üstüne örttü. Deniz de yastığına yaslandı. Oda sıcak ve sessizdi. Deniz parmaklarını yorganın üstünde gezdirdi. Dışarıda bir baykuş öttü.",
-      "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın. \"Burnum yarına kadar uyuyacak.\" Deniz gözlerini kapattı. Kuyruğu minderin üstünde yavaşça kıpırdadı."
+      "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın. \"Burnum da uykuya daldı.\" Deniz gözlerini kapattı. Kuyruğu minderin üstünde yavaşça kıpırdadı."
     ],
     "sourceBookID": "pilot56_book_u5_fox_v1"
   },
-  "inputFileSHA256": "ddc3a31bb034149ac002188f0d0db6ed089f5227a1a5420ed11ae00c9df8891d",
+  "inputFileSHA256": "f56ff7e7596017f2d7d3643c2f9b28404344b96bd13bfc7bf086d030f0bfe3a2",
   "inputBookPointer": "input/bedtime-fox.json#/books/0",
   "pages": [
     {
@@ -802,7 +802,7 @@
       ],
       "semantics": {
         "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-        "metadataRevision": 1,
+        "metadataRevision": 2,
         "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
         "subjects": [
           {
@@ -829,21 +829,14 @@
             ]
           }
         ],
-        "propDescription": "minder; top/şapka/uçurtma",
+        "propDescription": "minder; uyuyan burun mecazdır",
         "propMentions": [
           {
-            "label": "minder",
+            "label": "minder; uyuyan burun mecazdır",
             "evidenceQuotes": [
-              "Kuyruğu minderin üstünde yavaşça kıpırdadı."
+              "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın. \"Burnum da uykuya daldı.\" Deniz gözlerini kapattı. Kuyruğu minderin üstünde yavaşça kıpırdadı."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
-          },
-          {
-            "label": "top/şapka/uçurtma",
-            "evidenceQuotes": [
-              "Kuyruğu minderin üstünde yavaşça kıpırdadı."
-            ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           }
         ],
         "actions": [
@@ -852,25 +845,24 @@
               "pilot56_synthetic_child_deniz",
               "companion_fox_pilot_001"
             ],
-            "description": "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın. \"Burnum yarına kadar uyuyacak.\" Deniz gözlerini kapattı. Kuyruğu minderin üstünde yavaşça kıpırdadı.",
+            "description": "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın. \"Burnum da uykuya daldı.\" Deniz gözlerini kapattı. Kuyruğu minderin üstünde yavaşça kıpırdadı.",
             "evidenceSourceID": "p56_wave1_pilot56_book_u5_fox_v1_p08",
-            "evidenceText": "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın. \"Burnum yarına kadar uyuyacak.\" Deniz gözlerini kapattı. Kuyruğu minderin üstünde yavaşça kıpırdadı.",
+            "evidenceText": "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın. \"Burnum da uykuya daldı.\" Deniz gözlerini kapattı. Kuyruğu minderin üstünde yavaşça kıpırdadı.",
             "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
       },
       "artHandoff": {
         "contentMeaningStatus": "source-grounded-wave-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın. \"Burnum yarına kadar uyuyacak.\" Deniz gözlerini kapattı. Kuyruğu minderin üstünde yavaşça kıpırdadı.",
+        "actionNeed": "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın. \"Burnum da uykuya daldı.\" Deniz gözlerini kapattı. Kuyruğu minderin üstünde yavaşça kıpırdadı.",
         "poseAndActionEvidence": [
-          "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın.",
-          "\"Burnum yarına kadar uyuyacak.\" Deniz gözlerini kapattı.",
-          "Kuyruğu minderin üstünde yavaşça kıpırdadı."
+          "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın. \"Burnum da uykuya daldı.\" Deniz gözlerini kapattı. Kuyruğu minderin üstünde yavaşça kıpırdadı."
         ],
         "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
         "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
@@ -883,18 +875,18 @@
       "intensity": 0,
       "causalEvidence": {
         "actorID": "child",
-        "quote": "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın. \"Burnum yarına kadar uyuyacak.\" Deniz gözlerini kapattı. Kuyruğu minderin üstünde yavaşça kıpırdadı.",
+        "quote": "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın. \"Burnum da uykuya daldı.\" Deniz gözlerini kapattı. Kuyruğu minderin üstünde yavaşça kıpırdadı.",
         "attributionQuote": "Deniz",
         "attributionPageNumber": 8,
         "kind": "sourceStatement",
         "parentSourceID": "p56_wave1_pilot56_book_u5_fox_v1_p08",
         "attributionSourceID": "p56_wave1_pilot56_book_u5_fox_v1_p08",
-        "quoteSHA256": "3c853a3f73012b2fe426190a2ab891d5717e78bc8daaa20563da14e1bc5415e5",
+        "quoteSHA256": "a1e93f122e87cb481c27819fecfb0ca61a68ec4c5ff5b4c7e3a446c670acc3fa",
         "bookID": "pilot56_book_u5_fox_v1",
         "pageNumber": 8
       },
-      "sourceSHA256UTF8": "3c853a3f73012b2fe426190a2ab891d5717e78bc8daaa20563da14e1bc5415e5",
-      "text": "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın. \"Burnum yarına kadar uyuyacak.\" Deniz gözlerini kapattı. Kuyruğu minderin üstünde yavaşça kıpırdadı.",
+      "sourceSHA256UTF8": "a1e93f122e87cb481c27819fecfb0ca61a68ec4c5ff5b4c7e3a446c670acc3fa",
+      "text": "\"İyi geceler, Deniz,\" diye fısıldadı Tarçın. \"Burnum da uykuya daldı.\" Deniz gözlerini kapattı. Kuyruğu minderin üstünde yavaşça kıpırdadı.",
       "sourceID": "p56_wave1_pilot56_book_u5_fox_v1_p08",
       "sourcePointer": "input/bedtime-fox.json#/books/0/pages/7"
     }

@@ -26,10 +26,10 @@
       "Simit bıyıklarını yavaşça geri yatırdı. \"Şehirde böyle değil ama,\" dedi. \"Orada bıyıklarım geceleri de çalışır.\" Deniz’in yüzü gülümsemeyle doldu. Simit kulaklarını oynattı. Zili bir kez tın etti.",
       "Deniz yanaklarını şişirip havayı yavaşça bıraktı. Ağzı, çenesi gevşedi. \"Sıra bitti,\" dedi. Yüzü yastıkta yumuşacıktı. Simit gözlerini yarı yumdu.",
       "Simit minderinde kıvrıldı. Kuyruğunu yüzüne doladı. Zilini patisiyle susturdu. Bıyıkları da artık kıpırdamıyordu. Deniz de yanaklarını yastığa bıraktı.",
-      "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu."
+      "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu."
     ]
   },
-  "inputFileSHA256": "d2cf0a47309f48e05623e4bab45aadbbe91a6cb1ffd366e8af852a0c4b234b6f",
+  "inputFileSHA256": "8993bd941edd8b4cd92235bc6a288327fd55a67326dee4902eaf34610673aa91",
   "inputBookPointer": "input/bedtime-cat.json#/books/5",
   "pages": [
     {
@@ -736,7 +736,7 @@
       ],
       "semantics": {
         "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-        "metadataRevision": 1,
+        "metadataRevision": 2,
         "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
         "subjects": [
           {
@@ -756,14 +756,21 @@
             ]
           }
         ],
-        "propDescription": "tasma/zil",
+        "propDescription": "sessiz zil; ılık oda",
         "propMentions": [
           {
-            "label": "tasma/zil",
+            "label": "sessiz zil",
             "evidenceQuotes": [
-              "Zil de artık susmuştu."
+              "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          },
+          {
+            "label": "ılık oda",
+            "evidenceQuotes": [
+              "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           }
         ],
         "actions": [
@@ -772,26 +779,24 @@
               "pilot56_synthetic_child_deniz",
               "companion_city_cat_001"
             ],
-            "description": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+            "description": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
             "evidenceSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p08",
-            "evidenceText": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+            "evidenceText": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
             "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
       },
       "artHandoff": {
         "contentMeaningStatus": "source-grounded-wave-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+        "actionNeed": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
         "poseAndActionEvidence": [
-          "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit.",
-          "Deniz’in kirpikleri yanaklarına indi.",
-          "Yüzü yumuşacık, oda sessiz ve ılıktı.",
-          "Zil de artık susmuştu."
+          "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu."
         ],
         "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
         "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
@@ -804,18 +809,18 @@
       "intensity": 0,
       "causalEvidence": {
         "actorID": "child",
-        "quote": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+        "quote": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
         "attributionQuote": "Deniz",
         "attributionPageNumber": 8,
         "kind": "sourceStatement",
         "parentSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p08",
         "attributionSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p08",
-        "quoteSHA256": "99ae44aa9431eeda774b5e7df29e0846fc4a7616f8308a434b44dde76d8ca640",
+        "quoteSHA256": "c2fad05d59d231cc37b5ec15244f5d33daf1f22f7ebd9581ac84a8db0a6c3211",
         "bookID": "pilot56_book_u8_cat_event03_v1",
         "pageNumber": 8
       },
-      "sourceSHA256UTF8": "99ae44aa9431eeda774b5e7df29e0846fc4a7616f8308a434b44dde76d8ca640",
-      "text": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+      "sourceSHA256UTF8": "c2fad05d59d231cc37b5ec15244f5d33daf1f22f7ebd9581ac84a8db0a6c3211",
+      "text": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
       "sourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p08",
       "sourcePointer": "input/bedtime-cat.json#/books/5/pages/7"
     }

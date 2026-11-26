@@ -7,7 +7,7 @@
   "runtimeApproval": false,
   "artApproved": false,
   "sourceIDConvention": "p56_wave2_<bookID>_pNN",
-  "reviewMethod": "Canonical 15 source filenames only. All 90 books/720 pages read in page order; exact repeated sentences displayed once. Whole-book sequence retained for prop ownership/time. Every evidence/action/prop quote freshly extracted from current canonical sources. No prior annotation JSON copied. Raw structure pageMoves retained; no P56 typed compile claimed.",
+  "reviewMethod": "Revision2 delta review by root:18 changed pages and all8current pages of17affected books read; unchanged253books reused only with byte-identical title/pages and unchanged context. Source notes/book identities unchanged. No prose edits; no runtime/art approval.",
   "structures": [
     {
       "planLabel": "U7",
@@ -36624,7 +36624,17 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "small": 1
+              },
+              "other": {
+                "small": 1
+              }
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -36644,7 +36654,8 @@
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
@@ -36771,7 +36782,7 @@
           ],
           "semantics": {
             "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-            "metadataRevision": 1,
+            "metadataRevision": 2,
             "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
             "subjects": [
               {
@@ -36791,14 +36802,28 @@
                 ]
               }
             ],
-            "propDescription": "dal",
+            "propDescription": "dal; iki küçük kozalak daldan kaldırılır; tek uçtaki büyük kozalak",
             "propMentions": [
               {
                 "label": "dal",
                 "evidenceQuotes": [
-                  "Dal büyüğün tarafına indi."
+                  "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+              },
+              {
+                "label": "iki küçük kozalak daldan kaldırılır",
+                "evidenceQuotes": [
+                  "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu."
+                ],
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+              },
+              {
+                "label": "tek uçtaki büyük kozalak",
+                "evidenceQuotes": [
+                  "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu."
+                ],
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
               }
             ],
             "actions": [
@@ -36807,49 +36832,57 @@
                   "pilot56_synthetic_child_deniz",
                   "companion_hedgehog_pilot_001"
                 ],
-                "description": "Deniz bir uçtaki küçük kozalağı alıp yerine büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
+                "description": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
                 "evidenceSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p04",
-                "evidenceText": "Deniz bir uçtaki küçük kozalağı alıp yerine büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
+                "evidenceText": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
                 "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "large": 1
+              },
+              "other": {},
+              "offBeamSmall": 2
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
             "visualIdentityStatus": "not-reviewed-for-this-page",
             "assetRuleApproval": false,
             "runtimeArt": null,
-            "actionNeed": "Deniz bir uçtaki küçük kozalağı alıp yerine büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
+            "actionNeed": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
             "poseAndActionEvidence": [
-              "Deniz bir uçtaki küçük kozalağı alıp yerine büyüğü koydu.",
-              "Dal büyüğün tarafına indi.",
-              "\"Büyük daha ağır,\" dedi Deniz.",
-              "Kestane düşen ucun yanına koştu."
+              "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu."
             ],
             "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
             "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
           "causalEvidence": {
             "actorID": "child",
-            "quote": "Deniz bir uçtaki küçük kozalağı alıp yerine büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
+            "quote": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
             "attributionQuote": "Deniz",
             "attributionPageNumber": 4,
             "kind": "sourceStatement",
             "parentSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p04",
             "attributionSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p04",
-            "quoteSHA256": "e81451e18472f95a0ec397f3be6d7def8c718e22f4006c0f46fb0679121f047a",
+            "quoteSHA256": "d7630e85395089f0534941b1810a759715876fe3f7d19c254a08fce032db0e66",
             "bookID": "pilot56_book_l9_hedgehog_event03_v1",
             "pageNumber": 4
           },
-          "sourceSHA256UTF8": "e81451e18472f95a0ec397f3be6d7def8c718e22f4006c0f46fb0679121f047a"
+          "sourceSHA256UTF8": "d7630e85395089f0534941b1810a759715876fe3f7d19c254a08fce032db0e66"
         },
         {
           "pageNumber": 5,
@@ -36912,7 +36945,18 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "large": 1
+              },
+              "other": {
+                "small": 1
+              },
+              "offBeamSmall": 1
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -36930,7 +36974,8 @@
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
@@ -37009,7 +37054,18 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "large": 1
+              },
+              "other": {
+                "small": 2
+              },
+              "offBeamSmall": 0
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -37028,7 +37084,8 @@
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
@@ -37107,7 +37164,17 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "small": 2
+              },
+              "other": {
+                "large": 1
+              }
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -37127,7 +37194,8 @@
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
@@ -37156,7 +37224,7 @@
           ],
           "semantics": {
             "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-            "metadataRevision": 1,
+            "metadataRevision": 2,
             "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
             "subjects": [
               {
@@ -37176,22 +37244,21 @@
                 ]
               }
             ],
-            "propDescription": "kütük/yuva; kozalak",
+            "propDescription": "üç deney kozalağı; kütük",
             "propMentions": [
               {
-                "label": "kütük/yuva",
+                "label": "üç deney kozalağı",
                 "evidenceQuotes": [
-                  "Deniz kozalakları kütüğün yanına dizdi."
+                  "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
               },
               {
-                "label": "kozalak",
+                "label": "kütük",
                 "evidenceQuotes": [
-                  "Deniz kozalakları kütüğün yanına dizdi.",
-                  "Şimdi orada dört kozalak ve bir kirpi vardı."
+                  "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
               }
             ],
             "actions": [
@@ -37200,50 +37267,56 @@
                   "pilot56_synthetic_child_deniz",
                   "companion_hedgehog_pilot_001"
                 ],
-                "description": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada dört kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
+                "description": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
                 "evidenceSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p08",
-                "evidenceText": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada dört kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
+                "evidenceText": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
                 "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "experimentSetStored": {
+                "large": 1,
+                "small": 2
+              }
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
             "visualIdentityStatus": "not-reviewed-for-this-page",
             "assetRuleApproval": false,
             "runtimeArt": null,
-            "actionNeed": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada dört kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
+            "actionNeed": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
             "poseAndActionEvidence": [
-              "Deniz kozalakları kütüğün yanına dizdi.",
-              "Kestane aralarına kıvrıldı.",
-              "Şimdi orada dört kozalak ve bir kirpi vardı.",
-              "Deniz gülmeden duramadı.",
-              "Kestane’nin dikenleri hafifçe kabardı."
+              "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı."
             ],
             "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
             "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
           "causalEvidence": {
             "actorID": "child",
-            "quote": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada dört kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
+            "quote": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
             "attributionQuote": "Deniz",
             "attributionPageNumber": 8,
             "kind": "sourceStatement",
             "parentSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p08",
             "attributionSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p08",
-            "quoteSHA256": "9fcf8bfe34ec4d48de8b263f47bd69cc7d8e73b65e3a7a6725f0cf6b89ce2a22",
+            "quoteSHA256": "0fc21d9273a888026f61e0b98703d3c70bcb7830d7ea339b1680c1eaf978ec60",
             "bookID": "pilot56_book_l9_hedgehog_event03_v1",
             "pageNumber": 8
           },
-          "sourceSHA256UTF8": "9fcf8bfe34ec4d48de8b263f47bd69cc7d8e73b65e3a7a6725f0cf6b89ce2a22"
+          "sourceSHA256UTF8": "0fc21d9273a888026f61e0b98703d3c70bcb7830d7ea339b1680c1eaf978ec60"
         }
       ]
     },
@@ -41738,7 +41811,17 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "small": 1
+              },
+              "other": {
+                "small": 1
+              }
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -41757,7 +41840,8 @@
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
@@ -41878,7 +41962,7 @@
           ],
           "semantics": {
             "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-            "metadataRevision": 1,
+            "metadataRevision": 2,
             "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
             "subjects": [
               {
@@ -41898,14 +41982,28 @@
                 ]
               }
             ],
-            "propDescription": "dal",
+            "propDescription": "dal; iki küçük kozalak daldan kaldırılır; tek uçtaki büyük kozalak",
             "propMentions": [
               {
                 "label": "dal",
                 "evidenceQuotes": [
-                  "Dal büyüğün tarafına indi."
+                  "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+              },
+              {
+                "label": "iki küçük kozalak daldan kaldırılır",
+                "evidenceQuotes": [
+                  "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz."
+                ],
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+              },
+              {
+                "label": "tek uçtaki büyük kozalak",
+                "evidenceQuotes": [
+                  "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz."
+                ],
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
               }
             ],
             "actions": [
@@ -41914,48 +42012,57 @@
                   "pilot56_synthetic_child_deniz",
                   "companion_owl_pilot_001"
                 ],
-                "description": "Deniz bir uçtaki küçük kozalağı aldı, yerine büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
+                "description": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
                 "evidenceSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p04",
-                "evidenceText": "Deniz bir uçtaki küçük kozalağı aldı, yerine büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
+                "evidenceText": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
                 "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "large": 1
+              },
+              "other": {},
+              "offBeamSmall": 2
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
             "visualIdentityStatus": "not-reviewed-for-this-page",
             "assetRuleApproval": false,
             "runtimeArt": null,
-            "actionNeed": "Deniz bir uçtaki küçük kozalağı aldı, yerine büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
+            "actionNeed": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
             "poseAndActionEvidence": [
-              "Deniz bir uçtaki küçük kozalağı aldı, yerine büyük kozalağı koydu.",
-              "Dal büyüğün tarafına indi.",
-              "\"Büyük daha ağır,\" dedi Deniz."
+              "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz."
             ],
             "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
             "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
           "causalEvidence": {
             "actorID": "child",
-            "quote": "Deniz bir uçtaki küçük kozalağı aldı, yerine büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
+            "quote": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
             "attributionQuote": "Deniz",
             "attributionPageNumber": 4,
             "kind": "sourceStatement",
             "parentSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p04",
             "attributionSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p04",
-            "quoteSHA256": "91bc64eb73d79b97eeb70b6ffebdcb0e83ff1e3962b7c382ccb8cafbb47b335a",
+            "quoteSHA256": "79bb9822fd4a3f96e68ebeb1a63c710b5fa081254594555c2b45a43029871bd8",
             "bookID": "pilot56_book_l9_owl_event03_v1",
             "pageNumber": 4
           },
-          "sourceSHA256UTF8": "91bc64eb73d79b97eeb70b6ffebdcb0e83ff1e3962b7c382ccb8cafbb47b335a"
+          "sourceSHA256UTF8": "79bb9822fd4a3f96e68ebeb1a63c710b5fa081254594555c2b45a43029871bd8"
         },
         {
           "pageNumber": 5,
@@ -42018,7 +42125,18 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "large": 1
+              },
+              "other": {
+                "small": 1
+              },
+              "offBeamSmall": 1
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -42038,7 +42156,8 @@
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
@@ -42117,7 +42236,18 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "large": 1
+              },
+              "other": {
+                "small": 2
+              },
+              "offBeamSmall": 0
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -42136,7 +42266,8 @@
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
@@ -42215,7 +42346,17 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "small": 2
+              },
+              "other": {
+                "large": 1
+              }
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -42235,7 +42376,8 @@
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
@@ -42322,7 +42464,15 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "experimentSetStored": {
+                "large": 1,
+                "small": 2
+              }
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -42342,7 +42492,8 @@
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
@@ -46255,7 +46406,7 @@
           ],
           "semantics": {
             "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-            "metadataRevision": 1,
+            "metadataRevision": 2,
             "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
             "subjects": [
               {
@@ -46276,22 +46427,21 @@
                 ]
               }
             ],
-            "propDescription": "top/şapka/uçurtma; iz/kum",
+            "propDescription": "ıslak kum; çocuğun ayağındaki ayakkabı ve yön gösteren ayakkabı izleri",
             "propMentions": [
               {
-                "label": "top/şapka/uçurtma",
+                "label": "ıslak kum",
                 "evidenceQuotes": [
-                  "\"Burun önde, topuk arkada,\" dedi."
+                  "Deniz kuma basıp ileri yürüdü. Arkasına baktı. Ayakkabısının burnu hep yürüdüğü yöne bakıyordu. \"Burun önde, topuk arkada,\" dedi. Simit de kendi izlerine baktı."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Context-reviewed physical ground/footprint feature. topuk is heel, not a ball; yuvarlak describes pawprint, not a nest."
               },
               {
-                "label": "iz/kum",
+                "label": "çocuğun ayağındaki ayakkabı ve yön gösteren ayakkabı izleri",
                 "evidenceQuotes": [
-                  "Deniz kuma basıp ileri yürüdü.",
-                  "Simit de kendi izlerine baktı."
+                  "Deniz kuma basıp ileri yürüdü. Arkasına baktı. Ayakkabısının burnu hep yürüdüğü yöne bakıyordu. \"Burun önde, topuk arkada,\" dedi. Simit de kendi izlerine baktı."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Context-reviewed physical ground/footprint feature. topuk is heel, not a ball; yuvarlak describes pawprint, not a nest."
               }
             ],
             "actions": [
@@ -46307,7 +46457,8 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+            "reviewDeltaDecision": "Unchanged source, affected8pagecontext manually reviewed; inherited lexical substring false-positive removed."
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -46356,7 +46507,7 @@
           ],
           "semantics": {
             "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-            "metadataRevision": 1,
+            "metadataRevision": 2,
             "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
             "subjects": [
               {
@@ -46377,28 +46528,14 @@
                 ]
               }
             ],
-            "propDescription": "kütük/yuva; iz/kum; kuş yuvası/kuş evi",
+            "propDescription": "yuvarlak pati izleri",
             "propMentions": [
               {
-                "label": "kütük/yuva",
+                "label": "yuvarlak pati izleri",
                 "evidenceQuotes": [
-                  "Arkasında yuvarlak izler kaldı."
+                  "Simit de Deniz’in yanında yürüdü. Arkasında yuvarlak izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. \"Şehirde böyle değil ama,\" dedi Simit."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
-              },
-              {
-                "label": "iz/kum",
-                "evidenceQuotes": [
-                  "Arkasında yuvarlak izler kaldı."
-                ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
-              },
-              {
-                "label": "kuş yuvası/kuş evi",
-                "evidenceQuotes": [
-                  "Arkasında yuvarlak izler kaldı."
-                ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Context-reviewed physical ground/footprint feature. topuk is heel, not a ball; yuvarlak describes pawprint, not a nest."
               }
             ],
             "actions": [
@@ -46414,7 +46551,8 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+            "reviewDeltaDecision": "Unchanged source, affected8pagecontext manually reviewed; inherited lexical substring false-positive removed."
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -46462,7 +46600,7 @@
           ],
           "semantics": {
             "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-            "metadataRevision": 1,
+            "metadataRevision": 2,
             "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
             "subjects": [
               {
@@ -46483,31 +46621,21 @@
                 ]
               }
             ],
-            "propDescription": "tasma/zil; su/birikinti; iz/kum",
+            "propDescription": "izler; dere yönü; zil henüz bulunmamış",
             "propMentions": [
               {
-                "label": "tasma/zil",
+                "label": "izler",
                 "evidenceQuotes": [
-                  "Simit’in zili minik bir ses çıkardı."
+                  "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
               },
               {
-                "label": "su/birikinti",
+                "label": "dere yönü; zil henüz bulunmamış",
                 "evidenceQuotes": [
-                  "Parmaklar dereye bakıyordu.",
-                  "\"Bu izler dereye gitmiş!\" dedi."
+                  "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
-              },
-              {
-                "label": "iz/kum",
-                "evidenceQuotes": [
-                  "Deniz eski izleri bir kez daha inceledi.",
-                  "\"Bu izler dereye gitmiş!\" dedi.",
-                  "Yönü kendi izleriyle bulmuştu."
-                ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
               }
             ],
             "actions": [
@@ -46516,27 +46644,24 @@
                   "pilot56_synthetic_child_deniz",
                   "companion_city_cat_001"
                 ],
-                "description": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit’in zili minik bir ses çıkardı.",
+                "description": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı.",
                 "evidenceSourceID": "p56_wave2_pilot56_book_l8_cat_event02_v1_p06",
-                "evidenceText": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit’in zili minik bir ses çıkardı.",
+                "evidenceText": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı.",
                 "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+            "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
             "visualIdentityStatus": "not-reviewed-for-this-page",
             "assetRuleApproval": false,
             "runtimeArt": null,
-            "actionNeed": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit’in zili minik bir ses çıkardı.",
+            "actionNeed": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı.",
             "poseAndActionEvidence": [
-              "Deniz eski izleri bir kez daha inceledi.",
-              "Parmaklar dereye bakıyordu.",
-              "\"Bu izler dereye gitmiş!\" dedi.",
-              "Yönü kendi izleriyle bulmuştu.",
-              "Simit’in zili minik bir ses çıkardı."
+              "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı."
             ],
             "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
             "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
@@ -46549,17 +46674,17 @@
           "intensity": 1,
           "causalEvidence": {
             "actorID": "child",
-            "quote": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit’in zili minik bir ses çıkardı.",
+            "quote": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı.",
             "attributionQuote": "Deniz",
             "attributionPageNumber": 6,
             "kind": "sourceStatement",
             "parentSourceID": "p56_wave2_pilot56_book_l8_cat_event02_v1_p06",
             "attributionSourceID": "p56_wave2_pilot56_book_l8_cat_event02_v1_p06",
-            "quoteSHA256": "96c93491e326d2b263b74aa3b1f50556a1e1c68f3410ce141bc1324da4d2b620",
+            "quoteSHA256": "7adc0f4aedbfa9a55bfbc2e350d89c7f8fb925c7cd30bb45711ce755ee4cc17a",
             "bookID": "pilot56_book_l8_cat_event02_v1",
             "pageNumber": 6
           },
-          "sourceSHA256UTF8": "96c93491e326d2b263b74aa3b1f50556a1e1c68f3410ce141bc1324da4d2b620"
+          "sourceSHA256UTF8": "7adc0f4aedbfa9a55bfbc2e350d89c7f8fb925c7cd30bb45711ce755ee4cc17a"
         },
         {
           "pageNumber": 7,
@@ -51998,7 +52123,17 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "small": 1
+              },
+              "other": {
+                "small": 1
+              }
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -52017,7 +52152,8 @@
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
@@ -52146,7 +52282,7 @@
           ],
           "semantics": {
             "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-            "metadataRevision": 1,
+            "metadataRevision": 2,
             "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
             "subjects": [
               {
@@ -52166,14 +52302,28 @@
                 ]
               }
             ],
-            "propDescription": "dal",
+            "propDescription": "dal; iki küçük kozalak daldan kaldırılır; tek uçtaki büyük kozalak",
             "propMentions": [
               {
                 "label": "dal",
                 "evidenceQuotes": [
-                  "Dal büyüğün tarafına indi."
+                  "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Böğürtlen kaşlarını kaldırdı."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+              },
+              {
+                "label": "iki küçük kozalak daldan kaldırılır",
+                "evidenceQuotes": [
+                  "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Böğürtlen kaşlarını kaldırdı."
+                ],
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+              },
+              {
+                "label": "tek uçtaki büyük kozalak",
+                "evidenceQuotes": [
+                  "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Böğürtlen kaşlarını kaldırdı."
+                ],
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
               }
             ],
             "actions": [
@@ -52182,49 +52332,57 @@
                   "pilot56_synthetic_child_deniz",
                   "companion_bear_001"
                 ],
-                "description": "Deniz bir uçtaki küçük kozalağı aldı, yerine büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Böğürtlen kaşlarını kaldırdı.",
+                "description": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Böğürtlen kaşlarını kaldırdı.",
                 "evidenceSourceID": "p56_wave2_pilot56_book_l9_bear_event03_v1_p04",
-                "evidenceText": "Deniz bir uçtaki küçük kozalağı aldı, yerine büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Böğürtlen kaşlarını kaldırdı.",
+                "evidenceText": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Böğürtlen kaşlarını kaldırdı.",
                 "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "large": 1
+              },
+              "other": {},
+              "offBeamSmall": 2
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
             "visualIdentityStatus": "not-reviewed-for-this-page",
             "assetRuleApproval": false,
             "runtimeArt": null,
-            "actionNeed": "Deniz bir uçtaki küçük kozalağı aldı, yerine büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Böğürtlen kaşlarını kaldırdı.",
+            "actionNeed": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Böğürtlen kaşlarını kaldırdı.",
             "poseAndActionEvidence": [
-              "Deniz bir uçtaki küçük kozalağı aldı, yerine büyüğü koydu.",
-              "Dal büyüğün tarafına indi.",
-              "\"Büyük daha ağır,\" dedi Deniz.",
-              "Böğürtlen kaşlarını kaldırdı."
+              "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Böğürtlen kaşlarını kaldırdı."
             ],
             "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
             "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
           "causalEvidence": {
             "actorID": "child",
-            "quote": "Deniz bir uçtaki küçük kozalağı aldı, yerine büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Böğürtlen kaşlarını kaldırdı.",
+            "quote": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Böğürtlen kaşlarını kaldırdı.",
             "attributionQuote": "Deniz",
             "attributionPageNumber": 4,
             "kind": "sourceStatement",
             "parentSourceID": "p56_wave2_pilot56_book_l9_bear_event03_v1_p04",
             "attributionSourceID": "p56_wave2_pilot56_book_l9_bear_event03_v1_p04",
-            "quoteSHA256": "c6037b7d4f055c082a3dfb401c1f545b4882e135879738702f0019717c5eb0f7",
+            "quoteSHA256": "c3d8b4f801629b05f5962f10e8ef2278452716fc77b033022248db2671548913",
             "bookID": "pilot56_book_l9_bear_event03_v1",
             "pageNumber": 4
           },
-          "sourceSHA256UTF8": "c6037b7d4f055c082a3dfb401c1f545b4882e135879738702f0019717c5eb0f7"
+          "sourceSHA256UTF8": "c3d8b4f801629b05f5962f10e8ef2278452716fc77b033022248db2671548913"
         },
         {
           "pageNumber": 5,
@@ -52287,7 +52445,18 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "large": 1
+              },
+              "other": {
+                "small": 1
+              },
+              "offBeamSmall": 1
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -52306,7 +52475,8 @@
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
@@ -52385,7 +52555,18 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "large": 1
+              },
+              "other": {
+                "small": 2
+              },
+              "offBeamSmall": 0
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -52404,7 +52585,8 @@
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
@@ -52483,7 +52665,17 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "first": {
+                "small": 2
+              },
+              "other": {
+                "large": 1
+              }
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -52503,7 +52695,8 @@
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
@@ -52590,7 +52783,15 @@
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+            "balanceStateFromReviewedContext": {
+              "experimentSetOnly": true,
+              "ambientConesNotCounted": true,
+              "experimentSetStored": {
+                "large": 1,
+                "small": 2
+              }
+            }
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
@@ -52609,7 +52810,8 @@
             "doNotDraw": [
               "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
               "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
-              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+              "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+              "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
             ]
           },
           "intensity": 1,
@@ -55139,7 +55341,7 @@
           ],
           "semantics": {
             "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-            "metadataRevision": 1,
+            "metadataRevision": 2,
             "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
             "subjects": [
               {
@@ -55159,28 +55361,21 @@
                 ]
               }
             ],
-            "propDescription": "sepet/kutu; renkli kalem; iz/kum",
+            "propDescription": "sarı kalem p6da yastık yanında kalır; kutudaki diğer kalemler",
             "propMentions": [
               {
-                "label": "sepet/kutu",
+                "label": "sarı kalem p6da yastık yanında kalır",
                 "evidenceQuotes": [
-                  "Kalemler kutularında uyuyordu."
+                  "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
               },
               {
-                "label": "renkli kalem",
+                "label": "kutudaki diğer kalemler",
                 "evidenceQuotes": [
-                  "Kalemler kutularında uyuyordu."
+                  "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
-              },
-              {
-                "label": "iz/kum",
-                "evidenceQuotes": [
-                  "\"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı."
-                ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
               }
             ],
             "actions": [
@@ -55189,26 +55384,24 @@
                   "pilot56_synthetic_child_deniz",
                   "companion_fox_pilot_001"
                 ],
-                "description": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
+                "description": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
                 "evidenceSourceID": "p56_wave2_pilot56_book_u7_fox_event03_v1_p08",
-                "evidenceText": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
+                "evidenceText": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
                 "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+            "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
             "visualIdentityStatus": "not-reviewed-for-this-page",
             "assetRuleApproval": false,
             "runtimeArt": null,
-            "actionNeed": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
+            "actionNeed": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
             "poseAndActionEvidence": [
-              "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın.",
-              "\"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı.",
-              "Oda sessizdi.",
-              "Kalemler kutularında uyuyordu."
+              "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu."
             ],
             "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
             "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
@@ -55220,17 +55413,17 @@
           "intensity": 0,
           "causalEvidence": {
             "actorID": "child",
-            "quote": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
+            "quote": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
             "attributionQuote": "Deniz",
             "attributionPageNumber": 8,
             "kind": "sourceStatement",
             "parentSourceID": "p56_wave2_pilot56_book_u7_fox_event03_v1_p08",
             "attributionSourceID": "p56_wave2_pilot56_book_u7_fox_event03_v1_p08",
-            "quoteSHA256": "ef149e65bc8e034c696e7b82f59a3d8dff6947ad9034dd536fb0d5d8dd897296",
+            "quoteSHA256": "9a887373733f13bd09f2beae9833547e69f574a7a3f9bce651002fb315d6e04c",
             "bookID": "pilot56_book_u7_fox_event03_v1",
             "pageNumber": 8
           },
-          "sourceSHA256UTF8": "ef149e65bc8e034c696e7b82f59a3d8dff6947ad9034dd536fb0d5d8dd897296"
+          "sourceSHA256UTF8": "9a887373733f13bd09f2beae9833547e69f574a7a3f9bce651002fb315d6e04c"
         }
       ]
     },
@@ -58674,7 +58867,7 @@
           ],
           "semantics": {
             "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-            "metadataRevision": 1,
+            "metadataRevision": 2,
             "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
             "subjects": [
               {
@@ -58694,28 +58887,28 @@
                 ]
               }
             ],
-            "propDescription": "minder; oyuncak; top/şapka/uçurtma",
+            "propDescription": "minder; Deniz kolundaki kumaş tavşan; yerlerindeki diğer oyuncaklar",
             "propMentions": [
               {
                 "label": "minder",
                 "evidenceQuotes": [
-                  "Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
+                  "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
               },
               {
-                "label": "oyuncak",
+                "label": "Deniz kolundaki kumaş tavşan",
                 "evidenceQuotes": [
-                  "Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
+                  "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
               },
               {
-                "label": "top/şapka/uçurtma",
+                "label": "yerlerindeki diğer oyuncaklar",
                 "evidenceQuotes": [
-                  "\"Yarın görüşürüz, Deniz,\" dedi küçük top."
+                  "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
               }
             ],
             "actions": [
@@ -58724,25 +58917,24 @@
                   "pilot56_synthetic_child_deniz",
                   "companion_hedgehog_pilot_001"
                 ],
-                "description": "\"Yarın görüşürüz, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
+                "description": "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
                 "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_v1_p08",
-                "evidenceText": "\"Yarın görüşürüz, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
+                "evidenceText": "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
                 "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+            "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
             "visualIdentityStatus": "not-reviewed-for-this-page",
             "assetRuleApproval": false,
             "runtimeArt": null,
-            "actionNeed": "\"Yarın görüşürüz, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
+            "actionNeed": "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
             "poseAndActionEvidence": [
-              "\"Yarın görüşürüz, Deniz,\" dedi küçük top.",
-              "Deniz’in göz kapakları indi.",
-              "Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
+              "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi."
             ],
             "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
             "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
@@ -58754,17 +58946,17 @@
           "intensity": 0,
           "causalEvidence": {
             "actorID": "child",
-            "quote": "\"Yarın görüşürüz, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
+            "quote": "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
             "attributionQuote": "Deniz",
             "attributionPageNumber": 8,
             "kind": "sourceStatement",
             "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_v1_p08",
             "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_v1_p08",
-            "quoteSHA256": "b3eacf1ae7c0f389f431c77fa279441d2784701ffb3b3790970c9a6203c35891",
+            "quoteSHA256": "c6d10b866cb37605ea3af94a5d9cc71f1df580b471710bce43dfe708e801c57e",
             "bookID": "pilot56_book_u7_hedgehog_v1",
             "pageNumber": 8
           },
-          "sourceSHA256UTF8": "b3eacf1ae7c0f389f431c77fa279441d2784701ffb3b3790970c9a6203c35891"
+          "sourceSHA256UTF8": "c6d10b866cb37605ea3af94a5d9cc71f1df580b471710bce43dfe708e801c57e"
         }
       ]
     },
@@ -64341,7 +64533,7 @@
           ],
           "semantics": {
             "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-            "metadataRevision": 1,
+            "metadataRevision": 2,
             "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
             "subjects": [
               {
@@ -64361,33 +64553,40 @@
                 ]
               }
             ],
-            "propDescription": "No newly named prop on this page; preserve book context.",
-            "propMentions": [],
+            "propDescription": "karanlık oda; uyuyan ayak mecazı gerçek uyku değildir",
+            "propMentions": [
+              {
+                "label": "karanlık oda; uyuyan ayak mecazı gerçek uyku değildir",
+                "evidenceQuotes": [
+                  "\"Gözlerini kapat, Deniz,\" diye fısıldadı Yıldız. \"Bir ayağım uyuyor, biri nöbette.\" Deniz güldü, sonra gözlerini kapattı. Oda karanlık ve sessizdi."
+                ],
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+              }
+            ],
             "actions": [
               {
                 "actorSubjectIDs": [
                   "pilot56_synthetic_child_deniz",
                   "companion_owl_pilot_001"
                 ],
-                "description": "\"Yarın görüşürüz, Deniz,\" diye fısıldadı Yıldız. \"Bir ayağım uyuyor, biri nöbette.\" Deniz güldü, sonra gözlerini kapattı. Oda karanlık ve sessizdi.",
+                "description": "\"Gözlerini kapat, Deniz,\" diye fısıldadı Yıldız. \"Bir ayağım uyuyor, biri nöbette.\" Deniz güldü, sonra gözlerini kapattı. Oda karanlık ve sessizdi.",
                 "evidenceSourceID": "p56_wave2_pilot56_book_u8_owl_event02_v1_p08",
-                "evidenceText": "\"Yarın görüşürüz, Deniz,\" diye fısıldadı Yıldız. \"Bir ayağım uyuyor, biri nöbette.\" Deniz güldü, sonra gözlerini kapattı. Oda karanlık ve sessizdi.",
+                "evidenceText": "\"Gözlerini kapat, Deniz,\" diye fısıldadı Yıldız. \"Bir ayağım uyuyor, biri nöbette.\" Deniz güldü, sonra gözlerini kapattı. Oda karanlık ve sessizdi.",
                 "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+            "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
             "visualIdentityStatus": "not-reviewed-for-this-page",
             "assetRuleApproval": false,
             "runtimeArt": null,
-            "actionNeed": "\"Yarın görüşürüz, Deniz,\" diye fısıldadı Yıldız. \"Bir ayağım uyuyor, biri nöbette.\" Deniz güldü, sonra gözlerini kapattı. Oda karanlık ve sessizdi.",
+            "actionNeed": "\"Gözlerini kapat, Deniz,\" diye fısıldadı Yıldız. \"Bir ayağım uyuyor, biri nöbette.\" Deniz güldü, sonra gözlerini kapattı. Oda karanlık ve sessizdi.",
             "poseAndActionEvidence": [
-              "\"Yarın görüşürüz, Deniz,\" diye fısıldadı Yıldız.",
-              "\"Bir ayağım uyuyor, biri nöbette.\" Deniz güldü, sonra gözlerini kapattı.",
-              "Oda karanlık ve sessizdi."
+              "\"Gözlerini kapat, Deniz,\" diye fısıldadı Yıldız. \"Bir ayağım uyuyor, biri nöbette.\" Deniz güldü, sonra gözlerini kapattı. Oda karanlık ve sessizdi."
             ],
             "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
             "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
@@ -64400,17 +64599,17 @@
           "intensity": 0,
           "causalEvidence": {
             "actorID": "child",
-            "quote": "\"Yarın görüşürüz, Deniz,\" diye fısıldadı Yıldız. \"Bir ayağım uyuyor, biri nöbette.\" Deniz güldü, sonra gözlerini kapattı. Oda karanlık ve sessizdi.",
+            "quote": "\"Gözlerini kapat, Deniz,\" diye fısıldadı Yıldız. \"Bir ayağım uyuyor, biri nöbette.\" Deniz güldü, sonra gözlerini kapattı. Oda karanlık ve sessizdi.",
             "attributionQuote": "Deniz",
             "attributionPageNumber": 8,
             "kind": "sourceStatement",
             "parentSourceID": "p56_wave2_pilot56_book_u8_owl_event02_v1_p08",
             "attributionSourceID": "p56_wave2_pilot56_book_u8_owl_event02_v1_p08",
-            "quoteSHA256": "efb904c7cfdae6ba40ae67754f1835f0460dd747a488c72d3f94619ccaef5b13",
+            "quoteSHA256": "032ace837d9863b7a56dd8324fb6b4fa0f20184a04ee4867538c151b17fb4acf",
             "bookID": "pilot56_book_u8_owl_event02_v1",
             "pageNumber": 8
           },
-          "sourceSHA256UTF8": "efb904c7cfdae6ba40ae67754f1835f0460dd747a488c72d3f94619ccaef5b13"
+          "sourceSHA256UTF8": "032ace837d9863b7a56dd8324fb6b4fa0f20184a04ee4867538c151b17fb4acf"
         }
       ]
     },
@@ -72805,7 +73004,7 @@
           ],
           "semantics": {
             "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-            "metadataRevision": 1,
+            "metadataRevision": 2,
             "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
             "subjects": [
               {
@@ -72825,14 +73024,21 @@
                 ]
               }
             ],
-            "propDescription": "tasma/zil",
+            "propDescription": "sessiz zil; ılık oda",
             "propMentions": [
               {
-                "label": "tasma/zil",
+                "label": "sessiz zil",
                 "evidenceQuotes": [
-                  "Zil de artık susmuştu."
+                  "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu."
                 ],
-                "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+              },
+              {
+                "label": "ılık oda",
+                "evidenceQuotes": [
+                  "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu."
+                ],
+                "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
               }
             ],
             "actions": [
@@ -72841,26 +73047,24 @@
                   "pilot56_synthetic_child_deniz",
                   "companion_city_cat_001"
                 ],
-                "description": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+                "description": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
                 "evidenceSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p08",
-                "evidenceText": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+                "evidenceText": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
                 "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
                 "atomicActionMappingApproved": false
               }
             ],
-            "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+            "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+            "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
           },
           "artHandoff": {
             "contentMeaningStatus": "source-grounded-wave-review",
             "visualIdentityStatus": "not-reviewed-for-this-page",
             "assetRuleApproval": false,
             "runtimeArt": null,
-            "actionNeed": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+            "actionNeed": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
             "poseAndActionEvidence": [
-              "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit.",
-              "Deniz’in kirpikleri yanaklarına indi.",
-              "Yüzü yumuşacık, oda sessiz ve ılıktı.",
-              "Zil de artık susmuştu."
+              "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu."
             ],
             "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
             "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
@@ -72873,17 +73077,17 @@
           "intensity": 0,
           "causalEvidence": {
             "actorID": "child",
-            "quote": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+            "quote": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
             "attributionQuote": "Deniz",
             "attributionPageNumber": 8,
             "kind": "sourceStatement",
             "parentSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p08",
             "attributionSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p08",
-            "quoteSHA256": "99ae44aa9431eeda774b5e7df29e0846fc4a7616f8308a434b44dde76d8ca640",
+            "quoteSHA256": "c2fad05d59d231cc37b5ec15244f5d33daf1f22f7ebd9581ac84a8db0a6c3211",
             "bookID": "pilot56_book_u8_cat_event03_v1",
             "pageNumber": 8
           },
-          "sourceSHA256UTF8": "99ae44aa9431eeda774b5e7df29e0846fc4a7616f8308a434b44dde76d8ca640"
+          "sourceSHA256UTF8": "c2fad05d59d231cc37b5ec15244f5d33daf1f22f7ebd9581ac84a8db0a6c3211"
         }
       ]
     },
@@ -77996,7 +78200,34 @@
       ]
     }
   ],
-  "blockers": [
+  "blockers": [],
+  "concerns": [
+    {
+      "sourceBookID": "pilot56_book_a9_hedgehog_event03_v1",
+      "pageNumber": 4,
+      "code": "leaf-delivery-before-explicit-wake",
+      "severity": "concern",
+      "detail": "p3 Kestane falls asleep; p4 brings leaf; p5 says wakes and places signature leaf. Awakening order needs continuity decision.",
+      "quote": "Deniz salyangoza dokunmadı. Geniş, ıslak bir yaprak buldu. \"Bununla serin bir yol yaparım,\" dedi. Yaprağı salyangozun önüne koydu. Kestane bir yaprak daha getirdi."
+    },
+    {
+      "sourceBookID": "pilot56_book_a8_fox_event02_v1",
+      "pageNumber": 8,
+      "code": "bottle-not-accounted-for",
+      "severity": "concern",
+      "detail": "p2 water bottle included; p5 fox carries pillow; p6 child blanket+plates; p7 delivery; p8 says nothing left. Bottle transport omitted; do not add unstated carried prop to action.",
+      "quote": "Tarçın yastığı kokladı. \"Bu yastık piknik kokuyor,\" dedi. Deniz başını yana eğip gülümsedi. Tarçın da kuyruğunu salladı. Her şey eve gelmiş, hiçbir şey çayırda kalmamıştı."
+    },
+    {
+      "sourceBookID": "pilot56_book_u9_owl_event02_v1",
+      "pageNumber": 1,
+      "code": "actual-snow-and-imaginary-snow-distinct",
+      "severity": "art-note",
+      "detail": "p1 explicitly real snow outside room; p4–p6 child imagines snowy window. Both domains exist; keep real window weather separate from mental scene.",
+      "quote": "Ağaç Ev Odası’nda kış akşamıydı, pencereye kar yağıyordu. Deniz yorganın altına girdi. Yıldız tavana yakın tüneğindeydi. Koyu mavi tüyleri gölgelere karışıyordu. Gözleri yuvarlak ve parlaktı."
+    }
+  ],
+  "resolvedInRevision2": [
     {
       "sourceBookID": "pilot56_book_l8_cat_event02_v1",
       "pageNumber": 6,
@@ -78030,30 +78261,5 @@
       "quote": "Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. \"Bir büyük, iki küçüğe denk!\" dedi. Bunu kendi denemesiyle bulmuştu."
     }
   ],
-  "concerns": [
-    {
-      "sourceBookID": "pilot56_book_a9_hedgehog_event03_v1",
-      "pageNumber": 4,
-      "code": "leaf-delivery-before-explicit-wake",
-      "severity": "concern",
-      "detail": "p3 Kestane falls asleep; p4 brings leaf; p5 says wakes and places signature leaf. Awakening order needs continuity decision.",
-      "quote": "Deniz salyangoza dokunmadı. Geniş, ıslak bir yaprak buldu. \"Bununla serin bir yol yaparım,\" dedi. Yaprağı salyangozun önüne koydu. Kestane bir yaprak daha getirdi."
-    },
-    {
-      "sourceBookID": "pilot56_book_a8_fox_event02_v1",
-      "pageNumber": 8,
-      "code": "bottle-not-accounted-for",
-      "severity": "concern",
-      "detail": "p2 water bottle included; p5 fox carries pillow; p6 child blanket+plates; p7 delivery; p8 says nothing left. Bottle transport omitted; do not add unstated carried prop to action.",
-      "quote": "Tarçın yastığı kokladı. \"Bu yastık piknik kokuyor,\" dedi. Deniz başını yana eğip gülümsedi. Tarçın da kuyruğunu salladı. Her şey eve gelmiş, hiçbir şey çayırda kalmamıştı."
-    },
-    {
-      "sourceBookID": "pilot56_book_u9_owl_event02_v1",
-      "pageNumber": 1,
-      "code": "actual-snow-and-imaginary-snow-distinct",
-      "severity": "art-note",
-      "detail": "p1 explicitly real snow outside room; p4–p6 child imagines snowy window. Both domains exist; keep real window weather separate from mental scene.",
-      "quote": "Ağaç Ev Odası’nda kış akşamıydı, pencereye kar yağıyordu. Deniz yorganın altına girdi. Yıldız tavana yakın tüneğindeydi. Koyu mavi tüyleri gölgelere karışıyordu. Gözleri yuvarlak ve parlaktı."
-    }
-  ]
+  "revision2ChangedPages": 9
 }

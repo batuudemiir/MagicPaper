@@ -16,3 +16,8 @@ Girdi yolu yanıtı sonrası: güncelv4ve--poollint geldi. Yeni metin işine gö
 
 
 Son kontrol: kaynaklar alındı ve270kitaptaetiket/bağlama tamamlandı;V4acceptance testikapanış2sayfadayasak“yarın”önekinitetikledi.616/630fixture,1475/1500sample;15testtek4assertionred. Kodveguardgevşetilmez,sourceownerfixgerekir. Wave1+2runtimeyok,5semantikengelraporlu. BuplanbittiveyaV4kabuledildidenmiyor.
+
+
+## 26 Kasım 2026 — V4 düzeltme 2 sonucu
+
+18 sayfa/17 kitap yeniden bağlandı; 630/630 ve N1500/1500, Release 15/0, metrik720/0. Kaynak dalga engelleri kapandı; typed/runtime beklemede. Pin v3 korunur; v4 onayı ayrı. Güncel rapor: docs/research/five-friends-p56-runtime/v4/REPORT.md.

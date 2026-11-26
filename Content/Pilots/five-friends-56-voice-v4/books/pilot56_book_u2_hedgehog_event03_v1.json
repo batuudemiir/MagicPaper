@@ -1005,7 +1005,7 @@
       "orderedBeatIDs": [
         "pilot56_beat_u2_8_v1"
       ],
-      "text": "\"Yarın görüşürüz, Deniz,\" dedi Kestane ve top oldu. Deniz’in gözleri usulca kapandı. Minder duvarın yanında, boşluk Kestane'nin yanındaydı. Akşam tamamlandı.",
+      "text": "\"Uyku vakti, Deniz,\" dedi Kestane ve top oldu. Deniz’in gözleri usulca kapandı. Minder duvarın yanında, boşluk Kestane'nin yanındaydı. Akşam tamamlandı.",
       "context": {
         "ageBand": "5-6",
         "mode": "bedtime",
@@ -1034,7 +1034,7 @@
             "order": 0,
             "sourceKind": "pilotAuthoredFullPage",
             "sourceID": "p56_v4_pilot56_book_u2_hedgehog_event03_v1_p08",
-            "sourceTextDigest": "dc31789b8f35ad39e745d1685cce9c4567d6b45a67ccda37eeaee377e0155a8f",
+            "sourceTextDigest": "2b4445db4d05c035b3e13d7587b64a31edd08b04529371ac235e4ed1f86c81fd",
             "templateID": "pilot56_blueprint_u2_v1",
             "sourcePointer": "sources.json#/sources/303",
             "contexts": {
@@ -1060,7 +1060,7 @@
       "semantics": {
         "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
         "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
-        "metadataRevision": 3,
+        "metadataRevision": 2,
         "subjects": [
           {
             "subjectID": "pilot56_synthetic_child_deniz",
@@ -1086,14 +1086,21 @@
             ]
           }
         ],
-        "propDescription": "minder",
+        "propDescription": "minder; boşluk",
         "propMentions": [
           {
             "label": "minder",
             "evidenceQuotes": [
-              "Minder duvarın yanında, boşluk Kestane'nin yanındaydı."
+              "\"Uyku vakti, Deniz,\" dedi Kestane ve top oldu. Deniz’in gözleri usulca kapandı. Minder duvarın yanında, boşluk Kestane'nin yanındaydı. Akşam tamamlandı."
             ],
-            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          },
+          {
+            "label": "boşluk",
+            "evidenceQuotes": [
+              "\"Uyku vakti, Deniz,\" dedi Kestane ve top oldu. Deniz’in gözleri usulca kapandı. Minder duvarın yanında, boşluk Kestane'nin yanındaydı. Akşam tamamlandı."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           }
         ],
         "actions": [
@@ -1102,28 +1109,26 @@
               "pilot56_synthetic_child_deniz",
               "companion_hedgehog_pilot_001"
             ],
-            "description": "\"Yarın görüşürüz, Deniz,\" dedi Kestane ve top oldu. Deniz’in gözleri usulca kapandı. Minder duvarın yanında, boşluk Kestane'nin yanındaydı. Akşam tamamlandı.",
+            "description": "\"Uyku vakti, Deniz,\" dedi Kestane ve top oldu. Deniz’in gözleri usulca kapandı. Minder duvarın yanında, boşluk Kestane'nin yanındaydı. Akşam tamamlandı.",
             "evidenceSourceID": "p56_v4_pilot56_book_u2_hedgehog_event03_v1_p08",
-            "evidenceText": "\"Yarın görüşürüz, Deniz,\" dedi Kestane ve top oldu. Deniz’in gözleri usulca kapandı. Minder duvarın yanında, boşluk Kestane'nin yanındaydı. Akşam tamamlandı.",
+            "evidenceText": "\"Uyku vakti, Deniz,\" dedi Kestane ve top oldu. Deniz’in gözleri usulca kapandı. Minder duvarın yanında, boşluk Kestane'nin yanındaydı. Akşam tamamlandı.",
             "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
       },
       "artHandoff": {
         "contentMeaningStatus": "v4-source-grounded-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "\"Yarın görüşürüz, Deniz,\" dedi Kestane ve top oldu. Deniz’in gözleri usulca kapandı. Minder duvarın yanında, boşluk Kestane'nin yanındaydı. Akşam tamamlandı.",
+        "actionNeed": "\"Uyku vakti, Deniz,\" dedi Kestane ve top oldu. Deniz’in gözleri usulca kapandı. Minder duvarın yanında, boşluk Kestane'nin yanındaydı. Akşam tamamlandı.",
         "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
         "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
         "poseAndActionEvidence": [
-          "\"Yarın görüşürüz, Deniz,\" dedi Kestane ve top oldu.",
-          "Deniz’in gözleri usulca kapandı.",
-          "Minder duvarın yanında, boşluk Kestane'nin yanındaydı.",
-          "Akşam tamamlandı."
+          "\"Uyku vakti, Deniz,\" dedi Kestane ve top oldu. Deniz’in gözleri usulca kapandı. Minder duvarın yanında, boşluk Kestane'nin yanındaydı. Akşam tamamlandı."
         ],
         "doNotDraw": [
           "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",

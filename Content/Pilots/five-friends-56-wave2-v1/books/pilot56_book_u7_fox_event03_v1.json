@@ -26,10 +26,10 @@
       "Tarçın kutudaki yeşil kaleme bir daha baktı. \"Çam ağacı da kutusunda uyusun,\" dedi. Burnunu kutunun kapağına dayadı. Deniz ona sıcacık gülümsedi. Tarçın da kuyruğunu oynattı.",
       "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Öteki kalemler kutularındaydı. Masa toplanmıştı. Deniz memnun memnun baktı.",
       "Tarçın minderinde döndü ve kıvrıldı. Kabarık kuyruğunu yüzüne örttü. Deniz masa lambasını kapattı ve yatağına uzandı. Oda karanlık ve sakindi.",
-      "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu."
+      "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu."
     ]
   },
-  "inputFileSHA256": "fa745c4695185a69c55f50334df79ee92e63670df330aa78b27f22bedb17f92e",
+  "inputFileSHA256": "9934611c651816315250e8124978628675e3937350e0c3f04e5c85992d2097a0",
   "inputBookPointer": "input/bedtime-fox.json#/books/2",
   "pages": [
     {
@@ -829,7 +829,7 @@
       ],
       "semantics": {
         "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
-        "metadataRevision": 1,
+        "metadataRevision": 2,
         "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
         "subjects": [
           {
@@ -849,28 +849,21 @@
             ]
           }
         ],
-        "propDescription": "sepet/kutu; renkli kalem; iz/kum",
+        "propDescription": "sarı kalem p6da yastık yanında kalır; kutudaki diğer kalemler",
         "propMentions": [
           {
-            "label": "sepet/kutu",
+            "label": "sarı kalem p6da yastık yanında kalır",
             "evidenceQuotes": [
-              "Kalemler kutularında uyuyordu."
+              "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           },
           {
-            "label": "renkli kalem",
+            "label": "kutudaki diğer kalemler",
             "evidenceQuotes": [
-              "Kalemler kutularında uyuyordu."
+              "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu."
             ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
-          },
-          {
-            "label": "iz/kum",
-            "evidenceQuotes": [
-              "\"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı."
-            ],
-            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
           }
         ],
         "actions": [
@@ -879,26 +872,24 @@
               "pilot56_synthetic_child_deniz",
               "companion_fox_pilot_001"
             ],
-            "description": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
+            "description": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
             "evidenceSourceID": "p56_wave2_pilot56_book_u7_fox_event03_v1_p08",
-            "evidenceText": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
+            "evidenceText": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
             "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
             "atomicActionMappingApproved": false
           }
         ],
-        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
       },
       "artHandoff": {
         "contentMeaningStatus": "source-grounded-wave-review",
         "visualIdentityStatus": "not-reviewed-for-this-page",
         "assetRuleApproval": false,
         "runtimeArt": null,
-        "actionNeed": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
+        "actionNeed": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
         "poseAndActionEvidence": [
-          "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın.",
-          "\"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı.",
-          "Oda sessizdi.",
-          "Kalemler kutularında uyuyordu."
+          "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu."
         ],
         "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
         "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
@@ -910,18 +901,18 @@
       "intensity": 0,
       "causalEvidence": {
         "actorID": "child",
-        "quote": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
+        "quote": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
         "attributionQuote": "Deniz",
         "attributionPageNumber": 8,
         "kind": "sourceStatement",
         "parentSourceID": "p56_wave2_pilot56_book_u7_fox_event03_v1_p08",
         "attributionSourceID": "p56_wave2_pilot56_book_u7_fox_event03_v1_p08",
-        "quoteSHA256": "ef149e65bc8e034c696e7b82f59a3d8dff6947ad9034dd536fb0d5d8dd897296",
+        "quoteSHA256": "9a887373733f13bd09f2beae9833547e69f574a7a3f9bce651002fb315d6e04c",
         "bookID": "pilot56_book_u7_fox_event03_v1",
         "pageNumber": 8
       },
-      "sourceSHA256UTF8": "ef149e65bc8e034c696e7b82f59a3d8dff6947ad9034dd536fb0d5d8dd897296",
-      "text": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
+      "sourceSHA256UTF8": "9a887373733f13bd09f2beae9833547e69f574a7a3f9bce651002fb315d6e04c",
+      "text": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
       "sourceID": "p56_wave2_pilot56_book_u7_fox_event03_v1_p08",
       "sourcePointer": "input/bedtime-fox.json#/books/2/pages/7"
     }

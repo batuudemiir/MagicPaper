@@ -24,24 +24,25 @@
     "titles": 90,
     "pages": 720
   },
-  "scope": "Fresh authoring-only current wave2 review, all15 canonical files. Not runtime/release/art approval. No old review labels consulted. Delivered wave2 text has no breath-holding history; discarded drafts are not reviewed corpus.",
+  "scope": "Revision2 source review; inspected not release/runtime approval.",
   "sourceFileDigests": {
-    "adventure-bear.json": "095ae97293e2d392c35dd7a2b60ba977da211f8f650e872515723e5094fcbffe",
-    "adventure-cat.json": "cfc7c497fc656a53b044dce8a133414b951a773f8c64cd41e6b4f9010d0146b2",
     "adventure-fox.json": "c3c155bef1642b5c196b7aebb993e7e02021f4123f8d1ff7c11831b7af43abc1",
     "adventure-hedgehog.json": "df07a7bbecd11a5eb2376684b8843188cd585ed92512ff8608e430517b27dbd8",
     "adventure-owl.json": "d0e77df2cfbeb2b6d8d21e936c891aec9b630d49794ffbd2f2b70e89c557aa69",
-    "bedtime-bear.json": "81d248ed167ab9533c378bb02f7ea827c46473ea27e252501a7613815e98f45c",
-    "bedtime-cat.json": "d2cf0a47309f48e05623e4bab45aadbbe91a6cb1ffd366e8af852a0c4b234b6f",
-    "bedtime-fox.json": "fa745c4695185a69c55f50334df79ee92e63670df330aa78b27f22bedb17f92e",
-    "bedtime-hedgehog.json": "be50740a18277453d3fee4b1afbbb393ba7f9adddd094497901713dd5b743cec",
-    "bedtime-owl.json": "8fd9b2ebd87aa531529048f76599e44da39bc9026af9e010ad26913c1fbcf105",
-    "learning-bear.json": "b9fcf86e7b9bed977da9a2f2cb21c18c6ae14602108de9b2e7cd02a2c1e02583",
-    "learning-cat.json": "c4ad8ff1521c9fe6063e1d662be3358f70a0b2eba9fda0b31ea5097de97b4bc1",
+    "adventure-cat.json": "cfc7c497fc656a53b044dce8a133414b951a773f8c64cd41e6b4f9010d0146b2",
+    "adventure-bear.json": "095ae97293e2d392c35dd7a2b60ba977da211f8f650e872515723e5094fcbffe",
     "learning-fox.json": "5aab0007031b15890d8001939cd946ad64e9ba73c1a434c41567eb97d372f978",
-    "learning-hedgehog.json": "c630cfadfea0b1ab9d968364f5864d0d9e0ad0302589ec4028b3fbd76533e267",
-    "learning-owl.json": "e5cbd3e0601462c5b9bbb48eea728271475ce73d8706bde35016b043a374e54f"
+    "learning-hedgehog.json": "c11ab0d5e4d32f9cd0fcc294c02496625e0230415a1bc65790d4a4c2e6190487",
+    "learning-owl.json": "7735ffb4ac4a032547638dea480bf268b04da3eb8b9b78b51730ad0e5f898af9",
+    "learning-cat.json": "b2c8c63f92bb0e37061a91d6eb0733b0f69339203cf0db89088e4bdd4add7b79",
+    "learning-bear.json": "98d2abd3adaa515a9a9edc2035c03297e08ff93f16733b8486784267360fae02",
+    "bedtime-fox.json": "9934611c651816315250e8124978628675e3937350e0c3f04e5c85992d2097a0",
+    "bedtime-hedgehog.json": "787799db801d5228514a484d3ad8e0c96ffc791001c39472752e001a79071bc8",
+    "bedtime-owl.json": "062af9f713c7bdc90ac5d1d395c3c04f1f8fe7371f7e45c20509baff71684389",
+    "bedtime-cat.json": "8993bd941edd8b4cd92235bc6a288327fd55a67326dee4902eaf34610673aa91",
+    "bedtime-bear.json": "81d248ed167ab9533c378bb02f7ea827c46473ea27e252501a7613815e98f45c"
   },
+  "reviewMethod": "Revision2 delta review by root:18 changed pages and all8current pages of17affected books read; unchanged253books reused only with byte-identical title/pages and unchanged context. Source notes/book identities unchanged. No prose edits; no runtime/art approval.",
   "books": [
     {
       "bookID": "pilot56_book_a8_fox_v1",
@@ -8762,7 +8763,7 @@
           "sourceSHA256UTF8": "4ff4255b317f93b58adfcdca4c583f3e39299afb7584b52ba11cb20a753d7c3a"
         }
       ],
-      "bookSHA256FileBytes": "78661692a8c2ea362261d9cf1637ec841bae1f6aad2e9703f2da149340a6e5f8"
+      "bookSHA256FileBytes": "f8c99e0effac4fb25c869e6a04dcc2df4cb4f2d1d018a5b4b6d6b0b00738b768"
     },
     {
       "bookID": "pilot56_book_l8_hedgehog_event02_v1",
@@ -8998,7 +8999,7 @@
           "sourceSHA256UTF8": "f5b9151605f7726f45ad85bbb61f3c95d3eb49f50b4e1097b6d3fb21df7d5106"
         }
       ],
-      "bookSHA256FileBytes": "38be87ec70c2684089c433b6723d28116d2b0fd5ab038fd1c3de2f87150580a9"
+      "bookSHA256FileBytes": "dc5c750a58766e2c8efdd35000785f479429f7b78047fa0c69037aefe0b0fa8a"
     },
     {
       "bookID": "pilot56_book_l8_hedgehog_event03_v1",
@@ -9229,7 +9230,7 @@
           "sourceSHA256UTF8": "6a033b36bf5791bc692e16cadc3d91d6e96c148c1a17a9c76967d4e884fdb3e6"
         }
       ],
-      "bookSHA256FileBytes": "6c436732a5de32abcc45be74dc6a07cf8fbe4b5a96c3183356949c690a9742cf"
+      "bookSHA256FileBytes": "1d39f600447d0246253efb8265d7689294b779bfe0d3b86e5c74631e6201fcd6"
     },
     {
       "bookID": "pilot56_book_l9_hedgehog_v1",
@@ -9463,7 +9464,7 @@
           "sourceSHA256UTF8": "d854a2202e338478c6e7cc5323427c8b1de35955aec5969f83affb85f562d7e1"
         }
       ],
-      "bookSHA256FileBytes": "142f1735da3ede1bf6f9509811d78c4851279e014fca711716af8c005de3c8b6"
+      "bookSHA256FileBytes": "00f1e0e0db7a3327b9537f676f9bebc80eca9de2d180e156bff02d873bcf3174"
     },
     {
       "bookID": "pilot56_book_l9_hedgehog_event02_v1",
@@ -9701,7 +9702,7 @@
           "sourceSHA256UTF8": "5ab6d7114a3018828de97e07b12c83f0adebdd000339c69fa52ecbdbf85079bf"
         }
       ],
-      "bookSHA256FileBytes": "9c04a1f45e967e57eac4b51f6842424c89f088ea545752042c1dfa003f37684e"
+      "bookSHA256FileBytes": "fb8b54bcfca2921e10a89be0dc8282fe63e78898870aed9b4f13a8fe54647be6"
     },
     {
       "bookID": "pilot56_book_l9_hedgehog_event03_v1",
@@ -9818,7 +9819,7 @@
           "evidence": [
             {
               "pageNumber": 4,
-              "quote": "Deniz bir uçtaki küçük kozalağı alıp yerine büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
+              "quote": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
               "sourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p04"
             }
           ],
@@ -9829,10 +9830,11 @@
             "weather": "No explicit sun/rain/wind/snow/seasonal weather reference. Ordinary wet sand or cool indoor light alone is excluded.",
             "heights": "No elevated exposure/climb/fall. Objects out of reach, low perches, ground-level leaf paths and manipulating a branch from beside a low log are excluded."
           },
+          "reviewDeltaDecision": "Root read all8current pages. Prior topic/emotion dispositions remain warranted; literal current full-page evidence refreshed.",
           "bookID": "pilot56_book_l9_hedgehog_event03_v1",
           "sourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p04",
-          "sourceSHA": "e81451e18472f95a0ec397f3be6d7def8c718e22f4006c0f46fb0679121f047a",
-          "sourceSHA256UTF8": "e81451e18472f95a0ec397f3be6d7def8c718e22f4006c0f46fb0679121f047a"
+          "sourceSHA": "d7630e85395089f0534941b1810a759715876fe3f7d19c254a08fce032db0e66",
+          "sourceSHA256UTF8": "d7630e85395089f0534941b1810a759715876fe3f7d19c254a08fce032db0e66"
         },
         {
           "pageNumber": 5,
@@ -9918,7 +9920,7 @@
           "evidence": [
             {
               "pageNumber": 8,
-              "quote": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada dört kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
+              "quote": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
               "sourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p08"
             }
           ],
@@ -9929,13 +9931,14 @@
             "weather": "No explicit sun/rain/wind/snow/seasonal weather reference. Ordinary wet sand or cool indoor light alone is excluded.",
             "heights": "No elevated exposure/climb/fall. Objects out of reach, low perches, ground-level leaf paths and manipulating a branch from beside a low log are excluded."
           },
+          "reviewDeltaDecision": "Root read all8current pages. Prior topic/emotion dispositions remain warranted; literal current full-page evidence refreshed.",
           "bookID": "pilot56_book_l9_hedgehog_event03_v1",
           "sourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p08",
-          "sourceSHA": "9fcf8bfe34ec4d48de8b263f47bd69cc7d8e73b65e3a7a6725f0cf6b89ce2a22",
-          "sourceSHA256UTF8": "9fcf8bfe34ec4d48de8b263f47bd69cc7d8e73b65e3a7a6725f0cf6b89ce2a22"
+          "sourceSHA": "0fc21d9273a888026f61e0b98703d3c70bcb7830d7ea339b1680c1eaf978ec60",
+          "sourceSHA256UTF8": "0fc21d9273a888026f61e0b98703d3c70bcb7830d7ea339b1680c1eaf978ec60"
         }
       ],
-      "bookSHA256FileBytes": "54bff98e70e6576250344af349d2343e98c4687aaa1101d3d27b5314aa332e22"
+      "bookSHA256FileBytes": "3c8e5b8fc889552d67320cab4c1d5175e3a7545a24f62cc1283018d42097099f"
     },
     {
       "bookID": "pilot56_book_l7_owl_v1",
@@ -10179,7 +10182,7 @@
           "sourceSHA256UTF8": "e8dd74aaae51d3a5e238d5f4c8f8431267f954e68af9901ec93891f9e224c5cd"
         }
       ],
-      "bookSHA256FileBytes": "75a9e415574029b15077d0aeee967ff799bdc4f91bf065160cd3b45234a91423"
+      "bookSHA256FileBytes": "ba3359648e4aaf6e7f4124432319fd91d5ea36f75228d246d5797a74ebb3075f"
     },
     {
       "bookID": "pilot56_book_l7_owl_event02_v1",
@@ -10419,7 +10422,7 @@
           "sourceSHA256UTF8": "e4466bd79a41a38153b22c4a36289abed15627220830eb939839a4a08cac2637"
         }
       ],
-      "bookSHA256FileBytes": "188f514a91dad13fcd32309a2b4e4983f924fa2f2bfb57b5923352e570cbfc7c"
+      "bookSHA256FileBytes": "a5eb3b6a30ffc66911a3485fd3a5099ee080d12eebbda5e341e04f6f1b0fe438"
     },
     {
       "bookID": "pilot56_book_l7_owl_event03_v1",
@@ -10659,7 +10662,7 @@
           "sourceSHA256UTF8": "1cebe9d5b7a5a471aada0e5c5319fa2fdb951f5b6499df96ffc5c65a37e6074b"
         }
       ],
-      "bookSHA256FileBytes": "bc9c22d8bb4375f23573165a37cc9ba6103b891afc50a1d5cd6055a9d4edd5d8"
+      "bookSHA256FileBytes": "df09db17448ffff6561e06eae34fd1fedaeff98749e1693132f4fb0e059070a5"
     },
     {
       "bookID": "pilot56_book_l9_owl_v1",
@@ -10900,7 +10903,7 @@
           "sourceSHA256UTF8": "9de8468d7c98d41034fab921de59e1d7c16173461b84578d3aef1e8632aab29d"
         }
       ],
-      "bookSHA256FileBytes": "15c9d353a66fc463f5c5aa516d1c3429a655794f04328dbffe4fc9b9fb0cb648"
+      "bookSHA256FileBytes": "e7909c1f39ae548312dfa5282e92a1fb84912971020f555dd14f6e74c5d8f613"
     },
     {
       "bookID": "pilot56_book_l9_owl_event02_v1",
@@ -11134,7 +11137,7 @@
           "sourceSHA256UTF8": "83afbd02c48c671ae2bf6a6c11a012c9dde907b70fe5fc683f2fa1747b62fb5a"
         }
       ],
-      "bookSHA256FileBytes": "9e8239ce933f9fb376eb2fc9fface710e757d35b37daa9bb094591edbfe4c56a"
+      "bookSHA256FileBytes": "2b86e4ab11e844cbb1fd39908f284363244fe38c684a20643d3ba451cd92dcf0"
     },
     {
       "bookID": "pilot56_book_l9_owl_event03_v1",
@@ -11251,7 +11254,7 @@
           "evidence": [
             {
               "pageNumber": 4,
-              "quote": "Deniz bir uçtaki küçük kozalağı aldı, yerine büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
+              "quote": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
               "sourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p04"
             }
           ],
@@ -11262,10 +11265,11 @@
             "weather": "No explicit sun/rain/wind/snow/seasonal weather reference. Ordinary wet sand or cool indoor light alone is excluded.",
             "heights": "No elevated exposure/climb/fall. Objects out of reach, low perches, ground-level leaf paths and manipulating a branch from beside a low log are excluded."
           },
+          "reviewDeltaDecision": "Root read all8current pages. Prior topic/emotion dispositions remain warranted; literal current full-page evidence refreshed.",
           "bookID": "pilot56_book_l9_owl_event03_v1",
           "sourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p04",
-          "sourceSHA": "91bc64eb73d79b97eeb70b6ffebdcb0e83ff1e3962b7c382ccb8cafbb47b335a",
-          "sourceSHA256UTF8": "91bc64eb73d79b97eeb70b6ffebdcb0e83ff1e3962b7c382ccb8cafbb47b335a"
+          "sourceSHA": "79bb9822fd4a3f96e68ebeb1a63c710b5fa081254594555c2b45a43029871bd8",
+          "sourceSHA256UTF8": "79bb9822fd4a3f96e68ebeb1a63c710b5fa081254594555c2b45a43029871bd8"
         },
         {
           "pageNumber": 5,
@@ -11368,7 +11372,7 @@
           "sourceSHA256UTF8": "d973366a5ffd7257d758f1479a06cd59684552e4f12630e2b4eb85b09e1abb4a"
         }
       ],
-      "bookSHA256FileBytes": "16c3f9a868804cebfdd9f285d5bd7d6e7df9189ec06cc9fb604d8c2bd41ca5a2"
+      "bookSHA256FileBytes": "f2474ecd791663967111ba7ecdb68529db1771ac00c16d1cfea53515778e482b"
     },
     {
       "bookID": "pilot56_book_l7_cat_v1",
@@ -11612,7 +11616,7 @@
           "sourceSHA256UTF8": "7a5ff7e8e583dd06cb74e1f5748ab4cae26e8a202c6d4ea16f77be443f210d0d"
         }
       ],
-      "bookSHA256FileBytes": "1ac1cba46e1034af280081fd32486a2e25dec14103a36ccfd189542171276c3f"
+      "bookSHA256FileBytes": "aa915931f0ae2fb02c4fce8c301449e5b24b602fc4e4b1d54e24441420a6fea6"
     },
     {
       "bookID": "pilot56_book_l7_cat_event02_v1",
@@ -11852,7 +11856,7 @@
           "sourceSHA256UTF8": "2c72793cee6015cbbc0d23d1464a14f220b411152c2741ae2f6ff720316c59d6"
         }
       ],
-      "bookSHA256FileBytes": "07d4e28e3af5ce2ed2e124c7ad5b6f0ec1f4acee20b474b8e43d5964e6b2475c"
+      "bookSHA256FileBytes": "cb57a7ab84bf4ee5b0d0e34584bf4a304dffa7e45df4460f00bd8384ec1a3e43"
     },
     {
       "bookID": "pilot56_book_l7_cat_event03_v1",
@@ -12092,7 +12096,7 @@
           "sourceSHA256UTF8": "e3f0dc29dbfc761031f3d76a322aba27bb925253a66628b64f28bf3eb6be8a21"
         }
       ],
-      "bookSHA256FileBytes": "100c83c249e52f6bcf61eba7b57e8ca52c80f00ea71362de258285fa039d0152"
+      "bookSHA256FileBytes": "1a7a40a9fc1b91f537659b7e5dae892ef7314b611a1e64fb65753d342d9ce59f"
     },
     {
       "bookID": "pilot56_book_l8_cat_v1",
@@ -12323,7 +12327,7 @@
           "sourceSHA256UTF8": "96d6026a65a71bd6ce274d498ab7eea283f9a62cae53e35fea41bb7a51d88a32"
         }
       ],
-      "bookSHA256FileBytes": "ec618b8c1dda9f0776b84b9e69f96a5421cec95e32ddd4bf471f82602dec23b9"
+      "bookSHA256FileBytes": "947171773d9978592bcfed948f0aa5a0ad8b033297940563311c81de66c5b928"
     },
     {
       "bookID": "pilot56_book_l8_cat_event02_v1",
@@ -12492,7 +12496,7 @@
           "evidence": [
             {
               "pageNumber": 6,
-              "quote": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit’in zili minik bir ses çıkardı.",
+              "quote": "Deniz eski izleri bir kez daha inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle bulmuştu. Simit kuyruğunu dereye doğru uzattı.",
               "sourceID": "p56_wave2_pilot56_book_l8_cat_event02_v1_p06"
             }
           ],
@@ -12503,10 +12507,11 @@
             "weather": "No explicit sun/rain/wind/snow/seasonal weather reference. Ordinary wet sand or cool indoor light alone is excluded.",
             "heights": "No elevated exposure/climb/fall. Objects out of reach, low perches, ground-level leaf paths and manipulating a branch from beside a low log are excluded."
           },
+          "reviewDeltaDecision": "Root read all8current pages. Prior topic/emotion dispositions remain warranted; literal current full-page evidence refreshed.",
           "bookID": "pilot56_book_l8_cat_event02_v1",
           "sourceID": "p56_wave2_pilot56_book_l8_cat_event02_v1_p06",
-          "sourceSHA": "96c93491e326d2b263b74aa3b1f50556a1e1c68f3410ce141bc1324da4d2b620",
-          "sourceSHA256UTF8": "96c93491e326d2b263b74aa3b1f50556a1e1c68f3410ce141bc1324da4d2b620"
+          "sourceSHA": "7adc0f4aedbfa9a55bfbc2e350d89c7f8fb925c7cd30bb45711ce755ee4cc17a",
+          "sourceSHA256UTF8": "7adc0f4aedbfa9a55bfbc2e350d89c7f8fb925c7cd30bb45711ce755ee4cc17a"
         },
         {
           "pageNumber": 7,
@@ -12559,7 +12564,7 @@
           "sourceSHA256UTF8": "85d8eaef7b16dc8e17e139a5c11fe09a140e7005257da4dba3d47b57c748e95c"
         }
       ],
-      "bookSHA256FileBytes": "d01d79b044a1eeb497794c47cf6e4d0686a31df30979e83ebf765b4b8b901029"
+      "bookSHA256FileBytes": "8559da9ada2860414ed52add2fdfefe770846de0ef23ab3d402232ef4979daff"
     },
     {
       "bookID": "pilot56_book_l8_cat_event03_v1",
@@ -12790,7 +12795,7 @@
           "sourceSHA256UTF8": "bb56accf3750c1f31911d5de6c460c38cfdcc0b9a3d4e6e683f8baea7cf9cec6"
         }
       ],
-      "bookSHA256FileBytes": "fd358a6b063ec9970c20f5db5e6c38702b79496ef9885c0c2943d6e35ee143dd"
+      "bookSHA256FileBytes": "91ba71eb9d900292ac3cc8b38ea981e5551fe6b2809d5fd20c721a8ad16505c9"
     },
     {
       "bookID": "pilot56_book_l8_bear_v1",
@@ -13021,7 +13026,7 @@
           "sourceSHA256UTF8": "56ae92ec333e0c34d08c28fb6bc6d37c7ee645c83badd8931d997bb7aa6d60a6"
         }
       ],
-      "bookSHA256FileBytes": "e723d37710b383cf16b588f7043ed9d280facfcf3d15c90d126152d5c74e731f"
+      "bookSHA256FileBytes": "abac40adb3378d2602d0503c1d6e29ce6e6145c79cdb38e08a68058925bc29ae"
     },
     {
       "bookID": "pilot56_book_l8_bear_event02_v1",
@@ -13257,7 +13262,7 @@
           "sourceSHA256UTF8": "306ead20f698e960b645e332c77b90ba56c42bc54ec54c44b2579891f4622b8f"
         }
       ],
-      "bookSHA256FileBytes": "c667536e7ff984956c9b936499d9b59ccd44535564a3f8cf8347c2447255f56f"
+      "bookSHA256FileBytes": "1752d35089eef0a4c209ec55de619181ed7d15968f641dece1a7c84c987b14cd"
     },
     {
       "bookID": "pilot56_book_l8_bear_event03_v1",
@@ -13488,7 +13493,7 @@
           "sourceSHA256UTF8": "70a363cd95bf097d99dc65ddd7f608a4121ca4b50bc349f8ad9e1529741b66e9"
         }
       ],
-      "bookSHA256FileBytes": "d896dfd32aeb68fcba5b8a8e92036cdd69525a885a0a2373016411cc0495bdf1"
+      "bookSHA256FileBytes": "98a7b0880d4850d82d3bcb6fc9bb42a4949dfcadce7f6477a8dcacf5a3630f97"
     },
     {
       "bookID": "pilot56_book_l9_bear_v1",
@@ -13722,7 +13727,7 @@
           "sourceSHA256UTF8": "dc25bae9de8ad3264213dd787bcfbd4704360abcab09a61e413a3255984c90bd"
         }
       ],
-      "bookSHA256FileBytes": "93e9d8c692841d03351a7797d78f3b04ee54494d5fd77eba09d2b5f7c5079729"
+      "bookSHA256FileBytes": "5306d9f2345537b2b432b0972986bd1e5738784c7a953685fcded116edeeef39"
     },
     {
       "bookID": "pilot56_book_l9_bear_event02_v1",
@@ -13960,7 +13965,7 @@
           "sourceSHA256UTF8": "c4ad830ab85a70ed99d8c3d755de9ac2c361aaeb26a54bc316b903875cd1d7dc"
         }
       ],
-      "bookSHA256FileBytes": "8b0d8d637ef1f1f467f46a74e734d364fa3a6ca921d2380bb4aaa27ff9092686"
+      "bookSHA256FileBytes": "550d4a8abfc14ecc60e3b62bc915b11954c3006cb268a5fd7cc1de5c84cc0e27"
     },
     {
       "bookID": "pilot56_book_l9_bear_event03_v1",
@@ -14077,7 +14082,7 @@
           "evidence": [
             {
               "pageNumber": 4,
-              "quote": "Deniz bir uçtaki küçük kozalağı aldı, yerine büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Böğürtlen kaşlarını kaldırdı.",
+              "quote": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Böğürtlen kaşlarını kaldırdı.",
               "sourceID": "p56_wave2_pilot56_book_l9_bear_event03_v1_p04"
             }
           ],
@@ -14088,10 +14093,11 @@
             "weather": "No explicit sun/rain/wind/snow/seasonal weather reference. Ordinary wet sand or cool indoor light alone is excluded.",
             "heights": "No elevated exposure/climb/fall. Objects out of reach, low perches, ground-level leaf paths and manipulating a branch from beside a low log are excluded."
           },
+          "reviewDeltaDecision": "Root read all8current pages. Prior topic/emotion dispositions remain warranted; literal current full-page evidence refreshed.",
           "bookID": "pilot56_book_l9_bear_event03_v1",
           "sourceID": "p56_wave2_pilot56_book_l9_bear_event03_v1_p04",
-          "sourceSHA": "c6037b7d4f055c082a3dfb401c1f545b4882e135879738702f0019717c5eb0f7",
-          "sourceSHA256UTF8": "c6037b7d4f055c082a3dfb401c1f545b4882e135879738702f0019717c5eb0f7"
+          "sourceSHA": "c3d8b4f801629b05f5962f10e8ef2278452716fc77b033022248db2671548913",
+          "sourceSHA256UTF8": "c3d8b4f801629b05f5962f10e8ef2278452716fc77b033022248db2671548913"
         },
         {
           "pageNumber": 5,
@@ -14194,7 +14200,7 @@
           "sourceSHA256UTF8": "e30afb7e9f2d4a45240b19bbf9683852959e42ec2bbda9d983c56c7a94d737c2"
         }
       ],
-      "bookSHA256FileBytes": "72ff4f5512b8ccfd3b30347c2d54b311f3419d07a475e008d1896949a8159454"
+      "bookSHA256FileBytes": "195bbe3aa21a99f7ec05ab8f16ce322d0b426c94db5a3101470d3d4bb6c0b473"
     },
     {
       "bookID": "pilot56_book_u7_fox_v1",
@@ -14427,7 +14433,7 @@
           "sourceSHA256UTF8": "8ef35ebf3851ba1fd64f51dfb274d318c573cdb34baa51aea19f565d44106d6e"
         }
       ],
-      "bookSHA256FileBytes": "e57064e7a3017596681b01bd7b301e9be29d7bc9f714ba0483a2f4a8528f4450"
+      "bookSHA256FileBytes": "3036f9b9eeaa45dd62c32cd2c4d288d574735f26aaf4cd3d155ff00bdc12473e"
     },
     {
       "bookID": "pilot56_book_u7_fox_event02_v1",
@@ -14660,7 +14666,7 @@
           "sourceSHA256UTF8": "58a07dfe2d5528c03681cda293a8eaf01645f80d7fc9297726b74d062f529a5f"
         }
       ],
-      "bookSHA256FileBytes": "bc1555003239c77c0889cb8b5928cb21549e6cfb6a62ccc0926239e3dba52422"
+      "bookSHA256FileBytes": "af2559636b91c01384c432f4fef1769c7e99cd35c691811bfa814f5251e1b45a"
     },
     {
       "bookID": "pilot56_book_u7_fox_event03_v1",
@@ -14885,7 +14891,7 @@
           "evidence": [
             {
               "pageNumber": 8,
-              "quote": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Yarın güneşi çizince bana koklat.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
+              "quote": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Tarçın. \"Sarı kalemin kokusu burnumda.\" Deniz gülümseyerek gözlerini kapattı. Oda sessizdi. Kalemler kutularında uyuyordu.",
               "topic": "weather",
               "sourceID": "p56_wave2_pilot56_book_u7_fox_event03_v1_p08"
             }
@@ -14896,13 +14902,14 @@
             "fear": "No fear/threat response. Mild restlessness, comic surprise and playful giant guesses without fright are excluded.",
             "heights": "No elevated exposure/climb/fall. Objects out of reach, low perches, ground-level leaf paths and manipulating a branch from beside a low log are excluded."
           },
+          "reviewDeltaDecision": "Root read all8current pages. Prior topic/emotion dispositions remain warranted; literal current full-page evidence refreshed.",
           "bookID": "pilot56_book_u7_fox_event03_v1",
           "sourceID": "p56_wave2_pilot56_book_u7_fox_event03_v1_p08",
-          "sourceSHA": "ef149e65bc8e034c696e7b82f59a3d8dff6947ad9034dd536fb0d5d8dd897296",
-          "sourceSHA256UTF8": "ef149e65bc8e034c696e7b82f59a3d8dff6947ad9034dd536fb0d5d8dd897296"
+          "sourceSHA": "9a887373733f13bd09f2beae9833547e69f574a7a3f9bce651002fb315d6e04c",
+          "sourceSHA256UTF8": "9a887373733f13bd09f2beae9833547e69f574a7a3f9bce651002fb315d6e04c"
         }
       ],
-      "bookSHA256FileBytes": "73edcc2e5b7595eae9c172775edeac7ee896d8a8648125a161e2de72ba32910c"
+      "bookSHA256FileBytes": "65dc6d95526e95a2305302a278b7954a88e857c4ee09fba88d93b698eaf75737"
     },
     {
       "bookID": "pilot56_book_u9_fox_v1",
@@ -15144,7 +15151,7 @@
           "sourceSHA256UTF8": "8a6033d72f84fdda9520337f3dcef240b28908be3e3c742bde258a05f7b12788"
         }
       ],
-      "bookSHA256FileBytes": "54d0deb152bac97305149066b55559f87376861c9d17843ee7a4c867391e6f64"
+      "bookSHA256FileBytes": "b5eb323cf82086b3913fe22c25d7329f837e70c240af4e125b0bd5db0ed231a9"
     },
     {
       "bookID": "pilot56_book_u9_fox_event02_v1",
@@ -15386,7 +15393,7 @@
           "sourceSHA256UTF8": "2ff3fe1a6f6c93d71d42e13b833201a8ea5cb57f63847de4cee8d7fa215c732c"
         }
       ],
-      "bookSHA256FileBytes": "ccc8f70a3449bf4f2eabe773b5fa183360f5c4a7b5a3414443e5d692ee7bda72"
+      "bookSHA256FileBytes": "b2159c9979c9f815721367ef51efb04b67b05f37d6fdf7d4fed48ad12aed5077"
     },
     {
       "bookID": "pilot56_book_u9_fox_event03_v1",
@@ -15625,7 +15632,7 @@
           "sourceSHA256UTF8": "dc46ddc414e69509ac17ef7ef9a78fb171fd7e3ac125cb88a2d12bfd8c28ab1a"
         }
       ],
-      "bookSHA256FileBytes": "3e6e10f3a447d6ae529d26e716e0ca0405930344e67c4e2914a5f41fa15bd7bb"
+      "bookSHA256FileBytes": "9624a56f58de2272e828c2b494bcb1a31b317038e6484731de514b55f1391f9a"
     },
     {
       "bookID": "pilot56_book_u7_hedgehog_v1",
@@ -15841,7 +15848,7 @@
           "evidence": [
             {
               "pageNumber": 8,
-              "quote": "\"Yarın görüşürüz, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
+              "quote": "\"Tatlı uykular, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kirpi minderinde, tavşan Deniz’in kolunda, öteki oyuncaklar yerlerinde dinlendi.",
               "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_v1_p08"
             }
           ],
@@ -15852,13 +15859,14 @@
             "weather": "No explicit sun/rain/wind/snow/seasonal weather reference. Ordinary wet sand or cool indoor light alone is excluded.",
             "heights": "No elevated exposure/climb/fall. Objects out of reach, low perches, ground-level leaf paths and manipulating a branch from beside a low log are excluded."
           },
+          "reviewDeltaDecision": "Root read all8current pages. Prior topic/emotion dispositions remain warranted; literal current full-page evidence refreshed.",
           "bookID": "pilot56_book_u7_hedgehog_v1",
           "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_v1_p08",
-          "sourceSHA": "b3eacf1ae7c0f389f431c77fa279441d2784701ffb3b3790970c9a6203c35891",
-          "sourceSHA256UTF8": "b3eacf1ae7c0f389f431c77fa279441d2784701ffb3b3790970c9a6203c35891"
+          "sourceSHA": "c6d10b866cb37605ea3af94a5d9cc71f1df580b471710bce43dfe708e801c57e",
+          "sourceSHA256UTF8": "c6d10b866cb37605ea3af94a5d9cc71f1df580b471710bce43dfe708e801c57e"
         }
       ],
-      "bookSHA256FileBytes": "7d6c228fa020a9bbd14d8a959179b7295c8fb7ee0d9f7e865a12dfa9e7e1ac56"
+      "bookSHA256FileBytes": "9f5a1229c468a6603d6e3d7411366af225b14d1ef1494556d1cb7a740b5f0f6f"
     },
     {
       "bookID": "pilot56_book_u7_hedgehog_event02_v1",
@@ -16091,7 +16099,7 @@
           "sourceSHA256UTF8": "09e458c1b1a5a3586a375bc4e059ed455011e1b09289e5bd0ee3c38df7dc4d5d"
         }
       ],
-      "bookSHA256FileBytes": "5def548f329632bcd1bd03d1fec32028e558c94c29cbba7d0f5266659f26ed72"
+      "bookSHA256FileBytes": "9ded454cddaccbf82ede369e1124bd57f226444975790f965ebcbe5957fac5e2"
     },
     {
       "bookID": "pilot56_book_u7_hedgehog_event03_v1",
@@ -16331,7 +16339,7 @@
           "sourceSHA256UTF8": "634ed3e1a19e9a1fc85ec25b6c919bc8ed64243533868fb45917d900cea8b589"
         }
       ],
-      "bookSHA256FileBytes": "5f06018d2ed29bdf5b873db3196187d3519f6ef61f1ffd1a21cb597d7189ccc9"
+      "bookSHA256FileBytes": "86c8d32de48eb6bc5a012b9efe57317554719d76aae34c8cda4eb33b07ad4eaa"
     },
     {
       "bookID": "pilot56_book_u8_hedgehog_v1",
@@ -16566,7 +16574,7 @@
           "sourceSHA256UTF8": "7d317b8971b5a469420fe7e3e07a8807172014d4fc313c50d0851eeb693c55db"
         }
       ],
-      "bookSHA256FileBytes": "01891dfe17d7352055695211e0edcde4e9caf27f528c15ea2910c00d8b927079"
+      "bookSHA256FileBytes": "dfb19462de1179c22783c7591b3978a998ca52fdbbf6152e0fabe320cd805927"
     },
     {
       "bookID": "pilot56_book_u8_hedgehog_event02_v1",
@@ -16797,7 +16805,7 @@
           "sourceSHA256UTF8": "02a44cd2a51b947bfbf49268ecee0a0fd73494296835f92e57f6ffed0f98fbbd"
         }
       ],
-      "bookSHA256FileBytes": "7472098a67acc9585ec1d4dc951bdb37c7518a81e5a68f1a197d023b2071e72c"
+      "bookSHA256FileBytes": "c9747aa6cb3bf38cace0bb9e70b137f46567fd5aa8cb12741d76d02399afdd87"
     },
     {
       "bookID": "pilot56_book_u8_hedgehog_event03_v1",
@@ -17032,7 +17040,7 @@
           "sourceSHA256UTF8": "24d36c800d177e4d4ec81dcd5de47a40eb771f58ab6fab9f8a7c54411d70cb46"
         }
       ],
-      "bookSHA256FileBytes": "3d9d44c12abf27fd469c64b992147ca044fc0ee6a596779c9e61520597aeec0c"
+      "bookSHA256FileBytes": "412aff545640d1cdc5f7f97e0d1cea505fe63679632a46104ae6d84edc6c85f1"
     },
     {
       "bookID": "pilot56_book_u8_owl_v1",
@@ -17274,7 +17282,7 @@
           "sourceSHA256UTF8": "e9b1f267d0219d63cf326428fd3144b4a96de71112d1837c71e312b867ae4f17"
         }
       ],
-      "bookSHA256FileBytes": "d182e39bb02fd2aeb54b293b33e2f8c1ecb8dca64ad3a0951a120ab2b6273393"
+      "bookSHA256FileBytes": "c9d4bfdde3cdadb6399495c146e5852a9bba974811bd179deedcfa903f2a8854"
     },
     {
       "bookID": "pilot56_book_u8_owl_event02_v1",
@@ -17494,7 +17502,7 @@
           "evidence": [
             {
               "pageNumber": 8,
-              "quote": "\"Yarın görüşürüz, Deniz,\" diye fısıldadı Yıldız. \"Bir ayağım uyuyor, biri nöbette.\" Deniz güldü, sonra gözlerini kapattı. Oda karanlık ve sessizdi.",
+              "quote": "\"Gözlerini kapat, Deniz,\" diye fısıldadı Yıldız. \"Bir ayağım uyuyor, biri nöbette.\" Deniz güldü, sonra gözlerini kapattı. Oda karanlık ve sessizdi.",
               "topic": "darkness",
               "sourceID": "p56_wave2_pilot56_book_u8_owl_event02_v1_p08"
             }
@@ -17505,13 +17513,14 @@
             "weather": "No explicit sun/rain/wind/snow/seasonal weather reference. Ordinary wet sand or cool indoor light alone is excluded.",
             "heights": "No elevated exposure/climb/fall. Objects out of reach, low perches, ground-level leaf paths and manipulating a branch from beside a low log are excluded."
           },
+          "reviewDeltaDecision": "Root read all8current pages. Prior topic/emotion dispositions remain warranted; literal current full-page evidence refreshed.",
           "bookID": "pilot56_book_u8_owl_event02_v1",
           "sourceID": "p56_wave2_pilot56_book_u8_owl_event02_v1_p08",
-          "sourceSHA": "efb904c7cfdae6ba40ae67754f1835f0460dd747a488c72d3f94619ccaef5b13",
-          "sourceSHA256UTF8": "efb904c7cfdae6ba40ae67754f1835f0460dd747a488c72d3f94619ccaef5b13"
+          "sourceSHA": "032ace837d9863b7a56dd8324fb6b4fa0f20184a04ee4867538c151b17fb4acf",
+          "sourceSHA256UTF8": "032ace837d9863b7a56dd8324fb6b4fa0f20184a04ee4867538c151b17fb4acf"
         }
       ],
-      "bookSHA256FileBytes": "036e933f85ef63bb122fb52d74946965027271db10645ecad32ea180823017bf"
+      "bookSHA256FileBytes": "6c701c1df6d93f512f0e2df9c43c0a25fff66952ad24e7e107c945c27796e889"
     },
     {
       "bookID": "pilot56_book_u8_owl_event03_v1",
@@ -17746,7 +17755,7 @@
           "sourceSHA256UTF8": "d7770e73fd3f69fef6480380cf3f323993a372d5c745daf2565744d2bf2e95d0"
         }
       ],
-      "bookSHA256FileBytes": "571fc64b78f4123b625d2048770f53525b21ebc36efc04b5cb4e33b6b22848d8"
+      "bookSHA256FileBytes": "72211dc1ef7cda4ab8610864ba618873a67cd81110bd0099dae6ff1f49d0d783"
     },
     {
       "bookID": "pilot56_book_u9_owl_v1",
@@ -17988,7 +17997,7 @@
           "sourceSHA256UTF8": "45632e36f6b29239d0fa2d674ffd776e5f5fc27f4c459d07b1e243621a5e389f"
         }
       ],
-      "bookSHA256FileBytes": "9947e92d634386fafa8f2175d836c446394198139d6e90f951a11e8d942f927d"
+      "bookSHA256FileBytes": "0f62cfaec94e530738fe198883865d5ee1cd2e08795f4fbbaecd0c701ef4e0b6"
     },
     {
       "bookID": "pilot56_book_u9_owl_event02_v1",
@@ -18237,7 +18246,7 @@
           "sourceSHA256UTF8": "525e7faf3da6f3477af47c502073de56d25ba28b20a0eb10b07be02e6b1b16c3"
         }
       ],
-      "bookSHA256FileBytes": "320ac9514f642183c81f8a8e8a7f508ef0104b31ad2178d9423683d47e91da91"
+      "bookSHA256FileBytes": "e9c3dc1d5c79ef4450cf38d816c0a106eb5ccf794bf8557b75829319acb627d6"
     },
     {
       "bookID": "pilot56_book_u9_owl_event03_v1",
@@ -18479,7 +18488,7 @@
           "sourceSHA256UTF8": "483d544ee8fc2db0d7ecefa3f746e388aa03d7c1a894cd05ebefe36c4fbea992"
         }
       ],
-      "bookSHA256FileBytes": "734e71e77b12c08edaec76addd97696ab91d0a711005b63065eb88296123decb"
+      "bookSHA256FileBytes": "7e2f65cbeed60f83af63e0206ff6fa563b307146a2a592ebe6428f929e36beb9"
     },
     {
       "bookID": "pilot56_book_u7_cat_v1",
@@ -18716,7 +18725,7 @@
           "sourceSHA256UTF8": "5afbfa88ed2b5dc2d60a5200396958a049c9f451eb1784d5b355ac3600580021"
         }
       ],
-      "bookSHA256FileBytes": "7123ca1aab0ec8f261c25e88d92f061de1d5e0d03427b44e598964e063a5417a"
+      "bookSHA256FileBytes": "020cba162a5fd353cf912b618f81a24f08d67b838a55d35005c56bc4fd2790c5"
     },
     {
       "bookID": "pilot56_book_u7_cat_event02_v1",
@@ -18949,7 +18958,7 @@
           "sourceSHA256UTF8": "d93d67e83052147f31504f84f363098256957737ebaeb8735e3ccbbecc8828da"
         }
       ],
-      "bookSHA256FileBytes": "ac6616f6b8505c27dce6c1b5fa8b7f43589a0c7b16c36c19c7b4021ba3bbf387"
+      "bookSHA256FileBytes": "0abac308fa641f38bd8241972511065d55a38e298ea6ff84f1a5a0a940fcb560"
     },
     {
       "bookID": "pilot56_book_u7_cat_event03_v1",
@@ -19189,7 +19198,7 @@
           "sourceSHA256UTF8": "4215d8e052d1fc7fc86cb72684495534f033b1e2699bf4384c1686dded9b238b"
         }
       ],
-      "bookSHA256FileBytes": "92578c1454c276dd06502b1ed16907c1c8c85991c91601143562e69e73d30038"
+      "bookSHA256FileBytes": "091d3c289cf41640d700c63a6c5724afd7f7184b9b2803099a3c4d2b473d73c9"
     },
     {
       "bookID": "pilot56_book_u8_cat_v1",
@@ -19420,7 +19429,7 @@
           "sourceSHA256UTF8": "0a40969993dd0ea8bc3202b101df8c756962a2854f297d5aa3668c26e8b26958"
         }
       ],
-      "bookSHA256FileBytes": "30eaa9f8a5369e9b85b69202bd838b123fe2e3f8244b6d27280d6b10cd756ada"
+      "bookSHA256FileBytes": "261afc7a32ff730931dd17ffcb1a4e0f3df6de826ca580a5fda9102754c9d4d6"
     },
     {
       "bookID": "pilot56_book_u8_cat_event02_v1",
@@ -19655,7 +19664,7 @@
           "sourceSHA256UTF8": "67a2e246d0fb8b03cc1a6c82da2e5776e9aa69efcfc0712ccb2ab09df23a6360"
         }
       ],
-      "bookSHA256FileBytes": "df99aaad69c5a0a2a5f03904688e143951624a4f7e0f3530c654a9702627dc06"
+      "bookSHA256FileBytes": "e3c1f4b6a0e3c8a692314385aa76c8e06a520e5398096c10c5d2965d9438cba7"
     },
     {
       "bookID": "pilot56_book_u8_cat_event03_v1",
@@ -19873,7 +19882,7 @@
           "evidence": [
             {
               "pageNumber": 8,
-              "quote": "\"Yarın görüşürüz, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+              "quote": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
               "sourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p08"
             }
           ],
@@ -19884,13 +19893,14 @@
             "weather": "No explicit sun/rain/wind/snow/seasonal weather reference. Ordinary wet sand or cool indoor light alone is excluded.",
             "heights": "No elevated exposure/climb/fall. Objects out of reach, low perches, ground-level leaf paths and manipulating a branch from beside a low log are excluded."
           },
+          "reviewDeltaDecision": "Root read all8current pages. Prior topic/emotion dispositions remain warranted; literal current full-page evidence refreshed.",
           "bookID": "pilot56_book_u8_cat_event03_v1",
           "sourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p08",
-          "sourceSHA": "99ae44aa9431eeda774b5e7df29e0846fc4a7616f8308a434b44dde76d8ca640",
-          "sourceSHA256UTF8": "99ae44aa9431eeda774b5e7df29e0846fc4a7616f8308a434b44dde76d8ca640"
+          "sourceSHA": "c2fad05d59d231cc37b5ec15244f5d33daf1f22f7ebd9581ac84a8db0a6c3211",
+          "sourceSHA256UTF8": "c2fad05d59d231cc37b5ec15244f5d33daf1f22f7ebd9581ac84a8db0a6c3211"
         }
       ],
-      "bookSHA256FileBytes": "2b1e3f9c497b161082c9e4d8751e896e0d5031e12055815010fa686bb6d4de4e"
+      "bookSHA256FileBytes": "c0227b9857748a70253b2e62bc56a142b5b0589155354c96ba7d0455daa77ce9"
     },
     {
       "bookID": "pilot56_book_u7_bear_v1",

@@ -1,36 +1,44 @@
 {
-  "packageVersion": "five-friends-56-runtime-v4",
-  "payloadSHA256": "1c8a21b56c40f051873b2f1bd956c21e016846911a082c1f11f37cb510b6a077",
-  "status": "blocked-by-two-bedtime-endings",
+  "date": "2026-11-26",
+  "revision": 2,
+  "payloadSHA256": "c06a5dfc3f586eae5d837926cab915be6b22480c20e11e02c9ea7fd5894990d6",
   "activePin": "five-friends-56-runtime-v3",
   "activationApproved": false,
-  "books": 90,
-  "pages": 720,
+  "correctedSourcePages": 18,
+  "affectedBooks": 17,
   "fixtureAttempts": 630,
-  "fixtureSuccesses": 616,
-  "fixtureFailures": 14,
+  "fixtureSuccesses": 630,
+  "fixtureFailures": 0,
   "pageBudgetIssues": 0,
   "traceIssues": 0,
-  "sourceSafetyBindingError": null,
-  "sourceLoaderError": null,
   "sampling": {
     "attempts": 1500,
-    "successes": 1475,
-    "failures": 25,
+    "successes": 1500,
+    "failures": 0,
     "retries": 0,
-    "uniqueBooks": 88,
-    "failureReasons": {
-      "invalidStructure(\"bedtime-open-ending\")": 25
-    }
+    "uniqueBooks": 90
   },
   "tests": {
     "configuration": "Release",
     "tests": 15,
-    "failedTestCases": 1,
-    "assertionFailures": 4
+    "failedTestCases": 0,
+    "skipBuild": true,
+    "unchangedSwiftBaseline": "284f0857"
   },
-  "productionEnabled": false,
-  "artApproved": false,
+  "metricParity": {
+    "pages": 720,
+    "mismatches": 0
+  },
+  "poolScope": {
+    "canonicalFiles": 45,
+    "canonicalBooks": 270,
+    "canonicalPages": 2160,
+    "canonicalLintPassed": true,
+    "staleCopiesExcluded": 1,
+    "archivedFinderCopies": 9,
+    "rawGlobBooks": 276,
+    "rawGlobLintPassed": false
+  },
   "historicalPayloads": {
     "1": {
       "sha256": "28773f03bc59060cdfae95961dbfa14e319e141633a7e79ead6ce93eb90d7adc",
@@ -45,14 +53,8 @@
       "unchanged": true
     }
   },
-  "changedPageCountVsPinnedV3": 289,
-  "titleChangesVsPinnedV3": 0,
-  "poolScope": {
-    "canonicalBooks": 270,
-    "canonicalPages": 2160,
-    "canonicalLintPassed": true,
-    "staleCopiesExcluded": 8,
-    "rawGlobBooks": 318,
-    "rawGlobLintPassed": false
-  }
+  "waveContentBlockers": 0,
+  "waveTypedRuntimeValidated": false,
+  "productionEnabled": false,
+  "artApproved": false
 }

@@ -1,33 +1,26 @@
-# V4 kaynak adayı ve iki dalga incelemesi
+# V4 ikinci düzeltme — doğrulanmış aday
 
-26 Kasım 2026. V4 ayrı korpus/runtime olarak kuruldu. SHA256: `1c8a21b56c40f051873b2f1bd956c21e016846911a082c1f11f37cb510b6a077`. Kimlikler/başlıklar v3 ile aynı; tüm byte-farklı sayfa sayısı 289 (155 arkadaş-özel yeniden yazım ve diğer kalıp çeşitlendirmeleri dahil). V1/v2/v3 baytları ve pin v3 korundu.
+26 Kasım 2026. `metin-duzeltme-2.md` doğrultusunda 17 kitabın 18 sayfası yenilendi; kimlikler ve başlıklar korundu. Yeni V4 SHA256: `c06a5dfc3f586eae5d837926cab915be6b22480c20e11e02c9ea7fd5894990d6`. Pin **v3**; v1/v2/v3 payload baytları değişmedi.
 
 | Kapı | Sonuç |
 |---|---|
-| Kaynak/şema/safety bağları | Geçti |
-| Typed trace / sayfa bütçesi | 0 sorun / 0 sorun |
-| 90 kitap × 7 ad | **616/630 başarı, 14 kapanış reddi** |
-| N1500 | **1475 başarı, 25 kapanış reddi, retry 0**, 88 farklı kitap |
-| Release | **15 test; bir kabul testinde 4 assertion hatası** |
-| V4 lint | 90/90; ortak sayfa 0/200; 90 farklı başlık |
-| Python–Swift metrik | 720 sayfada 0 fark |
+| 90 kitap × 7 ad | 630/630 başarı |
+| N1500 | 1500/1500 başarı, 0 hata, 0 retry, 90 farklı kitap |
+| Release | 15 test, 0 hata |
+| Python–Swift metrik | 720 sayfa, 0 fark |
+| Kanonik havuz lint | 45 dosya / 270 kitap geçti; ortak sayfa 0 |
+| İki dalganın bilinen içerik engelleri | 0 |
 
-U3 Simit ve U2 Kestane event03 son sayfaları “Yarın görüşürüz” diyor; değişmeyen CalmEnding kuralı reddediyor. Havuz daraltılmadı, başka seed/arkadaş seçilmedi. **V4 kabul kapısı geçmedi ve etkinleştirilemez.** Tam alıntılar METIN_DUZELTME_LISTESI.md içinde. Diğer 14 test geçti; V4 corruption testleri önce gerçek baseline yüklenmesini doğruluyor.
+Release kontrolü aynı Swift kodunun mevcut Release binary'siyle `--skip-build` kullanılarak tekrar çalıştırıldı; 284f0857 sonrasında Swift değişikliği yok. Sayfa bütçesi, trace ve safety/loader bağlarında hata yok. Önceki başarısız adayın sonuçları 284f0857 geçmişinde korunuyor.
 
-## Güncel 270 kitap
+İki V4 uyku kapanışı düzeltildi. Dalgalarda ayı/çanta sızıntısı, kayıp zilin bulunmadan çalması ve üç L9 event03 kitabının kozalak deneyi düzeltildi; diğer uyku kapanışları sakin sonla tamamlandı. Kaynak farkları `revision-2-change-ledger.json` içinde.
 
-45 kanonik dosya,270 kitap,2160 sayfa ve270 farklı başlık. Yeni --pool geçti: birebir sayfa0,25havuz/3hücre sınırını aşan cümle0. Her45dosya tekil lintten geçti. Bu sözcüksel kontrol anlam doğruluğu garantisi değildir.
+İnceleme yöntemi: değişen 17 kitabın sekizer sayfası yeniden okundu; 253 değişmeyen kitabın önceki incelemeleri byte/hash eşitliğiyle korundu. Yeni kaynak alıntıları, semantik/causal/C3 ve art bağları yeniden üretildi. Bağımsız karşı inceleme 270 kitabın kaynak bağlarını ve kritik bağlamları doğruladı; kritik/yüksek bulgu yok. İki L8 Simit nesne etiketi (topuk→top, yuvarlak→yuva yanlış eşlemesi) de düzeltildi. Bu kayıt tüm 270 kitabın bu tur yeniden baştan okunduğu iddiası değildir. Önceki küçük editoryal/görsel kısıtlar ilgili incelemelerde korunur.
 
-İki dalganın180 kitabı/1440 sayfası yeni semantik, causal kaynak kanıtı, C3 ve art incelemesi aldı; yeni hash'lere bağlandı. Wave runtime ve typed sözleşmeler **uygulanmadı/onaylanmadı**. İlgili manifestler runtimeCompatible=false,typedContractApproved=false. Dere Kenarı/Eğrelti Kenarı raw kaynak/spec bağlamında kayıtlı; hayal/hatırlama gerçek mekânla birleştirilmedi.
+V4 art handoff 90 başarılı compose kitap/720 sayfa içerir. İki dalganın 180 kitap/1440 sayfalık handoff'u kaynak metne dayanır; runtime fixture değildir. Kaynak kimliği, tam sayfa ve komşu bağlamı, somut eylem/poz ve güvenlik kısıtları yeni hash'lere bağlıdır. Eski etiketler yeni metin için geçerli sayılmaz.
 
-Kesin beş semantik engel: Simit A4 p5 ayı/çanta sızıntısı; Simit L8 event02 p6 bulunmadan çalan zil; üç L9 event03 kozalak sayımı3 olurken2 sonucu. Ek küçük/kısıt kararları uzman raporlarında. Metinler değiştirilmedi; Dalga2 teslimine nefes tutma geçmişi atfedilmedi.
+Kaynak klasörde `dalga2/kitaplar/learning-owl 2.json` adlı tek Finder kopyası hâlâ var; 9 eski kopya arşivde. Kanonik sözleşme dışındaki dosya silinmedi. Ham glob 276 kitapta hücre tekrar kapısını geçmiyor; bu sonuç kanonik 270 kitap kontrolünden ayrı kaydedildi. Yardımcı örnek dosyalar ayrı denetlendi; güncel kitap metni yerine onay kaynağı sayılmadı.
 
-Sekiz eski “ 2.json” dosyası kanonik sözleşme dışında bırakıldı ve hash'leri envanterde. Orijinallere dokunulmadı. Ham glob318 kitapta başarısız; güncel270 pass ile karıştırılmadı. İki kapsamın logları ayrı.
+`productionEnabled=false`, `artApproved=false`. V4'e pin geçişi ayrı Batuhan onayını bekler. Dalga runtime/typed sözleşmeleri uygulanmadı; uygulama hattının v3 paket/SnapshotStore/simülatör önkoşulu bekleniyor. Main/entegrasyon/push yapılmadı.
 
-## Art ve geçiş durumu
-
-Art handoff90 kaynak/720 sayfa:88 başarılı runtime kitap/704 sayfa ve2 engellenen authored-only kitap/16 sayfa açık ayrılmıştır. Başarısız kitaplara rendered text/transition uydurulmadı. Wave handoff180 authored kitap/1440 sayfadır; compose fixture değildir. Asset/atomic/yayın onayı yok.
-
-Aktif pin v3. V4 pin geçişi önce metin engellerinin kapanmasını, başarılı tekrar doğrulamayı ve ayrı Batuhan onayını bekler. Appv3 kapısı Claude'da; dalga runtime o önkoşulu bekler. productionEnabled=false,artApproved=false; main/entegrasyon/push yok.
-
-Kanıt: release-tests.log,v4-lint.txt,diagnostic.json,sampling.json,lint-parity.json,verification-summary.json. Güncel wave envanter ve incelemeleri current-waves/ altında. Reviewed=incelendi; runtime/üretim/görsel kabulü değildir.
+Kanıt: `verification-summary.json`, `diagnostic.json`, `sampling.json`, `release-tests.log`, `lint-parity.json`, `v4-lint.txt`, `current-waves/`.
