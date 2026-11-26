@@ -31,6 +31,8 @@ struct ReaderChrome: View {
     let theme: MP.ReadTheme
     let isFavorite: Bool
     let isSpeaking: Bool
+    /// Sesli oku düğmesi görünür mü: kayıtlı ses ya da cihaz anlatıcısı (26 Kasım 2026).
+    var canSpeak: Bool = true
     /// Bu sayfayı ailenin sesi okuyacak: düğme bunu söyler (Faz 5).
     var familyVoice: Bool = false
     /// Geri kalan kontroller görünür mü. Kapat bundan bağımsızdır.
@@ -171,7 +173,7 @@ struct ReaderChrome: View {
                     if verticalClass != .compact {
                         VStack(alignment: .leading, spacing: 0) {
                             positionLabel(label)
-                            speechButton(compact: false)
+                            if canSpeak { speechButton(compact: false) }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .frame(minHeight: MP.S.tapMin * 3)
@@ -179,7 +181,7 @@ struct ReaderChrome: View {
                         HStack(spacing: MP.S.x2) {
                             positionLabel(label)
                             Spacer(minLength: MP.S.x2)
-                            speechButton(compact: false)
+                            if canSpeak { speechButton(compact: false) }
                         }
                         .frame(minHeight: MPSize.minTouchHero)
                     }
@@ -196,7 +198,7 @@ struct ReaderChrome: View {
                         positionLabel(label)
                         progressLine(label, height: MP.S.x8)
                     }
-                    speechButton(compact: true)
+                    if canSpeak { speechButton(compact: true) }
                     nextButton
                 }
                 .frame(minHeight: MPSize.minTouchHero)

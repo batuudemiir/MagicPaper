@@ -28,8 +28,10 @@ struct StoryLeafView: View {
     var body: some View {
         switch leaf {
         case .cover:
+            // "Kim okusun?" yalnızca okunacak bir ses varsa: cihaz anlatıcısı
+            // kapalıyken (`MPFeatures.deviceNarration`) kayıtlı ses gerekir.
             StoryCover(story: model.story, theme: theme,
-                       listens: app.readerShouldSpeak(settings: settings)) { listen in
+                       listens: canListen ? app.readerShouldSpeak(settings: settings) : nil) { listen in
                 MPHaptics.selection()
                 app.readerVoiceChoice = listen
                 // Ayarın kendisi değişmez: seçim bu okumaya ait.
@@ -66,6 +68,10 @@ struct StoryLeafView: View {
                 onGoodNight: onGoodNight
             )
         }
+    }
+
+    private var canListen: Bool {
+        MPFeatures.deviceNarration || MPNarration.audio(model.story.id, page: 0) != nil
     }
 
     private var leaf: ReaderLeaf {

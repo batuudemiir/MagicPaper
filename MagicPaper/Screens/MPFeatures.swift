@@ -15,6 +15,12 @@ enum MPFeatures {
     /// kadar giriş noktaları gizli. Kod duruyor: sesler hazır olunca
     /// `sleepModeVoiceReady` açılır, imzalı akış (`MPRemoteFlags`) yine kapatabilir.
     static let sleepModeVoiceReady = false
+
+    /// Cihazın anlatıcısıyla sesli okuma (okuyucuda "Sesli oku", kapakta
+    /// "Ragi okusun", kelime kartında dinle, ayarlarda "Sesli okuma").
+    /// 26 Kasım 2026 (Batuhan): kapalı, ses robot gibi. Kayıtlı ses (ailenin
+    /// sesi, stüdyo seslendirmesi) olan sayfada okuma yine çalışır.
+    static let deviceNarration = false
     static var sleepMode: Bool {
         sleepModeVoiceReady && MPRemoteFlags.value(.sleepMode, default: true)
     }

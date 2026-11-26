@@ -9,7 +9,8 @@ import SwiftUI
 struct ReaderWordCard: View {
     let word: StoryWord
     let theme: MP.ReadTheme
-    let onSpeak: () -> Void
+    /// `nil`: dinle düğmesi yok (cihaz anlatıcısı kapalı).
+    let onSpeak: (() -> Void)?
     let onClose: () -> Void
 
     var body: some View {
@@ -20,15 +21,17 @@ struct ReaderWordCard: View {
                     .foregroundStyle(theme.foreground)
                     .fixedSize(horizontal: false, vertical: true)
                 Spacer(minLength: MP.S.x2)
-                Button(action: onSpeak) {
-                    MPIcon("speaker.wave.2", size: MP.G.md, weight: .semibold)
-                        .foregroundStyle(MP.C.brandInk)
-                        .frame(width: MP.S.tapMin, height: MP.S.tapMin)
-                        .background(MP.C.brandSoft, in: Circle())
-                        .contentShape(Circle())
+                if let onSpeak {
+                    Button(action: onSpeak) {
+                        MPIcon("speaker.wave.2", size: MP.G.md, weight: .semibold)
+                            .foregroundStyle(MP.C.brandInk)
+                            .frame(width: MP.S.tapMin, height: MP.S.tapMin)
+                            .background(MP.C.brandSoft, in: Circle())
+                            .contentShape(Circle())
+                    }
+                    .buttonStyle(MPPressStyle())
+                    .accessibilityLabel("\(word.term) kelimesini dinle")
                 }
-                .buttonStyle(MPPressStyle())
-                .accessibilityLabel("\(word.term) kelimesini dinle")
             }
             Text(word.meaning)
                 .font(MP.F.bodyMD())
