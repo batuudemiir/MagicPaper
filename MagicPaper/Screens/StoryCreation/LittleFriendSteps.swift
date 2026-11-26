@@ -229,10 +229,17 @@ struct LittleConfirmStep: View {
             + " " + LittleCreationCopy.startLine
     }
 
+    /// Görünen yükseklik: kartlar ve "Başla" başlığın altındaki boşlukta
+    /// dikeyde ortalanır, sayfanın tepesine yığılmaz (26 Kasım 2026, Batuhan).
+    /// En büyük yazıda içerik sığmazsa sayfa kayar, düzen bugünkü gibi üstten.
+    @State private var viewportHeight: CGFloat = 0
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: MPSpacing.xxl) {
                 LittleSpokenTitle(title: LittleCreationCopy.confirmTitle, spoken: spoken)
+
+                Spacer(minLength: 0)
 
                 HStack(spacing: MPSpacing.md) {
                     LittleFriendTile(name: shownFriend?.name ?? "Sürpriz", companionID: shownFriend?.id,
@@ -259,10 +266,14 @@ struct LittleConfirmStep: View {
                     onStart()
                 }
                 .accessibilityHint(spoken)
+
+                Spacer(minLength: 0)
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.top, MPSpacing.sm)
             .padding(.bottom, MPSpacing.xxxl)
+            .frame(minHeight: viewportHeight, alignment: .top)
         }
+        .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { viewportHeight = $0 }
     }
 }
