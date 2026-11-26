@@ -14,7 +14,7 @@ final class P56V2ReadingTests: XCTestCase {
             .deletingLastPathComponent().deletingLastPathComponent()
         let bytes = try Data(contentsOf: root.appendingPathComponent("Content/Pilots/five-friends-56-runtime-v2/payload.json"))
         let old = try loadP56ContractPackage()
-        let new = try P56PackageLoader.load(payload: bytes, expectedSHA256: P56PinnedSource.sha256)
+        let new = try P56PackageLoader.load(payload: bytes, expectedSHA256: P56PinnedSource.v2SHA256)
         var rows: [Row] = []
         for (arm, package) in [("N-v1", old), ("N-v2", new)] {
             let composer = P56StoryComposer(package: package)

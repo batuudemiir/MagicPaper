@@ -1175,3 +1175,8 @@ Onaylı metin girişi yeni voice-v3 korpusuna ve runtime-v3 paketine taşındı;
 ### 26 Kasım 2026 · Düzeltilmiş V3 karakter sesi metinleri — kapılar geçti, pin v2
 
 Metin sahibinin177sayfa/1başlık düzeltmesi yeni kaynak/güvenlik/semantik/causal/art hash'leriyle yeniden kuruldu. V3güncelSHA855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3c. SonRelease10/0;630fixture630başarı;N15001500başarı/0hata/0retry. Lint90/90,ortaksayfa30%,720sayfadaPython–Swiftmetrikfarkı0. Önceki171kısa sayfa,L3bearnefes tutma,A2owlkatkıengelleri kapandı. Pençeyle tutuş açık;kanat tutuşu yok. Küçük editoryal notlar raporda. Pin Batuhan onayı olmadan değişmez; etkinv2,v1/v2baytları korunur. Uygulama/bundlegeçişi ayrı;SnapshotStorev3 ve tarihselv2pin/testayrımı geçişte unutulmaz. Dalga1yeniiskelet/historyAPI ayrıteslim;buaday90kitaptır. Görsel/yayınonayı yok.
+
+
+### 26 Kasım2026 · Onaylı v3 motor pin geçişi
+
+Batuhan'ın“geçir”onayıyla etkinP56pinv3/SHA855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3c. v2SHA ayrıimmutabletarihsel sabit; eskiV2testler aktifsabittenayrıldı.27Release/0hata;v1/v2/v3byteeşitliği korundu. Appbundle/SnapshotStorev3 ve gerçekappsave/reopensimülatör kapısı Claude'da,rootbunlarıkanıtlamadı. Kullanıcısırapin→dalga1→dalga2;appkapısıbeklenirken dalga runtimekoduyok,yalnızenvanter/typedhistoryplanıvar. Kaynak:research/five-friends-p56-runtime/v3-pin/REPORT.md.

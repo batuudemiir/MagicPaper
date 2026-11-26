@@ -133,10 +133,18 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
-### 2026-11-26 · codex/bes-arkadas/codex-motor, commit yok · Düzeltilmiş V3 doğrulaması tamamlandı
+### 2026-11-26 · codex/bes-arkadas/codex-motor, commit yok · Onaylı v3 motor pini ve iki dalga hazırlığı
+
+- Batuhan'ınpinonayı dosyası okundu; etkinmotorversion+SHA birlikte v3'e geçti, v2SHA tarihsel sabite ayrıldı. V2package/safety/reading/metadata testleri tarihselpine bağlandı. V1/v2/v3payloadbyte'ları değişmedi.
+- SeçiliRelease27test/0hata; yeni üçkaynakpin ve mostProtectivev3 engineJSONroundtrip testleri geçti. AppStorykaydı/simülatör çalıştırılmadı; appdosyalarıvebaşkasınınkirliworktree'si korunuyor. Apppin kapısıClaude'da,üretim/artfalse,main/pushyok.
+- Dalga1/2runtimekodu ön koşul nedeniyle başlamadı. Saltokunurenvanter iki90kitaplıkdalga/18iskelet/18birebirörneği doğruladı; typedcausal/history/scene sözleşme planı hazırlandı. EnvanterC3veya edebîkabul değildir.
+- Dosyalar: P56PinnedSource,PinTransition/V2/Safety/Metadata testleri, research/v3-pin ve wavesenvanter, ikidalga planı,Codexdurum,hafıza,günlük.
+
+
+### 2026-11-26 · codex/bes-arkadas/codex-motor@708dfc0 · Düzeltilmiş V3 doğrulaması tamamlandı
 
 - Metin sahibinin177sayfa/1başlık düzeltmesi alındı;90başlık/720tam sayfa güvenlik/semantik/causal/art açısından yeniden okundu ve yeni hash'lere bağlandı. Eski onaylar taşınmadı, Codex metni değiştirmedi. Bütçe, nefes tutma ve baykuş katkı engelleri kapandı; tutuş pençeyle, kanatla değil.
-- SeçiliRelease10test/0hata;630/630kitap-adfixture;N15001500/1500başarı,0hata/0retry,90farklıkitap. Lint90/90,ortaksayfa30%,hücreöbekörtüşmesi en yüksek8.12%;720sayfaPython/Swiftmetrikfarkı0. App/UI çalıştırılmadı.
+- SeçiliRelease10test/0hata;630/630kitap-adfixture;N15001500/1500başarı,0hata/0retry,90farklıkitap. Lint90/90,ortaksayfa30%,hücreöbekörtüşmesi en yüksek8.16%;720sayfaPython/Swiftmetrikfarkı0. App/UI çalıştırılmadı.
 - Yeni90başarılıfixture'ın720sayfası kaynak/bağlam/poz-eylem art teslimine aktarıldı; görsel/atomic/yayın onayı yok. Dalga1 ayrıteslim. Pin Batuhan onayına kadar v2; v1/v2 veapp dosyaları değişmedi. Main/push/entegrasyon yok.
 - Dosyalar: v3korpus/payload/lint/manifest, V3diagnostic kabulassertion vefixturemetrikexportu, research/v3 güncel rapor/hamkanıt/art exporter, plan/durum/hafıza/günlük.
 
