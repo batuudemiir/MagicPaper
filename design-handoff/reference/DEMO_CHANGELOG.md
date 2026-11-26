@@ -133,6 +133,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · codex/karakter-kartlari · Beş arkadaşın karakter kartları
+
+- Onaylı b6d40b4 kaynağıyla beş özet kart, dönüş/ifade/aksesuar levhaları, paletler, yap ve yapma örnekleri, seçim simgeleri ve mod görselleri hazırlandı. Simit baş-omuz seçimine sol boşluk eklendi.
+- Ortak boy, siyah siluet ve renk levhaları eklendi. Altı üretim kaydına istemler ve ImageGen çıktı kimlikleri yazıldı. Araç sayısal seed sağlamadı.
+- 68 PNG açıldı. Levha boyutları, seçim PNG’lerinin alfa kanalı, beş palet ve güncel ZIP doğrulandı. Bölüm önizlemeleri gözle incelendi. Simülatör ve uygulama testleri çalıştırılmadı.
+- Dosyalar `design-handoff/character-cards/`, Simit baş-omuz asset seti ve görsel ZIP paketi altında.
+
 ### 2026-11-26 · codex/karakter-kartlari · Karakter kartları öncesi görsel düzeltmeleri
 
 - Böğürtlen öğrenme görselinde açık patisindeki üç böğürtleni sayıyor. Beş şeffaf baş-omuz görseli 1024 × 1024 px boyutuna getirildi.
