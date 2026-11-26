@@ -24,6 +24,9 @@ struct ReaderStory {
     let coverAsset: String?
     let coverStyle: StoryCoverStyle
     let mosaicCover: MagicPaperCoverConfiguration?
+    /// Görselli masalın kendi kapak dosyası (cihazda); set ya da Günlük kapağı
+    /// varsa `nil`.
+    var coverFile: String? = nil
     /// Kapaktan sonraki ithaf yaprağının metni; yaprak yoksa `nil`.
     let dedication: StoryColophon.Dedication?
 
@@ -178,15 +181,20 @@ extension ReaderStory {
         self.pageCount = pages.count
         self.textLayout = ReaderTextLayout(ageBand: story.origin?.ageBand)
         
-        let cover = story.mpDefaultCoverAsset
+        // Kapak her kitabın ilk yaprağı (26 Kasım 2026, Batuhan): rafta
+        // görünen kapak okuyucuda da ilk sayfa. Önce setin teslim edilmiş
+        // kapağı (`mpKitCoverAsset`, Kitaplık'la aynı sıra), sonra Günlük
+        // kapağı, sonra görselli masalın kendi kapak dosyası; hiçbiri yoksa
+        // masalın kendi kâğıt mozaiği.
+        let cover = story.mpKitCoverAsset ?? story.mpDefaultCoverAsset
         self.coverAsset = cover
         self.coverStyle = story.mpCoverStyle
-        self.mosaicCover = story.mpCoverStyle == .magicPaperMosaic ? story.mpMosaicCover : nil
-        
-        // Metin masallarının kendi kapağı yok; ortak illüstrasyon veya
-        // jeneratif mozaik kapak yaprağı olarak kitabın başına konur.
-        // Görselli masal kendi kapağını taşıdığı için burada yaprak eklenmez.
-        let hasCoverLeaf = cover != nil || self.coverStyle == .magicPaperMosaic
+        let file = cover == nil && story.mpCoverStyle == .illustrated
+            ? [story.coverImageFileName, story.coverImageUrl].compactMap { $0 }.first { !$0.isEmpty }
+            : nil
+        self.coverFile = file
+        self.mosaicCover = cover == nil ? story.mpMosaicCover : nil
+        let hasCoverLeaf = true
         // İthaf kapağın arkasındadır: kapaksız (görselli) masal ithafla
         // açılmasın, boş masal da ithaf taşımasın.
         let dedicated = hasCoverLeaf && !pages.isEmpty && StoryColophon.hasDedication(story)

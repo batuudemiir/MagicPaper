@@ -160,37 +160,63 @@ struct ReaderChrome: View {
 
     // MARK: - Alt çubuk
 
-    /// Full-width position/speech row above navigation and the seek line.
+    /// Kompakt çubuk (26 Kasım 2026): olağan yazıda tek satır — geri, sayfa
+    /// etiketi ile ilerleme çizgisi, sesli oku, ileri. İki satırlık çubuk
+    /// metinden 132 pt alıyordu; tek satır 80 pt. En büyük yazı boyutlarında
+    /// sayfa ve ses ayrı satırda kalır, etiket kesilmesin.
     private func controlBar(_ label: String) -> some View {
-        VStack(spacing: MP.S.x1) {
-            if typeSize.isAccessibilitySize && verticalClass != .compact {
-                VStack(alignment: .leading, spacing: 0) {
-                    positionLabel(label)
-                    speechButton
+        Group {
+            if typeSize.isAccessibilitySize {
+                VStack(spacing: MP.S.x1) {
+                    if verticalClass != .compact {
+                        VStack(alignment: .leading, spacing: 0) {
+                            positionLabel(label)
+                            speechButton(compact: false)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .frame(minHeight: MP.S.tapMin * 3)
+                    } else {
+                        HStack(spacing: MP.S.x2) {
+                            positionLabel(label)
+                            Spacer(minLength: MP.S.x2)
+                            speechButton(compact: false)
+                        }
+                        .frame(minHeight: MPSize.minTouchHero)
+                    }
+                    HStack(spacing: MP.S.x2) {
+                        previousButton
+                        progressLine(label)
+                        nextButton
+                    }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .frame(minHeight: MP.S.tapMin * 3)
             } else {
-                HStack(spacing: MP.S.x2) {
-                    positionLabel(label)
-                    Spacer(minLength: MP.S.x2)
-                    speechButton
+                HStack(spacing: MP.S.x1) {
+                    previousButton
+                    VStack(spacing: 0) {
+                        positionLabel(label)
+                        progressLine(label, height: MP.S.x8)
+                    }
+                    speechButton(compact: true)
+                    nextButton
                 }
-                .frame(minHeight: typeSize.isAccessibilitySize ? MPSize.minTouchHero : MP.S.tapMin)
-            }
-            HStack(spacing: MP.S.x2) {
-                navButton(symbol: "chevron.left", label: "Önceki sayfa",
-                          enabled: canGoPrevious, action: onPrevious)
-                progressLine(label)
-                navButton(symbol: isLastPage ? "flag.checkered" : "chevron.right",
-                          label: isLastPage ? "Masalı bitir" : "Sonraki sayfa",
-                          enabled: canGoNext, action: onNext)
+                .frame(minHeight: MPSize.minTouchHero)
             }
         }
-        .padding(.horizontal, MP.S.x3)
+        .padding(.horizontal, MP.S.x2)
         .padding(.vertical, MP.S.x2)
         .mpGlassSurface(in: RoundedRectangle(cornerRadius: MPRadius.hero, style: .continuous))
         .padding(.horizontal, MPSpacing.sm)
+    }
+
+    private var previousButton: some View {
+        navButton(symbol: "chevron.left", label: "Önceki sayfa",
+                  enabled: canGoPrevious, action: onPrevious)
+    }
+
+    private var nextButton: some View {
+        navButton(symbol: isLastPage ? "flag.checkered" : "chevron.right",
+                  label: isLastPage ? "Masalı bitir" : "Sonraki sayfa",
+                  enabled: canGoNext, action: onNext)
     }
 
     private func positionLabel(_ label: String) -> some View {
@@ -200,16 +226,19 @@ struct ReaderChrome: View {
             .fixedSize(horizontal: false, vertical: true)
     }
 
-    private var speechButton: some View {
+    /// Kompakt çubukta yalnızca simge (48 pt daire); etiket VoiceOver'da.
+    private func speechButton(compact: Bool) -> some View {
         Button(action: onToggleSpeech) {
             HStack(spacing: MPSpacing.xxs) {
                 MPIcon(isSpeaking ? "pause.fill" : (familyVoice ? "heart.fill" : "play.fill"), size: MP.G.md, weight: .bold, symbolOnly: true)
-                Text(isSpeaking ? "Duraklat" : (familyVoice ? "Ailenin sesi" : "Sesli oku"))
-                    .mpText(.footnote).fontWeight(.heavy)
-                    .fixedSize(horizontal: false, vertical: true)
+                if !compact {
+                    Text(isSpeaking ? "Duraklat" : (familyVoice ? "Ailenin sesi" : "Sesli oku"))
+                        .mpText(.footnote).fontWeight(.heavy)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
             .foregroundStyle(theme.highlight)
-            .frame(minHeight: MP.S.tapMin)
+            .frame(minWidth: MP.S.tapMin, minHeight: MP.S.tapMin)
             .contentShape(Rectangle())
         }
         .buttonStyle(MPPressStyle(.highlight))
@@ -218,7 +247,7 @@ struct ReaderChrome: View {
 
     /// İnce ilerleme çizgisi; basılı tutunca kaydırıcı. VoiceOver'da
     /// yukarı/aşağı kaydırma bir sayfa ileri/geri gider.
-    private func progressLine(_ label: String) -> some View {
+    private func progressLine(_ label: String, height: CGFloat = MP.S.tapMin) -> some View {
         GeometryReader { geo in
             let count = max(pagePreviews.count, 1)
             let selected = scrubPage ?? pageIndex ?? 0
@@ -234,7 +263,7 @@ struct ReaderChrome: View {
                 .contentShape(Rectangle())
                 .gesture(scrubGesture(width: geo.size.width))
         }
-        .frame(height: MP.S.tapMin)
+        .frame(height: height)
         .accessibilityElement()
         .accessibilityLabel("Sayfa")
         .accessibilityValue(label)

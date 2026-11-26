@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · claude/project-thread-lr0adx, commit bu kayıtla · Kompakt okuyucu, kapak ilk yaprak, uyku modu kapalı
+- Okuyucu: alt kontrol çubuğu olağan yazıda tek satır (geri · sayfa + ilerleme · sesli oku simgesi · ileri); metne ayrılan alan 132 pt yerine 80 pt kaybediyor. En büyük yazı boyutlarında eski iki satır kaldı.
+- Okuyucu: metin üst kontrollerin gerçek ölçüsünün altından başlar (`ReaderPageLayout.topChromeClearance`). Yaprak, okuyucunun üst güvenli alanını modelden alır (`readerSafeTop`); sayfa denetleyicisi güvenli alanı yaprağa iletmezse eksik kalan eklenir, uzun metin sol üstteki kapatın altına akmaz.
+- Okuyucu: kapak her kitabın ilk yaprağı. Rafla aynı sıra: set kapağı (`mpKitCoverAsset`), Günlük kapağı, görselli masalın kendi kapak dosyası, yoksa kâğıt mozaik. Önceden set kapaklı ve görselli masallar doğrudan 1. sayfadan açılıyordu. Kaldığı yerden açılış değişmedi.
+- Uyku modu ("İyi geceler" sonrası sesli okuma) kapalı: `MPFeatures.sleepModeVoiceReady = false`, uzaktan bayrak tek başına açamaz. Cihaz anlatıcısı robot gibi duyuluyor (Batuhan). Kod silinmedi; giriş noktaları mevcut bayrakla gizleniyor, "İyi geceler" okuyucuyu kapatır.
+- Seri masal: "Oku" düğmesi bölüm satırında harf harf alt alta kırılıyordu. Sebep: `MPButton` birincil düğmeye 220 pt taban genişlik veriyordu, küçük boyutta da. Küçük düğmede taban kaldırıldı (tek kullanıcısı bu satır); satırda düğme ve "Yarın" kendi genişliğini korur.
+- Bilerek değişmedi: okuyucudaki "Sesli oku" ve kapaktaki "Ragi okusun" (aynı cihaz anlatıcısı) yerinde.
+- Test: Xcode bu ortamda yok, derleme ve testler çalıştırılmadı; CI (ios-build) koşacak. Testler yeni düzene göre güncellendi (`ReaderPageCompositionTests`, `ReaderStoryMappingTests`, `StalledStoryTests`). `DesignSystemSnapshotTests.testSnapshotReaderPageOnEveryPaper` referansları Mac'te yenilenmeli (metin dikeyde kaydı). Simülatörde görülmedi. `Scripts/design_law_check.sh` temiz.
+- Dosyalar: `StoryReader/ReaderChrome.swift`, `ReaderPageComposition.swift`, `StoryPageView.swift`, `StoryLeafView.swift`, `StoryReaderModel.swift`, `StoryReaderView.swift`, `ReaderStory.swift`, `StoryCover.swift`, `MPFeatures.swift`, `Pastel/MPButtons.swift`, `Series/SeriesView.swift`.
+
 ### 2026-11-26 · main, commit bu kayıtla · 5 görüntü testinin referansları yenilendi
 - `DesignSystemSnapshotTests`'te eskimiş 5 test (düğmeler, seçim satırları, kahraman kartı, durum görünümü, beş kâğıtta okuyucu sayfası) iPhone 17 Pro (iOS 27) simülatöründe yeniden kaydedildi; 13 PNG. Bölüm ve sekme başlığı referansları değişmedi.
 - Görülen fark bilinçli tasarım değişiklikleri: örneğin devre dışı düğme sıcak griden soğuk lavanta griye geçmiş. Kod değişmedi.

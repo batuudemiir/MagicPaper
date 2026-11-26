@@ -123,6 +123,17 @@ struct StoryReaderView: View {
             .zIndex(1)
         }
         .background(theme.paper.ignoresSafeArea())
+        // Üst güvenli alan yapraklara modelden ulaşır: sayfa denetleyicisi
+        // yaprağa iletmezse metin kapat düğmesinin altına akıyordu.
+        .background {
+            GeometryReader { proxy in
+                Color.clear
+                    .onAppear { model.readerSafeTop = proxy.safeAreaInsets.top }
+                    .onChange(of: proxy.safeAreaInsets.top) { _, top in model.readerSafeTop = top }
+            }
+            .ignoresSafeArea()
+            .accessibilityHidden(true)
+        }
         .animation(MP.M.gated(MP.M.easeOut), value: model.controlsVisible)
         .animation(MP.M.gated(MP.M.base), value: theme)
         .statusBarHidden(!model.controlsVisible)

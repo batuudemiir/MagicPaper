@@ -53,7 +53,8 @@ struct StoryLeafView: View {
                 // 23); çekilince sayfanın altında sessiz künye.
                 showsFolio: !model.controlsVisible,
                 accent: model.story.accent,
-                symbol: model.story.symbol
+                symbol: model.story.symbol,
+                readerSafeTop: model.readerSafeTop
             )
         case .ending:
             StoryEndingLeaf(

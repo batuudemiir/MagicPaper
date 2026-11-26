@@ -41,7 +41,9 @@ struct MPButton: View {
             // En büyük yazı boyutunda düğme uzar, etiket kesilmez.
             .frame(minHeight: height)
             .frame(maxWidth: fullWidth ? .infinity : nil)
-            .frame(minWidth: kind == .primary && !fullWidth ? 220 : nil)
+            // Küçük düğme satır içinde durur (seri bölümü "Oku"): 220 pt'lik taban
+            // onu sıkıştırıp etiketi harf harf alt alta kırıyordu.
+            .frame(minWidth: kind == .primary && !fullWidth && size != .small ? 220 : nil)
             .background(background)
             .overlay(border)
             .clipShape(Capsule())
