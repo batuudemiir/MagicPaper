@@ -97,6 +97,7 @@ final class P56SnapshotTests: XCTestCase {
         }
         XCTAssertEqual(references[0].payloadSHA256, P56PinnedSource.v1SHA256)
         XCTAssertEqual(references[1].payloadSHA256, P56PinnedSource.v2SHA256)
+        XCTAssertEqual(references[2].payloadSHA256, P56PinnedSource.v3SHA256)
         XCTAssertTrue(references.contains { $0.packageVersion == P56PinnedSource.packageVersion
             && $0.payloadSHA256 == P56PinnedSource.sha256 }, "etkin pin arşivde")
         for reference in references { XCTAssertEqual(try store.load(reference).sourceReference, reference) }
