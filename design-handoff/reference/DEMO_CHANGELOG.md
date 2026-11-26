@@ -1,3 +1,10 @@
+## 27 Kasım 2026 — V4 15 kitaplık sayfa incelemesi ve ilk nesne durumları
+
+- 120 sayfa elle okunup kaynak/template SHA taşıyan planlama notlarına işlendi: 45 aday an, 35 farklı ihtiyaç; henüz runtime kapsaması değil. 75 sayfa ilk pilotta metin.
+- Uyku aksesuar konumları, anı/benzetme/niyet ayrımı ve nesne önce/sonra durumları kayıtlı. Kalan V4 yapıları bu pilot sayısına dahil değil.
+- Yaprak/dal boşluk ve temas çizimleri yerleşik imagegen ile üretildi. Kopuk dal içeren temas v1 reddedildi; aynı nesne referansıyla v2 düzeltildi. Kaynak ve prompt kayıtları korundu.
+- İnceleme galerisi: `2026-11-26-v4-art-library/V4-Pilot-Sayfalar.html`; üretim kuyruğu ve yeniden üretilebilir inceleme betiği eklendi. Veri SHA/sayı kontrolleri geçti; build/test/simülatör ve tarayıcı kompozit kontrolü yapılmadı. App/motor/metin değişmedi.
+
 ## 26 Kasım 2026 — Beş arkadaş V4 kimlik çizimleri
 
 - Yerleşik imagegen ile onaylı marka ve tekil karakter referanslarından beş ayrı V4 PNG üretildi; imza aksesuarları, Yıldız’ın gece mavisi tüyleri ve Böğürtlen’in pati lekesi eklendi.

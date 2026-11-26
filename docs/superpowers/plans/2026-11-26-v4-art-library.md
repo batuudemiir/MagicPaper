@@ -28,12 +28,12 @@ Files: `design-handoff/proposals/2026-11-26-v4-art-library/assets/`, `GENERATION
 
 Files: aynı klasörde `pilot-page-review.json`, `PRODUCTION_QUEUE.md`.
 
-- [ ] Manifestteki 15 kitabın 120 sayfasını kitap sırasıyla oku. Her sayfaya mevcut/hatırlanan/hedeflenen konu, eylem, nesne konumu ve ihtiyaç duyulan çizimi yaz.
-- [ ] Uyku için uyanık-dinleme, dinlenme ve gerçek uyku durumlarını ayır. Çanta askıdaysa takılı karakter çizimi seçme.
-- [ ] Öğrenmede damla ve yaprak görünümünü olayın önce/sonra durumuna göre ayır; benzer genel nesneyi kanıt yerine kullanma.
-- [ ] Macerada işaret parçalarının ayrı/birleşmiş/yönlendirilmiş hâllerini ve karakter katkısını ayır.
-- [ ] Açılış/orta/kapanış için üç anlamlı anı hedefle; kaynak desteklemiyorsa sayfayı metin bırak ve gerekçesini yaz. Metni veya seed’i görsel için değiştirme.
-- [ ] Tekrarlanabilir çizim ihtiyaçlarını aynı canonical konu + görünür durum + eylem + aksesuar konumu anahtarında birleştir. Kesin üretim sayısını bu listeden hesapla.
+- [x] Manifestteki 15 kitabın 120 sayfasını kitap sırasıyla oku. Her sayfaya mevcut/hatırlanan/hedeflenen konu, eylem, nesne konumu ve ihtiyaç duyulan çizimi yaz.
+- [x] Uyku için uyanık-dinleme, dinlenme ve gerçek uyku durumlarını ayır. Çanta askıdaysa takılı karakter çizimi seçme.
+- [x] Öğrenmede damla ve yaprak görünümünü olayın önce/sonra durumuna göre ayır; benzer genel nesneyi kanıt yerine kullanma.
+- [x] Macerada işaret parçalarının ayrı/birleşmiş/yönlendirilmiş hâllerini ve karakter katkısını ayır.
+- [x] Açılış/orta/kapanış için üç anlamlı anı hedefle; kaynak desteklemiyorsa sayfayı metin bırak ve gerekçesini yaz. Metni veya seed’i görsel için değiştirme.
+- [x] Tekrarlanabilir çizim ihtiyaçlarını aynı canonical konu + görünür durum + eylem + aksesuar konumu anahtarında birleştir. Pilot üretim sayısını bu listeden hesapla; tüm 90 kitap için genelleme yapma.
 
 ## 4. Üretim ve yayın devir paketi
 
