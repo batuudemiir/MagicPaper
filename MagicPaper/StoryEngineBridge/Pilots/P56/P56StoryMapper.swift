@@ -40,7 +40,8 @@ enum P56StoryMapper {
                 worldID: MP.World(rawValue: composed.worldID)?.rawValue,
                 modeID: StoryMode(rawValue: composed.mode.rawValue)?.rawValue,
                 selectionStrategy: strategy?.rawValue,
-                ageBand: AgeBandResolver.band(forAge: composed.age).description
+                ageBand: AgeBandResolver.band(forAge: composed.age).description,
+                p56BookID: composed.bookID
             )
         )
         story.currentProgress = nil

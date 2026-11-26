@@ -164,6 +164,11 @@ struct StoryOrigin: Codable, Equatable {
     /// sıradan masal ve bu alandan önce yazılmış her masal. Özel gün masalı
     /// devam ettirilmez.
     var occasionID: String? = nil
+    /// Beş arkadaş pilotu: masalın yazıldığı P56 kitabının kimliği (26 Kasım
+    /// 2026). Bir sonraki masalda motor bu çocuğun okuduğu kitapları atlasın
+    /// diye saklanıyor (`P56RecentBooks`). Kimlik, metin değil. Nil, eski
+    /// motorun her masalı ve bu alandan önce yazılmış her P56 masalı.
+    var p56BookID: String? = nil
 
     /// The mode this story was written in, old names included.
     var mode: StoryMode? { modeID.flatMap(StoryMode.init(storedID:)) }
