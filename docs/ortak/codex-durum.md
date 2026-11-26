@@ -1,3 +1,7 @@
+## 26 Kasım 2026 — V4 motor pini etkin
+
+Kullanıcının sonraki pin commit’i talimatıyla etkin motor pini V4’e geçti. SHA256 `c06a5dfc3f586eae5d837926cab915be6b22480c20e11e02c9ea7fd5894990d6`; v3SHA256 geçmiş sabiti eklendi. V1–V4 payload baytları değişmedi. Yeniden derlenen Release: 7 test/0 hata. Önceki aday: 630/630, N1500/1500. Uygulama hattı V4 baytlarını paketleyip app testleri ve simülatör bayrak açık/kapalı kontrolünü tamamlayabilir; snapshot kayıtları yerel main birleşmesinden sonra. productionEnabled=false, artApproved=false. Push/merge yapılmadı. Kanıt: docs/research/five-friends-p56-runtime/v4/pin-transition.md.
+
 ## 26 Kasım 2026 — V4 ikinci düzeltme tamamlandı
 
 17 kitap/18 sayfa yenilendi; V4 SHA `c06a5dfc3f586eae5d837926cab915be6b22480c20e11e02c9ea7fd5894990d6`. Semantik, causal, C3 ve art hash bağları ile iki dalga envanteri güncel. V4 630/630 ad denemesi, N1500 1500/1500 (0 retry), Release 15 test/0 hata; 720 sayfa metrik farkı 0. Eski içerik engelleri kapalı. Pin v3 ve v1/v2/v3 baytları korundu. V4 pin onayı ayrı; productionEnabled=false, artApproved=false. Dalga runtime uygulama hattının v3 önkoşulunu bekler. Tek Finder kopyası ham globu bozuyor; 270 kanonik kitap lintten geçiyor. Kanıt: docs/research/five-friends-p56-runtime/v4/REPORT.md.
