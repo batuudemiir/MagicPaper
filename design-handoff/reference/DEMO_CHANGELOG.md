@@ -195,6 +195,30 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Tam kaynak bağlamı/poz/eylem art-handoff.json içinde; atomic/görsel/yayın onayı yok. Dosyalar: yeni iki v3 Content klasörü, P56V3 loader/test/diagnostic, metadata+dispatch, research/v3, plan, Codex durum ve proje hafızası. Main/push/entegrasyon değişmedi.
 
 
+### 2026-11-26 · codex/karakter-kartlari · Beş arkadaşın karakter kartları
+
+- Onaylı b6d40b4 kaynağıyla beş özet kart, dönüş/ifade/aksesuar levhaları, paletler, yap ve yapma örnekleri, seçim simgeleri ve mod görselleri hazırlandı. Simit baş-omuz seçimine sol boşluk eklendi.
+- Ortak boy, siyah siluet ve renk levhaları eklendi. Altı üretim kaydına istemler ve ImageGen çıktı kimlikleri yazıldı. Araç sayısal seed sağlamadı.
+- 68 PNG açıldı. Levha boyutları, seçim PNG’lerinin alfa kanalı, beş palet ve güncel ZIP doğrulandı. Bölüm önizlemeleri gözle incelendi. Simülatör ve uygulama testleri çalıştırılmadı.
+- Dosyalar `design-handoff/character-cards/`, Simit baş-omuz asset seti ve görsel ZIP paketi altında.
+
+### 2026-11-26 · codex/karakter-kartlari · Karakter kartları öncesi görsel düzeltmeleri
+
+- Böğürtlen öğrenme görselinde açık patisindeki üç böğürtleni sayıyor. Beş şeffaf baş-omuz görseli 1024 × 1024 px boyutuna getirildi.
+- PNG boyutu, alfa kanalı ve 26 dosyalık ZIP doğrulandı. Uygulama testi ve simülatör çalıştırılmadı.
+
+### 2026-11-26 · codex/cocugun-masal-yolu-gorselleri · Son portre ve poz düzeltmeleri
+
+- Böğürtlen’in kapalı gözlü uyuklama ve üç böğürtlen sayma çizimleri ile Yıldız’ın portre ve üç mod çizimindeki yumuşak konturlar güncellendi.
+- Beş baş ve omuz kırpması ayrı asset setlerine eklendi. Galeride “Kim gelsin?” bu portreleri, siyah siluet karşılaştırması tam gövdeleri kullanıyor. ZIP her iki portreyi içeriyor.
+- Şeffaf PNG’ler, 64 px önizleme, galeri bağlantıları ve 26 dosyalık ZIP kontrol edildi. Uygulama testi ve simülatör çalıştırılmadı.
+
+### 2026-11-26 · codex/cocugun-masal-yolu-gorselleri · Beş arkadaş portreleri ve mod çizimleri v2
+
+- Beş portreye v2 asset setleri eklendi. Renkler, imza eşyaları ve siluetler karaktere göre ayrıldı. Galerideki 15 mod görseli yeni poz ve ışıklarla güncellendi. Sürpriz görseli korundu.
+- Galeriye 64 px renkli portre ve siyah siluet karşılaştırması eklendi. 20 yeni PNG tam çözünürlükte açıldı. Alfa kanalları, galeri bağlantıları, görsel önizleme ve 21 dosyalık ZIP denetlendi. Uygulama testi ve simülatör çalıştırılmadı.
+- Dosyalar `MagicPaper/Assets.xcassets/CompanionPortraits/` ve `design-handoff/proposals/2026-11-26-cocugun-masal-yolu/` altında.
+
 ### 2026-11-25 · codex/bes-arkadas/entegrasyon@7d1bb4e · B hattı (uygulama entegrasyonu) entegrasyona birleşti
 
 - Codex'in karşı incelemesi (`73578a6`, `B_LINE_REVIEW_ACCEPTANCE.md`) B hattını iç pilot için kabul etti. `19894d6` ucu `codex/bes-arkadas/entegrasyon`'a `--no-ff` ile birleşti: `7d1bb4e`. Birleşme ağacı `19894d6` ile birebir aynı (`git diff --exit-code`). Geçici worktree'de yapıldı, sonra silindi.
