@@ -76,10 +76,23 @@ final class P56StoryMapperTests: XCTestCase {
         let story = story(composed)
         XCTAssertEqual(story.origin?.catalogVersion, "five-friends-56-runtime-v2")
         XCTAssertEqual(story.origin?.contentSource?.p56Reference?.packageVersion, "five-friends-56-runtime-v2")
-        XCTAssertEqual(story.origin?.contentSource?.p56Reference?.payloadSHA256, P56PinnedSource.sha256)
+        XCTAssertEqual(story.origin?.contentSource?.p56Reference?.payloadSHA256, P56PinnedSource.v2SHA256)
         XCTAssertEqual(story.pages.compactMap { $0.provenance?.p56?.renderedSHA256 },
                        composed.pages.sorted { $0.number < $1.number }.map(\.provenance.renderedSHA256))
         XCTAssertTrue(story.pages.allSatisfy { $0.provenance?.p56?.packageVersion == "five-friends-56-runtime-v2" })
+    }
+
+    func testActiveV3StoryCarriesV3SourceOnEveryPage() throws {
+        let composed = try P56StoryComposer(package: package("five-friends-56-runtime-v3")).compose(
+            P56Request(childID: "test-child", name: "Deniz", age: 6, seed: 11, mode: .adventure,
+                       contentSafety: .mostProtective))
+        let story = story(composed)
+        XCTAssertEqual(story.origin?.catalogVersion, "five-friends-56-runtime-v3")
+        XCTAssertEqual(story.origin?.contentSource?.p56Reference?.packageVersion, "five-friends-56-runtime-v3")
+        XCTAssertEqual(story.origin?.contentSource?.p56Reference?.payloadSHA256, P56PinnedSource.sha256)
+        XCTAssertEqual(story.pages.compactMap { $0.provenance?.p56?.renderedSHA256 },
+                       composed.pages.sorted { $0.number < $1.number }.map(\.provenance.renderedSHA256))
+        XCTAssertTrue(story.pages.allSatisfy { $0.provenance?.p56?.packageVersion == "five-friends-56-runtime-v3" })
     }
 
     func testFingerprintEdges() {

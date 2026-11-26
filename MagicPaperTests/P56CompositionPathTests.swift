@@ -118,8 +118,8 @@ final class P56CompositionPathTests: XCTestCase {
         XCTAssertNil(manager.lastRuntimeDecision)
     }
 
-    /// Codex kapısı: varsayılan profil güvenliğiyle gerçek v2 yazımı, kaydı ve geri okunması.
-    func testDefaultSafetyWritesSavesAndReopensAV2Story() async throws {
+    /// Codex kapısı: varsayılan profil güvenliğiyle gerçek etkin paket (v3) yazımı, kaydı ve geri okunması.
+    func testDefaultSafetyWritesSavesAndReopensTheActiveStory() async throws {
         OfflineStoryService.shared.currentSafety = .mostProtective
         let (reference, _) = try Self.fixture.get()
         let router = StoryRuntimeRouter(isEnabled: true, loadSource: { P56VerifiedSource(try Self.fixture.get()) }, archive: nil)
@@ -136,9 +136,9 @@ final class P56CompositionPathTests: XCTestCase {
         let story = try await manager.createStory(for: profile, mode: .learning, storyIdeaID: nil,
                                                   companionID: admissible, seed: "42")
         XCTAssertEqual(manager.lastRuntimeDecision, StoryRuntimeDecision(route: .p56(reference), reason: nil))
-        XCTAssertEqual(story.origin?.contentSource?.p56Reference?.packageVersion, "five-friends-56-runtime-v2")
-        XCTAssertEqual(story.origin?.catalogVersion, "five-friends-56-runtime-v2")
-        XCTAssertTrue(story.pages.allSatisfy { $0.provenance?.p56?.packageVersion == "five-friends-56-runtime-v2" })
+        XCTAssertEqual(story.origin?.contentSource?.p56Reference?.packageVersion, P56PinnedSource.packageVersion)
+        XCTAssertEqual(story.origin?.catalogVersion, P56PinnedSource.packageVersion)
+        XCTAssertTrue(story.pages.allSatisfy { $0.provenance?.p56?.packageVersion == P56PinnedSource.packageVersion })
         let reopened = try JSONDecoder().decode(MagicPaper.Story.self, from: JSONEncoder().encode(story))
         XCTAssertEqual(reopened.pages.map(\.text), story.pages.map(\.text))
         XCTAssertEqual(reopened.origin?.contentSource?.p56Reference, reference)

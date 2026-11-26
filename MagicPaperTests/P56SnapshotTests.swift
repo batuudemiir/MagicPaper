@@ -80,4 +80,22 @@ final class P56SnapshotTests: XCTestCase {
         other.append(10)
         XCTAssertThrowsError(try store.save(data: other, reference: reference), "özeti tutmayan bayt yazılmaz")
     }
+
+    /// v3 geçişi (26 Kasım): arşiv üç sürümü de tanır; v1 ve v2 kayıtları yerinde kalır.
+    func testArchiveKeepsV1V2AndAcceptsV3() throws {
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let store = P56SnapshotStore(root: directory)
+        let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
+        var references: [P56SourceReference] = []
+        for version in ["v1", "v2", "v3"] {
+            let bytes = try Data(contentsOf: root.appendingPathComponent("Content/Pilots/five-friends-56-runtime-\(version)/payload.json"))
+            references.append(try store.save(payload: bytes, expectedSHA256: digest(bytes)))
+        }
+        XCTAssertEqual(references.map(\.payloadSHA256),
+                       [P56PinnedSource.v1SHA256, P56PinnedSource.v2SHA256, P56PinnedSource.sha256])
+        XCTAssertEqual(references.last?.packageVersion, P56PinnedSource.packageVersion)
+        for reference in references { XCTAssertEqual(try store.load(reference).sourceReference, reference) }
+        XCTAssertEqual(try FileManager.default.contentsOfDirectory(atPath: directory.path).count, 3)
+    }
 }
