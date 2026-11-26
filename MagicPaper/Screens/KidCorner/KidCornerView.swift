@@ -93,7 +93,7 @@ struct KidCornerView: View {
 
     private func header(topInset: CGFloat) -> some View {
         VStack(alignment: .leading, spacing: MPSpacing.md) {
-            Text("Profil").font(MP.F.displayLG()).foregroundStyle(MP.C.textOnArt)
+            Text("Profil").font(MP.F.displayLG()).foregroundStyle(MPColor.textPrimary)
                 .accessibilityAddTraits(.isHeader)
             whoRow
             if let profile { identityBlock(profile) }
@@ -102,10 +102,7 @@ struct KidCornerView: View {
         .padding(.horizontal, MPSpacing.screenH)
         .padding(.top, topInset + MPSpacing.lg)
         .padding(.bottom, MPSpacing.xs)
-        .background(
-            LinearGradient(stops: MP.C.homeSky, startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea(edges: .top)
-        )
+        // Düz kâğıt (26 Kasım 2026, Batuhan): mor gök gradienti kalktı.
     }
 
     /// Profil değiştirme: tek sıra çip, tek dokunuş (7 Kasım 2026). Seçili
@@ -148,10 +145,10 @@ struct KidCornerView: View {
                         MPIcon("plus", size: MP.G.sm, weight: .bold).accessibilityHidden(true)
                         Text("Ekle").mpText(.supporting).fontWeight(.bold)
                     }
-                    .foregroundStyle(MP.C.textOnArt)
+                    .foregroundStyle(MPColor.actionPrimary)
                     .padding(.horizontal, MPSpacing.md)
                     .frame(minHeight: MP.S.tapMin)
-                    .overlay(Capsule().strokeBorder(MP.C.textOnArt, style: StrokeStyle(lineWidth: 2, dash: [5, 4])))
+                    .overlay(Capsule().strokeBorder(MPColor.actionPrimary, style: StrokeStyle(lineWidth: 2, dash: [5, 4])))
                     .contentShape(Capsule())
                 }
                 .buttonStyle(MPPressStyle())

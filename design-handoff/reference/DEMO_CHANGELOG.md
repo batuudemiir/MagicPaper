@@ -133,6 +133,17 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · claude/project-thread-4oo21x · Ana sayfa, Profil ve Kitaplık sadeleşti
+
+- Ne değişti (Batuhan'ın UX notları): ana sayfa, Profil ve menü sayfalarının (`MPSkyPage`) üstündeki mor gök gradienti kalktı; başlıklar düz kâğıtta, koyu yazıyla. İrem'in ana sayfa öğeleri ve dizilimi kaldı (menü, zil, arama, selam, üç bilgi kartı, bu akşamın kartı, "Yeni bir masal yaz", devam eden seri). Selam artık saate göre ("İyi akşamlar, İrem").
+- Ana sayfa: bu akşamın kartı boyalı kapak varsa üstünde kapak resmiyle kahraman öğe (`HomeTonightBoard.cover`); altına Ragi'siz "Okuma yolculuğum" kartı (`ReadingJourneyWidget(showsRagi: false)`) ve Masallar'dan "Bu haftanın seçkisi" rafı eklendi.
+- Zil çalışıyor: yalnızca Profil sekmesine geçiyordu; artık "Yenilikler" sheet'ini açar (`HomeNews`, `HomeNewsSheet`, `MPSheetRoute.news`): yeni rozet, günü gelen seri bölümü, son yedi günün yeni Original masalları, haftanın seçkisi. Görülmemiş yenilik varsa zilde marka noktası; liste açılınca söner. Push yok.
+- Kitaplık: "Kaldığın yerden" kartları yerine "Yarım kalanlar" rafı (`LibraryHalfReadCover`, kapağın altında ince ilerleme çizgisi); çipler üçe indi (Tümü · Masallarım · Klasikler, iki tür de varsa; `LibraryFilter.stories`); sıra menüsü kalktı; kapak duvarı iki sütun.
+- `AGENTS.md` tasarım yasası: mor gök istisnası yalnızca gündüz masal sonunda (`endingSky`) kaldı. `homeSky*` tokenları yerinde (testler ve masal sonu okuyor).
+- Bilerek değişmedi: Masallar sekmesi, alt çubuk (ayrı iş kolu), masal sonu.
+- Test: Linux'ta yazıldı; `Scripts/design_law_check.sh` temiz. Derleme, birim testleri ve simülatör görüntüleri Mac'te ayrıca alınacak.
+- Dosyalar: `HomeView.swift`, `MPHomeBoard.swift`, `HomeNews.swift` (yeni), `HomeNewsSheet.swift` (yeni), `MPRouter.swift`, `ContentView.swift`, `KidCornerView.swift`, `MPSkyPage.swift`, `CollectionViews.swift`, `ReadingJourneyWidget.swift`, `LibraryView.swift`, `LibraryComponents.swift`, `LibraryShelfModel.swift`, `LibraryShelfModelTests.swift`, `AGENTS.md`.
+
 ### 2026-11-26 · main, commit bu kayıtla · 5 görüntü testinin referansları yenilendi
 - `DesignSystemSnapshotTests`'te eskimiş 5 test (düğmeler, seçim satırları, kahraman kartı, durum görünümü, beş kâğıtta okuyucu sayfası) iPhone 17 Pro (iOS 27) simülatöründe yeniden kaydedildi; 13 PNG. Bölüm ve sekme başlığı referansları değişmedi.
 - Görülen fark bilinçli tasarım değişiklikleri: örneğin devre dışı düğme sıcak griden soğuk lavanta griye geçmiş. Kod değişmedi.

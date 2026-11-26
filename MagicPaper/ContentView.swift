@@ -315,6 +315,8 @@ struct ContentView: View {
             MPLockedSheet(capability: capability)
         case .menu:
             KidMenuSheet()
+        case .news:
+            HomeNewsSheet()
         }
     }
 }

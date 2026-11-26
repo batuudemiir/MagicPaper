@@ -2,9 +2,9 @@ import SwiftUI
 
 /// Menü sayfalarının ortak çatısı (23 Kasım 2026, İrem): Okuma yolculuğum,
 /// Rozetlerim, Çıkartma albümüm, Yeni kelimelerim, Masal haritam, Masal ailem,
-/// Kitaplık renklerim. Ana sayfanın mor göğü (`MP.C.homeSky`) durum çubuğunun
-/// altına kadar uzanır; üstünde geri dairesi ve beyaz başlık, altında göğün
-/// söndüğü yere oturan beyaz tanıtım kartı (`hero`). İçerik beyaz zeminde,
+/// Kitaplık renklerim. Üstte geri dairesi ve başlık, altında beyaz tanıtım
+/// kartı (`hero`). 26 Kasım 2026 (Batuhan): mor gök gradienti kalktı, başlık
+/// düz kâğıtta ve koyu yazıyla. İçerik beyaz zeminde,
 /// bölümler boşlukla ayrılır.
 ///
 /// Gök sabit yükseklikte çizilir: tanıtım kartı olmayan sayfada da (boş durum)
@@ -56,7 +56,7 @@ struct MPSkyPage<Trailing: View, Hero: View, Content: View>: View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: MPSpacing.md) {
                 MPCircleButton(systemImage: "chevron.left", accessibilityLabel: "Geri", action: onBack)
-                Text(title).font(MP.F.displaySM()).foregroundStyle(MP.C.textOnArt)
+                Text(title).font(MP.F.displaySM()).foregroundStyle(MPColor.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibilityAddTraits(.isHeader)
                 Spacer(minLength: 0)
@@ -66,16 +66,10 @@ struct MPSkyPage<Trailing: View, Hero: View, Content: View>: View {
             .padding(.top, topInset + MPSpacing.xs)
             .padding(.bottom, MPSpacing.md)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(LinearGradient(stops: MP.C.homeSkyTop, startPoint: .top, endPoint: .bottom))
 
             hero
                 .padding(.horizontal, MPSpacing.screenH)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(alignment: .top) {
-                    LinearGradient(stops: MP.C.homeSkyFade, startPoint: .top, endPoint: .bottom)
-                        .frame(height: MPSkyLayout.fadeHeight)
-                        .accessibilityHidden(true)
-                }
         }
     }
 }

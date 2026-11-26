@@ -189,7 +189,7 @@ struct DecorShopView: View {
                 MPStarMark(size: 18).accessibilityHidden(true)
                 Text("\(balance)").mpText(.cardTitle).monospacedDigit()
             }
-            .foregroundStyle(MP.C.textOnArt)
+            .foregroundStyle(MPColor.textPrimary)
             .accessibilityElement(children: .combine)
             .accessibilityLabel("\(balance) yıldızın var")
         } hero: {
