@@ -1,0 +1,519 @@
+{
+  "packageID": "five-friends-56-voice-v3",
+  "inputs": [
+    {
+      "file": "input/adventure-bear.json",
+      "sha256": "f7d22b435d75da77a97e4cc7008ca5bddb8508762e162155884b7c5318548566"
+    },
+    {
+      "file": "input/adventure-cat.json",
+      "sha256": "fbb2854bde9e74085d6a7112794c9f6c42758d92daaa3a40ee0990fee9e813d1"
+    },
+    {
+      "file": "input/adventure-fox.json",
+      "sha256": "e0ffddac8946b3a415efee432c1361bdd38b4842fcee9eba55d36e5414405217"
+    },
+    {
+      "file": "input/adventure-hedgehog.json",
+      "sha256": "6f6d2071bf4d16b4f47628dd42c2340f9df35217ab93213a0ddee1e76458afd2"
+    },
+    {
+      "file": "input/adventure-owl.json",
+      "sha256": "57ba905dc1be21be6b632718e594809771a428622ed40269d2b7f22a81ed1c06"
+    },
+    {
+      "file": "input/bedtime-bear.json",
+      "sha256": "a48c826900586a83aca109866bc6baafdf7d7fc169b6a4ca3a0d9551e301249b"
+    },
+    {
+      "file": "input/bedtime-cat.json",
+      "sha256": "b2841a60fc3296e42dfb7278873f95a804f24c779627c4dc41834740b8695c80"
+    },
+    {
+      "file": "input/bedtime-fox.json",
+      "sha256": "c3ff48c7a4dbe5dc8efa1a79746eedb8b93637424a5b425a3993a4bf64c3742c"
+    },
+    {
+      "file": "input/bedtime-hedgehog.json",
+      "sha256": "0747ff453fe9f7bdb73f0ae6de7a3f85a470bdb8e3de561b41f8679d6c6b32b9"
+    },
+    {
+      "file": "input/bedtime-owl.json",
+      "sha256": "7496cd2c31fa73f9bc1ac78223fae56e7387020c105d9327921291f74e5d08ff"
+    },
+    {
+      "file": "input/learning-bear.json",
+      "sha256": "854f2d7c0e3721a9449cb4e13e93f3252b645a22a9dc75fe3264a0e522927868"
+    },
+    {
+      "file": "input/learning-cat.json",
+      "sha256": "1ea872be4eb2613c03e3cbf45cf018d18d3eea3f87cb1294cb118fb7a5627f97"
+    },
+    {
+      "file": "input/learning-fox.json",
+      "sha256": "71192a9ead5f2c96b3acf7427c53ee52a28603185ad942020b3360f06caed58a"
+    },
+    {
+      "file": "input/learning-hedgehog.json",
+      "sha256": "e55b9c18a15b6cc86499cccbb9ce16003a3f0389784e637a8def275ebd16384f"
+    },
+    {
+      "file": "input/learning-owl.json",
+      "sha256": "d5b67fece6020381f09a196340326ea9b9b17800c2e3e4ce13bb352e982ec42a"
+    }
+  ],
+  "books": [
+    {
+      "id": "pilot56_book_u1_fox_v1",
+      "file": "books/pilot56_book_u1_fox_v1.json",
+      "sha256FileBytes": "c1ab01b7fd1ff4fe2dcaef96dcf3c20e2ecf96b7d0d00cbad9cdf399fe992cce"
+    },
+    {
+      "id": "pilot56_book_u1_owl_v1",
+      "file": "books/pilot56_book_u1_owl_v1.json",
+      "sha256FileBytes": "9b920d7ca462e1f19fd7bfdbfa20190fda33c3ac4c50cd6c80a42520fe858f74"
+    },
+    {
+      "id": "pilot56_book_u1_bear_v1",
+      "file": "books/pilot56_book_u1_bear_v1.json",
+      "sha256FileBytes": "e1e0fd31e0e30a59d9f96cb84d0680176775dca7aa95174a71995f64c69414c6"
+    },
+    {
+      "id": "pilot56_book_u2_hedgehog_v1",
+      "file": "books/pilot56_book_u2_hedgehog_v1.json",
+      "sha256FileBytes": "878275d9e532fc2b706352112f62c18fbc1aa1ce3e9542f7e379ba92084d53ee"
+    },
+    {
+      "id": "pilot56_book_u2_cat_v1",
+      "file": "books/pilot56_book_u2_cat_v1.json",
+      "sha256FileBytes": "f7bf5873d75894043ca62354c513abd369e92ad783972c5c01532bf94143c482"
+    },
+    {
+      "id": "pilot56_book_u2_bear_v1",
+      "file": "books/pilot56_book_u2_bear_v1.json",
+      "sha256FileBytes": "b0a49dff26784eb678a2e455acd769cbdc36f683af46c4ce713aa5c64b9229dd"
+    },
+    {
+      "id": "pilot56_book_u3_fox_v1",
+      "file": "books/pilot56_book_u3_fox_v1.json",
+      "sha256FileBytes": "490ec6f71c0ef301beeb778ae01c22a3ae9dbe69ca2257e949d49cbf902d33b7"
+    },
+    {
+      "id": "pilot56_book_u3_hedgehog_v1",
+      "file": "books/pilot56_book_u3_hedgehog_v1.json",
+      "sha256FileBytes": "532758da214add034ba988fddf74bc1a579d05b82596430966c28231944b188b"
+    },
+    {
+      "id": "pilot56_book_u3_owl_v1",
+      "file": "books/pilot56_book_u3_owl_v1.json",
+      "sha256FileBytes": "2eab8e5516ccd947d6a54a7cfd2ea770b75a17131db94d595041f65ca1f8aded"
+    },
+    {
+      "id": "pilot56_book_u3_cat_v1",
+      "file": "books/pilot56_book_u3_cat_v1.json",
+      "sha256FileBytes": "80da4eed72052f9d2e877a5a19c94b0cd1a039419d8d9f6228600cd90ea43a72"
+    },
+    {
+      "id": "pilot56_book_l1_fox_v1",
+      "file": "books/pilot56_book_l1_fox_v1.json",
+      "sha256FileBytes": "6d97f4df3d97d49266851048f32cc6bcda9c943ab6e14dcff6d44869b2f33e99"
+    },
+    {
+      "id": "pilot56_book_l1_owl_v1",
+      "file": "books/pilot56_book_l1_owl_v1.json",
+      "sha256FileBytes": "5e5e37c8f93df5b0a2bca453dfab29f32703a41796646af110e942d9ad9d69ce"
+    },
+    {
+      "id": "pilot56_book_l1_cat_v1",
+      "file": "books/pilot56_book_l1_cat_v1.json",
+      "sha256FileBytes": "68986185bb717f4c3e46e7632146bd48541cb796941b8e69dd60063fbb03da62"
+    },
+    {
+      "id": "pilot56_book_l2_hedgehog_v1",
+      "file": "books/pilot56_book_l2_hedgehog_v1.json",
+      "sha256FileBytes": "60c87c814e4f5ff47b527d0bccd0555f8a9d65c5dc3d0ee8a0c06ee293453bfe"
+    },
+    {
+      "id": "pilot56_book_l2_owl_v1",
+      "file": "books/pilot56_book_l2_owl_v1.json",
+      "sha256FileBytes": "b53b39a43c47cf269e6c945a199178f9399e5a89f54c087c2e92c8a93c151e33"
+    },
+    {
+      "id": "pilot56_book_l2_bear_v1",
+      "file": "books/pilot56_book_l2_bear_v1.json",
+      "sha256FileBytes": "96f6b9d2b63e0b61871a780dc026570451869e26162e96f3006b0575356e8631"
+    },
+    {
+      "id": "pilot56_book_l3_fox_v1",
+      "file": "books/pilot56_book_l3_fox_v1.json",
+      "sha256FileBytes": "58e36fe428a6eae31e3f31bf2d08677f647f0ffdaf5fe00131a0ce73106bd402"
+    },
+    {
+      "id": "pilot56_book_l3_hedgehog_v1",
+      "file": "books/pilot56_book_l3_hedgehog_v1.json",
+      "sha256FileBytes": "b5a842314273ca48000c32f0cf54905c36b4aaaae9a4f38f4883369367022aee"
+    },
+    {
+      "id": "pilot56_book_l3_cat_v1",
+      "file": "books/pilot56_book_l3_cat_v1.json",
+      "sha256FileBytes": "f399ee49dbb899521e6c23ca1a398e0873f8ba4977c81df0036cd3947cd09848"
+    },
+    {
+      "id": "pilot56_book_l3_bear_v1",
+      "file": "books/pilot56_book_l3_bear_v1.json",
+      "sha256FileBytes": "fb5e132316cda5806bf0dce1c3d656b90a843d5ee590206e63ca68a36ce61660"
+    },
+    {
+      "id": "pilot56_book_a1_fox_v1",
+      "file": "books/pilot56_book_a1_fox_v1.json",
+      "sha256FileBytes": "4163ba8f6c5a86d38754dea69755278e8ae171e6fe0e901b1ef583274da65203"
+    },
+    {
+      "id": "pilot56_book_a1_hedgehog_v1",
+      "file": "books/pilot56_book_a1_hedgehog_v1.json",
+      "sha256FileBytes": "b62e77f1773f9c1f2957292faf22363f6b7c8f1702d7913174f9957c5b270cc6"
+    },
+    {
+      "id": "pilot56_book_a1_cat_v1",
+      "file": "books/pilot56_book_a1_cat_v1.json",
+      "sha256FileBytes": "3c20dafe7e1d14286b0cb01fb3dd91f43fd6ea7e394af9efac52d6448b5a8b5e"
+    },
+    {
+      "id": "pilot56_book_a2_fox_v1",
+      "file": "books/pilot56_book_a2_fox_v1.json",
+      "sha256FileBytes": "9c3161ff5e2ced1b338be47da89fd20f5c190de87c7da10318115fcaa4fc62ea"
+    },
+    {
+      "id": "pilot56_book_a2_owl_v1",
+      "file": "books/pilot56_book_a2_owl_v1.json",
+      "sha256FileBytes": "f555c3ad507c28642ead58e490205ac14cc573340f33622be21bc1058d8480b3"
+    },
+    {
+      "id": "pilot56_book_a2_bear_v1",
+      "file": "books/pilot56_book_a2_bear_v1.json",
+      "sha256FileBytes": "a4fadc77c95e5da5edef228fc9524b15b7dca505106ce525c397949c57cc65c0"
+    },
+    {
+      "id": "pilot56_book_a3_hedgehog_v1",
+      "file": "books/pilot56_book_a3_hedgehog_v1.json",
+      "sha256FileBytes": "cdaf75c96777d245bcf583ddde8837b97ef038a27201b883aa26d4189704f39c"
+    },
+    {
+      "id": "pilot56_book_a3_owl_v1",
+      "file": "books/pilot56_book_a3_owl_v1.json",
+      "sha256FileBytes": "92db3a0103a050a48df93229b258799bda3948f6b22d79ffcfee6f9ab5949bf8"
+    },
+    {
+      "id": "pilot56_book_a3_cat_v1",
+      "file": "books/pilot56_book_a3_cat_v1.json",
+      "sha256FileBytes": "067d0f16d9dd6e56855995cc5fcb36d4997cf5c5d8e904f2e4c0fd99da0a8f93"
+    },
+    {
+      "id": "pilot56_book_a3_bear_v1",
+      "file": "books/pilot56_book_a3_bear_v1.json",
+      "sha256FileBytes": "ccd20eef581fb5f25e489b113165e21eae81c7de626d46f06f11360fba4f7075"
+    },
+    {
+      "id": "pilot56_book_u1_fox_event02_v1",
+      "file": "books/pilot56_book_u1_fox_event02_v1.json",
+      "sha256FileBytes": "4555885323538453f5cc57acfebe2b5c3fb7783eec930e2dc181c84bffda60b7"
+    },
+    {
+      "id": "pilot56_book_u1_fox_event03_v1",
+      "file": "books/pilot56_book_u1_fox_event03_v1.json",
+      "sha256FileBytes": "9c68aa048fff0e180c6d84773bed1ccf6bfee890b49a63d468aef5b556be72b1"
+    },
+    {
+      "id": "pilot56_book_u1_owl_event02_v1",
+      "file": "books/pilot56_book_u1_owl_event02_v1.json",
+      "sha256FileBytes": "b15a338d66991ca60cf06be0db3f2738dfc1e7f18051689ceee7874db7da64c0"
+    },
+    {
+      "id": "pilot56_book_u1_owl_event03_v1",
+      "file": "books/pilot56_book_u1_owl_event03_v1.json",
+      "sha256FileBytes": "1a049dd41f0792f5c3b78da26ed6a755a92654f7b953cefe3c530529cfb0e7ca"
+    },
+    {
+      "id": "pilot56_book_u1_bear_event02_v1",
+      "file": "books/pilot56_book_u1_bear_event02_v1.json",
+      "sha256FileBytes": "fd6d725bf6874df8e7dbb7030bb30a13b4177750bac82ef8368bb797ab0c8205"
+    },
+    {
+      "id": "pilot56_book_u1_bear_event03_v1",
+      "file": "books/pilot56_book_u1_bear_event03_v1.json",
+      "sha256FileBytes": "4684edae7d6d18fa5b69516425f552d48ed8b8a3dc6fcf06920d535718208045"
+    },
+    {
+      "id": "pilot56_book_u2_hedgehog_event02_v1",
+      "file": "books/pilot56_book_u2_hedgehog_event02_v1.json",
+      "sha256FileBytes": "d0453e252e3bba4d469c45c297e37b56f9bdba0dbbcd24870bd6c800424f698c"
+    },
+    {
+      "id": "pilot56_book_u2_hedgehog_event03_v1",
+      "file": "books/pilot56_book_u2_hedgehog_event03_v1.json",
+      "sha256FileBytes": "8340a4c49dc55164c42cc7534343a7e6ef830bff8a69729a0713fbe106ee0ddf"
+    },
+    {
+      "id": "pilot56_book_u2_cat_event02_v1",
+      "file": "books/pilot56_book_u2_cat_event02_v1.json",
+      "sha256FileBytes": "a974bc8c162ae02582cb5eb0899c93ccab4c6af7b31e58d936eaf0c500e551cd"
+    },
+    {
+      "id": "pilot56_book_u2_cat_event03_v1",
+      "file": "books/pilot56_book_u2_cat_event03_v1.json",
+      "sha256FileBytes": "7d5b157d88758bb6aec558203ce0f1b65ad33e811fce4ff8756812d8152a131d"
+    },
+    {
+      "id": "pilot56_book_u2_bear_event02_v1",
+      "file": "books/pilot56_book_u2_bear_event02_v1.json",
+      "sha256FileBytes": "ae704a8b472b55d596a3831b64bb25d5a22bc258f7378d8268b787a56ead209d"
+    },
+    {
+      "id": "pilot56_book_u2_bear_event03_v1",
+      "file": "books/pilot56_book_u2_bear_event03_v1.json",
+      "sha256FileBytes": "200337bfe4b29dbf816447ef35b2dcf4af70d10ce9514ba306b51b117141f6ee"
+    },
+    {
+      "id": "pilot56_book_u3_fox_event02_v1",
+      "file": "books/pilot56_book_u3_fox_event02_v1.json",
+      "sha256FileBytes": "ec8474b8529054c3d7e8aac91541710dd0adc520827dde81e1543c5ff8cf5238"
+    },
+    {
+      "id": "pilot56_book_u3_fox_event03_v1",
+      "file": "books/pilot56_book_u3_fox_event03_v1.json",
+      "sha256FileBytes": "5070ec7d1e79de0eb8c365e514f3ba6c72d966b08cec63cfb551fd0a703d0238"
+    },
+    {
+      "id": "pilot56_book_u3_hedgehog_event02_v1",
+      "file": "books/pilot56_book_u3_hedgehog_event02_v1.json",
+      "sha256FileBytes": "e3130fc6d8fc020b4683bedb21bd8d8cf96e0c8d2806667d03fbc6769aabba0f"
+    },
+    {
+      "id": "pilot56_book_u3_hedgehog_event03_v1",
+      "file": "books/pilot56_book_u3_hedgehog_event03_v1.json",
+      "sha256FileBytes": "c90c711cae7453a6c8ae838b51adb0c3f1c2caec14bc8ebaafb86fefea887fe2"
+    },
+    {
+      "id": "pilot56_book_u3_owl_event02_v1",
+      "file": "books/pilot56_book_u3_owl_event02_v1.json",
+      "sha256FileBytes": "1a5545493d3c92563e022f337bc5d7ff24da275e9006f35189c8e0430310a4d8"
+    },
+    {
+      "id": "pilot56_book_u3_owl_event03_v1",
+      "file": "books/pilot56_book_u3_owl_event03_v1.json",
+      "sha256FileBytes": "d7de95bba65c689ddca4dcad8930a17c2a2581b408426ee378ef0b0c17f54398"
+    },
+    {
+      "id": "pilot56_book_u3_cat_event02_v1",
+      "file": "books/pilot56_book_u3_cat_event02_v1.json",
+      "sha256FileBytes": "99b0f4e4c58bf37c1714abadac5995e623970bf349e16bd0bb24b1ceb07765e1"
+    },
+    {
+      "id": "pilot56_book_u3_cat_event03_v1",
+      "file": "books/pilot56_book_u3_cat_event03_v1.json",
+      "sha256FileBytes": "8bf69af1ebf0808e2f57d20d8487d5ce3fc2d8e4ea1cf123300280de2e7c9be9"
+    },
+    {
+      "id": "pilot56_book_l1_fox_event02_v1",
+      "file": "books/pilot56_book_l1_fox_event02_v1.json",
+      "sha256FileBytes": "ee641139df08d75c246e56758e2cb30db4752f8eb29909b828517d4b75bb11a8"
+    },
+    {
+      "id": "pilot56_book_l1_fox_event03_v1",
+      "file": "books/pilot56_book_l1_fox_event03_v1.json",
+      "sha256FileBytes": "cd992779777d6a6acd4ed571acba05589415be09b8ee62c6edb8ba57330ab996"
+    },
+    {
+      "id": "pilot56_book_l1_owl_event02_v1",
+      "file": "books/pilot56_book_l1_owl_event02_v1.json",
+      "sha256FileBytes": "e5c9c69d26906541b114e8d9885b8598043a4fa2c8b2b66a8e7c380addc6f819"
+    },
+    {
+      "id": "pilot56_book_l1_owl_event03_v1",
+      "file": "books/pilot56_book_l1_owl_event03_v1.json",
+      "sha256FileBytes": "dc1d2ce2ce77d804677bf94e964b44e0cfea47388c21d18616fabd3910ffcfcf"
+    },
+    {
+      "id": "pilot56_book_l1_cat_event02_v1",
+      "file": "books/pilot56_book_l1_cat_event02_v1.json",
+      "sha256FileBytes": "e2bc65bcb3d22974544ea02313b148600ef23da10137bf4742363b109fe0a949"
+    },
+    {
+      "id": "pilot56_book_l1_cat_event03_v1",
+      "file": "books/pilot56_book_l1_cat_event03_v1.json",
+      "sha256FileBytes": "a7e4c5f572651cc5f6161f4fbbb10b4a80cfc6bdd6d4dece0fdecf5b7bbee3cc"
+    },
+    {
+      "id": "pilot56_book_l2_hedgehog_event02_v1",
+      "file": "books/pilot56_book_l2_hedgehog_event02_v1.json",
+      "sha256FileBytes": "0bd7d30cda846dceb8d30f756408123a94c1b81c41eef15b2ee1c028a9e09d51"
+    },
+    {
+      "id": "pilot56_book_l2_hedgehog_event03_v1",
+      "file": "books/pilot56_book_l2_hedgehog_event03_v1.json",
+      "sha256FileBytes": "b8317cbfda7f1f28b4b16421321d1dcb26b41d752a87b7ecf333a674e373e3ee"
+    },
+    {
+      "id": "pilot56_book_l2_owl_event02_v1",
+      "file": "books/pilot56_book_l2_owl_event02_v1.json",
+      "sha256FileBytes": "8f7562adf648b8e2806c061f8bcbfd41b61028299aceef011a6bb38542920dc8"
+    },
+    {
+      "id": "pilot56_book_l2_owl_event03_v1",
+      "file": "books/pilot56_book_l2_owl_event03_v1.json",
+      "sha256FileBytes": "2c1a17ea9dbe81a4920e95aef5044b1b6d9878400646b9315eddb991cde046bf"
+    },
+    {
+      "id": "pilot56_book_l2_bear_event02_v1",
+      "file": "books/pilot56_book_l2_bear_event02_v1.json",
+      "sha256FileBytes": "9dc499115db7d07f589e2a1677e666022e1032822ad1599f73e67190f9920c4e"
+    },
+    {
+      "id": "pilot56_book_l2_bear_event03_v1",
+      "file": "books/pilot56_book_l2_bear_event03_v1.json",
+      "sha256FileBytes": "55fb25d1a73b4e52efe476fffbfea2f5c8a3f27759c2b580c054b6af8c64bb88"
+    },
+    {
+      "id": "pilot56_book_l3_fox_event02_v1",
+      "file": "books/pilot56_book_l3_fox_event02_v1.json",
+      "sha256FileBytes": "6758b1aa81fcc126c55d172f3edc1981b6678470d8c0a72f496c93273a86f6b3"
+    },
+    {
+      "id": "pilot56_book_l3_fox_event03_v1",
+      "file": "books/pilot56_book_l3_fox_event03_v1.json",
+      "sha256FileBytes": "4f39bef30f90d161ae1e7d445f04ddfa569cbaf0ba50e35ce3f6f6ca16aaa0f7"
+    },
+    {
+      "id": "pilot56_book_l3_hedgehog_event02_v1",
+      "file": "books/pilot56_book_l3_hedgehog_event02_v1.json",
+      "sha256FileBytes": "db4890f2b21b0b18f12b3a281972478df86b6c0548c176639080626a8dba86fc"
+    },
+    {
+      "id": "pilot56_book_l3_hedgehog_event03_v1",
+      "file": "books/pilot56_book_l3_hedgehog_event03_v1.json",
+      "sha256FileBytes": "a6e9afce0d29ae22ed6c8e03548e24299444e7b0112a66a0758995e5e6a7fef6"
+    },
+    {
+      "id": "pilot56_book_l3_cat_event02_v1",
+      "file": "books/pilot56_book_l3_cat_event02_v1.json",
+      "sha256FileBytes": "39d3a0395fc550b31e10e07f6b0f2a34e247043266ade077cbe858feafd194c1"
+    },
+    {
+      "id": "pilot56_book_l3_cat_event03_v1",
+      "file": "books/pilot56_book_l3_cat_event03_v1.json",
+      "sha256FileBytes": "92ef27a827832896f4ca3fdccf43d9b9f13e027b52676d5a194d98733341d5bb"
+    },
+    {
+      "id": "pilot56_book_l3_bear_event02_v1",
+      "file": "books/pilot56_book_l3_bear_event02_v1.json",
+      "sha256FileBytes": "bd22757eadeaa072461820042628d44c1c1147adf4829b0df4823e502f694462"
+    },
+    {
+      "id": "pilot56_book_l3_bear_event03_v1",
+      "file": "books/pilot56_book_l3_bear_event03_v1.json",
+      "sha256FileBytes": "fc6e8bcafcf4efe0c7e1d8c190f06a7a60f1761b3abe2212ba92fa15f472f743"
+    },
+    {
+      "id": "pilot56_book_a1_fox_event02_v1",
+      "file": "books/pilot56_book_a1_fox_event02_v1.json",
+      "sha256FileBytes": "e29408183a4f65a9c29a029566cd9abc70a873550a3908a91120f2b4584c7f01"
+    },
+    {
+      "id": "pilot56_book_a1_fox_event03_v1",
+      "file": "books/pilot56_book_a1_fox_event03_v1.json",
+      "sha256FileBytes": "e8ee3b09b60931c6177cd93ab75f86699bbe52013ff8db3f0c1524caaf6f25ac"
+    },
+    {
+      "id": "pilot56_book_a1_hedgehog_event02_v1",
+      "file": "books/pilot56_book_a1_hedgehog_event02_v1.json",
+      "sha256FileBytes": "ed35fe2fe0829421fb05ee09f2793c677566a091ee0db25a847d7dc9630e3db5"
+    },
+    {
+      "id": "pilot56_book_a1_hedgehog_event03_v1",
+      "file": "books/pilot56_book_a1_hedgehog_event03_v1.json",
+      "sha256FileBytes": "c80519353afc4488ecc8c8527b3c6e52c60a72ab74bba75c85583d11726bceb5"
+    },
+    {
+      "id": "pilot56_book_a1_cat_event02_v1",
+      "file": "books/pilot56_book_a1_cat_event02_v1.json",
+      "sha256FileBytes": "25d1e5093de090f7780e0eab83f6f7566aa56a7d179f7454a5218deb283743fc"
+    },
+    {
+      "id": "pilot56_book_a1_cat_event03_v1",
+      "file": "books/pilot56_book_a1_cat_event03_v1.json",
+      "sha256FileBytes": "14a026929f8a2cefa9464af17c009fbb24b700903936d1e48eaf452630c2d47b"
+    },
+    {
+      "id": "pilot56_book_a2_fox_event02_v1",
+      "file": "books/pilot56_book_a2_fox_event02_v1.json",
+      "sha256FileBytes": "7f196e854c488f6ae7ddae8abf8dc2cd9c50134fb66b4fb0622e3e9da52cec5c"
+    },
+    {
+      "id": "pilot56_book_a2_fox_event03_v1",
+      "file": "books/pilot56_book_a2_fox_event03_v1.json",
+      "sha256FileBytes": "845d34713327599b7a5eec8b03571da49a189cc9c9944fa6cc65c02bc5e9c541"
+    },
+    {
+      "id": "pilot56_book_a2_owl_event02_v1",
+      "file": "books/pilot56_book_a2_owl_event02_v1.json",
+      "sha256FileBytes": "c8344d0160207e340bffd3e69421cab8b9e6838a8249d24dff890b20e81531c0"
+    },
+    {
+      "id": "pilot56_book_a2_owl_event03_v1",
+      "file": "books/pilot56_book_a2_owl_event03_v1.json",
+      "sha256FileBytes": "52e8fd8698b9f9566ac8b19ead60540d62cf2dcd3bfa3f8314074f03649d3409"
+    },
+    {
+      "id": "pilot56_book_a2_bear_event02_v1",
+      "file": "books/pilot56_book_a2_bear_event02_v1.json",
+      "sha256FileBytes": "25a05e73766267e06eb83344ff2b15b4d9e03809232b57871b8f14ee59cb7038"
+    },
+    {
+      "id": "pilot56_book_a2_bear_event03_v1",
+      "file": "books/pilot56_book_a2_bear_event03_v1.json",
+      "sha256FileBytes": "4e95b9dca1c6ad6356624bd3ce3e04ac93475b72b47ea90f04a3de58527d9c92"
+    },
+    {
+      "id": "pilot56_book_a3_hedgehog_event02_v1",
+      "file": "books/pilot56_book_a3_hedgehog_event02_v1.json",
+      "sha256FileBytes": "70baff09f569c526a88642eccbe252e1ae377a9b64f9c383572e48f5f4faf82b"
+    },
+    {
+      "id": "pilot56_book_a3_hedgehog_event03_v1",
+      "file": "books/pilot56_book_a3_hedgehog_event03_v1.json",
+      "sha256FileBytes": "69b4de73e1d61e9897a6514c0faf4810f4ed08b5ba02fc41cfc39d515ac56ba4"
+    },
+    {
+      "id": "pilot56_book_a3_owl_event02_v1",
+      "file": "books/pilot56_book_a3_owl_event02_v1.json",
+      "sha256FileBytes": "5f7b0524f505d36a413a474b3a2d7a0c32ebd03215c09f4d9f061dbac506bc41"
+    },
+    {
+      "id": "pilot56_book_a3_owl_event03_v1",
+      "file": "books/pilot56_book_a3_owl_event03_v1.json",
+      "sha256FileBytes": "32e52f553041bac36da8dc9d5987b75a0e2a01150391b145c85cf0cb9116421b"
+    },
+    {
+      "id": "pilot56_book_a3_cat_event02_v1",
+      "file": "books/pilot56_book_a3_cat_event02_v1.json",
+      "sha256FileBytes": "8adbdbb46c976dbdc00344801a2d9cb78075ac0dd1490dfc5f655a02ecdfd992"
+    },
+    {
+      "id": "pilot56_book_a3_cat_event03_v1",
+      "file": "books/pilot56_book_a3_cat_event03_v1.json",
+      "sha256FileBytes": "a9788982ecc62185d8fbeb9991e8694afaa07a9317017ddf4462ced51316a1db"
+    },
+    {
+      "id": "pilot56_book_a3_bear_event02_v1",
+      "file": "books/pilot56_book_a3_bear_event02_v1.json",
+      "sha256FileBytes": "229beb4a23884abcea3065634cb2eb10f771239af9729c7e22637900262415e5"
+    },
+    {
+      "id": "pilot56_book_a3_bear_event03_v1",
+      "file": "books/pilot56_book_a3_bear_event03_v1.json",
+      "sha256FileBytes": "eaf7f5601793c7413a36bd71b0625bda135f2c436dcedc9d3a4bfc6fe479224d"
+    }
+  ],
+  "productionEnabled": false,
+  "artApproved": false
+}

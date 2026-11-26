@@ -1,0 +1,53 @@
+{
+  "packageVersion": "five-friends-56-runtime-v3",
+  "payloadSHA256": "855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3c",
+  "status": "validated-candidate-awaiting-batuhan-pin-approval",
+  "activationApproved": false,
+  "activePinUnchanged": "five-friends-56-runtime-v2",
+  "books": 90,
+  "pages": 720,
+  "changedSourcePages": 177,
+  "changedTitles": 1,
+  "fixtureAttempts": 630,
+  "fixtureSuccesses": 630,
+  "fixtureFailures": 0,
+  "pageBudgetIssues": 0,
+  "traceIssues": 0,
+  "safetyBindingError": null,
+  "sampleAttempts": 1500,
+  "sampleSuccesses": 1500,
+  "sampleFailures": 0,
+  "sampleRetries": 0,
+  "sampledUniqueBooks": 90,
+  "tests": {
+    "configuration": "Release",
+    "tests": 10,
+    "skipped": 0,
+    "failures": 0
+  },
+  "lint": {
+    "failingBooks": 0,
+    "uniqueTitles": 90,
+    "sharedPages": 60,
+    "comparedPages": 200,
+    "sharedPageShare": 0.3,
+    "highestCellOverlap": 0.08163265306122448
+  },
+  "lintParity": {
+    "comparedPages": 720,
+    "mismatches": 0
+  },
+  "historicalPayloads": {
+    "1": {
+      "sha256": "28773f03bc59060cdfae95961dbfa14e319e141633a7e79ead6ce93eb90d7adc",
+      "unchanged": true
+    },
+    "2": {
+      "sha256": "a060322180f45e81bb5be91f168b78bcebd4cd66783f9e434c9b8115454b6837",
+      "unchanged": true
+    }
+  },
+  "productionEnabled": false,
+  "artApproved": false,
+  "scope": "corrected v3 only; Dalga1 is a separate delivery"
+}

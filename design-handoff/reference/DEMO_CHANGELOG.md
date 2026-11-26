@@ -133,6 +133,49 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · codex/bes-arkadas/codex-motor, commit yok · Düzeltilmiş V3 doğrulaması tamamlandı
+
+- Metin sahibinin177sayfa/1başlık düzeltmesi alındı;90başlık/720tam sayfa güvenlik/semantik/causal/art açısından yeniden okundu ve yeni hash'lere bağlandı. Eski onaylar taşınmadı, Codex metni değiştirmedi. Bütçe, nefes tutma ve baykuş katkı engelleri kapandı; tutuş pençeyle, kanatla değil.
+- SeçiliRelease10test/0hata;630/630kitap-adfixture;N15001500/1500başarı,0hata/0retry,90farklıkitap. Lint90/90,ortaksayfa30%,hücreöbekörtüşmesi en yüksek8.12%;720sayfaPython/Swiftmetrikfarkı0. App/UI çalıştırılmadı.
+- Yeni90başarılıfixture'ın720sayfası kaynak/bağlam/poz-eylem art teslimine aktarıldı; görsel/atomic/yayın onayı yok. Dalga1 ayrıteslim. Pin Batuhan onayına kadar v2; v1/v2 veapp dosyaları değişmedi. Main/push/entegrasyon yok.
+- Dosyalar: v3korpus/payload/lint/manifest, V3diagnostic kabulassertion vefixturemetrikexportu, research/v3 güncel rapor/hamkanıt/art exporter, plan/durum/hafıza/günlük.
+
+
+### 2026-11-26 · codex/bes-arkadas/codex-motor@ff30587 · V3 teslim referansı ve doğrulama logları
+
+- Aday motor teslim commit'i Codex durum belgesine yazıldı; 70/1 skip/0 hata ve hedefli12/0 iki Release koşusunun ham logları kanıt olarak eklendi. Bu kayıt içerik kabulü değildir; 171 kısa sayfa nedeniyle aktif pin v2 kalır.
+- Yeni test çalıştırılmadı; önceki gerçek koşular arşivlendi. Dosyalar: Codex durum, v3 final/followup test logları ve bu günlük.
+
+
+### 2026-11-26 · codex/bes-arkadas/codex-motor, commit yok · V3 ayrı aday paket ve metin uyumluluk raporu
+
+- 15 onaylı girdi dosyası yeni voice-v3 korpusuna alındı; 90 kitap/720 sayfa kaynak/provenance/başlık/semantik/causal/safety/art bağları yeni SHA'larla kuruldu. V3 loader ve metadata tanıması ayrı; v1/v2 byte ve aktif pin değişmedi, app dosyaları korunuyor.
+- Tam metin yeniden okundu. 171 kısa sayfa/78 kitap için kimlikli düzeltme listesi çıkarıldı; metin değiştirilmedi. Nefes tutma ve A2 baykuş agency açıklığı raporlandı. A3 hakkındaki ilk yanlış zamanlama incelemesi gerçek Swift factPaths ile çürütülüp geri çekildi.
+- İlk seçili Release70 test/1 skip/0 test hatası; gerçek630 fixture84 başarı/546 ageBudget, N1500 171 başarı/1329 ageBudget/retry0. Lint90/0, ortak sayfa30%. Başarısız istekler gizlenmedi; aday etkinleştirilmedi. İnceleme düzeltmesi sonrası hedefli Release12 test/0 hata; iki koşu benzersiz toplam olarak toplanmaz.
+- Tam kaynak bağlamı/poz/eylem art-handoff.json içinde; atomic/görsel/yayın onayı yok. Dosyalar: yeni iki v3 Content klasörü, P56V3 loader/test/diagnostic, metadata+dispatch, research/v3, plan, Codex durum ve proje hafızası. Main/push/entegrasyon değişmedi.
+
+
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · B hattı iç pilot karşı incelemesi kabul
+
+- Claude 19894d6 ucu, cdc40ed entegrasyon tabanına karşı incelendi; kaynak izi, fallback rotası ve arşiv sonucu bulguları kapandı. K-G otomatik recall kararı okundu ve kabul kaydına alındı. İç pilot için birleşme engeli yok; birleştirme Claude hattında.
+- Uygulama v2 kaynak byte'ları ve SHA motorla bağımsız karşılaştırıldı: eşit; diff check temiz. Test/simülatör tekrar çalıştırılmadı. Claude 132/0 (1 skip) ve seçim 8/0 kanıtı bağımsız koşu gibi sunulmadı.
+- Yayın öncesi portre, görsel/editoryal kabul, Release performans ve eski istemci provenance sınırları açık. App kodu, main ve yayın bayrağı değişmedi.
+- Dosyalar: B_LINE_REVIEW_ACCEPTANCE.md ve Codex durum belgesi.
+
+
+### 2026-11-25 · codex/bes-arkadas/entegrasyon@cdc40ed · Kabul edilen v2 motoru entegrasyonda
+
+- Claude 21d4fbd karşı incelemesinin kabulüyle C2 v2/C3 teslimi 455aef9, --no-ff ile cdc40ed'ye birleşti. Birleşme ağacı teslim ağacıyla birebir eşit; çakışma yok. b099d9b, main ve üretim değişmedi.
+- B1 provenance düzeltmesi salt okunur incelendi, önceki HIGH bulgu kod düzeyinde kapandı. Claude'a v2 paket geçişinin önü açıldı; mostProtective altında 15 hücrenin hiçbirinin boş olmadığı mevcut test kanıtıyla yanıtlandı. Fallback final route düzeltmesi hatırlatıldı.
+- Yeni test/build çalıştırılmadı: motorun önceki 65/1 skip/0 hata sonucu geçerli; uygulamanın yeni v2/provenance testleri B7 son kapısında bekleniyor. Dosya: Codex durum belgesi; app dosyaları değiştirilmedi.
+
+
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · B hattı hedefli karşı incelemesi
+
+- Claude uygulama hattının beaf054 ucunda mapper, router, writer, kaynak arşivi ve fallback yolu okundu. Sayfa kaynak izinin kaybı ve yanlış fallback rota kaydı düzeltme olarak raporlandı; v2 paket geçişi, performans ve recall sözleşme sorusu yazıldı.
+- Uygulama kodu değiştirilmedi; test/simülatör çalıştırılmadı. Claude'un 119/0 sonucu bağımsız tekrar doğrulanmış sayılmadı. Birleşme/yayın kabulü verilmedi.
+- Dosyalar: docs/research/five-friends-p56-runtime/v2/B_LINE_REVIEW.md ve docs/ortak/codex-durum.md. Motor teslimi 455aef9, üretim kapalı.
+
 ### 2026-11-25 · codex/bes-arkadas/entegrasyon@7d1bb4e · B hattı (uygulama entegrasyonu) entegrasyona birleşti
 
 - Codex'in karşı incelemesi (`73578a6`, `B_LINE_REVIEW_ACCEPTANCE.md`) B hattını iç pilot için kabul etti. `19894d6` ucu `codex/bes-arkadas/entegrasyon`'a `--no-ff` ile birleşti: `7d1bb4e`. Birleşme ağacı `19894d6` ile birebir aynı (`git diff --exit-code`). Geçici worktree'de yapıldı, sonra silindi.

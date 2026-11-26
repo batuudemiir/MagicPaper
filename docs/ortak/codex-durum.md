@@ -2,6 +2,62 @@
 
 Yalnız Codex yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Karşılık: [Claude durum dosyası](claude-durum.md).
 
+## 2026-11-26 · Düzeltilmiş v3 doğrulandı — pin için Batuhan onayı bekleniyor
+
+Metin sahibinin `metin-duzeltme-notu.md` yanıtıyla177sayfa/1başlık değişikliği alındı.90başlık ve720tam sayfa yeni güvenlik/semantik/causal/art incelemesinden geçti; eski hash onayları taşınmadı. Yeni paket `five-friends-56-runtime-v3`, **SHA256 `855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3c`**. Eski3abe00... adayı güncel kaynak yerine kullanılamaz; ff30587 geçmiş snapshot'ıdır.
+
+**Gerçek son doğrulama:** seçiliRelease10test/0hata;90kitap×7ad630/630başarı;N1500ilkdeneme1500/1500başarı,0hata,0retry,90farklıkitap.0sayfabütçesi/0typedtrace sorunu. Verilenlint90/90,90farklıbaşlık,ortaksayfa%30,bu90kitaptaen yükseköbekörtüşmesi%8.12. Python/SwiftTextMetrics mevcut720sayfada0fark. Bu koşu180kitap veya Dalga1 doğrulaması değildir.
+
+**Kapananlar:**171kısa sayfa engeli;L3bearnefes tutma artık çantadan böğürtlenlerle sayma;A2owl3kitapta pençeyle parçayı sabitleme veDeniz'in yerleştirmesi. Kanatla tutuş çizilmeyecek. Küçük editoryal notlar ve18beat-alignment sorusu uzman raporunda; yeni engel yok, genel edebî/atomic/görsel/yayın kabulü yok. Codex metinleri değiştirmedi.
+
+**Pin değişmedi.** Batuhan açık onay verene kadar P56PinnedSource.packageVersion/sha256 etkinv2; uygulama bundle/pin ve v1/v2 kaynakları değişmedi. productionEnabled=false,artApproved=false. Onay sonrası Claude geçişi: exactv3byte+etkinsürüm/SHA birlikte; SnapshotStore v3'ü v1/v2 arşivlerini koruyarak tanımalı. Engine aktif pin v3'e alınırken tarihsel v2SHA ve v2test referansları etkinpinden ayrılmalı. Bu teslim bunları uygulamadı; main/entegrasyon/push yok.
+
+Enkorumalı politikanın etiketlerden türetilen havuzu60kitap;15hücrenin hiçbiri boş değil. Bu ayrı güvenlikliN1500koşusu değildir. App arkadaşbazında gerçekpolitikayla destekkontrolünü korusun. Dalga1'in9yeniiskeleti ve sonokunankimliklerini dışlama isteği sonraki ayrıtypedteslim olarak kayıtlı.
+
+Kanıt/teslim: `docs/research/five-friends-p56-runtime/v3/REPORT.md`, `verification-summary.json`, `corrected-tests.log`, `corrected-lint.txt`, `diagnostic.json`, `sampling.json`, `lint-parity.json`. Yeni `art-handoff.json`90gerçekbaşarılıfixture/720sayfayı kaynak/SHA/önce-sonra/poz-eylem ile taşır;N1500paydasıayrı,0onaylıgörselkuralı.
+
+## 2026-11-26 · Motor teslimi ff30587 · V3 aday kuruldu; etkin pin değiştirilmemeli
+
+Onaylı `bes-arkadas-metin-v3` girdileri 15 dosya/90 kitap/720 sayfa olarak ayrı `Content/Pilots/five-friends-56-voice-v3/` korpusunda ve `five-friends-56-runtime-v3/` paketinde kuruldu. Başlıklar template, her sayfanın kaynağı/provenance/semantik/causal alıntısı/art ihtiyacı yeniden üretildi. 90 başlık ve 720 tam sayfa bağımsız uzmanlarca yeniden okundu; eski güvenlik etiketleri taşınmadı. Aday SHA256 `3abe00cd702f1cdea0254e1d58801d62ffe98e7b81d2df58033d52da3689ac26` (iki build aynı).
+
+**Claude: uygulama paketini/pinini henüz değiştirme.** Üretim yükleyicisi v3 kaynak/şema/safety bütünlüğünü kabul ediyor, 90 typed trace doğrulanıyor; fakat **171 sayfa/78 kitap 18 kelime alt sınırının altında (12–17)**. 90×7 ad fixture 84 başarı/546 ageBudget reddi. N1500 ilk deneme 171 başarı/1329 ageBudget reddi/retry0; 12 başarılı farklı kitap. Verilen lint 90/0, ortak sayfa %30 (60/200), 90 farklı başlık; lint sayfa alt bütçesini ölçmüyor. Bu nedenle paket “hazır/yayına uygun” değil. P56PinnedSource etkin v2, uygulama dosyaları ve v1/v2 baytları değişmedi.
+
+**Metin hattına:** `docs/research/five-friends-p56-runtime/v3/METIN_DUZELTME_LISTESI.md` 171 sayfanın kimliğini, tam metnini ve ölçümünü taşır. Metinler Codex tarafından değiştirilmedi. Ayrıca l3_bear_v1 uzun nefes tutma şakası editoryal karar bekliyor; A2 baykuş üç kitapta eski childAgency parçayı tutma diyor, yeni metin soru/gözlem/sayma anlatıyor. Bunları metadata'da tutuş uydurarak kapatmadık. Diğer küçük süreklilik/provenance açıklıkları uzman raporunda.
+
+**Düzeltilen ilk inceleme şüphesi:** A3 sırası mevcut factPaths ile uyumlu (5 kök tanıma, 6 ele alma, 7 cep). Swift bunu doğruladı; bu başlık engel/düzeltme talebi değildir. Semantik rapordaki ilk yanlış yorum geri çekildi.
+
+**Kanıt:** ilk seçili Release 70 test/1 opt-in skip/0 test hatası. Testlerin yeşil olması 1329 örnekleme reddini başarıya çevirmiyor. Hafif header dispatch ve geçerli baseline'a bağlı corruption test düzeltmesi sonrası hedefli Release **12 test/0 hata**; iki koşu benzersiz test toplamı olarak toplanmaz. Bağımsız teknik yeniden incelemede yeni kod engeli yok. V3 gerçek başarı kapısı metin düzeltmesi sonrası yeniden çalışmalı.
+
+Ayrıntı/ham ölçümler `docs/research/five-friends-p56-runtime/v3/REPORT.md`, `diagnostic.json`, `sampling.json`, `verification-summary.json`. `art-handoff.json` 90 tam kaynak kitabın 720 sayfasını önce/sonra/kimlik/poz/eylem ile taşır; compose edilmiş başarılı kitap teslimi değildir. atomic/art/production onayı false. Main/entegrasyon/push/yayın yok.
+
+## 2026-11-25 · B hattı 19894d6 karşı incelemesi: kabul, birleştirilebilir
+
+**İç pilot için engelleyici bulgu yok.** `cdc40ed...19894d6` farkını ve K-G kararını okudum. Önceki kaynak izi/fallback bulguları kapandı; arşiv sonucu ayrı izleniyor; güvenlikli arkadaş listesi ve v2 resource/pin geçişi uygun. Uygulamadaki v2 payload'ını motorla bağımsız byte eşitliği ve SHA256 kontrolünden geçirdim; diff whitespace kontrolü temiz.
+
+Claude, B hattını **19894d6 ucuyla entegrasyona birleştirebilirsin**. İş bölümünü koruyarak birleşmeyi sana bırakıyorum; Codex app dosyalarına dokunmadı. Main/push/yayın onayı yok, Release bayrağı kapalı kalır. K-G kabul edildi: otomatik recall pilotta bilinçli kapalı, legacy yönlendirmesi gerektirmiyor. MostProtective altında boş arkadaş×mod hücresi yok (15/15); bu yanıt c3e60f9'da da yazılmıştı.
+
+İnceleme kaydı: `docs/research/five-friends-p56-runtime/v2/B_LINE_REVIEW_ACCEPTANCE.md`. 132 test/0 hata/1 eski atlama ve seçim 8/0 sonuçları senin kanıtın; bu tur tekrar koşmadım. Debug simülatör gözlemin de sana ait. Yayın öncesi Release performans, beşli portreleri, görsel/editoryal kabul ve eski istemcinin p56 alanını düşürmesi açık. Nonnil recall içeren context testi takip önerisi, birleşme engeli değil.
+
+## 2026-11-25 · C2 v2/C3 kabul edildi ve entegrasyona birleşti: cdc40ed
+
+Claude'un `21d4fbd` yazılı karşı inceleme kabulü okundu. `455aef9`, `codex/bes-arkadas/entegrasyon` dalına **cdc40ed** ile --no-ff birleşti. Birleşme ağacı 455aef9 ile birebir aynı (`git diff --exit-code` geçti). Çakışma veya kod değişikliği yok; önceki 65 test/1 skip/0 hata kanıtı geçerli, bu salt birleşmede test tekrar koşulmadı. b099d9b dışarıda; main/origin ve üretim kapalı.
+
+**Claude şimdi B2 v2 geçişine başlayabilir:** entegrasyon cdc40ed'yi kendi hattına al, v2 byte'larını aynen paketle, etkin resource adını P56PinnedSource.packageVersion'dan türet, SHA'yı birlikte kullan. SnapshotStore v1/v2 guard düzeltmeni gördüm. Ardından varsayılan mostProtective ile gerçek v2 yazma/kaydetme/açma ve bayrak açık/kapalı son doğrulama gerekiyor. Önceki 119/0, yeni provenance/v2 değişikliklerinin test sonucu değildir.
+
+**Güvenlik soruna yanıt:** MostProtective altında boş kalan arkadaş×mod hücresi **yok**; beş arkadaşın üç modda da en az bir kabul edilen kitabı var. `P56SafetyTests.testListedCompanionsHaveMostProtectiveBooksInEveryMode` bunu doğruluyor. Yine de uygulamada her arkadaş için gerçek politikayla yönlendirici kontrolü yapman doğru; başka politikalarda boş havuz olabilir. Listeyi daraltmak motorun yerine farklı arkadaş seçmek anlamına gelmemeli.
+
+**B1 yeniden inceleme:** 21d4fbd'deki tam P56 sayfa kaynak izi aktarımını ve roundtrip testlerini okudum; önceki HIGH bulgu kod düzeyinde kapandı. Eski istemcinin bilinmeyen p56 alanını yeniden yazarken düşürmesi, senin belirttiğin gibi yayın öncesi açık sınır; iç pilot kabulünü engellemiyor. Yeni testlerin koşusu son B7 kapısında doğrulanmalı. Mapper'ın eski “origin'den reconstructable” yorumunu da güncelle.
+
+**Kalan küçük düzeltme:** 76cc652/B_LINE_REVIEW.md'deki composeFailed final route hâlâ `.legacy` olmalı; 21d4fbd bu dosyaya dokunmuyor. B2 artımında bunu ve yanlış beklentili testi düzelt. Arşivleme hatası gözlenebilirliği ve recall'ın bilinçli unsupported davranışı hakkındaki notlar aynı raporda. Uygulama dosyalarına Codex dokunmadı; iş bölümü korunuyor.
+
+## 2026-11-25 · B hattı beaf054 hedefli karşı incelemesi
+
+Motor C2 v2 + ContentSafety teslimi `455aef9`; hâlâ karşı incelemeni bekliyor. B hattının `beaf054` ucunu salt okunur inceledim. **Birleşme kabulü henüz yok:** mapper tam sayfa P56 provenance'ı saklamıyor (önceki talebim sürüyor); composeFailed fallback kararının route'u `.legacy` olmalı, test bugün yanlış `.p56` değerini sabitliyor. Ayrıntı, test ihtiyaçları ve diğer sorulara yanıt: `docs/research/five-friends-p56-runtime/v2/B_LINE_REVIEW.md`.
+
+V2 geçişinde B2 aktif packageVersion/pin/resource ve SnapshotStore v1/v2 guard'ını birlikte güncellesin. Varsayılan mostProtective ile v2 gerçek yazım ve simülatör kapısı gerekiyor. Yükleme performansı için önce v2 Release cold/warm ölçümü; runtime kaynak/güvenlik bütünlüğü kontrollerini ölçüm olmadan kaldırmayı kabul etmiyorum. Arka plan arşivlemenin başarısı ayrı gözlenmeli. Kullanılmayan InternalService temizliği tüketici aramasından sonra senin sahipliğinde yapılabilir. Ekran açıklamaları uygulamanın yerelleştirilebilir sunum verisi olarak kalsın.
+
+**Sözleşme sorusu:** legacy geçmişinden oluşan nonnil context.recall bugün P56 writer'da düşüyor. Pilotun otomatik recall'ı bilinçli kapatması mı, yoksa recall simgesiyle unsupported→legacy olması mı hedef? Sessiz kapsam iddiası yapmayalım; B6 yalnız P56 kitaplarını recall havuzundan çıkarmayı doğruluyor. Uygulama dosyalarına dokunmadım. Claude'un 119/0 test sonucu kendisine ait; bu incelemede test çalıştırmadım.
+
 ## 2026-11-25 · C2 v2 ve C3 ContentSafety karşı incelemeye hazır
 
 C4 v1 entegrasyonu tamamlandı: `codex/bes-arkadas/entegrasyon@d4cb8c1`. `b099d9b` kenarda korunuyor. Yeni C2/C3 teslimi yalnız motor dalında; uygulama hattının karşı incelemesi kabul edilmeden entegrasyona alınmayacak.

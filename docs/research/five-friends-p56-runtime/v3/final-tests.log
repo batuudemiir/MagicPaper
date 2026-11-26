@@ -1,0 +1,498 @@
+[0/1] Planning build
+Building for production...
+[0/5] Write sources
+[2/5] Write swift-version--58304C5D6DBC2206.txt
+[4/6] Compiling StoryEngine AgeBandResolver.swift
+[5/7] Compiling StoryEngineTests BeatCorpusRenderTests.swift
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/CharacterNonInventionTests.swift:35:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 33 |         let harness = OrchestratorHarness.make(pageCount: 7)
+ 34 |         let job = try await harness.orchestrator.generate(harness.request())
+ 35 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 36 | 
+ 37 |         XCTAssertFalse(story.characters.isEmpty)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/CharacterNonInventionTests.swift:140:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+138 |         let harness = OrchestratorHarness.make(pageCount: 7, fallback: inventing)
+139 |         let job = try await harness.orchestrator.generate(harness.request())
+140 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+141 | 
+142 |         let validation = try XCTUnwrap(story.validation)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/ChildSafetyPolicyTests.swift:252:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+250 |         let harness = OrchestratorHarness.make(pageCount: 7, fallback: unsafeWriter)
+251 |         let job = try await harness.orchestrator.generate(harness.request())
+252 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+253 | 
+254 |         XCTAssertEqual(story.status, .failed)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/DataLifecycleTests.swift:63:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 61 |         _ = try? await harness.orchestrator.run(jobID: queued.id)
+ 62 | 
+ 63 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: queued.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 64 |         let service = StoryDataLifecycleService(
+ 65 |             storyRepository: harness.storyRepository, jobStore: harness.jobStore
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/DataLifecycleTests.swift:140:28: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+138 |         try await service.deleteCharacter(profile.id)
+139 | 
+140 |         let survivor = try await XCTUnwrapAsync(await repository.story(id: story.id))
+    |                            `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+141 |         XCTAssertFalse(survivor.characters.isEmpty)
+142 |         XCTAssertEqual(survivor.protagonist?.displayName, "Deniz")
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/Deterministic.swift:28:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+26 |     func sleep(for duration: TimeInterval) async throws {
+27 |         try Task.checkCancellation()
+28 |         lock.lock()
+   |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+29 |         sleeps.append(duration)
+30 |         current = current.addingTimeInterval(duration)
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:15:1: note: 'lock()' declared here
+ 13 | 
+ 14 | /// Attempts to acquire a lock, blocking a thread's execution until the lock can be acquired.
+ 15 | - (void)lock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'lock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/Deterministic.swift:31:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+29 |         sleeps.append(duration)
+30 |         current = current.addingTimeInterval(duration)
+31 |         lock.unlock()
+   |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+32 |     }
+33 | 
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:18:1: note: 'unlock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+ 18 | - (void)unlock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'unlock()' declared here
+ 19 | 
+ 20 | @end
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/FakeImageValidationProvider.swift:28:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+26 | 
+27 |     func validate(image: ImageRef, context: ImageValidationContext) async throws -> ImageValidationResult {
+28 |         lock.lock()
+   |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+29 |         contexts.append(context)
+30 |         images.append(image)
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:15:1: note: 'lock()' declared here
+ 13 | 
+ 14 | /// Attempts to acquire a lock, blocking a thread's execution until the lock can be acquired.
+ 15 | - (void)lock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'lock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/FakeImageValidationProvider.swift:38:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+36 |             result = fallback
+37 |         }
+38 |         lock.unlock()
+   |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+39 | 
+40 |         if let error { throw error }
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:18:1: note: 'unlock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+ 18 | - (void)unlock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'unlock()' declared here
+ 19 | 
+ 20 | @end
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/FakeProviders.swift:54:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 52 | 
+ 53 |     func complete(_ request: AICompletionRequest) async throws -> AICompletionResponse {
+ 54 |         lock.lock()
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 55 |         requests.append(request)
+ 56 |         let scripted: ScriptedResult
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:15:1: note: 'lock()' declared here
+ 13 | 
+ 14 | /// Attempts to acquire a lock, blocking a thread's execution until the lock can be acquired.
+ 15 | - (void)lock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'lock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/FakeProviders.swift:76:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 74 |             recordedAt: usageTemplate.recordedAt
+ 75 |         )
+ 76 |         lock.unlock()
+    |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+ 77 | 
+ 78 |         switch scripted {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:18:1: note: 'unlock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+ 18 | - (void)unlock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'unlock()' declared here
+ 19 | 
+ 20 | @end
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/FakeProviders.swift:108:14: warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+106 | 
+107 |     func generateImage(_ request: ImageGenerationRequest) async throws -> ImageGenerationResponse {
+108 |         lock.lock()
+    |              `- warning: instance method 'lock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+109 |         requests.append(request)
+110 |         let failure = failures.isEmpty ? nil : failures.removeFirst()
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:15:1: note: 'lock()' declared here
+ 13 | 
+ 14 | /// Attempts to acquire a lock, blocking a thread's execution until the lock can be acquired.
+ 15 | - (void)lock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'lock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/Fakes/FakeProviders.swift:112:14: warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+110 |         let failure = failures.isEmpty ? nil : failures.removeFirst()
+111 |         let index = requests.count
+112 |         lock.unlock()
+    |              `- warning: instance method 'unlock' is unavailable from asynchronous contexts; Use async-safe scoped locking instead; this is an error in the Swift 6 language mode
+113 | 
+114 |         if let failure {
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSLock.h:18:1: note: 'unlock()' declared here
+ 16 | 
+ 17 | /// Relinquishes a previously acquired lock.
+ 18 | - (void)unlock NS_SWIFT_UNAVAILABLE_FROM_ASYNC("Use async-safe scoped locking instead");
+    | `- note: 'unlock()' declared here
+ 19 | 
+ 20 | @end
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/ImageValidationTests.swift:64:21: warning: immutable value 'request' was never used; consider replacing with '_' or removing it [#NoUsage]
+ 62 | 
+ 63 |     func testTheValidatorIsGivenIdentitySceneAndConstraints() async throws {
+ 64 |         let (story, request, base) = try StoryFixtures.completeStory()
+    |                     `- warning: immutable value 'request' was never used; consider replacing with '_' or removing it [#NoUsage]
+ 65 |         let resolved = template(base, mode: .advisory)
+ 66 |         let provider = FakeImageValidationProvider()
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/ImageValidationTests.swift:191:21: warning: immutable value 'request' was never used; consider replacing with '_' or removing it [#NoUsage]
+189 | 
+190 |     func testAThrowingProviderIsUnavailableRatherThanPassing() async throws {
+191 |         let (story, request, base) = try StoryFixtures.completeStory()
+    |                     `- warning: immutable value 'request' was never used; consider replacing with '_' or removing it [#NoUsage]
+192 |         let resolved = template(base, mode: .required)
+193 |         let provider = FakeImageValidationProvider(
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/ImageValidationTests.swift:207:21: warning: immutable value 'request' was never used; consider replacing with '_' or removing it [#NoUsage]
+205 | 
+206 |     func testAnExhaustedBudgetLeavesTheImageUnexaminedNotApproved() async throws {
+207 |         let (story, request, base) = try StoryFixtures.completeStory()
+    |                     `- warning: immutable value 'request' was never used; consider replacing with '_' or removing it [#NoUsage]
+208 |         let resolved = template(base, mode: .required)
+209 |         let provider = FakeImageValidationProvider(fallback: .passed)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/OrchestratorTests.swift:27:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 25 |         let harness = OrchestratorHarness.make(pageCount: 7)
+ 26 |         let job = try await harness.orchestrator.generate(harness.request())
+ 27 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 28 | 
+ 29 |         XCTAssertEqual(story.pages.count, 7)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/OrchestratorTests.swift:43:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 41 |         let harness = OrchestratorHarness.make(pageCount: 9)
+ 42 |         let job = try await harness.orchestrator.generate(harness.request(pageCount: 9))
+ 43 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 44 | 
+ 45 |         XCTAssertLessThan(harness.imageProvider.callCount, story.pages.count)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/OrchestratorTests.swift:52:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 50 |         let harness = OrchestratorHarness.make(pageCount: 7)
+ 51 |         let job = try await harness.orchestrator.generate(harness.request())
+ 52 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 53 | 
+ 54 |         XCTAssertEqual(
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/OrchestratorTests.swift:122:26: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+120 | 
+121 |         _ = try? await harness.orchestrator.run(jobID: queued.id)
+122 |         let failed = try await XCTUnwrapAsync(await harness.orchestrator.job(id: queued.id))
+    |                          `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+123 |         XCTAssertEqual(failed.state, .failed)
+124 |         XCTAssertEqual(failed.failedStage, .planStory)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/OrchestratorTests.swift:138:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+136 |         let harness = OrchestratorHarness.make(pageCount: 7, imageFailures: [.permanent])
+137 |         let job = try await harness.orchestrator.generate(harness.request())
+138 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+139 | 
+140 |         XCTAssertEqual(job.state, .completed, "The rest of the book still generated")
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/OrchestratorTests.swift:154:31: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+152 |         _ = try? await harness.orchestrator.run(jobID: queued.id)
+153 | 
+154 |         let interrupted = try await XCTUnwrapAsync(await harness.orchestrator.job(id: queued.id))
+    |                               `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+155 |         XCTAssertEqual(interrupted.checkpoint, .draftNarrative)
+156 |         XCTAssertTrue(interrupted.completedStages.contains(.planStory))
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/OrchestratorTests.swift:215:29: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+213 | 
+214 |         try await harness.orchestrator.cancel(jobID: queued.id)
+215 |         let cancelled = try await XCTUnwrapAsync(await harness.orchestrator.job(id: queued.id))
+    |                             `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+216 | 
+217 |         XCTAssertEqual(cancelled.state, .cancelled)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/P56V3DiagnosticTests.swift:46:44: warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]
+44 |         // N1500 can be invoked only after a real loader success. Never sample an unvalidated package as if accepted.
+45 |         var sampling: P56SamplingReport?
+46 |         if loaderError == nil { sampling = try P56Sampler.run(package: diagnostic) }
+   |                                            `- warning: no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]
+47 |         if let directory = ProcessInfo.processInfo.environment["P56_V3_REPORT_DIRECTORY"] {
+48 |             let out = URL(fileURLWithPath: directory)
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/PartialRegenerationTests.swift:12:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 10 |         let harness = OrchestratorHarness.make(pageCount: pageCount)
+ 11 |         let job = try await harness.orchestrator.generate(harness.request(pageCount: pageCount))
+ 12 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 13 |         return (harness, story)
+ 14 |     }
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/ProvenanceTests.swift:10:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+  8 |         let harness = OrchestratorHarness.make(pageCount: pageCount)
+  9 |         let job = try await harness.orchestrator.generate(harness.request(pageCount: pageCount))
+ 10 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 11 |         return (harness, story)
+ 12 |     }
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/ProvenanceTests.swift:52:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 50 |         let request = StoryFixtures.request(pageCount: 7, seedPolicy: .salted(4_242))
+ 51 |         let job = try await harness.orchestrator.generate(request)
+ 52 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+ 53 | 
+ 54 |         XCTAssertNil(try XCTUnwrap(story.provenance).seed,
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/SerializationTests.swift:148:26: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+146 |         _ = try? await harness.orchestrator.run(jobID: queued.id)
+147 | 
+148 |         let stored = try await XCTUnwrapAsync(await harness.jobStore.job(id: queued.id))
+    |                          `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+149 |         let reloaded = try decoder().decode(StoryGenerationJob.self, from: encoder().encode(stored))
+150 | 
+
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/SerializationTests.swift:161:25: warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+159 |         let harness = OrchestratorHarness.make(pageCount: 7)
+160 |         let job = try await harness.orchestrator.generate(harness.request())
+161 |         let story = try await XCTUnwrapAsync(await harness.orchestrator.story(id: job.storyID))
+    |                         `- warning: no 'async' operations occur within 'await' expression [#UnnecessaryEffectMarker]
+162 | 
+163 |         let reloaded = try decoder().decode(Story.self, from: encoder().encode(story))
+
+[#NoUsage]: <https://docs.swift.org/compiler/documentation/diagnostics/no-usage>
+[#UnnecessaryEffectMarker]: <https://docs.swift.org/compiler/documentation/diagnostics/unnecessary-effect-marker>
+[6/8] Compiling StoryEnginePackageTests runner.swift
+[6/8] Write Objects.LinkFileList
+[7/8] Linking StoryEnginePackageTests
+Build complete! (116.50s)
+Test Suite 'Selected tests' started at 2026-11-26 00:16:22.306.
+Test Suite 'StoryEnginePackageTests.xctest' started at 2026-11-26 00:16:22.317.
+Test Suite 'ContentSourceReferenceTests' started at 2026-11-26 00:16:22.317.
+Test Case '-[StoryEngineTests.ContentSourceReferenceTests testFutureEnvelopeRemainsUnsupportedWithoutCurrentFields]' started.
+Test Case '-[StoryEngineTests.ContentSourceReferenceTests testFutureEnvelopeRemainsUnsupportedWithoutCurrentFields]' passed (0.005 seconds).
+Test Case '-[StoryEngineTests.ContentSourceReferenceTests testKnownMetadataAndUnsupportedBehavior]' started.
+Test Case '-[StoryEngineTests.ContentSourceReferenceTests testKnownMetadataAndUnsupportedBehavior]' passed (0.001 seconds).
+Test Case '-[StoryEngineTests.ContentSourceReferenceTests testReferenceRoundTripAndDigestIdentity]' started.
+Test Case '-[StoryEngineTests.ContentSourceReferenceTests testReferenceRoundTripAndDigestIdentity]' passed (0.001 seconds).
+Test Case '-[StoryEngineTests.ContentSourceReferenceTests testUnknownAndMalformedMetadataPreserveAllFields]' started.
+Test Case '-[StoryEngineTests.ContentSourceReferenceTests testUnknownAndMalformedMetadataPreserveAllFields]' passed (0.001 seconds).
+Test Suite 'ContentSourceReferenceTests' passed at 2026-11-26 00:16:22.326.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.008 (0.009) seconds
+Test Suite 'OfflineDeterminismTests' started at 2026-11-26 00:16:22.326.
+Test Case '-[StoryEngineTests.OfflineDeterminismTests testAStoredSeedRebuildsTheSameBookInAFreshProcess]' started.
+Test Case '-[StoryEngineTests.OfflineDeterminismTests testAStoredSeedRebuildsTheSameBookInAFreshProcess]' passed (0.626 seconds).
+Test Case '-[StoryEngineTests.OfflineDeterminismTests testBlueprintChoiceIsIndependentOfBlueprintOrderInTheCatalog]' started.
+Test Case '-[StoryEngineTests.OfflineDeterminismTests testBlueprintChoiceIsIndependentOfBlueprintOrderInTheCatalog]' passed (0.417 seconds).
+Test Case '-[StoryEngineTests.OfflineDeterminismTests testContentSelectionStillFollowsCatalogOrder]' started.
+Test Case '-[StoryEngineTests.OfflineDeterminismTests testContentSelectionStillFollowsCatalogOrder]' passed (0.412 seconds).
+Test Case '-[StoryEngineTests.OfflineDeterminismTests testSurpriseHasNoAgeInputAndLandsInTheAuthoredBand]' started.
+Test Case '-[StoryEngineTests.OfflineDeterminismTests testSurpriseHasNoAgeInputAndLandsInTheAuthoredBand]' passed (0.391 seconds).
+Test Case '-[StoryEngineTests.OfflineDeterminismTests testTheAuthoredBandsAreStillOnlyThreeToFourAndFiveToSix]' started.
+Test Case '-[StoryEngineTests.OfflineDeterminismTests testTheAuthoredBandsAreStillOnlyThreeToFourAndFiveToSix]' passed (0.434 seconds).
+Test Case '-[StoryEngineTests.OfflineDeterminismTests testTheFingerprintIsAFunctionOfTheInputsAlone]' started.
+Test Case '-[StoryEngineTests.OfflineDeterminismTests testTheFingerprintIsAFunctionOfTheInputsAlone]' passed (0.400 seconds).
+Test Case '-[StoryEngineTests.OfflineDeterminismTests testTheSeededPickerIsPinned]' started.
+Test Case '-[StoryEngineTests.OfflineDeterminismTests testTheSeededPickerIsPinned]' passed (0.001 seconds).
+Test Suite 'OfflineDeterminismTests' passed at 2026-11-26 00:16:25.008.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 2.681 (2.682) seconds
+Test Suite 'P56ContractTests' started at 2026-11-26 00:16:25.008.
+Test Case '-[StoryEngineTests.P56ContractTests testCanonicalCompanionsUseOnlySupportedBooks]' started.
+Test Case '-[StoryEngineTests.P56ContractTests testCanonicalCompanionsUseOnlySupportedBooks]' passed (0.771 seconds).
+Test Case '-[StoryEngineTests.P56ContractTests testSupportReasonsMatchComposerAndAreUniqueSorted]' started.
+Test Case '-[StoryEngineTests.P56ContractTests testSupportReasonsMatchComposerAndAreUniqueSorted]' passed (0.704 seconds).
+Test Suite 'P56ContractTests' passed at 2026-11-26 00:16:26.484.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 1.476 (1.476) seconds
+Test Suite 'P56ExpansionAuthoringTests' started at 2026-11-26 00:16:26.484.
+Test Case '-[StoryEngineTests.P56ExpansionAuthoringTests testSixtyDraftBooksHaveExactSourcesAndAgeBudgets]' started.
+Test Case '-[StoryEngineTests.P56ExpansionAuthoringTests testSixtyDraftBooksHaveExactSourcesAndAgeBudgets]' passed (0.440 seconds).
+Test Suite 'P56ExpansionAuthoringTests' passed at 2026-11-26 00:16:26.924.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.440 (0.440) seconds
+Test Suite 'P56LegacyDiagnosticTests' started at 2026-11-26 00:16:26.924.
+Test Case '-[StoryEngineTests.P56LegacyDiagnosticTests testFirstAttemptLegacyFilterAndReadingSequences]' started.
+/Users/batudemir/.codex/worktrees/magicpaper-bes-arkadas-codex-motor/StoryEngine/Tests/StoryEngineTests/P56LegacyDiagnosticTests.swift:16: -[StoryEngineTests.P56LegacyDiagnosticTests testFirstAttemptLegacyFilterAndReadingSequences] : Test skipped - Long first-attempt diagnostic requires explicit output directory
+Test Case '-[StoryEngineTests.P56LegacyDiagnosticTests testFirstAttemptLegacyFilterAndReadingSequences]' skipped (0.006 seconds).
+Test Suite 'P56LegacyDiagnosticTests' passed at 2026-11-26 00:16:26.930.
+	 Executed 1 test, with 1 test skipped and 0 failures (0 unexpected) in 0.006 (0.006) seconds
+Test Suite 'P56RuntimeTests' started at 2026-11-26 00:16:26.930.
+Test Case '-[StoryEngineTests.P56RuntimeTests testAllThirtyPairsHaveDeterministicCompleteTraces]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testAllThirtyPairsHaveDeterministicCompleteTraces]' passed (0.886 seconds).
+Test Case '-[StoryEngineTests.P56RuntimeTests testAllUnsupportedContextsAndSafetyArePreserved]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testAllUnsupportedContextsAndSafetyArePreserved]' passed (0.576 seconds).
+Test Case '-[StoryEngineTests.P56RuntimeTests testBedtimeEndingRejectsQuestionTomorrowAndOpenHook]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testBedtimeEndingRejectsQuestionTomorrowAndOpenHook]' passed (0.000 seconds).
+Test Case '-[StoryEngineTests.P56RuntimeTests testCausalActionQuoteActorAndLineageCannotBeSwapped]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testCausalActionQuoteActorAndLineageCannotBeSwapped]' passed (2.573 seconds).
+Test Case '-[StoryEngineTests.P56RuntimeTests testFirstAttempt1500Report]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testFirstAttempt1500Report]' passed (5.290 seconds).
+Test Case '-[StoryEngineTests.P56RuntimeTests testMalformedProfilesSchemaAndDuplicateIDsFailClosed]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testMalformedProfilesSchemaAndDuplicateIDsFailClosed]' passed (2.598 seconds).
+Test Case '-[StoryEngineTests.P56RuntimeTests testMemoryStaysRememberedAndClosedEyesAreNotSleep]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testMemoryStaysRememberedAndClosedEyesAreNotSleep]' passed (1.236 seconds).
+Test Case '-[StoryEngineTests.P56RuntimeTests testMissingObservationFakeCareAndEarlyRetrievalFailClosed]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testMissingObservationFakeCareAndEarlyRetrievalFailClosed]' passed (2.261 seconds).
+Test Case '-[StoryEngineTests.P56RuntimeTests testMutatedSourceParentPointerAndActorsFailClosed]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testMutatedSourceParentPointerAndActorsFailClosed]' passed (2.803 seconds).
+Test Case '-[StoryEngineTests.P56RuntimeTests testPayloadTamperRejected]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testPayloadTamperRejected]' passed (0.282 seconds).
+Test Case '-[StoryEngineTests.P56RuntimeTests testSevenTurkishNamesAndCaseForms]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testSevenTurkishNamesAndCaseForms]' passed (0.006 seconds).
+Test Case '-[StoryEngineTests.P56RuntimeTests testSHA256KnownVectors]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testSHA256KnownVectors]' passed (0.000 seconds).
+Test Case '-[StoryEngineTests.P56RuntimeTests testUnsupportedContextPreservesReason]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testUnsupportedContextPreservesReason]' passed (0.584 seconds).
+Test Case '-[StoryEngineTests.P56RuntimeTests testUnsupportedRequestAggregatesContextAgeSafetyAndSelection]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testUnsupportedRequestAggregatesContextAgeSafetyAndSelection]' passed (0.512 seconds).
+Test Case '-[StoryEngineTests.P56RuntimeTests testWaitingSupportDoesNotInventAnObservation]' started.
+Test Case '-[StoryEngineTests.P56RuntimeTests testWaitingSupportDoesNotInventAnObservation]' passed (0.516 seconds).
+Test Suite 'P56RuntimeTests' passed at 2026-11-26 00:16:47.056.
+	 Executed 15 tests, with 0 failures (0 unexpected) in 20.124 (20.126) seconds
+Test Suite 'P56SafetyTests' started at 2026-11-26 00:16:47.056.
+Test Case '-[StoryEngineTests.P56SafetyTests testEverySelectedBookRespectsProtectionWithoutRetries]' started.
+Test Case '-[StoryEngineTests.P56SafetyTests testEverySelectedBookRespectsProtectionWithoutRetries]' passed (13.559 seconds).
+Test Case '-[StoryEngineTests.P56SafetyTests testExplicitUnfilteredPolicyKeepsTheSameSingleDraw]' started.
+Test Case '-[StoryEngineTests.P56SafetyTests testExplicitUnfilteredPolicyKeepsTheSameSingleDraw]' passed (4.947 seconds).
+Test Case '-[StoryEngineTests.P56SafetyTests testIncompleteSourceOrNoncanonicalReviewCannotLoad]' started.
+Test Case '-[StoryEngineTests.P56SafetyTests testIncompleteSourceOrNoncanonicalReviewCannotLoad]' passed (25.529 seconds).
+Test Case '-[StoryEngineTests.P56SafetyTests testInternalExactFixtureCannotBypassSafetyOrSourceIdentity]' started.
+Test Case '-[StoryEngineTests.P56SafetyTests testInternalExactFixtureCannotBypassSafetyOrSourceIdentity]' passed (4.587 seconds).
+Test Case '-[StoryEngineTests.P56SafetyTests testListedCompanionsHaveMostProtectiveBooksInEveryMode]' started.
+Test Case '-[StoryEngineTests.P56SafetyTests testListedCompanionsHaveMostProtectiveBooksInEveryMode]' passed (3.280 seconds).
+Test Case '-[StoryEngineTests.P56SafetyTests testNilAvoidanceCoversFutureTagsAndNewVocabularyFailsClosed]' started.
+Test Case '-[StoryEngineTests.P56SafetyTests testNilAvoidanceCoversFutureTagsAndNewVocabularyFailsClosed]' passed (3.997 seconds).
+Test Case '-[StoryEngineTests.P56SafetyTests testReviewAggregatesEveryPageAndEnforcesExistingSafetyPolicy]' started.
+Test Case '-[StoryEngineTests.P56SafetyTests testReviewAggregatesEveryPageAndEnforcesExistingSafetyPolicy]' passed (4.003 seconds).
+Test Case '-[StoryEngineTests.P56SafetyTests testUnavailableMechanismAndUnknownTopicAreExplicitUnsupported]' started.
+Test Case '-[StoryEngineTests.P56SafetyTests testUnavailableMechanismAndUnknownTopicAreExplicitUnsupported]' passed (5.247 seconds).
+Test Suite 'P56SafetyTests' passed at 2026-11-26 00:17:52.216.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 65.150 (65.160) seconds
+Test Suite 'P56SourceMetadataTests' started at 2026-11-26 00:17:52.220.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testBothRuntimeVersionsKeepTheirDistinctReferenceIdentity]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testBothRuntimeVersionsKeepTheirDistinctReferenceIdentity]' passed (0.013 seconds).
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testLegacyExtensionFieldsKeepOriginalClassification]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testLegacyExtensionFieldsKeepOriginalClassification]' passed (0.072 seconds).
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testLegacySourceNeverBackfillsP56Reference]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testLegacySourceNeverBackfillsP56Reference]' passed (0.004 seconds).
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testMalformedAndFutureSourcesRemainLosslessAndNeverResolve]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testMalformedAndFutureSourcesRemainLosslessAndNeverResolve]' passed (0.005 seconds).
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testP56RoundTripUsesOnlyExactSourceFields]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testP56RoundTripUsesOnlyExactSourceFields]' passed (0.633 seconds).
+Test Suite 'P56SourceMetadataTests' passed at 2026-11-26 00:17:52.960.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.727 (0.740) seconds
+Test Suite 'P56V2PackageTests' started at 2026-11-26 00:17:52.960.
+Test Case '-[StoryEngineTests.P56V2PackageTests testCrossCorpusPointerHasExpectedIntegrityFailure]' started.
+Test Case '-[StoryEngineTests.P56V2PackageTests testCrossCorpusPointerHasExpectedIntegrityFailure]' passed (1.988 seconds).
+Test Case '-[StoryEngineTests.P56V2PackageTests testHistoricalV1LiteralOutputAndVersionRemainStable]' started.
+Test Case '-[StoryEngineTests.P56V2PackageTests testHistoricalV1LiteralOutputAndVersionRemainStable]' passed (0.635 seconds).
+Test Case '-[StoryEngineTests.P56V2PackageTests testUnmodifiedReserializedPackageLoadsAndReferenceRoundTrips]' started.
+Test Case '-[StoryEngineTests.P56V2PackageTests testUnmodifiedReserializedPackageLoadsAndReferenceRoundTrips]' passed (3.858 seconds).
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2CoverageAndEveryExactBookAcrossTurkishNames]' started.
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2CoverageAndEveryExactBookAcrossTurkishNames]' passed (5.783 seconds).
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2OriginalCorpusExactlyMatchesHistoricalV1Snapshots]' started.
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2OriginalCorpusExactlyMatchesHistoricalV1Snapshots]' passed (0.337 seconds).
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2RejectsBadActorAndFutureParentIndex]' started.
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2RejectsBadActorAndFutureParentIndex]' passed (4.819 seconds).
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2RejectsCorpusSnapshotAndBookHashTampering]' started.
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2RejectsCorpusSnapshotAndBookHashTampering]' passed (12.876 seconds).
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2RejectsMutatedLineageAndCoverage]' started.
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2RejectsMutatedLineageAndCoverage]' passed (6.667 seconds).
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2RejectsUnknownSchemaBehaviorAndPackage]' started.
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2RejectsUnknownSchemaBehaviorAndPackage]' passed (11.538 seconds).
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2RejectsWrongCorpusAndDuplicateOrMissingEvent]' started.
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2RejectsWrongCorpusAndDuplicateOrMissingEvent]' passed (9.388 seconds).
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2SamplerUsesOneDrawPerCellSeedAndActualSixBookCount]' started.
+Test Case '-[StoryEngineTests.P56V2PackageTests testV2SamplerUsesOneDrawPerCellSeedAndActualSixBookCount]' passed (9.069 seconds).
+Test Suite 'P56V2PackageTests' passed at 2026-11-26 00:18:59.927.
+	 Executed 11 tests, with 0 failures (0 unexpected) in 66.957 (66.967) seconds
+Test Suite 'P56V2ReadingTests' started at 2026-11-26 00:18:59.934.
+Test Case '-[StoryEngineTests.P56V2ReadingTests testFirstAttemptA0BeforeAfterUsesIdenticalRequestSchedule]' started.
+Test Case '-[StoryEngineTests.P56V2ReadingTests testFirstAttemptA0BeforeAfterUsesIdenticalRequestSchedule]' passed (8.879 seconds).
+Test Suite 'P56V2ReadingTests' passed at 2026-11-26 00:19:08.823.
+	 Executed 1 test, with 0 failures (0 unexpected) in 8.879 (8.889) seconds
+Test Suite 'P56V3DiagnosticTests' started at 2026-11-26 00:19:08.825.
+Test Case '-[StoryEngineTests.P56V3DiagnosticTests testReportEveryPageAndBookWithoutHidingLoaderFailures]' started.
+Test Case '-[StoryEngineTests.P56V3DiagnosticTests testReportEveryPageAndBookWithoutHidingLoaderFailures]' passed (11.989 seconds).
+Test Suite 'P56V3DiagnosticTests' passed at 2026-11-26 00:19:20.815.
+	 Executed 1 test, with 0 failures (0 unexpected) in 11.989 (11.990) seconds
+Test Suite 'P56V3PackageTests' started at 2026-11-26 00:19:20.818.
+Test Case '-[StoryEngineTests.P56V3PackageTests testHistoricalPackagesRemainExplicitlyLoadable]' started.
+Test Case '-[StoryEngineTests.P56V3PackageTests testHistoricalPackagesRemainExplicitlyLoadable]' passed (4.837 seconds).
+Test Case '-[StoryEngineTests.P56V3PackageTests testV3ExactLoadAndReferenceRoundTrip]' started.
+Test Case '-[StoryEngineTests.P56V3PackageTestwarning: '--build-system native' has been deprecated and will be removed in a future release; please report an issue at https://github.com/swiftlang/swift-package-manager/issues if you are unable to adopt the default build system.
+s testV3ExactLoadAndReferenceRoundTrip]' passed (4.974 seconds).
+Test Case '-[StoryEngineTests.P56V3PackageTests testV3RejectsLineageSourceAndAuthoredCorruption]' started.
+Test Case '-[StoryEngineTests.P56V3PackageTests testV3RejectsLineageSourceAndAuthoredCorruption]' passed (19.328 seconds).
+Test Case '-[StoryEngineTests.P56V3PackageTests testV3RequiresCompleteReviewedSafetyAndNoReleaseApproval]' started.
+Test Case '-[StoryEngineTests.P56V3PackageTests testV3RequiresCompleteReviewedSafetyAndNoReleaseApproval]' passed (14.328 seconds).
+Test Suite 'P56V3PackageTests' passed at 2026-11-26 00:20:04.288.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 43.467 (43.470) seconds
+Test Suite 'PageProvenanceTests' started at 2026-11-26 00:20:04.289.
+Test Case '-[StoryEngineTests.PageProvenanceTests testAFamilyLineIsABeatLineWithAFamilyContext]' started.
+Test Case '-[StoryEngineTests.PageProvenanceTests testAFamilyLineIsABeatLineWithAFamilyContext]' passed (0.911 seconds).
+Test Case '-[StoryEngineTests.PageProvenanceTests testARecallLineIsTheLastPartOfThePagesProvenance]' started.
+Test Case '-[StoryEngineTests.PageProvenanceTests testARecallLineIsTheLastPartOfThePagesProvenance]' passed (0.317 seconds).
+Test Case '-[StoryEngineTests.PageProvenanceTests testARefrainIsTracedToItsBlueprintNotToAMadeUpLine]' started.
+Test Case '-[StoryEngineTests.PageProvenanceTests testARefrainIsTracedToItsBlueprintNotToAMadeUpLine]' passed (0.352 seconds).
+Test Case '-[StoryEngineTests.PageProvenanceTests testEveryPageNamesItsLinesInTheOrderTheyWereWritten]' started.
+Test Case '-[StoryEngineTests.PageProvenanceTests testEveryPageNamesItsLinesInTheOrderTheyWereWritten]' passed (0.326 seconds).
+Test Case '-[StoryEngineTests.PageProvenanceTests testTheDigestIsOfTheAuthoredTextNotTheRenderedOne]' started.
+Test Case '-[StoryEngineTests.PageProvenanceTests testTheDigestIsOfTheAuthoredTextNotTheRenderedOne]' passed (0.479 seconds).
+Test Suite 'PageProvenanceTests' passed at 2026-11-26 00:20:06.679.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 2.386 (2.390) seconds
+Test Suite 'SeriesSourceIdentityTests' started at 2026-11-26 00:20:06.680.
+Test Case '-[StoryEngineTests.SeriesSourceIdentityTests testExactPlanMayNotBeRewrittenWithoutSourceEvidence]' started.
+Test Case '-[StoryEngineTests.SeriesSourceIdentityTests testExactPlanMayNotBeRewrittenWithoutSourceEvidence]' passed (0.528 seconds).
+Test Case '-[StoryEngineTests.SeriesSourceIdentityTests testExactPlanRejectsWrongSourceBeforeLookingUpContent]' started.
+Test Case '-[StoryEngineTests.SeriesSourceIdentityTests testExactPlanRejectsWrongSourceBeforeLookingUpContent]' passed (0.558 seconds).
+Test Case '-[StoryEngineTests.SeriesSourceIdentityTests testMalformedSourceDoesNotLoseThePlan]' started.
+Test Case '-[StoryEngineTests.SeriesSourceIdentityTests testMalformedSourceDoesNotLoseThePlan]' passed (0.019 seconds).
+Test Case '-[StoryEngineTests.SeriesSourceIdentityTests testOldPlanWithoutSourceStillDecodes]' started.
+Test Case '-[StoryEngineTests.SeriesSourceIdentityTests testOldPlanWithoutSourceStillDecodes]' passed (0.001 seconds).
+Test Case '-[StoryEngineTests.SeriesSourceIdentityTests testRemovingFamilyKeepsExactSource]' started.
+Test Case '-[StoryEngineTests.SeriesSourceIdentityTests testRemovingFamilyKeepsExactSource]' passed (0.001 seconds).
+Test Suite 'SeriesSourceIdentityTests' passed at 2026-11-26 00:20:07.804.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 1.107 (1.125) seconds
+Test Suite 'StoryEnginePackageTests.xctest' passed at 2026-11-26 00:20:07.804.
+	 Executed 70 tests, with 1 test skipped and 0 failures (0 unexpected) in 225.395 (225.487) seconds
+Test Suite 'Selected tests' passed at 2026-11-26 00:20:07.804.
+	 Executed 70 tests, with 1 test skipped and 0 failures (0 unexpected) in 225.395 (225.498) seconds
