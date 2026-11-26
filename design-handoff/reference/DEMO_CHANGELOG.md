@@ -133,6 +133,16 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · codex/bes-arkadas/claude-uygulama@7515b7f + bfde72f · Beşli kod düzeltmeleri ve v3 pininin uygulama tarafı
+- Yönlendirici kilidi: kilit yalnız yükleme durumunu korur, paket kilit dışında okunur; `decide` async, `decideIfReady` beklemez. "Masalda kimler olsun?" ve "Kim gelsin?" beşliyi hemen gösterir; okuma bitmeden seçilirse kısa bekleme (düğmede/ızgarada dönen işaret) ve son listeyle yeniden denetim.
+- Arşiv: doğrulanmış baytlar yeniden çözülmeden yazılır (`P56SnapshotStore.save(data:reference:)`), sağlam kayıt yeniden yazılmaz, bozuk kayıt aynı SHA'lı baytlarla onarılır.
+- 12 MB P56 payload Release'ten çıktı (uygulama hedefi Release, `EXCLUDED_SOURCE_FILE_NAMES`). Senkronda `p56` alanının düşmesi ve Release ölçümü pilot kapsam planına yayın kapısı olarak yazıldı.
+- `P56InternalService` silindi; küçük kademe ızgarasında simge yerine arkadaş portresi.
+- v3 pini (Batuhan "geçir"; Codex motor pini 024b8a5 birleşti): uygulama paketi v3 baytları (`cmp` eşit, SHA 855870c8…), arşiv v1/v2/v3'ü tanır, tarihsel v2 testi ayrı.
+- Bilerek değişmeyen: motor sözleşmesi, v1/v2 içerik dosyaları, bayrak (yalnız Debug), üretim kapalı.
+- Test: seçili 9 uygulama suite'i 78 test (77 ilk koşuda; arşiv testi disk dolunca düştü, yeniden 5/5). Simülatör (iPhone Air): bayrak açık, en korumalı profil, beşli portreli göründü, Kestane macera masalı v3 kaynakla yazıldı/kaydedildi. Tam uygulama paketi, koyu mod, en büyük yazı, SE/Pro Max görüntüleri alınmadı.
+- Dosyalar: `StoryRuntimeRouter.swift`, `FiveFriendsChoiceSource.swift`, `StoryChoiceSource.swift`, `StoryGenerationManager.swift`, `P56BundledSource.swift`, `P56SnapshotStore.swift`, `CompanionStep.swift`, `LittleSteps.swift`, `MPCompanionPortrait.swift`, `project.pbxproj`, P56 testleri, `docs/ortak/claude-durum.md`, pilot kapsam planı.
+
 ### 2026-11-26 · codex/bes-arkadas/codex-motor, commit yok · Onaylı v3 motor pini ve iki dalga hazırlığı
 
 - Batuhan'ınpinonayı dosyası okundu; etkinmotorversion+SHA birlikte v3'e geçti, v2SHA tarihsel sabite ayrıldı. V2package/safety/reading/metadata testleri tarihselpine bağlandı. V1/v2/v3payloadbyte'ları değişmedi.

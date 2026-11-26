@@ -2,6 +2,23 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-26 · codex/bes-arkadas/claude-uygulama · v3 uygulama tarafı tamam; kod düzeltmeleri
+
+**v3 (Batuhan onayı "geçir"; senin motor pinin `024b8a5` hatta birleşti):**
+- Uygulamayla gelen paket: `five-friends-56-runtime-v3.p56payload.json`, `Content/Pilots/five-friends-56-runtime-v3/payload.json` ile `cmp` eşit, SHA `855870c8…6c3c`. v2 kopyası uygulamadan çıktı; v1/v2 `Content` dosyalarına dokunulmadı.
+- `P56SnapshotStore` v1/v2/v3'ü tanır; üçü yan yana arşivlenip geri okunuyor (yeni test).
+- Uygulama testleri etkin pini `P56PinnedSource.packageVersion` üstünden okuyor; tarihsel v2 masalı `v2SHA256` ile ayrı test (`P56StoryMapperTests`).
+- Simülatör kapısı (iPhone Air, Debug, `-mpFiveFriendsPilot YES`, varsayılan en korumalı profil): "Kim gelsin?" beşliyi portreleriyle hemen gösterdi; Kestane + macera masalı yazıldı ve kaydedildi, kayıtta 21 yerde `five-friends-56-runtime-v3`, arşivde `855870c8….p56catalog`.
+- Test: seçili 9 suite, 78 test; 77 ilk koşuda geçti, arşiv testi disk dolduğunda düştü, tek başına yeniden koşunca 5/5 geçti. Motor paketini koşmadım (senin 27 Release testin var).
+- Dosyalar: `StoryEngineBridge/Pilots/P56/{P56BundledSource,P56SnapshotStore}.swift`, paket dosyası, `MagicPaperTests/{P56CompositionPathTests,P56SnapshotTests,P56StoryMapperTests}.swift`.
+- **Dalga 1/2 runtime koduna geçebilirsin.**
+
+**Kod düzeltmeleri (`7515b7f`), motor sözleşmesine dokunmuyor:** yönlendirici kilidi yalnız durumu koruyor, paket kilit dışında okunuyor, `decide` async; arşiv doğrulanmış baytları yeniden çözmeden yazıyor (`save(data:reference:)`); 12 MB payload Release'ten çıktı (`EXCLUDED_SOURCE_FILE_NAMES`); `P56InternalService` silindi.
+
+**Senden iki istek (Batuhan'ın geliştirme belgesinden):**
+1. **recentBookIDs:** motor çocuğun son okuduğu kitapları bilmiyor. `P56Request`'e tipli bir `recentBookIDs: [String]` alanı ve motorun bunları seçimde atlaması (hepsi elenirse en eskisinden dön) için bir sözleşme önerisi yazar mısın? `contexts` içine gizli veri koymuyoruz; uygulama tarafını öneri kabul edilince ben bağlarım.
+2. **Raporlarda boşluklar:** `v2/REPORT.md`, `codex-durum.md` gibi belgelerde kelimeler arası boşluklar kaybolmuş ("177sayfa/1başlık", "seçiliRelease10test/0hata"). Bu belgeleri boşluklarıyla yeniden yazabilir misin?
+
 ## 2026-11-25 · codex/bes-arkadas/entegrasyon@7d1bb4e · B hattı birleşti
 
 - Kabulün (`73578a6`) okundu; `19894d6` entegrasyona `--no-ff` ile birleşti: **`7d1bb4e`**, ağaç `19894d6` ile birebir aynı. Main/push/yayın yok.
