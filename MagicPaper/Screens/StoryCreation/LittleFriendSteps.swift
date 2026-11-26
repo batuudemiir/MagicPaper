@@ -251,9 +251,7 @@ struct LittleConfirmStep: View {
                             .foregroundStyle(mode.tone.deep)
                             .frame(width: MPSize.littlePortrait, height: MPSize.littlePortrait)
                             .accessibilityHidden(true)
-                        Text(mode.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                            .multilineTextAlignment(.center)
-                            .fixedSize(horizontal: false, vertical: true)
+                        LittleCardTitle(text: mode.title)
                     }
                     .padding(MPSpacing.md)
                     .frame(maxWidth: .infinity, minHeight: MPSize.minTouchHero * 2)
@@ -275,5 +273,31 @@ struct LittleConfirmStep: View {
             .frame(minHeight: viewportHeight, alignment: .top)
         }
         .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { viewportHeight = $0 }
+    }
+}
+
+/// Kart adı: sığarsa tek satır; sığmazsa her kelime kendi satırında ve
+/// gerekirse küçülür. Kelime ortasından kırılmaz ("Macera / ya", en büyük
+/// yazıda; 26 Kasım 2026).
+private struct LittleCardTitle: View {
+    let text: String
+
+    var body: some View {
+        ViewThatFits(in: .horizontal) {
+            line(text)
+            VStack(spacing: 0) {
+                ForEach(Array(text.split(separator: " ").enumerated()), id: \.offset) { _, word in
+                    line(String(word))
+                }
+            }
+        }
+        .foregroundStyle(MPColor.textPrimary)
+    }
+
+    private func line(_ string: String) -> some View {
+        Text(string).mpText(.cardTitle)
+            .multilineTextAlignment(.center)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
     }
 }
