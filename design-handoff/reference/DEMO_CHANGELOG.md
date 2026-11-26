@@ -1,3 +1,10 @@
+## 26 Kasım 2026 — V4 görsel havuzu kaynak envanteri ve onaylı plan
+
+- V4 imza ayrıntıları için kullanıcı onayı kaydedildi; 90 kitap/720 sayfa/25 keşif ve 15 inceleme kitabı kaynak manifestine alındı.
+- Payload SHA ve 720 template SHA doğrulandı. Semantik adaylar yayın yetkisine çevrilmedi; runtime/metin/asset değişmedi.
+- Plan: `docs/superpowers/plans/2026-11-26-v4-art-library.md`; envanter: `design-handoff/proposals/2026-11-26-v4-art-library/`.
+- Build/test/simülatör çalıştırılmadı. Yeni çizim üretimi ve sayfa bazında elle inceleme sırada.
+
 # MagicPaper demo ekranları · CLAUDE.md
 
 Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.md gibi çalışır: canvas'ın ne olduğunu, nasıl kurulduğunu, hangi kurallara uyduğunu ve her güncellemede neyin değiştiğini tutar.
