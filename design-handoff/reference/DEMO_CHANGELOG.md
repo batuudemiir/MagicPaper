@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · codex/karakter-kartlari · Portre ve boy levhası düzeltmeleri
+
+- Tarçın’ın tam gövde portresindeki bacaklar koyu kahveye alındı. Tarçın ve Simit’in baş-omuz portrelerinin sol ve alt kenarına yumuşak alfa geçişi eklendi. Boy levhasında ikisi bel çizgisine hizalandı.
+- Seçim PNG’lerinin üç boyutu, alfa kanalları, boy levhası ve görsel ZIP doğrulandı. Uygulama testi ve simülatör çalıştırılmadı.
+- Asset kataloğu, karakter kartları, ortak levhalar ve Finder kopyası güncellendi.
+
 ### 2026-11-26 · codex/karakter-kartlari · Beş arkadaşın karakter kartları
 
 - Onaylı b6d40b4 kaynağıyla beş özet kart, dönüş/ifade/aksesuar levhaları, paletler, yap ve yapma örnekleri, seçim simgeleri ve mod görselleri hazırlandı. Simit baş-omuz seçimine sol boşluk eklendi.

@@ -1,6 +1,6 @@
 # Beş arkadaşın karakter kartları
 
-Son güncelleme 26 Kasım 2026. Dal `codex/karakter-kartlari`. Kartların görsel commit’i `6c9f14e3`. Onaylı görsel kaynak `b6d40b4`.
+Son güncelleme 26 Kasım 2026. Dal `codex/karakter-kartlari`. İlk kartların görsel commit’i `6c9f14e3`. Onaylı görsel kaynak `b6d40b4`.
 
 - `kart-ozet.png` karakterin genel görünüşünü, paletini ve dört dönüş açısını bir araya getirir.
 - `donus/`, `ifadeler/` ve `esya/` çizim sırasında ayrıntılı referans olarak kullanılır. İfade levhasında on temel yüz ifadesi ve karaktere özgü bir hareket bulunur.
