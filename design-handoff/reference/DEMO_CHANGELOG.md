@@ -133,6 +133,22 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · codex/bes-arkadas/cocuk-akisi@37e135d · Okul öncesi masal yazma: önce arkadaş
+
+- Ne değişti: beş arkadaş pilotu açıkken okul öncesi çocuk (`KidLevel.little`, çocuk modu) masal yazmaya arkadaştan başlıyor: Kim gelsin? (beş gerçek portre + Sürpriz, sabit sıra Kestane, Böğürtlen, Tarçın, Yıldız, Simit; dokununca karo büyür, arkadaş kendini bir cümleyle tanıtır, ~1 sn sonra geçer) → {Arkadaş} ile ne yapalım? (yalnız P56'nın o arkadaşla yazabildiği modlar, akşam uyku başta) → konu (Fark etmez ilk sırada ve sesli, kilit notu yok) → Hazır mısın? (arkadaş + mod, büyük Başla). Masal yalnız Başla ile yazılıyor. Sorular `MPSpeech` ile bir kez okunuyor, sağ üstte 80 pt tekrar düğmesi; geri oku 80 pt. Konu seçilince istek eski motora gidiyor (K4); arkadaş eski katalogda o konuda yazılabiliyorsa korunuyor, yoksa onay ekranı Sürpriz gösteriyor.
+- Kararlar `StoryCreationSteps.LittlePath` / `LittleCast`'te; cümleler `LittleCreationCopy`'de; ekranlar `LittleFriendSteps.swift`. Kaynak protokolüne `pilotFriendChoices`, `pilotModes`, `legacyWritableCompanionIDs` eklendi.
+- Bilerek değişmeyen: ebeveyn modu, büyük kademe, ana sayfadan modla açılış, Masal ailem'le açılış, beşli kapalıyken okul öncesi akış (simülatörde doğrulandı). Hazırlık ekranına dokunulmadı.
+- Test: `LittleFriendFirstTests` (13) + `StoryCreationStepsTests`, `CompanionStepChoicesTests`, `P56CompositionPathTests`, `CompanionPortraitCatalogTests`: 44 test, 0 hata (iPhone 17 Pro simülatörü). Tam test paketi koşulmadı. Simülatörde `-mpDemo YES -mpFiveFriendsPilot YES` ile ekranlar görüldü; koyu mod, en büyük Dynamic Type, iPhone SE ve Pro Max görüntüleri alınmadı.
+- Dosyalar: `StoryCreationSteps.swift`, `StoryCreationFlow.swift`, `TopicStep.swift`, `LittleFriendSteps.swift` (yeni), `LittleCreationCopy.swift` (yeni), `StoryChoiceSource.swift`, `FiveFriendsChoiceSource.swift`, `MPSpeech.swift` (perdeli `speak`), `MPCompanionPortrait.swift` (boyut), `MPLayout.swift` (`kidBackLarge`, `littlePortrait`), `LittleFriendFirstTests.swift` (yeni).
+
+### 2026-11-25 · codex/bes-arkadas/entegrasyon@7d1bb4e · B hattı (uygulama entegrasyonu) entegrasyona birleşti
+
+- Codex'in karşı incelemesi (`73578a6`, `B_LINE_REVIEW_ACCEPTANCE.md`) B hattını iç pilot için kabul etti. `19894d6` ucu `codex/bes-arkadas/entegrasyon`'a `--no-ff` ile birleşti: `7d1bb4e`. Birleşme ağacı `19894d6` ile birebir aynı (`git diff --exit-code`). Geçici worktree'de yapıldı, sonra silindi.
+- Entegrasyonda artık: C4 v1 + C2 v2 (90 kitap) + C3 güvenlik + B1–B7 (P56'yı bayrakla masal yazma yoluna bağlama, beşli seçim, kaynak izi, seri/hatırlama korumaları) + K-G.
+- Bilerek yapılmayan: main'e birleştirme, push, yayın. Release'te bayrak kapalı.
+- Test: bu birleşme için yeniden koşulmadı; kanıt B hattının 132/0 + 8/0 sonucu ve Codex'in motor 65/0 sonucu. Tam uygulama ve tam motor paketi (Hat D) henüz koşulmadı.
+- Açık: Hat D son kapısı; küçük kademe ızgarasında portre; Release performansı; eski istemcinin `p56` sayfa izini düşürmesi; Codex'in önerdiği nil-olmayan recall bağlamı testi; kullanılmayan `P56InternalService` temizliği.
+
 ### 2026-11-25 · codex/bes-arkadas/claude-uygulama, karar commit'i · K-G: P56 masalında otomatik hatırlama pilotta kapalı
 
 - Batuhan kararı: eski masallardan gelen otomatik hatırlama cümlesi P56 masalına taşınmaz; masal bu yüzden eski motora da gönderilmez, hatırlamasız yazılır. Ortak plana K-G olarak eklendi; davranış `testAutomaticRecallIsOffForP56Stories` ile sabit.

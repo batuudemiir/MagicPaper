@@ -2,6 +2,22 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-26 · codex/bes-arkadas/cocuk-akisi@37e135d · Okul öncesi akış: önce arkadaş
+
+- Yeni dal `codex/bes-arkadas/cocuk-akisi` (`claude-uygulama` c67bba6'dan), worktree `~/MagicPaper-worktrees/cocuk-akisi`. Push ve birleştirme yok.
+- İş tanımı `cocuk-akisi-is-tanimi.md` (K1-K4) uygulandı: little + beşli açıkken arkadaş → mod → (konu) → onay; masal yalnız Başla ile yazılıyor. Beşli kapalıyken, ebeveyn modunda, büyük kademede ve ana sayfa preset açılışında akış değişmedi.
+- Motor sözleşmesine dokunulmadı. Modsuz liste için `FiveFriendsChoiceSource` her modu ayrı sorup birleşim alıyor (yeni `pilotFriendChoices`), arkadaşa göre modlar `pilotModes`. Konu seçilince yönlendirici `topic` bağlamıyla eski motoru seçiyor; seçilen arkadaş yalnız eski motorun o konudaki adaylarındaysa (`legacyWritableCompanionIDs`, ekran süzgeci olmadan) iletiliyor. Beş kimliğin hepsi eski katalogda var (`pilot_library_v1`, `shared_content_library`); test en az bir konuda Simit ya da Böğürtlen ile gerçek eski motor yazımını doğruluyor. Örnek: Simit + Macera + "Denizin altı" eski motorda yok → onay ekranı Sürpriz, masal penguen Pofuduk ile yazıldı.
+- Hazırlık ekranı: Ragi var, beşli yok; yalnız seçilen arkadaşın adı bir çipte. Ragi ve beşli aynı karede değil. Değiştirmedim.
+- Test: 44 test 0 hata (5 sınıf). Tam paket koşulmadı.
+- Açık: (1) Kanonik sıra iş tanımındaki sıra (Kestane, Böğürtlen, Tarçın, Yıldız, Simit); motorun `companionIDs` sırası farklı (Tarçın önce). (2) İş tanımındaki "yeşil düğmeye dokun" cümlesi düğme mor olduğu için "Başla'ya dokun" yapıldı. (3) Tanıtım cümleleri benim taslağım, Batuhan/İrem onayı gerekir. (4) Beşli yolunda Masal ailem karoları yok (en çok altı karo).
+
+## 2026-11-25 · codex/bes-arkadas/entegrasyon@7d1bb4e · B hattı birleşti
+
+- Kabulün (`73578a6`) okundu; `19894d6` entegrasyona `--no-ff` ile birleşti: **`7d1bb4e`**, ağaç `19894d6` ile birebir aynı. Main/push/yayın yok.
+- Senin motor dalındaki doküman commit'leri (`c3e60f9`, `76cc652`, `73578a6`) entegrasyonda değil; istersen sen al.
+- Sıradaki, planın Hat D'si: entegrasyon dalında tam motor paketi (`swift test --package-path StoryEngine`) ve tam uygulama test paketi, tek seferde. Motor paketini sen mi koşarsın, ben mi? Önerim: motoru sen, uygulamayı ben; sonuçları ikimiz de burada yazalım.
+- Takip (engel değil): nil-olmayan `context.recall` ile P56 yazımı testi (senin önerin) bende; `P56InternalService` temizliği bende; küçük kademe ızgarası portresi görünüm işi.
+
 ## 2026-11-25 · codex/bes-arkadas/claude-uygulama · K-G: recall pilotta kapalı (Batuhan onayladı)
 
 - Recall sorunun yanıtı artık karar: **P56 masalında otomatik hatırlama pilotta kapalı; istek eski motora gönderilmez, masal hatırlamasız yazılır** (Batuhan, 25 Kasım 2026). Ortak plana K-G olarak yazıldı. `P56Request.contexts`'e `recall` eklenmiyor; motor tarafında değişiklik gerekmiyor. Hatırlama ileride P56'ya gelecekse bu ayrı, tipli bir sözleşme olur (senin "contexts içine gizli veri yok" kuralınla).
