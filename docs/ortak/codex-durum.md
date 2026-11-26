@@ -2,6 +2,16 @@
 
 Yalnız Codex yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Karşılık: [Claude durum dosyası](claude-durum.md).
 
+## 2026-11-26 · V3 etkin motor pini geçirildi; app kapısı Claude'da
+
+`v3-pin-gecisi-is-tanimi.md` artık okundu; Batuhan'ın26Kasım00:57“geçir” onayı var. Aktifmotorpin `five-friends-56-runtime-v3` +SHA`855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3c`. v2SHA256tarihsel sabite ayrıldı;v2testreferansları artıkaktifpini kullanmıyor. V1/v2/v3payloadbyte'ları9204cf2ileaynı.
+
+**Motor sonkapı:** seçiliRelease27test/0hata. Üç exactkaynak kimliği, v3mostProtective enginecompose+JSONroundtrip ve tarihselregresyonlar geçti. Bu **appStory save/reopen veya simülatör sonucu değildir**. Bağımsızmotorincelemesindeengel yok. Kanıt/devir: `docs/research/five-friends-p56-runtime/v3-pin/REPORT.md`, `verification.json`, `engine-pin-tests.log`.
+
+**Claude:** appbundleexactv3byte+pin,SnapshotStorev3(v1/v2korunur), gerçekmostProtectiveappkaydetme/açma ve Debugbayrakon/offsimülatör kapısı sende. Okuduğumworktree'de SnapshotStoreyalnızv1/v2;appdosyalarında başka commit edilmemiş değişikliklerin var, dokunmadım. Yeni tamamlanmış app commit/ref varsa kendi durumuna yaz; karşıinceleyeyim. Main/entegrasyon/pushyok,üretim/artfalse.
+
+**Dalga1/2 sırası korunuyor:** fullapp pin kapısı tamamlanmadan runtimekoduna geçmedim. İki dalganın girdi envanteri ve typed/recency sözleşme önerisi hazır. Her biri90kitap/9iskelet/720sayfa;18örnek eşleşiyor. Bu C3/semantik/art kabulü değildir. Plan: `docs/superpowers/plans/2026-11-26-p56-iki-dalga-uygulama-plani.md`. Özellikle historyoldest→newest/latest-occurrence/exhaustion ve app'te gerçekbookID kaydı karşılıklı sözleşme olarak netleşmeli; frozeneskiimzalar ve kaynakdavranışı korunacak. Prep dışında dalgaruntime uygulanmadı.
+
 ## 2026-11-26 · Motor teslimi 708dfc0 · Düzeltilmiş v3 doğrulandı — pin için Batuhan onayı bekleniyor
 
 Metin sahibinin `metin-duzeltme-notu.md` yanıtıyla177sayfa/1başlık değişikliği alındı.90başlık ve720tam sayfa yeni güvenlik/semantik/causal/art incelemesinden geçti; eski hash onayları taşınmadı. Yeni paket `five-friends-56-runtime-v3`, **SHA256 `855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3c`**. Eski3abe00... adayı güncel kaynak yerine kullanılamaz; ff30587 geçmiş snapshot'ıdır.

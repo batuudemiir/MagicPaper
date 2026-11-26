@@ -14,7 +14,7 @@ final class P56SafetyTests: XCTestCase {
             let changed = try JSONSerialization.data(withJSONObject: object)
             return try P56PackageLoader.load(payload: changed, expectedSHA256: P56Digest.sha256(changed))
         }
-        return try P56PackageLoader.load(payload: bytes, expectedSHA256: P56PinnedSource.sha256)
+        return try P56PackageLoader.load(payload: bytes, expectedSHA256: P56PinnedSource.v2SHA256)
     }
     func testReviewAggregatesEveryPageAndEnforcesExistingSafetyPolicy() throws {
         let package = try loadV2()
