@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · codex/cocugun-masal-yolu-gorselleri · Beş arkadaş portreleri ve mod çizimleri v2
+
+- Beş portreye v2 asset setleri eklendi. Renkler, imza eşyaları ve siluetler karaktere göre ayrıldı. Galerideki 15 mod görseli yeni poz ve ışıklarla güncellendi. Sürpriz görseli korundu.
+- Galeriye 64 px renkli portre ve siyah siluet karşılaştırması eklendi. 20 yeni PNG tam çözünürlükte açıldı. Alfa kanalları, galeri bağlantıları, görsel önizleme ve 21 dosyalık ZIP denetlendi. Uygulama testi ve simülatör çalıştırılmadı.
+- Dosyalar `MagicPaper/Assets.xcassets/CompanionPortraits/` ve `design-handoff/proposals/2026-11-26-cocugun-masal-yolu/` altında.
+
 ### 2026-11-24 · irem-aktarim (dal, bu kayıtla gelen commit) · İrem'in tasarımları uygulamaya aktarıldı
 
 - **Ne:** İrem'in 21-24 Kasım işi (`irem` dalı) inceleme bulgularıyla düzeltilerek `irem-aktarim` dalında. Tasarım belgesi `docs/superpowers/specs/2026-11-24-irem-tasarim-aktarimi-design.md`, plan `docs/superpowers/plans/2026-11-24-irem-tasarim-aktarimi.md`.
