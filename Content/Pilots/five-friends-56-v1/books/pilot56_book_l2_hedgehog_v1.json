@@ -1,0 +1,996 @@
+{
+  "id": "pilot56_book_l2_hedgehog_v1",
+  "title": "İki Taraftan Bir Yaprak",
+  "blueprintID": "pilot56_blueprint_l2_v1",
+  "planLabel": "L2",
+  "mechanismKey": "combine-viewpoints",
+  "status": "authored-internal-review-required",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "learning",
+    "arc": "editorial-learning",
+    "companionID": "companion_hedgehog_pilot_001",
+    "settingID": "setting_whispering_forest_001",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Küçük adımlarla cesaretlenir; her sahnede kaygılı değildir.",
+  "physicalContract": "Dört kısa ayak; dikenler korunur.",
+  "childAgency": "Çocuk iki yan görünüşü birleştirir, nesneyi çekmez.",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "partial_shape",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_1_v1"
+      ],
+      "text": "Deniz ile Kestane, Fısıldayan Orman’daki düz açıklıkta durdu. Yerdeki düşmüş dalın altından yeşil bir uç görünüyordu. Dalın öte yanında da yeşil bir kıvrım vardı. Dal kıpırdamıyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "partial_shape",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l2_hedgehog_p01_v1",
+            "sourceTextDigest": "63ea07c49b436bc248de9ea3d8a8924613889e6a82316a8713318bfbba307174",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/548",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l2_hedgehog_p01_v1_s01",
+        "pilot56_source_l2_hedgehog_p01_v1_s02",
+        "pilot56_source_l2_hedgehog_p01_v1_s03",
+        "pilot56_source_l2_hedgehog_p01_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_under_branch_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düşmüş sabit dal ve altındaki tek yeşil yaprak; iki görünüş iki ayrı yaprak değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "dal altındaki kısmi yaprağı görür",
+            "evidenceSourceID": "pilot56_source_l2_hedgehog_p01_v1",
+            "evidenceText": "Deniz ile Kestane, Fısıldayan Orman’daki düz açıklıkta durdu. Yerdeki düşmüş dalın altından yeşil bir uç görünüyordu. Dalın öte yanında da yeşil bir kıvrım vardı. Dal kıpırdamıyordu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "dal altındaki kısmi yaprağı görür",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 2,
+      "role": "first_view",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_2_v1"
+      ],
+      "text": "Deniz bulunduğu taraftan ince uca baktı. \"Uzun bir şey görüyorum,\" dedi. Oradan yalnız bir bölümü seçiliyordu. Daha iyi görmek için dalı kaldırmak yerine çevresindeki açık yere baktı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "partial_shape",
+      "stateAfter": "first_view",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l2_hedgehog_p02_v1",
+            "sourceTextDigest": "961505de4eb50933a2c5e36d36b0ee8666f067bc1158a58d6863dc4d2d24ed0a",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/553",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l2_hedgehog_p02_v1_s01",
+        "pilot56_source_l2_hedgehog_p02_v1_s02",
+        "pilot56_source_l2_hedgehog_p02_v1_s03",
+        "pilot56_source_l2_hedgehog_p02_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_under_branch_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düşmüş sabit dal ve altındaki tek yeşil yaprak; iki görünüş iki ayrı yaprak değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "ilk taraftan ince ucu gözler",
+            "evidenceSourceID": "pilot56_source_l2_hedgehog_p02_v1",
+            "evidenceText": "Deniz bulunduğu taraftan ince uca baktı. \"Uzun bir şey görüyorum,\" dedi. Oradan yalnız bir bölümü seçiliyordu. Daha iyi görmek için dalı kaldırmak yerine çevresindeki açık yere baktı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "ilk taraftan ince ucu gözler",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_second_view",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_3_v1"
+      ],
+      "text": "Kestane kısa ayaklarıyla dalın öte yanındaki açık zemine geçti. \"Buradan yuvarlak bir kıvrım görünüyor,\" dedi. Çekinmeden gördüğünü anlattı. Deniz ince ucu görüyordu; ikisi henüz aynı şeyi görmüyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "first_view",
+      "stateAfter": "friend_second_view",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l2_hedgehog_p03_v1",
+            "sourceTextDigest": "b795770ab098d7048e269707049a549ecc93d1963ae5dea659a0b34e15608d39",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/558",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l2_hedgehog_p03_v1_s01",
+        "pilot56_source_l2_hedgehog_p03_v1_s02",
+        "pilot56_source_l2_hedgehog_p03_v1_s03",
+        "pilot56_source_l2_hedgehog_p03_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_under_branch_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düşmüş sabit dal ve altındaki tek yeşil yaprak; iki görünüş iki ayrı yaprak değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane kısa ayaklarıyla dalın öte yanındaki açık zemine geçti. \"Buradan yuvarlak bir kıvrım görünüyor,\" dedi. Çekinmeden gördüğünü anlattı. Deniz ince ucu görüyordu; ikisi henüz aynı şeyi görmüyordu.",
+            "evidenceSourceID": "pilot56_source_l2_hedgehog_p03_v1",
+            "evidenceText": "Kestane kısa ayaklarıyla dalın öte yanındaki açık zemine geçti. \"Buradan yuvarlak bir kıvrım görünüyor,\" dedi. Çekinmeden gördüğünü anlattı. Deniz ince ucu görüyordu; ikisi henüz aynı şeyi görmüyordu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane kısa ayaklarıyla dalın öte yanındaki açık zemine geçti. \"Buradan yuvarlak bir kıvrım görünüyor,\" dedi. Çekinmeden gördüğünü anlattı. Deniz ince ucu görüyordu; ikisi henüz aynı şeyi görmüyordu.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_repositions",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_4_v1"
+      ],
+      "text": "Deniz geniş açıklıktan dolaşıp dalın diğer yanına geçti. Arkadaşı için de açık geçiş vardı. Şimdi yuvarlak kıvrımı görebiliyordu. Biraz önce gördüğü ince uç, aynı dalın arkasında kalmıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_second_view",
+      "stateAfter": "child_repositions",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l2_hedgehog_p04_v1",
+            "sourceTextDigest": "b356244731e2e26764ec4e518f78bf198bbfa779d70da7708f37ea6b20583d41",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/563",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l2_hedgehog_p04_v1_s01",
+        "pilot56_source_l2_hedgehog_p04_v1_s02",
+        "pilot56_source_l2_hedgehog_p04_v1_s03",
+        "pilot56_source_l2_hedgehog_p04_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_under_branch_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düşmüş sabit dal ve altındaki tek yeşil yaprak; iki görünüş iki ayrı yaprak değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "düz açık yerden dolaşır",
+            "evidenceSourceID": "pilot56_source_l2_hedgehog_p04_v1",
+            "evidenceText": "Deniz geniş açıklıktan dolaşıp dalın diğer yanına geçti. Arkadaşı için de açık geçiş vardı. Şimdi yuvarlak kıvrımı görebiliyordu. Biraz önce gördüğü ince uç, aynı dalın arkasında kalmıştı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "düz açık yerden dolaşır",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "compare_views",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_5_v1"
+      ],
+      "text": "Deniz bir adım yana kaydı. Kestane bulunduğu açık yerden kıvrımı yeniden tarif etti. \"Uç burada, kıvrım orada,\" dedi Deniz. İkisinin söylediklerini zihninde yan yana koydu; dal yerinde kaldı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_repositions",
+      "stateAfter": "compare_views",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l2_hedgehog_p05_v1",
+            "sourceTextDigest": "eeaf40a3de1ea7f761e13fd915d55e32e71c0e6e128873f4b4a50da287d8d91a",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/568",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l2_hedgehog_p05_v1_s01",
+        "pilot56_source_l2_hedgehog_p05_v1_s02",
+        "pilot56_source_l2_hedgehog_p05_v1_s03",
+        "pilot56_source_l2_hedgehog_p05_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_under_branch_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düşmüş sabit dal ve altındaki tek yeşil yaprak; iki görünüş iki ayrı yaprak değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz bir adım yana kaydı. Kestane bulunduğu açık yerden kıvrımı yeniden tarif etti. \"Uç burada, kıvrım orada,\" dedi Deniz. İkisinin söylediklerini zihninde yan yana koydu; dal yerinde kaldı.",
+            "evidenceSourceID": "pilot56_source_l2_hedgehog_p05_v1",
+            "evidenceText": "Deniz bir adım yana kaydı. Kestane bulunduğu açık yerden kıvrımı yeniden tarif etti. \"Uç burada, kıvrım orada,\" dedi Deniz. İkisinin söylediklerini zihninde yan yana koydu; dal yerinde kaldı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz bir adım yana kaydı. Kestane bulunduğu açık yerden kıvrımı yeniden tarif etti. \"Uç burada, kıvrım orada,\" dedi Deniz. İkisinin söylediklerini zihninde yan yana koydu; dal yerinde kaldı.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "child_combines",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_6_v1"
+      ],
+      "text": "\"İki ayrı şey sanmıştım,\" dedi Deniz. \"Ama aynı yaprağın iki yanı olabilir.\" Kestane dar aralığı gösteren yere başını çevirdi. Deniz sapın devamını görmek için kendi bakışını biraz alçalttı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "compare_views",
+      "stateAfter": "child_combines",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l2_hedgehog_p06_v1",
+            "sourceTextDigest": "f8eb6e1140578fbccb8386b4cad93085f0e5ca293e7683ca60a5ea3bc6a5983d",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/572",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l2_hedgehog_p06_v1_s01",
+        "pilot56_source_l2_hedgehog_p06_v1_s02",
+        "pilot56_source_l2_hedgehog_p06_v1_s03"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_under_branch_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düşmüş sabit dal ve altındaki tek yeşil yaprak; iki görünüş iki ayrı yaprak değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "\"İki ayrı şey sanmıştım,\" dedi Deniz. \"Ama aynı yaprağın iki yanı olabilir.\" Kestane dar aralığı gösteren yere başını çevirdi. Deniz sapın devamını görmek için kendi bakışını biraz alçalttı.",
+            "evidenceSourceID": "pilot56_source_l2_hedgehog_p06_v1",
+            "evidenceText": "\"İki ayrı şey sanmıştım,\" dedi Deniz. \"Ama aynı yaprağın iki yanı olabilir.\" Kestane dar aralığı gösteren yere başını çevirdi. Deniz sapın devamını görmek için kendi bakışını biraz alçalttı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"İki ayrı şey sanmıştım,\" dedi Deniz. \"Ama aynı yaprağın iki yanı olabilir.\" Kestane dar aralığı gösteren yere başını çevirdi. Deniz sapın devamını görmek için kendi bakışını biraz alçalttı.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 7,
+      "role": "whole_seen",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_7_v1"
+      ],
+      "text": "Deniz biraz yana eğildi. İki yeşil parçanın ortadaki sapla birleştiği aralık görünüyordu. Dalın altında tek bir yaprak vardı. Onu yerinden çıkarmadan, iki taraftan bakarak bütününü anlamışlardı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "child_combines",
+      "stateAfter": "whole_seen",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l2_hedgehog_p07_v1",
+            "sourceTextDigest": "96f0ad4cb96dc5f76d1d14b3eeec97f95473907a749b5bd3ad0b14c29623acd5",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/577",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l2_hedgehog_p07_v1_s01",
+        "pilot56_source_l2_hedgehog_p07_v1_s02",
+        "pilot56_source_l2_hedgehog_p07_v1_s03",
+        "pilot56_source_l2_hedgehog_p07_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_under_branch_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düşmüş sabit dal ve altındaki tek yeşil yaprak; iki görünüş iki ayrı yaprak değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "aralıktan ortak sapı görür",
+            "evidenceSourceID": "pilot56_source_l2_hedgehog_p07_v1",
+            "evidenceText": "Deniz biraz yana eğildi. İki yeşil parçanın ortadaki sapla birleştiği aralık görünüyordu. Dalın altında tek bir yaprak vardı. Onu yerinden çıkarmadan, iki taraftan bakarak bütününü anlamışlardı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "aralıktan ortak sapı görür",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_result",
+      "orderedBeatIDs": [
+        "pilot56_beat_l2_8_v1"
+      ],
+      "text": "Deniz patikaya dönerken iki tarafı da düşündü. İlk gördüğü uç doğruydu; arkadaşının gördüğü kıvrım da doğruydu. Birlikte düşününce yaprak tamamlanmıştı. Yerdeki dal ve yaprak oldukları yerde kaldı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "whole_seen",
+      "stateAfter": "closed_result",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_l2_hedgehog_p08_v1",
+            "sourceTextDigest": "43a28c987dfd17b3d43f04c6254137a6728822d63f7dcfdf8e000566b4ed2a48",
+            "templateID": "pilot56_blueprint_l2_v1",
+            "sourcePointer": "sources.json#/sources/582",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_leaf_under_branch_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_l2_hedgehog_p08_v1_s01",
+        "pilot56_source_l2_hedgehog_p08_v1_s02",
+        "pilot56_source_l2_hedgehog_p08_v1_s03",
+        "pilot56_source_l2_hedgehog_p08_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_leaf_under_branch_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düşmüş sabit dal ve altındaki tek yeşil yaprak; iki görünüş iki ayrı yaprak değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "dala dokunmadan patikaya döner",
+            "evidenceSourceID": "pilot56_source_l2_hedgehog_p08_v1",
+            "evidenceText": "Deniz patikaya dönerken iki tarafı da düşündü. İlk gördüğü uç doğruydu; arkadaşının gördüğü kıvrım da doğruydu. Birlikte düşününce yaprak tamamlanmıştı. Yerdeki dal ve yaprak oldukları yerde kaldı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "dala dokunmadan patikaya döner",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action."
+        ]
+      },
+      "editorialIntensity": 0
+    }
+  ],
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false
+}

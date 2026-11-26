@@ -1,0 +1,1002 @@
+{
+  "id": "pilot56_book_u1_fox_event03_v1",
+  "title": "Örtünün Son Hışırtısı",
+  "blueprintID": "pilot56_blueprint_u1_v1",
+  "planLabel": "U1",
+  "mechanismKey": "familiar-sound-ritual",
+  "status": "authored-internal-review-required",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "bedtime",
+    "arc": "charge-bedtime-editorial",
+    "companionID": "companion_fox_pilot_001",
+    "settingID": "pilot56_setting_forest_edge_room_v1",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_cover_rustle_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Sakin eşlik; acele ettirmez; çocuğun kararını bekler.",
+  "physicalContract": "Dört ayak; doğal tilki ölçeği.",
+  "childAgency": "Çocuk bildiği sesleri sırayla seçip dinlemeyi bırakır.",
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "baseBookID": "pilot56_book_u1_fox_v1",
+  "variantID": "event03",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "settled_room",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_1_v1"
+      ],
+      "text": "Deniz yatağına oturup örtüsünü dizlerine aldı. Tarçın odada kendi yerindeydi. Pencere kapalıydı, içeriye yumuşak bir akşam ışığı düşüyordu. Odanın bütün eşyaları yerli yerindeydi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_cover_rustle_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "settled_room",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_fox_event03_p01_v1",
+            "sourceTextDigest": "5b224f00f15c389684de8ae92dffea1898c8242ff7a4706384b0b4251e760b12",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/44",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_cover_rustle_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_fox_event03_p01_v1_s01",
+        "pilot56_source_u1_fox_event03_p01_v1_s02",
+        "pilot56_source_u1_fox_event03_p01_v1_s03",
+        "pilot56_source_u1_fox_event03_p01_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_cover_rustle_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü, kapalı pencere; örtünün bir kez düzeltilmesi ve ardından hareketsiz kalması",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz yatağına oturup örtüsünü dizlerine aldı. Tarçın odada kendi yerindeydi. Pencere kapalıydı, içeriye yumuşak bir akşam ışığı düşüyordu. Odanın bütün eşyaları yerli yerindeydi.",
+            "evidenceSourceID": "pilot56_source_u1_fox_event03_p01_v1",
+            "evidenceText": "Deniz yatağına oturup örtüsünü dizlerine aldı. Tarçın odada kendi yerindeydi. Pencere kapalıydı, içeriye yumuşak bir akşam ışığı düşüyordu. Odanın bütün eşyaları yerli yerindeydi.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yatağına oturup örtüsünü dizlerine aldı. Tarçın odada kendi yerindeydi. Pencere kapalıydı, içeriye yumuşak bir akşam ışığı düşüyordu. Odanın bütün eşyaları yerli yerindeydi.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 2,
+      "role": "ritual_chosen",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_2_v1"
+      ],
+      "text": "Deniz örtünün kenarını yalnız bir kez düzeltmeyi seçti. Kumaş usulca hışırdadı, sonra yatağın üzerinde durdu. Çocuk tanıdığı bu küçük sesi dinledi. Yeniden düzeltmesi gerekmiyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_cover_rustle_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "settled_room",
+      "stateAfter": "ritual_chosen",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_fox_event03_p02_v1",
+            "sourceTextDigest": "beb5bd845b4903f5593e962d48ee515119d8cbb13b0cf33260ec1056c3267f59",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/49",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_cover_rustle_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_fox_event03_p02_v1_s01",
+        "pilot56_source_u1_fox_event03_p02_v1_s02",
+        "pilot56_source_u1_fox_event03_p02_v1_s03",
+        "pilot56_source_u1_fox_event03_p02_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_cover_rustle_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü, kapalı pencere; örtünün bir kez düzeltilmesi ve ardından hareketsiz kalması",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz örtünün kenarını yalnız bir kez düzeltmeyi seçti. Kumaş usulca hışırdadı, sonra yatağın üzerinde durdu. Çocuk tanıdığı bu küçük sesi dinledi. Yeniden düzeltmesi gerekmiyordu.",
+            "evidenceSourceID": "pilot56_source_u1_fox_event03_p02_v1",
+            "evidenceText": "Deniz örtünün kenarını yalnız bir kez düzeltmeyi seçti. Kumaş usulca hışırdadı, sonra yatağın üzerinde durdu. Çocuk tanıdığı bu küçük sesi dinledi. Yeniden düzeltmesi gerekmiyordu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz örtünün kenarını yalnız bir kez düzeltmeyi seçti. Kumaş usulca hışırdadı, sonra yatağın üzerinde durdu. Çocuk tanıdığı bu küçük sesi dinledi. Yeniden düzeltmesi gerekmiyordu.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_listens",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_3_v1"
+      ],
+      "text": "Tarçın dört ayağını rahatça yerleştirip sessizce dinledi. \"Yavaşça dinliyorum,\" dedi. Deniz’in seçtiği sesi bitirmesini bekliyordu. Çocuğu yeni bir ses bulmaya ya da tekrara çağırmadı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_cover_rustle_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "ritual_chosen",
+      "stateAfter": "friend_listens",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_fox_event03_p03_v1",
+            "sourceTextDigest": "e8305eec24d85513deebd36f5ad1d950840cda5ed7bb680e72926975d19fd897",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/54",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_cover_rustle_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_fox_event03_p03_v1_s01",
+        "pilot56_source_u1_fox_event03_p03_v1_s02",
+        "pilot56_source_u1_fox_event03_p03_v1_s03",
+        "pilot56_source_u1_fox_event03_p03_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_cover_rustle_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü, kapalı pencere; örtünün bir kez düzeltilmesi ve ardından hareketsiz kalması",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın dört ayağını rahatça yerleştirip sessizce dinledi. \"Yavaşça dinliyorum,\" dedi. Deniz’in seçtiği sesi bitirmesini bekliyordu. Çocuğu yeni bir ses bulmaya ya da tekrara çağırmadı.",
+            "evidenceSourceID": "pilot56_source_u1_fox_event03_p03_v1",
+            "evidenceText": "Tarçın dört ayağını rahatça yerleştirip sessizce dinledi. \"Yavaşça dinliyorum,\" dedi. Deniz’in seçtiği sesi bitirmesini bekliyordu. Çocuğu yeni bir ses bulmaya ya da tekrara çağırmadı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın dört ayağını rahatça yerleştirip sessizce dinledi. \"Yavaşça dinliyorum,\" dedi. Deniz’in seçtiği sesi bitirmesini bekliyordu. Çocuğu yeni bir ses bulmaya ya da tekrara çağırmadı.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_names_sound",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_4_v1"
+      ],
+      "text": "Deniz örtünün sesini fısıltıyla adlandırdı. \"Bu da örtümün hışırtısı,\" dedi. Kumaşın kenarı şimdi ellerinin altında düzdü. Aynı sesi duymak için onu yeniden oynatabilirdi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_cover_rustle_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_listens",
+      "stateAfter": "child_names_sound",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_fox_event03_p04_v1",
+            "sourceTextDigest": "5f6814f689edd5e3281451d3e36ca759515d990ea130d1508ea8cc9c638b270e",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/59",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_cover_rustle_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_fox_event03_p04_v1_s01",
+        "pilot56_source_u1_fox_event03_p04_v1_s02",
+        "pilot56_source_u1_fox_event03_p04_v1_s03",
+        "pilot56_source_u1_fox_event03_p04_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_cover_rustle_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü, kapalı pencere; örtünün bir kez düzeltilmesi ve ardından hareketsiz kalması",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz örtünün sesini fısıltıyla adlandırdı. \"Bu da örtümün hışırtısı,\" dedi. Kumaşın kenarı şimdi ellerinin altında düzdü. Aynı sesi duymak için onu yeniden oynatabilirdi.",
+            "evidenceSourceID": "pilot56_source_u1_fox_event03_p04_v1",
+            "evidenceText": "Deniz örtünün sesini fısıltıyla adlandırdı. \"Bu da örtümün hışırtısı,\" dedi. Kumaşın kenarı şimdi ellerinin altında düzdü. Aynı sesi duymak için onu yeniden oynatabilirdi.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz örtünün sesini fısıltıyla adlandırdı. \"Bu da örtümün hışırtısı,\" dedi. Kumaşın kenarı şimdi ellerinin altında düzdü. Aynı sesi duymak için onu yeniden oynatabilirdi.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 5,
+      "role": "soft_smile",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_5_v1"
+      ],
+      "text": "Deniz düzgün duran örtüye bakıp hafifçe gülümsedi. Ses çoktan bitmişti, fakat tanıdık hışırtıyı hatırlıyordu. Örtünün yeniden ses çıkarması gerekmiyordu. Ellerini kumaşın üzerinde sakin tuttu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_cover_rustle_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_names_sound",
+      "stateAfter": "soft_smile",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_fox_event03_p05_v1",
+            "sourceTextDigest": "4d5594b03c9b785705518af2e721da5341d701e98e8ccd691c7a1ed09d95b058",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/64",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_cover_rustle_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_fox_event03_p05_v1_s01",
+        "pilot56_source_u1_fox_event03_p05_v1_s02",
+        "pilot56_source_u1_fox_event03_p05_v1_s03",
+        "pilot56_source_u1_fox_event03_p05_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_cover_rustle_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü, kapalı pencere; örtünün bir kez düzeltilmesi ve ardından hareketsiz kalması",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz düzgün duran örtüye bakıp hafifçe gülümsedi. Ses çoktan bitmişti, fakat tanıdık hışırtıyı hatırlıyordu. Örtünün yeniden ses çıkarması gerekmiyordu. Ellerini kumaşın üzerinde sakin tuttu.",
+            "evidenceSourceID": "pilot56_source_u1_fox_event03_p05_v1",
+            "evidenceText": "Deniz düzgün duran örtüye bakıp hafifçe gülümsedi. Ses çoktan bitmişti, fakat tanıdık hışırtıyı hatırlıyordu. Örtünün yeniden ses çıkarması gerekmiyordu. Ellerini kumaşın üzerinde sakin tuttu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz düzgün duran örtüye bakıp hafifçe gülümsedi. Ses çoktan bitmişti, fakat tanıdık hışırtıyı hatırlıyordu. Örtünün yeniden ses çıkarması gerekmiyordu. Ellerini kumaşın üzerinde sakin tuttu.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 6,
+      "role": "attention_released",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_6_v1"
+      ],
+      "text": "Deniz ellerini örtünün kenarından çekti. \"Bir daha düzeltmeyeceğim,\" dedi, sesi yeniden başlatmadı. Kumaş olduğu yerde kaldı. Çocuk artık başka bir hışırtı gelmesini beklemiyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_cover_rustle_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "soft_smile",
+      "stateAfter": "attention_released",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_fox_event03_p06_v1",
+            "sourceTextDigest": "c59b75a9c0b1dcdc2b444ea0eb7cf67aa840bd9075bb1285e8fed1e402662b66",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/69",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_cover_rustle_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_fox_event03_p06_v1_s01",
+        "pilot56_source_u1_fox_event03_p06_v1_s02",
+        "pilot56_source_u1_fox_event03_p06_v1_s03",
+        "pilot56_source_u1_fox_event03_p06_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_cover_rustle_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü, kapalı pencere; örtünün bir kez düzeltilmesi ve ardından hareketsiz kalması",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz ellerini örtünün kenarından çekti. \"Bir daha düzeltmeyeceğim,\" dedi, sesi yeniden başlatmadı. Kumaş olduğu yerde kaldı. Çocuk artık başka bir hışırtı gelmesini beklemiyordu.",
+            "evidenceSourceID": "pilot56_source_u1_fox_event03_p06_v1",
+            "evidenceText": "Deniz ellerini örtünün kenarından çekti. \"Bir daha düzeltmeyeceğim,\" dedi, sesi yeniden başlatmadı. Kumaş olduğu yerde kaldı. Çocuk artık başka bir hışırtı gelmesini beklemiyordu.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ellerini örtünün kenarından çekti. \"Bir daha düzeltmeyeceğim,\" dedi, sesi yeniden başlatmadı. Kumaş olduğu yerde kaldı. Çocuk artık başka bir hışırtı gelmesini beklemiyordu.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 7,
+      "role": "awake_rest",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_7_v1"
+      ],
+      "text": "Tarçın kendi yerinde uyanık ve rahattı. Deniz de örtüsünün altında dinleniyordu. İkisi kumaşı yeniden oynatmadı. Akşamın sessizliği içinde tanıdık odalarında rahatça kaldılar.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_cover_rustle_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "attention_released",
+      "stateAfter": "awake_rest",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_fox_event03_p07_v1",
+            "sourceTextDigest": "04937ca442fbe228b14b9026aafab366ee75523eb0d075f8fca1a80183fe7898",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/74",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_cover_rustle_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_fox_event03_p07_v1_s01",
+        "pilot56_source_u1_fox_event03_p07_v1_s02",
+        "pilot56_source_u1_fox_event03_p07_v1_s03",
+        "pilot56_source_u1_fox_event03_p07_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_cover_rustle_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü, kapalı pencere; örtünün bir kez düzeltilmesi ve ardından hareketsiz kalması",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın kendi yerinde uyanık ve rahattı. Deniz de örtüsünün altında dinleniyordu. İkisi kumaşı yeniden oynatmadı. Akşamın sessizliği içinde tanıdık odalarında rahatça kaldılar.",
+            "evidenceSourceID": "pilot56_source_u1_fox_event03_p07_v1",
+            "evidenceText": "Tarçın kendi yerinde uyanık ve rahattı. Deniz de örtüsünün altında dinleniyordu. İkisi kumaşı yeniden oynatmadı. Akşamın sessizliği içinde tanıdık odalarında rahatça kaldılar.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın kendi yerinde uyanık ve rahattı. Deniz de örtüsünün altında dinleniyordu. İkisi kumaşı yeniden oynatmadı. Akşamın sessizliği içinde tanıdık odalarında rahatça kaldılar.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_calm",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_8_v1"
+      ],
+      "text": "Deniz gözlerini kapattı, örtüsü düz duruyordu. Arkadaşı dinlenmeyi sürdürdü. Bir kez duydukları küçük ses yeterliydi. Akşamın sonunda tekrarlanmaları gereken sesler ya da sözler kalmamıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_cover_rustle_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "awake_rest",
+      "stateAfter": "closed_calm",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_fox_event03_p08_v1",
+            "sourceTextDigest": "83864efae39af2dee50ecba858178cea494c4aa1b7ad6bf92fde342f89e69cbb",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/79",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_cover_rustle_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_fox_event03_p08_v1_s01",
+        "pilot56_source_u1_fox_event03_p08_v1_s02",
+        "pilot56_source_u1_fox_event03_p08_v1_s03",
+        "pilot56_source_u1_fox_event03_p08_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_cover_rustle_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı, örtü, kapalı pencere; örtünün bir kez düzeltilmesi ve ardından hareketsiz kalması",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz gözlerini kapattı, örtüsü düz duruyordu. Arkadaşı dinlenmeyi sürdürdü. Bir kez duydukları küçük ses yeterliydi. Akşamın sonunda tekrarlanmaları gereken sesler ya da sözler kalmamıştı.",
+            "evidenceSourceID": "pilot56_source_u1_fox_event03_p08_v1",
+            "evidenceText": "Deniz gözlerini kapattı, örtüsü düz duruyordu. Arkadaşı dinlenmeyi sürdürdü. Bir kez duydukları küçük ses yeterliydi. Akşamın sonunda tekrarlanmaları gereken sesler ya da sözler kalmamıştı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz gözlerini kapattı, örtüsü düz duruyordu. Arkadaşı dinlenmeyi sürdürdü. Bir kez duydukları küçük ses yeterliydi. Akşamın sonunda tekrarlanmaları gereken sesler ya da sözler kalmamıştı.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution."
+        ]
+      },
+      "editorialIntensity": 0
+    }
+  ]
+}

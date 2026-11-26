@@ -133,6 +133,272 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · main, birleştirme commit'i · Beş arkadaş entegrasyonu main'e alındı (Batuhan kararı)
+
+- Ne değişti: `codex/bes-arkadas/entegrasyon` (e6580f7: B hattı P56 + okul öncesi "önce arkadaş" akışı) main'e `--no-ff` ile birleşti. Batuhan telefonunda denemek için istedi (26 Kasım 2026). Beş arkadaş yolu bayrakla kapalı; Debug'da `-mpFiveFriendsPilot YES` ile açılır.
+- Çakışmalar elle çözüldü: `TopicStep.swift` kilit notu: entegrasyonun `showsLockNote` anahtarı + main'in "Kilitli olanlar şimdilik kapalı." cümlesi (değer algısı: çocuğa satış yok). `SeriesTests.swift` yalnız yorum, main'inki kaldı. Bu günlük: iki tarafın kayıtları birleştirildi, satır kaybı yok.
+- Bilerek değişmeyen: push yok; Codex'in v3 düzeltme dalı bu birleşmede yok.
+- Test: bu kaydın yazıldığı anda koşulmadı (ortak derleme klasörü başka oturumda, disk %99). Sonuç ayrı kayıtta.
+
+### 2026-11-26 · codex/bes-arkadas/cocuk-akisi@37e135d · Okul öncesi masal yazma: önce arkadaş
+
+- Ne değişti: beş arkadaş pilotu açıkken okul öncesi çocuk (`KidLevel.little`, çocuk modu) masal yazmaya arkadaştan başlıyor: Kim gelsin? (beş gerçek portre + Sürpriz, sabit sıra Kestane, Böğürtlen, Tarçın, Yıldız, Simit; dokununca karo büyür, arkadaş kendini bir cümleyle tanıtır, ~1 sn sonra geçer) → {Arkadaş} ile ne yapalım? (yalnız P56'nın o arkadaşla yazabildiği modlar, akşam uyku başta) → konu (Fark etmez ilk sırada ve sesli, kilit notu yok) → Hazır mısın? (arkadaş + mod, büyük Başla). Masal yalnız Başla ile yazılıyor. Sorular `MPSpeech` ile bir kez okunuyor, sağ üstte 80 pt tekrar düğmesi; geri oku 80 pt. Konu seçilince istek eski motora gidiyor (K4); arkadaş eski katalogda o konuda yazılabiliyorsa korunuyor, yoksa onay ekranı Sürpriz gösteriyor.
+- Kararlar `StoryCreationSteps.LittlePath` / `LittleCast`'te; cümleler `LittleCreationCopy`'de; ekranlar `LittleFriendSteps.swift`. Kaynak protokolüne `pilotFriendChoices`, `pilotModes`, `legacyWritableCompanionIDs` eklendi.
+- Bilerek değişmeyen: ebeveyn modu, büyük kademe, ana sayfadan modla açılış, Masal ailem'le açılış, beşli kapalıyken okul öncesi akış (simülatörde doğrulandı). Hazırlık ekranına dokunulmadı.
+- Test: `LittleFriendFirstTests` (13) + `StoryCreationStepsTests`, `CompanionStepChoicesTests`, `P56CompositionPathTests`, `CompanionPortraitCatalogTests`: 44 test, 0 hata (iPhone 17 Pro simülatörü). Tam test paketi koşulmadı. Simülatörde `-mpDemo YES -mpFiveFriendsPilot YES` ile ekranlar görüldü; koyu mod, en büyük Dynamic Type, iPhone SE ve Pro Max görüntüleri alınmadı.
+- Dosyalar: `StoryCreationSteps.swift`, `StoryCreationFlow.swift`, `TopicStep.swift`, `LittleFriendSteps.swift` (yeni), `LittleCreationCopy.swift` (yeni), `StoryChoiceSource.swift`, `FiveFriendsChoiceSource.swift`, `MPSpeech.swift` (perdeli `speak`), `MPCompanionPortrait.swift` (boyut), `MPLayout.swift` (`kidBackLarge`, `littlePortrait`), `LittleFriendFirstTests.swift` (yeni).
+
+### 2026-11-25 · codex/bes-arkadas/entegrasyon@7d1bb4e · B hattı (uygulama entegrasyonu) entegrasyona birleşti
+
+- Codex'in karşı incelemesi (`73578a6`, `B_LINE_REVIEW_ACCEPTANCE.md`) B hattını iç pilot için kabul etti. `19894d6` ucu `codex/bes-arkadas/entegrasyon`'a `--no-ff` ile birleşti: `7d1bb4e`. Birleşme ağacı `19894d6` ile birebir aynı (`git diff --exit-code`). Geçici worktree'de yapıldı, sonra silindi.
+- Entegrasyonda artık: C4 v1 + C2 v2 (90 kitap) + C3 güvenlik + B1–B7 (P56'yı bayrakla masal yazma yoluna bağlama, beşli seçim, kaynak izi, seri/hatırlama korumaları) + K-G.
+- Bilerek yapılmayan: main'e birleştirme, push, yayın. Release'te bayrak kapalı.
+- Test: bu birleşme için yeniden koşulmadı; kanıt B hattının 132/0 + 8/0 sonucu ve Codex'in motor 65/0 sonucu. Tam uygulama ve tam motor paketi (Hat D) henüz koşulmadı.
+- Açık: Hat D son kapısı; küçük kademe ızgarasında portre; Release performansı; eski istemcinin `p56` sayfa izini düşürmesi; Codex'in önerdiği nil-olmayan recall bağlamı testi; kullanılmayan `P56InternalService` temizliği.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, karar commit'i · K-G: P56 masalında otomatik hatırlama pilotta kapalı
+
+- Batuhan kararı: eski masallardan gelen otomatik hatırlama cümlesi P56 masalına taşınmaz; masal bu yüzden eski motora da gönderilmez, hatırlamasız yazılır. Ortak plana K-G olarak eklendi; davranış `testAutomaticRecallIsOffForP56Stories` ile sabit.
+- Kod, içerik değişmedi; test çalıştırılmadı (karar kaydı).
+- Dosyalar: ortak çalışma planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, v2 commit'i · P56 v2 uygulamada: beş arkadaş seçimi ve P56 masalı ilk kez simülatörde
+
+- Entegrasyondaki v2 ve C3 (`cdc40ed`) hatta alındı. Uygulamayla gelen paket v2 oldu: `five-friends-56-runtime-v2.p56payload.json` (12 MB, SHA `a0603221…`, `P56PinnedSource` ile aynı, `cmp` eşit); paket adı pinlenen sürümden türetiliyor; v1 baytları uygulamadan çıktı (v1 masalları sayfalarından okunur).
+- Codex incelemesindeki düzeltmeler: P56 yazamazsa son karar `.legacy/composeFailed` (önce rota `.p56` kalıyordu); arşive yazmanın sonucu ayrı tutuluyor (`archiveOutcome`: `archived`/`failed`, log'a yalnız kod); sayfa kaynak izi `21d4fbd`'de yapılmıştı, v2 izi testi eklendi.
+- Seçim: her arkadaş yönlendiriciye kendi kimliğiyle soruluyor, liste yalnız P56'nın gerçekten yazabileceği arkadaşlar. Küçük kademe ızgarası (`LittleCompanionStep`) altı karo kuralını koruyarak kaynağın sınırını kullanıyor; eski yolda bugünkü gibi üç arkadaş.
+- Pilot kararı (Codex sorusuna yanıt, onay bekliyor): eski masallardan gelen otomatik hatırlama P56 masalına taşınmıyor ve masalı eski motora da göndermiyor; testle sabitlendi.
+- Simülatör (iPhone 17 Pro, Debug, demo İrem 6 yaş, varsayılan en korumalı güvenlik, bayrak açık): "Maceraya çıkalım" → "Fark etmez" → "Kim gelsin?" Tarçın, Kestane, Yıldız, Simit, Böğürtlen + Sürpriz; Tarçın seçildi, P56 masalı yazıldı ve açıldı (8 sayfa). Kayıtta `catalogVersion` ve kaynak v2, 8 sayfa zinciri, arşiv v2 SHA'sıyla yazılmış. "Fark etmez" sonrası ekran ~1 sn'de geldi.
+- Açık: küçük kademe ızgarası portre değil simge gösteriyor (Tarçın köpek simgesiyle); bu görünüm işi, ayrı ele alınmalı. Release ölçümü, koyu tema, en büyük Dynamic Type, SE/Pro Max yapılmadı. Paket 12 MB ve Release'e de giriyor.
+- Test: 15 süit, 132 test, 0 hata (1 eski atlanan); ardından ızgara değişikliğiyle `CompanionStepChoicesTests` 8/0.
+- Dosyalar: `StoryRuntimeRouter.swift`, `FiveFriendsChoiceSource.swift`, `Services/StoryGenerationManager.swift`, `Screens/StoryCreation/LittleSteps.swift`, `Pilots/P56/P56BundledSource.swift`, paket (v1 silindi, v2 eklendi), testler (`StoryRuntimeRouterTests`, `P56CompositionPathTests`, `CompanionStepChoicesTests`, `P56BundledSourceTests`, `P56StoryMapperTests`), `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, inceleme ve B1 eki commit'i · C2 v2 + C3 karşı incelemesi, P56 sayfa kaynak izi
+
+- Codex'in `455aef9` teslimi (90 kitap, C3 güvenlik süzgeci) uygulama tarafından incelendi ve kabul edildi; engelleyici bulgu yok. Birleşmeden sonra uygulamada yapılacaklar durum dosyasına yazıldı: paketi v2'ye geçirmek (yoksa SHA tutmaz ve P56 hiç devreye girmez) ve seçim ekranında güvenliğe göre arkadaş süzmek. Codex'e soru: en korumalı politikada tamamen boşalan arkadaş × mod hücresi var mı.
+- Codex'in isteğiyle her P56 sayfasının kaynak zinciri kalıcı saklanıyor: `StoryPageProvenance.p56` (paket sürümü, şablon ve üst kaynak kimliği/SHA-256, işaretçi, işlenmiş metin SHA-256'sı, sıra). `parts` boş, P56 sayfası `beat_line` sayılmaz, görsel bağlayıcı ona bir şey bağlamaz. Bozuk iz yalnız izi düşürür. `Story.swift` değişmedi. Sınır: bu alanı bilmeyen eski sürüm kaydı yeniden yazarken izi düşürür; metin ve `contentSource` kalır.
+- Parmak izi `fingerprint(ofRenderedDigests:)` oldu (kaynak kimliği değil, içerik özeti). `P56SnapshotStore` v1 ve v2 paket sürümlerini kabul ediyor.
+- Test: `P56StoryMapperTests` +4 (parmak izi sınırları, sayfa zinciri, kaydet/oku ve eski iz, bozuk iz); 8 süit, 53 test, 0 hata, 1 eski atlanan.
+- Dosyalar: `StoryEngineBridge/StoryPageProvenance.swift`, `Pilots/P56/P56StoryMapper.swift`, `Pilots/P56/P56SnapshotStore.swift`, `MagicPaperTests/P56StoryMapperTests.swift`, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, düzeltme commit'i · Bayrak açıkken ilk seçimdeki donma
+
+- Ne değişti: `StoryRuntimeRouter.shared` açılışta, bayrak açıksa P56 paketini arka planda (`.userInitiated`) önceden okur; `ContentView` kitaplığı kurarken yönlendirici de kurulur. Karar yolu paketi tek kez okuyup doğrular (`P56BundledSource.loadPackage`); arşive yazma kararın dışına, arka plana alındı. Önce 3,3 MB üç kez çözülüyordu (arşive yaz, doğrula, yeniden oku) ve ilk ön yükleme `.utility` öncelikte kilit üstünde ana iş parçacığını bekletiyordu.
+- Ölçüm (Debug, iPhone 17 Pro simülatörü, arşiv silinmiş temiz açılış): "Fark etmez" → "Kim gelsin?" geçişi önce yaklaşık 10-12 sn, şimdi yaklaşık 2-3 sn; bayrak kapalıyken yaklaşık 1 sn. Ekran görüntüsü yoklamasıyla ölçüldü, kesin değil. Release'te ölçülmedi.
+- Bilerek değişmeyen: bayrak kapalıyken hiçbir şey okunmaz; arşiv hâlâ yazılır (v1 baytları), yalnız karardan sonra; `P56SnapshotStore` değişmedi.
+- Test: `StoryRuntimeRouterTests` (+2: ön yükleme ana iş parçacığı dışında ve bir kez; bayrak kapalıyken ön yükleme yok), `P56BundledSourceTests` (+2: tek çözme arşive yazmaz; bozuk bayt reddedilir), `P56CompositionPathTests`, `CompanionStepChoicesTests`: 39 test, 0 hata.
+- Dosyalar: `StoryRuntimeRouter.swift`, `Pilots/P56/P56BundledSource.swift`, `MagicPaperTests/StoryRuntimeRouterTests.swift`, `MagicPaperTests/P56BundledSourceTests.swift`, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B7 commit'i · B hattı derleme, test ve simülatör sonucu
+
+- Derleme: sıfırdan `build-for-testing` (iPhone 17 Pro, iOS 27). Üç hata çıktı, üçü de B hattının kodundaydı ve düzeltildi: `FiveFriendsChoiceSource` varsayılan kapanışları `@MainActor` değildi; testlerde `Story` iki modülde birden vardı (`MagicPaper.Story` yapıldı). Sonuç: `TEST BUILD SUCCEEDED`.
+- Testler: 13 süit, 85 test → 1 hata (gerçek hata): kart seçiliyken liste eskiye dönüyor ama gösterilecek sayı 5 kalıyordu; `companionDisplayLimit` kart kimliğini almıyordu. `forIdeaID` eklendi. Düzeltilen süit + ilk koşuda yanlış adla atlanan `SeriesClockTests` ve `SeriesManagerTests`: 41 test, 0 hata. Toplam 119 farklı test, düzeltmeden sonra 0 hata; 1 atlanan test eskiden beri atlanan `OfflineStoryMappingTests` testi. P56 yolu (güvenlik testte nil) gerçekten masal yazıp kaydetti (`testP56RouteWritesAndSaves`).
+- Simülatör (iPhone 17 Pro, açık tema, demo çocuk İrem 6 yaş): bayrak kapalı ve açıkken "Maceraya çıkalım" → "Fark etmez" → "Kim gelsin?" ekranı aynı (Böğürtlen, Pati, Pıtpıt, Sürpriz); beklenen, çünkü varsayılan güvenlik `.mostProtective` ve C3 yok. Bulgu: bayrak açıkken ilk seçimde birkaç saniye donma; ikinci seferde anında. Yönlendirici 3,3 MB payload'ı ilk kararda ana iş parçacığında yüklüyor. Düzeltilmedi.
+- Yapılmayanlar: P56 yolunun simülatörde görülmesi (C3 gerekli), koyu tema, en büyük Dynamic Type, iPhone SE ve Pro Max ekran görüntüleri, tam uygulama test paketi, motor paketi testleri (B hattı motoru değiştirmedi).
+- Derleme için gitignore'lu `MagicPaper/Secrets.xcconfig` ve `MagicPaper/GoogleService-Info.plist` ana checkout'tan sembolik bağla verildi; commit'e girmedi. Disk 1,3 GB'a düştüğü için derleme klasörü (`~/MagicPaper-worktrees/dd`, 4,2 GB) silindi.
+- Dosyalar: `FiveFriendsChoiceSource.swift`, `StoryChoiceSource.swift`, `CompanionStep.swift`, `MagicPaperTests/CompanionStepChoicesTests.swift`, `MagicPaperTests/P56StoryMapperTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B6 commit'i · P56 masalını seri ve hatırlamanın dışında tutma
+
+- Ne değişti: `StoryContextBuilder.recallHistory` P56 masallarını saymaz; yeni `isP56(_:)` kaynağa (`p56Reference`) ya da kaynak düşmüşse paket sürümüne (`five-friends-56-runtime-`) bakar. Seri tarafında kod değişmedi: `seriesAvailable` P56 kaynağında zaten `false`; testle sabitlendi.
+- Bilerek değişmeyen: eski masalların hatırlanması (aynı sayım, aynı sıra), seri yazımı, rozet ve yıldız (masal okunduğu için sayılır; B7 simülatöründe bakılacak).
+- Test: `P56GuardTests` (6 test: seri yok, tarihsel çözücü reddeder, hatırlamada yok, eski hatırlama aynı, kaynağı düşmüş P56 yine dışarıda, kayıtlı sayfalar payload'sız okunur) yazıldı, proje kuralı gereği koşulmadı; derleme yok.
+- Dosyalar: `MagicPaper/StoryEngineBridge/StoryContextBuilder.swift`, `MagicPaperTests/P56GuardTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B5 commit'i · "Masalda kimler olsun?" ekranında beş arkadaş
+
+- Ne değişti: yeni `FiveFriendsChoiceSource` (bayrak açıkken `StoryChoiceSources.current` bunu verir). Yönlendirici bu isteği P56'ya verecekse arkadaş listesi beşlidir, kanonik sırayla: Tarçın, Kestane, Yıldız, Simit, Böğürtlen; üç kart kesmesi ve simge tekilleştirmesi yok (her birinin portresi var). Masal ailem, konu, kart, başka yaş, mod yokluğu ya da C3 öncesi güvenlik politikası varsa liste bugünküyle aynı. `StoryChoiceSource`'a `companionDisplayLimit` gereksinimi (varsayılan 3); `CompanionStep` sabit `shown = 3` yerine bunu okur. Adlar ve kişilik satırları uygulama kataloğundan (`OfflineStoryService.companionChoice(id:)`), P56'nın yazar notları ekrana çıkmaz. `StoryRuntimeRouter.shared` eklendi; masal yazma yolu da onu kullanır.
+- Bilerek değişmeyen: ekranın görünüşü, portre bileşeni, eski yolun listesi ve sıralaması. Aynı ekrandaki özel gün çipi listeyi değiştirmez; özel gün seçilirse masalı eski motor seçilen arkadaşla yazar (B4).
+- Test: `CompanionStepChoicesTests` (7 test) yazıldı, proje kuralı gereği koşulmadı; derleme yok. C3 öncesi uygulamada liste fiilen bugünküyle aynı (varsayılan güvenlik).
+- Dosyalar: yeni `MagicPaper/StoryEngineBridge/FiveFriendsChoiceSource.swift`, `StoryChoiceSource.swift`, `OfflineStoryService.swift`, `StoryRuntimeRouter.swift`, `Services/StoryGenerationManager.swift`, `Screens/StoryCreation/CompanionStep.swift`, `MagicPaperTests/CompanionStepChoicesTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B4 commit'i · P56'yı masal yazma yoluna bayrakla bağlama
+
+- Ne değişti: `StoryGenerationManager.createStory` içinde, eski motor çağrısından önce tek dal. Yönlendirici P56 derse yeni `P56StoryWriter` masalı aynı bağlamdan, çocuğun gerçek adı ve kimliğiyle yazar ve `P56StoryMapper` ile kaydeder; görselli kitap bağlayıcısı atlanır. P56 yazamazsa (`composeFailed`) ya da paket yoksa (`payloadUnavailable`) aynı bağlamla eski motor yazar; seçilen arkadaş, mod, konu, aile ve güvenlik değişmez. Seçilen kart (`storyIdeaID`) varsa P56 kullanılmaz. Log'a yalnız neden kodu yazılır.
+- Bilerek değişmeyen: eski yolun kendisi (aynı satırlar, aynı sıra), seri yazımı, `OfflineStoryService`. Bayrak kapalıyken (Release'te her zaman) davranış aynı. C3 güvenlik desteği gelene kadar uygulamada P56'ya istek gitmez (varsayılan güvenlik `.mostProtective`).
+- Test: `P56CompositionPathTests` (8 test) yazıldı; P56 yolunu sınamak için test içinde güvenlik geçici olarak nil. Proje kuralı gereği koşulmadı; derleme yok. B7'de tek koşu.
+- Dosyalar: `MagicPaper/Services/StoryGenerationManager.swift`, yeni `MagicPaper/StoryEngineBridge/Pilots/P56/P56StoryWriter.swift`, `MagicPaperTests/P56CompositionPathTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B3 commit'i · Eski motor / P56 yönlendiricisi
+
+- Ne değişti: yeni `MagicPaper/StoryEngineBridge/StoryRuntimeRouter.swift`. `StoryRuntimeFlags.fiveFriendsPilot` yalnız Debug'da `-mpFiveFriendsPilot YES` ile açılır; Release'te sabit kapalı. `StoryRuntimeRouter.decide` bayrak kapalıyken payload'a bakmadan eski motoru seçer; açıkken P56'nın destek fonksiyonuna anonim bir istekle (çocuk adı/kimliği yok, gerçek güvenlik politikası) sorar. Sonuç: `.p56(kaynak)` ya da `.legacy` + sabit neden (`flagOff`, `unsupportedAge`, `unsupportedRequest`, `payloadUnavailable`). Kaynak bir kez yüklenir.
+- Bulgu: `UserProfile.effectiveSafety` ayarsız profilde `.mostProtective` döner, hiçbir zaman nil değil. P56 güvenlik politikası taşıyan her isteği reddettiği için Codex'in C3 güvenlik desteği gelene kadar uygulamada hiçbir istek P56'ya gitmez. Güvenliği atlatan kestirme eklenmedi. Codex'e bildirildi; B7 simülatör adımı buna göre güncellendi.
+- Bilerek değişmeyen: masal yazma yolu ve seçim ekranı (B4, B5); henüz kimse yönlendiriciyi çağırmıyor.
+- Test: `StoryRuntimeRouterTests` (14 test) yazıldı, proje kuralı gereği koşulmadı; derleme yok. B7'de tek koşu.
+- Dosyalar: `StoryRuntimeRouter.swift`, `MagicPaperTests/StoryRuntimeRouterTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B2 commit'i · P56 payload'ı uygulamayla paketleme
+
+- Ne değişti: `Content/Pilots/five-friends-56-runtime-v1/payload.json` bayt bayt `MagicPaper/StoryEngineBridge/Pilots/P56/five-friends-56-runtime-v1.p56payload.json` olarak kopyalandı (SHA-256 `28773f03…`, `P56PinnedSource.sha256` ile aynı; `cmp` eşit). Senkron klasör olduğu için pbxproj değişmedi. Yeni `P56BundledSource`: baytları okur, pinle doğrular, `Application Support/P56Sources` arşivine yazar, doğrulanmış referansı döndürür; bozuk ya da eksikse hata verir ve arşive bir şey yazmaz.
+- Bilinmesi gereken: payload 3,3 MB ve bayrak kapalıyken de Release paketine giriyor. İç pilot için kabul edilebilir; yayın kararında (K6) yeniden bakılmalı.
+- Bilerek değişmeyen: `P56SnapshotStore`, motor, içerik. Uygulamada henüz kimse `P56BundledSource`'u çağırmıyor (B3).
+- Test: `P56BundledSourceTests` (6 test) yazıldı, proje kuralı gereği koşulmadı; derleme yok. B7'de tek koşu.
+- Dosyalar: `P56BundledSource.swift`, payload kopyası, `MagicPaperTests/P56BundledSourceTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, B1 commit'i · P56 masalını kalıcı Story'ye çevirme
+
+- Ne değişti: yeni `P56StoryMapper` (`MagicPaper/StoryEngineBridge/Pilots/P56/`). P56 masalı sayfaları birebir, görselsiz `Story` olur; `origin.contentSource` P56 kaynak referansını taşır (`.reference == nil`, durum `.unsupported`), `catalogVersion` paket sürümü, `settingID` sayfaların ortak mekânı, `fingerprint` sayfa metin özetlerinden. Entegrasyondaki C4 v1 hatta merge ile alındı.
+- Bilerek değişmeyen: `Story.swift`, `OfflineStoryMapper`, masal yazma yolu (bayrak ve yönlendirici B3–B4'te). Uygulamada henüz hiçbir yer bu mapper'ı çağırmıyor.
+- Test: `P56StoryMapperTests` (5 test) yazıldı, proje kuralı gereği koşulmadı; derleme yapılmadı. B7'de tek koşu. Simülatör yok.
+- Dosyalar: `MagicPaper/StoryEngineBridge/Pilots/P56/P56StoryMapper.swift`, `MagicPaperTests/P56StoryMapperTests.swift`, B planı, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, karar commit'i · b099d9b kenarda kalır
+
+- Batuhan kararı: `bes-arkadas` dalındaki `b099d9b` ("Kadro beş arkadaşa indi", 24 Kasım) birleştirilmez; dal silinmez, değiştirilmez. Eski motorun kadrosu ve konuları bugünkü gibi kalır (K-F, K-B).
+- `docs/ortak/claude-durum.md`'ye işlendi. Kod, içerik, test değişmedi; test çalıştırılmadı.
+
+### 2026-11-25 · codex/bes-arkadas/claude-uygulama, inceleme commit'i · C4 v1 karşı incelemesi ve Claude hattının açılması
+
+- Claude hattı açıldı: worktree `~/MagicPaper-worktrees/claude-uygulama`, dal `codex/bes-arkadas/claude-uygulama`, taban `951f5ce`; B planı (`859313b`) `cherry-pick -x` ile taşındı.
+- Codex'in C4 v1 teslimi (`d41f291`) okundu ve kabul edildi, engelleyici bulgu yok. Uygulama tarafında `HistoricalCatalogResolver` ve `OfflineStoryService.historicalCatalog` P56 kaydını eski kataloğa düşürmüyor.
+- B planı güncellendi: `settingID` sayfaların ortak mekânı (Codex düzeltmesi), B6'ya tarihsel çözücü testi, v2 paket notu. C2 v2 sözleşme önerisi iki ekle kabul edildi (`P56PinnedSource.packageVersion`, v1 kaydının arşivde okunabilir kalması).
+- Batuhan'a bilgi: `bes-arkadas` dalındaki `b099d9b` ("Kadro beş arkadaşa indi") main'de değil ve K-F/K-B ile çelişebilir; main'de entegrasyon tabanında olmayan 63 commit var.
+- Bilerek değişmeyen: uygulama ve motor kodu. Test çalıştırılmadı (Codex'in 43/0'ı onun kanıtı), simülatör yok.
+- Dosyalar: `docs/ortak/claude-durum.md`, `docs/superpowers/plans/2026-11-25-bes-arkadas-b-hatti-uygulama.md`, bu kayıt.
+
+### 2026-11-25 · codex/design-system-catalog, plan commit'i · Beş arkadaş B hattı (Claude) TDD planı
+
+- Yeni `docs/superpowers/plans/2026-11-25-bes-arkadas-b-hatti-uygulama.md`: B1 P56 masalını `Story`'ye çevirme, B2 paketli payload, B3 yönlendirici (karar + neden kodu, yalnız DEBUG bayrak), B4 `StoryGenerationManager.createStory`'de tek dal ve aynı girdilerle eski yola düşüş, B5 `FiveFriendsChoiceSource` ile beş arkadaşlı seçim listesi, B6 P56 masalını seri ve hatırlamanın dışında tutma, B7 tek koşu doğrulaması. Test adları ve iddiaları yazıldı.
+- Kod okumasından çıkan iki not: P56 güvenlik ayarlı her isteği reddettiği için C3'e kadar böyle profiller eski motora gider; hatırlama girdisi `StoryContextBuilder.recallHistory`'de, bu dosya Claude hattına eklendi.
+- `docs/ortak/claude-durum.md`: Codex'e iki soru (sayfa kaynak izi, fingerprint).
+- Bilerek değişmeyen: kod, içerik, test. Kod C4 teslimini ve entegrasyon dalını bekliyor.
+- Test çalıştırılmadı, simülatör yok (yalnız belge).
+- Dosyalar: B hattı planı, ortak çalışma planı (sahiplik satırı), `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C2 v2 ve kaynak bağlı güvenlik teslimi
+
+- Ayrı runtime-v2: 90 kitap, 720 sayfa, 15 hücrede 6 kitap; multi-corpus exact kaynak/olay soy zinciri doğrulaması. Etkin sürüm ve pin güncellendi; v1 baytları ve tarihsel referansları korundu.
+- 720 sayfa ve 90 başlığın kaynak bağlı güvenlik etiketleriyle gerçek ContentSafety süzgeci eklendi. Desteklenmeyen konu/aile/seri bağlamları açıkça reddedilir. Uygulama dosyaları, legacy kaynaklar ve yayın bayrağı değişmedi.
+- Seçili Release: 65 test, 1 opt-in skip, 0 hata. 630 tam fixture, 1500 v2 ilk deneme ve 1500 en korumalı politika denemesi geçti; retry 0. Tam app/UI çalıştırılmadı. Tekrar ve art kapsamı sınırları raporda açık.
+- 90 tam kitaplık görsel kaynak/bağlam/poz/eylem teslimi ve önce/sonra ham ölçümler yazıldı. C4 entegrasyonu d4cb8c1; yeni C2/C3 uygulama hattı karşı incelemesini bekliyor, üretim kapalı, b099d9b dışarıda.
+- Dosyalar: Engine P56 ve ContentSourceMetadata, P56 testleri, Content/Pilots/five-friends-56-runtime-v2, research/v2 ve c3-safety, Codex durum ve proje hafızası.
+
+
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C4 v1 entegrasyon birleşmesi ve v2 eklerinin kabulü
+
+- Batuhan/Claude karşıincelemekabulüyleyalnızd41f291 C4/C1teslimi codex/bes-arkadas/entegrasyon dalına --no-ffilebirleşti: d4cb8c1. Ağacıd41f291ileaynı;C2b6deb1dvekenardakib099d9bharicinde. Ekprodcode/testdeğişimiyok,mergeiçinyenitestkoşulmadı;tamsonkapıBhatsonunda.
+- C2v2ikiortaksözleşmeeki kabul: activepackageVersion+sha256,v1SHA256tarihselpin;v1/v2refayrımıvearşivkoruması. B1provenance'inorigin'denyenidenkurulmasıyetersizliği ve renderedcontentfingerprintayrımıCodexdurumunayazıldı. V2uygulamaplanıyazıldı;Claudeappdosyalarınadokunulmadı.
+- Main/origin,push/yayınyok;C2taslaklar90runtimeolduğuiddiaedilmedi. Dosyalar: codex-durum.md,v2uygulamaplanı,bugünlük.
+
+
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C2 ek 60 kitap taslağı ve karşı-inceleme kaydı
+
+- Batuhan'ınonaylı90kitaphedefi için ayrıexpansioncorpus60kitap/480sayfa/2430source/480causalquote: herizinlimekanizma/arkadaşçiftineevent02/03. Eski30kitap/payload/sourcekimlikleri değişmedi. Runtimehalen30kitap; toplam90authored runtime90iddiasıdeğil.
+- Reviewer18uniqueolayzinciri+karakterkatkıları+serializerincelemesinde2süreklilikbulgusuyakaladı;7kitaptadüzeltildi. Tüm480bağımsızeditoryalkabulü yok. SonSwiftage/hashkontrolü1test0hata; tümcümlesourceSHA ve480quote/attribution/pointer/bookmanifest doğrulandı. Güvenlik/art/atomicevidence/runtimeonayı yok.
+- C4v1kodcommitd41f291 ve C1sonuçları codex-durum.md'ye yazıldı. C2runtimev2/path/pin/multi-corpus darortaksözleşmeönerisi Claude'un kabulünü bekler; tekbaşınaschemagevşetilmedi. Entegrasyonşimdilik951f5ce, karşıincelemeöncesimergeyok. Main/origin/push/deployyok.
+- Dosyalar: Content/Pilots/five-friends-56-expansion-v1, P56ExpansionAuthoringTests, C2tasarım/inceleme/kanıt ve Codexdurumdosyası. AppbridgeClaude'undurdokunulmadı.
+
+
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C4 ortak sözleşme ve C1 ilk-deneme tanısı
+
+- Onaylı taban951f5ce'den codex/bes-arkadas/entegrasyon ve izolecodex-motor dalı kuruldu; mevcutbes-arkadasdalı korundu, yeniadlar Batuhan tarafından onaylandı. P56Support ortakneden/canonical5sıra, Engine.behaviorID, PinnedSource.sha256 ve metadata.init(p56:)/p56Reference uygulandı. P56 legacyresolveraçısındanunsupportedkalır; bilinmeyenlegacyekalanlar davranışı korunur. App/Story/bridgeClaude'da, değiştirilmedi.
+- SeçiliRelease43test0hata. Reviewiki bulgusu giderilip yeniden onaylandı. C1gerçekL/F/A0ilk5400istek retry0, tümfailureshamJSON'da. HerL/Fpinned1500istekte1000başarı500red; diğer300isteklikgruplar300/300. N A0textrepeat yüksek; güvenliknilfixture/scope5–6/legacyoda farkı/Nhistorydesteksiz sınırları raporda. ArtbuC1tanısındaölçülmedi. AyrıN1500yeniden1500/0/0,30kitap.
+-252legacyresource0değişim ve mevcut30kitap payloadSHAaynı. C1C2C3ayrıntılıplan görünür; C2runtimev2önerisi karşılıklıkabulbekler; C3gerçekgüvenlik/konu/aile henüzyokveaçıkunsupported. C5başlamadı. Entegrasyon/main/originmerge,push,yayınyok; Claude karşıincelemesi bekleniyor.
+- Dosyalar: engineP56support/pin/identity/metadata+testler, C1tanıtesti+ham/özet/README, C4_CONTRACT_DELIVERY/C4_VERIFICATION ve uygulamaplanı. Motorworktreeyerel, ikinciDerivedDataaçılmadı.
+
+
+### 2026-11-25 · codex/design-system-catalog, kabul commit'i · Beş arkadaş sözleşmesi: Codex netleştirmeleri kabul edildi
+
+- Codex'in `9865b81` incelemesi kabul edildi: `unsupportedReasons` compose garantisi değil; P56 kaynağı `ContentSourceMetadata.init(p56:)` + `p56Reference` ile, `.reference == nil` ve `.status == .unsupported`; payload yolu ve `P56PinnedSource.sha256`; köprü dosyaları Claude'a devredildi; entegrasyon dalını Codex açacak.
+- Uygulama kodu okunarak doğrulandı: `OfflineStoryService.historicalCatalog` kaynak kaydı olan masalda eski sürüm tahminine gitmiyor; `seriesAvailable` P56 masalında `false` dönüyor.
+- Plan güncellendi: yönlendirici `StoryRuntimeDecision` + sabit neden kodu döner; bayrak yalnız DEBUG; B1'in `StoryOrigin` alan eşlemesi; B4 bağlantı noktası `StoryGenerationManager.swift` (Claude hattına eklendi).
+- Bilerek değişmeyen: kod, içerik, test. Kod C4 teslimini ve entegrasyon dalını bekliyor.
+- Test çalıştırılmadı, simülatör yok (yalnız belge).
+- Dosyalar: `docs/ortak/claude-durum.md`, `docs/superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md`, bu kayıt.
+
+### 2026-11-25 · codex/design-system-catalog, commit yok · Ortak sözleşme incelemesi ve Codex yanıtları
+
+- Ortak planın3.bölümü ve Claude'un5sorusu gerçek metadata/resolver/request koduyla incelendi; docs/ortak/codex-durum.md yazıldı. APIisimleri/payloadyolu/SHA/sahiplikdevri/dal düzeni kabul; P56metadata için init(p56:)/p56Reference, legacy statusunsupported ve unsupportedistek/composehatası ayrımı karşılıklı kabul önerisi olarak belirtildi.
+- App P56InternalService/P56SnapshotStore ve appP56test sahipliği Claude'a devredildi; Codex saltokur. Entegrasyon dalını Codex karşılıklı sözleşme netleşince açacak; bu tur checkout/dal/worktree veya uygulama/motor/içerik değişmedi.
+- Yalnız belge: test/build/simülatör çalıştırılmadı. Claude-durum ve ortakplan değiştirilmedi; diğer oturumun günlük/medya değişiklikleri korunup commit dışında bırakıldı. Yayın/push/merge yok.
+
+
+### 2026-11-25 · codex/design-system-catalog, karar commit'i · Beş arkadaş entegrasyon kararları onaylandı
+
+- Batuhan ortak çalışma planındaki altı kararı önerildiği gibi onayladı: P56 ayrı motor yolu; desteklenmeyen istek eski motora; bayrak yalnız iç testte; `bes-arkadas/entegrasyon` dalı `codex/design-system-catalog` ucundan, main'e yalnız onayla; görselsiz P56 yalnız iç testte; diğer 13 arkadaşa dokunulmaz.
+- Plan başlığı ve Bölüm 1 onaylı olarak işaretlendi. Yeni `docs/ortak/claude-durum.md`: kararlar ve Codex'e beş soru (sözleşme adları, kaynak kaydı, payload yolu, köprü dosyalarının devri, entegrasyon dalını kimin açacağı).
+- Bilerek değişmeyen: kod, içerik, test. Kod, Codex sözleşmeyi kabul edince başlar.
+- Test çalıştırılmadı, simülatör yok (yalnız belge).
+- Dosyalar: `docs/superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md`, `docs/ortak/claude-durum.md`, bu kayıt.
+
+### 2026-11-25 · codex/design-system-catalog, plan commit'i · Beş arkadaş entegrasyonu: Claude + Codex ortak çalışma planı
+
+- Ne değişti: yeni `docs/superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md`. P56'yı bayrak arkasında "Masal yaz" akışına bağlamak için iki hat: Codex motor/içerik/P56 kapıları (C1–C5), Claude uygulama entegrasyonu (B1–B6: kalıcı kayıt, paketli payload, yönlendirici, masal yazma yolu, seçim ekranı, seri/hatırlama korumaları). Hatlar arası sözleşme (`P56Support`, `StoryRuntimeRouter`), dosya sahipliği, ayrı worktree'ler, durum dosyalarıyla haberleşme ve birleştirme sırası yazıldı. Altı karar (K-A…K-F) Batuhan'ı bekliyor.
+- Bugünkü durum plana kanıtla yazıldı: P56 uygulamaya bağlı değil, masallar eski motor ve 18 arkadaşla yazılıyor; beş arkadaş işi main'de ve origin'de yok.
+- Bilerek değişmeyen: kod, içerik, testler. 22 Kasım geçiş planı (K0–K6) yerinde; bu plan onun K2–K5'ini hatlara böler.
+- Test çalıştırılmadı, simülatör yok (yalnız belge).
+- Dosyalar: `docs/superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md`, bu kayıt.
+
+### 2026-11-25 · codex/design-system-catalog, commit yok · Beş ayrı tam vücut karakter paketi
+
+- Kullanıcı onayıyla5karakter tekil built-in image_gen çağrılarıyla, detay/grup/marka referanslı şeffafPNG hazırlandı. Grup görselinden kesilmedi. PNG/istem/SHA/tekdosyagaleri/ZIP single-character-pack klasöründe.5RGBA dosya decode ve görsel inceleme yapıldı; kullanıcı/runtimesayfauyumu onayı değildir. App/motor değişmedi; test/simülatör çalıştırılmadı.
+
+
+### 2026-11-25 · codex/design-system-catalog, commit yok · Beş arkadaş internal P56 motoru ve Claude koordinasyonu
+
+- Beş arkadaş × üç mod × 5–6 yaş için ayrı offline-p56-v1 runtime:9gerçek kurgu/30izinli eşleşme/15hücrede2mekanizma. Explicit ad-slot türevleri, full-byteSHA/source/book/causalquote lineage, tipli nedensel faktlar, Türkçe kişiselleştirme ve yaş/sakinson kontrolleri; legacy composer/validator/ContentPackage/252kanonik kaynak dosyası değişmedi.
+- Internal app servis/snapshot explicit source injection ile çalışır, currentfallback/singleton/UI/bundle aktivasyonu yok. Kayıtlı eski kitap/seri/art korunur; P56draft legacyStory/Series diye saklanmaz. Sağlanan güvenlik ve diğer desteksiz bağlamlar gerekçeleriyle reddedilir, sessizce atılmaz. Üretim kapalı; meslek/deniz/uzay ve yayın kararı ayrı.
+-30kitap240sayfa bağımsız okundu;12toplammetin revizyonu eskiID/metin/hash ledger'ıyla korundu, metadataaktör/temporal/prop ayrımı düzeltildi. İlk testin yakaladığı L2ayı16kelime cümle bölünmesi yeniv2kaynak aldı; sınır gevşetilmedi. Source1252. Sonseçili motor36test0hata; gerçek iOS21test0hata. Tam1122motor/tümUIpaketi bu tur yeniden koşulmadı.
+-1500ilkdeneme1500başarı/0hata/0retry, ayrı30forcedpair; yalnız30sabitkitap. Herhücrede ilkbookrepeat2;12000sayfada11760source/11842globalrenderedpagerepeat. Art1500kitap0pin, approvedP56rule0; tammetin/kaynak/önce-sonra/poz/aktör/temporal handoff240sayfa. Çeşitlilik/art/soneditoryalkabulü yok. L/FveA0kolları henüz çalıştırılmadı.
+- Kullanıcıisteğiyle ClaudeCode'a koordinasyonözeti iletildi ve yanıt alındı; araçsızClaude kod incelemesi yapmış sayılmıyor. Not/yanıt/session ve güncel rapor docs/research/five-friends-p56-runtime altında. Push/deploy yok. Diğer oturum medya/UI/günlük işleri korunup commit dışında bırakıldı.
+
+
+### 2026-11-25 · codex/design-system-catalog, commit yok · Beş karakter detay referansı
+
+- Onaylı grup+marka referanslı built-in image_gen ile5ayrı6görünümlü karakter sayfası; Kestane çiftburun hatası editv2 ile düzeltildi. PNG/tekdosyaHTML/ZIP, tam prompt ve SHA kayıtları character-details klasöründe.5seçiliPNGdecode ve görsel inceleme yapıldı; teknik ortografik model veya runtimeasset onayı değildir. App/motor değişmedi; test/simülatör çalıştırılmadı.
+
+
+### 2026-11-22 · codex/design-system-catalog, commit yok · K0–K1 kaynak koruması ve P56 editoryal korpusu
+
+- Tam kaynak SHA-256/engine davranış kimliği, kayıpsız origin/seri metadata'sı, atomik katalog arşivi, exact tarihsel resolver ve eski istemci sync koruması uygulandı. Kaynak kanıtı olmadan aynı semver güncel kaynak sayılmaz; kayıtlı metin ve hazırlanmış bölümler korunur. Tarihsel doğrulanmış eşlemeler henüz boş, bu kitaplarda yeni devam/yeniden yazım desteklenmiş sayılmıyor.
+- Beş arkadaş × üç mod için 9 kurgu/30 tam kitap/240 sayfa ve 1.251 kaynak kaydı yazıldı; tam bağlam, somut poz/eylem ve sekiz sürümlü editoryal düzeltme teslim edildi. Bu korpus runtime paketi değil; 1.500 örnekleme ve görsel kabulü bekliyor. Yeni beşli üretim politikası kapalı. Meslek/deniz/uzay ayrı teslimler.
+- Tam motor Release: 1.122 test, 2 atlanan, 0 hata; seçili gerçek iOS entegrasyonu: 133 test, 1 atlanan, 0 hata. P56 bütünlük kontrolü geçti, kelime bütçesi uyarısı yok. 252 mevcut motor kaynak hash'inde değişiklik yok. Sabit ID bağlama performansı aynı uygunluk kontrolleri korunarak iyileştirildi; bağımsız incelemede kritik/yüksek bulgu yok. Push/deploy yapılmadı.
+- Dosyalar: StoryEngine kaynak kimliği/SeriesPlan/OfflineSelection ve testleri; uygulama CatalogHistory/seri/sync/mapper köprüsü ve testleri; Content/Pilots/five-friends-56-v1; docs/research/five-friends-k01-baseline ve five-friends-pilot; planlar ve proje hafızası. Aynı ağaçtaki diğer oturumun portre/UI/medya işleri bu commit'e alınmadı.
+
+### 2026-11-22 · codex/design-system-catalog, commit yok · B kararı, K0–K1 planı ve 5–6 ortak dünya pilotu
+
+- Kullanıcı B yaklaşımını onayladı: beş ana arkadaş, gerektiğinde ayrı konuk/uzman; üç modda kişiliğe uygun repertuvar ve eski kitap/seri koruması. Kodlama başlamadan K0–K1 için kaynak snapshot/digest/engine davranış sürümü, kayıpsız metadata, tarihsel resolver, seri/sync/restore ve test kabul görevleri ayrıntılandırıldı. K0–K1 uygulanmış sayılmıyor; yeni politika pilot doğrulanmadan yayına girmeyecek.
+- Fısıldayan Orman gündüz mekânı + aynı dünyanın ayrı uyku odası önerildi. 5–6 yaşta 15 hücre, 9 kurgu tasarımı ve 30 karakter–kurgu eşleşmesi; konuklu meslek, deniz, uzay ayrı teslimler. Bunlar henüz yazılmış masal/blueprint veya onaylanmış kaynak/çizim değil.
+- Görsel ekibe gerçek legacy fixture'lardan 5 tam kitap/40 sayfa, 53 authored kaynak kaydı ve somut eylem sınırları verildi. 50 provenance parçasında kimlik/metin özeti doğrulandı (0 missing/0 mismatch). Yeni pilot kaynakları yokken sourceID uydurulmadı; tüm pilot runtime art onayları false. 272 kaynak hash'i, belge bağlantıları, pointer'lar ve 15/30 kapsam tutarlılığı doğrulandı. Test/build/simülatör veya yeni runtime deney koşulmadı.
+- Dosyalar: `docs/superpowers/plans/2026-11-22-bes-arkadas-k0-k1-uygulama-plani.md`, `2026-11-22-bes-arkadas-56-pilot-kapsami.md`, `2026-11-22-bes-arkadas-56-gorsel-teslim.md`; `docs/research/2026-11-22-bes-arkadas-56-gorsel-kaynaklar.json`; önceki geçiş raporuna güncel karar bağlantısı ve bu günlük. Üretim kodu, masal/karakter JSON'ları, görseller ve kayıtlı kitaplar değiştirilmedi.
+
+### 2026-11-22 · codex/design-system-catalog, commit yok · Beş ana arkadaş için motor ve içerik geçiş planı
+
+- Kullanıcının onayladığı Tarçın/Kestane/Yıldız/Simit/Böğürtlen kadrosu için üç yaklaşım karşılaştırıldı; sürümlü ana kadro ve ayrı konuk/uzman rolü önerildi. Yaş×mod×karakter×rol matrisi, mevcut 34 arkadaşın kapsamı, dünya/konu boşlukları, eski kitap/seri/hatırlama uyumluluğu, dosya sahipliği ve aşamalı uygulama planı yazıldı. Bu öneri uygulama onayı değildir.
+- Kaynaklara dayalı ilk çizim ihtiyaçları ve Tarçın taslak/onay ayrımı belgelendi. Önceki 600 masallık sanat pilotu ve sıfır pinli gerçek örnek aktarıldı; yeni kadro sonrası ölçüm yapılmış gibi sunulmadı. Statik aday hesapları runtime uygunluk sertifikası değildir.
+- Değişen dosyalar: `docs/superpowers/plans/2026-11-22-bes-arkadas-gecis-plani.md`, `docs/research/2026-11-22-five-friends-evidence.json` ve bu günlük. Motor/app kodu, masal/karakter içerikleri, asset'ler ve kayıtlı kitaplar değiştirilmedi. Test, build ve simülatör çalıştırılmadı; kaynak SHA'ları, çizim kaynak kimlik/metinleri, 60 hücre, 34 karakter ve belge bağlantıları salt okunur kontrolle doğrulandı.
+
+
+### 2026-11-22 · codex/design-system-catalog, commit yok · Standart arkadaş seçim satırına kanonik portre
+
+-5kanonik kimlik için uygulama-yerel CompanionPortraitCatalog ve MPCompanionPortrait; standart CompanionStep yalnız leadinggörseli değişti. Eski/bilinmeyen kimlikler mevcut MPIconTile,52ptaspectfit/dekoratifAX. Katalog/kadro/prefix3/simgetekilleştirme ve LittleSteps değişmedi; her modda5seçenek açıldığı iddia edilmiyor.
+-5sourcePNG SHA eşitliği ve bağımsız reviewer geçti. Seçili3XCTest/0hata;8hosted gerçek satır renderı375×667/440×956,light/dark,large/AX5 elle incelendi. AX satır mevcut davranışıyla dekoratifresmi gizler. VoiceOver etkileşim/telefon/tampaket yok. Motor oturumunun ayrı132testlik koşusundaki eski seriuygunluğu hatası bu testlerin sonucu değildir.
+-Kanıt: five-friends-selection/UI_INTEGRATION.json ve ui-validation/. Diğer oturumun model/mapper/motor/seri dosyaları korunup commit dışı bırakıldı.
+
+
+### 2026-11-22 · codex/design-system-catalog, commit yok · Beşli seçim portreleri ve Tarçın v2 temizliği
+
+- Onaylı grup ve marka referanslarıyla5ayrı şeffaf seçim portresi; kimlik/SHAhandoff, gömülü görselli beyaz/gece HTML ve ZIP hazır.
+- Tarçın resting/asleep/help-ready/farewell/trotting5v2 görseli image_gen ile zeminsiz yeniden düzenlendi; tam edit istemleri kaydedildi. Eski undefined istemli kayıtlar ve v1ler tarihsel olarak korunur; v2ler yeni dosyalardır. Uzanma pozu genel helping yetkisi değildir.
+-10PNG decode/alpha ve SHA kontrolleri,10gömülügaleriöğesi doğrulandı; görseller incelendi. App/motor/mapper/seri ve aktif diğer oturum değişikliklerine dokunulmadı. App test/simülatör çalıştırılmadı. Entegrasyon motor geçişini bekler.
+
+
+### 2026-11-22 · codex/design-system-catalog, commit yok · Tarçın poz kütüphanesi
+
+- Onaylı kimlik+marka referanslı built-in image_gen ile8yeni poz, mevcut3poz ve kimlik sayfası korunarak11pozluk başlangıçseti; HTML/ZIP/prompt/SHA kayıtları tarcin-pose-library klasöründe.8yeni PNG alpha/decode kontrolü geçti, görseller incelendi. Bazı boyalı zeminler ve yardımhazırlığı→uzanma anlamı yayın incelemesi bekler. App/motor/eşleme değişmedi; test/simülatör çalıştırılmadı.
+
+
+### 2026-11-22 · codex/design-system-catalog, commit yok · Ragi ve beş arkadaş marka thumbnaili
+
+- Built-in image_gen ile onaylı marka, Ragi ve beşli görseli referanslı yatay thumbnail; MagicPaper yazısı ve altı karakter görsel kontrolünden geçti. PNG ve prompt kaydı karakter öneri klasöründe. Üretilmiş yazı resmi logonun yerine geçmez. Uygulama değişmedi; test çalıştırılmadı.
+
+
+### 2026-11-22 · codex/design-system-catalog, commit yok · Beş arkadaş karakter tanışma taslağı
+
+- Kullanıcı beşli kadroyu görsel olarak denemeyi onayladı: Tarçın,Kestane,Yıldız,Simit,Böğürtlen. Onaylı marka/Tarçın referanslarıyla built-in image_gen grup çizimi; diğer dört görünüş onay bekleyen taslak. Ragi mevcut kimliğiyle Originals konuk rolü önerisinde.
+- Takıma paylaşılabilir tekdosya HTML,PNG,karakterverisi ve tam prompt kaydı `design-handoff/proposals/2026-11-22-magicpaper-characters/` içinde. HTML beşkart/gömülüresim kontrolü geçti; çizim görsel incelendi. App/motor/karakterseçimi değişmedi; app test/simülatör çalıştırılmadı.
+
+
 ### 2026-11-25 · claude/project-thread-7igvjy-tests (PR) · Kırık yedi testin ayıklanması
 
 CI (#1) ilk kez koştu: 1131 test, 7 test kırık (görüntü testleri CI'da atlanıyor). Her biri ayrıldı:
@@ -155,6 +421,7 @@ CI (#1) ilk kez koştu: 1131 test, 7 test kırık (görüntü testleri CI'da atl
 - Bilerek değişmedi: testler `TestPlan.xctestplan`'dan (StoryEngine paket testleri dahil); görüntü testleri ve UI testleri CI'da atlanmaya devam ediyor; Xcode Cloud betikleri.
 - Test: yerelde çalıştırılmadı (Linux). Doğrulama PR'ın kendi CI koşusu. Bilinen 12 kırık test (25 hata) bu PR'dan sonra CI'da kırmızı görünecek; ayrı PR'da düzeltilecek.
 - Dosyalar: `.github/workflows/ios-build.yml`, `.github/workflows/test-build.yml` (silindi), `Scripts/ci_placeholders.sh`, `Scripts/ci_screenshots.sh`.
+
 ### 2026-11-25 · claude/project-thread-7igvjy-lint (PR) · Tasarım yasası denetimi CI'da
 
 - AGENTS.md'deki altı doğrulama grep'i (renk, gölge, boşluk, font, titreşim, dil) tek betikte: `Scripts/design_law_check.sh`. İsabet varsa satırları yazar, GitHub'da satıra not düşer ve 1 ile çıkar.
@@ -303,6 +570,25 @@ CI (#1) ilk kez koştu: 1131 test, 7 test kırık (görüntü testleri CI'da atl
 - Test: `ProfileAvatarTests` (görseller, kimlikler, kayıt); **çalıştırılmadı** (Mac). Tasarım yasası grep'leri boş. `[ekran]` turu derlemeyi doğrular.
 - Batuhan'a (README madde 6): kendi çizdiğimiz pencere (sheet kuralı), Profil'de iki Ragi, Kestane'nin durumu.
 
+### 2026-11-22 · main@d21b842 · TestFlight için Release arşivi
+
+- Xcode archive başarılı: MagicPaper-builds/MagicPaper-2026-11-22.xcarchive; gerçek sürüm2.0(2026112201),arm64. Sistem güven deposuyla codesign --verify --deep --strict geçti. Development imzalı arşiv Organizer Distribute App akışında dağıtım için yeniden imzalanır; App Store Connect yüklemesi yapılmadı.
+- Log /private/tmp/MagicPaper-archive-20261122.log. Mevcut başka oturum dosyaları kapsam dışında korundu.
+
+
+### 2026-11-22 · main@cd3c02a · Görsel çalışmalarının main teslimi
+
+- Bu sohbetin altı commit’i güncel origin/main ile birleştirildi ve main’e pushlandı. Günlük çakışmasında iki taraf korundu; önceki çalışma farkı /private/tmp/magicpaper-pre-main-journal.patch içinde de yedekli.
+- Son seçili doğrulama101test:100geçti/1skip/0hata. Birleştirme yalnız günlükte çakıştı. Release1.0(2026112201) arşivi hazırlanıyor; sonuç henüz doğrulanmadı.
+
+
+### 2026-11-22 · codex/design-system-catalog, commit yok · Kitap boyunca görsel pilot entegrasyonu
+
+-6yeni guaj çizim,21tam-sayfa kaynak kuralı ve kalıcı politika3; eski pinler korunur. AX/kompakt okuyucuda çizim ve metin birlikte kayar.
+-101seçili test:100geçti/1skip/0hata. Aynı600masalda251pin;240açılış/9orta/2son. Metin ve eski pinler korundu.356kitap hâlâ görselsiz.
+-Kanıt: whole-book-art öneri klasöründe after.json/AFTER_REPORT/VALIDATION ve önizleme. Telefon,VoiceOver ve render eklerinin elle matrisi bekliyor. Başlangıç ölçümü03769ff.
+
+
 ### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · Masal dolabım: tam boy kahraman (Dolap paketleri)
 
 - İrem'in iki paketi: "MagicPaper-Tam-Dolap-v2" (asıl sistem) uygulamaya entegre edildi; "MagicPaper-Dolap-Handoff" (v1, sabit yüzlü demo) belgeleriyle arşivlendi, uygulamaya alınmadı (v2 onun tamamlanmış hali; yüzü resimde sabit). Belgeler ve referanslar `design-handoff/dolap/`.
@@ -351,6 +637,86 @@ CI (#1) ilk kez koştu: 1131 test, 7 test kırık (görüntü testleri CI'da atl
 - origin/main'in son 9 commit'i (`856cb88`'e kadar): kaynak izli görsel pilotu, kitap boyunca görsel (`WholeBookArtBinder`, `WholeBookArtPolicy`), Guaj nesne havuzu, okuyucu sayfa düzeni (`ReaderPageComposition`, `StoryPageView`), Release arşiv kaydı (TestFlight 2.0, 2026112201).
 - Çakışma yalnızca bu günlükte: iki tarafın kayıtları da korundu (önce irem'inkiler, sonra main'inkiler). Kod çakışması yok; ana sayfa, paywall ve seri dosyalarımıza main dokunmamış.
 - main'e hiçbir şey gönderilmedi. Test çalıştırılmadı; `[ekran]` turu derlemeyi doğrular.
+
+### 2026-11-21 · codex/design-system-catalog · Kitap boyunca görsel başlangıç ölçümü
+
+- Kullanıcının onayladığı yol haritası `docs/STORY_ART_ROADMAP.md` içinde; Tarçın kimlik sayfasının görünüşü kullanıcı tarafından onaylandı.
+- Altı5–6macera kurgusu×100sabitseed:600/600temizmasal,4.800sayfa,221kitap1pin/379kitap0pin; tüm pinler açılışta. Orta/son0. Metin, sayfa başına art ve provenance kaydet/aç eşitliği doğrulandı.
+- Test: seçili `WholeBookArtCoverageTests`1/0hata, Xcode TEST SUCCEEDED. Tam paket/telefon/UI matrisi çalıştırılmadı. Mevcut üretim kodu/metin/seçim değişmedi; otomatik etiketler yalnız inceleme adayıdır.
+- Dosyalar: yeni XCTest, `Tools/summarize_whole_book_art.py`, yol haritası, proje hafızası; `design-handoff/proposals/2026-11-21-whole-book-art/` başlangıçJSON/rapor/kimliktaslağı.
+
+
+### 2026-11-21 · codex/design-system-catalog, commit yok · Guaj nesne havuzu 20 konuya çıktı
+
+- Onaylı referanslarla altı yeni sabit çizim: kırmızı top, mavi/sarı saplı atlama ipi, kâğıt uçurtma, tahta flüt, el aynası, uzun kırmızı kurdele. Kurdele dış boya izleri image_gen ile temizlendi; v2 seçildi. Kaynak PNG'ler ve istemler kayıtlı; aynı byte'lar mpart olarak paketlendi.
+- Önceki 14 girdi ve 20/4/3/38 kaynak listeleri korundu. Kapalı dört-sürüm SHA→edition tablosu; eski pinler/v1 önceliği korunur, authorization/binder/ImageIO değişmez. Motor/metin/seed/seçim/reader UI değişikliği yok; her masalda görsel garantisi yok.
+- İki inceleme onaylı. Seçili uygulama: 91 test, 90 geçti, 1 skip, 0 hata. Gerçek altı nesne map/save fixture'ı ve 20 reader decode geçti; üç oyuncak 3–4, kurdele 5–6, flüt 7–8, ayna 9–10. Motor yeniden koşulmadı; önceki 44/0 ayrı kanıt. Telefon kurulumu/yeni UI/VoiceOver matrisi yok; önceki seri/ölçüm bulguları açık.
+- Test için yalnız önceki cihaz derlemesinin yeniden oluşturulabilir Build çıktıları ve başarısız swiftbuild .build/out önbelleği temizlendi. Dosyalar: policy/test; altı mpart+wave3manifest; araştırma/spec/plan; görseller/üretim kaydı/rapor/gerçek fixture JSON'u; proje hafızası. Rapor: design-handoff/proposals/2026-11-21-story-art-wave3/REPORT.md.
+
+### 2026-11-21 · codex/design-system-catalog, commit yok · Üç yeni guaj nesne ve yaşlara göre kaynak eşlemesi
+
+- Yerleşik image_gen + onaylı referanslarla pirinç pusula, eski madeni para ve yıldız biçimli taş hazırlandı; saydam PNG ve aynı byte'lı mpart. Kaynak izli havuz 11→14 konu, notice izin listesi 5→20 kaynak; dört küçük yaş destek satırı eklendi.
+- Tekli keşif sayfaları 5–6/7–8/9–10; 3–4 yalnız üç sports blueprint'inin ilk sayfasında notice→meet. Tam kaynak sırası, gerçek companion, beat listesi ve nesne/dosya özetleri doğrulanır. Mevcut v1, eski çizim dosyaları ve kayıtlı pinler korunur; her masalda görsel garantisi yok.
+- Claude c742ea7→365b66b deltası günlük hariç 32 dosyalık patch ile alındı; merge yapılmadı. Kaynak metinleri/kimlikleri değişmedi. Upstream history20/partCount geldi; ReadingSequenceReport ölçüm bulgusu bu tur düzeltilmedi.
+- İlk testler, pakete giren 193 izlenmeyen `… 2.json` eski kopyasını ortaya çıkardı. Bunlar ve aynı byte'lı 772 generated kopya silinmeden `/private/tmp/magicpaper-json-copy-quarantine-20261121-wave2/` altında yol/SHA manifestleriyle korundu. Son temiz koşu: motor 44/0; uygulama 89 test, 88 geçti, 1 skip, 0 hata. Gerçek 3–4 pusula/7–8 para/9–10 yıldız taşı ve 14 reader decode geçti. Telefona kurulum ve yeni UI/VoiceOver matrisi yok; tam paket/BoundPool ve önceki seri uygunluğu hatası bu koşuya dahil değil.
+- Dosyalar: açık upstream import listesi; ReviewedDiscoveryArtPolicy/Binder ve testleri; üç mpart + wave2 manifest; yeni PNG'ler/üretim kaydı/rapor/gerçek fixture JSON'u; spec/plan/araştırma kararları ve proje hafızası. Ayrıntı design-handoff/proposals/2026-11-21-story-art-wave2/REPORT.md.
+
+### 2026-11-21 · codex/design-system-catalog, commit yok · Claude motor teslimi incelemesi
+
+- origin fetch ile anlati-provenance@365b66b ve origin/main@b8a597b incelendi; Claude tesliminin main'e alındığı doğrulandı. Yerel dal/uygulama kodu değiştirilmedi, merge yapılmadı.
+- Tek P2 bulgu: ReadingSequenceReport birebir tekrar sayacında seed içeren fingerprint kullanıyor; aynı metin farklı seed ile tekrar olarak yakalanmıyor. Seed bağımsız metin özeti ve dar fixture önerildi.
+- Statik kaynak karşılaştırması: değişen 17 içerik dosyasında kaynak metni/kimliği ekleme-silme-değişim 0; 272 reviewed ilk sayfa kaydı. Mevcut beş görsel kaynağı aynı. PartCount/isComplete ve 20 masallık satır geçmişi incelendi.
+- Entegrasyon: d3a3b46 henüz uzak main'de değil; eski pilot liste yeni uygulama-kararlı sözleşmeye hizalanmalı. Testler yeniden çalıştırılmadı; önceki yerel test sonucu birleşik sürüm için onay sayılmadı. Rapor: docs/research/2026-11-21-claude-story-engine-review.md.
+
+### 2026-11-21 · codex/design-system-catalog, commit yok · Kaynak izli çizimler 11 nesneye genişledi
+
+- Gümüş çan politikasına mevcut on nesne çizimi eklendi; beş 5–6 notice ve 38 hatırlama kaynağı için ayrı inceleme kaydı yazıldı. Manifest/kanonik nesne/dosya özetleri doğrulanır; asset ve kanıt birlikte yetkilendirilir.
+- Mevcut v1 eşlemesi öncelikli; yeni politika kalan uygun sayfalara uygulanır. Eski çan pinleri korunur. Motor metinleri, kimlikler, seed/seçim, eski kitaplar ve okuyucu düzeni değişmedi. Boş yuva/açık müzik kutusu kapsam dışı; her masalda çizim garantisi yok.
+- Spec ve bağımsız kod incelemesi onaylı. Seçili Xcode: 76 test, 75 başarılı, 1 skip, 0 hata; art/provenance 27/27. Gerçek on nesne fixture'ı, kayıt roundtrip ve 11 reader decode geçti. İlk deneme testlerden önce sandbox önbellek erişiminde durdu; erişimle tekrar başarılı. Önceki seri uygunluğu hatası bu tur çözülmedi veya tekrar sınanmadı. Telefona kurulum/yeni UI matrisi yok.
+- Dosyalar: ReviewedDiscoveryArtPolicy/Binder, StorySpotBinder; ReviewedDiscoveryArtPolicyTests ve StorySpotBindingTests; expansion manifesti; research kararları, spec/plan, teslim raporu ve kaynak doğrulama kaydı, proje hafızası.
+
+### 2026-11-21 · main, commit bu kayıtla · anlati-provenance, evren-7-yetkiler ve codex/design-system-catalog main'e birleşti
+- Birleşenler (Batuhan'ın isteğiyle, sırayla, `--no-ff`): `anlati-provenance` (71d4893: sayfa kaynak izi, Anlatı planı A0-A8, katmanlı sayfa resmi kararı, pilot çizim listesi), `evren-7-yetkiler` (7fc4231: aynı plan belgelerinin eski kopyaları), `codex/design-system-catalog` (bbbc522: yayımlanmış Original'lara sayfa çizimleri, incelenmiş çan görseli, görsel kaynak denetimi).
+- Çakışma çözümü: `ANLATI_PLANI.md`'de anlati-provenance'ın yeni sürümü kaldı (evren-7'deki A0/A1 öncesi hâli). codex dalı `c742ea7`'yi yama olarak almıştı; çakışan 20 dosyanın (StoryPageProvenance, 18 notice_anomaly şablonu, VisualMeaningTests, GORSEL_ANLAM_SOZLESMESI) codex sürümü `c742ea7` ile birebir aynıydı, bu yüzden anlati-provenance'ın ilerlemiş sürümü (`visualReview: "reviewed"`) kaldı. Günlükte iki tarafın kayıtları tarihe göre birleşti, hiçbiri silinmedi.
+- codex dalının yeni "Saatin İçindeki Ninni" kapağı logosuzdu; 19 Kasım kararına göre Originals logosu `stamp_originals_logo.py` ile basıldı (published + uygulama asset'i). "Originals" yazısı saatin karlı tepesine biraz değiyor, hale ile okunuyor.
+- Bilerek değişmeyen: paylaşılan checkout'taki `codex/design-system-catalog` dalının commit edilmemiş değişiklikleri (ReviewedDiscoveryArtBinder/Policy, StorySpotBinder ve testleri) birleşmeye girmedi; o oturumun işi.
+- Doğrulama: iPhone 16 için Debug derleme BUILD SUCCEEDED; StoryEngine `VisualMeaningTests` 5/0; ContentPublisher 32/0; `test_original_illustrations.py` 6/0; katalog derleyicisi yeniden çalıştı, çıktı değişmedi. Uygulama test paketi koşulmadı; birleşik hâl cihazda denenmedi.
+- Dosyalar: üç dalın değişiklikleri, `Content/Originals/published/saatin-icindeki-ninni/cover.jpg`, `MagicPaper/Assets.xcassets/Originals/original-saatin-icindeki-ninni.imageset`, bu günlük.
+
+### 2026-11-21 · main, commit bu kayıtla · Kar Tepesi'ndeki Yeşil Işık stüdyo sesiyle yayında
+- Seslendirme: Batuhan'ın ElevenLabs kaydı (anlatıcı "Venera", 232 sn, tek MP3) dokuz sayfa dosyasına bölündü: `Content/Originals/published/kar-tepesindeki-yesil-isik/narration/page-01…09.m4a` (AAC 64 kbps mono, toplam ~1,9 MB). Anlatıcı sayfa arasında daha uzun durmadığı için sınırlar cümle cümle hece sayısı ve duraklarla eşleştirildi, sonra elle kontrol edildi. Kesimler (sn): 28,39 · 54,57 · 81,94 · 107,99 · 132,36 · 155,77 · 180,44 · 208,59. Başlık 1. sayfanın sesinin başında okunuyor. Sayfa başına süre/hece oranı ±%12 içinde. Kulakla dinlenmedi.
+- Onay: Batuhan'ın onayıyla `originals approve` çalıştı, taslak `published/`'a geçti (review.md git geçmişinde), `build_classics_catalog.py` masalı katalog ve kapak asset'iyle uygulamaya ekledi.
+- Yayın aracı: `originals check` isteğe bağlı `narration/` klasörünü denetler (her sayfaya bir `page-NN.m4a`, eksik ya da fazla dosya yok, m4a kabı); `approve` klasörü masalla birlikte taşır. 3 yeni test.
+- Katalog derleyicisi: seslendirmeyi `MagicPaper/Screens/Gunluk/Narration/narration-<ID>-NN.m4a` olarak kopyalar, sayfa sayısı tutmazsa durur.
+- Uygulama: yeni `MPStudioNarration` sayfanın stüdyo sesini paketten bulur. Sıra: ailenin sesi → stüdyo seslendirmesi → cihazın anlatıcısı (`MPNarration.audio`). Okuyucu ve Uyku modu bunu kullanır; sesli okumada sayfa bitince sonraki sayfaya geçiş mevcut `onFinished` ile çalışır. "Ailenin sesi" rozeti yalnız aile kaydında işaretlenir. Klasik anlatım seçiliyse stüdyo sesi çalmaz. "Sesli" rafı ve raf sayfasındaki "Sesli" çipi artık seslendirilmiş masalları gösterir.
+- Bilerek değişmeyen: stüdyo sesi çalarken kelime/cümle vurgusu yok (kayıtta kelime zamanı yok, aile sesiyle aynı); uzak akış ve hosting dokunulmadı.
+- Doğrulama: `swift test` (ContentPublisher) 32/0; değişen Swift dosyalarında `swiftc -parse` temiz; tasarım kuralı grep'leri eklenen satırlarda boş. Uygulama derlenmedi ve test edilmedi (disk %99 dolu); simülatörde ya da cihazda dinlenmedi, Batuhan deneyecek.
+- Dosyalar: `Content/Originals/{drafts→published}/kar-tepesindeki-yesil-isik`, `MagicPaper/Screens/Gunluk/Narration/`, `MagicPaper/Assets.xcassets/Originals/original-kar-tepesindeki-yesil-isik.imageset`, `MagicPaper/Screens/Gunluk/Model/{classics_catalog.json,ClassicsCatalog.swift,ClassicTale.swift}`, `MagicPaper/Screens/Gunluk/GunlukShelfView.swift`, `MagicPaper/Screens/{MPNarration.swift,StoryReader/StoryReaderView.swift,SleepMode/MPSleepPlayback.swift}`, `Scripts/ContentPublisher/{Sources/PublisherKit/Originals.swift,Tests/PublisherKitTests/OriginalsTests.swift}`, `Scripts/ClassicsCatalog/build_classics_catalog.py`, bu günlük.
+
+### 2026-11-21 · anlati-provenance, commit bu kayıtla · A0, A1, ilk sayfa incelemesi, eksik parça işareti
+- Plan belgeleri (`ANLATI_PLANI.md`, `art/GORSEL_PILOT_LISTESI.md`) evren-7'den bu dala alındı; plan sözleşmeyle güncellendi (A2 yapıldı, A2g kalktı, A9 ChatGPT'de).
+- Kaynak izi: `StoryPage.provenance.partCount` ve `isComplete`; okumada atlanan parça sayfayı eksik yapar, yeniden kaydedilince eksiklik kalır (ChatGPT'nin uyarısı). Eksik sayfaya otomatik görsel bağlanmamalı.
+- A0: `ReadingSequenceReport` (motor, kalıcı) ve `ReadingSequenceTests` (eşik: tekrar kötüleşirse kırılır).
+- A1: satır soğuma penceresi içerikten ayrıldı, 4 → 20 (ölçümle: 4/8/12/20 denendi). 4-10. masallarda tanıdık satır yaklaşık yarıya indi (9-10: %14 → %7); 51-100. masallarda değişmedi (%84-91). Uygulama motora 20 masallık geçmiş veriyor (`historyWindow`).
+- Elle inceleme: bütün ilk sayfa (`notice_anomaly`) satırları `reviewed`, 272 satır (16 şablon dosyası + özel gün). Kural: yalnızca adı geçen öğe; adı geçen keşif `present` + `found`; adsız anma ("bir ses duydu") keşfe bağlanmaz; ad yoksa `visual: []`. Öneri betiğinin 21 yanlış durumu ("gözlerini açtı" → `opened`) düzeldi. Özel gün dosyasındaki 6 satır da `auto` aldı.
+- Bayat testler düzeltildi: `TopicMechanismTests` (3-4 macera H1'den beri dolu), `UsageLearningTests` (yeni dünyalar sabit kitabı değiştirmişti; ağırlık testinde 200 seed berabere kalıyordu, 600'e çıktı), `ProseCooldownTests` (iki pencere).
+- Test: motor paketi (BoundPoolTests hariç, 951 test) koşuldu, 7 hata 4 testteydi; düzeltildi ve etkilenen 42 test yeniden geçti. Uygulama `StoryPageProvenanceTests` (4) simülatörde geçti. BoundPoolTests koşulmadı.
+- Dosyalar: `SelectionScoring.swift`, `ReadingSequenceReport.swift` (yeni), `StoryPageProvenance.swift`, `OfflineStoryService.swift`, `StoryContextBuilder.swift`, `StoryGenerationManager.swift`, 16 şablon dosyası, `occasion_library_v1.json`, beş test dosyası, iki belge, bu günlük.
+
+### 2026-11-21 · codex/design-system-catalog, commit bu kayıtla · Originals sayfa çizimleri
+
+- İki yayımlanmış Original masalın 14 sayfasına ayrı sabit çizim ve Türkçe görsel açıklaması eklendi. İki kapak kullanıcı referansındaki sade, dokulu kitap diline yenilendi; mor ana renk yapılmadı. Ragi üç sayfada konuk. Erken görünen tren ve çift atkı devamlılık hataları düzeltildi.
+- Sayfa metinleri ve masal kimlikleri aynı kaldı; katalog derleyicisi tam sayfa sırasını doğrular. Eski görselsiz kataloglar ve eksik görselde metin yedeği korunur. Kaynaklar, tam promptlar ve iki görsel genel bakış Content/Originals altında.
+- Doğrulama: 6 Python testi geçti; 16 JPEG açıldı, 14 eşleme ve değişmeyen metinler doğrulandı; diff kontrolü temiz. Kod incelemesinde engelleyici bulgu yok. İlk Xcode denemesi başka derlemenin build.db kilidiyle durdu; ayrı önbellekte Swift derleme/bağlama geçti ancak dSYM paketleme diskte yer kalmamasıyla durdu (lipo errno=28). Geçici derleme kopyası temizlendi. Sonraki turda dSYM kapatılarak 44 uygulama testi 0 hatayla geçti (TEST SUCCEEDED); okuyucu 375/440 pt, gündüz/gece ve AX5 boyutlarında simülatör içinde render edildi. Gündüz ve küçük ekran gece AX5 örnekleri gözle incelendi. Ayrı fiziksel SE/Pro Max cihaz testi yapılmadı.
+- Dosyalar: Content/Originals, Originals asset kataloğu, ClassicText/ClassicReading/ClassicPageIllustration, ReaderImageLoader, katalog derleyicisi ve ilgili testler, tasarım/uygulama planı.
+
+### 2026-11-21 · codex/design-system-catalog, commit yok · İncelenmiş gümüş çan eşlemesi
+
+- Claude c742ea7 provenance tesliminin günlük hariç 206 dosyası patch ile alındı; sayfa kaynak izi yeni kitaplarda kalıcıdır. Merge yapılmadı.
+- 5–6 yaş için 5 notice ve 38 hatırlama kaynağına dayanan dar gümüş çan politikası, paketli çizim ve kayıtlı görsel pinleri eklendi. Kaynak/nesne/metin/dosya özeti doğrulanır; belirsiz sayfa metin kalır.
+- Masal metni, kimlikler, seed, seçim dağılımı ve eski kitaplar değişmedi. Her kitapta çizim garantisi yok; auto etiketler topluca onaylanmadı.
+- Motor 11 test/0 hata. Uygulama 96 test: 94 başarılı, 1 skip, 1 seri uygunluğu hatası (9–10 öğrenme devamı varsayımı). Yeni art/provenance 22/22 geçti; genel koşu başarısız. Telefona kurulum ve yeni UI matrisi yapılmadı.
+- Etkilenen alanlar: engine provenance/visual şeması ve şablon metadatası; Story/mapper; ReviewedDiscoveryArtPolicy/Binder, StorySpotBinder, art kaynakları ve testler; spec/plan/inceleme kaydı ve REPORT.md. Originals/Classic/ReaderImageLoader değişiklikleri bu işe dahil değil.
 
 ### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa: en büyük yazı düzeni ve kartta kapak (A5, A6)
 
@@ -480,104 +846,6 @@ CI (#1) ilk kez koştu: 1131 test, 7 test kırık (görüntü testleri CI'da atl
 - Prototip: `design-preview/app/home.js` aynı düzende.
 - Test: design law grep'leri değişen dosyalarda boş. Swift yerelde derlenmedi; bu commit `[ekran]` ile GitHub'ın Mac'inde derlenip çekiliyor.
 - Dosyalar: `MagicPaper/Views/HomeView.swift`, `MagicPaper/DesignSystem/Pastel/{MPHomeReadingNook,MPHomeChrome}.swift`, `MagicPaper/DesignSystem/MPTheme.swift`, `MagicPaper/Assets.xcassets/Scenes/home{ReadingNook,WorldLearning,WorldAdventure}.imageset`, `design-preview/app/{home.js,app.css,index.html}`, `README.md`, bu günlük.
-
-### 2026-11-22 · main@d21b842 · TestFlight için Release arşivi
-
-- Xcode archive başarılı: MagicPaper-builds/MagicPaper-2026-11-22.xcarchive; gerçek sürüm2.0(2026112201),arm64. Sistem güven deposuyla codesign --verify --deep --strict geçti. Development imzalı arşiv Organizer Distribute App akışında dağıtım için yeniden imzalanır; App Store Connect yüklemesi yapılmadı.
-- Log /private/tmp/MagicPaper-archive-20261122.log. Mevcut başka oturum dosyaları kapsam dışında korundu.
-
-
-### 2026-11-22 · main@cd3c02a · Görsel çalışmalarının main teslimi
-
-- Bu sohbetin altı commit’i güncel origin/main ile birleştirildi ve main’e pushlandı. Günlük çakışmasında iki taraf korundu; önceki çalışma farkı /private/tmp/magicpaper-pre-main-journal.patch içinde de yedekli.
-- Son seçili doğrulama101test:100geçti/1skip/0hata. Birleştirme yalnız günlükte çakıştı. Release1.0(2026112201) arşivi hazırlanıyor; sonuç henüz doğrulanmadı.
-
-
-### 2026-11-22 · codex/design-system-catalog, commit yok · Kitap boyunca görsel pilot entegrasyonu
-
--6yeni guaj çizim,21tam-sayfa kaynak kuralı ve kalıcı politika3; eski pinler korunur. AX/kompakt okuyucuda çizim ve metin birlikte kayar.
--101seçili test:100geçti/1skip/0hata. Aynı600masalda251pin;240açılış/9orta/2son. Metin ve eski pinler korundu.356kitap hâlâ görselsiz.
--Kanıt: whole-book-art öneri klasöründe after.json/AFTER_REPORT/VALIDATION ve önizleme. Telefon,VoiceOver ve render eklerinin elle matrisi bekliyor. Başlangıç ölçümü03769ff.
-
-
-### 2026-11-21 · codex/design-system-catalog · Kitap boyunca görsel başlangıç ölçümü
-
-- Kullanıcının onayladığı yol haritası `docs/STORY_ART_ROADMAP.md` içinde; Tarçın kimlik sayfasının görünüşü kullanıcı tarafından onaylandı.
-- Altı5–6macera kurgusu×100sabitseed:600/600temizmasal,4.800sayfa,221kitap1pin/379kitap0pin; tüm pinler açılışta. Orta/son0. Metin, sayfa başına art ve provenance kaydet/aç eşitliği doğrulandı.
-- Test: seçili `WholeBookArtCoverageTests`1/0hata, Xcode TEST SUCCEEDED. Tam paket/telefon/UI matrisi çalıştırılmadı. Mevcut üretim kodu/metin/seçim değişmedi; otomatik etiketler yalnız inceleme adayıdır.
-- Dosyalar: yeni XCTest, `Tools/summarize_whole_book_art.py`, yol haritası, proje hafızası; `design-handoff/proposals/2026-11-21-whole-book-art/` başlangıçJSON/rapor/kimliktaslağı.
-
-
-### 2026-11-21 · codex/design-system-catalog, commit yok · Guaj nesne havuzu 20 konuya çıktı
-
-- Onaylı referanslarla altı yeni sabit çizim: kırmızı top, mavi/sarı saplı atlama ipi, kâğıt uçurtma, tahta flüt, el aynası, uzun kırmızı kurdele. Kurdele dış boya izleri image_gen ile temizlendi; v2 seçildi. Kaynak PNG'ler ve istemler kayıtlı; aynı byte'lar mpart olarak paketlendi.
-- Önceki 14 girdi ve 20/4/3/38 kaynak listeleri korundu. Kapalı dört-sürüm SHA→edition tablosu; eski pinler/v1 önceliği korunur, authorization/binder/ImageIO değişmez. Motor/metin/seed/seçim/reader UI değişikliği yok; her masalda görsel garantisi yok.
-- İki inceleme onaylı. Seçili uygulama: 91 test, 90 geçti, 1 skip, 0 hata. Gerçek altı nesne map/save fixture'ı ve 20 reader decode geçti; üç oyuncak 3–4, kurdele 5–6, flüt 7–8, ayna 9–10. Motor yeniden koşulmadı; önceki 44/0 ayrı kanıt. Telefon kurulumu/yeni UI/VoiceOver matrisi yok; önceki seri/ölçüm bulguları açık.
-- Test için yalnız önceki cihaz derlemesinin yeniden oluşturulabilir Build çıktıları ve başarısız swiftbuild .build/out önbelleği temizlendi. Dosyalar: policy/test; altı mpart+wave3manifest; araştırma/spec/plan; görseller/üretim kaydı/rapor/gerçek fixture JSON'u; proje hafızası. Rapor: design-handoff/proposals/2026-11-21-story-art-wave3/REPORT.md.
-
-### 2026-11-21 · codex/design-system-catalog, commit yok · Üç yeni guaj nesne ve yaşlara göre kaynak eşlemesi
-
-- Yerleşik image_gen + onaylı referanslarla pirinç pusula, eski madeni para ve yıldız biçimli taş hazırlandı; saydam PNG ve aynı byte'lı mpart. Kaynak izli havuz 11→14 konu, notice izin listesi 5→20 kaynak; dört küçük yaş destek satırı eklendi.
-- Tekli keşif sayfaları 5–6/7–8/9–10; 3–4 yalnız üç sports blueprint'inin ilk sayfasında notice→meet. Tam kaynak sırası, gerçek companion, beat listesi ve nesne/dosya özetleri doğrulanır. Mevcut v1, eski çizim dosyaları ve kayıtlı pinler korunur; her masalda görsel garantisi yok.
-- Claude c742ea7→365b66b deltası günlük hariç 32 dosyalık patch ile alındı; merge yapılmadı. Kaynak metinleri/kimlikleri değişmedi. Upstream history20/partCount geldi; ReadingSequenceReport ölçüm bulgusu bu tur düzeltilmedi.
-- İlk testler, pakete giren 193 izlenmeyen `… 2.json` eski kopyasını ortaya çıkardı. Bunlar ve aynı byte'lı 772 generated kopya silinmeden `/private/tmp/magicpaper-json-copy-quarantine-20261121-wave2/` altında yol/SHA manifestleriyle korundu. Son temiz koşu: motor 44/0; uygulama 89 test, 88 geçti, 1 skip, 0 hata. Gerçek 3–4 pusula/7–8 para/9–10 yıldız taşı ve 14 reader decode geçti. Telefona kurulum ve yeni UI/VoiceOver matrisi yok; tam paket/BoundPool ve önceki seri uygunluğu hatası bu koşuya dahil değil.
-- Dosyalar: açık upstream import listesi; ReviewedDiscoveryArtPolicy/Binder ve testleri; üç mpart + wave2 manifest; yeni PNG'ler/üretim kaydı/rapor/gerçek fixture JSON'u; spec/plan/araştırma kararları ve proje hafızası. Ayrıntı design-handoff/proposals/2026-11-21-story-art-wave2/REPORT.md.
-
-### 2026-11-21 · codex/design-system-catalog, commit yok · Claude motor teslimi incelemesi
-
-- origin fetch ile anlati-provenance@365b66b ve origin/main@b8a597b incelendi; Claude tesliminin main'e alındığı doğrulandı. Yerel dal/uygulama kodu değiştirilmedi, merge yapılmadı.
-- Tek P2 bulgu: ReadingSequenceReport birebir tekrar sayacında seed içeren fingerprint kullanıyor; aynı metin farklı seed ile tekrar olarak yakalanmıyor. Seed bağımsız metin özeti ve dar fixture önerildi.
-- Statik kaynak karşılaştırması: değişen 17 içerik dosyasında kaynak metni/kimliği ekleme-silme-değişim 0; 272 reviewed ilk sayfa kaydı. Mevcut beş görsel kaynağı aynı. PartCount/isComplete ve 20 masallık satır geçmişi incelendi.
-- Entegrasyon: d3a3b46 henüz uzak main'de değil; eski pilot liste yeni uygulama-kararlı sözleşmeye hizalanmalı. Testler yeniden çalıştırılmadı; önceki yerel test sonucu birleşik sürüm için onay sayılmadı. Rapor: docs/research/2026-11-21-claude-story-engine-review.md.
-
-### 2026-11-21 · codex/design-system-catalog, commit yok · Kaynak izli çizimler 11 nesneye genişledi
-
-- Gümüş çan politikasına mevcut on nesne çizimi eklendi; beş 5–6 notice ve 38 hatırlama kaynağı için ayrı inceleme kaydı yazıldı. Manifest/kanonik nesne/dosya özetleri doğrulanır; asset ve kanıt birlikte yetkilendirilir.
-- Mevcut v1 eşlemesi öncelikli; yeni politika kalan uygun sayfalara uygulanır. Eski çan pinleri korunur. Motor metinleri, kimlikler, seed/seçim, eski kitaplar ve okuyucu düzeni değişmedi. Boş yuva/açık müzik kutusu kapsam dışı; her masalda çizim garantisi yok.
-- Spec ve bağımsız kod incelemesi onaylı. Seçili Xcode: 76 test, 75 başarılı, 1 skip, 0 hata; art/provenance 27/27. Gerçek on nesne fixture'ı, kayıt roundtrip ve 11 reader decode geçti. İlk deneme testlerden önce sandbox önbellek erişiminde durdu; erişimle tekrar başarılı. Önceki seri uygunluğu hatası bu tur çözülmedi veya tekrar sınanmadı. Telefona kurulum/yeni UI matrisi yok.
-- Dosyalar: ReviewedDiscoveryArtPolicy/Binder, StorySpotBinder; ReviewedDiscoveryArtPolicyTests ve StorySpotBindingTests; expansion manifesti; research kararları, spec/plan, teslim raporu ve kaynak doğrulama kaydı, proje hafızası.
-### 2026-11-21 · main, commit bu kayıtla · anlati-provenance, evren-7-yetkiler ve codex/design-system-catalog main'e birleşti
-- Birleşenler (Batuhan'ın isteğiyle, sırayla, `--no-ff`): `anlati-provenance` (71d4893: sayfa kaynak izi, Anlatı planı A0-A8, katmanlı sayfa resmi kararı, pilot çizim listesi), `evren-7-yetkiler` (7fc4231: aynı plan belgelerinin eski kopyaları), `codex/design-system-catalog` (bbbc522: yayımlanmış Original'lara sayfa çizimleri, incelenmiş çan görseli, görsel kaynak denetimi).
-- Çakışma çözümü: `ANLATI_PLANI.md`'de anlati-provenance'ın yeni sürümü kaldı (evren-7'deki A0/A1 öncesi hâli). codex dalı `c742ea7`'yi yama olarak almıştı; çakışan 20 dosyanın (StoryPageProvenance, 18 notice_anomaly şablonu, VisualMeaningTests, GORSEL_ANLAM_SOZLESMESI) codex sürümü `c742ea7` ile birebir aynıydı, bu yüzden anlati-provenance'ın ilerlemiş sürümü (`visualReview: "reviewed"`) kaldı. Günlükte iki tarafın kayıtları tarihe göre birleşti, hiçbiri silinmedi.
-- codex dalının yeni "Saatin İçindeki Ninni" kapağı logosuzdu; 19 Kasım kararına göre Originals logosu `stamp_originals_logo.py` ile basıldı (published + uygulama asset'i). "Originals" yazısı saatin karlı tepesine biraz değiyor, hale ile okunuyor.
-- Bilerek değişmeyen: paylaşılan checkout'taki `codex/design-system-catalog` dalının commit edilmemiş değişiklikleri (ReviewedDiscoveryArtBinder/Policy, StorySpotBinder ve testleri) birleşmeye girmedi; o oturumun işi.
-- Doğrulama: iPhone 16 için Debug derleme BUILD SUCCEEDED; StoryEngine `VisualMeaningTests` 5/0; ContentPublisher 32/0; `test_original_illustrations.py` 6/0; katalog derleyicisi yeniden çalıştı, çıktı değişmedi. Uygulama test paketi koşulmadı; birleşik hâl cihazda denenmedi.
-- Dosyalar: üç dalın değişiklikleri, `Content/Originals/published/saatin-icindeki-ninni/cover.jpg`, `MagicPaper/Assets.xcassets/Originals/original-saatin-icindeki-ninni.imageset`, bu günlük.
-
-### 2026-11-21 · main, commit bu kayıtla · Kar Tepesi'ndeki Yeşil Işık stüdyo sesiyle yayında
-- Seslendirme: Batuhan'ın ElevenLabs kaydı (anlatıcı "Venera", 232 sn, tek MP3) dokuz sayfa dosyasına bölündü: `Content/Originals/published/kar-tepesindeki-yesil-isik/narration/page-01…09.m4a` (AAC 64 kbps mono, toplam ~1,9 MB). Anlatıcı sayfa arasında daha uzun durmadığı için sınırlar cümle cümle hece sayısı ve duraklarla eşleştirildi, sonra elle kontrol edildi. Kesimler (sn): 28,39 · 54,57 · 81,94 · 107,99 · 132,36 · 155,77 · 180,44 · 208,59. Başlık 1. sayfanın sesinin başında okunuyor. Sayfa başına süre/hece oranı ±%12 içinde. Kulakla dinlenmedi.
-- Onay: Batuhan'ın onayıyla `originals approve` çalıştı, taslak `published/`'a geçti (review.md git geçmişinde), `build_classics_catalog.py` masalı katalog ve kapak asset'iyle uygulamaya ekledi.
-- Yayın aracı: `originals check` isteğe bağlı `narration/` klasörünü denetler (her sayfaya bir `page-NN.m4a`, eksik ya da fazla dosya yok, m4a kabı); `approve` klasörü masalla birlikte taşır. 3 yeni test.
-- Katalog derleyicisi: seslendirmeyi `MagicPaper/Screens/Gunluk/Narration/narration-<ID>-NN.m4a` olarak kopyalar, sayfa sayısı tutmazsa durur.
-- Uygulama: yeni `MPStudioNarration` sayfanın stüdyo sesini paketten bulur. Sıra: ailenin sesi → stüdyo seslendirmesi → cihazın anlatıcısı (`MPNarration.audio`). Okuyucu ve Uyku modu bunu kullanır; sesli okumada sayfa bitince sonraki sayfaya geçiş mevcut `onFinished` ile çalışır. "Ailenin sesi" rozeti yalnız aile kaydında işaretlenir. Klasik anlatım seçiliyse stüdyo sesi çalmaz. "Sesli" rafı ve raf sayfasındaki "Sesli" çipi artık seslendirilmiş masalları gösterir.
-- Bilerek değişmeyen: stüdyo sesi çalarken kelime/cümle vurgusu yok (kayıtta kelime zamanı yok, aile sesiyle aynı); uzak akış ve hosting dokunulmadı.
-- Doğrulama: `swift test` (ContentPublisher) 32/0; değişen Swift dosyalarında `swiftc -parse` temiz; tasarım kuralı grep'leri eklenen satırlarda boş. Uygulama derlenmedi ve test edilmedi (disk %99 dolu); simülatörde ya da cihazda dinlenmedi, Batuhan deneyecek.
-- Dosyalar: `Content/Originals/{drafts→published}/kar-tepesindeki-yesil-isik`, `MagicPaper/Screens/Gunluk/Narration/`, `MagicPaper/Assets.xcassets/Originals/original-kar-tepesindeki-yesil-isik.imageset`, `MagicPaper/Screens/Gunluk/Model/{classics_catalog.json,ClassicsCatalog.swift,ClassicTale.swift}`, `MagicPaper/Screens/Gunluk/GunlukShelfView.swift`, `MagicPaper/Screens/{MPNarration.swift,StoryReader/StoryReaderView.swift,SleepMode/MPSleepPlayback.swift}`, `Scripts/ContentPublisher/{Sources/PublisherKit/Originals.swift,Tests/PublisherKitTests/OriginalsTests.swift}`, `Scripts/ClassicsCatalog/build_classics_catalog.py`, bu günlük.
-
-### 2026-11-21 · anlati-provenance, commit bu kayıtla · A0, A1, ilk sayfa incelemesi, eksik parça işareti
-- Plan belgeleri (`ANLATI_PLANI.md`, `art/GORSEL_PILOT_LISTESI.md`) evren-7'den bu dala alındı; plan sözleşmeyle güncellendi (A2 yapıldı, A2g kalktı, A9 ChatGPT'de).
-- Kaynak izi: `StoryPage.provenance.partCount` ve `isComplete`; okumada atlanan parça sayfayı eksik yapar, yeniden kaydedilince eksiklik kalır (ChatGPT'nin uyarısı). Eksik sayfaya otomatik görsel bağlanmamalı.
-- A0: `ReadingSequenceReport` (motor, kalıcı) ve `ReadingSequenceTests` (eşik: tekrar kötüleşirse kırılır).
-- A1: satır soğuma penceresi içerikten ayrıldı, 4 → 20 (ölçümle: 4/8/12/20 denendi). 4-10. masallarda tanıdık satır yaklaşık yarıya indi (9-10: %14 → %7); 51-100. masallarda değişmedi (%84-91). Uygulama motora 20 masallık geçmiş veriyor (`historyWindow`).
-- Elle inceleme: bütün ilk sayfa (`notice_anomaly`) satırları `reviewed`, 272 satır (16 şablon dosyası + özel gün). Kural: yalnızca adı geçen öğe; adı geçen keşif `present` + `found`; adsız anma ("bir ses duydu") keşfe bağlanmaz; ad yoksa `visual: []`. Öneri betiğinin 21 yanlış durumu ("gözlerini açtı" → `opened`) düzeldi. Özel gün dosyasındaki 6 satır da `auto` aldı.
-- Bayat testler düzeltildi: `TopicMechanismTests` (3-4 macera H1'den beri dolu), `UsageLearningTests` (yeni dünyalar sabit kitabı değiştirmişti; ağırlık testinde 200 seed berabere kalıyordu, 600'e çıktı), `ProseCooldownTests` (iki pencere).
-- Test: motor paketi (BoundPoolTests hariç, 951 test) koşuldu, 7 hata 4 testteydi; düzeltildi ve etkilenen 42 test yeniden geçti. Uygulama `StoryPageProvenanceTests` (4) simülatörde geçti. BoundPoolTests koşulmadı.
-- Dosyalar: `SelectionScoring.swift`, `ReadingSequenceReport.swift` (yeni), `StoryPageProvenance.swift`, `OfflineStoryService.swift`, `StoryContextBuilder.swift`, `StoryGenerationManager.swift`, 16 şablon dosyası, `occasion_library_v1.json`, beş test dosyası, iki belge, bu günlük.
-
-### 2026-11-21 · codex/design-system-catalog, commit bu kayıtla · Originals sayfa çizimleri
-
-- İki yayımlanmış Original masalın 14 sayfasına ayrı sabit çizim ve Türkçe görsel açıklaması eklendi. İki kapak kullanıcı referansındaki sade, dokulu kitap diline yenilendi; mor ana renk yapılmadı. Ragi üç sayfada konuk. Erken görünen tren ve çift atkı devamlılık hataları düzeltildi.
-- Sayfa metinleri ve masal kimlikleri aynı kaldı; katalog derleyicisi tam sayfa sırasını doğrular. Eski görselsiz kataloglar ve eksik görselde metin yedeği korunur. Kaynaklar, tam promptlar ve iki görsel genel bakış Content/Originals altında.
-- Doğrulama: 6 Python testi geçti; 16 JPEG açıldı, 14 eşleme ve değişmeyen metinler doğrulandı; diff kontrolü temiz. Kod incelemesinde engelleyici bulgu yok. İlk Xcode denemesi başka derlemenin build.db kilidiyle durdu; ayrı önbellekte Swift derleme/bağlama geçti ancak dSYM paketleme diskte yer kalmamasıyla durdu (lipo errno=28). Geçici derleme kopyası temizlendi. Sonraki turda dSYM kapatılarak 44 uygulama testi 0 hatayla geçti (TEST SUCCEEDED); okuyucu 375/440 pt, gündüz/gece ve AX5 boyutlarında simülatör içinde render edildi. Gündüz ve küçük ekran gece AX5 örnekleri gözle incelendi. Ayrı fiziksel SE/Pro Max cihaz testi yapılmadı.
-- Dosyalar: Content/Originals, Originals asset kataloğu, ClassicText/ClassicReading/ClassicPageIllustration, ReaderImageLoader, katalog derleyicisi ve ilgili testler, tasarım/uygulama planı.
-
-### 2026-11-21 · codex/design-system-catalog, commit yok · İncelenmiş gümüş çan eşlemesi
-
-- Claude c742ea7 provenance tesliminin günlük hariç 206 dosyası patch ile alındı; sayfa kaynak izi yeni kitaplarda kalıcıdır. Merge yapılmadı.
-- 5–6 yaş için 5 notice ve 38 hatırlama kaynağına dayanan dar gümüş çan politikası, paketli çizim ve kayıtlı görsel pinleri eklendi. Kaynak/nesne/metin/dosya özeti doğrulanır; belirsiz sayfa metin kalır.
-- Masal metni, kimlikler, seed, seçim dağılımı ve eski kitaplar değişmedi. Her kitapta çizim garantisi yok; auto etiketler topluca onaylanmadı.
-- Motor 11 test/0 hata. Uygulama 96 test: 94 başarılı, 1 skip, 1 seri uygunluğu hatası (9–10 öğrenme devamı varsayımı). Yeni art/provenance 22/22 geçti; genel koşu başarısız. Telefona kurulum ve yeni UI matrisi yapılmadı.
-- Etkilenen alanlar: engine provenance/visual şeması ve şablon metadatası; Story/mapper; ReviewedDiscoveryArtPolicy/Binder, StorySpotBinder, art kaynakları ve testler; spec/plan/inceleme kaydı ve REPORT.md. Originals/Classic/ReaderImageLoader değişiklikleri bu işe dahil değil.
 
 ### 2026-11-20 · anlati-provenance, commit bu kayıtla · Sayfa kaynak izi ve satırlarda görsel anlam
 
@@ -1916,6 +2184,7 @@ CI (#1) ilk kez koştu: 1131 test, 7 test kırık (görüntü testleri CI'da atl
 - Bilerek değişmeyenler: altın karartması (`MPArtHero`), sayfa noktaları, kendiliğinden geçiş, sahnenin yuvarlak alt köşeleri ve sert alt kenarı.
 - Doğrulama: derleme yeşil. iPhone 17 Pro simülatöründe açık temada görüldü: başlık kremde, sahne temiz, raf kapıları kıvrımın üstünde. Testler çalıştırılmadı. Koyu tema, en büyük yazı ve iPhone SE görülmedi. Design law grep'leri bu dosyada boş.
 - Dosya: `MagicPaper/Screens/Gunluk/GunlukHeader.swift`.
+
 ### 2026-11-11 · main, commit bu kayıtla · Ana sayfa kıvrımı: üç mod alt çubuğun üstünde
 
 - **Sorun:** simülatörde (iPhone 17 Pro, 402 × 874 pt) "Maceraya çıkalım" alt çubuğun altında kalıyordu, "Yeni şeyler öğrenelim" de yarıya kadar. `HomeHeroCard.sceneHeight = 180` tanımlıydı ama hiç kullanılmıyordu: sahne tam genişlikte doğal oranında çiziliyor, ~203 pt oluyordu.
@@ -2953,6 +3222,7 @@ Batuhan üç açık kararı ürünün vizyonuna göre vermemi istedi. Üçü de 
 - **Bilerek değişmeyen:** motor havuzu (süzgeç yalnızca ekranda), `CompanionStep.symbol(forType:)` eşlemesi, B2 sahne kütüphanesi, ilgi eşiği, kayıtlı profiller, üç ulaşılamayan uyku blueprint'i (düzeltmesi uyku arkı oturumunun).
 - **Test:** uygulama demeti `xcodebuild -scheme MagicPaper -only-testing:MagicPaperTests test` (iPhone 17 Pro simülatörü) → **753 test, 0 hata, 1 atlanan.** Tur başındaki beş kırmızı vakanın beşi kapandı. Motor demeti bu turda yeniden çalıştırılmadı (değişen dosyalar uygulama katmanında). Simülatörde ekran görüntüsü alınmadı.
 - **Dosyalar:** `MagicPaper/Screens/StoryCreation/StoryCreationFlow.swift`, `StoryCreationSteps.swift`, `StoryIdeaStep.swift` (silindi), `MagicPaper/StoryEngineBridge/StoryIdeaStepAccess.swift` (silindi), `StoryChoiceSource.swift`, `MagicPaper/Views/SettingsView.swift`, `MagicPaperTests/CompanionSymbolTests.swift`, `IllustratedBookFlowTests.swift`, `InterestProfileTests.swift`, `SceneLibraryTests.swift`, `StoryCreationStepsTests.swift`, `StoryModeFlowTests.swift`.
+
 ### 2026-10-21 · main, commit yok · Kelime planı: kitapokur incelemesi
 
 - `ka1nsha/kitapokur` (İngilizce PDF'lerden kelime öğreten okuyucu) incelendi. Repo'da lisans yok: kod alınmaz, yalnız yaklaşım ve eşik fikirleri.
@@ -2984,6 +3254,7 @@ Batuhan üç açık kararı ürünün vizyonuna göre vermemi istedi. Üçü de 
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+
 ### 2026-10-21 · main@f23fa25 · Alt çubuk: şeffaf kutu gitti, Apple ölçüsü, cam Masal yaz dairesi
 
 - Hata: çubuğun arkasında tam genişlikte şeffaf bir kutu görünüyordu. Kaynağı iOS 26'nın `safeAreaBar`'ı: çubuğun arkasına kaydırma kenarı efekti çiziyordu. `mpFloatingBar` artık her sürümde `safeAreaInset`; arkada kutu yok.
@@ -3377,6 +3648,7 @@ Batuhan üç açık kararı ürünün vizyonuna göre vermemi istedi. Üçü de 
 - Bilerek yapılmadı: 1. adım (hangi çocuk) ekranı, alt kategori adımının arayüzü, ve sekiz konunun içeriği. Uygulama hedefi testleri çalıştırılmadı — değişen kodun hiçbiri uygulama hedefinde değil.
 - Test: motor 795 test / 18 hata — bilinen 10 vakanın aynısı, bugün `refrain-deneyi` HEAD'inde ölçülen tabanla birebir; yeni hata yok. 15 yeni test (13 konu + 1 katalog alanı koruması + 1 alt seçenek sözleşmesi).
 - Etkilenen: `StoryEngine/Sources/StoryEngine/Content/StoryTopic.swift` (yeni), `ContentCatalog.swift`, `ContentCatalogLoader.swift`, `CatalogIntegrity.swift`, `Offline/OfflineSelection.swift`, `Offline/BlueprintSelector.swift`, `Resources/blueprints/pilot_library_v1.json`, `Tests/StoryEngineTests/StoryTopicTests.swift` (yeni), `CatalogMergeTests.swift`, `InterestCatalogTests.swift`, `ModeBandCoverageTests.swift`, bu dosya.
+
 ### 2026-10-16 · main@7bbb3ce · Masal atölyesi: "Masal yazılıyor" ekranı
 - 21 · Masal yazılıyor ve 10 · İlk masal artık bir masal defteri. Adımlar: kadro etiketleri (çocuk, "kirpi Kestane", Masal ailem), yaşa uygunluk, mod dokunuşu, masalın gerçek ilk cümlesi harf harf mürekkeple, "Ragi masalı bir kez daha okuyor", sonra kapak ve "İrem'in 3. masalı hazır." künyesi. Yüzdeli halka kalktı.
 - Süre: ilk masal ~10 sn, 2.-3. masal ~8 sn, sonra ~5 sn; uyku saatinde x1,3. İlk masal atlanamaz; sonra 2 sn (4. masaldan itibaren 1 sn) içinde "Hemen aç" çıkar. Reduce Motion açıkken adımlar aynı sırayla çapraz geçişle gelir, cümle bütün halde belirir.
@@ -3426,6 +3698,7 @@ Batuhan üç açık kararı ürünün vizyonuna göre vermemi istedi. Üçü de 
 - Değişmeyen: veriler ve işlevler (profil değiştirme, kilit, Ekle, rozet kuralı, bağlantılar).
 - Simülatörde görüldü (iPhone 18 Pro Max, gündüz). Test çalıştırılmadı (görünüm değişikliği); derleme temiz.
 - Dosyalar: `Screens/KidCorner/KidCornerView.swift`, `DesignSystem/Pastel/MPCards.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`.
+
 ### 2026-10-16 · main@b997fcb (push yok) · Masal atölyesi planı
 - Yeni belge `docs/MASAL_ATOLYESI_PLANI.md`: "Masal yazılıyor" ekranının (21 ve 10 · İlk masal) yeniden tasarımı için plan. Ekran, motorun gerçekten yaptığı işi ve ailenin kendi seçimlerini gösteren bir masal defterine dönüşüyor: kadro, yaşa uygunluk, mod dokunuşu, masalın gerçek ilk cümlesinin mürekkeple yazılması, okuma kontrolü, ciltleme ve "Ela'nın 12. masalı" künyesi. Süreler ilk masalda ~10 sn, sonra kısalıyor ve "Hemen aç" ile atlanabiliyor.
 - Bilerek değişmedi: kod yazılmadı. `StoryPreparationView`, `Story` modeli ve motor aynı. Beş karar Batuhan'da (süreler, `MP.M.ink` sabiti, ilk cümlenin gösterilmesi, künyenin yeri, yüzdeli halkanın kaldırılması).
@@ -3538,6 +3811,7 @@ Batuhan üç açık kararı ürünün vizyonuna göre vermemi istedi. Üçü de 
 - Bilerek değişmeyen: gece modunda saat yazısının rengi (açık kalan), açılıştaki ~6 sn beyaz ekran (demo açılışı, ana sayfa dışı), en büyük yazı boyutunda çip ikonlarının küçük kalması.
 - `main` bu dala birleştirildi (Liquid Glass, Günlük). Test: `StarCountTests` + `KidCornerTabTests` 19/0; tam test takımı çalıştırılmadı.
 - Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift` (yalnızca yorum).
+
 ### 2026-10-15 · main (faz-20-gunluk ileri sarıldı, push yok) · Günlük denetimi ve yeni düzen main'de
 
 - `faz-20-gunluk` dalının 15 Ekim işleri main'e alındı: Günlük denetimi (kenardan geri, durum çubuğu zemini, sekmeye dokununca başa dönüş, tekrar ve boşluk düzeltmeleri), vitrin altının yeni düzeni (raf kapıları, simgeli bölümler) ve sayfa sonundaki gece bölgesi.
@@ -3737,6 +4011,7 @@ Batuhan "Günlük'te düzeltilecek bir şey var mı" diye sordu. Kendi simülat�
 - Bilerek değişmedi: ebeveyn `TabView`'ı (sistem camını zaten alıyor), üst başlıklar, `MPModeSwitch`, kullanılmayan `MPTabBar`, `ContentView` yerleşimi.
 - Test: uygulama testleri 692 geçti, 0 hata. Tasarım yasası denetimleri yeni kodda boş. Simülatör (iPhone 17 Pro, iOS 27): Ana sayfa ve Kitaplık, normal ve en büyük Dynamic Type; etiketler kesilmiyor. iOS 17.6 yedek yolu, koyu görünüm (uygulama yalnızca açık), küçük ekran ve VoiceOver simülatörde bakılmadı.
 - Etkilenen: `MPNavigationChrome.swift`, `MPTheme.swift`, `MPGlass.swift` (yeni), `docs/LIQUID_GLASS_TAB_BAR_PLAN.md` (yeni), `docs/MagicPaper_Design_System.md`, `CLAUDE.md` (kökte, repo dışında).
+
 ### 2026-10-14 · main@b321c1e · Ana sayfa: aşağı çekerken yalnızca manzara yakınlaşır
 - Sayfa en üstteyken aşağı çekince başlık, çipler ve kartlar yerinden oynamaz; içerik çekilen mesafe kadar geri tutulur, manzara köy hizasından yerinde yakınlaşır.
 - Kaydırma ölçüsü içerikten değil ayrı görünmez bir işaretten okunur (önceki denemede içerik sabitlemesi ölçümü sıfırlıyordu).

@@ -48,7 +48,7 @@ final class OfflineStoryService {
     /// variant shares will fail every attempt, and should.
     static let cleanDraftAttempts = 3
 
-    private var cached: ContentCatalog?
+    private var cachedSource: CatalogSourceResolver.Resolved?
     private var cachedReport: CatalogLoadReport?
     /// Interest coverage asks the binder about every tagged record; the answer
     /// only changes with the catalog, which is loaded once.
@@ -57,7 +57,15 @@ final class OfflineStoryService {
     private let selector = BlueprintSelector()
     private let composer = OfflineStoryComposer()
 
-    private init() {}
+    private let currentSource: () throws -> CatalogSourceResolver.Resolved
+    private let historical: HistoricalCatalogResolver
+
+    init(currentSource: @escaping () throws -> CatalogSourceResolver.Resolved = {
+        try CatalogSourceResolver.forThisLaunch().resolve()
+    }, historical: HistoricalCatalogResolver = .forThisBuild()) {
+        self.currentSource = currentSource
+        self.historical = historical
+    }
 
     /// Etkin çocuğun içerik güvenliği ayarı (FAZ 17). Uygulama profil
     /// değişince kurar (`ContentView`); `nil` süzgeç yok demektir, testler ve
@@ -72,22 +80,57 @@ final class OfflineStoryService {
     /// The bundle's, or a downloaded content package that passed every check
     /// (FAZ 15, `CatalogSourceResolver`). Decided once per launch: a package
     /// that arrives mid-session waits for the next one.
-    private func catalog() throws -> ContentCatalog {
-        if let cached { return cached }
+    private func source() throws -> CatalogSourceResolver.Resolved {
+        if let cachedSource { return cachedSource }
         do {
-            let result = try CatalogSourceResolver.forThisLaunch().resolve().result
-            cached = result.catalog
-            cachedReport = result.report
-            logger.debug("📚 \(result.report.summary)")
-            return result.catalog
+            let resolved = try currentSource()
+            guard let reference = resolved.contentSource.reference,
+                  reference.catalogVersion == resolved.result.catalog.version else {
+                throw Failure.contentUnavailable(detail: "Current catalog source is invalid")
+            }
+            cachedSource = resolved
+            cachedReport = resolved.result.report
+            return resolved
         } catch {
-            throw Failure.contentUnavailable(detail: String(describing: error))
+            throw Failure.contentUnavailable(detail: "Catalog source could not be archived or loaded")
+        }
+    }
+
+    private func catalog() throws -> ContentCatalog { try source().result.catalog }
+
+    /// Never asks the launch-current source to stand in for an old book.
+    private func historicalCatalog(_ metadata: ContentSourceMetadata?, version: String)
+        throws -> (catalog: ContentCatalog, reference: ContentSourceReference) {
+        let resolution = metadata.map { historical.resolve(metadata: $0) }
+            ?? historical.resolveLegacy(catalogVersion: version)
+        switch resolution {
+        case .exact(let result, let reference), .verifiedLegacy(let result, let reference):
+            guard reference.catalogVersion == version, result.catalog.version == version else {
+                throw Failure.contentUnavailable(detail: "Historical catalog version mismatch")
+            }
+            return (result.catalog, reference)
+        case .missing:
+            throw Failure.contentUnavailable(detail: "Historical catalog source is missing")
+        case .ambiguous:
+            throw Failure.contentUnavailable(detail: "Historical catalog source is ambiguous")
+        case .unsupported:
+            throw Failure.contentUnavailable(detail: "Historical catalog source is unsupported")
+        case .corrupt:
+            throw Failure.contentUnavailable(detail: "Historical catalog source is corrupt")
         }
     }
 
     var loadReport: CatalogLoadReport? { cachedReport }
 
     var catalogVersion: String { (try? catalog().version) ?? "unknown" }
+
+    /// Account erasure also removes source archives. The next new book must
+    /// archive again instead of reusing an in-memory reference to deleted bytes.
+    func resetSourceCache() {
+        cachedSource = nil
+        cachedReport = nil
+        cachedInterests = nil
+    }
 
     // MARK: - Age
 
@@ -294,6 +337,12 @@ final class OfflineStoryService {
         (try? catalog())?.companions.first { $0.id.rawValue == id }?.name
     }
 
+    /// One catalog companion as a choice, by id (B5: the five friends' names
+    /// and lines on the selection screen).
+    func companionChoice(id: String) -> CompanionChoice? {
+        (try? catalog())?.companions.first { $0.id.rawValue == id }.map(CompanionChoice.init)
+    }
+
     /// The fixed list of animal kinds a pet can be, in catalog order.
     func familyAnimalKinds() -> [CatalogFamilyAnimalKind] {
         (try? catalog())?.familyAnimalKinds ?? []
@@ -348,8 +397,9 @@ final class OfflineStoryService {
         recentTitles: Set<String> = [],
         recall: RecallHistory? = nil,
         occasion: OccasionRequest? = nil
-    ) throws -> (story: ComposedStory, seed: String, catalogVersion: String) {
-        let catalog = try catalog()
+    ) throws -> (story: ComposedStory, seed: String, catalogVersion: String, contentSource: ContentSourceMetadata) {
+        let resolved = try source()
+        let catalog = resolved.result.catalog
         let familyCast = try family.map { character -> FamilyCast in
             guard let cast = self.familyCast(for: character, in: catalog) else {
                 // The relation, never the name.
@@ -412,7 +462,7 @@ final class OfflineStoryService {
             // The gate between the engine and a child. Nothing that failed
             // `isClean` is returned, whatever else is true of it.
             if composed.isClean {
-                return (composed, seed, catalog.version)
+                return (composed, seed, catalog.version, resolved.contentSource)
             }
             defects.append(Self.defectReport(composed))
         }
@@ -423,7 +473,7 @@ final class OfflineStoryService {
     /// field-by-field `compose` with the same inputs; that call is what runs.
     func compose(
         _ context: StoryContext, seed: String? = nil
-    ) throws -> (story: ComposedStory, seed: String, catalogVersion: String) {
+    ) throws -> (story: ComposedStory, seed: String, catalogVersion: String, contentSource: ContentSourceMetadata) {
         try compose(
             childName: context.childName,
             ideaID: context.storyIdeaID,
@@ -448,6 +498,13 @@ final class OfflineStoryService {
     /// continued at all: some continuation serves it. A story that opened in a
     /// bedroom (uyku arkı, 21 Ekim 2026) continues only with bedtime-arc
     /// episodes. Cheap; the plan itself is made on "Devam ettir".
+    func seriesAvailable(from origin: StoryOrigin) -> Bool {
+        guard let mode = origin.mode, let bandID = origin.ageBand, let band = AgeBand(bandID),
+              let source = try? historicalCatalog(origin.contentSource, version: origin.catalogVersion) else { return false }
+        return SeriesPlanner.isAvailable(settingID: ContentID(origin.settingID), mode: mode, band: band,
+                                         catalog: source.catalog)
+    }
+
     func seriesAvailable(mode: StoryMode, band: AgeBand, settingID: String) -> Bool {
         guard let catalog = try? catalog() else { return false }
         return SeriesPlanner.isAvailable(
@@ -464,7 +521,8 @@ final class OfflineStoryService {
         childName: String,
         family: FamilyCharacter?
     ) throws -> (plan: SeriesPlan, episodes: [ComposedStory]) {
-        let catalog = try catalog()
+        let source = try historicalCatalog(origin.contentSource, version: origin.catalogVersion)
+        let catalog = source.catalog
         guard let mode = origin.mode, let bandID = origin.ageBand, let band = AgeBand(bandID) else {
             throw Failure.noStoryForChoices(detail: "origin has no mode or band")
         }
@@ -479,7 +537,7 @@ final class OfflineStoryService {
                 familyCharacterID: cast == nil ? nil : family?.id.uuidString,
                 childName: childName,
                 seed: SeriesPlanner.seed(storySeed: origin.seed, fingerprint: origin.fingerprint),
-                catalog: catalog, safety: currentSafety)
+                catalog: catalog, safety: currentSafety, sourceReference: source.reference)
             try Self.requireClean(result.episodes)
             return (result.plan, result.episodes)
         } catch let error as SeriesPlanningError {
@@ -490,10 +548,12 @@ final class OfflineStoryService {
     /// Writes every episode of a plan again (a plan whose Masal ailem
     /// character was removed composes without it).
     func composeSeries(_ plan: SeriesPlan, childName: String, family: FamilyCharacter?) throws -> [ComposedStory] {
-        let catalog = try catalog()
+        let source = try historicalCatalog(plan.contentSource, version: plan.catalogVersion)
+        let catalog = source.catalog
         let cast = family.flatMap { familyCast(for: $0, in: catalog) }
         do {
-            let episodes = try SeriesPlanner().compose(plan, childName: childName, family: cast, catalog: catalog)
+            let episodes = try SeriesPlanner().compose(plan, childName: childName, family: cast,
+                                                       catalog: catalog, sourceReference: source.reference)
             try Self.requireClean(episodes)
             return episodes
         } catch let error as SeriesPlanningError {

@@ -502,19 +502,22 @@ public struct OfflineContentBinder: Sendable {
             ) ?? also?(record)
         }
 
+        // An explicit identity never uses the weights or rejections of other
+        // identities. Keep duplicate-ID behavior: first admissible match wins,
+        // or the first matching record explains rejection, exactly as below.
+        if let requested {
+            let matches = records.filter { $0.id == requested }
+            if let match = matches.first(where: { rejection($0) == nil }) { return [match] }
+            let why = matches.first.flatMap(rejection) ?? "no such \(axis)"
+            throw OfflineSelectionError.requestedContentRejected(id: requested, reason: why)
+        }
+
         for record in records {
             if let reason = rejection(record) {
                 reasons.append("  \(record.id.rawValue): \(reason)")
             } else {
                 admissible.append(record)
             }
-        }
-
-        if let requested {
-            if let match = admissible.first(where: { $0.id == requested }) { return [match] }
-            let why = records.first(where: { $0.id == requested })
-                .flatMap(rejection) ?? "no such \(axis)"
-            throw OfflineSelectionError.requestedContentRejected(id: requested, reason: why)
         }
 
         guard !admissible.isEmpty else { throw empty(reasons) }
@@ -537,34 +540,9 @@ public struct OfflineContentBinder: Sendable {
         empty: ([String]) -> OfflineSelectionError,
         also: ((Record) -> String?)? = nil
     ) throws -> Record where Record.ID == ContentID {
-        var reasons: [String] = []
-        var admissible: [Record] = []
-
-        func rejection(_ record: Record) -> String? {
-            TraitMatch.rejection(
-                offered: record[keyPath: offered], required: required, forbidden: forbidden
-            ) ?? also?(record)
-        }
-
-        for record in records {
-            if let reason = rejection(record) {
-                reasons.append("  \(record.id.rawValue): \(reason)")
-            } else {
-                admissible.append(record)
-            }
-        }
-
-        // An explicit request is honoured or explained — never silently swapped.
-        if let requested {
-            if let match = admissible.first(where: { $0.id == requested }) { return match }
-            let why = records.first(where: { $0.id == requested })
-                .flatMap(rejection) ?? "no such \(axis)"
-            throw OfflineSelectionError.requestedContentRejected(id: requested, reason: why)
-        }
-
-        guard !admissible.isEmpty else { throw empty(reasons) }
-        return SelectionScoring.ordered(
-            admissible, weights: admissible.map(weight), id: \.id, seed: seed, salt: axis)[0]
+        try orderedCandidates(records, requested: requested, seed: seed, axis: axis,
+                              weight: weight, offered: offered, required: required,
+                              forbidden: forbidden, empty: empty, also: also)[0]
     }
 }
 

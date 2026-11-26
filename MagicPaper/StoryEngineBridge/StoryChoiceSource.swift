@@ -103,6 +103,10 @@ protocol StoryChoiceSource {
         forIdeaID ideaID: String?, mode: StoryMode?, age: Int?,
         topicID: String?, family: FamilyCharacter?
     ) -> [CompanionChoice]
+    /// How many of `companionChoices` "Masalda kimler olsun?" shows. Three for
+    /// the catalog's ranked list; the five-friends pilot shows all five (B5).
+    func companionDisplayLimit(forIdeaID ideaID: String?, age: Int?, mode: StoryMode?,
+                               topicID: String?, family: FamilyCharacter?) -> Int
     /// Masal ailem relations a story of this mode can carry for this child.
     func availableFamilyRelations(mode: StoryMode?, age: Int) -> [FamilyRelationKind]
     /// The animal kinds a Masal ailem pet can be.
@@ -116,12 +120,28 @@ protocol StoryChoiceSource {
         forAge age: Int,
         recent: [StoryMode]
     ) throws -> StoryMode
+
+    // Okul öncesi "önce arkadaş" akışı (26 Kasım 2026, Batuhan K1-K4).
+
+    /// Beş arkadaş pilotunun modsuz listesi: en az bir modda yazılabilenler.
+    /// Boşsa okul öncesi akış bugünkü sırada (mod → konu → kimler) kalır.
+    func pilotFriendChoices(age: Int) -> [CompanionChoice]
+    /// Bu arkadaşla (`nil`: herhangi biriyle) beşlinin yazabildiği modlar.
+    func pilotModes(forCompanionID companionID: String?, age: Int) -> [StoryMode]
+    /// Konu seçilince istek eski motora gider (K4). Eski motorun bu istekte
+    /// gerçekten yazabildiği arkadaşlar, ekran süzgeci (`drawable`) olmadan.
+    func legacyWritableCompanionIDs(mode: StoryMode, age: Int, topicID: String?) -> [String]
 }
 
 /// The source the creation flow uses. The one place that names a provider.
 @MainActor
 enum StoryChoiceSources {
-    static var current: any StoryChoiceSource { OfflineStoryService.shared }
+    static var current: any StoryChoiceSource {
+        // Beş arkadaş pilotu (B5, K-C): yalnız Debug'da bayrakla.
+        StoryRuntimeFlags.fiveFriendsPilot
+            ? FiveFriendsChoiceSource(base: OfflineStoryService.shared)
+            : OfflineStoryService.shared
+    }
 }
 
 /// What to log when a source or the build fails.
@@ -227,6 +247,11 @@ extension OfflineStoryService: StoryChoiceSource {
     func familyAnimalKindChoices() -> [FamilyAnimalKindChoice] {
         familyAnimalKinds().map { FamilyAnimalKindChoice(id: $0.id.rawValue, name: $0.name) }
     }
+
+    func legacyWritableCompanionIDs(mode: StoryMode, age: Int, topicID: String?) -> [String] {
+        companionCandidates(forIdeaID: nil, mode: mode, age: age, topicID: topicID, family: nil)
+            .map(\.id.rawValue)
+    }
 }
 
 extension StoryIdeaChoice {
@@ -254,4 +279,13 @@ extension CompanionChoice {
 extension StoryChoiceSource {
     /// Özel gün bilmeyen bir kaynak (örnekler, testler) çip göstermez.
     func occasionChoices(forAge age: Int, mode: StoryMode) -> [String] { [] }
+    /// Bugünkü sınır: sıralı listenin ilk üçü.
+    func companionDisplayLimit(forIdeaID ideaID: String?, age: Int?, mode: StoryMode?,
+                               topicID: String?, family: FamilyCharacter?) -> Int { 3 }
+    /// Beş arkadaşı bilmeyen kaynak: okul öncesi akış bugünkü sırada.
+    func pilotFriendChoices(age: Int) -> [CompanionChoice] { [] }
+    func pilotModes(forCompanionID companionID: String?, age: Int) -> [StoryMode] { [] }
+    func legacyWritableCompanionIDs(mode: StoryMode, age: Int, topicID: String?) -> [String] {
+        companionChoices(forIdeaID: nil, mode: mode, age: age, topicID: topicID, family: nil).map(\.id)
+    }
 }

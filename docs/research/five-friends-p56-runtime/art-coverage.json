@@ -1,0 +1,24 @@
+{
+  "requests": 1500,
+  "successfulBooks": 1500,
+  "failedRequests": 0,
+  "zeroArtBooks": 1500,
+  "requestsWithoutBoundArtIncludingFailures": 1500,
+  "booksWithArt": 0,
+  "pagesWithArt": 0,
+  "successfulPages": 12000,
+  "positionCounts": {
+    "opening": 0,
+    "middle": 0,
+    "ending": 0
+  },
+  "repeatedAssets": 0,
+  "approvedP56Rules": 0,
+  "denialReasonCounts": {
+    "no-reviewed-p56-rule": 12000
+  },
+  "measurementMethod": "Every successful sampled draft has artApproved=false and no asset field; there is no P56 rule catalog. Production legacy binders were not run against incompatible P56 types.",
+  "retryCount": 0,
+  "textSelectionInfluencedByArt": false,
+  "artAcceptance": "not-approved"
+}

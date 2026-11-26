@@ -182,7 +182,7 @@ final class SeriesManagerTests: XCTestCase {
             family: character)
         var story = OfflineStoryMapper.appStory(
             from: composed.story, childName: "Yeliz", childProfileID: child, storyIdeaID: nil,
-            catalogVersion: composed.catalogVersion, mode: mode, selectionStrategy: strategy,
+            catalogVersion: composed.catalogVersion, contentSource: composed.contentSource, mode: mode, selectionStrategy: strategy,
             ageBand: service.servedBand(forAge: age), familyCharacter: character)
         // Read to its last page, unless a test says otherwise.
         if finished { story.lastReadPage = story.pages.count - 1 }

@@ -1,4 +1,5 @@
 import Foundation
+import StoryEngine
 import SwiftUI
 
 struct Story: Identifiable, Codable, Equatable {
@@ -98,6 +99,8 @@ struct StoryOrigin: Codable, Equatable {
     /// Which catalog produced it. Content grows; without this, "the same seed"
     /// stops meaning the same story and nobody can tell why.
     var catalogVersion: String
+    /// Exact source for future continuation; never backfilled by catalog version alone.
+    var contentSource: ContentSourceMetadata? = nil
     /// The cover this story was given, decided once from where it is set.
     ///
     /// Stored rather than derived on demand: a cover is a property of the book,
@@ -164,6 +167,40 @@ struct StoryOrigin: Codable, Equatable {
 
     /// The mode this story was written in, old names included.
     var mode: StoryMode? { modeID.flatMap(StoryMode.init(storedID:)) }
+}
+
+extension StoryOrigin {
+    private enum CodingKeys: String, CodingKey {
+        case seed, storyIdeaID, blueprintID, settingID, companionID, discoveryID, fingerprint, catalogVersion
+        case contentSource, worldID, modeID, selectionStrategy, ageBand, subOptionID
+        case familyCharacterID, familyRelation, seriesID, seriesEpisode, variantIDs, recalled, occasionID
+    }
+
+    init(from decoder: Decoder) throws {
+        let value = try decoder.container(keyedBy: CodingKeys.self)
+        seed = try value.decode(String.self, forKey: .seed)
+        storyIdeaID = try value.decodeIfPresent(String.self, forKey: .storyIdeaID)
+        blueprintID = try value.decode(String.self, forKey: .blueprintID)
+        settingID = try value.decode(String.self, forKey: .settingID)
+        companionID = try value.decode(String.self, forKey: .companionID)
+        discoveryID = try value.decode(String.self, forKey: .discoveryID)
+        fingerprint = try value.decode(String.self, forKey: .fingerprint)
+        catalogVersion = try value.decode(String.self, forKey: .catalogVersion)
+        contentSource = value.contains(.contentSource)
+            ? try value.decode(ContentSourceMetadata.self, forKey: .contentSource) : nil
+        worldID = try value.decodeIfPresent(String.self, forKey: .worldID)
+        modeID = try value.decodeIfPresent(String.self, forKey: .modeID)
+        selectionStrategy = try value.decodeIfPresent(String.self, forKey: .selectionStrategy)
+        ageBand = try value.decodeIfPresent(String.self, forKey: .ageBand)
+        subOptionID = try value.decodeIfPresent(String.self, forKey: .subOptionID)
+        familyCharacterID = try value.decodeIfPresent(String.self, forKey: .familyCharacterID)
+        familyRelation = try value.decodeIfPresent(String.self, forKey: .familyRelation)
+        seriesID = try value.decodeIfPresent(String.self, forKey: .seriesID)
+        seriesEpisode = try value.decodeIfPresent(Int.self, forKey: .seriesEpisode)
+        variantIDs = try value.decodeIfPresent([String].self, forKey: .variantIDs)
+        recalled = try value.decodeIfPresent(Bool.self, forKey: .recalled)
+        occasionID = try value.decodeIfPresent(String.self, forKey: .occasionID)
+    }
 }
 
 extension Story {

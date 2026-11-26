@@ -203,9 +203,7 @@ final class SeriesManager: ObservableObject {
               // E6: a special day's story is one day's, like a surprise.
               origin.occasionID == nil,
               let childID = story.childProfileID,
-              let mode = origin.mode,
-              let band = origin.ageBand.flatMap(AgeBand.init),
-              service.seriesAvailable(mode: mode, band: band, settingID: origin.settingID)
+              service.seriesAvailable(from: origin)
         else { return .unavailable }
         let all = list(for: childID)
         // A story continues once (karar: 6 Ekim 2026): after its series is
@@ -371,6 +369,7 @@ final class SeriesManager: ObservableObject {
             childProfileID: childID,
             storyIdeaID: nil,
             catalogVersion: plan.catalogVersion,
+            contentSource: plan.contentSource,
             mode: plan.mode,
             selectionStrategy: strategy.flatMap(StorySelectionStrategy.init(rawValue:)),
             ageBand: plan.ageBand,

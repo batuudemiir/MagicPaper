@@ -1,0 +1,233 @@
+{
+  "schema": "magicpaper.pilot-editorial-structures.v1",
+  "structures": [
+    {
+      "blueprintID": "pilot56_blueprint_u1_v1",
+      "planLabel": "U1",
+      "mode": "bedtime",
+      "mechanismKey": "familiar-sound-ritual",
+      "obstacle": "Uyku öncesi hangi sakin sese kulak verileceği.",
+      "solution": "Çocuk bildiği sesleri sırayla seçip dinlemeyi bırakır.",
+      "allowedCompanionIDs": [
+        "companion_fox_pilot_001",
+        "companion_owl_pilot_001",
+        "companion_bear_001"
+      ],
+      "pageMoves": [
+        "settled_room",
+        "ritual_chosen",
+        "friend_listens",
+        "child_names_sound",
+        "soft_smile",
+        "attention_released",
+        "awake_rest",
+        "closed_calm"
+      ],
+      "engineBeatMapping": null,
+      "engineStateContractStatus": "not-implemented; do not coerce to existing beat raw values"
+    },
+    {
+      "blueprintID": "pilot56_blueprint_u2_v1",
+      "planLabel": "U2",
+      "mode": "bedtime",
+      "mechanismKey": "comfort-choice-and-space",
+      "obstacle": "Arkadaşın kendi bedenine uygun rahatlığı henüz seçmemesi.",
+      "solution": "Çocuk seçeneği hazırlar, tercihi dinler ve alan bırakır.",
+      "allowedCompanionIDs": [
+        "companion_hedgehog_pilot_001",
+        "companion_city_cat_001",
+        "companion_bear_001"
+      ],
+      "pageMoves": [
+        "settled_room",
+        "comfort_need",
+        "friend_preference",
+        "child_prepares",
+        "soft_trial",
+        "child_yields_space",
+        "awake_rest",
+        "closed_calm"
+      ],
+      "engineBeatMapping": null,
+      "engineStateContractStatus": "not-implemented; do not coerce to existing beat raw values"
+    },
+    {
+      "blueprintID": "pilot56_blueprint_u3_v1",
+      "planLabel": "U3",
+      "mode": "bedtime",
+      "mechanismKey": "one-memory-then-release",
+      "obstacle": "Günün bütün ayrıntılarını anlatma isteği.",
+      "solution": "Çocuk bir ayrıntı seçer ve anlatının bittiğine kendisi karar verir.",
+      "allowedCompanionIDs": [
+        "companion_fox_pilot_001",
+        "companion_hedgehog_pilot_001",
+        "companion_owl_pilot_001",
+        "companion_city_cat_001"
+      ],
+      "pageMoves": [
+        "settled_room",
+        "one_memory_selected",
+        "friend_receives_memory",
+        "child_limits_telling",
+        "soft_shared_memory",
+        "story_released",
+        "awake_rest",
+        "closed_calm"
+      ],
+      "engineBeatMapping": null,
+      "engineStateContractStatus": "not-implemented; do not coerce to existing beat raw values"
+    },
+    {
+      "blueprintID": "pilot56_blueprint_l1_v1",
+      "planLabel": "L1",
+      "mode": "learning",
+      "mechanismKey": "two-observation-causal-test",
+      "obstacle": "Sesin dal mı yaprak mı olduğu ilk bakışta anlaşılmıyor.",
+      "solution": "Çocuk aynı anda görülen temas ve duyulan sesi birleştirir.",
+      "allowedCompanionIDs": [
+        "companion_fox_pilot_001",
+        "companion_owl_pilot_001",
+        "companion_city_cat_001"
+      ],
+      "pageMoves": [
+        "sound_noticed",
+        "first_guess",
+        "friend_one_observation",
+        "child_predicts",
+        "observe_contact",
+        "child_infers",
+        "recheck",
+        "closed_result"
+      ],
+      "engineBeatMapping": null,
+      "engineStateContractStatus": "not-implemented; do not coerce to existing beat raw values"
+    },
+    {
+      "blueprintID": "pilot56_blueprint_l2_v1",
+      "planLabel": "L2",
+      "mode": "learning",
+      "mechanismKey": "combine-viewpoints",
+      "obstacle": "Düşmüş dal yaprağın orta bölümünü örtüyor.",
+      "solution": "Çocuk iki yan görünüşü birleştirir, nesneyi çekmez.",
+      "allowedCompanionIDs": [
+        "companion_hedgehog_pilot_001",
+        "companion_owl_pilot_001",
+        "companion_bear_001"
+      ],
+      "pageMoves": [
+        "partial_shape",
+        "first_view",
+        "friend_second_view",
+        "child_repositions",
+        "compare_views",
+        "child_combines",
+        "whole_seen",
+        "closed_result"
+      ],
+      "engineBeatMapping": null,
+      "engineStateContractStatus": "not-implemented; do not coerce to existing beat raw values"
+    },
+    {
+      "blueprintID": "pilot56_blueprint_l3_v1",
+      "planLabel": "L3",
+      "mode": "learning",
+      "mechanismKey": "wait-and-reobserve",
+      "obstacle": "Çocuk değişimi görmek istiyor; yaprağı sallamak gözlemi bozacak.",
+      "solution": "Çocuk dokunmadan bekler ve aynı damlanın büyüyüp düşmesini karşılaştırır.",
+      "allowedCompanionIDs": [
+        "companion_fox_pilot_001",
+        "companion_hedgehog_pilot_001",
+        "companion_city_cat_001",
+        "companion_bear_001"
+      ],
+      "pageMoves": [
+        "drop_noticed",
+        "first_observation",
+        "friend_waits",
+        "child_observation_plan",
+        "visible_change",
+        "child_compares",
+        "drop_falls",
+        "closed_result"
+      ],
+      "engineBeatMapping": null,
+      "engineStateContractStatus": "not-implemented; do not coerce to existing beat raw values"
+    },
+    {
+      "blueprintID": "pilot56_blueprint_a1_v1",
+      "planLabel": "A1",
+      "mode": "adventure",
+      "mechanismKey": "self-paced-safe-threshold",
+      "obstacle": "Tanıdık patikadan güneşli açıklığa geçmekteki küçük tereddüt.",
+      "solution": "Çocuk adımlarının büyüklüğünü seçerek düz açıklığı kendisi geçer.",
+      "allowedCompanionIDs": [
+        "companion_fox_pilot_001",
+        "companion_hedgehog_pilot_001",
+        "companion_city_cat_001"
+      ],
+      "pageMoves": [
+        "safe_goal",
+        "approach",
+        "friend_support",
+        "child_step_choice",
+        "first_step",
+        "child_crosses",
+        "goal_reached",
+        "closed_return"
+      ],
+      "engineBeatMapping": null,
+      "engineStateContractStatus": "not-implemented; do not coerce to existing beat raw values"
+    },
+    {
+      "blueprintID": "pilot56_blueprint_a2_v1",
+      "planLabel": "A2",
+      "mode": "adventure",
+      "mechanismKey": "sequence-with-complementary-contribution",
+      "obstacle": "İki gevşek işaret parçasının sırası bilinmeden yön okunamıyor.",
+      "solution": "Çocuk desenin devamını seçer, arkadaşı bir parçayı yerinde tutar.",
+      "allowedCompanionIDs": [
+        "companion_fox_pilot_001",
+        "companion_owl_pilot_001",
+        "companion_bear_001"
+      ],
+      "pageMoves": [
+        "two_piece_goal",
+        "approach",
+        "friend_contribution",
+        "child_orders",
+        "first_piece",
+        "child_completes",
+        "route_confirmed",
+        "closed_return"
+      ],
+      "engineBeatMapping": null,
+      "engineStateContractStatus": "not-implemented; do not coerce to existing beat raw values"
+    },
+    {
+      "blueprintID": "pilot56_blueprint_a3_v1",
+      "planLabel": "A3",
+      "mode": "adventure",
+      "mechanismKey": "retrace-child-specific-observation",
+      "obstacle": "Çocuğun az önce bıraktığı mendilin yeri yalnız kendi hatırladığı ayrıntıyla bulunabilir.",
+      "solution": "Çocuk dönüşte kendi gördüğü çatallı kökü tanır ve mendili alır.",
+      "allowedCompanionIDs": [
+        "companion_hedgehog_pilot_001",
+        "companion_owl_pilot_001",
+        "companion_city_cat_001",
+        "companion_bear_001"
+      ],
+      "pageMoves": [
+        "personal_loss",
+        "last_seen_recalled",
+        "friend_waits",
+        "child_selects_route",
+        "retrace",
+        "child_recognizes",
+        "object_recovered",
+        "closed_return"
+      ],
+      "engineBeatMapping": null,
+      "engineStateContractStatus": "not-implemented; do not coerce to existing beat raw values"
+    }
+  ]
+}

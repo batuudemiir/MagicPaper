@@ -76,6 +76,12 @@ final class MPSpeech: NSObject, ObservableObject {
     }
 
     func speak(_ text: String, language: String = "tr-TR", recording: URL? = nil) {
+        speak(text, language: language, recording: recording, pitch: 1.05)
+    }
+
+    /// - Parameter pitch: okul öncesi akışta arkadaşları ayırmak için perde
+    ///   (26 Kasım 2026); anlatıcının perdesi 1.05.
+    func speak(_ text: String, language: String = "tr-TR", recording: URL? = nil, pitch: Float) {
         if let recording, play(recording) { return }
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
@@ -87,7 +93,7 @@ final class MPSpeech: NSObject, ObservableObject {
         utterance.voice = voice(for: language)
         // Çocuğa okurken varsayılan hız fazla hızlı geliyor.
         utterance.rate = AVSpeechUtteranceDefaultSpeechRate * MPSettingsStore.shared.speechRate.multiplier
-        utterance.pitchMultiplier = 1.05
+        utterance.pitchMultiplier = pitch
         utterance.postUtteranceDelay = 0.2
 
         current = ObjectIdentifier(utterance)

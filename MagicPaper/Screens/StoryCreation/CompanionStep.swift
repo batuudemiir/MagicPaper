@@ -57,8 +57,6 @@ struct CompanionStep: View {
 
     @State private var selectedCompanionID: String?
 
-    private static let shown = 3
-
     /// Only a character this mode can carry shapes the companion list; one
     /// that cannot would leave no blueprint and an empty step.
     private var selectedFamily: FamilyCharacter? {
@@ -68,7 +66,8 @@ struct CompanionStep: View {
     private var candidates: [CompanionChoice] {
         Array(source.companionChoices(forIdeaID: ideaID, mode: mode, age: age,
                                       topicID: topicID, family: selectedFamily)
-            .prefix(Self.shown))
+            .prefix(source.companionDisplayLimit(forIdeaID: ideaID, age: age, mode: mode,
+                                                topicID: topicID, family: selectedFamily)))
     }
 
     var body: some View {
@@ -158,7 +157,7 @@ struct CompanionStep: View {
                             MPHaptics.selection()
                             selectedCompanionID = on ? nil : companion.id
                         },
-                        leading: { MPIconTile(systemImage: symbol(for: companion), tone: .lav, size: MPSize.minTouchKid - MPSpacing.xxs) }
+                        leading: { MPCompanionPortrait(companionID: companion.id, fallbackSymbol: symbol(for: companion)) }
                     )
                 }
             }

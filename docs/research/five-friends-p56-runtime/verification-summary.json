@@ -1,0 +1,59 @@
+{
+  "date": "2026-11-25",
+  "productionEnabled": false,
+  "payloadSHA256": "28773f03bc59060cdfae95961dbfa14e319e141633a7e79ead6ce93eb90d7adc",
+  "engineSelected": {
+    "status": "passed",
+    "tests": 36,
+    "failures": 0,
+    "configuration": "Release; focused P56/source identity/determinism/provenance suites",
+    "log": "/private/tmp/magicpaper-p56-engine-final.log"
+  },
+  "appSelected": {
+    "status": "passed",
+    "tests": 21,
+    "failures": 0,
+    "scope": "P56Snapshot/FrozenLegacyBooks/HistoricalSeries/SeriesSourcePreservation/HistoricalCatalogResolver",
+    "log": "/private/tmp/magicpaper-p56-app-tests.log",
+    "resultBundle": "/private/tmp/magicpaper-p56-app-tests.xcresult"
+  },
+  "firstAttemptSampling": {
+    "attempts": 1500,
+    "successes": 1500,
+    "failures": 0,
+    "retries": 0,
+    "uniqueBooks": 30,
+    "fixedBooksPerCell": 2,
+    "repeatedRenderedPageOccurrences": 11842,
+    "repeatedSourcePageOccurrences": 11760
+  },
+  "frozenLegacyResourceFiles": 252,
+  "frozenLegacyResourceChanges": 0,
+  "authoringIntegrity": {
+    "status": "passed",
+    "books": 30,
+    "pages": 240,
+    "sourceRecords": 1252,
+    "textRevisionRecords": 12
+  },
+  "staticReview": {
+    "spec": "passed",
+    "quality": "passed",
+    "openBlockers": 0
+  },
+  "art": {
+    "approved": false,
+    "booksWithArt": 0,
+    "pagesWithArt": 0,
+    "zeroArtBooks": 1500
+  },
+  "scopeLimitations": [
+    "Two fixed books per cell; first repeated book at attempt2 in every cell",
+    "Repeated rendered pages counted globally; first repeated text in cell can occur on attempt1 due shared cross-cell prose",
+    "ContentSafety/family/recall/guest/series/occasion/topic unsupported; no silent removal",
+    "L/F baseline arms and A0 continuous-reading experiment not run",
+    "Full app/UI suite and full1122engine package not rerun this delivery",
+    "No production activation; no artwork acceptance; no broad editorial acceptance",
+    "Legacy missing source compatibility boundary unchanged"
+  ]
+}

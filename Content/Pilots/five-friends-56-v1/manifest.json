@@ -1,0 +1,362 @@
+{
+  "schema": "magicpaper.internal-authored-pilot.v1",
+  "packageID": "five-friends-56-v1",
+  "status": "authored-internal-review-required",
+  "productionEnabled": false,
+  "runtimePackage": false,
+  "ageBands": [
+    "5-6"
+  ],
+  "worldID": "pilot56_world_whispering_forest_v1",
+  "settings": [
+    {
+      "id": "setting_whispering_forest_001",
+      "mode": [
+        "learning",
+        "adventure"
+      ],
+      "relationship": "existing exact setting identity; no mutation"
+    },
+    {
+      "id": "pilot56_setting_forest_edge_room_v1",
+      "displayName": "Orman Kıyısındaki Oda",
+      "mode": [
+        "bedtime"
+      ],
+      "isRestingPlace": true,
+      "relationship": "new pilot-only room; not legacy room rename"
+    }
+  ],
+  "companions": [
+    {
+      "id": "companion_fox_pilot_001",
+      "name": "Tarçın",
+      "personality": "Sakin eşlik; acele ettirmez; çocuğun kararını bekler.",
+      "anatomy": "Dört ayak; doğal tilki ölçeği.",
+      "legacyRecordMutated": false
+    },
+    {
+      "id": "companion_hedgehog_pilot_001",
+      "name": "Kestane",
+      "personality": "Küçük adımlarla cesaretlenir; her sahnede kaygılı değildir.",
+      "anatomy": "Dört kısa ayak; dikenler korunur.",
+      "legacyRecordMutated": false
+    },
+    {
+      "id": "companion_owl_pilot_001",
+      "name": "Yıldız",
+      "personality": "Az konuşur; dikkatle gözler; cevabı çocuğa bırakır.",
+      "anatomy": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+      "legacyRecordMutated": false
+    },
+    {
+      "id": "companion_city_cat_001",
+      "name": "Simit",
+      "personality": "Şehirden bugün ziyarete gelmiştir; meraklı; yavaşlamayı dener.",
+      "anatomy": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+      "legacyRecordMutated": false
+    },
+    {
+      "id": "companion_bear_001",
+      "name": "Böğürtlen",
+      "personality": "Sakin ve güçlü; çocuğun fikrini dinler; güç cevap yerine geçmez.",
+      "anatomy": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+      "legacyRecordMutated": false
+    }
+  ],
+  "supportedContext": {
+    "guest": false,
+    "family": false,
+    "occasion": false,
+    "series": false,
+    "recall": false,
+    "topic": "nil-only",
+    "personalization": "fixed synthetic Deniz fixture only"
+  },
+  "unsupportedResult": "unsupported-in-pilot; never silently remove request context",
+  "books": [
+    {
+      "bookID": "pilot56_book_u1_fox_v1",
+      "file": "books/pilot56_book_u1_fox_v1.json",
+      "sha256FileBytes": "8d6abb2b6c639520fc87b9939ce57122dfb1fd39b8f995885821cded924a9830",
+      "planLabel": "U1",
+      "companionID": "companion_fox_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 190
+    },
+    {
+      "bookID": "pilot56_book_u1_owl_v1",
+      "file": "books/pilot56_book_u1_owl_v1.json",
+      "sha256FileBytes": "bf0dfe4a6d4063d58a4807b7e5eaa3207b6cac42f887cf68065f8937270a5612",
+      "planLabel": "U1",
+      "companionID": "companion_owl_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 190
+    },
+    {
+      "bookID": "pilot56_book_u1_bear_v1",
+      "file": "books/pilot56_book_u1_bear_v1.json",
+      "sha256FileBytes": "3b18da2c63b8ce549be8def16f1f1f0cf4dfaaf78316d9c9328b121263062bf3",
+      "planLabel": "U1",
+      "companionID": "companion_bear_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 195
+    },
+    {
+      "bookID": "pilot56_book_u2_hedgehog_v1",
+      "file": "books/pilot56_book_u2_hedgehog_v1.json",
+      "sha256FileBytes": "2ae337d4e16f836144fe99f55667049a0d94bf9f0d46d71eee0a6233e9112f39",
+      "planLabel": "U2",
+      "companionID": "companion_hedgehog_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 198
+    },
+    {
+      "bookID": "pilot56_book_u2_cat_v1",
+      "file": "books/pilot56_book_u2_cat_v1.json",
+      "sha256FileBytes": "80b84702cdee4895680895065701f6e149c0844a3bde8ffed60261dc5b7babed",
+      "planLabel": "U2",
+      "companionID": "companion_city_cat_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 198
+    },
+    {
+      "bookID": "pilot56_book_u2_bear_v1",
+      "file": "books/pilot56_book_u2_bear_v1.json",
+      "sha256FileBytes": "b7a2528e974ccd79ed534a85aaf1bc06f63252d20ffd697d4c4dccb3d1a22b71",
+      "planLabel": "U2",
+      "companionID": "companion_bear_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 200
+    },
+    {
+      "bookID": "pilot56_book_u3_fox_v1",
+      "file": "books/pilot56_book_u3_fox_v1.json",
+      "sha256FileBytes": "8a6235ccd037eb5ee62b28203643909f992310fa5379cf9f6f69018776b2ba30",
+      "planLabel": "U3",
+      "companionID": "companion_fox_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 190
+    },
+    {
+      "bookID": "pilot56_book_u3_hedgehog_v1",
+      "file": "books/pilot56_book_u3_hedgehog_v1.json",
+      "sha256FileBytes": "72c90216dea762c162d35d275d925bcc3218a9703ff8af1e493801e6902615dd",
+      "planLabel": "U3",
+      "companionID": "companion_hedgehog_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 190
+    },
+    {
+      "bookID": "pilot56_book_u3_owl_v1",
+      "file": "books/pilot56_book_u3_owl_v1.json",
+      "sha256FileBytes": "6a7fac28ae526c4e39b6c82e12f07c2e05c00fd75ba21c9daa310972bfcc8ec0",
+      "planLabel": "U3",
+      "companionID": "companion_owl_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 193
+    },
+    {
+      "bookID": "pilot56_book_u3_cat_v1",
+      "file": "books/pilot56_book_u3_cat_v1.json",
+      "sha256FileBytes": "d4f53e66202ebe64a61c53b2408fe630f0b2c89ad60acd538d3dd3c985dba508",
+      "planLabel": "U3",
+      "companionID": "companion_city_cat_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 197
+    },
+    {
+      "bookID": "pilot56_book_l1_fox_v1",
+      "file": "books/pilot56_book_l1_fox_v1.json",
+      "sha256FileBytes": "15ad9e46addf47511ad3ba23b7105c84bd265d9f90372ae64c3be703a21a6931",
+      "planLabel": "L1",
+      "companionID": "companion_fox_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 206
+    },
+    {
+      "bookID": "pilot56_book_l1_owl_v1",
+      "file": "books/pilot56_book_l1_owl_v1.json",
+      "sha256FileBytes": "f8a2cda16eac08f40fcac1aa854e51209dafe4883f90226542a55d8f8574ca7c",
+      "planLabel": "L1",
+      "companionID": "companion_owl_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 201
+    },
+    {
+      "bookID": "pilot56_book_l1_cat_v1",
+      "file": "books/pilot56_book_l1_cat_v1.json",
+      "sha256FileBytes": "7493b8ffb5e271efa38ec6f93b0d984e28c3d193aa2e2ad7961b73725dd40a65",
+      "planLabel": "L1",
+      "companionID": "companion_city_cat_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 210
+    },
+    {
+      "bookID": "pilot56_book_l2_hedgehog_v1",
+      "file": "books/pilot56_book_l2_hedgehog_v1.json",
+      "sha256FileBytes": "f1f8dde4e04f9514ce50e5b931156fa517cc7f801804210aefadec4af2800848",
+      "planLabel": "L2",
+      "companionID": "companion_hedgehog_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 216
+    },
+    {
+      "bookID": "pilot56_book_l2_owl_v1",
+      "file": "books/pilot56_book_l2_owl_v1.json",
+      "sha256FileBytes": "01495caa8bfd5fe93480575d318dd3a16e45c451c192327bb4840198bdfaaaf1",
+      "planLabel": "L2",
+      "companionID": "companion_owl_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 213
+    },
+    {
+      "bookID": "pilot56_book_l2_bear_v1",
+      "file": "books/pilot56_book_l2_bear_v1.json",
+      "sha256FileBytes": "dac5de6066655cdfdf421b5a49757ddcf3479f85e66a3d38db3819fbceff8f5e",
+      "planLabel": "L2",
+      "companionID": "companion_bear_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 214
+    },
+    {
+      "bookID": "pilot56_book_l3_fox_v1",
+      "file": "books/pilot56_book_l3_fox_v1.json",
+      "sha256FileBytes": "3b001b1f0d90ea0c5b10b9c2e25cfb6a07a7ba9cc7a32e8c9e2e8acac3099ccb",
+      "planLabel": "L3",
+      "companionID": "companion_fox_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 196
+    },
+    {
+      "bookID": "pilot56_book_l3_hedgehog_v1",
+      "file": "books/pilot56_book_l3_hedgehog_v1.json",
+      "sha256FileBytes": "99c54010c516117469d294e00f26866b5f8961024dd77b349ef7de71e9dc4ade",
+      "planLabel": "L3",
+      "companionID": "companion_hedgehog_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 199
+    },
+    {
+      "bookID": "pilot56_book_l3_cat_v1",
+      "file": "books/pilot56_book_l3_cat_v1.json",
+      "sha256FileBytes": "f40a894ce8662328ffbe81cdfb9ec6fe5fbb64983e7983638d8ca5235ce10b03",
+      "planLabel": "L3",
+      "companionID": "companion_city_cat_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 210
+    },
+    {
+      "bookID": "pilot56_book_l3_bear_v1",
+      "file": "books/pilot56_book_l3_bear_v1.json",
+      "sha256FileBytes": "693fe4467c619777550991c77b8bf2a1c5ce88a51995f0e74f79f0551a066792",
+      "planLabel": "L3",
+      "companionID": "companion_bear_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 201
+    },
+    {
+      "bookID": "pilot56_book_a1_fox_v1",
+      "file": "books/pilot56_book_a1_fox_v1.json",
+      "sha256FileBytes": "d85e4ffff7dc87cdcb2eb78eed3000780014f3d6fbe0b60376538250895163d1",
+      "planLabel": "A1",
+      "companionID": "companion_fox_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 213
+    },
+    {
+      "bookID": "pilot56_book_a1_hedgehog_v1",
+      "file": "books/pilot56_book_a1_hedgehog_v1.json",
+      "sha256FileBytes": "e858d8a7469fc7c1cc30dd0fe265f5630067aebfca68d1d2f285faf194c35fd3",
+      "planLabel": "A1",
+      "companionID": "companion_hedgehog_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 213
+    },
+    {
+      "bookID": "pilot56_book_a1_cat_v1",
+      "file": "books/pilot56_book_a1_cat_v1.json",
+      "sha256FileBytes": "a9aba3403aa53d43cfd2dba148e19db8ab388004ab48631edf78015ea8ecd46e",
+      "planLabel": "A1",
+      "companionID": "companion_city_cat_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 214
+    },
+    {
+      "bookID": "pilot56_book_a2_fox_v1",
+      "file": "books/pilot56_book_a2_fox_v1.json",
+      "sha256FileBytes": "63cbd57030cae72d6090ab23be812e459e39d13d197e436de5facdbfb4fd3900",
+      "planLabel": "A2",
+      "companionID": "companion_fox_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 210
+    },
+    {
+      "bookID": "pilot56_book_a2_owl_v1",
+      "file": "books/pilot56_book_a2_owl_v1.json",
+      "sha256FileBytes": "636f2f8eb4c5ba1343e7583ed304b18eb00b4816175fc88b4fed492776a1301f",
+      "planLabel": "A2",
+      "companionID": "companion_owl_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 211
+    },
+    {
+      "bookID": "pilot56_book_a2_bear_v1",
+      "file": "books/pilot56_book_a2_bear_v1.json",
+      "sha256FileBytes": "b787ff8c39fa54ec353292552db7c6fd6e5e445f692591a33c4496377d5d039b",
+      "planLabel": "A2",
+      "companionID": "companion_bear_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 210
+    },
+    {
+      "bookID": "pilot56_book_a3_hedgehog_v1",
+      "file": "books/pilot56_book_a3_hedgehog_v1.json",
+      "sha256FileBytes": "f0b66eaf3fce150dc60e8386dcffcd24996556529dd5471d36abf385cc388632",
+      "planLabel": "A3",
+      "companionID": "companion_hedgehog_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 218
+    },
+    {
+      "bookID": "pilot56_book_a3_owl_v1",
+      "file": "books/pilot56_book_a3_owl_v1.json",
+      "sha256FileBytes": "2aca97bb74c16e723e40fe7bf624a0d190b05d6452ea7514757fc9dcdd0de03e",
+      "planLabel": "A3",
+      "companionID": "companion_owl_pilot_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 220
+    },
+    {
+      "bookID": "pilot56_book_a3_cat_v1",
+      "file": "books/pilot56_book_a3_cat_v1.json",
+      "sha256FileBytes": "4e4f0df38b43f435a403d945a1939f180005697062eb5abf34525c57a0c6e60e",
+      "planLabel": "A3",
+      "companionID": "companion_city_cat_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 221
+    },
+    {
+      "bookID": "pilot56_book_a3_bear_v1",
+      "file": "books/pilot56_book_a3_bear_v1.json",
+      "sha256FileBytes": "7f15debc1c1dba198124ee38a9108f4d9127a7a71ff5dfb7f2c0b5a89393efb3",
+      "planLabel": "A3",
+      "companionID": "companion_bear_001",
+      "pageCount": 8,
+      "wordCountWhitespace": 216
+    }
+  ],
+  "structuresFile": "structures.json",
+  "sourcesFile": "sources.json",
+  "sourcePayloadSHA256FileBytes": "38c869d92aa1900949ca531af70b507a1aa11948afee36685e82cd9bc650a22c",
+  "acceptance": {
+    "authoredPairs": 30,
+    "authoredPages": 240,
+    "randomFirstAttemptSeedsRun": 0,
+    "runtimeBooksComposed": 0,
+    "artPagesApproved": 0,
+    "engineStateMappingApproved": false,
+    "independentEditorialReviewComplete": false,
+    "releaseApproved": false
+  }
+}

@@ -1,0 +1,1010 @@
+{
+  "id": "pilot56_book_a1_cat_v1",
+  "title": "Açıklığın Küçük Adımları",
+  "blueprintID": "pilot56_blueprint_a1_v1",
+  "planLabel": "A1",
+  "mechanismKey": "self-paced-safe-threshold",
+  "status": "authored-internal-review-required",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "adventure",
+    "arc": "editorial-adventure",
+    "companionID": "companion_city_cat_001",
+    "settingID": "setting_whispering_forest_001",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Şehirden bugün ziyarete gelmiştir; meraklı; yavaşlamayı dener.",
+  "physicalContract": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+  "childAgency": "Çocuk adımlarının büyüklüğünü seçerek düz açıklığı kendisi geçer.",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "safe_goal",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_1_v1"
+      ],
+      "text": "Deniz ile Simit, Fısıldayan Orman’daki geniş patikadaydı. Yanlarında düz, güneşli bir açıklık uzanıyordu. Karşı kıyıdaki büyük ağacın gölgesine gidip geri dönmek istediler. Uçurum ya da su yoktu. Simit şehirden bugün ziyarete gelmişti.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "safe_goal",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_cat_p01_v1",
+            "sourceTextDigest": "1fa07d9a1b9063a6692f4b44b4540cacb4652ed04a773dbc3c2c76e0e0e80cbc",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/916",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_cat_p01_v1_s01",
+        "pilot56_source_a1_cat_p01_v1_s02",
+        "pilot56_source_a1_cat_p01_v1_s03",
+        "pilot56_source_a1_cat_p01_v1_s04",
+        "pilot56_source_a1_cat_p01_v1_s05"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_sunlit_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "düz açıklıktaki güvenli hedefi seçer",
+            "evidenceSourceID": "pilot56_source_a1_cat_p01_v1",
+            "evidenceText": "Deniz ile Simit, Fısıldayan Orman’daki geniş patikadaydı. Yanlarında düz, güneşli bir açıklık uzanıyordu. Karşı kıyıdaki büyük ağacın gölgesine gidip geri dönmek istediler. Uçurum ya da su yoktu. Simit şehirden bugün ziyarete gelmişti.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "düz açıklıktaki güvenli hedefi seçer",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Same city cat on a new visit; curled tail visible when composition permits; no invented forest residency."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 2,
+      "role": "approach",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_2_v1"
+      ],
+      "text": "Deniz açıklığın başında durdu. Güneşli yer ona patikadan daha geniş görünmüştü. Acele etmeden zemine baktı. Kuru ve düzdü. Nerede duracağını kendisi seçebilirdi; ağaca birden varması gerekmiyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "safe_goal",
+      "stateAfter": "approach",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_cat_p02_v1",
+            "sourceTextDigest": "58d20ad430ad9fbdbef3e79eb1f0fae94302ecd10cb9a26b424c7bc2dc08dfc2",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/922",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_cat_p02_v1_s01",
+        "pilot56_source_a1_cat_p02_v1_s02",
+        "pilot56_source_a1_cat_p02_v1_s03",
+        "pilot56_source_a1_cat_p02_v1_s04",
+        "pilot56_source_a1_cat_p02_v1_s05"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_sunlit_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "zemini gözler",
+            "evidenceSourceID": "pilot56_source_a1_cat_p02_v1",
+            "evidenceText": "Deniz açıklığın başında durdu. Güneşli yer ona patikadan daha geniş görünmüştü. Acele etmeden zemine baktı. Kuru ve düzdü. Nerede duracağını kendisi seçebilirdi; ağaca birden varması gerekmiyordu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "zemini gözler",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Same city cat on a new visit; curled tail visible when composition permits; no invented forest residency."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_support",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_3_v1"
+      ],
+      "text": "Şehirden ziyarete gelen Simit açıklığa merakla baktı. Sonra Deniz’in seçeceği adımı bekledi. Kıvrık kuyruğu yanında duruyordu. \"Ben burada seninle başlayayım,\" dedi. Merakı bir yarış başlatmasına gerek bırakmıyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "approach",
+      "stateAfter": "friend_support",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_cat_p03_v1",
+            "sourceTextDigest": "37b7f656cb0d1e6037b2ed2d492af5491dc468eaf1c9872450da558f8c1be25a",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/928",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_cat_p03_v1_s01",
+        "pilot56_source_a1_cat_p03_v1_s02",
+        "pilot56_source_a1_cat_p03_v1_s03",
+        "pilot56_source_a1_cat_p03_v1_s04",
+        "pilot56_source_a1_cat_p03_v1_s05"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_sunlit_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Şehirden ziyarete gelen Simit açıklığa merakla baktı. Sonra Deniz’in seçeceği adımı bekledi. Kıvrık kuyruğu yanında duruyordu. \"Ben burada seninle başlayayım,\" dedi. Merakı bir yarış başlatmasına gerek bırakmıyordu.",
+            "evidenceSourceID": "pilot56_source_a1_cat_p03_v1",
+            "evidenceText": "Şehirden ziyarete gelen Simit açıklığa merakla baktı. Sonra Deniz’in seçeceği adımı bekledi. Kıvrık kuyruğu yanında duruyordu. \"Ben burada seninle başlayayım,\" dedi. Merakı bir yarış başlatmasına gerek bırakmıyordu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Şehirden ziyarete gelen Simit açıklığa merakla baktı. Sonra Deniz’in seçeceği adımı bekledi. Kıvrık kuyruğu yanında duruyordu. \"Ben burada seninle başlayayım,\" dedi. Merakı bir yarış başlatmasına gerek bırakmıyordu.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Same city cat on a new visit; curled tail visible when composition permits; no invented forest residency."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_step_choice",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_4_v1"
+      ],
+      "text": "Deniz önündeki açık toprağa baktı. \"Önce buraya kadar,\" dedi. Bir adımlık yer seçti. Arkadaşı onu çekmedi, önünden çağırmadı. Açıklığın kenarı, isterse bekleyebileceği kadar yakındı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_support",
+      "stateAfter": "child_step_choice",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_cat_p04_v1",
+            "sourceTextDigest": "30e4028e369d1493f776771e43e2875254e9a32fef5bfd54c09747f8882548ef",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/934",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_cat_p04_v1_s01",
+        "pilot56_source_a1_cat_p04_v1_s02",
+        "pilot56_source_a1_cat_p04_v1_s03",
+        "pilot56_source_a1_cat_p04_v1_s04",
+        "pilot56_source_a1_cat_p04_v1_s05"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_sunlit_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "bir adımlık sınırı seçer",
+            "evidenceSourceID": "pilot56_source_a1_cat_p04_v1",
+            "evidenceText": "Deniz önündeki açık toprağa baktı. \"Önce buraya kadar,\" dedi. Bir adımlık yer seçti. Arkadaşı onu çekmedi, önünden çağırmadı. Açıklığın kenarı, isterse bekleyebileceği kadar yakındı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "bir adımlık sınırı seçer",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Same city cat on a new visit; curled tail visible when composition permits; no invented forest residency."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "first_step",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_5_v1"
+      ],
+      "text": "Deniz ilk adımında durdu. Simit de patilerini yere koyup bekledi. Çocuk açık toprağın ayağının altında sağlam kaldığını gördü. Kedinin hızlı gidebilmesi, kendisinin hızlı gitmesini gerektirmiyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_step_choice",
+      "stateAfter": "first_step",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_cat_p05_v1",
+            "sourceTextDigest": "f8a967c04040057cad69839e0c34a83fa6a681e8243bc278c5cb6163673fec60",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/939",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_cat_p05_v1_s01",
+        "pilot56_source_a1_cat_p05_v1_s02",
+        "pilot56_source_a1_cat_p05_v1_s03",
+        "pilot56_source_a1_cat_p05_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_sunlit_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz ilk adımında durdu. Simit de patilerini yere koyup bekledi. Çocuk açık toprağın ayağının altında sağlam kaldığını gördü. Kedinin hızlı gidebilmesi, kendisinin hızlı gitmesini gerektirmiyordu.",
+            "evidenceSourceID": "pilot56_source_a1_cat_p05_v1",
+            "evidenceText": "Deniz ilk adımında durdu. Simit de patilerini yere koyup bekledi. Çocuk açık toprağın ayağının altında sağlam kaldığını gördü. Kedinin hızlı gidebilmesi, kendisinin hızlı gitmesini gerektirmiyordu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ilk adımında durdu. Simit de patilerini yere koyup bekledi. Çocuk açık toprağın ayağının altında sağlam kaldığını gördü. Kedinin hızlı gidebilmesi, kendisinin hızlı gitmesini gerektirmiyordu.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Same city cat on a new visit; curled tail visible when composition permits; no invented forest residency."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "child_crosses",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_6_v1"
+      ],
+      "text": "Deniz \"Şimdi biraz daha,\" dedi. Simit bu kez kısa, sakin adımlarla eşlik etti. Çocuk kendi hızını koruyarak ağaca yürüdü. Açıklığı geçen kedinin peşine sürüklenmemiş, yolu kendisi adımlamıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "first_step",
+      "stateAfter": "child_crosses",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_cat_p06_v1",
+            "sourceTextDigest": "71de297df5145209289dfa1d22fb82c5a428c5bd7b7b59f8897d0854fc4c7ace",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/944",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_cat_p06_v1_s01",
+        "pilot56_source_a1_cat_p06_v1_s02",
+        "pilot56_source_a1_cat_p06_v1_s03",
+        "pilot56_source_a1_cat_p06_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_sunlit_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz \"Şimdi biraz daha,\" dedi. Simit bu kez kısa, sakin adımlarla eşlik etti. Çocuk kendi hızını koruyarak ağaca yürüdü. Açıklığı geçen kedinin peşine sürüklenmemiş, yolu kendisi adımlamıştı.",
+            "evidenceSourceID": "pilot56_source_a1_cat_p06_v1",
+            "evidenceText": "Deniz \"Şimdi biraz daha,\" dedi. Simit bu kez kısa, sakin adımlarla eşlik etti. Çocuk kendi hızını koruyarak ağaca yürüdü. Açıklığı geçen kedinin peşine sürüklenmemiş, yolu kendisi adımlamıştı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz \"Şimdi biraz daha,\" dedi. Simit bu kez kısa, sakin adımlarla eşlik etti. Çocuk kendi hızını koruyarak ağaca yürüdü. Açıklığı geçen kedinin peşine sürüklenmemiş, yolu kendisi adımlamıştı.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Same city cat on a new visit; curled tail visible when composition permits; no invented forest residency."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 7,
+      "role": "goal_reached",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_7_v1"
+      ],
+      "text": "Büyük ağacın gölgesine kendi ayaklarıyla vardığında Deniz geriye baktı. Biraz önce uzak gelen açıklık, birkaç küçük adımdan oluşmuştu. Arkadaşı yanındaydı. İkisi de ağacın serin gölgesinde durdu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "child_crosses",
+      "stateAfter": "goal_reached",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_cat_p07_v1",
+            "sourceTextDigest": "71421f2dfde9403d688ceef12f7a5c89bac150d514dd75c13cdff5ad99129031",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/949",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_cat_p07_v1_s01",
+        "pilot56_source_a1_cat_p07_v1_s02",
+        "pilot56_source_a1_cat_p07_v1_s03",
+        "pilot56_source_a1_cat_p07_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_sunlit_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "ağaç gölgesine varır",
+            "evidenceSourceID": "pilot56_source_a1_cat_p07_v1",
+            "evidenceText": "Büyük ağacın gölgesine kendi ayaklarıyla vardığında Deniz geriye baktı. Biraz önce uzak gelen açıklık, birkaç küçük adımdan oluşmuştu. Arkadaşı yanındaydı. İkisi de ağacın serin gölgesinde durdu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "ağaç gölgesine varır",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Same city cat on a new visit; curled tail visible when composition permits; no invented forest residency."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_return",
+      "orderedBeatIDs": [
+        "pilot56_beat_a1_8_v1"
+      ],
+      "text": "Deniz ile arkadaşı aynı düz yoldan patikaya döndü. Güneşli açıklık aralarında kaldı. Yarış yapmamışlardı; bir yere yetişmeleri gerekmiyordu. Deniz ne kadar ilerleyeceğine karar vermiş, istediği yere varmıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "goal_reached",
+      "stateAfter": "closed_return",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_a1_cat_p08_v1",
+            "sourceTextDigest": "d526c70ab31300208fe91109583a3f6b8573d3a5fcb0961808321932638d4ef3",
+            "templateID": "pilot56_blueprint_a1_v1",
+            "sourcePointer": "sources.json#/sources/954",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_sunlit_clearing_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_a1_cat_p08_v1_s01",
+        "pilot56_source_a1_cat_p08_v1_s02",
+        "pilot56_source_a1_cat_p08_v1_s03",
+        "pilot56_source_a1_cat_p08_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_sunlit_clearing_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "düz kuru açıklık, geniş patika, büyük ağacın gölgesi; köprü/uçurum/su yok",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "aynı düz yoldan döner",
+            "evidenceSourceID": "pilot56_source_a1_cat_p08_v1",
+            "evidenceText": "Deniz ile arkadaşı aynı düz yoldan patikaya döndü. Güneşli açıklık aralarında kaldı. Yarış yapmamışlardı; bir yere yetişmeleri gerekmiyordu. Deniz ne kadar ilerleyeceğine karar vermiş, istediği yere varmıştı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "aynı düz yoldan döner",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Same city cat on a new visit; curled tail visible when composition permits; no invented forest residency."
+        ]
+      },
+      "editorialIntensity": 0
+    }
+  ],
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false
+}

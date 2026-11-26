@@ -1,0 +1,1009 @@
+{
+  "id": "pilot56_book_u1_bear_v1",
+  "title": "Odanın Yumuşak Sesleri",
+  "blueprintID": "pilot56_blueprint_u1_v1",
+  "planLabel": "U1",
+  "mechanismKey": "familiar-sound-ritual",
+  "status": "authored-internal-review-required",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "bedtime",
+    "arc": "charge-bedtime-editorial",
+    "companionID": "companion_bear_001",
+    "settingID": "pilot56_setting_forest_edge_room_v1",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_room_sounds_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Sakin ve güçlü; çocuğun fikrini dinler; güç cevap yerine geçmez.",
+  "physicalContract": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+  "childAgency": "Çocuk bildiği sesleri sırayla seçip dinlemeyi bırakır.",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "settled_room",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_1_v1"
+      ],
+      "text": "Deniz, Orman Kıyısındaki Oda’da yatağına oturdu. Böğürtlen de odadaydı. Pencere kapalıydı; akşamın soluk ışığı yerde duruyordu. Bu gece hiçbir yere gitmeleri gerekmiyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_bear_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "settled_room",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_bear_p01_v1",
+            "sourceTextDigest": "6c9e427c537a7dae2e8405e6284247148b7cccf64469a1e770da86ba0712729f",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/89",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_bear_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_bear_p01_v1_s01",
+        "pilot56_source_u1_bear_p01_v1_s02",
+        "pilot56_source_u1_bear_p01_v1_s03",
+        "pilot56_source_u1_bear_p01_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "yatağa oturur",
+            "evidenceSourceID": "pilot56_source_u1_bear_p01_v1",
+            "evidenceText": "Deniz, Orman Kıyısındaki Oda’da yatağına oturdu. Böğürtlen de odadaydı. Pencere kapalıydı; akşamın soluk ışığı yerde duruyordu. Bu gece hiçbir yere gitmeleri gerekmiyordu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "yatağa oturur",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Preserve large bear scale. No tiny window/bed; no carrying child. A2 p5-6 only edge stabilization, not lifting."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 2,
+      "role": "ritual_chosen",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_2_v1"
+      ],
+      "text": "Perdenin ucu duvara usulca değdi. Deniz bu sesi biliyordu. \"Önce bunu dinleyelim,\" dedi. Örtüsünü dizlerine çekti; sesi aramak için kalkmadı. Odadaki her şey yerli yerindeydi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_bear_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "settled_room",
+      "stateAfter": "ritual_chosen",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_bear_p02_v1",
+            "sourceTextDigest": "d2aec5000e4611f10edf3764456e4ade6e71295414ba60ebf1261ce180a61a09",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/95",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_bear_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_bear_p02_v1_s01",
+        "pilot56_source_u1_bear_p02_v1_s02",
+        "pilot56_source_u1_bear_p02_v1_s03",
+        "pilot56_source_u1_bear_p02_v1_s04",
+        "pilot56_source_u1_bear_p02_v1_s05"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "tanıdık perde sesini seçer",
+            "evidenceSourceID": "pilot56_source_u1_bear_p02_v1",
+            "evidenceText": "Perdenin ucu duvara usulca değdi. Deniz bu sesi biliyordu. \"Önce bunu dinleyelim,\" dedi. Örtüsünü dizlerine çekti; sesi aramak için kalkmadı. Odadaki her şey yerli yerindeydi.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "tanıdık perde sesini seçer",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Preserve large bear scale. No tiny window/bed; no carrying child. A2 p5-6 only edge stabilization, not lifting."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_listens",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_3_v1"
+      ],
+      "text": "Böğürtlen geniş yer döşeğinde oturuyordu. Büyük gövdesi kapı yolunu kapatmıyordu. \"Ben de perdeyi duydum,\" dedi. Güçlü pençeleri dinleniyordu; odada tutması ya da kaldırması gereken hiçbir şey yoktu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_bear_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "ritual_chosen",
+      "stateAfter": "friend_listens",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_bear_p03_v1",
+            "sourceTextDigest": "56582beedd8d49507959cb40c8f6157a887a4154ac51645bf34ae76a18361aef",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/100",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_bear_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_bear_p03_v1_s01",
+        "pilot56_source_u1_bear_p03_v1_s02",
+        "pilot56_source_u1_bear_p03_v1_s03",
+        "pilot56_source_u1_bear_p03_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen geniş yer döşeğinde oturuyordu. Büyük gövdesi kapı yolunu kapatmıyordu. \"Ben de perdeyi duydum,\" dedi. Güçlü pençeleri dinleniyordu; odada tutması ya da kaldırması gereken hiçbir şey yoktu.",
+            "evidenceSourceID": "pilot56_source_u1_bear_p03_v1",
+            "evidenceText": "Böğürtlen geniş yer döşeğinde oturuyordu. Büyük gövdesi kapı yolunu kapatmıyordu. \"Ben de perdeyi duydum,\" dedi. Güçlü pençeleri dinleniyordu; odada tutması ya da kaldırması gereken hiçbir şey yoktu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen geniş yer döşeğinde oturuyordu. Büyük gövdesi kapı yolunu kapatmıyordu. \"Ben de perdeyi duydum,\" dedi. Güçlü pençeleri dinleniyordu; odada tutması ya da kaldırması gereken hiçbir şey yoktu.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Preserve large bear scale. No tiny window/bed; no carrying child. A2 p5-6 only edge stabilization, not lifting."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_names_sound",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_4_v1"
+      ],
+      "text": "Deniz başını yastığa yaklaştırdı. Kendi nefesinin örtüye değen sesini duydu. \"Bu da benim sesim,\" dedi. Bir sesi ötekinden ayırmak için acele etmesine gerek yoktu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_bear_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_listens",
+      "stateAfter": "child_names_sound",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_bear_p04_v1",
+            "sourceTextDigest": "1980b27af87682808dc01b1eed7e9c77f0678a90f0bf2127c852d88af0ddb378",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/105",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_bear_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_bear_p04_v1_s01",
+        "pilot56_source_u1_bear_p04_v1_s02",
+        "pilot56_source_u1_bear_p04_v1_s03",
+        "pilot56_source_u1_bear_p04_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "kendi nefesini fark eder",
+            "evidenceSourceID": "pilot56_source_u1_bear_p04_v1",
+            "evidenceText": "Deniz başını yastığa yaklaştırdı. Kendi nefesinin örtüye değen sesini duydu. \"Bu da benim sesim,\" dedi. Bir sesi ötekinden ayırmak için acele etmesine gerek yoktu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "kendi nefesini fark eder",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Preserve large bear scale. No tiny window/bed; no carrying child. A2 p5-6 only edge stabilization, not lifting."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "soft_smile",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_5_v1"
+      ],
+      "text": "Deniz kendi nefesini duyunca küçük bir gülümseme belirdi. Böğürtlen ağır ağır soluk verdi. İkisi aynı sesi çıkarmaya uğraşmadı. Her birinin rahatça nefes alabileceği kadar alan vardı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_bear_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_names_sound",
+      "stateAfter": "soft_smile",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_bear_p05_v1",
+            "sourceTextDigest": "8129e02b8795f2fe0e056133bd4d6c461c6ee03aa12d32a0da787616ea5beb9d",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/110",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_bear_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_bear_p05_v1_s01",
+        "pilot56_source_u1_bear_p05_v1_s02",
+        "pilot56_source_u1_bear_p05_v1_s03",
+        "pilot56_source_u1_bear_p05_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz kendi nefesini duyunca küçük bir gülümseme belirdi. Böğürtlen ağır ağır soluk verdi. İkisi aynı sesi çıkarmaya uğraşmadı. Her birinin rahatça nefes alabileceği kadar alan vardı.",
+            "evidenceSourceID": "pilot56_source_u1_bear_p05_v1",
+            "evidenceText": "Deniz kendi nefesini duyunca küçük bir gülümseme belirdi. Böğürtlen ağır ağır soluk verdi. İkisi aynı sesi çıkarmaya uğraşmadı. Her birinin rahatça nefes alabileceği kadar alan vardı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kendi nefesini duyunca küçük bir gülümseme belirdi. Böğürtlen ağır ağır soluk verdi. İkisi aynı sesi çıkarmaya uğraşmadı. Her birinin rahatça nefes alabileceği kadar alan vardı.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Preserve large bear scale. No tiny window/bed; no carrying child. A2 p5-6 only edge stabilization, not lifting."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "attention_released",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_6_v1"
+      ],
+      "text": "Deniz ışığı kıstı ve yatağına yaslandı. Böğürtlen geniş döşeğine yan yattı; gözleri açıktı. Büyük bedeni bütünüyle döşeğin üstündeydi. Deniz onun yerini yeniden düzenlemeye çalışmadı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_bear_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "soft_smile",
+      "stateAfter": "attention_released",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_bear_p06_v1",
+            "sourceTextDigest": "88f0f1dd9f197161fff6d5bf84a5dc9746cb139c9befdeba221fe4ea47de00ae",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/115",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_bear_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_bear_p06_v1_s01",
+        "pilot56_source_u1_bear_p06_v1_s02",
+        "pilot56_source_u1_bear_p06_v1_s03",
+        "pilot56_source_u1_bear_p06_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved",
+              "resting-awake"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz ışığı kıstı ve yatağına yaslandı. Böğürtlen geniş döşeğine yan yattı; gözleri açıktı. Büyük bedeni bütünüyle döşeğin üstündeydi. Deniz onun yerini yeniden düzenlemeye çalışmadı.",
+            "evidenceSourceID": "pilot56_source_u1_bear_p06_v1",
+            "evidenceText": "Deniz ışığı kıstı ve yatağına yaslandı. Böğürtlen geniş döşeğine yan yattı; gözleri açıktı. Büyük bedeni bütünüyle döşeğin üstündeydi. Deniz onun yerini yeniden düzenlemeye çalışmadı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ışığı kıstı ve yatağına yaslandı. Böğürtlen geniş döşeğine yan yattı; gözleri açıktı. Büyük bedeni bütünüyle döşeğin üstündeydi. Deniz onun yerini yeniden düzenlemeye çalışmadı.",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Preserve large bear scale. No tiny window/bed; no carrying child. A2 p5-6 only edge stabilization, not lifting."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 7,
+      "role": "awake_rest",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_7_v1"
+      ],
+      "text": "Deniz artık sesleri saymıyordu. Örtü omuzlarında hafifti. Arkadaşı da kendi yerinde uyanık ve rahattı. Odanın tanıdık sesleri, ilgilenmeleri gereken işler olmadan sürüp gidiyordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_bear_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "attention_released",
+      "stateAfter": "awake_rest",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_bear_p07_v1",
+            "sourceTextDigest": "b346a898782bde1f90868417f415014eb902291188d18c0ce53e7e8753f3431f",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/120",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_bear_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_bear_p07_v1_s01",
+        "pilot56_source_u1_bear_p07_v1_s02",
+        "pilot56_source_u1_bear_p07_v1_s03",
+        "pilot56_source_u1_bear_p07_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved",
+              "resting-awake"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "uyanık dinlenir",
+            "evidenceSourceID": "pilot56_source_u1_bear_p07_v1",
+            "evidenceText": "Deniz artık sesleri saymıyordu. Örtü omuzlarında hafifti. Arkadaşı da kendi yerinde uyanık ve rahattı. Odanın tanıdık sesleri, ilgilenmeleri gereken işler olmadan sürüp gidiyordu.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "uyanık dinlenir",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Preserve large bear scale. No tiny window/bed; no carrying child. A2 p5-6 only edge stabilization, not lifting."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_calm",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_8_v1"
+      ],
+      "text": "Orman Kıyısındaki Oda sessizce dinleniyordu. Deniz gözlerini kapattı. Arkadaşı rahat yerinde kaldı. Söylenecek son bir söz, bulunacak son bir ses yoktu. Bu akşam tamamlanmıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_bear_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_room_sounds_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "awake_rest",
+      "stateAfter": "closed_calm",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u1_bear_p08_v1",
+            "sourceTextDigest": "8e9b0aad1a26d5d7223df3be23cc81c252d9ee18a37b6e7d0f6b1007ea2f9f89",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/126",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_bear_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_room_sounds_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u1_bear_p08_v1_s01",
+        "pilot56_source_u1_bear_p08_v1_s02",
+        "pilot56_source_u1_bear_p08_v1_s03",
+        "pilot56_source_u1_bear_p08_v1_s04",
+        "pilot56_source_u1_bear_p08_v1_s05"
+      ],
+      "semantics": {
+        "annotationStatus": "author-reviewed-not-independently-approved",
+        "inventoryScope": "All named/pronominal story actors; prop groups enumerated, not a render whitelist.",
+        "metadataRevision": 2,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved",
+              "resting-awake"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_room_sounds_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "perde, kapalı pencere, çocuğun yatağı, örtü ve karaktere uygun dinlenme yeri; ses ayrıca görünür nesne değildir",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "gözlerini kapatır; uykuya daldığı iddia edilmez",
+            "evidenceSourceID": "pilot56_source_u1_bear_p08_v1",
+            "evidenceText": "Orman Kıyısındaki Oda sessizce dinleniyordu. Deniz gözlerini kapattı. Arkadaşı rahat yerinde kaldı. Söylenecek son bir söz, bulunacak son bir ses yoktu. Bu akşam tamamlanmıştı.",
+            "scope": "page-context; multiple actors on tailored pages; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Past recollection stays remembered; potential actions and explicit negations are not present actions."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "author-reviewed",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "gözlerini kapatır; uykuya daldığı iddia edilmez",
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "An intention or memory must not become a current physical action.",
+          "Preserve large bear scale. No tiny window/bed; no carrying child. A2 p5-6 only edge stabilization, not lifting."
+        ]
+      },
+      "editorialIntensity": 0
+    }
+  ],
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false
+}

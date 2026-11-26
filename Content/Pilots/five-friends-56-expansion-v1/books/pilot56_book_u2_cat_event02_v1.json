@@ -1,0 +1,1012 @@
+{
+  "id": "pilot56_book_u2_cat_event02_v1",
+  "title": "Örtünün Düz Yeri",
+  "blueprintID": "pilot56_blueprint_u2_v1",
+  "planLabel": "U2",
+  "mechanismKey": "comfort-choice-and-space",
+  "status": "authored-internal-review-required",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "bedtime",
+    "arc": "charge-bedtime-editorial",
+    "companionID": "companion_city_cat_001",
+    "settingID": "pilot56_setting_forest_edge_room_v1",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "N",
+  "personalityContract": "Şehirden bugün ziyarete gelmiştir; meraklı; yavaşlamayı dener.",
+  "physicalContract": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+  "childAgency": "Çocuk seçeneği hazırlar, tercihi dinler ve alan bırakır.",
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "baseBookID": "pilot56_book_u2_cat_v1",
+  "variantID": "event02",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "settled_room",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_1_v1"
+      ],
+      "text": "Deniz yatağının yanında boş bir zemin hazırladı. Simit geniş açıklıkta duruyordu. Yerde düz bir örtü ve katlanmış kenarı vardı. Akşam ışığı kapalı pencereye vuruyordu. Simit şehirden bugün ziyarete gelmişti.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_city_cat_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "settled_room",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_cat_event02_p01_v1",
+            "sourceTextDigest": "138f16a4f1d5aad83a4394890f345a92b995dc88222d32948bdac51cc8e75740",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/329",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_city_cat_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_cat_event02_p01_v1_s01",
+        "pilot56_source_u2_cat_event02_p01_v1_s02",
+        "pilot56_source_u2_cat_event02_p01_v1_s03",
+        "pilot56_source_u2_cat_event02_p01_v1_s04",
+        "pilot56_source_u2_cat_event02_p01_v1_s05"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_flat_resting_cover_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı; yerde katlı kenarı açılan düz geniş örtü, açık geçiş",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz yatağının yanında boş bir zemin hazırladı. Simit geniş açıklıkta duruyordu. Yerde düz bir örtü ve katlanmış kenarı vardı. Akşam ışığı kapalı pencereye vuruyordu. Simit şehirden bugün ziyarete gelmişti.",
+            "evidenceSourceID": "pilot56_source_u2_cat_event02_p01_v1",
+            "evidenceText": "Deniz yatağının yanında boş bir zemin hazırladı. Simit geniş açıklıkta duruyordu. Yerde düz bir örtü ve katlanmış kenarı vardı. Akşam ışığı kapalı pencereye vuruyordu. Simit şehirden bugün ziyarete gelmişti.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yatağının yanında boş bir zemin hazırladı. Simit geniş açıklıkta duruyordu. Yerde düz bir örtü ve katlanmış kenarı vardı. Akşam ışığı kapalı pencereye vuruyordu. Simit şehirden bugün ziyarete gelmişti.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution.",
+          "Simit is a city visitor today, never a forest resident."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 2,
+      "role": "comfort_need",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_2_v1"
+      ],
+      "text": "Deniz örtünün katlı kenarına baktı. Katlanan bölüm, geri kalan yüzeyden yüksek duruyordu. \"Nasıl bir yer istersin?\" diye sordu. Arkadaşının cevabını bekleyip örtüye dokunmadı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_city_cat_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "settled_room",
+      "stateAfter": "comfort_need",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_cat_event02_p02_v1",
+            "sourceTextDigest": "5b588b7518eb8dd76cf740429fcfd34637604692a4a882552a3c7a60ae062718",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/335",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_city_cat_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_cat_event02_p02_v1_s01",
+        "pilot56_source_u2_cat_event02_p02_v1_s02",
+        "pilot56_source_u2_cat_event02_p02_v1_s03",
+        "pilot56_source_u2_cat_event02_p02_v1_s04",
+        "pilot56_source_u2_cat_event02_p02_v1_s05"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_flat_resting_cover_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı; yerde katlı kenarı açılan düz geniş örtü, açık geçiş",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz örtünün katlı kenarına baktı. Katlanan bölüm, geri kalan yüzeyden yüksek duruyordu. \"Nasıl bir yer istersin?\" diye sordu. Arkadaşının cevabını bekleyip örtüye dokunmadı.",
+            "evidenceSourceID": "pilot56_source_u2_cat_event02_p02_v1",
+            "evidenceText": "Deniz örtünün katlı kenarına baktı. Katlanan bölüm, geri kalan yüzeyden yüksek duruyordu. \"Nasıl bir yer istersin?\" diye sordu. Arkadaşının cevabını bekleyip örtüye dokunmadı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz örtünün katlı kenarına baktı. Katlanan bölüm, geri kalan yüzeyden yüksek duruyordu. \"Nasıl bir yer istersin?\" diye sordu. Arkadaşının cevabını bekleyip örtüye dokunmadı.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution.",
+          "Simit is a city visitor today, never a forest resident."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_preference",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_3_v1"
+      ],
+      "text": "Simit örtünün katlı kenarını merakla inceledi. \"Düz yer bana uygun,\" dedi. Kıvrık kuyruğunu yanındaki açık alanda tuttu. Şehirden gelen konuk kendi rahatlığını söyleyebilirdi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_city_cat_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "comfort_need",
+      "stateAfter": "friend_preference",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_cat_event02_p03_v1",
+            "sourceTextDigest": "053a70a8c1424d254aca2e130f25a37ac25d8035c3e5fa2b7f885233d7c8954e",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/340",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_city_cat_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_cat_event02_p03_v1_s01",
+        "pilot56_source_u2_cat_event02_p03_v1_s02",
+        "pilot56_source_u2_cat_event02_p03_v1_s03",
+        "pilot56_source_u2_cat_event02_p03_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_flat_resting_cover_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı; yerde katlı kenarı açılan düz geniş örtü, açık geçiş",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "companion_city_cat_001"
+            ],
+            "description": "Simit örtünün katlı kenarını merakla inceledi. \"Düz yer bana uygun,\" dedi. Kıvrık kuyruğunu yanındaki açık alanda tuttu. Şehirden gelen konuk kendi rahatlığını söyleyebilirdi.",
+            "evidenceSourceID": "pilot56_source_u2_cat_event02_p03_v1",
+            "evidenceText": "Simit örtünün katlı kenarını merakla inceledi. \"Düz yer bana uygun,\" dedi. Kıvrık kuyruğunu yanındaki açık alanda tuttu. Şehirden gelen konuk kendi rahatlığını söyleyebilirdi.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit örtünün katlı kenarını merakla inceledi. \"Düz yer bana uygun,\" dedi. Kıvrık kuyruğunu yanındaki açık alanda tuttu. Şehirden gelen konuk kendi rahatlığını söyleyebilirdi.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution.",
+          "Simit is a city visitor today, never a forest resident."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_prepares",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_4_v1"
+      ],
+      "text": "Deniz örtünün katlı kenarını yavaşça açtı. Yerdeki yüzey aynı yüksekliğe geldi, geçişi açık kaldı. Çocuk kendi dizlerini geriye çekti. Arkadaşının denemesi için boşluk bıraktı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_city_cat_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_preference",
+      "stateAfter": "child_prepares",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_cat_event02_p04_v1",
+            "sourceTextDigest": "055896c6c78af5606115176698ede296846226861a5b5c58f85a7717d2409e86",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/345",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_city_cat_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_cat_event02_p04_v1_s01",
+        "pilot56_source_u2_cat_event02_p04_v1_s02",
+        "pilot56_source_u2_cat_event02_p04_v1_s03",
+        "pilot56_source_u2_cat_event02_p04_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_flat_resting_cover_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı; yerde katlı kenarı açılan düz geniş örtü, açık geçiş",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz örtünün katlı kenarını yavaşça açtı. Yerdeki yüzey aynı yüksekliğe geldi, geçişi açık kaldı. Çocuk kendi dizlerini geriye çekti. Arkadaşının denemesi için boşluk bıraktı.",
+            "evidenceSourceID": "pilot56_source_u2_cat_event02_p04_v1",
+            "evidenceText": "Deniz örtünün katlı kenarını yavaşça açtı. Yerdeki yüzey aynı yüksekliğe geldi, geçişi açık kaldı. Çocuk kendi dizlerini geriye çekti. Arkadaşının denemesi için boşluk bıraktı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz örtünün katlı kenarını yavaşça açtı. Yerdeki yüzey aynı yüksekliğe geldi, geçişi açık kaldı. Çocuk kendi dizlerini geriye çekti. Arkadaşının denemesi için boşluk bıraktı.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution.",
+          "Simit is a city visitor today, never a forest resident."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 5,
+      "role": "soft_trial",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_5_v1"
+      ],
+      "text": "Simit düz örtüyü dört patisiyle yavaşça denedi. \"Bu yüzey rahat,\" dedi. Kıvrık kuyruğunu açık yanında tuttu. Şehirden gelen konuk artık kendi dinlenme yerini seçmişti.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_city_cat_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_prepares",
+      "stateAfter": "soft_trial",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_cat_event02_p05_v1",
+            "sourceTextDigest": "256d072e23e64379b55832e5af69f455cab8380713489cc682f51b623794e06a",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/350",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_city_cat_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_cat_event02_p05_v1_s01",
+        "pilot56_source_u2_cat_event02_p05_v1_s02",
+        "pilot56_source_u2_cat_event02_p05_v1_s03",
+        "pilot56_source_u2_cat_event02_p05_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_flat_resting_cover_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı; yerde katlı kenarı açılan düz geniş örtü, açık geçiş",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "companion_city_cat_001"
+            ],
+            "description": "Simit düz örtüyü dört patisiyle yavaşça denedi. \"Bu yüzey rahat,\" dedi. Kıvrık kuyruğunu açık yanında tuttu. Şehirden gelen konuk artık kendi dinlenme yerini seçmişti.",
+            "evidenceSourceID": "pilot56_source_u2_cat_event02_p05_v1",
+            "evidenceText": "Simit düz örtüyü dört patisiyle yavaşça denedi. \"Bu yüzey rahat,\" dedi. Kıvrık kuyruğunu açık yanında tuttu. Şehirden gelen konuk artık kendi dinlenme yerini seçmişti.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit düz örtüyü dört patisiyle yavaşça denedi. \"Bu yüzey rahat,\" dedi. Kıvrık kuyruğunu açık yanında tuttu. Şehirden gelen konuk artık kendi dinlenme yerini seçmişti.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution.",
+          "Simit is a city visitor today, never a forest resident."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 6,
+      "role": "child_yields_space",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_6_v1"
+      ],
+      "text": "Deniz örtünün kenarından kalkıp kendi yatağına döndü. Arkadaşının seçtiği yere bir daha dokunmadı. \"Burayı sen seçtin,\" dedi. Hazırlık bitmişti, artık yanına daha fazla eşya taşımayacaktı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_city_cat_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "soft_trial",
+      "stateAfter": "child_yields_space",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_cat_event02_p06_v1",
+            "sourceTextDigest": "5c85db7faa676176ef8b1d6136d58aebda539bfb7d4714717869ab9a5cafc6d2",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/355",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_city_cat_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_cat_event02_p06_v1_s01",
+        "pilot56_source_u2_cat_event02_p06_v1_s02",
+        "pilot56_source_u2_cat_event02_p06_v1_s03",
+        "pilot56_source_u2_cat_event02_p06_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_flat_resting_cover_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı; yerde katlı kenarı açılan düz geniş örtü, açık geçiş",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz örtünün kenarından kalkıp kendi yatağına döndü. Arkadaşının seçtiği yere bir daha dokunmadı. \"Burayı sen seçtin,\" dedi. Hazırlık bitmişti, artık yanına daha fazla eşya taşımayacaktı.",
+            "evidenceSourceID": "pilot56_source_u2_cat_event02_p06_v1",
+            "evidenceText": "Deniz örtünün kenarından kalkıp kendi yatağına döndü. Arkadaşının seçtiği yere bir daha dokunmadı. \"Burayı sen seçtin,\" dedi. Hazırlık bitmişti, artık yanına daha fazla eşya taşımayacaktı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz örtünün kenarından kalkıp kendi yatağına döndü. Arkadaşının seçtiği yere bir daha dokunmadı. \"Burayı sen seçtin,\" dedi. Hazırlık bitmişti, artık yanına daha fazla eşya taşımayacaktı.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution.",
+          "Simit is a city visitor today, never a forest resident."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 7,
+      "role": "awake_rest",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_7_v1"
+      ],
+      "text": "Deniz kendi yatağında uyanık dinleniyordu. Arkadaşı düz örtünün üzerinde rahatça kalmıştı. Açık zemin ikisinin arasında uzanıyordu. Çocuk yaptığı hazırlığı tekrar düzeltmeden olduğu gibi bıraktı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_city_cat_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "child_yields_space",
+      "stateAfter": "awake_rest",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_cat_event02_p07_v1",
+            "sourceTextDigest": "57ca64e98c131e37315b36ae22d59114911126363f59e43ed15324d471bc222f",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/360",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_city_cat_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_cat_event02_p07_v1_s01",
+        "pilot56_source_u2_cat_event02_p07_v1_s02",
+        "pilot56_source_u2_cat_event02_p07_v1_s03",
+        "pilot56_source_u2_cat_event02_p07_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_flat_resting_cover_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı; yerde katlı kenarı açılan düz geniş örtü, açık geçiş",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz kendi yatağında uyanık dinleniyordu. Arkadaşı düz örtünün üzerinde rahatça kalmıştı. Açık zemin ikisinin arasında uzanıyordu. Çocuk yaptığı hazırlığı tekrar düzeltmeden olduğu gibi bıraktı.",
+            "evidenceSourceID": "pilot56_source_u2_cat_event02_p07_v1",
+            "evidenceText": "Deniz kendi yatağında uyanık dinleniyordu. Arkadaşı düz örtünün üzerinde rahatça kalmıştı. Açık zemin ikisinin arasında uzanıyordu. Çocuk yaptığı hazırlığı tekrar düzeltmeden olduğu gibi bıraktı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kendi yatağında uyanık dinleniyordu. Arkadaşı düz örtünün üzerinde rahatça kalmıştı. Açık zemin ikisinin arasında uzanıyordu. Çocuk yaptığı hazırlığı tekrar düzeltmeden olduğu gibi bıraktı.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution.",
+          "Simit is a city visitor today, never a forest resident."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_calm",
+      "orderedBeatIDs": [
+        "pilot56_beat_u2_8_v1"
+      ],
+      "text": "Deniz örtüsünü çekip gözlerini kapattı. Arkadaşı seçtiği geniş yerde dinlenmeyi sürdürdü. Katlanan kenar açılmış, küçük hazırlık bitmişti. Odanın akşamı sakin biçimde tamamlanmıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_city_cat_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "awake_rest",
+      "stateAfter": "closed_calm",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "pilot56_source_u2_cat_event02_p08_v1",
+            "sourceTextDigest": "02e19013002e5b9592d5954af5faf14ab53fa73e2fb0ef30fa19c5e90d51afa5",
+            "templateID": "pilot56_blueprint_u2_v1",
+            "sourcePointer": "sources.json#/sources/365",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_city_cat_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_flat_resting_cover_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [
+        "pilot56_source_u2_cat_event02_p08_v1_s01",
+        "pilot56_source_u2_cat_event02_p08_v1_s02",
+        "pilot56_source_u2_cat_event02_p08_v1_s03",
+        "pilot56_source_u2_cat_event02_p08_v1_s04"
+      ],
+      "semantics": {
+        "annotationStatus": "authored-draft-independent-review-required",
+        "inventoryScope": "Named story actors and narrative prop groups; not render authorization.",
+        "metadataRevision": 1,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "awake",
+              "species-anatomy-preserved"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_flat_resting_cover_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "çocuğun yatağı; yerde katlı kenarı açılan düz geniş örtü, açık geçiş",
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz"
+            ],
+            "description": "Deniz örtüsünü çekip gözlerini kapattı. Arkadaşı seçtiği geniş yerde dinlenmeyi sürdürdü. Katlanan kenar açılmış, küçük hazırlık bitmişti. Odanın akşamı sakin biçimde tamamlanmıştı.",
+            "evidenceSourceID": "pilot56_source_u2_cat_event02_p08_v1",
+            "evidenceText": "Deniz örtüsünü çekip gözlerini kapattı. Arkadaşı seçtiği geniş yerde dinlenmeyi sürdürdü. Katlanan kenar açılmış, küçük hazırlık bitmişti. Odanın akşamı sakin biçimde tamamlanmıştı.",
+            "scope": "page-context; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Remembered events remain past; intentions are not present actions. Closed eyes never establish actual sleep."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "independent-review-required",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz örtüsünü çekip gözlerini kapattı. Arkadaşı seçtiği geniş yerde dinlenmeyi sürdürdü. Katlanan kenar açılmış, küçük hazırlık bitmişti. Odanın akşamı sakin biçimde tamamlanmıştı.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "doNotDraw": [
+          "No unmentioned prop or extra character.",
+          "Do not render memories or intentions as current physical actions.",
+          "Preserve species anatomy and child ownership of the resolution.",
+          "Simit is a city visitor today, never a forest resident."
+        ]
+      },
+      "editorialIntensity": 0
+    }
+  ]
+}

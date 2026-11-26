@@ -267,7 +267,9 @@ final class AppFamilyLocalStore: FamilyLocalStore {
         case .series:
             guard let id = UUID(uuidString: key.id) else { return }
             if let payload = record.payload {
-                try series.replaceAll(try SyncCoding.decode([StorySeries].self, from: payload), for: id)
+                let incoming = try SyncCoding.decode([StorySeries].self, from: payload)
+                let protected = try SeriesSourcePreservation.merge(incoming, preserving: series.series(for: id))
+                try series.replaceAll(protected, for: id)
             } else {
                 series.delete(for: id)
             }
