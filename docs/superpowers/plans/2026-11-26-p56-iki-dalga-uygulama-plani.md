@@ -4,7 +4,7 @@
 
 ## Ön koşulun güncel durumu
 
-Onay dosyası artık mevcut; motor pin geçişi testte. Claude uygulama worktree'sinde başka commit edilmemiş değişiklikler var; root bunlara dokunmaz. Okunan SnapshotStore henüz yalnız v1/v2 kabul ediyor ve aktif bundle v2. Uygulama v3 bundle/guard ve bayrak açık-kapalı mostProtective yazma-kaydetme-açma kanıtını vermeden Dalga1/2 runtime koduna geçilmez. Motor pininin değişmesi bu app kapısının geçtiği anlamına gelmez.
+Onay dosyası artık mevcut; motor pin geçişi024b8a5ile tamamlandı (27Release/0hata). Claude uygulama worktree'sinde başka commit edilmemiş değişiklikler var; root bunlara dokunmaz. Okunan SnapshotStore henüz yalnız v1/v2 kabul ediyor ve aktif bundle v2. Uygulama v3 bundle/guard ve bayrak açık-kapalı mostProtective yazma-kaydetme-açma kanıtını vermeden Dalga1/2 runtime koduna geçilmez. Motor pininin değişmesi bu app kapısının geçtiği anlamına gelmez.
 
 ## Claude ile karşılıklı kabul için önerilen noktalar
 

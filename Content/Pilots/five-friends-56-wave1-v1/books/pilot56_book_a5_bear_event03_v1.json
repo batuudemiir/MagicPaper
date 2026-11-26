@@ -1,0 +1,814 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a5_bear_event03_v1",
+  "title": "Böğürtlen Rengi Gökyüzü",
+  "context": {
+    "settingName": "Seyir Taşı, Kütük Yolu, Gün Batımı Tepesi",
+    "mode": "adventure",
+    "companionID": "companion_bear_001",
+    "structure": "A5",
+    "event": "e3",
+    "mechanism": "take-turns-at-view",
+    "sourceFilename": "adventure-bear.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a5_bear_event03_v1",
+    "structure": "A5",
+    "event": "e3",
+    "sample": false,
+    "title": "Böğürtlen Rengi Gökyüzü",
+    "pages": [
+      "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Böğürtlen tepeye vardı. Böğürtlen kocaman bir soluk verdi. Güneş tepelerin arkasına doğru iniyordu.",
+      "Tepede gün batımını en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Böğürtlen ona oturmuştu bile. Deniz de oturmak istedi.",
+      "Böğürtlen taşa baktı. \"Ben oturursam taş kaybolur,\" dedi. \"Ama ben de güneşi görmek istiyorum.\" Deniz’in kahkahası çınladı. Taş ayının yanında minicik görünüyordu.",
+      "Deniz biraz düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Böğürtlen rahatça kuruldu. Deniz beklerken gökyüzünün hangi renge döneceğini düşündü.",
+      "Böğürtlen taşa yarım oturdu. Deniz beklerken tahmin etti. \"Önce turuncu, sonra pembe olacak,\" dedi. Böğürtlen başını salladı. Ayının kocaman gölgesi çimenlere uzandı.",
+      "Sonra sıra Deniz’e geldi. Taşa oturdu. Gökyüzü turuncuya, sonra pembeye döndü. \"Pembeyi bilmiştim!\" dedi. Böğürtlen’in mor lekeli patisi de pembe göründü.",
+      "Deniz yerini yeniden Böğürtlen'e verdi. Gökyüzü mora döndü. \"Böğürtlen rengi!\" dedi Böğürtlen sevinçle. Deniz kahkahayı bastı. Böğürtlen’in göbeği sallandı. Ayı patisini göğe doğru kaldırdı.",
+      "Tepeden inerken hava serinledi. \"Acele yok, ben buradayım,\" dedi Böğürtlen. Gökyüzü arkalarında mor mor kaldı. İkisi yavaş adımlarla eve doğru yürüdü."
+    ],
+    "sourceBookID": "pilot56_book_a5_bear_event03_v1"
+  },
+  "inputFileSHA256": "2e7bcf50c3ecf1120039080583cf7cad1d98acb650ba3c2279bee8fc3054dd89",
+  "inputBookPointer": "input/adventure-bear.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a5_bear_event03_v1",
+      "rawPageMove": "shared_spot",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Böğürtlen kocaman bir soluk verdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Böğürtlen tepeye vardı. Böğürtlen kocaman bir soluk verdi. Güneş tepelerin arkasına doğru iniyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p01",
+            "evidenceText": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Böğürtlen tepeye vardı. Böğürtlen kocaman bir soluk verdi. Güneş tepelerin arkasına doğru iniyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Böğürtlen tepeye vardı. Böğürtlen kocaman bir soluk verdi. Güneş tepelerin arkasına doğru iniyordu.",
+        "poseAndActionEvidence": [
+          "Gün Batımı Tepesi’nde akşam yaklaşıyordu.",
+          "Deniz ile Böğürtlen tepeye vardı.",
+          "Böğürtlen kocaman bir soluk verdi.",
+          "Güneş tepelerin arkasına doğru iniyordu."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Böğürtlen tepeye vardı. Böğürtlen kocaman bir soluk verdi. Güneş tepelerin arkasına doğru iniyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p01",
+        "quoteSHA256": "5d8ee06a6232db5939d7e3fa1cd660c08238cc0bf04a9fc42bef5182a94497c7",
+        "bookID": "pilot56_book_a5_bear_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "5d8ee06a6232db5939d7e3fa1cd660c08238cc0bf04a9fc42bef5182a94497c7",
+      "text": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Böğürtlen tepeye vardı. Böğürtlen kocaman bir soluk verdi. Güneş tepelerin arkasına doğru iniyordu.",
+      "sourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p01",
+      "sourcePointer": "input/adventure-bear.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a5_bear_event03_v1",
+      "rawPageMove": "approach",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Tepede gün batımını en iyi gösteren düz bir taş vardı.",
+              "Taşa yalnız bir kişi sığıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Tepede gün batımını en iyi gösteren düz bir taş vardı.",
+              "Taşa yalnız bir kişi sığıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Tepede gün batımını en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Böğürtlen ona oturmuştu bile. Deniz de oturmak istedi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p02",
+            "evidenceText": "Tepede gün batımını en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Böğürtlen ona oturmuştu bile. Deniz de oturmak istedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tepede gün batımını en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Böğürtlen ona oturmuştu bile. Deniz de oturmak istedi.",
+        "poseAndActionEvidence": [
+          "Tepede gün batımını en iyi gösteren düz bir taş vardı.",
+          "Taşa yalnız bir kişi sığıyordu.",
+          "Böğürtlen ona oturmuştu bile.",
+          "Deniz de oturmak istedi."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Tepede gün batımını en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Böğürtlen ona oturmuştu bile. Deniz de oturmak istedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p02",
+        "quoteSHA256": "e9fc80305551a48509027b88278819f66dd52dc6153762070cb5d54e857c89d7",
+        "bookID": "pilot56_book_a5_bear_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "e9fc80305551a48509027b88278819f66dd52dc6153762070cb5d54e857c89d7",
+      "text": "Tepede gün batımını en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Böğürtlen ona oturmuştu bile. Deniz de oturmak istedi.",
+      "sourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p02",
+      "sourcePointer": "input/adventure-bear.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a5_bear_event03_v1",
+      "rawPageMove": "friend_wants_turn",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Böğürtlen taşa baktı.",
+              "\"Ben oturursam taş kaybolur,\" dedi.",
+              "Taş ayının yanında minicik görünüyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Böğürtlen taşa baktı.",
+              "\"Ben oturursam taş kaybolur,\" dedi.",
+              "Taş ayının yanında minicik görünüyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen taşa baktı. \"Ben oturursam taş kaybolur,\" dedi. \"Ama ben de güneşi görmek istiyorum.\" Deniz’in kahkahası çınladı. Taş ayının yanında minicik görünüyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p03",
+            "evidenceText": "Böğürtlen taşa baktı. \"Ben oturursam taş kaybolur,\" dedi. \"Ama ben de güneşi görmek istiyorum.\" Deniz’in kahkahası çınladı. Taş ayının yanında minicik görünüyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen taşa baktı. \"Ben oturursam taş kaybolur,\" dedi. \"Ama ben de güneşi görmek istiyorum.\" Deniz’in kahkahası çınladı. Taş ayının yanında minicik görünüyordu.",
+        "poseAndActionEvidence": [
+          "Böğürtlen taşa baktı.",
+          "\"Ben oturursam taş kaybolur,\" dedi.",
+          "\"Ama ben de güneşi görmek istiyorum.\" Deniz’in kahkahası çınladı.",
+          "Taş ayının yanında minicik görünüyordu."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_bear_001",
+        "quote": "Böğürtlen taşa baktı. \"Ben oturursam taş kaybolur,\" dedi. \"Ama ben de güneşi görmek istiyorum.\" Deniz’in kahkahası çınladı. Taş ayının yanında minicik görünüyordu.",
+        "attributionQuote": "Böğürtlen",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p03",
+        "quoteSHA256": "52ef266f262577701c99a8c777e3c5a3c02f3ddc3e8f783d464806df9cafcd9b",
+        "bookID": "pilot56_book_a5_bear_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "52ef266f262577701c99a8c777e3c5a3c02f3ddc3e8f783d464806df9cafcd9b",
+      "text": "Böğürtlen taşa baktı. \"Ben oturursam taş kaybolur,\" dedi. \"Ama ben de güneşi görmek istiyorum.\" Deniz’in kahkahası çınladı. Taş ayının yanında minicik görünüyordu.",
+      "sourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p03",
+      "sourcePointer": "input/adventure-bear.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a5_bear_event03_v1",
+      "rawPageMove": "child_proposes_order",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz biraz düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Böğürtlen rahatça kuruldu. Deniz beklerken gökyüzünün hangi renge döneceğini düşündü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p04",
+            "evidenceText": "Deniz biraz düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Böğürtlen rahatça kuruldu. Deniz beklerken gökyüzünün hangi renge döneceğini düşündü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz biraz düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Böğürtlen rahatça kuruldu. Deniz beklerken gökyüzünün hangi renge döneceğini düşündü.",
+        "poseAndActionEvidence": [
+          "Deniz biraz düşündü.",
+          "\"Sırayla oturalım,\" dedi.",
+          "\"Önce sen otur.\" Böğürtlen rahatça kuruldu.",
+          "Deniz beklerken gökyüzünün hangi renge döneceğini düşündü."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz biraz düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Böğürtlen rahatça kuruldu. Deniz beklerken gökyüzünün hangi renge döneceğini düşündü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p04",
+        "quoteSHA256": "aab8978180ce253c7ff44e10868b348b347bc9262bd63f3d86982c6eb49eb5af",
+        "bookID": "pilot56_book_a5_bear_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "aab8978180ce253c7ff44e10868b348b347bc9262bd63f3d86982c6eb49eb5af",
+      "text": "Deniz biraz düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Böğürtlen rahatça kuruldu. Deniz beklerken gökyüzünün hangi renge döneceğini düşündü.",
+      "sourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p04",
+      "sourcePointer": "input/adventure-bear.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a5_bear_event03_v1",
+      "rawPageMove": "wait_and_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; gölge; yağmur/cam/oluk; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Böğürtlen taşa yarım oturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Ayının kocaman gölgesi çimenlere uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Ayının kocaman gölgesi çimenlere uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Böğürtlen taşa yarım oturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen taşa yarım oturdu. Deniz beklerken tahmin etti. \"Önce turuncu, sonra pembe olacak,\" dedi. Böğürtlen başını salladı. Ayının kocaman gölgesi çimenlere uzandı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p05",
+            "evidenceText": "Böğürtlen taşa yarım oturdu. Deniz beklerken tahmin etti. \"Önce turuncu, sonra pembe olacak,\" dedi. Böğürtlen başını salladı. Ayının kocaman gölgesi çimenlere uzandı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen taşa yarım oturdu. Deniz beklerken tahmin etti. \"Önce turuncu, sonra pembe olacak,\" dedi. Böğürtlen başını salladı. Ayının kocaman gölgesi çimenlere uzandı.",
+        "poseAndActionEvidence": [
+          "Böğürtlen taşa yarım oturdu.",
+          "Deniz beklerken tahmin etti.",
+          "\"Önce turuncu, sonra pembe olacak,\" dedi.",
+          "Böğürtlen başını salladı.",
+          "Ayının kocaman gölgesi çimenlere uzandı."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Böğürtlen taşa yarım oturdu. Deniz beklerken tahmin etti. \"Önce turuncu, sonra pembe olacak,\" dedi. Böğürtlen başını salladı. Ayının kocaman gölgesi çimenlere uzandı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p05",
+        "quoteSHA256": "ca19170abda151333a5f3f5a3bfa14e9912d804ef6ab14801a7c849fe9a367f5",
+        "bookID": "pilot56_book_a5_bear_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "ca19170abda151333a5f3f5a3bfa14e9912d804ef6ab14801a7c849fe9a367f5",
+      "text": "Böğürtlen taşa yarım oturdu. Deniz beklerken tahmin etti. \"Önce turuncu, sonra pembe olacak,\" dedi. Böğürtlen başını salladı. Ayının kocaman gölgesi çimenlere uzandı.",
+      "sourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p05",
+      "sourcePointer": "input/adventure-bear.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a5_bear_event03_v1",
+      "rawPageMove": "child_takes_turn",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Taşa oturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Taşa oturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Sonra sıra Deniz’e geldi. Taşa oturdu. Gökyüzü turuncuya, sonra pembeye döndü. \"Pembeyi bilmiştim!\" dedi. Böğürtlen’in mor lekeli patisi de pembe göründü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p06",
+            "evidenceText": "Sonra sıra Deniz’e geldi. Taşa oturdu. Gökyüzü turuncuya, sonra pembeye döndü. \"Pembeyi bilmiştim!\" dedi. Böğürtlen’in mor lekeli patisi de pembe göründü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Sonra sıra Deniz’e geldi. Taşa oturdu. Gökyüzü turuncuya, sonra pembeye döndü. \"Pembeyi bilmiştim!\" dedi. Böğürtlen’in mor lekeli patisi de pembe göründü.",
+        "poseAndActionEvidence": [
+          "Sonra sıra Deniz’e geldi.",
+          "Taşa oturdu.",
+          "Gökyüzü turuncuya, sonra pembeye döndü.",
+          "\"Pembeyi bilmiştim!\" dedi.",
+          "Böğürtlen’in mor lekeli patisi de pembe göründü."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Sonra sıra Deniz’e geldi. Taşa oturdu. Gökyüzü turuncuya, sonra pembeye döndü. \"Pembeyi bilmiştim!\" dedi. Böğürtlen’in mor lekeli patisi de pembe göründü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p06",
+        "quoteSHA256": "910d4dc71a6f549bdad2ed6f664f467ee2080e69faf000de411c5b6d425fda2c",
+        "bookID": "pilot56_book_a5_bear_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "910d4dc71a6f549bdad2ed6f664f467ee2080e69faf000de411c5b6d425fda2c",
+      "text": "Sonra sıra Deniz’e geldi. Taşa oturdu. Gökyüzü turuncuya, sonra pembeye döndü. \"Pembeyi bilmiştim!\" dedi. Böğürtlen’in mor lekeli patisi de pembe göründü.",
+      "sourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p06",
+      "sourcePointer": "input/adventure-bear.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a5_bear_event03_v1",
+      "rawPageMove": "view_shared",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz yerini yeniden Böğürtlen'e verdi. Gökyüzü mora döndü. \"Böğürtlen rengi!\" dedi Böğürtlen sevinçle. Deniz kahkahayı bastı. Böğürtlen’in göbeği sallandı. Ayı patisini göğe doğru kaldırdı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p07",
+            "evidenceText": "Deniz yerini yeniden Böğürtlen'e verdi. Gökyüzü mora döndü. \"Böğürtlen rengi!\" dedi Böğürtlen sevinçle. Deniz kahkahayı bastı. Böğürtlen’in göbeği sallandı. Ayı patisini göğe doğru kaldırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yerini yeniden Böğürtlen'e verdi. Gökyüzü mora döndü. \"Böğürtlen rengi!\" dedi Böğürtlen sevinçle. Deniz kahkahayı bastı. Böğürtlen’in göbeği sallandı. Ayı patisini göğe doğru kaldırdı.",
+        "poseAndActionEvidence": [
+          "Deniz yerini yeniden Böğürtlen'e verdi.",
+          "Gökyüzü mora döndü.",
+          "\"Böğürtlen rengi!\" dedi Böğürtlen sevinçle.",
+          "Deniz kahkahayı bastı.",
+          "Böğürtlen’in göbeği sallandı.",
+          "Ayı patisini göğe doğru kaldırdı."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yerini yeniden Böğürtlen'e verdi. Gökyüzü mora döndü. \"Böğürtlen rengi!\" dedi Böğürtlen sevinçle. Deniz kahkahayı bastı. Böğürtlen’in göbeği sallandı. Ayı patisini göğe doğru kaldırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p07",
+        "quoteSHA256": "583f1ab214e45d0fbc13a48310e7a272b37f5298caedf35ae51271573a86566d",
+        "bookID": "pilot56_book_a5_bear_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "583f1ab214e45d0fbc13a48310e7a272b37f5298caedf35ae51271573a86566d",
+      "text": "Deniz yerini yeniden Böğürtlen'e verdi. Gökyüzü mora döndü. \"Böğürtlen rengi!\" dedi Böğürtlen sevinçle. Deniz kahkahayı bastı. Böğürtlen’in göbeği sallandı. Ayı patisini göğe doğru kaldırdı.",
+      "sourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p07",
+      "sourcePointer": "input/adventure-bear.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a5_bear_event03_v1",
+      "rawPageMove": "closed_return",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Tepeden inerken hava serinledi. \"Acele yok, ben buradayım,\" dedi Böğürtlen. Gökyüzü arkalarında mor mor kaldı. İkisi yavaş adımlarla eve doğru yürüdü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p08",
+            "evidenceText": "Tepeden inerken hava serinledi. \"Acele yok, ben buradayım,\" dedi Böğürtlen. Gökyüzü arkalarında mor mor kaldı. İkisi yavaş adımlarla eve doğru yürüdü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tepeden inerken hava serinledi. \"Acele yok, ben buradayım,\" dedi Böğürtlen. Gökyüzü arkalarında mor mor kaldı. İkisi yavaş adımlarla eve doğru yürüdü.",
+        "poseAndActionEvidence": [
+          "Tepeden inerken hava serinledi.",
+          "\"Acele yok, ben buradayım,\" dedi Böğürtlen.",
+          "Gökyüzü arkalarında mor mor kaldı.",
+          "İkisi yavaş adımlarla eve doğru yürüdü."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Tepeden inerken hava serinledi. \"Acele yok, ben buradayım,\" dedi Böğürtlen. Gökyüzü arkalarında mor mor kaldı. İkisi yavaş adımlarla eve doğru yürüdü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p01",
+        "quoteSHA256": "46341d53d0d7ac68f6266d8239fd8a23ba14d48a24fa8d888e336c38397ca2f9",
+        "bookID": "pilot56_book_a5_bear_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "46341d53d0d7ac68f6266d8239fd8a23ba14d48a24fa8d888e336c38397ca2f9",
+      "text": "Tepeden inerken hava serinledi. \"Acele yok, ben buradayım,\" dedi Böğürtlen. Gökyüzü arkalarında mor mor kaldı. İkisi yavaş adımlarla eve doğru yürüdü.",
+      "sourceID": "p56_wave1_pilot56_book_a5_bear_event03_v1_p08",
+      "sourcePointer": "input/adventure-bear.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk sırayı kendisi önerir, beklerken tahmin eder, sonra yerini paylaşır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

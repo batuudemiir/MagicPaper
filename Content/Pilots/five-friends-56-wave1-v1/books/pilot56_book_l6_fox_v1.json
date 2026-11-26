@@ -1,0 +1,812 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l6_fox_v1",
+  "title": "Papatyaları da Saydım",
+  "context": {
+    "settingName": "Çiçekli Çayır",
+    "mode": "learning",
+    "companionID": "companion_fox_pilot_001",
+    "structure": "L6",
+    "event": "e1",
+    "mechanism": "measure-with-same-unit",
+    "sourceFilename": "learning-fox.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l6_fox_v1",
+    "structure": "L6",
+    "event": "e1",
+    "sample": false,
+    "title": "Papatyaları da Saydım",
+    "pages": [
+      "Çiçekli Çayır’da iki patika vardı. Biri dere tarafına, biri ağaçlara gidiyordu. Deniz ile Tarçın başlangıçta durdu. Tarçın'ın burnu çiçeklere dönmüştü.",
+      "\"Hangisi daha uzun?\" diye sordu Deniz. İki patika da kıvrılıyordu. \"Bence ağaçlara giden,\" dedi. Tarçın burnunu dereye doğru çevirdi. \"Bence dere yolu.\"",
+      "Tarçın ağaç patikasını saydı. Ama her çiçekte durup kokladı. \"Bir, iki, papatya, üç…\" Sonunda yirmi dedi. Deniz kıkırdadı.",
+      "Deniz aynı patikayı kendi adımlarıyla saydı. Bir, iki, üç… On beşe kadar saydı. \"On beş!\" dedi. Tarçın kuyruğunu sallayarak ona baktı.",
+      "Deniz durdu, düşündü. \"Aynı yol, iki farklı sayı,\" dedi. Tarçın burnunu kaşıdı. \"Belki papatyaları da saydım.\" Deniz kıkır kıkır güldü. Tarçın hapşırıp katıldı.",
+      "Deniz kendi ayağına, sonra Tarçın'ın küçük patilerine baktı. \"Senin adımların benimkilerden kısa,\" dedi. \"Bu yüzden daha çok saydın!\"",
+      "Deniz öteki patikayı da adım adım saydı. Bu kez on iki çıktı. \"Ağaç yolu daha uzun,\" dedi. Tarçın dere yolunu kokladı. Aynı adımlarla ölçmüştü.",
+      "Tarçın son bir papatyayı kokladı. \"Bir koklayalım bakalım,\" dedi. \"Bu çiçek on beş adım kokuyor!\" İkisi güldü. Deniz kendi sayısına güveniyordu."
+    ],
+    "sourceBookID": "pilot56_book_l6_fox_v1"
+  },
+  "inputFileSHA256": "733bb8aaaa34ab2b9bf7b9125300b76c3005b579c051f0155732e54bda48cb5b",
+  "inputBookPointer": "input/learning-fox.json#/books/3",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l6_fox_v1",
+      "rawPageMove": "two_paths",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; papatya/çiçek/yonca; su/birikinti",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Biri dere tarafına, biri ağaçlara gidiyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da iki patika vardı.",
+              "Tarçın'ın burnu çiçeklere dönmüştü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Biri dere tarafına, biri ağaçlara gidiyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Çiçekli Çayır’da iki patika vardı. Biri dere tarafına, biri ağaçlara gidiyordu. Deniz ile Tarçın başlangıçta durdu. Tarçın'ın burnu çiçeklere dönmüştü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p01",
+            "evidenceText": "Çiçekli Çayır’da iki patika vardı. Biri dere tarafına, biri ağaçlara gidiyordu. Deniz ile Tarçın başlangıçta durdu. Tarçın'ın burnu çiçeklere dönmüştü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da iki patika vardı. Biri dere tarafına, biri ağaçlara gidiyordu. Deniz ile Tarçın başlangıçta durdu. Tarçın'ın burnu çiçeklere dönmüştü.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da iki patika vardı.",
+          "Biri dere tarafına, biri ağaçlara gidiyordu.",
+          "Deniz ile Tarçın başlangıçta durdu.",
+          "Tarçın'ın burnu çiçeklere dönmüştü."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da iki patika vardı. Biri dere tarafına, biri ağaçlara gidiyordu. Deniz ile Tarçın başlangıçta durdu. Tarçın'ın burnu çiçeklere dönmüştü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p01",
+        "quoteSHA256": "8a6bc80dcf91391f8907e949ced8bf3e171525c097020c0592236d1d8c7e981e",
+        "bookID": "pilot56_book_l6_fox_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "8a6bc80dcf91391f8907e949ced8bf3e171525c097020c0592236d1d8c7e981e",
+      "text": "Çiçekli Çayır’da iki patika vardı. Biri dere tarafına, biri ağaçlara gidiyordu. Deniz ile Tarçın başlangıçta durdu. Tarçın'ın burnu çiçeklere dönmüştü.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_v1_p01",
+      "sourcePointer": "input/learning-fox.json#/books/3/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l6_fox_v1",
+      "rawPageMove": "first_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; su/birikinti",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "\"Bence ağaçlara giden,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Tarçın burnunu dereye doğru çevirdi.",
+              "\"Bence dere yolu.\""
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Hangisi daha uzun?\" diye sordu Deniz. İki patika da kıvrılıyordu. \"Bence ağaçlara giden,\" dedi. Tarçın burnunu dereye doğru çevirdi. \"Bence dere yolu.\"",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p02",
+            "evidenceText": "\"Hangisi daha uzun?\" diye sordu Deniz. İki patika da kıvrılıyordu. \"Bence ağaçlara giden,\" dedi. Tarçın burnunu dereye doğru çevirdi. \"Bence dere yolu.\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Hangisi daha uzun?\" diye sordu Deniz. İki patika da kıvrılıyordu. \"Bence ağaçlara giden,\" dedi. Tarçın burnunu dereye doğru çevirdi. \"Bence dere yolu.\"",
+        "poseAndActionEvidence": [
+          "\"Hangisi daha uzun?\" diye sordu Deniz.",
+          "İki patika da kıvrılıyordu.",
+          "\"Bence ağaçlara giden,\" dedi.",
+          "Tarçın burnunu dereye doğru çevirdi.",
+          "\"Bence dere yolu.\""
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Hangisi daha uzun?\" diye sordu Deniz. İki patika da kıvrılıyordu. \"Bence ağaçlara giden,\" dedi. Tarçın burnunu dereye doğru çevirdi. \"Bence dere yolu.\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p02",
+        "quoteSHA256": "06a7dfb1ab2fe63454a89d882de6188b00b4a324205af2a4279eaaa55d8cc282",
+        "bookID": "pilot56_book_l6_fox_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "06a7dfb1ab2fe63454a89d882de6188b00b4a324205af2a4279eaaa55d8cc282",
+      "text": "\"Hangisi daha uzun?\" diye sordu Deniz. İki patika da kıvrılıyordu. \"Bence ağaçlara giden,\" dedi. Tarçın burnunu dereye doğru çevirdi. \"Bence dere yolu.\"",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_v1_p02",
+      "sourcePointer": "input/learning-fox.json#/books/3/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l6_fox_v1",
+      "rawPageMove": "friend_counts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Tarçın ağaç patikasını saydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Ama her çiçekte durup kokladı.",
+              "\"Bir, iki, papatya, üç…\" Sonunda yirmi dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın ağaç patikasını saydı. Ama her çiçekte durup kokladı. \"Bir, iki, papatya, üç…\" Sonunda yirmi dedi. Deniz kıkırdadı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p03",
+            "evidenceText": "Tarçın ağaç patikasını saydı. Ama her çiçekte durup kokladı. \"Bir, iki, papatya, üç…\" Sonunda yirmi dedi. Deniz kıkırdadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın ağaç patikasını saydı. Ama her çiçekte durup kokladı. \"Bir, iki, papatya, üç…\" Sonunda yirmi dedi. Deniz kıkırdadı.",
+        "poseAndActionEvidence": [
+          "Tarçın ağaç patikasını saydı.",
+          "Ama her çiçekte durup kokladı.",
+          "\"Bir, iki, papatya, üç…\" Sonunda yirmi dedi.",
+          "Deniz kıkırdadı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_fox_pilot_001",
+        "quote": "Tarçın ağaç patikasını saydı. Ama her çiçekte durup kokladı. \"Bir, iki, papatya, üç…\" Sonunda yirmi dedi. Deniz kıkırdadı.",
+        "attributionQuote": "Tarçın",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p03",
+        "quoteSHA256": "aa4c94342b00882ac8bac77a64c065f059dd867d065f281b173f0c43abedfdf1",
+        "bookID": "pilot56_book_l6_fox_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "aa4c94342b00882ac8bac77a64c065f059dd867d065f281b173f0c43abedfdf1",
+      "text": "Tarçın ağaç patikasını saydı. Ama her çiçekte durup kokladı. \"Bir, iki, papatya, üç…\" Sonunda yirmi dedi. Deniz kıkırdadı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_v1_p03",
+      "sourcePointer": "input/learning-fox.json#/books/3/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l6_fox_v1",
+      "rawPageMove": "child_counts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz aynı patikayı kendi adımlarıyla saydı. Bir, iki, üç… On beşe kadar saydı. \"On beş!\" dedi. Tarçın kuyruğunu sallayarak ona baktı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p04",
+            "evidenceText": "Deniz aynı patikayı kendi adımlarıyla saydı. Bir, iki, üç… On beşe kadar saydı. \"On beş!\" dedi. Tarçın kuyruğunu sallayarak ona baktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz aynı patikayı kendi adımlarıyla saydı. Bir, iki, üç… On beşe kadar saydı. \"On beş!\" dedi. Tarçın kuyruğunu sallayarak ona baktı.",
+        "poseAndActionEvidence": [
+          "Deniz aynı patikayı kendi adımlarıyla saydı.",
+          "Bir, iki, üç…",
+          "On beşe kadar saydı.",
+          "\"On beş!\" dedi.",
+          "Tarçın kuyruğunu sallayarak ona baktı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz aynı patikayı kendi adımlarıyla saydı. Bir, iki, üç… On beşe kadar saydı. \"On beş!\" dedi. Tarçın kuyruğunu sallayarak ona baktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p04",
+        "quoteSHA256": "64afc117e415c015e295cac50d7e37de302f61619851e7f2fc31a354a7237551",
+        "bookID": "pilot56_book_l6_fox_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "64afc117e415c015e295cac50d7e37de302f61619851e7f2fc31a354a7237551",
+      "text": "Deniz aynı patikayı kendi adımlarıyla saydı. Bir, iki, üç… On beşe kadar saydı. \"On beş!\" dedi. Tarçın kuyruğunu sallayarak ona baktı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_v1_p04",
+      "sourcePointer": "input/learning-fox.json#/books/3/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l6_fox_v1",
+      "rawPageMove": "different_numbers",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "\"Belki papatyaları da saydım.\" Deniz kıkır kıkır güldü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz durdu, düşündü. \"Aynı yol, iki farklı sayı,\" dedi. Tarçın burnunu kaşıdı. \"Belki papatyaları da saydım.\" Deniz kıkır kıkır güldü. Tarçın hapşırıp katıldı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p05",
+            "evidenceText": "Deniz durdu, düşündü. \"Aynı yol, iki farklı sayı,\" dedi. Tarçın burnunu kaşıdı. \"Belki papatyaları da saydım.\" Deniz kıkır kıkır güldü. Tarçın hapşırıp katıldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz durdu, düşündü. \"Aynı yol, iki farklı sayı,\" dedi. Tarçın burnunu kaşıdı. \"Belki papatyaları da saydım.\" Deniz kıkır kıkır güldü. Tarçın hapşırıp katıldı.",
+        "poseAndActionEvidence": [
+          "Deniz durdu, düşündü.",
+          "\"Aynı yol, iki farklı sayı,\" dedi.",
+          "Tarçın burnunu kaşıdı.",
+          "\"Belki papatyaları da saydım.\" Deniz kıkır kıkır güldü.",
+          "Tarçın hapşırıp katıldı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz durdu, düşündü. \"Aynı yol, iki farklı sayı,\" dedi. Tarçın burnunu kaşıdı. \"Belki papatyaları da saydım.\" Deniz kıkır kıkır güldü. Tarçın hapşırıp katıldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p05",
+        "quoteSHA256": "64c21046c2c30e434ecf549a9e3770de80c5f54d551a2ac9cc9556f372740578",
+        "bookID": "pilot56_book_l6_fox_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "64c21046c2c30e434ecf549a9e3770de80c5f54d551a2ac9cc9556f372740578",
+      "text": "Deniz durdu, düşündü. \"Aynı yol, iki farklı sayı,\" dedi. Tarçın burnunu kaşıdı. \"Belki papatyaları da saydım.\" Deniz kıkır kıkır güldü. Tarçın hapşırıp katıldı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_v1_p05",
+      "sourcePointer": "input/learning-fox.json#/books/3/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l6_fox_v1",
+      "rawPageMove": "child_explains",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz kendi ayağına, sonra Tarçın'ın küçük patilerine baktı. \"Senin adımların benimkilerden kısa,\" dedi. \"Bu yüzden daha çok saydın!\"",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p06",
+            "evidenceText": "Deniz kendi ayağına, sonra Tarçın'ın küçük patilerine baktı. \"Senin adımların benimkilerden kısa,\" dedi. \"Bu yüzden daha çok saydın!\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kendi ayağına, sonra Tarçın'ın küçük patilerine baktı. \"Senin adımların benimkilerden kısa,\" dedi. \"Bu yüzden daha çok saydın!\"",
+        "poseAndActionEvidence": [
+          "Deniz kendi ayağına, sonra Tarçın'ın küçük patilerine baktı.",
+          "\"Senin adımların benimkilerden kısa,\" dedi.",
+          "\"Bu yüzden daha çok saydın!\""
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kendi ayağına, sonra Tarçın'ın küçük patilerine baktı. \"Senin adımların benimkilerden kısa,\" dedi. \"Bu yüzden daha çok saydın!\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p06",
+        "quoteSHA256": "b464aea07b2f4b3f14502bfa3bab5152eb3f98649e9b455b52b18c6904466d4b",
+        "bookID": "pilot56_book_l6_fox_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "b464aea07b2f4b3f14502bfa3bab5152eb3f98649e9b455b52b18c6904466d4b",
+      "text": "Deniz kendi ayağına, sonra Tarçın'ın küçük patilerine baktı. \"Senin adımların benimkilerden kısa,\" dedi. \"Bu yüzden daha çok saydın!\"",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_v1_p06",
+      "sourcePointer": "input/learning-fox.json#/books/3/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l6_fox_v1",
+      "rawPageMove": "recheck",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; su/birikinti",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "\"Ağaç yolu daha uzun,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Tarçın dere yolunu kokladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz öteki patikayı da adım adım saydı. Bu kez on iki çıktı. \"Ağaç yolu daha uzun,\" dedi. Tarçın dere yolunu kokladı. Aynı adımlarla ölçmüştü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p07",
+            "evidenceText": "Deniz öteki patikayı da adım adım saydı. Bu kez on iki çıktı. \"Ağaç yolu daha uzun,\" dedi. Tarçın dere yolunu kokladı. Aynı adımlarla ölçmüştü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz öteki patikayı da adım adım saydı. Bu kez on iki çıktı. \"Ağaç yolu daha uzun,\" dedi. Tarçın dere yolunu kokladı. Aynı adımlarla ölçmüştü.",
+        "poseAndActionEvidence": [
+          "Deniz öteki patikayı da adım adım saydı.",
+          "Bu kez on iki çıktı.",
+          "\"Ağaç yolu daha uzun,\" dedi.",
+          "Tarçın dere yolunu kokladı.",
+          "Aynı adımlarla ölçmüştü."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz öteki patikayı da adım adım saydı. Bu kez on iki çıktı. \"Ağaç yolu daha uzun,\" dedi. Tarçın dere yolunu kokladı. Aynı adımlarla ölçmüştü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p07",
+        "quoteSHA256": "f05e48297024d381fe129e63c8a74c5932eb9e20c09c7aec7330c3d97450f13d",
+        "bookID": "pilot56_book_l6_fox_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "f05e48297024d381fe129e63c8a74c5932eb9e20c09c7aec7330c3d97450f13d",
+      "text": "Deniz öteki patikayı da adım adım saydı. Bu kez on iki çıktı. \"Ağaç yolu daha uzun,\" dedi. Tarçın dere yolunu kokladı. Aynı adımlarla ölçmüştü.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_v1_p07",
+      "sourcePointer": "input/learning-fox.json#/books/3/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l6_fox_v1",
+      "rawPageMove": "closed_result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Tarçın son bir papatyayı kokladı.",
+              "\"Bu çiçek on beş adım kokuyor!\" İkisi güldü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın son bir papatyayı kokladı. \"Bir koklayalım bakalım,\" dedi. \"Bu çiçek on beş adım kokuyor!\" İkisi güldü. Deniz kendi sayısına güveniyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p08",
+            "evidenceText": "Tarçın son bir papatyayı kokladı. \"Bir koklayalım bakalım,\" dedi. \"Bu çiçek on beş adım kokuyor!\" İkisi güldü. Deniz kendi sayısına güveniyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın son bir papatyayı kokladı. \"Bir koklayalım bakalım,\" dedi. \"Bu çiçek on beş adım kokuyor!\" İkisi güldü. Deniz kendi sayısına güveniyordu.",
+        "poseAndActionEvidence": [
+          "Tarçın son bir papatyayı kokladı.",
+          "\"Bir koklayalım bakalım,\" dedi.",
+          "\"Bu çiçek on beş adım kokuyor!\" İkisi güldü.",
+          "Deniz kendi sayısına güveniyordu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Tarçın son bir papatyayı kokladı. \"Bir koklayalım bakalım,\" dedi. \"Bu çiçek on beş adım kokuyor!\" İkisi güldü. Deniz kendi sayısına güveniyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_v1_p08",
+        "quoteSHA256": "151cbf9c44f7013c8e0ccd841112e0af266a529aab145b6dfc78f51f011b3334",
+        "bookID": "pilot56_book_l6_fox_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "151cbf9c44f7013c8e0ccd841112e0af266a529aab145b6dfc78f51f011b3334",
+      "text": "Tarçın son bir papatyayı kokladı. \"Bir koklayalım bakalım,\" dedi. \"Bu çiçek on beş adım kokuyor!\" İkisi güldü. Deniz kendi sayısına güveniyordu.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_v1_p08",
+      "sourcePointer": "input/learning-fox.json#/books/3/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk kendi ölçüsüyle ikisini sayar, arkadaşının sayısının neden farklı çıktığını bulur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

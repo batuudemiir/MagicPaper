@@ -1,0 +1,950 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u7_hedgehog_event03_v1",
+  "title": "Kestane ve Sarı Kalem",
+  "context": {
+    "settingName": "Orman Kıyısındaki Oda",
+    "mode": "bedtime",
+    "companionID": "companion_hedgehog_pilot_001",
+    "structure": "U7",
+    "event": "e3",
+    "mechanism": "toys-to-bed",
+    "sourceFilename": "bedtime-hedgehog.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u7_hedgehog_event03_v1",
+    "sourceBookID": "pilot56_book_u7_hedgehog_event03_v1",
+    "structure": "U7",
+    "event": "e3",
+    "sample": false,
+    "title": "Kestane ve Sarı Kalem",
+    "pages": [
+      "Orman Kıyısındaki Oda’da akşam yemeği bitmişti. Deniz masasında oturuyordu. Kestane masanın ayağının yanında minderdeydi. Hardal yaprağı tam bir boya kalemi kadar sarıydı.",
+      "Masada boya kalemleri dağınıktı. Kırmızı, mavi, sarı, yeşil kalemler yuvarlanıyordu. Kestane bir kalemi dikenleriyle durdurdu. \"Bir resim daha yapsam,\" dedi Deniz. Gözleri ağırlaşıyordu.",
+      "Kestane masaya baktı. \"Ben de bir kalem sayılırım,\" dedi. \"Dikenlerim çok sivri!\" Bir dikenini kâğıda sürdü, hiç iz çıkmadı. Deniz bir kıkırtıyı zor tuttu.",
+      "Deniz kalemleri renk renk topladı. \"Maviler bu kutuda, kırmızılar şu kutuda uyusun,\" dedi. Kestane yere düşen yeşil kalemi getirdi. Deniz hepsini kutularına yatırdı.",
+      "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane. Yerde kalan son kalemi burnuyla Deniz’e doğru itti. Deniz gülümsedi ve onu da kutuya koydu.",
+      "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Öteki kalemler kutulardaydı. Kestane masanın altına kıvrıldı.",
+      "Kestane minderinde top oldu. Hardal yaprağı ile yastıktaki sarı kalem birbirine benziyordu. Deniz masa lambasını söndürüp yorganına sarıldı.",
+      "\"Gözlerin yoruldu, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kalemler kutularında, kirpi minderinde, sarı kalem yastığın yanında uyudu."
+    ]
+  },
+  "inputFileSHA256": "787799db801d5228514a484d3ad8e0c96ffc791001c39472752e001a79071bc8",
+  "inputBookPointer": "input/bedtime-hedgehog.json#/books/2",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; minder; renkli kalem; resim eşyası",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Hardal yaprağı tam bir boya kalemi kadar sarıydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Kestane masanın ayağının yanında minderdeydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Hardal yaprağı tam bir boya kalemi kadar sarıydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Hardal yaprağı tam bir boya kalemi kadar sarıydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Orman Kıyısındaki Oda’da akşam yemeği bitmişti. Deniz masasında oturuyordu. Kestane masanın ayağının yanında minderdeydi. Hardal yaprağı tam bir boya kalemi kadar sarıydı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p01",
+            "evidenceText": "Orman Kıyısındaki Oda’da akşam yemeği bitmişti. Deniz masasında oturuyordu. Kestane masanın ayağının yanında minderdeydi. Hardal yaprağı tam bir boya kalemi kadar sarıydı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Orman Kıyısındaki Oda’da akşam yemeği bitmişti. Deniz masasında oturuyordu. Kestane masanın ayağının yanında minderdeydi. Hardal yaprağı tam bir boya kalemi kadar sarıydı.",
+        "poseAndActionEvidence": [
+          "Orman Kıyısındaki Oda’da akşam yemeği bitmişti.",
+          "Deniz masasında oturuyordu.",
+          "Kestane masanın ayağının yanında minderdeydi.",
+          "Hardal yaprağı tam bir boya kalemi kadar sarıydı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Orman Kıyısındaki Oda’da akşam yemeği bitmişti. Deniz masasında oturuyordu. Kestane masanın ayağının yanında minderdeydi. Hardal yaprağı tam bir boya kalemi kadar sarıydı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p01",
+        "quoteSHA256": "16eab97e11446f624b0a223165273d92a7b90af7e79bf30b1ad583a84a6cdcbe",
+        "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "16eab97e11446f624b0a223165273d92a7b90af7e79bf30b1ad583a84a6cdcbe",
+      "text": "Orman Kıyısındaki Oda’da akşam yemeği bitmişti. Deniz masasında oturuyordu. Kestane masanın ayağının yanında minderdeydi. Hardal yaprağı tam bir boya kalemi kadar sarıydı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p01",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+      "rawPageMove": "toys_scattered",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; renkli kalem; resim eşyası; iz/kum; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Kırmızı, mavi, sarı, yeşil kalemler yuvarlanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Masada boya kalemleri dağınıktı.",
+              "Kırmızı, mavi, sarı, yeşil kalemler yuvarlanıyordu.",
+              "Kestane bir kalemi dikenleriyle durdurdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Masada boya kalemleri dağınıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kırmızı, mavi, sarı, yeşil kalemler yuvarlanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Kırmızı, mavi, sarı, yeşil kalemler yuvarlanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Masada boya kalemleri dağınıktı. Kırmızı, mavi, sarı, yeşil kalemler yuvarlanıyordu. Kestane bir kalemi dikenleriyle durdurdu. \"Bir resim daha yapsam,\" dedi Deniz. Gözleri ağırlaşıyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p02",
+            "evidenceText": "Masada boya kalemleri dağınıktı. Kırmızı, mavi, sarı, yeşil kalemler yuvarlanıyordu. Kestane bir kalemi dikenleriyle durdurdu. \"Bir resim daha yapsam,\" dedi Deniz. Gözleri ağırlaşıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Masada boya kalemleri dağınıktı. Kırmızı, mavi, sarı, yeşil kalemler yuvarlanıyordu. Kestane bir kalemi dikenleriyle durdurdu. \"Bir resim daha yapsam,\" dedi Deniz. Gözleri ağırlaşıyordu.",
+        "poseAndActionEvidence": [
+          "Masada boya kalemleri dağınıktı.",
+          "Kırmızı, mavi, sarı, yeşil kalemler yuvarlanıyordu.",
+          "Kestane bir kalemi dikenleriyle durdurdu.",
+          "\"Bir resim daha yapsam,\" dedi Deniz.",
+          "Gözleri ağırlaşıyordu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Masada boya kalemleri dağınıktı. Kırmızı, mavi, sarı, yeşil kalemler yuvarlanıyordu. Kestane bir kalemi dikenleriyle durdurdu. \"Bir resim daha yapsam,\" dedi Deniz. Gözleri ağırlaşıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p02",
+        "quoteSHA256": "946fc3228a5c22b2a40757db589e194603bfc99f130e1f037d99c8d4460c09e1",
+        "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "946fc3228a5c22b2a40757db589e194603bfc99f130e1f037d99c8d4460c09e1",
+      "text": "Masada boya kalemleri dağınıktı. Kırmızı, mavi, sarı, yeşil kalemler yuvarlanıyordu. Kestane bir kalemi dikenleriyle durdurdu. \"Bir resim daha yapsam,\" dedi Deniz. Gözleri ağırlaşıyordu.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p02",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+      "rawPageMove": "friend_beds_wrong",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "renkli kalem; iz/kum",
+        "propMentions": [
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "\"Ben de bir kalem sayılırım,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "\"Dikenlerim çok sivri!\" Bir dikenini kâğıda sürdü, hiç iz çıkmadı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane masaya baktı. \"Ben de bir kalem sayılırım,\" dedi. \"Dikenlerim çok sivri!\" Bir dikenini kâğıda sürdü, hiç iz çıkmadı. Deniz bir kıkırtıyı zor tuttu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p03",
+            "evidenceText": "Kestane masaya baktı. \"Ben de bir kalem sayılırım,\" dedi. \"Dikenlerim çok sivri!\" Bir dikenini kâğıda sürdü, hiç iz çıkmadı. Deniz bir kıkırtıyı zor tuttu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane masaya baktı. \"Ben de bir kalem sayılırım,\" dedi. \"Dikenlerim çok sivri!\" Bir dikenini kâğıda sürdü, hiç iz çıkmadı. Deniz bir kıkırtıyı zor tuttu.",
+        "poseAndActionEvidence": [
+          "Kestane masaya baktı.",
+          "\"Ben de bir kalem sayılırım,\" dedi.",
+          "\"Dikenlerim çok sivri!\" Bir dikenini kâğıda sürdü, hiç iz çıkmadı.",
+          "Deniz bir kıkırtıyı zor tuttu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_hedgehog_pilot_001",
+        "quote": "Kestane masaya baktı. \"Ben de bir kalem sayılırım,\" dedi. \"Dikenlerim çok sivri!\" Bir dikenini kâğıda sürdü, hiç iz çıkmadı. Deniz bir kıkırtıyı zor tuttu.",
+        "attributionQuote": "Kestane",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p03",
+        "quoteSHA256": "b36fbb0556aa1c35dbfa48ffd38542775d64c02802616d17ad23c2952c424c6c",
+        "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "b36fbb0556aa1c35dbfa48ffd38542775d64c02802616d17ad23c2952c424c6c",
+      "text": "Kestane masaya baktı. \"Ben de bir kalem sayılırım,\" dedi. \"Dikenlerim çok sivri!\" Bir dikenini kâğıda sürdü, hiç iz çıkmadı. Deniz bir kıkırtıyı zor tuttu.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p03",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+      "rawPageMove": "child_picks_places",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tasma/zil; sepet/kutu; renkli kalem; iz/kum",
+        "propMentions": [
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "\"Maviler bu kutuda, kırmızılar şu kutuda uyusun,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "\"Maviler bu kutuda, kırmızılar şu kutuda uyusun,\" dedi.",
+              "Deniz hepsini kutularına yatırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Deniz kalemleri renk renk topladı.",
+              "Kestane yere düşen yeşil kalemi getirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "\"Maviler bu kutuda, kırmızılar şu kutuda uyusun,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz kalemleri renk renk topladı. \"Maviler bu kutuda, kırmızılar şu kutuda uyusun,\" dedi. Kestane yere düşen yeşil kalemi getirdi. Deniz hepsini kutularına yatırdı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p04",
+            "evidenceText": "Deniz kalemleri renk renk topladı. \"Maviler bu kutuda, kırmızılar şu kutuda uyusun,\" dedi. Kestane yere düşen yeşil kalemi getirdi. Deniz hepsini kutularına yatırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kalemleri renk renk topladı. \"Maviler bu kutuda, kırmızılar şu kutuda uyusun,\" dedi. Kestane yere düşen yeşil kalemi getirdi. Deniz hepsini kutularına yatırdı.",
+        "poseAndActionEvidence": [
+          "Deniz kalemleri renk renk topladı.",
+          "\"Maviler bu kutuda, kırmızılar şu kutuda uyusun,\" dedi.",
+          "Kestane yere düşen yeşil kalemi getirdi.",
+          "Deniz hepsini kutularına yatırdı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kalemleri renk renk topladı. \"Maviler bu kutuda, kırmızılar şu kutuda uyusun,\" dedi. Kestane yere düşen yeşil kalemi getirdi. Deniz hepsini kutularına yatırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p04",
+        "quoteSHA256": "f47fe54715fad97fe2d9d3acb97a1898c0c7380a47039bfee910dd23d8ee97f6",
+        "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "f47fe54715fad97fe2d9d3acb97a1898c0c7380a47039bfee910dd23d8ee97f6",
+      "text": "Deniz kalemleri renk renk topladı. \"Maviler bu kutuda, kırmızılar şu kutuda uyusun,\" dedi. Kestane yere düşen yeşil kalemi getirdi. Deniz hepsini kutularına yatırdı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p04",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+      "rawPageMove": "soft_smile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "sepet/kutu; renkli kalem",
+        "propMentions": [
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Deniz gülümsedi ve onu da kutuya koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Yerde kalan son kalemi burnuyla Deniz’e doğru itti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane. Yerde kalan son kalemi burnuyla Deniz’e doğru itti. Deniz gülümsedi ve onu da kutuya koydu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p05",
+            "evidenceText": "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane. Yerde kalan son kalemi burnuyla Deniz’e doğru itti. Deniz gülümsedi ve onu da kutuya koydu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane. Yerde kalan son kalemi burnuyla Deniz’e doğru itti. Deniz gülümsedi ve onu da kutuya koydu.",
+        "poseAndActionEvidence": [
+          "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane.",
+          "Yerde kalan son kalemi burnuyla Deniz’e doğru itti.",
+          "Deniz gülümsedi ve onu da kutuya koydu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane. Yerde kalan son kalemi burnuyla Deniz’e doğru itti. Deniz gülümsedi ve onu da kutuya koydu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p05",
+        "quoteSHA256": "a609d764660b7d5920e6b2642142619f0115435c879028c9d5a97641e127e5e6",
+        "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "a609d764660b7d5920e6b2642142619f0115435c879028c9d5a97641e127e5e6",
+      "text": "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane. Yerde kalan son kalemi burnuyla Deniz’e doğru itti. Deniz gülümsedi ve onu da kutuya koydu.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p05",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+      "rawPageMove": "one_toy_kept",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek; sepet/kutu; renkli kalem",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz yalnız sarı kalemi yastığının yanına koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Öteki kalemler kutulardaydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Deniz yalnız sarı kalemi yastığının yanına koydu.",
+              "Öteki kalemler kutulardaydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Öteki kalemler kutulardaydı. Kestane masanın altına kıvrıldı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p06",
+            "evidenceText": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Öteki kalemler kutulardaydı. Kestane masanın altına kıvrıldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Öteki kalemler kutulardaydı. Kestane masanın altına kıvrıldı.",
+        "poseAndActionEvidence": [
+          "Deniz yalnız sarı kalemi yastığının yanına koydu.",
+          "\"Yarın güneşi bununla çizeceğim,\" dedi.",
+          "Öteki kalemler kutulardaydı.",
+          "Kestane masanın altına kıvrıldı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Öteki kalemler kutulardaydı. Kestane masanın altına kıvrıldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p06",
+        "quoteSHA256": "eee61b7d35449068e30b6cbc2f3a0425c003dba892c98a0faa5c0e030d51001e",
+        "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "eee61b7d35449068e30b6cbc2f3a0425c003dba892c98a0faa5c0e030d51001e",
+      "text": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Öteki kalemler kutulardaydı. Kestane masanın altına kıvrıldı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p06",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; minder; yatak/yastık/döşek; lamba/fener/ışık; renkli kalem; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Hardal yaprağı ile yastıktaki sarı kalem birbirine benziyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Kestane minderinde top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Hardal yaprağı ile yastıktaki sarı kalem birbirine benziyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Deniz masa lambasını söndürüp yorganına sarıldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Hardal yaprağı ile yastıktaki sarı kalem birbirine benziyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kestane minderinde top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane minderinde top oldu. Hardal yaprağı ile yastıktaki sarı kalem birbirine benziyordu. Deniz masa lambasını söndürüp yorganına sarıldı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p07",
+            "evidenceText": "Kestane minderinde top oldu. Hardal yaprağı ile yastıktaki sarı kalem birbirine benziyordu. Deniz masa lambasını söndürüp yorganına sarıldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane minderinde top oldu. Hardal yaprağı ile yastıktaki sarı kalem birbirine benziyordu. Deniz masa lambasını söndürüp yorganına sarıldı.",
+        "poseAndActionEvidence": [
+          "Kestane minderinde top oldu.",
+          "Hardal yaprağı ile yastıktaki sarı kalem birbirine benziyordu.",
+          "Deniz masa lambasını söndürüp yorganına sarıldı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kestane minderinde top oldu. Hardal yaprağı ile yastıktaki sarı kalem birbirine benziyordu. Deniz masa lambasını söndürüp yorganına sarıldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p07",
+        "quoteSHA256": "b4fd022eef4c8ed7fe8838ea26ebcbcd03b5eb462bbba8fd7b1b098405fe6435",
+        "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "b4fd022eef4c8ed7fe8838ea26ebcbcd03b5eb462bbba8fd7b1b098405fe6435",
+      "text": "Kestane minderinde top oldu. Hardal yaprağı ile yastıktaki sarı kalem birbirine benziyordu. Deniz masa lambasını söndürüp yorganına sarıldı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p07",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "minder; yatak/yastık/döşek; sepet/kutu; renkli kalem; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Kalemler kutularında, kirpi minderinde, sarı kalem yastığın yanında uyudu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Kalemler kutularında, kirpi minderinde, sarı kalem yastığın yanında uyudu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Kalemler kutularında, kirpi minderinde, sarı kalem yastığın yanında uyudu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Kalemler kutularında, kirpi minderinde, sarı kalem yastığın yanında uyudu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "\"Gözlerin yoruldu, Deniz,\" dedi küçük top."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "\"Gözlerin yoruldu, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kalemler kutularında, kirpi minderinde, sarı kalem yastığın yanında uyudu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p08",
+            "evidenceText": "\"Gözlerin yoruldu, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kalemler kutularında, kirpi minderinde, sarı kalem yastığın yanında uyudu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Gözlerin yoruldu, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kalemler kutularında, kirpi minderinde, sarı kalem yastığın yanında uyudu.",
+        "poseAndActionEvidence": [
+          "\"Gözlerin yoruldu, Deniz,\" dedi küçük top.",
+          "Deniz’in göz kapakları indi.",
+          "Kalemler kutularında, kirpi minderinde, sarı kalem yastığın yanında uyudu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Gözlerin yoruldu, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kalemler kutularında, kirpi minderinde, sarı kalem yastığın yanında uyudu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p08",
+        "quoteSHA256": "634ed3e1a19e9a1fc85ec25b6c919bc8ed64243533868fb45917d900cea8b589",
+        "bookID": "pilot56_book_u7_hedgehog_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "634ed3e1a19e9a1fc85ec25b6c919bc8ed64243533868fb45917d900cea8b589",
+      "text": "\"Gözlerin yoruldu, Deniz,\" dedi küçük top. Deniz’in göz kapakları indi. Kalemler kutularında, kirpi minderinde, sarı kalem yastığın yanında uyudu.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event03_v1_p08",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz her oyuncağa bir yatak yeri seçer, sırayı kendisi belirler, yalnız birini yanına alır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

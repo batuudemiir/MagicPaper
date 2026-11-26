@@ -9,6 +9,9 @@ public enum P56PackageLoader {
         }
         let header = try JSONDecoder().decode(VersionHeader.self, from: payload)
         if header.schemaVersion == 2 {
+            if header.packageVersion == "five-friends-56-runtime-v4" {
+                return try P56V4PackageLoader.load(payload: payload, expectedSHA256: expectedSHA256)
+            }
             if header.packageVersion == "five-friends-56-runtime-v3" {
                 return try P56V3PackageLoader.load(payload: payload, expectedSHA256: expectedSHA256)
             }

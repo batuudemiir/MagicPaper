@@ -133,6 +133,24 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 26 Kasım 2026 — Codex: V4 ikinci metin düzeltmesi
+
+- 17 kitaptaki 18 sayfa, dalga envanteri ve hash bağlı semantik/causal/C3/art çıktıları yenilendi.
+- V4 630/630, N1500 1500/1500, Release 15 test/0 hata. Pin v3; eski paket baytları korunur, üretim/görsel kapalı. Dalga runtime kabulü beklemede.
+- Kanıt: docs/research/five-friends-p56-runtime/v4/REPORT.md.
+
+
+### 2026-11-26 · codex/bes-arkadas/codex-motor, commit yok · V4 aday ve270güncel metin denetimi
+
+- V4yeni90kitaplık korpus/runtime/strictloader/metadatahazırlandı;v1/v2/v3byteveetkinpinv3korundu. İki dalga180kitap için authoring-onlykorpuslar ve güncelkaynakenvanteri üretildi;waveengine/typed/recencyuygulanmadı.
+- 270başlık/2160sayfa güncelmetinlerdenC3/semantik/causal/artincelemesi aldı,quote/page/bookhashbağları0uyuşmazlıkla doğrulandı. Metinler değiştirilmedi. V4iki p8kapanışı ve dalgalarda5semantikengel metinsahibineraporlandı;engeller gizlenmedi.
+- Release15testte birkabul testinin4assertion'ıred;diğer14testgeçti. V4fixture616/630,N15001475/1500,25bedtime-open-ending,0retry;0age/trace/safetybinding sorunu. Python/Swift720metrikparitesi0fark. V4kabul/pingeçişiyok.
+- Kanonik270pool/45tekil lintpass;8eskikopyalıham318poolfailayrıloglandı,orijinallersilinmedi. ÖrnekJSONeşleşmeleri6/9ve3/9olaraktazelendi;eskionaymetniyenikanıtolarakkullanılmadı. Dalga2teslimine nefes tutma hatasıatfedilmedi.
+- Art90kaynakta88runtime+2authored-only;waveart180authoredkitap. Görsel/atomic/yayınonayıyok. Dosyalar:yeniV4vewave1/2Content,loader/metadata/testler,research/v4veenvanter,plan/durum/hafıza/günlük. App/main/entegrasyon/pushyok.
+
+
+### 2026-11-26 · codex/bes-arkadas/codex-motor@024b8a5 · Onaylı v3 motor pini ve iki dalga hazırlığı
+
 ### 2026-11-26 · codex/bes-arkadas/claude-uygulama@7515b7f + bfde72f · Beşli kod düzeltmeleri ve v3 pininin uygulama tarafı
 - Yönlendirici kilidi: kilit yalnız yükleme durumunu korur, paket kilit dışında okunur; `decide` async, `decideIfReady` beklemez. "Masalda kimler olsun?" ve "Kim gelsin?" beşliyi hemen gösterir; okuma bitmeden seçilirse kısa bekleme (düğmede/ızgarada dönen işaret) ve son listeyle yeniden denetim.
 - Arşiv: doğrulanmış baytlar yeniden çözülmeden yazılır (`P56SnapshotStore.save(data:reference:)`), sağlam kayıt yeniden yazılmaz, bozuk kayıt aynı SHA'lı baytlarla onarılır.

@@ -1,0 +1,840 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l6_fox_event03_v1",
+  "title": "Yedi Burun Uzunluğunda",
+  "context": {
+    "settingName": "Çiçekli Çayır",
+    "mode": "learning",
+    "companionID": "companion_fox_pilot_001",
+    "structure": "L6",
+    "event": "e3",
+    "mechanism": "measure-with-same-unit",
+    "sourceFilename": "learning-fox.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l6_fox_event03_v1",
+    "structure": "L6",
+    "event": "e3",
+    "sample": false,
+    "title": "Yedi Burun Uzunluğunda",
+    "pages": [
+      "Çiçekli Çayır’da Deniz ile Tarçın gezerken yerde iki dal buldu. Tarçın hemen ikisini de kokladı. Biri dümdüzdü, öteki eğriydi.",
+      "Çiçekli Çayır’da yerde iki uzun dal vardı. Biri düz, biri biraz eğriydi. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+      "Tarçın düz dalı burnuyla ölçtü. Burun, burun, burun… \"Yedi burun!\" dedi. Deniz elini ağzına kapatıp kıkırdadı. \"Burunla ölçülür mü?\" Tarçın gururla kuyruğunu salladı.",
+      "Deniz düz dalı karışıyla ölçtü. Elini açtı, bir karış, iki karış… Beş karış saydı. \"Beş!\" dedi. Tarçın dalın ucunu kokladı.",
+      "\"Yedi burun mu, beş karış mı?\" dedi Deniz. Tarçın burnunu kaşıdı. \"Hangisi daha uzun?\" diye sordu. Burnunu dala yaklaştırdı.",
+      "\"Burunla karış aynı değil,\" dedi Deniz. \"Senin burnun benim karışımdan kısa.\" Aynı şeyle ölçmeleri gerekiyordu. Deniz kendi karışını gösterdi.",
+      "Deniz eğri dalı da karışıyla ölçtü. Dört karış çıktı. \"Düz dal beş, eğri dal dört,\" dedi. \"Düz olan daha uzun!\" Tarçın kuyruğunu dalın yanına uzattı.",
+      "Tarçın düz dalı ağzına aldı. \"Uzun dal benim bastonum olsun,\" dedi. Turkuaz boyunluğu güneşte parladı. Deniz’in yüzüne bir gülümseme yayıldı. Tarçın da kuyruğunu salladı. Dal bastondan çok uzundu."
+    ],
+    "sourceBookID": "pilot56_book_l6_fox_event03_v1"
+  },
+  "inputFileSHA256": "733bb8aaaa34ab2b9bf7b9125300b76c3005b579c051f0155732e54bda48cb5b",
+  "inputBookPointer": "input/learning-fox.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l6_fox_event03_v1",
+      "rawPageMove": "two_paths",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da Deniz ile Tarçın gezerken yerde iki dal buldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da Deniz ile Tarçın gezerken yerde iki dal buldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Çiçekli Çayır’da Deniz ile Tarçın gezerken yerde iki dal buldu. Tarçın hemen ikisini de kokladı. Biri dümdüzdü, öteki eğriydi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p01",
+            "evidenceText": "Çiçekli Çayır’da Deniz ile Tarçın gezerken yerde iki dal buldu. Tarçın hemen ikisini de kokladı. Biri dümdüzdü, öteki eğriydi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da Deniz ile Tarçın gezerken yerde iki dal buldu. Tarçın hemen ikisini de kokladı. Biri dümdüzdü, öteki eğriydi.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da Deniz ile Tarçın gezerken yerde iki dal buldu.",
+          "Tarçın hemen ikisini de kokladı.",
+          "Biri dümdüzdü, öteki eğriydi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da Deniz ile Tarçın gezerken yerde iki dal buldu. Tarçın hemen ikisini de kokladı. Biri dümdüzdü, öteki eğriydi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p01",
+        "quoteSHA256": "b675ce6cf6389b6a45dc912faf4dba7308221f79385ce821747d9c5f3eb570b2",
+        "bookID": "pilot56_book_l6_fox_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "b675ce6cf6389b6a45dc912faf4dba7308221f79385ce821747d9c5f3eb570b2",
+      "text": "Çiçekli Çayır’da Deniz ile Tarçın gezerken yerde iki dal buldu. Tarçın hemen ikisini de kokladı. Biri dümdüzdü, öteki eğriydi.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p01",
+      "sourcePointer": "input/learning-fox.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l6_fox_event03_v1",
+      "rawPageMove": "first_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da yerde iki uzun dal vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da yerde iki uzun dal vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Çiçekli Çayır’da yerde iki uzun dal vardı. Biri düz, biri biraz eğriydi. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p02",
+            "evidenceText": "Çiçekli Çayır’da yerde iki uzun dal vardı. Biri düz, biri biraz eğriydi. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da yerde iki uzun dal vardı. Biri düz, biri biraz eğriydi. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da yerde iki uzun dal vardı.",
+          "Biri düz, biri biraz eğriydi.",
+          "\"Hangisi daha uzun?\" diye sordu Deniz.",
+          "\"Bence düz olan.\""
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da yerde iki uzun dal vardı. Biri düz, biri biraz eğriydi. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p02",
+        "quoteSHA256": "7b55a051e1be1f032e3f7acffd4ce42da275fee95f6926e969818094cc09e9a0",
+        "bookID": "pilot56_book_l6_fox_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "7b55a051e1be1f032e3f7acffd4ce42da275fee95f6926e969818094cc09e9a0",
+      "text": "Çiçekli Çayır’da yerde iki uzun dal vardı. Biri düz, biri biraz eğriydi. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p02",
+      "sourcePointer": "input/learning-fox.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l6_fox_event03_v1",
+      "rawPageMove": "friend_counts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Tarçın düz dalı burnuyla ölçtü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın düz dalı burnuyla ölçtü. Burun, burun, burun… \"Yedi burun!\" dedi. Deniz elini ağzına kapatıp kıkırdadı. \"Burunla ölçülür mü?\" Tarçın gururla kuyruğunu salladı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p03",
+            "evidenceText": "Tarçın düz dalı burnuyla ölçtü. Burun, burun, burun… \"Yedi burun!\" dedi. Deniz elini ağzına kapatıp kıkırdadı. \"Burunla ölçülür mü?\" Tarçın gururla kuyruğunu salladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın düz dalı burnuyla ölçtü. Burun, burun, burun… \"Yedi burun!\" dedi. Deniz elini ağzına kapatıp kıkırdadı. \"Burunla ölçülür mü?\" Tarçın gururla kuyruğunu salladı.",
+        "poseAndActionEvidence": [
+          "Tarçın düz dalı burnuyla ölçtü.",
+          "Burun, burun, burun…",
+          "\"Yedi burun!\" dedi.",
+          "Deniz elini ağzına kapatıp kıkırdadı.",
+          "\"Burunla ölçülür mü?\" Tarçın gururla kuyruğunu salladı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_fox_pilot_001",
+        "quote": "Tarçın düz dalı burnuyla ölçtü. Burun, burun, burun… \"Yedi burun!\" dedi. Deniz elini ağzına kapatıp kıkırdadı. \"Burunla ölçülür mü?\" Tarçın gururla kuyruğunu salladı.",
+        "attributionQuote": "Tarçın",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p03",
+        "quoteSHA256": "f44291f7e40289f679076aeb21119352eb91b760e90048ebcbde9a4d4fc58c71",
+        "bookID": "pilot56_book_l6_fox_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "f44291f7e40289f679076aeb21119352eb91b760e90048ebcbde9a4d4fc58c71",
+      "text": "Tarçın düz dalı burnuyla ölçtü. Burun, burun, burun… \"Yedi burun!\" dedi. Deniz elini ağzına kapatıp kıkırdadı. \"Burunla ölçülür mü?\" Tarçın gururla kuyruğunu salladı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p03",
+      "sourcePointer": "input/learning-fox.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l6_fox_event03_v1",
+      "rawPageMove": "child_counts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kar/battaniye",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz düz dalı karışıyla ölçtü.",
+              "Tarçın dalın ucunu kokladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Deniz düz dalı karışıyla ölçtü.",
+              "Elini açtı, bir karış, iki karış…",
+              "Beş karış saydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz düz dalı karışıyla ölçtü. Elini açtı, bir karış, iki karış… Beş karış saydı. \"Beş!\" dedi. Tarçın dalın ucunu kokladı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p04",
+            "evidenceText": "Deniz düz dalı karışıyla ölçtü. Elini açtı, bir karış, iki karış… Beş karış saydı. \"Beş!\" dedi. Tarçın dalın ucunu kokladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz düz dalı karışıyla ölçtü. Elini açtı, bir karış, iki karış… Beş karış saydı. \"Beş!\" dedi. Tarçın dalın ucunu kokladı.",
+        "poseAndActionEvidence": [
+          "Deniz düz dalı karışıyla ölçtü.",
+          "Elini açtı, bir karış, iki karış…",
+          "Beş karış saydı.",
+          "\"Beş!\" dedi.",
+          "Tarçın dalın ucunu kokladı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz düz dalı karışıyla ölçtü. Elini açtı, bir karış, iki karış… Beş karış saydı. \"Beş!\" dedi. Tarçın dalın ucunu kokladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p04",
+        "quoteSHA256": "9e9113822a6427e4e62e74a7066d210ab617aa9ccd5bbbb91e7bd2d47c573708",
+        "bookID": "pilot56_book_l6_fox_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "9e9113822a6427e4e62e74a7066d210ab617aa9ccd5bbbb91e7bd2d47c573708",
+      "text": "Deniz düz dalı karışıyla ölçtü. Elini açtı, bir karış, iki karış… Beş karış saydı. \"Beş!\" dedi. Tarçın dalın ucunu kokladı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p04",
+      "sourcePointer": "input/learning-fox.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l6_fox_event03_v1",
+      "rawPageMove": "different_numbers",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kar/battaniye",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Burnunu dala yaklaştırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "\"Yedi burun mu, beş karış mı?\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Yedi burun mu, beş karış mı?\" dedi Deniz. Tarçın burnunu kaşıdı. \"Hangisi daha uzun?\" diye sordu. Burnunu dala yaklaştırdı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p05",
+            "evidenceText": "\"Yedi burun mu, beş karış mı?\" dedi Deniz. Tarçın burnunu kaşıdı. \"Hangisi daha uzun?\" diye sordu. Burnunu dala yaklaştırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Yedi burun mu, beş karış mı?\" dedi Deniz. Tarçın burnunu kaşıdı. \"Hangisi daha uzun?\" diye sordu. Burnunu dala yaklaştırdı.",
+        "poseAndActionEvidence": [
+          "\"Yedi burun mu, beş karış mı?\" dedi Deniz.",
+          "Tarçın burnunu kaşıdı.",
+          "\"Hangisi daha uzun?\" diye sordu.",
+          "Burnunu dala yaklaştırdı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Yedi burun mu, beş karış mı?\" dedi Deniz. Tarçın burnunu kaşıdı. \"Hangisi daha uzun?\" diye sordu. Burnunu dala yaklaştırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p05",
+        "quoteSHA256": "565594bcaa511362fac16370315eff6c786912ca8fde7ade3237e85f85a52128",
+        "bookID": "pilot56_book_l6_fox_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "565594bcaa511362fac16370315eff6c786912ca8fde7ade3237e85f85a52128",
+      "text": "\"Yedi burun mu, beş karış mı?\" dedi Deniz. Tarçın burnunu kaşıdı. \"Hangisi daha uzun?\" diye sordu. Burnunu dala yaklaştırdı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p05",
+      "sourcePointer": "input/learning-fox.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l6_fox_event03_v1",
+      "rawPageMove": "child_explains",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kar/battaniye",
+        "propMentions": [
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "\"Burunla karış aynı değil,\" dedi Deniz.",
+              "\"Senin burnun benim karışımdan kısa.\" Aynı şeyle ölçmeleri gerekiyordu.",
+              "Deniz kendi karışını gösterdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Burunla karış aynı değil,\" dedi Deniz. \"Senin burnun benim karışımdan kısa.\" Aynı şeyle ölçmeleri gerekiyordu. Deniz kendi karışını gösterdi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p06",
+            "evidenceText": "\"Burunla karış aynı değil,\" dedi Deniz. \"Senin burnun benim karışımdan kısa.\" Aynı şeyle ölçmeleri gerekiyordu. Deniz kendi karışını gösterdi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Burunla karış aynı değil,\" dedi Deniz. \"Senin burnun benim karışımdan kısa.\" Aynı şeyle ölçmeleri gerekiyordu. Deniz kendi karışını gösterdi.",
+        "poseAndActionEvidence": [
+          "\"Burunla karış aynı değil,\" dedi Deniz.",
+          "\"Senin burnun benim karışımdan kısa.\" Aynı şeyle ölçmeleri gerekiyordu.",
+          "Deniz kendi karışını gösterdi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Burunla karış aynı değil,\" dedi Deniz. \"Senin burnun benim karışımdan kısa.\" Aynı şeyle ölçmeleri gerekiyordu. Deniz kendi karışını gösterdi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p06",
+        "quoteSHA256": "b4f23f8211c6dbdfb853532f7ac96de157005061a7086527e04b7afbc60b4472",
+        "bookID": "pilot56_book_l6_fox_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "b4f23f8211c6dbdfb853532f7ac96de157005061a7086527e04b7afbc60b4472",
+      "text": "\"Burunla karış aynı değil,\" dedi Deniz. \"Senin burnun benim karışımdan kısa.\" Aynı şeyle ölçmeleri gerekiyordu. Deniz kendi karışını gösterdi.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p06",
+      "sourcePointer": "input/learning-fox.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l6_fox_event03_v1",
+      "rawPageMove": "recheck",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kar/battaniye",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz eğri dalı da karışıyla ölçtü.",
+              "\"Düz dal beş, eğri dal dört,\" dedi.",
+              "\"Düz olan daha uzun!\" Tarçın kuyruğunu dalın yanına uzattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Deniz eğri dalı da karışıyla ölçtü.",
+              "Dört karış çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz eğri dalı da karışıyla ölçtü. Dört karış çıktı. \"Düz dal beş, eğri dal dört,\" dedi. \"Düz olan daha uzun!\" Tarçın kuyruğunu dalın yanına uzattı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p07",
+            "evidenceText": "Deniz eğri dalı da karışıyla ölçtü. Dört karış çıktı. \"Düz dal beş, eğri dal dört,\" dedi. \"Düz olan daha uzun!\" Tarçın kuyruğunu dalın yanına uzattı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz eğri dalı da karışıyla ölçtü. Dört karış çıktı. \"Düz dal beş, eğri dal dört,\" dedi. \"Düz olan daha uzun!\" Tarçın kuyruğunu dalın yanına uzattı.",
+        "poseAndActionEvidence": [
+          "Deniz eğri dalı da karışıyla ölçtü.",
+          "Dört karış çıktı.",
+          "\"Düz dal beş, eğri dal dört,\" dedi.",
+          "\"Düz olan daha uzun!\" Tarçın kuyruğunu dalın yanına uzattı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz eğri dalı da karışıyla ölçtü. Dört karış çıktı. \"Düz dal beş, eğri dal dört,\" dedi. \"Düz olan daha uzun!\" Tarçın kuyruğunu dalın yanına uzattı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p07",
+        "quoteSHA256": "78ffef2f4ed2c9ae06de258fd64e1008a1cc6b1025e71634e518233705e4b621",
+        "bookID": "pilot56_book_l6_fox_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "78ffef2f4ed2c9ae06de258fd64e1008a1cc6b1025e71634e518233705e4b621",
+      "text": "Deniz eğri dalı da karışıyla ölçtü. Dört karış çıktı. \"Düz dal beş, eğri dal dört,\" dedi. \"Düz olan daha uzun!\" Tarçın kuyruğunu dalın yanına uzattı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p07",
+      "sourcePointer": "input/learning-fox.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l6_fox_event03_v1",
+      "rawPageMove": "closed_result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; boyunluk",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Tarçın düz dalı ağzına aldı.",
+              "\"Uzun dal benim bastonum olsun,\" dedi.",
+              "Dal bastondan çok uzundu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "Turkuaz boyunluğu güneşte parladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın düz dalı ağzına aldı. \"Uzun dal benim bastonum olsun,\" dedi. Turkuaz boyunluğu güneşte parladı. Deniz’in yüzüne bir gülümseme yayıldı. Tarçın da kuyruğunu salladı. Dal bastondan çok uzundu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p08",
+            "evidenceText": "Tarçın düz dalı ağzına aldı. \"Uzun dal benim bastonum olsun,\" dedi. Turkuaz boyunluğu güneşte parladı. Deniz’in yüzüne bir gülümseme yayıldı. Tarçın da kuyruğunu salladı. Dal bastondan çok uzundu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın düz dalı ağzına aldı. \"Uzun dal benim bastonum olsun,\" dedi. Turkuaz boyunluğu güneşte parladı. Deniz’in yüzüne bir gülümseme yayıldı. Tarçın da kuyruğunu salladı. Dal bastondan çok uzundu.",
+        "poseAndActionEvidence": [
+          "Tarçın düz dalı ağzına aldı.",
+          "\"Uzun dal benim bastonum olsun,\" dedi.",
+          "Turkuaz boyunluğu güneşte parladı.",
+          "Deniz’in yüzüne bir gülümseme yayıldı.",
+          "Tarçın da kuyruğunu salladı.",
+          "Dal bastondan çok uzundu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Tarçın düz dalı ağzına aldı. \"Uzun dal benim bastonum olsun,\" dedi. Turkuaz boyunluğu güneşte parladı. Deniz’in yüzüne bir gülümseme yayıldı. Tarçın da kuyruğunu salladı. Dal bastondan çok uzundu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p08",
+        "quoteSHA256": "eeb85dd9c4a290c7dff2e47e9e678491c28362219551054b7a8e45627feb7718",
+        "bookID": "pilot56_book_l6_fox_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "eeb85dd9c4a290c7dff2e47e9e678491c28362219551054b7a8e45627feb7718",
+      "text": "Tarçın düz dalı ağzına aldı. \"Uzun dal benim bastonum olsun,\" dedi. Turkuaz boyunluğu güneşte parladı. Deniz’in yüzüne bir gülümseme yayıldı. Tarçın da kuyruğunu salladı. Dal bastondan çok uzundu.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event03_v1_p08",
+      "sourcePointer": "input/learning-fox.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk kendi ölçüsüyle ikisini sayar, arkadaşının sayısının neden farklı çıktığını bulur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

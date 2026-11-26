@@ -1,0 +1,989 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l7_cat_event02_v1",
+  "title": "Simit Dal Gölgesine Basıyor",
+  "context": {
+    "settingName": "Çiçekli Çayır",
+    "mode": "learning",
+    "companionID": "companion_city_cat_001",
+    "structure": "L7",
+    "event": "e2",
+    "mechanism": "shadow-direction",
+    "sourceFilename": "learning-cat.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l7_cat_event02_v1",
+    "sourceBookID": "pilot56_book_l7_cat_event02_v1",
+    "structure": "L7",
+    "event": "e2",
+    "sample": false,
+    "title": "Simit Dal Gölgesine Basıyor",
+    "pages": [
+      "Çiçekli Çayır’da güneş yükseklerdeydi. Deniz yerde düz bir dal buldu. Simit hemen yanına zıpladı. Kırmızı tasmasındaki zil tın tın ediyordu.",
+      "Deniz düz bir dal bulup toprağa dik sapladı. Dalın dibinde ince bir gölge belirdi. Simit gölgeyi yakalamaya çalıştı. \"Gölgesi nereye düşecek?\" diye düşündü Deniz.",
+      "Simit dalın gölgesine patisini bastı. \"Yakaladım!\" dedi. Ama gölge şimdi patisinin üstündeydi. Simit patisini çekti, gölge yine yerdeydi. Deniz gülmeden duramadı.",
+      "Deniz güneşin sıcaklığını sol yanağında hissetti. Güneş ağaçların tarafındaydı. Dalın gölgesi ise çiçeklere doğru uzanıyordu. Simit gölgenin üstüne yattı.",
+      "Deniz ikinci bir dalı biraz öteye sapladı. Onun da gölgesi çiçeklere uzandı. Simit iki gölgenin üstünden atladı. \"Şehirde böyle değil ama,\" dedi. \"Orada direkler var.\"",
+      "Deniz iki şeyi karşılaştırdı. \"Güneş ağaçların tarafında, gölge çiçeklerin tarafında,\" dedi. \"Gölge hep güneşin karşısına düşüyor!\" Kırmızı tasmadaki zil tın diye öttü.",
+      "Deniz üçüncü dalı kütüğün yanına sapladı. \"Bunun gölgesi de çiçeklere gidecek,\" dedi. Baktı, tahmini doğruydu. Simit'in zili sevinçle tın etti.",
+      "Deniz dalları toplayıp kenara bıraktı. Simit kendi gölgesine baktı. \"Benim gölgem de çiçeklere bakıyor,\" dedi. Deniz’in yüzü gülümsemeyle doldu. Simit’in zili usulca çınladı. Simit'in gölgesinin kuyruğu kıvrıktı."
+    ]
+  },
+  "inputFileSHA256": "b2c8c63f92bb0e37061a91d6eb0733b0f69339203cf0db89088e4bdd4add7b79",
+  "inputBookPointer": "input/learning-cat.json#/books/1",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l7_cat_event02_v1",
+      "rawPageMove": "noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; tasma/zil; papatya/çiçek/yonca; iz/kum",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz yerde düz bir dal buldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Kırmızı tasmasındaki zil tın tın ediyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da güneş yükseklerdeydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kırmızı tasmasındaki zil tın tın ediyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Çiçekli Çayır’da güneş yükseklerdeydi. Deniz yerde düz bir dal buldu. Simit hemen yanına zıpladı. Kırmızı tasmasındaki zil tın tın ediyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p01",
+            "evidenceText": "Çiçekli Çayır’da güneş yükseklerdeydi. Deniz yerde düz bir dal buldu. Simit hemen yanına zıpladı. Kırmızı tasmasındaki zil tın tın ediyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da güneş yükseklerdeydi. Deniz yerde düz bir dal buldu. Simit hemen yanına zıpladı. Kırmızı tasmasındaki zil tın tın ediyordu.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da güneş yükseklerdeydi.",
+          "Deniz yerde düz bir dal buldu.",
+          "Simit hemen yanına zıpladı.",
+          "Kırmızı tasmasındaki zil tın tın ediyordu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da güneş yükseklerdeydi. Deniz yerde düz bir dal buldu. Simit hemen yanına zıpladı. Kırmızı tasmasındaki zil tın tın ediyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p01",
+        "quoteSHA256": "0582474f27bc0429100ef3a27f21720945562c9baa92419c6fa2deffe700df5f",
+        "bookID": "pilot56_book_l7_cat_event02_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "0582474f27bc0429100ef3a27f21720945562c9baa92419c6fa2deffe700df5f",
+      "text": "Çiçekli Çayır’da güneş yükseklerdeydi. Deniz yerde düz bir dal buldu. Simit hemen yanına zıpladı. Kırmızı tasmasındaki zil tın tın ediyordu.",
+      "sourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p01",
+      "sourcePointer": "input/learning-cat.json#/books/1/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l7_cat_event02_v1",
+      "rawPageMove": "child_guesses",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak damarı/sapı; dal; gölge; toprak",
+        "propMentions": [
+          {
+            "label": "yaprak damarı/sapı",
+            "evidenceQuotes": [
+              "Deniz düz bir dal bulup toprağa dik sapladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz düz bir dal bulup toprağa dik sapladı.",
+              "Dalın dibinde ince bir gölge belirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Dalın dibinde ince bir gölge belirdi.",
+              "Simit gölgeyi yakalamaya çalıştı.",
+              "\"Gölgesi nereye düşecek?\" diye düşündü Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "toprak",
+            "evidenceQuotes": [
+              "Deniz düz bir dal bulup toprağa dik sapladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz düz bir dal bulup toprağa dik sapladı. Dalın dibinde ince bir gölge belirdi. Simit gölgeyi yakalamaya çalıştı. \"Gölgesi nereye düşecek?\" diye düşündü Deniz.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p02",
+            "evidenceText": "Deniz düz bir dal bulup toprağa dik sapladı. Dalın dibinde ince bir gölge belirdi. Simit gölgeyi yakalamaya çalıştı. \"Gölgesi nereye düşecek?\" diye düşündü Deniz.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz düz bir dal bulup toprağa dik sapladı. Dalın dibinde ince bir gölge belirdi. Simit gölgeyi yakalamaya çalıştı. \"Gölgesi nereye düşecek?\" diye düşündü Deniz.",
+        "poseAndActionEvidence": [
+          "Deniz düz bir dal bulup toprağa dik sapladı.",
+          "Dalın dibinde ince bir gölge belirdi.",
+          "Simit gölgeyi yakalamaya çalıştı.",
+          "\"Gölgesi nereye düşecek?\" diye düşündü Deniz."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz düz bir dal bulup toprağa dik sapladı. Dalın dibinde ince bir gölge belirdi. Simit gölgeyi yakalamaya çalıştı. \"Gölgesi nereye düşecek?\" diye düşündü Deniz.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p02",
+        "quoteSHA256": "9271a91d0a246de6667009a6e33d96ad68ff4269ca6c9c1d1d13bef5c71c19dc",
+        "bookID": "pilot56_book_l7_cat_event02_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "9271a91d0a246de6667009a6e33d96ad68ff4269ca6c9c1d1d13bef5c71c19dc",
+      "text": "Deniz düz bir dal bulup toprağa dik sapladı. Dalın dibinde ince bir gölge belirdi. Simit gölgeyi yakalamaya çalıştı. \"Gölgesi nereye düşecek?\" diye düşündü Deniz.",
+      "sourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p02",
+      "sourcePointer": "input/learning-cat.json#/books/1/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l7_cat_event02_v1",
+      "rawPageMove": "friend_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; gölge",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Simit dalın gölgesine patisini bastı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Simit dalın gölgesine patisini bastı.",
+              "Ama gölge şimdi patisinin üstündeydi.",
+              "Simit patisini çekti, gölge yine yerdeydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit dalın gölgesine patisini bastı. \"Yakaladım!\" dedi. Ama gölge şimdi patisinin üstündeydi. Simit patisini çekti, gölge yine yerdeydi. Deniz gülmeden duramadı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p03",
+            "evidenceText": "Simit dalın gölgesine patisini bastı. \"Yakaladım!\" dedi. Ama gölge şimdi patisinin üstündeydi. Simit patisini çekti, gölge yine yerdeydi. Deniz gülmeden duramadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit dalın gölgesine patisini bastı. \"Yakaladım!\" dedi. Ama gölge şimdi patisinin üstündeydi. Simit patisini çekti, gölge yine yerdeydi. Deniz gülmeden duramadı.",
+        "poseAndActionEvidence": [
+          "Simit dalın gölgesine patisini bastı.",
+          "\"Yakaladım!\" dedi.",
+          "Ama gölge şimdi patisinin üstündeydi.",
+          "Simit patisini çekti, gölge yine yerdeydi.",
+          "Deniz gülmeden duramadı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_city_cat_001",
+        "quote": "Simit dalın gölgesine patisini bastı. \"Yakaladım!\" dedi. Ama gölge şimdi patisinin üstündeydi. Simit patisini çekti, gölge yine yerdeydi. Deniz gülmeden duramadı.",
+        "attributionQuote": "Simit",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p03",
+        "quoteSHA256": "c21cdb9e3919c4a8bf315d5322dfa79f4735eb5eba289fcd2c88d072df2ba6d8",
+        "bookID": "pilot56_book_l7_cat_event02_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "c21cdb9e3919c4a8bf315d5322dfa79f4735eb5eba289fcd2c88d072df2ba6d8",
+      "text": "Simit dalın gölgesine patisini bastı. \"Yakaladım!\" dedi. Ama gölge şimdi patisinin üstündeydi. Simit patisini çekti, gölge yine yerdeydi. Deniz gülmeden duramadı.",
+      "sourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p03",
+      "sourcePointer": "input/learning-cat.json#/books/1/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l7_cat_event02_v1",
+      "rawPageMove": "trial_1",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; ağaç/gövde; papatya/çiçek/yonca; gölge",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Dalın gölgesi ise çiçeklere doğru uzanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Güneş ağaçların tarafındaydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Dalın gölgesi ise çiçeklere doğru uzanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Dalın gölgesi ise çiçeklere doğru uzanıyordu.",
+              "Simit gölgenin üstüne yattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz güneşin sıcaklığını sol yanağında hissetti. Güneş ağaçların tarafındaydı. Dalın gölgesi ise çiçeklere doğru uzanıyordu. Simit gölgenin üstüne yattı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p04",
+            "evidenceText": "Deniz güneşin sıcaklığını sol yanağında hissetti. Güneş ağaçların tarafındaydı. Dalın gölgesi ise çiçeklere doğru uzanıyordu. Simit gölgenin üstüne yattı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz güneşin sıcaklığını sol yanağında hissetti. Güneş ağaçların tarafındaydı. Dalın gölgesi ise çiçeklere doğru uzanıyordu. Simit gölgenin üstüne yattı.",
+        "poseAndActionEvidence": [
+          "Deniz güneşin sıcaklığını sol yanağında hissetti.",
+          "Güneş ağaçların tarafındaydı.",
+          "Dalın gölgesi ise çiçeklere doğru uzanıyordu.",
+          "Simit gölgenin üstüne yattı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz güneşin sıcaklığını sol yanağında hissetti. Güneş ağaçların tarafındaydı. Dalın gölgesi ise çiçeklere doğru uzanıyordu. Simit gölgenin üstüne yattı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p04",
+        "quoteSHA256": "0f140e985f15f7b99f969dc59b8feb70f1b44930e19822e6651c8e68eae3558a",
+        "bookID": "pilot56_book_l7_cat_event02_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "0f140e985f15f7b99f969dc59b8feb70f1b44930e19822e6651c8e68eae3558a",
+      "text": "Deniz güneşin sıcaklığını sol yanağında hissetti. Güneş ağaçların tarafındaydı. Dalın gölgesi ise çiçeklere doğru uzanıyordu. Simit gölgenin üstüne yattı.",
+      "sourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p04",
+      "sourcePointer": "input/learning-cat.json#/books/1/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l7_cat_event02_v1",
+      "rawPageMove": "trial_2",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak damarı/sapı; dal; papatya/çiçek/yonca; gölge",
+        "propMentions": [
+          {
+            "label": "yaprak damarı/sapı",
+            "evidenceQuotes": [
+              "Deniz ikinci bir dalı biraz öteye sapladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz ikinci bir dalı biraz öteye sapladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Onun da gölgesi çiçeklere uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Onun da gölgesi çiçeklere uzandı.",
+              "Simit iki gölgenin üstünden atladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz ikinci bir dalı biraz öteye sapladı. Onun da gölgesi çiçeklere uzandı. Simit iki gölgenin üstünden atladı. \"Şehirde böyle değil ama,\" dedi. \"Orada direkler var.\"",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p05",
+            "evidenceText": "Deniz ikinci bir dalı biraz öteye sapladı. Onun da gölgesi çiçeklere uzandı. Simit iki gölgenin üstünden atladı. \"Şehirde böyle değil ama,\" dedi. \"Orada direkler var.\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ikinci bir dalı biraz öteye sapladı. Onun da gölgesi çiçeklere uzandı. Simit iki gölgenin üstünden atladı. \"Şehirde böyle değil ama,\" dedi. \"Orada direkler var.\"",
+        "poseAndActionEvidence": [
+          "Deniz ikinci bir dalı biraz öteye sapladı.",
+          "Onun da gölgesi çiçeklere uzandı.",
+          "Simit iki gölgenin üstünden atladı.",
+          "\"Şehirde böyle değil ama,\" dedi.",
+          "\"Orada direkler var.\""
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz ikinci bir dalı biraz öteye sapladı. Onun da gölgesi çiçeklere uzandı. Simit iki gölgenin üstünden atladı. \"Şehirde böyle değil ama,\" dedi. \"Orada direkler var.\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p05",
+        "quoteSHA256": "3838717ff98fc9eeaea661118de479f5fccca1adc64c83f442afb3d1c8e67594",
+        "bookID": "pilot56_book_l7_cat_event02_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "3838717ff98fc9eeaea661118de479f5fccca1adc64c83f442afb3d1c8e67594",
+      "text": "Deniz ikinci bir dalı biraz öteye sapladı. Onun da gölgesi çiçeklere uzandı. Simit iki gölgenin üstünden atladı. \"Şehirde böyle değil ama,\" dedi. \"Orada direkler var.\"",
+      "sourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p05",
+      "sourcePointer": "input/learning-cat.json#/books/1/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l7_cat_event02_v1",
+      "rawPageMove": "child_compares",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; tasma/zil; papatya/çiçek/yonca; gölge; iz/kum",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "\"Güneş ağaçların tarafında, gölge çiçeklerin tarafında,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "\"Gölge hep güneşin karşısına düşüyor!\" Kırmızı tasmadaki zil tın diye öttü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "\"Güneş ağaçların tarafında, gölge çiçeklerin tarafında,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "\"Güneş ağaçların tarafında, gölge çiçeklerin tarafında,\" dedi.",
+              "\"Gölge hep güneşin karşısına düşüyor!\" Kırmızı tasmadaki zil tın diye öttü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "\"Gölge hep güneşin karşısına düşüyor!\" Kırmızı tasmadaki zil tın diye öttü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz iki şeyi karşılaştırdı. \"Güneş ağaçların tarafında, gölge çiçeklerin tarafında,\" dedi. \"Gölge hep güneşin karşısına düşüyor!\" Kırmızı tasmadaki zil tın diye öttü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p06",
+            "evidenceText": "Deniz iki şeyi karşılaştırdı. \"Güneş ağaçların tarafında, gölge çiçeklerin tarafında,\" dedi. \"Gölge hep güneşin karşısına düşüyor!\" Kırmızı tasmadaki zil tın diye öttü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz iki şeyi karşılaştırdı. \"Güneş ağaçların tarafında, gölge çiçeklerin tarafında,\" dedi. \"Gölge hep güneşin karşısına düşüyor!\" Kırmızı tasmadaki zil tın diye öttü.",
+        "poseAndActionEvidence": [
+          "Deniz iki şeyi karşılaştırdı.",
+          "\"Güneş ağaçların tarafında, gölge çiçeklerin tarafında,\" dedi.",
+          "\"Gölge hep güneşin karşısına düşüyor!\" Kırmızı tasmadaki zil tın diye öttü."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz iki şeyi karşılaştırdı. \"Güneş ağaçların tarafında, gölge çiçeklerin tarafında,\" dedi. \"Gölge hep güneşin karşısına düşüyor!\" Kırmızı tasmadaki zil tın diye öttü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p06",
+        "quoteSHA256": "b9168ba2936e27caf9b5b10bae09b8cc44b9ee7f6d483589161a78f11c415362",
+        "bookID": "pilot56_book_l7_cat_event02_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "b9168ba2936e27caf9b5b10bae09b8cc44b9ee7f6d483589161a78f11c415362",
+      "text": "Deniz iki şeyi karşılaştırdı. \"Güneş ağaçların tarafında, gölge çiçeklerin tarafında,\" dedi. \"Gölge hep güneşin karşısına düşüyor!\" Kırmızı tasmadaki zil tın diye öttü.",
+      "sourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p06",
+      "sourcePointer": "input/learning-cat.json#/books/1/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l7_cat_event02_v1",
+      "rawPageMove": "trial_3",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak damarı/sapı; dal; kütük/yuva; tasma/zil; papatya/çiçek/yonca; gölge",
+        "propMentions": [
+          {
+            "label": "yaprak damarı/sapı",
+            "evidenceQuotes": [
+              "Deniz üçüncü dalı kütüğün yanına sapladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz üçüncü dalı kütüğün yanına sapladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Deniz üçüncü dalı kütüğün yanına sapladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Simit'in zili sevinçle tın etti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "\"Bunun gölgesi de çiçeklere gidecek,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "\"Bunun gölgesi de çiçeklere gidecek,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz üçüncü dalı kütüğün yanına sapladı. \"Bunun gölgesi de çiçeklere gidecek,\" dedi. Baktı, tahmini doğruydu. Simit'in zili sevinçle tın etti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p07",
+            "evidenceText": "Deniz üçüncü dalı kütüğün yanına sapladı. \"Bunun gölgesi de çiçeklere gidecek,\" dedi. Baktı, tahmini doğruydu. Simit'in zili sevinçle tın etti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz üçüncü dalı kütüğün yanına sapladı. \"Bunun gölgesi de çiçeklere gidecek,\" dedi. Baktı, tahmini doğruydu. Simit'in zili sevinçle tın etti.",
+        "poseAndActionEvidence": [
+          "Deniz üçüncü dalı kütüğün yanına sapladı.",
+          "\"Bunun gölgesi de çiçeklere gidecek,\" dedi.",
+          "Baktı, tahmini doğruydu.",
+          "Simit'in zili sevinçle tın etti."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz üçüncü dalı kütüğün yanına sapladı. \"Bunun gölgesi de çiçeklere gidecek,\" dedi. Baktı, tahmini doğruydu. Simit'in zili sevinçle tın etti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p07",
+        "quoteSHA256": "29ffd1a95a8416cf45a9aa9252911b7532f17f68c4ac3d5819da2f14480ad72e",
+        "bookID": "pilot56_book_l7_cat_event02_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "29ffd1a95a8416cf45a9aa9252911b7532f17f68c4ac3d5819da2f14480ad72e",
+      "text": "Deniz üçüncü dalı kütüğün yanına sapladı. \"Bunun gölgesi de çiçeklere gidecek,\" dedi. Baktı, tahmini doğruydu. Simit'in zili sevinçle tın etti.",
+      "sourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p07",
+      "sourcePointer": "input/learning-cat.json#/books/1/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l7_cat_event02_v1",
+      "rawPageMove": "result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; tasma/zil; papatya/çiçek/yonca; gölge; çatal/kanca dal",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz dalları toplayıp kenara bıraktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Simit’in zili usulca çınladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "\"Benim gölgem de çiçeklere bakıyor,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Simit kendi gölgesine baktı.",
+              "\"Benim gölgem de çiçeklere bakıyor,\" dedi.",
+              "Simit'in gölgesinin kuyruğu kıvrıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "Simit'in gölgesinin kuyruğu kıvrıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz dalları toplayıp kenara bıraktı. Simit kendi gölgesine baktı. \"Benim gölgem de çiçeklere bakıyor,\" dedi. Deniz’in yüzü gülümsemeyle doldu. Simit’in zili usulca çınladı. Simit'in gölgesinin kuyruğu kıvrıktı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p08",
+            "evidenceText": "Deniz dalları toplayıp kenara bıraktı. Simit kendi gölgesine baktı. \"Benim gölgem de çiçeklere bakıyor,\" dedi. Deniz’in yüzü gülümsemeyle doldu. Simit’in zili usulca çınladı. Simit'in gölgesinin kuyruğu kıvrıktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz dalları toplayıp kenara bıraktı. Simit kendi gölgesine baktı. \"Benim gölgem de çiçeklere bakıyor,\" dedi. Deniz’in yüzü gülümsemeyle doldu. Simit’in zili usulca çınladı. Simit'in gölgesinin kuyruğu kıvrıktı.",
+        "poseAndActionEvidence": [
+          "Deniz dalları toplayıp kenara bıraktı.",
+          "Simit kendi gölgesine baktı.",
+          "\"Benim gölgem de çiçeklere bakıyor,\" dedi.",
+          "Deniz’in yüzü gülümsemeyle doldu.",
+          "Simit’in zili usulca çınladı.",
+          "Simit'in gölgesinin kuyruğu kıvrıktı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz dalları toplayıp kenara bıraktı. Simit kendi gölgesine baktı. \"Benim gölgem de çiçeklere bakıyor,\" dedi. Deniz’in yüzü gülümsemeyle doldu. Simit’in zili usulca çınladı. Simit'in gölgesinin kuyruğu kıvrıktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p08",
+        "quoteSHA256": "2c72793cee6015cbbc0d23d1464a14f220b411152c2741ae2f6ff720316c59d6",
+        "bookID": "pilot56_book_l7_cat_event02_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "2c72793cee6015cbbc0d23d1464a14f220b411152c2741ae2f6ff720316c59d6",
+      "text": "Deniz dalları toplayıp kenara bıraktı. Simit kendi gölgesine baktı. \"Benim gölgem de çiçeklere bakıyor,\" dedi. Deniz’in yüzü gülümsemeyle doldu. Simit’in zili usulca çınladı. Simit'in gölgesinin kuyruğu kıvrıktı.",
+      "sourceID": "p56_wave2_pilot56_book_l7_cat_event02_v1_p08",
+      "sourcePointer": "input/learning-cat.json#/books/1/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz dönerek dener ve gölgenin hep güneşin karşı tarafına düştüğünü kendisi bulur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

@@ -1,0 +1,960 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a7_hedgehog_v1",
+  "title": "Kestane ve Çalıdaki Top",
+  "context": {
+    "settingName": "Eğrelti Kenarı (yeni mekân)",
+    "mode": "adventure",
+    "companionID": "companion_hedgehog_pilot_001",
+    "structure": "A7",
+    "event": "e1",
+    "mechanism": "reach-with-stick",
+    "sourceFilename": "adventure-hedgehog.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a7_hedgehog_v1",
+    "sourceBookID": "pilot56_book_a7_hedgehog_v1",
+    "structure": "A7",
+    "event": "e1",
+    "sample": true,
+    "title": "Kestane ve Çalıdaki Top",
+    "pages": [
+      "Eğrelti Kenarı’nda kırmızı top yuvarlandı. Pıt pıt pıt! Sık ve alçak çalıların altına girdi. Deniz durdu. Kestane de yanında durdu.",
+      "Deniz yaklaşıp eğildi. Top çalıların altındaydı, kolu yetişmiyordu. Çalılar çok sıktı. Deniz içeri girmek yerine başka bir yol düşündü.",
+      "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane. Çalının altına daldı. Top dikenlerine çarpıp daha da içeri yuvarlandı! Deniz kıkırdadı.",
+      "Deniz yerdeki dallara baktı. \"Uzun ve ucu çatallı olsun,\" dedi. Kestane küçük dalları burnuyla itip getirdi. Deniz önce en uzununu seçti.",
+      "Deniz dalı çalının altına uzattı. Dal topa değdi ama top kaydı. Dalın ucu düzdü, topu tutamıyordu. Kestane burnunu kıpırdatıp bekledi.",
+      "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı aldı. Çatalı topun arkasına yerleştirdi ve yavaşça kendine doğru çekti. Top yuvarlandı.",
+      "Kırmızı top Deniz’in ayaklarının dibine geldi. \"Çatal tuttu!\" dedi Deniz. Kestane sevinçle top oldu. Şimdi orada iki top vardı. Deniz güldü.",
+      "Dönüşte Deniz topu kucağında taşıdı. Kestane çatallı dalı burnuyla itti. \"Bunu saklayalım,\" dedi. Hardal yaprağı dikeninde sallanıyordu. Deniz gülümsedi."
+    ]
+  },
+  "inputFileSHA256": "df07a7bbecd11a5eb2376684b8843188cd585ed92512ff8608e430517b27dbd8",
+  "inputBookPointer": "input/adventure-hedgehog.json#/books/0",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a7_hedgehog_v1",
+      "rawPageMove": "item_lost",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; top/şapka/uçurtma; iz/kum; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Eğrelti Kenarı’nda kırmızı top yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Eğrelti Kenarı’nda kırmızı top yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Eğrelti Kenarı’nda kırmızı top yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Eğrelti Kenarı’nda kırmızı top yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Eğrelti Kenarı’nda kırmızı top yuvarlandı. Pıt pıt pıt! Sık ve alçak çalıların altına girdi. Deniz durdu. Kestane de yanında durdu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p01",
+            "evidenceText": "Eğrelti Kenarı’nda kırmızı top yuvarlandı. Pıt pıt pıt! Sık ve alçak çalıların altına girdi. Deniz durdu. Kestane de yanında durdu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Eğrelti Kenarı’nda kırmızı top yuvarlandı. Pıt pıt pıt! Sık ve alçak çalıların altına girdi. Deniz durdu. Kestane de yanında durdu.",
+        "poseAndActionEvidence": [
+          "Eğrelti Kenarı’nda kırmızı top yuvarlandı.",
+          "Pıt pıt pıt!",
+          "Sık ve alçak çalıların altına girdi.",
+          "Deniz durdu.",
+          "Kestane de yanında durdu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Eğrelti Kenarı’nda kırmızı top yuvarlandı. Pıt pıt pıt! Sık ve alçak çalıların altına girdi. Deniz durdu. Kestane de yanında durdu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p01",
+        "quoteSHA256": "3a878c1ed921c58512ce208849536f335946cd099c3b94850b8ff62601967cc8",
+        "bookID": "pilot56_book_a7_hedgehog_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "3a878c1ed921c58512ce208849536f335946cd099c3b94850b8ff62601967cc8",
+      "text": "Eğrelti Kenarı’nda kırmızı top yuvarlandı. Pıt pıt pıt! Sık ve alçak çalıların altına girdi. Deniz durdu. Kestane de yanında durdu.",
+      "sourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p01",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/0/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a7_hedgehog_v1",
+      "rawPageMove": "approach",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Top çalıların altındaydı, kolu yetişmiyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz yaklaşıp eğildi. Top çalıların altındaydı, kolu yetişmiyordu. Çalılar çok sıktı. Deniz içeri girmek yerine başka bir yol düşündü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p02",
+            "evidenceText": "Deniz yaklaşıp eğildi. Top çalıların altındaydı, kolu yetişmiyordu. Çalılar çok sıktı. Deniz içeri girmek yerine başka bir yol düşündü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yaklaşıp eğildi. Top çalıların altındaydı, kolu yetişmiyordu. Çalılar çok sıktı. Deniz içeri girmek yerine başka bir yol düşündü.",
+        "poseAndActionEvidence": [
+          "Deniz yaklaşıp eğildi.",
+          "Top çalıların altındaydı, kolu yetişmiyordu.",
+          "Çalılar çok sıktı.",
+          "Deniz içeri girmek yerine başka bir yol düşündü."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yaklaşıp eğildi. Top çalıların altındaydı, kolu yetişmiyordu. Çalılar çok sıktı. Deniz içeri girmek yerine başka bir yol düşündü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p02",
+        "quoteSHA256": "ddf187874fe83c78a9353441745dfc6929480f34319a84f765a4854111be5704",
+        "bookID": "pilot56_book_a7_hedgehog_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "ddf187874fe83c78a9353441745dfc6929480f34319a84f765a4854111be5704",
+      "text": "Deniz yaklaşıp eğildi. Top çalıların altındaydı, kolu yetişmiyordu. Çalılar çok sıktı. Deniz içeri girmek yerine başka bir yol düşündü.",
+      "sourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p02",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/0/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a7_hedgehog_v1",
+      "rawPageMove": "friend_tries",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kütük/yuva; top/şapka/uçurtma; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Çalının altına daldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Top dikenlerine çarpıp daha da içeri yuvarlandı!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Top dikenlerine çarpıp daha da içeri yuvarlandı!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Top dikenlerine çarpıp daha da içeri yuvarlandı!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane. Çalının altına daldı. Top dikenlerine çarpıp daha da içeri yuvarlandı! Deniz kıkırdadı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p03",
+            "evidenceText": "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane. Çalının altına daldı. Top dikenlerine çarpıp daha da içeri yuvarlandı! Deniz kıkırdadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane. Çalının altına daldı. Top dikenlerine çarpıp daha da içeri yuvarlandı! Deniz kıkırdadı.",
+        "poseAndActionEvidence": [
+          "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane.",
+          "Çalının altına daldı.",
+          "Top dikenlerine çarpıp daha da içeri yuvarlandı!",
+          "Deniz kıkırdadı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_hedgehog_pilot_001",
+        "quote": "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane. Çalının altına daldı. Top dikenlerine çarpıp daha da içeri yuvarlandı! Deniz kıkırdadı.",
+        "attributionQuote": "Kestane",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p03",
+        "quoteSHA256": "28317cef4d63d651e8eb60fdb8f99ea3068dd9be9ead07f92dea9c09d1166670",
+        "bookID": "pilot56_book_a7_hedgehog_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "28317cef4d63d651e8eb60fdb8f99ea3068dd9be9ead07f92dea9c09d1166670",
+      "text": "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane. Çalının altına daldı. Top dikenlerine çarpıp daha da içeri yuvarlandı! Deniz kıkırdadı.",
+      "sourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p03",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/0/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a7_hedgehog_v1",
+      "rawPageMove": "child_picks_stick",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "çatallı kök; dal; çatal/kanca dal",
+        "propMentions": [
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "\"Uzun ve ucu çatallı olsun,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz yerdeki dallara baktı.",
+              "Kestane küçük dalları burnuyla itip getirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "\"Uzun ve ucu çatallı olsun,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz yerdeki dallara baktı. \"Uzun ve ucu çatallı olsun,\" dedi. Kestane küçük dalları burnuyla itip getirdi. Deniz önce en uzununu seçti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p04",
+            "evidenceText": "Deniz yerdeki dallara baktı. \"Uzun ve ucu çatallı olsun,\" dedi. Kestane küçük dalları burnuyla itip getirdi. Deniz önce en uzununu seçti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yerdeki dallara baktı. \"Uzun ve ucu çatallı olsun,\" dedi. Kestane küçük dalları burnuyla itip getirdi. Deniz önce en uzununu seçti.",
+        "poseAndActionEvidence": [
+          "Deniz yerdeki dallara baktı.",
+          "\"Uzun ve ucu çatallı olsun,\" dedi.",
+          "Kestane küçük dalları burnuyla itip getirdi.",
+          "Deniz önce en uzununu seçti."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yerdeki dallara baktı. \"Uzun ve ucu çatallı olsun,\" dedi. Kestane küçük dalları burnuyla itip getirdi. Deniz önce en uzununu seçti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p04",
+        "quoteSHA256": "ae257161b10fd900b89c74243040de9dc6475212437138af063ade00c9b5dc96",
+        "bookID": "pilot56_book_a7_hedgehog_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "ae257161b10fd900b89c74243040de9dc6475212437138af063ade00c9b5dc96",
+      "text": "Deniz yerdeki dallara baktı. \"Uzun ve ucu çatallı olsun,\" dedi. Kestane küçük dalları burnuyla itip getirdi. Deniz önce en uzununu seçti.",
+      "sourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p04",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/0/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a7_hedgehog_v1",
+      "rawPageMove": "first_pull",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz dalı çalının altına uzattı.",
+              "Dal topa değdi ama top kaydı.",
+              "Dalın ucu düzdü, topu tutamıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Dal topa değdi ama top kaydı.",
+              "Dalın ucu düzdü, topu tutamıyordu.",
+              "Kestane burnunu kıpırdatıp bekledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz dalı çalının altına uzattı. Dal topa değdi ama top kaydı. Dalın ucu düzdü, topu tutamıyordu. Kestane burnunu kıpırdatıp bekledi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p05",
+            "evidenceText": "Deniz dalı çalının altına uzattı. Dal topa değdi ama top kaydı. Dalın ucu düzdü, topu tutamıyordu. Kestane burnunu kıpırdatıp bekledi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz dalı çalının altına uzattı. Dal topa değdi ama top kaydı. Dalın ucu düzdü, topu tutamıyordu. Kestane burnunu kıpırdatıp bekledi.",
+        "poseAndActionEvidence": [
+          "Deniz dalı çalının altına uzattı.",
+          "Dal topa değdi ama top kaydı.",
+          "Dalın ucu düzdü, topu tutamıyordu.",
+          "Kestane burnunu kıpırdatıp bekledi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz dalı çalının altına uzattı. Dal topa değdi ama top kaydı. Dalın ucu düzdü, topu tutamıyordu. Kestane burnunu kıpırdatıp bekledi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p05",
+        "quoteSHA256": "ed092dd296f2c86166938ef395f188e57bbf13a8aad74089bc7902bfa61127c9",
+        "bookID": "pilot56_book_a7_hedgehog_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "ed092dd296f2c86166938ef395f188e57bbf13a8aad74089bc7902bfa61127c9",
+      "text": "Deniz dalı çalının altına uzattı. Dal topa değdi ama top kaydı. Dalın ucu düzdü, topu tutamıyordu. Kestane burnunu kıpırdatıp bekledi.",
+      "sourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p05",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/0/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a7_hedgehog_v1",
+      "rawPageMove": "child_changes_stick",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "çatallı kök; dal; kütük/yuva; çatal/kanca dal; top/şapka/uçurtma; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "Bu kez ucu çatallı olanı aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz dalı değiştirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Top yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "Bu kez ucu çatallı olanı aldı.",
+              "Çatalı topun arkasına yerleştirdi ve yavaşça kendine doğru çekti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Çatalı topun arkasına yerleştirdi ve yavaşça kendine doğru çekti.",
+              "Top yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Top yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı aldı. Çatalı topun arkasına yerleştirdi ve yavaşça kendine doğru çekti. Top yuvarlandı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p06",
+            "evidenceText": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı aldı. Çatalı topun arkasına yerleştirdi ve yavaşça kendine doğru çekti. Top yuvarlandı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı aldı. Çatalı topun arkasına yerleştirdi ve yavaşça kendine doğru çekti. Top yuvarlandı.",
+        "poseAndActionEvidence": [
+          "Deniz dalı değiştirdi.",
+          "Bu kez ucu çatallı olanı aldı.",
+          "Çatalı topun arkasına yerleştirdi ve yavaşça kendine doğru çekti.",
+          "Top yuvarlandı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı aldı. Çatalı topun arkasına yerleştirdi ve yavaşça kendine doğru çekti. Top yuvarlandı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p06",
+        "quoteSHA256": "427f5c2b9f967975cf1277f788b2f247bcf09405fd3662ea55227cf95310780d",
+        "bookID": "pilot56_book_a7_hedgehog_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "427f5c2b9f967975cf1277f788b2f247bcf09405fd3662ea55227cf95310780d",
+      "text": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı aldı. Çatalı topun arkasına yerleştirdi ve yavaşça kendine doğru çekti. Top yuvarlandı.",
+      "sourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p06",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/0/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a7_hedgehog_v1",
+      "rawPageMove": "item_back",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "çatal/kanca dal; top/şapka/uçurtma; iz/kum",
+        "propMentions": [
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "\"Çatal tuttu!\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kırmızı top Deniz’in ayaklarının dibine geldi.",
+              "Kestane sevinçle top oldu.",
+              "Şimdi orada iki top vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kırmızı top Deniz’in ayaklarının dibine geldi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kırmızı top Deniz’in ayaklarının dibine geldi. \"Çatal tuttu!\" dedi Deniz. Kestane sevinçle top oldu. Şimdi orada iki top vardı. Deniz güldü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p07",
+            "evidenceText": "Kırmızı top Deniz’in ayaklarının dibine geldi. \"Çatal tuttu!\" dedi Deniz. Kestane sevinçle top oldu. Şimdi orada iki top vardı. Deniz güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kırmızı top Deniz’in ayaklarının dibine geldi. \"Çatal tuttu!\" dedi Deniz. Kestane sevinçle top oldu. Şimdi orada iki top vardı. Deniz güldü.",
+        "poseAndActionEvidence": [
+          "Kırmızı top Deniz’in ayaklarının dibine geldi.",
+          "\"Çatal tuttu!\" dedi Deniz.",
+          "Kestane sevinçle top oldu.",
+          "Şimdi orada iki top vardı.",
+          "Deniz güldü."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kırmızı top Deniz’in ayaklarının dibine geldi. \"Çatal tuttu!\" dedi Deniz. Kestane sevinçle top oldu. Şimdi orada iki top vardı. Deniz güldü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p07",
+        "quoteSHA256": "1c851bb00f6bc51220dae1604ff8cc62a9bfbbcb5def1db1d38f2bccf5e5f0ee",
+        "bookID": "pilot56_book_a7_hedgehog_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "1c851bb00f6bc51220dae1604ff8cc62a9bfbbcb5def1db1d38f2bccf5e5f0ee",
+      "text": "Kırmızı top Deniz’in ayaklarının dibine geldi. \"Çatal tuttu!\" dedi Deniz. Kestane sevinçle top oldu. Şimdi orada iki top vardı. Deniz güldü.",
+      "sourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p07",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/0/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a7_hedgehog_v1",
+      "rawPageMove": "return",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "çatallı kök; yaprak; dal; taş; taş/çakıl; çatal/kanca dal; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "Kestane çatallı dalı burnuyla itti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Hardal yaprağı dikeninde sallanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Kestane çatallı dalı burnuyla itti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Dönüşte Deniz topu kucağında taşıdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Dönüşte Deniz topu kucağında taşıdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "Kestane çatallı dalı burnuyla itti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Dönüşte Deniz topu kucağında taşıdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Dönüşte Deniz topu kucağında taşıdı. Kestane çatallı dalı burnuyla itti. \"Bunu saklayalım,\" dedi. Hardal yaprağı dikeninde sallanıyordu. Deniz gülümsedi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p08",
+            "evidenceText": "Dönüşte Deniz topu kucağında taşıdı. Kestane çatallı dalı burnuyla itti. \"Bunu saklayalım,\" dedi. Hardal yaprağı dikeninde sallanıyordu. Deniz gülümsedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Dönüşte Deniz topu kucağında taşıdı. Kestane çatallı dalı burnuyla itti. \"Bunu saklayalım,\" dedi. Hardal yaprağı dikeninde sallanıyordu. Deniz gülümsedi.",
+        "poseAndActionEvidence": [
+          "Dönüşte Deniz topu kucağında taşıdı.",
+          "Kestane çatallı dalı burnuyla itti.",
+          "\"Bunu saklayalım,\" dedi.",
+          "Hardal yaprağı dikeninde sallanıyordu.",
+          "Deniz gülümsedi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Dönüşte Deniz topu kucağında taşıdı. Kestane çatallı dalı burnuyla itti. \"Bunu saklayalım,\" dedi. Hardal yaprağı dikeninde sallanıyordu. Deniz gülümsedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p08",
+        "quoteSHA256": "fb0c3bb2bb7f2d0b3f9ea6d477ac498b2e5a7026c7cb6cdc6c931a925344bb94",
+        "bookID": "pilot56_book_a7_hedgehog_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "fb0c3bb2bb7f2d0b3f9ea6d477ac498b2e5a7026c7cb6cdc6c931a925344bb94",
+      "text": "Dönüşte Deniz topu kucağında taşıdı. Kestane çatallı dalı burnuyla itti. \"Bunu saklayalım,\" dedi. Hardal yaprağı dikeninde sallanıyordu. Deniz gülümsedi.",
+      "sourceID": "p56_wave2_pilot56_book_a7_hedgehog_v1_p08",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/0/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz içeri girmeden uzun, ucu çatallı doğru dalı seçer, eşyayı kendine doğru çeker.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

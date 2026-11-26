@@ -1,0 +1,1169 @@
+{
+  "id": "pilot56_book_l3_cat_event03_v1",
+  "title": "Simit ve Yaprak Damarı",
+  "blueprintID": "pilot56_blueprint_l3_v1",
+  "planLabel": "L3",
+  "mechanismKey": "wait-and-reobserve",
+  "status": "v4-approved-text-metadata-review-candidate",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "learning",
+    "arc": "editorial-learning",
+    "companionID": "companion_city_cat_001",
+    "settingID": "setting_whispering_forest_001",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Şehirden bugün ziyarete gelmiştir; meraklı; yavaşlamayı dener.",
+  "physicalContract": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+  "childAgency": "Çocuk dokunmadan bekler, önceki ve sonraki damla durumunu kendi karşılaştırır.",
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "baseBookID": "pilot56_book_l3_cat_v1",
+  "variantID": "event03",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "drop_noticed",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_1_v1"
+      ],
+      "text": "Deniz alçak yaprağın ortasında bir damla gördü. İnce bir damar suyun altında görünüyordu. Simit yaprağa merakla eğildi. \"Bu damla nereye gidiyor?\" diye sordu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "drop_noticed",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p01",
+            "sourceTextDigest": "d29aa9480e4fb22a2c5f1513444fc54d2e3c0bab6fe017528ef0b1c46030f84c",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/536",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "drop-on-leaf"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; damla; yaprak damarı/sapı",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz alçak yaprağın ortasında bir damla gördü.",
+              "Simit yaprağa merakla eğildi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "damla",
+            "evidenceQuotes": [
+              "Deniz alçak yaprağın ortasında bir damla gördü.",
+              "\"Bu damla nereye gidiyor?\" diye sordu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "yaprak damarı/sapı",
+            "evidenceQuotes": [
+              "İnce bir damar suyun altında görünüyordu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz alçak yaprağın ortasında bir damla gördü. İnce bir damar suyun altında görünüyordu. Simit yaprağa merakla eğildi. \"Bu damla nereye gidiyor?\" diye sordu.",
+            "evidenceSourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p01",
+            "evidenceText": "Deniz alçak yaprağın ortasında bir damla gördü. İnce bir damar suyun altında görünüyordu. Simit yaprağa merakla eğildi. \"Bu damla nereye gidiyor?\" diye sordu.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz alçak yaprağın ortasında bir damla gördü. İnce bir damar suyun altında görünüyordu. Simit yaprağa merakla eğildi. \"Bu damla nereye gidiyor?\" diye sordu.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "poseAndActionEvidence": [
+          "Deniz alçak yaprağın ortasında bir damla gördü.",
+          "İnce bir damar suyun altında görünüyordu.",
+          "Simit yaprağa merakla eğildi.",
+          "\"Bu damla nereye gidiyor?\" diye sordu."
+        ],
+        "doNotDraw": [
+          "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 2,
+      "role": "first_observation",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_2_v1"
+      ],
+      "text": "Deniz damlanın yerini yaprak damarıyla birlikte düşündü. \"Şimdi ortada duruyor,\" dedi. Parmağını geri çekti. Simit de damlaya dokunmadı. Damla nereye gidecekti?",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "drop_noticed",
+      "stateAfter": "first_observation",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p02",
+            "sourceTextDigest": "da0bdc1d434e50567e55274fcdbb6cc127683cac043abb7d7454ad9fae7f9e36",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/537",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "drop-on-leaf"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; damla; yaprak damarı/sapı",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz damlanın yerini yaprak damarıyla birlikte düşündü."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "damla",
+            "evidenceQuotes": [
+              "Deniz damlanın yerini yaprak damarıyla birlikte düşündü.",
+              "Simit de damlaya dokunmadı.",
+              "Damla nereye gidecekti?"
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "yaprak damarı/sapı",
+            "evidenceQuotes": [
+              "Deniz damlanın yerini yaprak damarıyla birlikte düşündü."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz damlanın yerini yaprak damarıyla birlikte düşündü. \"Şimdi ortada duruyor,\" dedi. Parmağını geri çekti. Simit de damlaya dokunmadı. Damla nereye gidecekti?",
+            "evidenceSourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p02",
+            "evidenceText": "Deniz damlanın yerini yaprak damarıyla birlikte düşündü. \"Şimdi ortada duruyor,\" dedi. Parmağını geri çekti. Simit de damlaya dokunmadı. Damla nereye gidecekti?",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir. İstek, olasılık ve henüz gerçekleşmeyen fiilleri bitmiş fiziksel eyleme dönüştürme; kesin eylem alıntının devamıyla belirlenir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz damlanın yerini yaprak damarıyla birlikte düşündü. \"Şimdi ortada duruyor,\" dedi. Parmağını geri çekti. Simit de damlaya dokunmadı. Damla nereye gidecekti?",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "poseAndActionEvidence": [
+          "Deniz damlanın yerini yaprak damarıyla birlikte düşündü.",
+          "\"Şimdi ortada duruyor,\" dedi.",
+          "Parmağını geri çekti.",
+          "Simit de damlaya dokunmadı.",
+          "Damla nereye gidecekti?"
+        ],
+        "doNotDraw": [
+          "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "İstek, olasılık ve henüz gerçekleşmeyen fiilleri bitmiş fiziksel eyleme dönüştürme; kesin eylem alıntının devamıyla belirlenir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_waits",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_3_v1"
+      ],
+      "text": "Simit sabırsızca kuyruğunu salladı. \"Şehirde böyle değil ama,\" dedi. \"Orada su borudan gider.\" Deniz kıkırdadı: \"Burada boru, damar!\"",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "first_observation",
+      "stateAfter": "friend_waits",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p03",
+            "sourceTextDigest": "d73c8f5889daf7c4afadf80608124e8cc2d3ccfe4c455860d7c2bd088ce80181",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/538",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "drop-on-leaf"
+            ]
+          }
+        ],
+        "propDescription": "yaprak damarı/sapı",
+        "propMentions": [
+          {
+            "label": "yaprak damarı/sapı",
+            "evidenceQuotes": [
+              "\"Orada su borudan gider.\" Deniz kıkırdadı: \"Burada boru, damar!\""
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit sabırsızca kuyruğunu salladı. \"Şehirde böyle değil ama,\" dedi. \"Orada su borudan gider.\" Deniz kıkırdadı: \"Burada boru, damar!\"",
+            "evidenceSourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p03",
+            "evidenceText": "Simit sabırsızca kuyruğunu salladı. \"Şehirde böyle değil ama,\" dedi. \"Orada su borudan gider.\" Deniz kıkırdadı: \"Burada boru, damar!\"",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir. Benzetme, şehir anısı ve koku tahmini sahneye yeni yiyecek, eşya, bina veya karakter eklemez."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit sabırsızca kuyruğunu salladı. \"Şehirde böyle değil ama,\" dedi. \"Orada su borudan gider.\" Deniz kıkırdadı: \"Burada boru, damar!\"",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "poseAndActionEvidence": [
+          "Simit sabırsızca kuyruğunu salladı.",
+          "\"Şehirde böyle değil ama,\" dedi.",
+          "\"Orada su borudan gider.\" Deniz kıkırdadı: \"Burada boru, damar!\""
+        ],
+        "doNotDraw": [
+          "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "Benzetme, şehir anısı ve koku tahmini sahneye yeni yiyecek, eşya, bina veya karakter eklemez.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_observation_plan",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_4_v1"
+      ],
+      "text": "Deniz bir damarı işaret olarak seçti. \"Yerini buraya bakarak karşılaştıracağım,\" dedi. İlk yeri aklında tuttu. Simit de aynı damara baktı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_waits",
+      "stateAfter": "child_observation_plan",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p04",
+            "sourceTextDigest": "281ea6dc9f9b7d9706f743bcf7c5f1c7af4d296afb14399f48955a24e74a87b5",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/539",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "drop-on-leaf"
+            ]
+          }
+        ],
+        "propDescription": "yaprak damarı/sapı; tahta işaret parçaları",
+        "propMentions": [
+          {
+            "label": "yaprak damarı/sapı",
+            "evidenceQuotes": [
+              "Deniz bir damarı işaret olarak seçti.",
+              "Simit de aynı damara baktı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Deniz bir damarı işaret olarak seçti."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz bir damarı işaret olarak seçti. \"Yerini buraya bakarak karşılaştıracağım,\" dedi. İlk yeri aklında tuttu. Simit de aynı damara baktı.",
+            "evidenceSourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p04",
+            "evidenceText": "Deniz bir damarı işaret olarak seçti. \"Yerini buraya bakarak karşılaştıracağım,\" dedi. İlk yeri aklında tuttu. Simit de aynı damara baktı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz bir damarı işaret olarak seçti. \"Yerini buraya bakarak karşılaştıracağım,\" dedi. İlk yeri aklında tuttu. Simit de aynı damara baktı.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "poseAndActionEvidence": [
+          "Deniz bir damarı işaret olarak seçti.",
+          "\"Yerini buraya bakarak karşılaştıracağım,\" dedi.",
+          "İlk yeri aklında tuttu.",
+          "Simit de aynı damara baktı."
+        ],
+        "doNotDraw": [
+          "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "visible_change",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_5_v1"
+      ],
+      "text": "Damla damar boyunca uca doğru kaydı. Simit gözlerini kırpmadan izledi. Kuyruğu yavaşça kıvrıldı. \"Bu damlanın kendi yolu var,\" dedi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_observation_plan",
+      "stateAfter": "visible_change",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p05",
+            "sourceTextDigest": "f4ce179c49d303734bc3041d9e720e8cade4632571aa86512db323e162faa430",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/540",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "drop-on-leaf"
+            ]
+          }
+        ],
+        "propDescription": "damla; yaprak damarı/sapı",
+        "propMentions": [
+          {
+            "label": "damla",
+            "evidenceQuotes": [
+              "Damla damar boyunca uca doğru kaydı.",
+              "\"Bu damlanın kendi yolu var,\" dedi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "yaprak damarı/sapı",
+            "evidenceQuotes": [
+              "Damla damar boyunca uca doğru kaydı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Damla damar boyunca uca doğru kaydı. Simit gözlerini kırpmadan izledi. Kuyruğu yavaşça kıvrıldı. \"Bu damlanın kendi yolu var,\" dedi.",
+            "evidenceSourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p05",
+            "evidenceText": "Damla damar boyunca uca doğru kaydı. Simit gözlerini kırpmadan izledi. Kuyruğu yavaşça kıvrıldı. \"Bu damlanın kendi yolu var,\" dedi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Damla damar boyunca uca doğru kaydı. Simit gözlerini kırpmadan izledi. Kuyruğu yavaşça kıvrıldı. \"Bu damlanın kendi yolu var,\" dedi.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "poseAndActionEvidence": [
+          "Damla damar boyunca uca doğru kaydı.",
+          "Simit gözlerini kırpmadan izledi.",
+          "Kuyruğu yavaşça kıvrıldı.",
+          "\"Bu damlanın kendi yolu var,\" dedi."
+        ],
+        "doNotDraw": [
+          "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "child_compares",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_6_v1"
+      ],
+      "text": "Deniz damlanın önceki ve şimdiki yerini karşılaştırdı. \"Önce ortadaydı, şimdi uçta!\" dedi. Değişeni kendi gözleriyle bulmuştu. Simit önce zıpladı, sonra düşündü.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "visible_change",
+      "stateAfter": "child_compares",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p06",
+            "sourceTextDigest": "9578725179a33d3680d1aae94cc14298ab19f11bd2755adf4cea670e81f17890",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/541",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "drop-on-leaf"
+            ]
+          }
+        ],
+        "propDescription": "damla",
+        "propMentions": [
+          {
+            "label": "damla",
+            "evidenceQuotes": [
+              "Deniz damlanın önceki ve şimdiki yerini karşılaştırdı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz damlanın önceki ve şimdiki yerini karşılaştırdı. \"Önce ortadaydı, şimdi uçta!\" dedi. Değişeni kendi gözleriyle bulmuştu. Simit önce zıpladı, sonra düşündü.",
+            "evidenceSourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p06",
+            "evidenceText": "Deniz damlanın önceki ve şimdiki yerini karşılaştırdı. \"Önce ortadaydı, şimdi uçta!\" dedi. Değişeni kendi gözleriyle bulmuştu. Simit önce zıpladı, sonra düşündü.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz damlanın önceki ve şimdiki yerini karşılaştırdı. \"Önce ortadaydı, şimdi uçta!\" dedi. Değişeni kendi gözleriyle bulmuştu. Simit önce zıpladı, sonra düşündü.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "poseAndActionEvidence": [
+          "Deniz damlanın önceki ve şimdiki yerini karşılaştırdı.",
+          "\"Önce ortadaydı, şimdi uçta!\" dedi.",
+          "Değişeni kendi gözleriyle bulmuştu.",
+          "Simit önce zıpladı, sonra düşündü."
+        ],
+        "doNotDraw": [
+          "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 7,
+      "role": "drop_falls",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_7_v1"
+      ],
+      "text": "Uçta toplanan damla yapraktan ayrılıp toprağa düştü. Pıt! Simit'in zili de tam aynı anda tın etti. Deniz buna güldü.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "child_compares",
+      "stateAfter": "drop_falls",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p07",
+            "sourceTextDigest": "c63b92369bb034b2877d81769803467120eec898f72f8189a50f9150a331850b",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/542",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "present",
+            "states": [
+              "drop-left-leaf",
+              "drop-on-ground"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; damla; tasma/zil; toprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Uçta toplanan damla yapraktan ayrılıp toprağa düştü."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "damla",
+            "evidenceQuotes": [
+              "Uçta toplanan damla yapraktan ayrılıp toprağa düştü."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Simit'in zili de tam aynı anda tın etti."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "toprak",
+            "evidenceQuotes": [
+              "Uçta toplanan damla yapraktan ayrılıp toprağa düştü."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Uçta toplanan damla yapraktan ayrılıp toprağa düştü. Pıt! Simit'in zili de tam aynı anda tın etti. Deniz buna güldü.",
+            "evidenceSourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p07",
+            "evidenceText": "Uçta toplanan damla yapraktan ayrılıp toprağa düştü. Pıt! Simit'in zili de tam aynı anda tın etti. Deniz buna güldü.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Uçta toplanan damla yapraktan ayrılıp toprağa düştü. Pıt! Simit'in zili de tam aynı anda tın etti. Deniz buna güldü.",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "poseAndActionEvidence": [
+          "Uçta toplanan damla yapraktan ayrılıp toprağa düştü.",
+          "Pıt!",
+          "Simit'in zili de tam aynı anda tın etti.",
+          "Deniz buna güldü."
+        ],
+        "doNotDraw": [
+          "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_result",
+      "orderedBeatIDs": [
+        "pilot56_beat_l3_8_v1"
+      ],
+      "text": "Deniz patikaya döndü, Simit yanında yürüdü. \"Şehre dönünce boruları anlatacağım,\" dedi Simit. \"Ama yaprak damarlarını daha çok seviyorum.\"",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_city_cat_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "drop_falls",
+      "stateAfter": "closed_result",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p08",
+            "sourceTextDigest": "670b09731ea07bbd46ed62f19a8e0a9b3d62e71a6b70a55f4e60943c69f74ba5",
+            "templateID": "pilot56_blueprint_l3_v1",
+            "sourcePointer": "sources.json#/sources/543",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_city_cat_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_moving_leaf_drop_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_moving_leaf_drop_v1",
+            "presence": "off-scene",
+            "states": [
+              "observation-ended"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; yaprak damarı/sapı",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "\"Ama yaprak damarlarını daha çok seviyorum.\""
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "yaprak damarı/sapı",
+            "evidenceQuotes": [
+              "\"Ama yaprak damarlarını daha çok seviyorum.\""
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz patikaya döndü, Simit yanında yürüdü. \"Şehre dönünce boruları anlatacağım,\" dedi Simit. \"Ama yaprak damarlarını daha çok seviyorum.\"",
+            "evidenceSourceID": "p56_v4_pilot56_book_l3_cat_event03_v1_p08",
+            "evidenceText": "Deniz patikaya döndü, Simit yanında yürüdü. \"Şehre dönünce boruları anlatacağım,\" dedi Simit. \"Ama yaprak damarlarını daha çok seviyorum.\"",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz patikaya döndü, Simit yanında yürüdü. \"Şehre dönünce boruları anlatacağım,\" dedi Simit. \"Ama yaprak damarlarını daha çok seviyorum.\"",
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "poseAndActionEvidence": [
+          "Deniz patikaya döndü, Simit yanında yürüdü.",
+          "\"Şehre dönünce boruları anlatacağım,\" dedi Simit.",
+          "\"Ama yaprak damarlarını daha çok seviyorum.\""
+        ],
+        "doNotDraw": [
+          "Önceki damla biçimi/yeri hatırlanan karşılaştırmadır; bir önceki ve sonraki damla aynı anda ayrı nesneler gibi çoğaltılmaz. p7 yapraktan ayrılış; hedef bu sayfanın alıntısına göre toprak veya Kestane’nin dikenidir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    }
+  ],
+  "sourceBookID": "pilot56_book_l3_cat_event03_v1"
+}

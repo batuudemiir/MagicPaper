@@ -1,0 +1,889 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l4_fox_v1",
+  "title": "Tarçın'ın Burnu Yanıldı",
+  "context": {
+    "settingName": "Yağmur sonrası bahçe, sığ su birikintisi",
+    "mode": "learning",
+    "companionID": "companion_fox_pilot_001",
+    "structure": "L4",
+    "event": "e1",
+    "mechanism": "predict-float-sink",
+    "sourceFilename": "learning-fox.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l4_fox_v1",
+    "structure": "L4",
+    "event": "e1",
+    "sample": false,
+    "title": "Tarçın'ın Burnu Yanıldı",
+    "pages": [
+      "Yağmur durmuştu. Bahçede sığ bir su birikintisi vardı. Deniz yanına çömeldi. Tarçın burnunu suya yaklaştırdı. Elinde bir yaprak, bir çakıl ve bir ceviz kabuğu vardı.",
+      "Deniz bir yaprak, bir ceviz kabuğu ve bir çakıl topladı. Tarçın üçünü de kokladı. \"Hangisi suyun üstünde kalır?\" diye sordu Deniz. \"Bence yaprak yüzer, çakıl batar.\"",
+      "\"Bir koklayalım bakalım,\" dedi Tarçın. Yaprağı, sonra çakılı kokladı. \"Çakıl yüzer, çünkü yağmur kokuyor!\" Deniz kahkahayı bastı. Sonra burnunu yine suya uzattı.",
+      "Deniz önce yaprağı suya koydu. Yaprak yüzdü, yavaşça döndü. \"Bildim!\" dedi Deniz. Tarçın yaprağa burnunu uzattı ama suya değdirmedi.",
+      "Sonra Deniz çakılı bıraktı. Çakıl hemen dibe indi. Tarçın kulaklarını düşürdü. \"Burnum yanıldı,\" dedi. Deniz gülümsedi ve Tarçın'ın burnunu okşadı.",
+      "\"Çakıl ağırdı, dibe gitti,\" dedi Deniz. \"Yaprak hafifti, üstte kaldı.\" İkisini kendisi karşılaştırmıştı. Tarçın kuyruğunu sallayarak onu dinledi.",
+      "Son olarak ceviz kabuğunu bıraktı. Kabuk küçük bir kayık gibi yüzdü. Tarçın sevinçle kuyruğunu salladı. Deniz karnını tutarak güldü. Tarçın hapşırıp katıldı. Tarçın'ın kuyruğu da halka halka sallandı.",
+      "Deniz nesneleri sudan aldı. Tarçın ıslak burnunu turkuaz boyunluğuna sildi. \"Bir dahakine burnuma değil, sana soracağım,\" dedi. Deniz’in dudakları usulca kıvrıldı."
+    ],
+    "sourceBookID": "pilot56_book_l4_fox_v1"
+  },
+  "inputFileSHA256": "733bb8aaaa34ab2b9bf7b9125300b76c3005b579c051f0155732e54bda48cb5b",
+  "inputBookPointer": "input/learning-fox.json#/books/0",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l4_fox_v1",
+      "rawPageMove": "puddle_noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; yağmur/cam/oluk; su/birikinti; taş/çakıl; kabuk",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Elinde bir yaprak, bir çakıl ve bir ceviz kabuğu vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Yağmur durmuştu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Bahçede sığ bir su birikintisi vardı.",
+              "Tarçın burnunu suya yaklaştırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Elinde bir yaprak, bir çakıl ve bir ceviz kabuğu vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kabuk",
+            "evidenceQuotes": [
+              "Elinde bir yaprak, bir çakıl ve bir ceviz kabuğu vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Yağmur durmuştu. Bahçede sığ bir su birikintisi vardı. Deniz yanına çömeldi. Tarçın burnunu suya yaklaştırdı. Elinde bir yaprak, bir çakıl ve bir ceviz kabuğu vardı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p01",
+            "evidenceText": "Yağmur durmuştu. Bahçede sığ bir su birikintisi vardı. Deniz yanına çömeldi. Tarçın burnunu suya yaklaştırdı. Elinde bir yaprak, bir çakıl ve bir ceviz kabuğu vardı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yağmur durmuştu. Bahçede sığ bir su birikintisi vardı. Deniz yanına çömeldi. Tarçın burnunu suya yaklaştırdı. Elinde bir yaprak, bir çakıl ve bir ceviz kabuğu vardı.",
+        "poseAndActionEvidence": [
+          "Yağmur durmuştu.",
+          "Bahçede sığ bir su birikintisi vardı.",
+          "Deniz yanına çömeldi.",
+          "Tarçın burnunu suya yaklaştırdı.",
+          "Elinde bir yaprak, bir çakıl ve bir ceviz kabuğu vardı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Yağmur durmuştu. Bahçede sığ bir su birikintisi vardı. Deniz yanına çömeldi. Tarçın burnunu suya yaklaştırdı. Elinde bir yaprak, bir çakıl ve bir ceviz kabuğu vardı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p01",
+        "quoteSHA256": "e78825c9fef043cb4e798d1b78ddbaa2ee074b6c0fbbbf34d257ef2826e85759",
+        "bookID": "pilot56_book_l4_fox_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "e78825c9fef043cb4e798d1b78ddbaa2ee074b6c0fbbbf34d257ef2826e85759",
+      "text": "Yağmur durmuştu. Bahçede sığ bir su birikintisi vardı. Deniz yanına çömeldi. Tarçın burnunu suya yaklaştırdı. Elinde bir yaprak, bir çakıl ve bir ceviz kabuğu vardı.",
+      "sourceID": "p56_wave1_pilot56_book_l4_fox_v1_p01",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l4_fox_v1",
+      "rawPageMove": "child_predicts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; su/birikinti; taş/çakıl; kabuk",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz bir yaprak, bir ceviz kabuğu ve bir çakıl topladı.",
+              "\"Bence yaprak yüzer, çakıl batar.\""
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "\"Hangisi suyun üstünde kalır?\" diye sordu Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Deniz bir yaprak, bir ceviz kabuğu ve bir çakıl topladı.",
+              "\"Bence yaprak yüzer, çakıl batar.\""
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kabuk",
+            "evidenceQuotes": [
+              "Deniz bir yaprak, bir ceviz kabuğu ve bir çakıl topladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz bir yaprak, bir ceviz kabuğu ve bir çakıl topladı. Tarçın üçünü de kokladı. \"Hangisi suyun üstünde kalır?\" diye sordu Deniz. \"Bence yaprak yüzer, çakıl batar.\"",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p02",
+            "evidenceText": "Deniz bir yaprak, bir ceviz kabuğu ve bir çakıl topladı. Tarçın üçünü de kokladı. \"Hangisi suyun üstünde kalır?\" diye sordu Deniz. \"Bence yaprak yüzer, çakıl batar.\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz bir yaprak, bir ceviz kabuğu ve bir çakıl topladı. Tarçın üçünü de kokladı. \"Hangisi suyun üstünde kalır?\" diye sordu Deniz. \"Bence yaprak yüzer, çakıl batar.\"",
+        "poseAndActionEvidence": [
+          "Deniz bir yaprak, bir ceviz kabuğu ve bir çakıl topladı.",
+          "Tarçın üçünü de kokladı.",
+          "\"Hangisi suyun üstünde kalır?\" diye sordu Deniz.",
+          "\"Bence yaprak yüzer, çakıl batar.\""
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz bir yaprak, bir ceviz kabuğu ve bir çakıl topladı. Tarçın üçünü de kokladı. \"Hangisi suyun üstünde kalır?\" diye sordu Deniz. \"Bence yaprak yüzer, çakıl batar.\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p02",
+        "quoteSHA256": "c1440e1be0e07b2ae78a9062eaf9e61f2117de6fde477650e4f21dbe67a6edcb",
+        "bookID": "pilot56_book_l4_fox_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "c1440e1be0e07b2ae78a9062eaf9e61f2117de6fde477650e4f21dbe67a6edcb",
+      "text": "Deniz bir yaprak, bir ceviz kabuğu ve bir çakıl topladı. Tarçın üçünü de kokladı. \"Hangisi suyun üstünde kalır?\" diye sordu Deniz. \"Bence yaprak yüzer, çakıl batar.\"",
+      "sourceID": "p56_wave1_pilot56_book_l4_fox_v1_p02",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l4_fox_v1",
+      "rawPageMove": "friend_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; yağmur/cam/oluk; su/birikinti; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Yaprağı, sonra çakılı kokladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "\"Çakıl yüzer, çünkü yağmur kokuyor!\" Deniz kahkahayı bastı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Sonra burnunu yine suya uzattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Yaprağı, sonra çakılı kokladı.",
+              "\"Çakıl yüzer, çünkü yağmur kokuyor!\" Deniz kahkahayı bastı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Bir koklayalım bakalım,\" dedi Tarçın. Yaprağı, sonra çakılı kokladı. \"Çakıl yüzer, çünkü yağmur kokuyor!\" Deniz kahkahayı bastı. Sonra burnunu yine suya uzattı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p03",
+            "evidenceText": "\"Bir koklayalım bakalım,\" dedi Tarçın. Yaprağı, sonra çakılı kokladı. \"Çakıl yüzer, çünkü yağmur kokuyor!\" Deniz kahkahayı bastı. Sonra burnunu yine suya uzattı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Bir koklayalım bakalım,\" dedi Tarçın. Yaprağı, sonra çakılı kokladı. \"Çakıl yüzer, çünkü yağmur kokuyor!\" Deniz kahkahayı bastı. Sonra burnunu yine suya uzattı.",
+        "poseAndActionEvidence": [
+          "\"Bir koklayalım bakalım,\" dedi Tarçın.",
+          "Yaprağı, sonra çakılı kokladı.",
+          "\"Çakıl yüzer, çünkü yağmur kokuyor!\" Deniz kahkahayı bastı.",
+          "Sonra burnunu yine suya uzattı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_fox_pilot_001",
+        "quote": "\"Bir koklayalım bakalım,\" dedi Tarçın. Yaprağı, sonra çakılı kokladı. \"Çakıl yüzer, çünkü yağmur kokuyor!\" Deniz kahkahayı bastı. Sonra burnunu yine suya uzattı.",
+        "attributionQuote": "Tarçın",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p03",
+        "quoteSHA256": "1ca1df95546fc615a616fb57e6b5dd2c99f6a8c70401e3be0df85995c03c99b2",
+        "bookID": "pilot56_book_l4_fox_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "1ca1df95546fc615a616fb57e6b5dd2c99f6a8c70401e3be0df85995c03c99b2",
+      "text": "\"Bir koklayalım bakalım,\" dedi Tarçın. Yaprağı, sonra çakılı kokladı. \"Çakıl yüzer, çünkü yağmur kokuyor!\" Deniz kahkahayı bastı. Sonra burnunu yine suya uzattı.",
+      "sourceID": "p56_wave1_pilot56_book_l4_fox_v1_p03",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l4_fox_v1",
+      "rawPageMove": "test_one",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; su/birikinti",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz önce yaprağı suya koydu.",
+              "Yaprak yüzdü, yavaşça döndü.",
+              "Tarçın yaprağa burnunu uzattı ama suya değdirmedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Deniz önce yaprağı suya koydu.",
+              "Tarçın yaprağa burnunu uzattı ama suya değdirmedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz önce yaprağı suya koydu. Yaprak yüzdü, yavaşça döndü. \"Bildim!\" dedi Deniz. Tarçın yaprağa burnunu uzattı ama suya değdirmedi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p04",
+            "evidenceText": "Deniz önce yaprağı suya koydu. Yaprak yüzdü, yavaşça döndü. \"Bildim!\" dedi Deniz. Tarçın yaprağa burnunu uzattı ama suya değdirmedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz önce yaprağı suya koydu. Yaprak yüzdü, yavaşça döndü. \"Bildim!\" dedi Deniz. Tarçın yaprağa burnunu uzattı ama suya değdirmedi.",
+        "poseAndActionEvidence": [
+          "Deniz önce yaprağı suya koydu.",
+          "Yaprak yüzdü, yavaşça döndü.",
+          "\"Bildim!\" dedi Deniz.",
+          "Tarçın yaprağa burnunu uzattı ama suya değdirmedi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz önce yaprağı suya koydu. Yaprak yüzdü, yavaşça döndü. \"Bildim!\" dedi Deniz. Tarçın yaprağa burnunu uzattı ama suya değdirmedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p04",
+        "quoteSHA256": "8049911a767c19b2904a5f245f7a5514381aecf4824d44618280fba34670d900",
+        "bookID": "pilot56_book_l4_fox_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "8049911a767c19b2904a5f245f7a5514381aecf4824d44618280fba34670d900",
+      "text": "Deniz önce yaprağı suya koydu. Yaprak yüzdü, yavaşça döndü. \"Bildim!\" dedi Deniz. Tarçın yaprağa burnunu uzattı ama suya değdirmedi.",
+      "sourceID": "p56_wave1_pilot56_book_l4_fox_v1_p04",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l4_fox_v1",
+      "rawPageMove": "test_two",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Sonra Deniz çakılı bıraktı.",
+              "Çakıl hemen dibe indi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Sonra Deniz çakılı bıraktı. Çakıl hemen dibe indi. Tarçın kulaklarını düşürdü. \"Burnum yanıldı,\" dedi. Deniz gülümsedi ve Tarçın'ın burnunu okşadı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p05",
+            "evidenceText": "Sonra Deniz çakılı bıraktı. Çakıl hemen dibe indi. Tarçın kulaklarını düşürdü. \"Burnum yanıldı,\" dedi. Deniz gülümsedi ve Tarçın'ın burnunu okşadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Sonra Deniz çakılı bıraktı. Çakıl hemen dibe indi. Tarçın kulaklarını düşürdü. \"Burnum yanıldı,\" dedi. Deniz gülümsedi ve Tarçın'ın burnunu okşadı.",
+        "poseAndActionEvidence": [
+          "Sonra Deniz çakılı bıraktı.",
+          "Çakıl hemen dibe indi.",
+          "Tarçın kulaklarını düşürdü.",
+          "\"Burnum yanıldı,\" dedi.",
+          "Deniz gülümsedi ve Tarçın'ın burnunu okşadı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Sonra Deniz çakılı bıraktı. Çakıl hemen dibe indi. Tarçın kulaklarını düşürdü. \"Burnum yanıldı,\" dedi. Deniz gülümsedi ve Tarçın'ın burnunu okşadı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p05",
+        "quoteSHA256": "565bfce98c1671fc4c0ab9af55c93f630d33777107cd50204a2db75d26742d24",
+        "bookID": "pilot56_book_l4_fox_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "565bfce98c1671fc4c0ab9af55c93f630d33777107cd50204a2db75d26742d24",
+      "text": "Sonra Deniz çakılı bıraktı. Çakıl hemen dibe indi. Tarçın kulaklarını düşürdü. \"Burnum yanıldı,\" dedi. Deniz gülümsedi ve Tarçın'ın burnunu okşadı.",
+      "sourceID": "p56_wave1_pilot56_book_l4_fox_v1_p05",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l4_fox_v1",
+      "rawPageMove": "child_compares",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "\"Yaprak hafifti, üstte kaldı.\" İkisini kendisi karşılaştırmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "\"Çakıl ağırdı, dibe gitti,\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Çakıl ağırdı, dibe gitti,\" dedi Deniz. \"Yaprak hafifti, üstte kaldı.\" İkisini kendisi karşılaştırmıştı. Tarçın kuyruğunu sallayarak onu dinledi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p06",
+            "evidenceText": "\"Çakıl ağırdı, dibe gitti,\" dedi Deniz. \"Yaprak hafifti, üstte kaldı.\" İkisini kendisi karşılaştırmıştı. Tarçın kuyruğunu sallayarak onu dinledi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Çakıl ağırdı, dibe gitti,\" dedi Deniz. \"Yaprak hafifti, üstte kaldı.\" İkisini kendisi karşılaştırmıştı. Tarçın kuyruğunu sallayarak onu dinledi.",
+        "poseAndActionEvidence": [
+          "\"Çakıl ağırdı, dibe gitti,\" dedi Deniz.",
+          "\"Yaprak hafifti, üstte kaldı.\" İkisini kendisi karşılaştırmıştı.",
+          "Tarçın kuyruğunu sallayarak onu dinledi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Çakıl ağırdı, dibe gitti,\" dedi Deniz. \"Yaprak hafifti, üstte kaldı.\" İkisini kendisi karşılaştırmıştı. Tarçın kuyruğunu sallayarak onu dinledi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p06",
+        "quoteSHA256": "d2d35e6fd6830b5d66457a88f90161d643328cfbd1179d0ac92e698d88705c6d",
+        "bookID": "pilot56_book_l4_fox_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "d2d35e6fd6830b5d66457a88f90161d643328cfbd1179d0ac92e698d88705c6d",
+      "text": "\"Çakıl ağırdı, dibe gitti,\" dedi Deniz. \"Yaprak hafifti, üstte kaldı.\" İkisini kendisi karşılaştırmıştı. Tarçın kuyruğunu sallayarak onu dinledi.",
+      "sourceID": "p56_wave1_pilot56_book_l4_fox_v1_p06",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l4_fox_v1",
+      "rawPageMove": "test_three",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "palamut/çam iğnesi/kabuk; kabuk",
+        "propMentions": [
+          {
+            "label": "palamut/çam iğnesi/kabuk",
+            "evidenceQuotes": [
+              "Kabuk küçük bir kayık gibi yüzdü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kabuk",
+            "evidenceQuotes": [
+              "Son olarak ceviz kabuğunu bıraktı.",
+              "Kabuk küçük bir kayık gibi yüzdü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Son olarak ceviz kabuğunu bıraktı. Kabuk küçük bir kayık gibi yüzdü. Tarçın sevinçle kuyruğunu salladı. Deniz karnını tutarak güldü. Tarçın hapşırıp katıldı. Tarçın'ın kuyruğu da halka halka sallandı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p07",
+            "evidenceText": "Son olarak ceviz kabuğunu bıraktı. Kabuk küçük bir kayık gibi yüzdü. Tarçın sevinçle kuyruğunu salladı. Deniz karnını tutarak güldü. Tarçın hapşırıp katıldı. Tarçın'ın kuyruğu da halka halka sallandı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Son olarak ceviz kabuğunu bıraktı. Kabuk küçük bir kayık gibi yüzdü. Tarçın sevinçle kuyruğunu salladı. Deniz karnını tutarak güldü. Tarçın hapşırıp katıldı. Tarçın'ın kuyruğu da halka halka sallandı.",
+        "poseAndActionEvidence": [
+          "Son olarak ceviz kabuğunu bıraktı.",
+          "Kabuk küçük bir kayık gibi yüzdü.",
+          "Tarçın sevinçle kuyruğunu salladı.",
+          "Deniz karnını tutarak güldü.",
+          "Tarçın hapşırıp katıldı.",
+          "Tarçın'ın kuyruğu da halka halka sallandı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Son olarak ceviz kabuğunu bıraktı. Kabuk küçük bir kayık gibi yüzdü. Tarçın sevinçle kuyruğunu salladı. Deniz karnını tutarak güldü. Tarçın hapşırıp katıldı. Tarçın'ın kuyruğu da halka halka sallandı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p07",
+        "quoteSHA256": "0e741c945e738d2993c106679dd46eb6c28178908113db90f92f3930462d676d",
+        "bookID": "pilot56_book_l4_fox_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "0e741c945e738d2993c106679dd46eb6c28178908113db90f92f3930462d676d",
+      "text": "Son olarak ceviz kabuğunu bıraktı. Kabuk küçük bir kayık gibi yüzdü. Tarçın sevinçle kuyruğunu salladı. Deniz karnını tutarak güldü. Tarçın hapşırıp katıldı. Tarçın'ın kuyruğu da halka halka sallandı.",
+      "sourceID": "p56_wave1_pilot56_book_l4_fox_v1_p07",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l4_fox_v1",
+      "rawPageMove": "closed_result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "boyunluk",
+        "propMentions": [
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "Tarçın ıslak burnunu turkuaz boyunluğuna sildi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz nesneleri sudan aldı. Tarçın ıslak burnunu turkuaz boyunluğuna sildi. \"Bir dahakine burnuma değil, sana soracağım,\" dedi. Deniz’in dudakları usulca kıvrıldı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p08",
+            "evidenceText": "Deniz nesneleri sudan aldı. Tarçın ıslak burnunu turkuaz boyunluğuna sildi. \"Bir dahakine burnuma değil, sana soracağım,\" dedi. Deniz’in dudakları usulca kıvrıldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz nesneleri sudan aldı. Tarçın ıslak burnunu turkuaz boyunluğuna sildi. \"Bir dahakine burnuma değil, sana soracağım,\" dedi. Deniz’in dudakları usulca kıvrıldı.",
+        "poseAndActionEvidence": [
+          "Deniz nesneleri sudan aldı.",
+          "Tarçın ıslak burnunu turkuaz boyunluğuna sildi.",
+          "\"Bir dahakine burnuma değil, sana soracağım,\" dedi.",
+          "Deniz’in dudakları usulca kıvrıldı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz nesneleri sudan aldı. Tarçın ıslak burnunu turkuaz boyunluğuna sildi. \"Bir dahakine burnuma değil, sana soracağım,\" dedi. Deniz’in dudakları usulca kıvrıldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_fox_v1_p08",
+        "quoteSHA256": "8ab0e4f8b3ae27d56e46244824ef39b8aab3f1b8481fb1105885abbb793cb09e",
+        "bookID": "pilot56_book_l4_fox_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "8ab0e4f8b3ae27d56e46244824ef39b8aab3f1b8481fb1105885abbb793cb09e",
+      "text": "Deniz nesneleri sudan aldı. Tarçın ıslak burnunu turkuaz boyunluğuna sildi. \"Bir dahakine burnuma değil, sana soracağım,\" dedi. Deniz’in dudakları usulca kıvrıldı.",
+      "sourceID": "p56_wave1_pilot56_book_l4_fox_v1_p08",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk tahmin eder, nesneleri tek tek dener ve sonucu kendisi karşılaştırır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

@@ -1,0 +1,934 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a9_hedgehog_v1",
+  "title": "Kestane'nin Yaprak Yolu",
+  "context": {
+    "settingName": "Çiçekli Çayır",
+    "mode": "adventure",
+    "companionID": "companion_hedgehog_pilot_001",
+    "structure": "A9",
+    "event": "e1",
+    "mechanism": "path-for-small-creature",
+    "sourceFilename": "adventure-hedgehog.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a9_hedgehog_v1",
+    "sourceBookID": "pilot56_book_a9_hedgehog_v1",
+    "structure": "A9",
+    "event": "e1",
+    "sample": false,
+    "title": "Kestane'nin Yaprak Yolu",
+    "pages": [
+      "Çiçekli Çayır’da güneş vardı. Deniz bir papatyanın yanında durdu. Kestane de çimenlerin arasından yürüyüp geldi. Hardal yaprağı dikeninde sallanıyordu.",
+      "Çimenin üstünde küçük bir uğur böceği vardı. Papatyaya dönmek istiyordu. Ama çimenler çok sıktı. Kestane de çimenlerin arasında zor yürüyordu. Böcek bir yöne, sonra öbürüne gitti.",
+      "\"Ben de onun gibi küçüğüm,\" dedi Kestane. \"Ona yolu ben gösteririm!\" Böceğin önüne geçti, ama dikenleri yolu kapattı. Böcek geri döndü. Deniz elini ağzına kapatıp kıkırdadı.",
+      "Deniz böceğe dokunmadı. Yerde ince bir dal buldu. \"Bununla yol yaparım,\" dedi. Dalı böcekle papatya arasına uzattı. Kestane dalın ucuna küçük bir yaprak koydu.",
+      "Kestane dalın yanına minik yapraklar dizdi. \"Yolun kenarı olsun,\" dedi. \"Küçük bir adım, sonra bir tane daha.\" Deniz yol hazır olunca geri çekildi.",
+      "Deniz bekledi. Böcek önce durdu, sonra dalın üstüne çıktı. Minik ayaklarıyla yürüdü. Kestane hiç kıpırdamadan, burnunun ucuyla onu izledi.",
+      "\"Kendi yürüyor,\" dedi Deniz. Böcek dalın sonuna gelip papatyaya tırmandı. Sarı ortasına kondu. Kestane sevinçten minik bir top oldu. Böcek orada güneşlenmeye başladı.",
+      "Sonra uğur böceği kanatlarını açtı ve uçtu. Kestane hardal yaprağına baktı. \"Benim yaprağım da uçmak istiyor galiba,\" dedi. Bu Deniz’i çok güldürdü. Kestane minik bir top oldu."
+    ]
+  },
+  "inputFileSHA256": "df07a7bbecd11a5eb2376684b8843188cd585ed92512ff8608e430517b27dbd8",
+  "inputBookPointer": "input/adventure-hedgehog.json#/books/3",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a9_hedgehog_v1",
+      "rawPageMove": "creature_noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Hardal yaprağı dikeninde sallanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da güneş vardı.",
+              "Deniz bir papatyanın yanında durdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Çiçekli Çayır’da güneş vardı. Deniz bir papatyanın yanında durdu. Kestane de çimenlerin arasından yürüyüp geldi. Hardal yaprağı dikeninde sallanıyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p01",
+            "evidenceText": "Çiçekli Çayır’da güneş vardı. Deniz bir papatyanın yanında durdu. Kestane de çimenlerin arasından yürüyüp geldi. Hardal yaprağı dikeninde sallanıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da güneş vardı. Deniz bir papatyanın yanında durdu. Kestane de çimenlerin arasından yürüyüp geldi. Hardal yaprağı dikeninde sallanıyordu.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da güneş vardı.",
+          "Deniz bir papatyanın yanında durdu.",
+          "Kestane de çimenlerin arasından yürüyüp geldi.",
+          "Hardal yaprağı dikeninde sallanıyordu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da güneş vardı. Deniz bir papatyanın yanında durdu. Kestane de çimenlerin arasından yürüyüp geldi. Hardal yaprağı dikeninde sallanıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p01",
+        "quoteSHA256": "13799606074dae8479a09be3a825c171d7bd547e6225a2b87ce5da3b7067072c",
+        "bookID": "pilot56_book_a9_hedgehog_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "13799606074dae8479a09be3a825c171d7bd547e6225a2b87ce5da3b7067072c",
+      "text": "Çiçekli Çayır’da güneş vardı. Deniz bir papatyanın yanında durdu. Kestane de çimenlerin arasından yürüyüp geldi. Hardal yaprağı dikeninde sallanıyordu.",
+      "sourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p01",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/3/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a9_hedgehog_v1",
+      "rawPageMove": "approach",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001",
+        "pilot56_book_a9_hedgehog_v1_wildlife_ladybird"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_hedgehog_v1_wildlife_ladybird",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Papatyaya dönmek istiyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001",
+              "pilot56_book_a9_hedgehog_v1_wildlife_ladybird"
+            ],
+            "description": "Çimenin üstünde küçük bir uğur böceği vardı. Papatyaya dönmek istiyordu. Ama çimenler çok sıktı. Kestane de çimenlerin arasında zor yürüyordu. Böcek bir yöne, sonra öbürüne gitti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p02",
+            "evidenceText": "Çimenin üstünde küçük bir uğur böceği vardı. Papatyaya dönmek istiyordu. Ama çimenler çok sıktı. Kestane de çimenlerin arasında zor yürüyordu. Böcek bir yöne, sonra öbürüne gitti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çimenin üstünde küçük bir uğur böceği vardı. Papatyaya dönmek istiyordu. Ama çimenler çok sıktı. Kestane de çimenlerin arasında zor yürüyordu. Böcek bir yöne, sonra öbürüne gitti.",
+        "poseAndActionEvidence": [
+          "Çimenin üstünde küçük bir uğur böceği vardı.",
+          "Papatyaya dönmek istiyordu.",
+          "Ama çimenler çok sıktı.",
+          "Kestane de çimenlerin arasında zor yürüyordu.",
+          "Böcek bir yöne, sonra öbürüne gitti."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çimenin üstünde küçük bir uğur böceği vardı. Papatyaya dönmek istiyordu. Ama çimenler çok sıktı. Kestane de çimenlerin arasında zor yürüyordu. Böcek bir yöne, sonra öbürüne gitti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p01",
+        "quoteSHA256": "beea9c5046105248e53484544b39886110a43a01e2483649adaaf2bafedaf51f",
+        "bookID": "pilot56_book_a9_hedgehog_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "beea9c5046105248e53484544b39886110a43a01e2483649adaaf2bafedaf51f",
+      "text": "Çimenin üstünde küçük bir uğur böceği vardı. Papatyaya dönmek istiyordu. Ama çimenler çok sıktı. Kestane de çimenlerin arasında zor yürüyordu. Böcek bir yöne, sonra öbürüne gitti.",
+      "sourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p02",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/3/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a9_hedgehog_v1",
+      "rawPageMove": "friend_idea",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001",
+        "pilot56_book_a9_hedgehog_v1_wildlife_ladybird"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_hedgehog_v1_wildlife_ladybird",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001",
+              "pilot56_book_a9_hedgehog_v1_wildlife_ladybird"
+            ],
+            "description": "\"Ben de onun gibi küçüğüm,\" dedi Kestane. \"Ona yolu ben gösteririm!\" Böceğin önüne geçti, ama dikenleri yolu kapattı. Böcek geri döndü. Deniz elini ağzına kapatıp kıkırdadı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p03",
+            "evidenceText": "\"Ben de onun gibi küçüğüm,\" dedi Kestane. \"Ona yolu ben gösteririm!\" Böceğin önüne geçti, ama dikenleri yolu kapattı. Böcek geri döndü. Deniz elini ağzına kapatıp kıkırdadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Ben de onun gibi küçüğüm,\" dedi Kestane. \"Ona yolu ben gösteririm!\" Böceğin önüne geçti, ama dikenleri yolu kapattı. Böcek geri döndü. Deniz elini ağzına kapatıp kıkırdadı.",
+        "poseAndActionEvidence": [
+          "\"Ben de onun gibi küçüğüm,\" dedi Kestane.",
+          "\"Ona yolu ben gösteririm!\" Böceğin önüne geçti, ama dikenleri yolu kapattı.",
+          "Böcek geri döndü.",
+          "Deniz elini ağzına kapatıp kıkırdadı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_hedgehog_pilot_001",
+        "quote": "\"Ben de onun gibi küçüğüm,\" dedi Kestane. \"Ona yolu ben gösteririm!\" Böceğin önüne geçti, ama dikenleri yolu kapattı. Böcek geri döndü. Deniz elini ağzına kapatıp kıkırdadı.",
+        "attributionQuote": "Kestane",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p03",
+        "quoteSHA256": "19045a2e2727749ce4ce41b361984d4ddd48a1ca17628b36c51fcb3cbeadf5ff",
+        "bookID": "pilot56_book_a9_hedgehog_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "19045a2e2727749ce4ce41b361984d4ddd48a1ca17628b36c51fcb3cbeadf5ff",
+      "text": "\"Ben de onun gibi küçüğüm,\" dedi Kestane. \"Ona yolu ben gösteririm!\" Böceğin önüne geçti, ama dikenleri yolu kapattı. Böcek geri döndü. Deniz elini ağzına kapatıp kıkırdadı.",
+      "sourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p03",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/3/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a9_hedgehog_v1",
+      "rawPageMove": "child_picks_material",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001",
+        "pilot56_book_a9_hedgehog_v1_wildlife_ladybird"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_hedgehog_v1_wildlife_ladybird",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; dal; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Kestane dalın ucuna küçük bir yaprak koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Yerde ince bir dal buldu.",
+              "Dalı böcekle papatya arasına uzattı.",
+              "Kestane dalın ucuna küçük bir yaprak koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Dalı böcekle papatya arasına uzattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001",
+              "pilot56_book_a9_hedgehog_v1_wildlife_ladybird"
+            ],
+            "description": "Deniz böceğe dokunmadı. Yerde ince bir dal buldu. \"Bununla yol yaparım,\" dedi. Dalı böcekle papatya arasına uzattı. Kestane dalın ucuna küçük bir yaprak koydu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p04",
+            "evidenceText": "Deniz böceğe dokunmadı. Yerde ince bir dal buldu. \"Bununla yol yaparım,\" dedi. Dalı böcekle papatya arasına uzattı. Kestane dalın ucuna küçük bir yaprak koydu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz böceğe dokunmadı. Yerde ince bir dal buldu. \"Bununla yol yaparım,\" dedi. Dalı böcekle papatya arasına uzattı. Kestane dalın ucuna küçük bir yaprak koydu.",
+        "poseAndActionEvidence": [
+          "Deniz böceğe dokunmadı.",
+          "Yerde ince bir dal buldu.",
+          "\"Bununla yol yaparım,\" dedi.",
+          "Dalı böcekle papatya arasına uzattı.",
+          "Kestane dalın ucuna küçük bir yaprak koydu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz böceğe dokunmadı. Yerde ince bir dal buldu. \"Bununla yol yaparım,\" dedi. Dalı böcekle papatya arasına uzattı. Kestane dalın ucuna küçük bir yaprak koydu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p04",
+        "quoteSHA256": "fcedc3dc1caf21317882b66f8c3e588180a78138c6963b2faf0d30cfa5620e4c",
+        "bookID": "pilot56_book_a9_hedgehog_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "fcedc3dc1caf21317882b66f8c3e588180a78138c6963b2faf0d30cfa5620e4c",
+      "text": "Deniz böceğe dokunmadı. Yerde ince bir dal buldu. \"Bununla yol yaparım,\" dedi. Dalı böcekle papatya arasına uzattı. Kestane dalın ucuna küçük bir yaprak koydu.",
+      "sourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p04",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/3/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a9_hedgehog_v1",
+      "rawPageMove": "path_built",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001",
+        "pilot56_book_a9_hedgehog_v1_wildlife_ladybird"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_hedgehog_v1_wildlife_ladybird",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; dal",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Kestane dalın yanına minik yapraklar dizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Kestane dalın yanına minik yapraklar dizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001",
+              "pilot56_book_a9_hedgehog_v1_wildlife_ladybird"
+            ],
+            "description": "Kestane dalın yanına minik yapraklar dizdi. \"Yolun kenarı olsun,\" dedi. \"Küçük bir adım, sonra bir tane daha.\" Deniz yol hazır olunca geri çekildi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p05",
+            "evidenceText": "Kestane dalın yanına minik yapraklar dizdi. \"Yolun kenarı olsun,\" dedi. \"Küçük bir adım, sonra bir tane daha.\" Deniz yol hazır olunca geri çekildi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane dalın yanına minik yapraklar dizdi. \"Yolun kenarı olsun,\" dedi. \"Küçük bir adım, sonra bir tane daha.\" Deniz yol hazır olunca geri çekildi.",
+        "poseAndActionEvidence": [
+          "Kestane dalın yanına minik yapraklar dizdi.",
+          "\"Yolun kenarı olsun,\" dedi.",
+          "\"Küçük bir adım, sonra bir tane daha.\" Deniz yol hazır olunca geri çekildi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kestane dalın yanına minik yapraklar dizdi. \"Yolun kenarı olsun,\" dedi. \"Küçük bir adım, sonra bir tane daha.\" Deniz yol hazır olunca geri çekildi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p05",
+        "quoteSHA256": "e4f293c95e8e95ae6cf4540f233a89636638727334094eccb91e7ec6781131e3",
+        "bookID": "pilot56_book_a9_hedgehog_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "e4f293c95e8e95ae6cf4540f233a89636638727334094eccb91e7ec6781131e3",
+      "text": "Kestane dalın yanına minik yapraklar dizdi. \"Yolun kenarı olsun,\" dedi. \"Küçük bir adım, sonra bir tane daha.\" Deniz yol hazır olunca geri çekildi.",
+      "sourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p05",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/3/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a9_hedgehog_v1",
+      "rawPageMove": "child_waits",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001",
+        "pilot56_book_a9_hedgehog_v1_wildlife_ladybird"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_hedgehog_v1_wildlife_ladybird",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "self-propelled-crossing"
+            ]
+          }
+        ],
+        "propDescription": "dal; top/şapka/uçurtma; canlı yolu",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Böcek önce durdu, sonra dalın üstüne çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kestane hiç kıpırdamadan, burnunun ucuyla onu izledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "canlı yolu",
+            "evidenceQuotes": [
+              "Böcek önce durdu, sonra dalın üstüne çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001",
+              "pilot56_book_a9_hedgehog_v1_wildlife_ladybird"
+            ],
+            "description": "Deniz bekledi. Böcek önce durdu, sonra dalın üstüne çıktı. Minik ayaklarıyla yürüdü. Kestane hiç kıpırdamadan, burnunun ucuyla onu izledi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p06",
+            "evidenceText": "Deniz bekledi. Böcek önce durdu, sonra dalın üstüne çıktı. Minik ayaklarıyla yürüdü. Kestane hiç kıpırdamadan, burnunun ucuyla onu izledi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz bekledi. Böcek önce durdu, sonra dalın üstüne çıktı. Minik ayaklarıyla yürüdü. Kestane hiç kıpırdamadan, burnunun ucuyla onu izledi.",
+        "poseAndActionEvidence": [
+          "Deniz bekledi.",
+          "Böcek önce durdu, sonra dalın üstüne çıktı.",
+          "Minik ayaklarıyla yürüdü.",
+          "Kestane hiç kıpırdamadan, burnunun ucuyla onu izledi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz bekledi. Böcek önce durdu, sonra dalın üstüne çıktı. Minik ayaklarıyla yürüdü. Kestane hiç kıpırdamadan, burnunun ucuyla onu izledi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p06",
+        "quoteSHA256": "5334a09d472534a7dd1edd33dda0fe084865c4165e540b88ccfeee6463e466de",
+        "bookID": "pilot56_book_a9_hedgehog_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "5334a09d472534a7dd1edd33dda0fe084865c4165e540b88ccfeee6463e466de",
+      "text": "Deniz bekledi. Böcek önce durdu, sonra dalın üstüne çıktı. Minik ayaklarıyla yürüdü. Kestane hiç kıpırdamadan, burnunun ucuyla onu izledi.",
+      "sourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p06",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/3/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a9_hedgehog_v1",
+      "rawPageMove": "creature_crosses",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001",
+        "pilot56_book_a9_hedgehog_v1_wildlife_ladybird"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_hedgehog_v1_wildlife_ladybird",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "self-propelled-crossing"
+            ]
+          }
+        ],
+        "propDescription": "dal; papatya/çiçek/yonca; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Böcek dalın sonuna gelip papatyaya tırmandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Böcek dalın sonuna gelip papatyaya tırmandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kestane sevinçten minik bir top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001",
+              "pilot56_book_a9_hedgehog_v1_wildlife_ladybird"
+            ],
+            "description": "\"Kendi yürüyor,\" dedi Deniz. Böcek dalın sonuna gelip papatyaya tırmandı. Sarı ortasına kondu. Kestane sevinçten minik bir top oldu. Böcek orada güneşlenmeye başladı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p07",
+            "evidenceText": "\"Kendi yürüyor,\" dedi Deniz. Böcek dalın sonuna gelip papatyaya tırmandı. Sarı ortasına kondu. Kestane sevinçten minik bir top oldu. Böcek orada güneşlenmeye başladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Kendi yürüyor,\" dedi Deniz. Böcek dalın sonuna gelip papatyaya tırmandı. Sarı ortasına kondu. Kestane sevinçten minik bir top oldu. Böcek orada güneşlenmeye başladı.",
+        "poseAndActionEvidence": [
+          "\"Kendi yürüyor,\" dedi Deniz.",
+          "Böcek dalın sonuna gelip papatyaya tırmandı.",
+          "Sarı ortasına kondu.",
+          "Kestane sevinçten minik bir top oldu.",
+          "Böcek orada güneşlenmeye başladı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "pilot56_book_a9_hedgehog_v1_wildlife_ladybird",
+        "quote": "\"Kendi yürüyor,\" dedi Deniz. Böcek dalın sonuna gelip papatyaya tırmandı. Sarı ortasına kondu. Kestane sevinçten minik bir top oldu. Böcek orada güneşlenmeye başladı.",
+        "attributionQuote": "Böcek",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p02",
+        "quoteSHA256": "bc657b5f3e153df2ad03101396996ef68f0a4d2ca785a43c0eac9d9ec9cd7d0b",
+        "bookID": "pilot56_book_a9_hedgehog_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "bc657b5f3e153df2ad03101396996ef68f0a4d2ca785a43c0eac9d9ec9cd7d0b",
+      "text": "\"Kendi yürüyor,\" dedi Deniz. Böcek dalın sonuna gelip papatyaya tırmandı. Sarı ortasına kondu. Kestane sevinçten minik bir top oldu. Böcek orada güneşlenmeye başladı.",
+      "sourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p07",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/3/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a9_hedgehog_v1",
+      "rawPageMove": "closing",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001",
+        "pilot56_book_a9_hedgehog_v1_wildlife_ladybird"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_hedgehog_v1_wildlife_ladybird",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature",
+              "flies-away-by-page-end"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Kestane hardal yaprağına baktı.",
+              "\"Benim yaprağım da uçmak istiyor galiba,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kestane minik bir top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001",
+              "pilot56_book_a9_hedgehog_v1_wildlife_ladybird"
+            ],
+            "description": "Sonra uğur böceği kanatlarını açtı ve uçtu. Kestane hardal yaprağına baktı. \"Benim yaprağım da uçmak istiyor galiba,\" dedi. Bu Deniz’i çok güldürdü. Kestane minik bir top oldu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p08",
+            "evidenceText": "Sonra uğur böceği kanatlarını açtı ve uçtu. Kestane hardal yaprağına baktı. \"Benim yaprağım da uçmak istiyor galiba,\" dedi. Bu Deniz’i çok güldürdü. Kestane minik bir top oldu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Sonra uğur böceği kanatlarını açtı ve uçtu. Kestane hardal yaprağına baktı. \"Benim yaprağım da uçmak istiyor galiba,\" dedi. Bu Deniz’i çok güldürdü. Kestane minik bir top oldu.",
+        "poseAndActionEvidence": [
+          "Sonra uğur böceği kanatlarını açtı ve uçtu.",
+          "Kestane hardal yaprağına baktı.",
+          "\"Benim yaprağım da uçmak istiyor galiba,\" dedi.",
+          "Bu Deniz’i çok güldürdü.",
+          "Kestane minik bir top oldu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Sonra uğur böceği kanatlarını açtı ve uçtu. Kestane hardal yaprağına baktı. \"Benim yaprağım da uçmak istiyor galiba,\" dedi. Bu Deniz’i çok güldürdü. Kestane minik bir top oldu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p08",
+        "quoteSHA256": "df13091dd41b7a2532b75bfc124381987656b68e2352b28dea00a022e20379e4",
+        "bookID": "pilot56_book_a9_hedgehog_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "df13091dd41b7a2532b75bfc124381987656b68e2352b28dea00a022e20379e4",
+      "text": "Sonra uğur böceği kanatlarını açtı ve uçtu. Kestane hardal yaprağına baktı. \"Benim yaprağım da uçmak istiyor galiba,\" dedi. Bu Deniz’i çok güldürdü. Kestane minik bir top oldu.",
+      "sourceID": "p56_wave2_pilot56_book_a9_hedgehog_v1_p08",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/3/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz canlıya dokunmadan dal ya da yaprakla yol yapar, canlının kendisi yürümesini bekler.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

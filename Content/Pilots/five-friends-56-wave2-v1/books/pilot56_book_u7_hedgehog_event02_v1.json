@@ -1,0 +1,929 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u7_hedgehog_event02_v1",
+  "title": "Kestane Blok Oluyor",
+  "context": {
+    "settingName": "Orman Kıyısındaki Oda",
+    "mode": "bedtime",
+    "companionID": "companion_hedgehog_pilot_001",
+    "structure": "U7",
+    "event": "e2",
+    "mechanism": "toys-to-bed",
+    "sourceFilename": "bedtime-hedgehog.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u7_hedgehog_event02_v1",
+    "sourceBookID": "pilot56_book_u7_hedgehog_event02_v1",
+    "structure": "U7",
+    "event": "e2",
+    "sample": false,
+    "title": "Kestane Blok Oluyor",
+    "pages": [
+      "Orman Kıyısındaki Oda’da gün bitmek üzereydi. Deniz halıda oturuyordu. Kestane minderinden yere inmiş, blokların arasında burnunu kıpırdatıyordu. Hardal yaprağı dikeninde sallanıyordu.",
+      "Halıda tahta oyuncaklar dağınıktı. Kırmızı araba, renkli bloklar, küçük bir tren… Kestane bir bloğun arkasına saklandı. \"Bir kule daha yapsam,\" dedi Deniz. Ama esnedi.",
+      "Kestane bloklardan birinin yanına dikildi. \"Ben de bir blok olurum,\" dedi. Blok devrildi, Kestane yuvarlanıp top oldu. Deniz yastığına gömülüp güldü.",
+      "Deniz her oyuncağa bir yer seçti. \"Araba kutunun yanında uyusun, orası garajı,\" dedi. Blokları tek tek kutuya dizdi. Kestane arabayı garaja doğru itti.",
+      "Kestane açılıp kutunun kenarına yürüdü. \"Küçük bir adım, sonra bir tane daha,\" dedi. Kutudaki blokları sayar gibi burnuyla dokundu. Deniz’in dudakları usulca kıvrıldı. Kestane de burnunu kırıştırdı.",
+      "Deniz yalnız küçük tahta treni yanına aldı. \"Bu benimle kalıyor,\" dedi. Bloklar kutudaydı, araba garajında. Kestane bomboş halıda bir tur attı.",
+      "Kestane minderine döndü ve kıvrıldı. Hardal yaprağı dikeninin ucunda dinleniyordu. Deniz tahta treni yanına alıp yorganın altına girdi.",
+      "\"Gece seni sarsın, Deniz,\" dedi küçük top. Deniz gözlerini kapattı. Bloklar kutuda, kirpi minderinde, tren Deniz’in yanında uyudu. Oda sessizdi."
+    ]
+  },
+  "inputFileSHA256": "787799db801d5228514a484d3ad8e0c96ffc791001c39472752e001a79071bc8",
+  "inputBookPointer": "input/bedtime-hedgehog.json#/books/1",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; minder; oyuncak; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Hardal yaprağı dikeninde sallanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Kestane minderinden yere inmiş, blokların arasında burnunu kıpırdatıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Kestane minderinden yere inmiş, blokların arasında burnunu kıpırdatıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kestane minderinden yere inmiş, blokların arasında burnunu kıpırdatıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Orman Kıyısındaki Oda’da gün bitmek üzereydi. Deniz halıda oturuyordu. Kestane minderinden yere inmiş, blokların arasında burnunu kıpırdatıyordu. Hardal yaprağı dikeninde sallanıyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p01",
+            "evidenceText": "Orman Kıyısındaki Oda’da gün bitmek üzereydi. Deniz halıda oturuyordu. Kestane minderinden yere inmiş, blokların arasında burnunu kıpırdatıyordu. Hardal yaprağı dikeninde sallanıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Orman Kıyısındaki Oda’da gün bitmek üzereydi. Deniz halıda oturuyordu. Kestane minderinden yere inmiş, blokların arasında burnunu kıpırdatıyordu. Hardal yaprağı dikeninde sallanıyordu.",
+        "poseAndActionEvidence": [
+          "Orman Kıyısındaki Oda’da gün bitmek üzereydi.",
+          "Deniz halıda oturuyordu.",
+          "Kestane minderinden yere inmiş, blokların arasında burnunu kıpırdatıyordu.",
+          "Hardal yaprağı dikeninde sallanıyordu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Orman Kıyısındaki Oda’da gün bitmek üzereydi. Deniz halıda oturuyordu. Kestane minderinden yere inmiş, blokların arasında burnunu kıpırdatıyordu. Hardal yaprağı dikeninde sallanıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p01",
+        "quoteSHA256": "3437d545334161af6b9d198db2350f12c6840862a997f077010b2549f70fbdc2",
+        "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "3437d545334161af6b9d198db2350f12c6840862a997f077010b2549f70fbdc2",
+      "text": "Orman Kıyısındaki Oda’da gün bitmek üzereydi. Deniz halıda oturuyordu. Kestane minderinden yere inmiş, blokların arasında burnunu kıpırdatıyordu. Hardal yaprağı dikeninde sallanıyordu.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p01",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/1/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+      "rawPageMove": "toys_scattered",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tahta işaret parçaları; oyuncak; iz/kum",
+        "propMentions": [
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Halıda tahta oyuncaklar dağınıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Halıda tahta oyuncaklar dağınıktı.",
+              "Kırmızı araba, renkli bloklar, küçük bir tren…"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kırmızı araba, renkli bloklar, küçük bir tren…"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Halıda tahta oyuncaklar dağınıktı. Kırmızı araba, renkli bloklar, küçük bir tren… Kestane bir bloğun arkasına saklandı. \"Bir kule daha yapsam,\" dedi Deniz. Ama esnedi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p02",
+            "evidenceText": "Halıda tahta oyuncaklar dağınıktı. Kırmızı araba, renkli bloklar, küçük bir tren… Kestane bir bloğun arkasına saklandı. \"Bir kule daha yapsam,\" dedi Deniz. Ama esnedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Halıda tahta oyuncaklar dağınıktı. Kırmızı araba, renkli bloklar, küçük bir tren… Kestane bir bloğun arkasına saklandı. \"Bir kule daha yapsam,\" dedi Deniz. Ama esnedi.",
+        "poseAndActionEvidence": [
+          "Halıda tahta oyuncaklar dağınıktı.",
+          "Kırmızı araba, renkli bloklar, küçük bir tren…",
+          "Kestane bir bloğun arkasına saklandı.",
+          "\"Bir kule daha yapsam,\" dedi Deniz.",
+          "Ama esnedi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Halıda tahta oyuncaklar dağınıktı. Kırmızı araba, renkli bloklar, küçük bir tren… Kestane bir bloğun arkasına saklandı. \"Bir kule daha yapsam,\" dedi Deniz. Ama esnedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p02",
+        "quoteSHA256": "90992b836c3d9bcab0772fb90b07bd97eb4844abe81cc265bc7af2de5105bf7f",
+        "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "90992b836c3d9bcab0772fb90b07bd97eb4844abe81cc265bc7af2de5105bf7f",
+      "text": "Halıda tahta oyuncaklar dağınıktı. Kırmızı araba, renkli bloklar, küçük bir tren… Kestane bir bloğun arkasına saklandı. \"Bir kule daha yapsam,\" dedi Deniz. Ama esnedi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p02",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/1/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+      "rawPageMove": "friend_beds_wrong",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; yatak/yastık/döşek; oyuncak; top/şapka/uçurtma; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Blok devrildi, Kestane yuvarlanıp top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz yastığına gömülüp güldü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Kestane bloklardan birinin yanına dikildi.",
+              "\"Ben de bir blok olurum,\" dedi.",
+              "Blok devrildi, Kestane yuvarlanıp top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Blok devrildi, Kestane yuvarlanıp top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Blok devrildi, Kestane yuvarlanıp top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane bloklardan birinin yanına dikildi. \"Ben de bir blok olurum,\" dedi. Blok devrildi, Kestane yuvarlanıp top oldu. Deniz yastığına gömülüp güldü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p03",
+            "evidenceText": "Kestane bloklardan birinin yanına dikildi. \"Ben de bir blok olurum,\" dedi. Blok devrildi, Kestane yuvarlanıp top oldu. Deniz yastığına gömülüp güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane bloklardan birinin yanına dikildi. \"Ben de bir blok olurum,\" dedi. Blok devrildi, Kestane yuvarlanıp top oldu. Deniz yastığına gömülüp güldü.",
+        "poseAndActionEvidence": [
+          "Kestane bloklardan birinin yanına dikildi.",
+          "\"Ben de bir blok olurum,\" dedi.",
+          "Blok devrildi, Kestane yuvarlanıp top oldu.",
+          "Deniz yastığına gömülüp güldü."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_hedgehog_pilot_001",
+        "quote": "Kestane bloklardan birinin yanına dikildi. \"Ben de bir blok olurum,\" dedi. Blok devrildi, Kestane yuvarlanıp top oldu. Deniz yastığına gömülüp güldü.",
+        "attributionQuote": "Kestane",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p03",
+        "quoteSHA256": "0b83139da8de21a5f3646c091d2b76154460c6ea8cf3b50024ebe778f4251d7d",
+        "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "0b83139da8de21a5f3646c091d2b76154460c6ea8cf3b50024ebe778f4251d7d",
+      "text": "Kestane bloklardan birinin yanına dikildi. \"Ben de bir blok olurum,\" dedi. Blok devrildi, Kestane yuvarlanıp top oldu. Deniz yastığına gömülüp güldü.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p03",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/1/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+      "rawPageMove": "child_picks_places",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "sepet/kutu; oyuncak",
+        "propMentions": [
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "\"Araba kutunun yanında uyusun, orası garajı,\" dedi.",
+              "Blokları tek tek kutuya dizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "\"Araba kutunun yanında uyusun, orası garajı,\" dedi.",
+              "Blokları tek tek kutuya dizdi.",
+              "Kestane arabayı garaja doğru itti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz her oyuncağa bir yer seçti. \"Araba kutunun yanında uyusun, orası garajı,\" dedi. Blokları tek tek kutuya dizdi. Kestane arabayı garaja doğru itti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p04",
+            "evidenceText": "Deniz her oyuncağa bir yer seçti. \"Araba kutunun yanında uyusun, orası garajı,\" dedi. Blokları tek tek kutuya dizdi. Kestane arabayı garaja doğru itti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz her oyuncağa bir yer seçti. \"Araba kutunun yanında uyusun, orası garajı,\" dedi. Blokları tek tek kutuya dizdi. Kestane arabayı garaja doğru itti.",
+        "poseAndActionEvidence": [
+          "Deniz her oyuncağa bir yer seçti.",
+          "\"Araba kutunun yanında uyusun, orası garajı,\" dedi.",
+          "Blokları tek tek kutuya dizdi.",
+          "Kestane arabayı garaja doğru itti."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz her oyuncağa bir yer seçti. \"Araba kutunun yanında uyusun, orası garajı,\" dedi. Blokları tek tek kutuya dizdi. Kestane arabayı garaja doğru itti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p04",
+        "quoteSHA256": "889aa76d18671ed09b6d54e17d734af6f00a2c5436b9464d8ccaf6a7534f4ebd",
+        "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "889aa76d18671ed09b6d54e17d734af6f00a2c5436b9464d8ccaf6a7534f4ebd",
+      "text": "Deniz her oyuncağa bir yer seçti. \"Araba kutunun yanında uyusun, orası garajı,\" dedi. Blokları tek tek kutuya dizdi. Kestane arabayı garaja doğru itti.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p04",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/1/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+      "rawPageMove": "soft_smile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "sepet/kutu; oyuncak",
+        "propMentions": [
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Kestane açılıp kutunun kenarına yürüdü.",
+              "Kutudaki blokları sayar gibi burnuyla dokundu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Kutudaki blokları sayar gibi burnuyla dokundu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane açılıp kutunun kenarına yürüdü. \"Küçük bir adım, sonra bir tane daha,\" dedi. Kutudaki blokları sayar gibi burnuyla dokundu. Deniz’in dudakları usulca kıvrıldı. Kestane de burnunu kırıştırdı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p05",
+            "evidenceText": "Kestane açılıp kutunun kenarına yürüdü. \"Küçük bir adım, sonra bir tane daha,\" dedi. Kutudaki blokları sayar gibi burnuyla dokundu. Deniz’in dudakları usulca kıvrıldı. Kestane de burnunu kırıştırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane açılıp kutunun kenarına yürüdü. \"Küçük bir adım, sonra bir tane daha,\" dedi. Kutudaki blokları sayar gibi burnuyla dokundu. Deniz’in dudakları usulca kıvrıldı. Kestane de burnunu kırıştırdı.",
+        "poseAndActionEvidence": [
+          "Kestane açılıp kutunun kenarına yürüdü.",
+          "\"Küçük bir adım, sonra bir tane daha,\" dedi.",
+          "Kutudaki blokları sayar gibi burnuyla dokundu.",
+          "Deniz’in dudakları usulca kıvrıldı.",
+          "Kestane de burnunu kırıştırdı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kestane açılıp kutunun kenarına yürüdü. \"Küçük bir adım, sonra bir tane daha,\" dedi. Kutudaki blokları sayar gibi burnuyla dokundu. Deniz’in dudakları usulca kıvrıldı. Kestane de burnunu kırıştırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p05",
+        "quoteSHA256": "ef74b90160c6fc2a9201cfe9590935fbd365d647e41c9896388e746aa157cc34",
+        "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "ef74b90160c6fc2a9201cfe9590935fbd365d647e41c9896388e746aa157cc34",
+      "text": "Kestane açılıp kutunun kenarına yürüdü. \"Küçük bir adım, sonra bir tane daha,\" dedi. Kutudaki blokları sayar gibi burnuyla dokundu. Deniz’in dudakları usulca kıvrıldı. Kestane de burnunu kırıştırdı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p05",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/1/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+      "rawPageMove": "one_toy_kept",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tahta işaret parçaları; sepet/kutu; oyuncak",
+        "propMentions": [
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Deniz yalnız küçük tahta treni yanına aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Bloklar kutudaydı, araba garajında."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Deniz yalnız küçük tahta treni yanına aldı.",
+              "Bloklar kutudaydı, araba garajında."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz yalnız küçük tahta treni yanına aldı. \"Bu benimle kalıyor,\" dedi. Bloklar kutudaydı, araba garajında. Kestane bomboş halıda bir tur attı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p06",
+            "evidenceText": "Deniz yalnız küçük tahta treni yanına aldı. \"Bu benimle kalıyor,\" dedi. Bloklar kutudaydı, araba garajında. Kestane bomboş halıda bir tur attı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yalnız küçük tahta treni yanına aldı. \"Bu benimle kalıyor,\" dedi. Bloklar kutudaydı, araba garajında. Kestane bomboş halıda bir tur attı.",
+        "poseAndActionEvidence": [
+          "Deniz yalnız küçük tahta treni yanına aldı.",
+          "\"Bu benimle kalıyor,\" dedi.",
+          "Bloklar kutudaydı, araba garajında.",
+          "Kestane bomboş halıda bir tur attı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yalnız küçük tahta treni yanına aldı. \"Bu benimle kalıyor,\" dedi. Bloklar kutudaydı, araba garajında. Kestane bomboş halıda bir tur attı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p06",
+        "quoteSHA256": "847d1ebbdb6c193730a87c19b4239e446930f2a38d660fdc9f8ecdb2086e72dc",
+        "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "847d1ebbdb6c193730a87c19b4239e446930f2a38d660fdc9f8ecdb2086e72dc",
+      "text": "Deniz yalnız küçük tahta treni yanına aldı. \"Bu benimle kalıyor,\" dedi. Bloklar kutudaydı, araba garajında. Kestane bomboş halıda bir tur attı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p06",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/1/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; tahta işaret parçaları; minder; oyuncak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Hardal yaprağı dikeninin ucunda dinleniyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Deniz tahta treni yanına alıp yorganın altına girdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Kestane minderine döndü ve kıvrıldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Deniz tahta treni yanına alıp yorganın altına girdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane minderine döndü ve kıvrıldı. Hardal yaprağı dikeninin ucunda dinleniyordu. Deniz tahta treni yanına alıp yorganın altına girdi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p07",
+            "evidenceText": "Kestane minderine döndü ve kıvrıldı. Hardal yaprağı dikeninin ucunda dinleniyordu. Deniz tahta treni yanına alıp yorganın altına girdi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane minderine döndü ve kıvrıldı. Hardal yaprağı dikeninin ucunda dinleniyordu. Deniz tahta treni yanına alıp yorganın altına girdi.",
+        "poseAndActionEvidence": [
+          "Kestane minderine döndü ve kıvrıldı.",
+          "Hardal yaprağı dikeninin ucunda dinleniyordu.",
+          "Deniz tahta treni yanına alıp yorganın altına girdi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kestane minderine döndü ve kıvrıldı. Hardal yaprağı dikeninin ucunda dinleniyordu. Deniz tahta treni yanına alıp yorganın altına girdi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p07",
+        "quoteSHA256": "b1a0028edb6f8134fc4a404b4c95937e67f67398284648cd1be7a99e668088c7",
+        "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "b1a0028edb6f8134fc4a404b4c95937e67f67398284648cd1be7a99e668088c7",
+      "text": "Kestane minderine döndü ve kıvrıldı. Hardal yaprağı dikeninin ucunda dinleniyordu. Deniz tahta treni yanına alıp yorganın altına girdi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p07",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/1/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "asleep",
+              "explicit-source-sleep"
+            ]
+          }
+        ],
+        "propDescription": "minder; sepet/kutu; oyuncak; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Bloklar kutuda, kirpi minderinde, tren Deniz’in yanında uyudu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Bloklar kutuda, kirpi minderinde, tren Deniz’in yanında uyudu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Bloklar kutuda, kirpi minderinde, tren Deniz’in yanında uyudu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "\"Gece seni sarsın, Deniz,\" dedi küçük top."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "\"Gece seni sarsın, Deniz,\" dedi küçük top. Deniz gözlerini kapattı. Bloklar kutuda, kirpi minderinde, tren Deniz’in yanında uyudu. Oda sessizdi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p08",
+            "evidenceText": "\"Gece seni sarsın, Deniz,\" dedi küçük top. Deniz gözlerini kapattı. Bloklar kutuda, kirpi minderinde, tren Deniz’in yanında uyudu. Oda sessizdi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Gece seni sarsın, Deniz,\" dedi küçük top. Deniz gözlerini kapattı. Bloklar kutuda, kirpi minderinde, tren Deniz’in yanında uyudu. Oda sessizdi.",
+        "poseAndActionEvidence": [
+          "\"Gece seni sarsın, Deniz,\" dedi küçük top.",
+          "Deniz gözlerini kapattı.",
+          "Bloklar kutuda, kirpi minderinde, tren Deniz’in yanında uyudu.",
+          "Oda sessizdi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Gece seni sarsın, Deniz,\" dedi küçük top. Deniz gözlerini kapattı. Bloklar kutuda, kirpi minderinde, tren Deniz’in yanında uyudu. Oda sessizdi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p08",
+        "quoteSHA256": "09e458c1b1a5a3586a375bc4e059ed455011e1b09289e5bd0ee3c38df7dc4d5d",
+        "bookID": "pilot56_book_u7_hedgehog_event02_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "09e458c1b1a5a3586a375bc4e059ed455011e1b09289e5bd0ee3c38df7dc4d5d",
+      "text": "\"Gece seni sarsın, Deniz,\" dedi küçük top. Deniz gözlerini kapattı. Bloklar kutuda, kirpi minderinde, tren Deniz’in yanında uyudu. Oda sessizdi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_hedgehog_event02_v1_p08",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/1/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz her oyuncağa bir yatak yeri seçer, sırayı kendisi belirler, yalnız birini yanına alır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

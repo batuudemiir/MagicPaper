@@ -1,0 +1,915 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l8_fox_event02_v1",
+  "title": "Tarçın'ın Boyunluğu",
+  "context": {
+    "settingName": "Dere Kenarı (yeni mekân)",
+    "mode": "learning",
+    "companionID": "companion_fox_pilot_001",
+    "structure": "L8",
+    "event": "e2",
+    "mechanism": "whose-tracks",
+    "sourceFilename": "learning-fox.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l8_fox_event02_v1",
+    "sourceBookID": "pilot56_book_l8_fox_event02_v1",
+    "structure": "L8",
+    "event": "e2",
+    "sample": false,
+    "title": "Tarçın'ın Boyunluğu",
+    "pages": [
+      "Dere Kenarı’nda öğle güneşi kumu ısıtıyordu. Kum hâlâ ıslaktı. Deniz ile Tarçın kıyıda duruyordu. Tarçın'ın boynunda bu kez turkuaz boyunluk yoktu.",
+      "Kumda bir sıra iz uzanıyordu. Her izin bir ucu yuvarlak, öbür ucu parmaklıydı. Tarçın izleri kokladı. \"Bu izler nereye gidiyor?\" dedi Deniz. \"Dereye mi, ağaçlara mı?\"",
+      "\"Bir koklayalım bakalım,\" dedi Tarçın. İzleri kokladı. \"Boyunluğum ağaçların orada kokuyor!\" Sonra hapşırdı, burnuna kum kaçmıştı. Deniz gülmeden duramadı.",
+      "Deniz kendi ayağıyla kuma bastı ve yürüdü. Arkasına baktı. Ayakkabısının burnu hep gittiği yöndeydi. \"Burun önde, topuk arkada,\" dedi. Tarçın yeni izi kokladı.",
+      "Tarçın da Deniz’in yanında yürüdü. Arkasında sivri izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. Tarçın izlerine şaşkınlıkla baktı.",
+      "Deniz eski izleri yeniden inceledi. Parmaklar dereye dönüktü. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle karşılaştırıp bulmuştu. Tarçın’ın kuyruğu pır pır etti.",
+      "İzleri takip edip dereye vardılar. Suyun kenarındaki bir dalda turkuaz boyunluk asılıydı! \"Az önce burada eğilip su içmiştim,\" dedi Tarçın.",
+      "Deniz boyunluğu Tarçın'ın boynuna taktı. Boyunluk güneşte parladı. \"Burnum yanıldı, izler bilmiş,\" dedi Tarçın. Deniz eğilip kıkırdadı. Tarçın’ın kulakları dikildi. Yönü o bulmuştu."
+    ]
+  },
+  "inputFileSHA256": "5aab0007031b15890d8001939cd946ad64e9ba73c1a434c41567eb97d372f978",
+  "inputBookPointer": "input/learning-fox.json#/books/4",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l8_fox_event02_v1",
+      "rawPageMove": "noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted",
+              "signature-item-missing-until-recovery"
+            ]
+          }
+        ],
+        "propDescription": "boyunluk; su/birikinti; iz/kum",
+        "propMentions": [
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "Tarçın'ın boynunda bu kez turkuaz boyunluk yoktu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Dere Kenarı’nda öğle güneşi kumu ısıtıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kum hâlâ ıslaktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Dere Kenarı’nda öğle güneşi kumu ısıtıyordu. Kum hâlâ ıslaktı. Deniz ile Tarçın kıyıda duruyordu. Tarçın'ın boynunda bu kez turkuaz boyunluk yoktu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p01",
+            "evidenceText": "Dere Kenarı’nda öğle güneşi kumu ısıtıyordu. Kum hâlâ ıslaktı. Deniz ile Tarçın kıyıda duruyordu. Tarçın'ın boynunda bu kez turkuaz boyunluk yoktu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Dere Kenarı’nda öğle güneşi kumu ısıtıyordu. Kum hâlâ ıslaktı. Deniz ile Tarçın kıyıda duruyordu. Tarçın'ın boynunda bu kez turkuaz boyunluk yoktu.",
+        "poseAndActionEvidence": [
+          "Dere Kenarı’nda öğle güneşi kumu ısıtıyordu.",
+          "Kum hâlâ ıslaktı.",
+          "Deniz ile Tarçın kıyıda duruyordu.",
+          "Tarçın'ın boynunda bu kez turkuaz boyunluk yoktu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Dere Kenarı’nda öğle güneşi kumu ısıtıyordu. Kum hâlâ ıslaktı. Deniz ile Tarçın kıyıda duruyordu. Tarçın'ın boynunda bu kez turkuaz boyunluk yoktu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p01",
+        "quoteSHA256": "408cec878efd4568e8044f6a704633df16a2278fbdc9c118ea1f9da2119d0c19",
+        "bookID": "pilot56_book_l8_fox_event02_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "408cec878efd4568e8044f6a704633df16a2278fbdc9c118ea1f9da2119d0c19",
+      "text": "Dere Kenarı’nda öğle güneşi kumu ısıtıyordu. Kum hâlâ ıslaktı. Deniz ile Tarçın kıyıda duruyordu. Tarçın'ın boynunda bu kez turkuaz boyunluk yoktu.",
+      "sourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p01",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l8_fox_event02_v1",
+      "rawPageMove": "child_guesses",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted",
+              "signature-item-missing-until-recovery"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; kütük/yuva; su/birikinti; iz/kum; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "\"Dereye mi, ağaçlara mı?\""
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Her izin bir ucu yuvarlak, öbür ucu parmaklıydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "\"Dereye mi, ağaçlara mı?\""
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kumda bir sıra iz uzanıyordu.",
+              "Her izin bir ucu yuvarlak, öbür ucu parmaklıydı.",
+              "Tarçın izleri kokladı.",
+              "\"Bu izler nereye gidiyor?\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Her izin bir ucu yuvarlak, öbür ucu parmaklıydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Kumda bir sıra iz uzanıyordu. Her izin bir ucu yuvarlak, öbür ucu parmaklıydı. Tarçın izleri kokladı. \"Bu izler nereye gidiyor?\" dedi Deniz. \"Dereye mi, ağaçlara mı?\"",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p02",
+            "evidenceText": "Kumda bir sıra iz uzanıyordu. Her izin bir ucu yuvarlak, öbür ucu parmaklıydı. Tarçın izleri kokladı. \"Bu izler nereye gidiyor?\" dedi Deniz. \"Dereye mi, ağaçlara mı?\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kumda bir sıra iz uzanıyordu. Her izin bir ucu yuvarlak, öbür ucu parmaklıydı. Tarçın izleri kokladı. \"Bu izler nereye gidiyor?\" dedi Deniz. \"Dereye mi, ağaçlara mı?\"",
+        "poseAndActionEvidence": [
+          "Kumda bir sıra iz uzanıyordu.",
+          "Her izin bir ucu yuvarlak, öbür ucu parmaklıydı.",
+          "Tarçın izleri kokladı.",
+          "\"Bu izler nereye gidiyor?\" dedi Deniz.",
+          "\"Dereye mi, ağaçlara mı?\""
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kumda bir sıra iz uzanıyordu. Her izin bir ucu yuvarlak, öbür ucu parmaklıydı. Tarçın izleri kokladı. \"Bu izler nereye gidiyor?\" dedi Deniz. \"Dereye mi, ağaçlara mı?\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p02",
+        "quoteSHA256": "b0e8b1f468053ae129fe05b162cb6aecceb0cf3dd761d598b1db65cb6c3e5d99",
+        "bookID": "pilot56_book_l8_fox_event02_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "b0e8b1f468053ae129fe05b162cb6aecceb0cf3dd761d598b1db65cb6c3e5d99",
+      "text": "Kumda bir sıra iz uzanıyordu. Her izin bir ucu yuvarlak, öbür ucu parmaklıydı. Tarçın izleri kokladı. \"Bu izler nereye gidiyor?\" dedi Deniz. \"Dereye mi, ağaçlara mı?\"",
+      "sourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p02",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l8_fox_event02_v1",
+      "rawPageMove": "friend_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted",
+              "signature-item-missing-until-recovery"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; boyunluk; iz/kum",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "\"Boyunluğum ağaçların orada kokuyor!\" Sonra hapşırdı, burnuna kum kaçmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "\"Boyunluğum ağaçların orada kokuyor!\" Sonra hapşırdı, burnuna kum kaçmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "İzleri kokladı.",
+              "\"Boyunluğum ağaçların orada kokuyor!\" Sonra hapşırdı, burnuna kum kaçmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Bir koklayalım bakalım,\" dedi Tarçın. İzleri kokladı. \"Boyunluğum ağaçların orada kokuyor!\" Sonra hapşırdı, burnuna kum kaçmıştı. Deniz gülmeden duramadı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p03",
+            "evidenceText": "\"Bir koklayalım bakalım,\" dedi Tarçın. İzleri kokladı. \"Boyunluğum ağaçların orada kokuyor!\" Sonra hapşırdı, burnuna kum kaçmıştı. Deniz gülmeden duramadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Bir koklayalım bakalım,\" dedi Tarçın. İzleri kokladı. \"Boyunluğum ağaçların orada kokuyor!\" Sonra hapşırdı, burnuna kum kaçmıştı. Deniz gülmeden duramadı.",
+        "poseAndActionEvidence": [
+          "\"Bir koklayalım bakalım,\" dedi Tarçın.",
+          "İzleri kokladı.",
+          "\"Boyunluğum ağaçların orada kokuyor!\" Sonra hapşırdı, burnuna kum kaçmıştı.",
+          "Deniz gülmeden duramadı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_fox_pilot_001",
+        "quote": "\"Bir koklayalım bakalım,\" dedi Tarçın. İzleri kokladı. \"Boyunluğum ağaçların orada kokuyor!\" Sonra hapşırdı, burnuna kum kaçmıştı. Deniz gülmeden duramadı.",
+        "attributionQuote": "Tarçın",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p03",
+        "quoteSHA256": "6f1806f7fd12046215d70872a0e861de4cea96d17a3918288e38edf0e7573656",
+        "bookID": "pilot56_book_l8_fox_event02_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "6f1806f7fd12046215d70872a0e861de4cea96d17a3918288e38edf0e7573656",
+      "text": "\"Bir koklayalım bakalım,\" dedi Tarçın. İzleri kokladı. \"Boyunluğum ağaçların orada kokuyor!\" Sonra hapşırdı, burnuna kum kaçmıştı. Deniz gülmeden duramadı.",
+      "sourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p03",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l8_fox_event02_v1",
+      "rawPageMove": "first_print",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted",
+              "signature-item-missing-until-recovery"
+            ]
+          }
+        ],
+        "propDescription": "top/şapka/uçurtma; iz/kum",
+        "propMentions": [
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "\"Burun önde, topuk arkada,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Deniz kendi ayağıyla kuma bastı ve yürüdü.",
+              "Tarçın yeni izi kokladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz kendi ayağıyla kuma bastı ve yürüdü. Arkasına baktı. Ayakkabısının burnu hep gittiği yöndeydi. \"Burun önde, topuk arkada,\" dedi. Tarçın yeni izi kokladı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p04",
+            "evidenceText": "Deniz kendi ayağıyla kuma bastı ve yürüdü. Arkasına baktı. Ayakkabısının burnu hep gittiği yöndeydi. \"Burun önde, topuk arkada,\" dedi. Tarçın yeni izi kokladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kendi ayağıyla kuma bastı ve yürüdü. Arkasına baktı. Ayakkabısının burnu hep gittiği yöndeydi. \"Burun önde, topuk arkada,\" dedi. Tarçın yeni izi kokladı.",
+        "poseAndActionEvidence": [
+          "Deniz kendi ayağıyla kuma bastı ve yürüdü.",
+          "Arkasına baktı.",
+          "Ayakkabısının burnu hep gittiği yöndeydi.",
+          "\"Burun önde, topuk arkada,\" dedi.",
+          "Tarçın yeni izi kokladı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kendi ayağıyla kuma bastı ve yürüdü. Arkasına baktı. Ayakkabısının burnu hep gittiği yöndeydi. \"Burun önde, topuk arkada,\" dedi. Tarçın yeni izi kokladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p04",
+        "quoteSHA256": "cff32e508f236e17692e096ba2ca3bc535c9ca3cd1d3b294808d884deb3e9d43",
+        "bookID": "pilot56_book_l8_fox_event02_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "cff32e508f236e17692e096ba2ca3bc535c9ca3cd1d3b294808d884deb3e9d43",
+      "text": "Deniz kendi ayağıyla kuma bastı ve yürüdü. Arkasına baktı. Ayakkabısının burnu hep gittiği yöndeydi. \"Burun önde, topuk arkada,\" dedi. Tarçın yeni izi kokladı.",
+      "sourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p04",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l8_fox_event02_v1",
+      "rawPageMove": "second_print",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted",
+              "signature-item-missing-until-recovery"
+            ]
+          }
+        ],
+        "propDescription": "iz/kum",
+        "propMentions": [
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Arkasında sivri izler kaldı.",
+              "Tarçın izlerine şaşkınlıkla baktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın da Deniz’in yanında yürüdü. Arkasında sivri izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. Tarçın izlerine şaşkınlıkla baktı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p05",
+            "evidenceText": "Tarçın da Deniz’in yanında yürüdü. Arkasında sivri izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. Tarçın izlerine şaşkınlıkla baktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın da Deniz’in yanında yürüdü. Arkasında sivri izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. Tarçın izlerine şaşkınlıkla baktı.",
+        "poseAndActionEvidence": [
+          "Tarçın da Deniz’in yanında yürüdü.",
+          "Arkasında sivri izler kaldı.",
+          "Onların da parmakları hep yürüdüğü yöne bakıyordu.",
+          "Tarçın izlerine şaşkınlıkla baktı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Tarçın da Deniz’in yanında yürüdü. Arkasında sivri izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. Tarçın izlerine şaşkınlıkla baktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p05",
+        "quoteSHA256": "960f14970b6fe3eeb4707fccf50c87c8715165ef72461f7dee18595d75a64f66",
+        "bookID": "pilot56_book_l8_fox_event02_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "960f14970b6fe3eeb4707fccf50c87c8715165ef72461f7dee18595d75a64f66",
+      "text": "Tarçın da Deniz’in yanında yürüdü. Arkasında sivri izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. Tarçın izlerine şaşkınlıkla baktı.",
+      "sourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p05",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l8_fox_event02_v1",
+      "rawPageMove": "child_compares",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted",
+              "signature-item-missing-until-recovery"
+            ]
+          }
+        ],
+        "propDescription": "su/birikinti; iz/kum",
+        "propMentions": [
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Parmaklar dereye dönüktü.",
+              "\"Bu izler dereye gitmiş!\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Deniz eski izleri yeniden inceledi.",
+              "\"Bu izler dereye gitmiş!\" dedi.",
+              "Yönü kendi izleriyle karşılaştırıp bulmuştu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz eski izleri yeniden inceledi. Parmaklar dereye dönüktü. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle karşılaştırıp bulmuştu. Tarçın’ın kuyruğu pır pır etti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p06",
+            "evidenceText": "Deniz eski izleri yeniden inceledi. Parmaklar dereye dönüktü. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle karşılaştırıp bulmuştu. Tarçın’ın kuyruğu pır pır etti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz eski izleri yeniden inceledi. Parmaklar dereye dönüktü. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle karşılaştırıp bulmuştu. Tarçın’ın kuyruğu pır pır etti.",
+        "poseAndActionEvidence": [
+          "Deniz eski izleri yeniden inceledi.",
+          "Parmaklar dereye dönüktü.",
+          "\"Bu izler dereye gitmiş!\" dedi.",
+          "Yönü kendi izleriyle karşılaştırıp bulmuştu.",
+          "Tarçın’ın kuyruğu pır pır etti."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz eski izleri yeniden inceledi. Parmaklar dereye dönüktü. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle karşılaştırıp bulmuştu. Tarçın’ın kuyruğu pır pır etti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p06",
+        "quoteSHA256": "e8553ec7fc97e4711a1a7119f334feb87387b7418889e7448f551a7f2e4b5a15",
+        "bookID": "pilot56_book_l8_fox_event02_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "e8553ec7fc97e4711a1a7119f334feb87387b7418889e7448f551a7f2e4b5a15",
+      "text": "Deniz eski izleri yeniden inceledi. Parmaklar dereye dönüktü. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle karşılaştırıp bulmuştu. Tarçın’ın kuyruğu pır pır etti.",
+      "sourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p06",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l8_fox_event02_v1",
+      "rawPageMove": "final_check",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted",
+              "signature-item-found-not-yet-reattached"
+            ]
+          }
+        ],
+        "propDescription": "dal; boyunluk; su/birikinti; iz/kum",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Suyun kenarındaki bir dalda turkuaz boyunluk asılıydı!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "Suyun kenarındaki bir dalda turkuaz boyunluk asılıydı!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "İzleri takip edip dereye vardılar.",
+              "Suyun kenarındaki bir dalda turkuaz boyunluk asılıydı!",
+              "\"Az önce burada eğilip su içmiştim,\" dedi Tarçın."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "İzleri takip edip dereye vardılar."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "İzleri takip edip dereye vardılar. Suyun kenarındaki bir dalda turkuaz boyunluk asılıydı! \"Az önce burada eğilip su içmiştim,\" dedi Tarçın.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p07",
+            "evidenceText": "İzleri takip edip dereye vardılar. Suyun kenarındaki bir dalda turkuaz boyunluk asılıydı! \"Az önce burada eğilip su içmiştim,\" dedi Tarçın.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "İzleri takip edip dereye vardılar. Suyun kenarındaki bir dalda turkuaz boyunluk asılıydı! \"Az önce burada eğilip su içmiştim,\" dedi Tarçın.",
+        "poseAndActionEvidence": [
+          "İzleri takip edip dereye vardılar.",
+          "Suyun kenarındaki bir dalda turkuaz boyunluk asılıydı!",
+          "\"Az önce burada eğilip su içmiştim,\" dedi Tarçın."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "İzleri takip edip dereye vardılar. Suyun kenarındaki bir dalda turkuaz boyunluk asılıydı! \"Az önce burada eğilip su içmiştim,\" dedi Tarçın.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p01",
+        "quoteSHA256": "3f9b690be6d836ee986ba4dbfd8066da1e8ae984c75d240bd18605ee462e0c89",
+        "bookID": "pilot56_book_l8_fox_event02_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "3f9b690be6d836ee986ba4dbfd8066da1e8ae984c75d240bd18605ee462e0c89",
+      "text": "İzleri takip edip dereye vardılar. Suyun kenarındaki bir dalda turkuaz boyunluk asılıydı! \"Az önce burada eğilip su içmiştim,\" dedi Tarçın.",
+      "sourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p07",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l8_fox_event02_v1",
+      "rawPageMove": "result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "boyunluk; iz/kum",
+        "propMentions": [
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "Deniz boyunluğu Tarçın'ın boynuna taktı.",
+              "Boyunluk güneşte parladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "\"Burnum yanıldı, izler bilmiş,\" dedi Tarçın."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz boyunluğu Tarçın'ın boynuna taktı. Boyunluk güneşte parladı. \"Burnum yanıldı, izler bilmiş,\" dedi Tarçın. Deniz eğilip kıkırdadı. Tarçın’ın kulakları dikildi. Yönü o bulmuştu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p08",
+            "evidenceText": "Deniz boyunluğu Tarçın'ın boynuna taktı. Boyunluk güneşte parladı. \"Burnum yanıldı, izler bilmiş,\" dedi Tarçın. Deniz eğilip kıkırdadı. Tarçın’ın kulakları dikildi. Yönü o bulmuştu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz boyunluğu Tarçın'ın boynuna taktı. Boyunluk güneşte parladı. \"Burnum yanıldı, izler bilmiş,\" dedi Tarçın. Deniz eğilip kıkırdadı. Tarçın’ın kulakları dikildi. Yönü o bulmuştu.",
+        "poseAndActionEvidence": [
+          "Deniz boyunluğu Tarçın'ın boynuna taktı.",
+          "Boyunluk güneşte parladı.",
+          "\"Burnum yanıldı, izler bilmiş,\" dedi Tarçın.",
+          "Deniz eğilip kıkırdadı.",
+          "Tarçın’ın kulakları dikildi.",
+          "Yönü o bulmuştu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz boyunluğu Tarçın'ın boynuna taktı. Boyunluk güneşte parladı. \"Burnum yanıldı, izler bilmiş,\" dedi Tarçın. Deniz eğilip kıkırdadı. Tarçın’ın kulakları dikildi. Yönü o bulmuştu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p08",
+        "quoteSHA256": "80bfda9472b33b2709f1579fe91f58c285b613cf98c09968efe68dcc94ed47e0",
+        "bookID": "pilot56_book_l8_fox_event02_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "80bfda9472b33b2709f1579fe91f58c285b613cf98c09968efe68dcc94ed47e0",
+      "text": "Deniz boyunluğu Tarçın'ın boynuna taktı. Boyunluk güneşte parladı. \"Burnum yanıldı, izler bilmiş,\" dedi Tarçın. Deniz eğilip kıkırdadı. Tarçın’ın kulakları dikildi. Yönü o bulmuştu.",
+      "sourceID": "p56_wave2_pilot56_book_l8_fox_event02_v1_p08",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz arkadaşından izini yanına basmasını ister, boyutu ve parmakları karşılaştırarak izleri eşleştirir.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

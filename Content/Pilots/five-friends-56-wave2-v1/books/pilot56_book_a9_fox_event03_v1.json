@@ -1,0 +1,907 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a9_fox_event03_v1",
+  "title": "Tarçın ve Yavaş Salyangoz",
+  "context": {
+    "settingName": "Çiçekli Çayır",
+    "mode": "adventure",
+    "companionID": "companion_fox_pilot_001",
+    "structure": "A9",
+    "event": "e3",
+    "mechanism": "path-for-small-creature",
+    "sourceFilename": "adventure-fox.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a9_fox_event03_v1",
+    "sourceBookID": "pilot56_book_a9_fox_event03_v1",
+    "structure": "A9",
+    "event": "e3",
+    "sample": false,
+    "title": "Tarçın ve Yavaş Salyangoz",
+    "pages": [
+      "Çiçekli Çayır’ın patikasında yağmurdan sonra güneş açmıştı. Deniz yürürken durdu. Tarçın da durdu. Turkuaz boyunluğu güneşte ışıldıyordu. Patikada küçük bir şey parlıyordu.",
+      "Patikanın ortasında bir salyangoz vardı. Kenardaki ıslak yapraklara gitmek istiyordu. Ama patika kuru ve sıcaktı. Salyangoz çok yavaş ilerliyordu.",
+      "\"Bir koklayalım bakalım,\" dedi Tarçın. Salyangozu kokladı. Salyangoz boynuzlarını içeri çekti, Tarçın şaşırıp geri sıçradı! Deniz gözlerini kısıp güldü. Tarçın da kendi haline güldü.",
+      "Deniz salyangoza dokunmak istemedi. Yerde geniş, ıslak bir yaprak buldu. \"Bununla serin bir yol yaparım,\" dedi. Yaprağı salyangozun önüne koydu.",
+      "Deniz ilk yaprağın yanına ikinci ve üçüncü yaprağı koydu. Yaprak yolu patikanın kenarına kadar uzandı. Tarçın burnunu geri çekip sessizce baktı.",
+      "Deniz bekledi. Salyangoz önce boynuzlarını uzattı. Sonra yaprağın üstüne çıktı. Yaprak serindi. Salyangoz yavaş yavaş ilerledi. Arkasında ince, parlak bir iz bıraktı.",
+      "Salyangoz sonunda kenardaki ıslak yapraklara vardı. \"Kendi yürüdü,\" dedi Deniz. Tarçın sevinçle kuyruğunu salladı. Salyangoz yaprakların altına girip dinlendi. Tarçın hapşırdı.",
+      "Deniz yaprak yolunu yerinde bıraktı. Tarçın salyangozun gittiği yeri kokladı. \"Çok yavaş, ama çok kararlı,\" dedi. Deniz’in kahkahası çınladı. Tarçın da kuyruğunu salladı."
+    ]
+  },
+  "inputFileSHA256": "c3c155bef1642b5c196b7aebb993e7e02021f4123f8d1ff7c11831b7af43abc1",
+  "inputBookPointer": "input/adventure-fox.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a9_fox_event03_v1",
+      "rawPageMove": "creature_noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "boyunluk; papatya/çiçek/yonca; yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "Turkuaz boyunluğu güneşte ışıldıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’ın patikasında yağmurdan sonra güneş açmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’ın patikasında yağmurdan sonra güneş açmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Çiçekli Çayır’ın patikasında yağmurdan sonra güneş açmıştı. Deniz yürürken durdu. Tarçın da durdu. Turkuaz boyunluğu güneşte ışıldıyordu. Patikada küçük bir şey parlıyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p01",
+            "evidenceText": "Çiçekli Çayır’ın patikasında yağmurdan sonra güneş açmıştı. Deniz yürürken durdu. Tarçın da durdu. Turkuaz boyunluğu güneşte ışıldıyordu. Patikada küçük bir şey parlıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’ın patikasında yağmurdan sonra güneş açmıştı. Deniz yürürken durdu. Tarçın da durdu. Turkuaz boyunluğu güneşte ışıldıyordu. Patikada küçük bir şey parlıyordu.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’ın patikasında yağmurdan sonra güneş açmıştı.",
+          "Deniz yürürken durdu.",
+          "Tarçın da durdu.",
+          "Turkuaz boyunluğu güneşte ışıldıyordu.",
+          "Patikada küçük bir şey parlıyordu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’ın patikasında yağmurdan sonra güneş açmıştı. Deniz yürürken durdu. Tarçın da durdu. Turkuaz boyunluğu güneşte ışıldıyordu. Patikada küçük bir şey parlıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p01",
+        "quoteSHA256": "3fa81e0a9b8730114e3cb1a37301b7f00857d3ff777536f6adffb078c95489f1",
+        "bookID": "pilot56_book_a9_fox_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "3fa81e0a9b8730114e3cb1a37301b7f00857d3ff777536f6adffb078c95489f1",
+      "text": "Çiçekli Çayır’ın patikasında yağmurdan sonra güneş açmıştı. Deniz yürürken durdu. Tarçın da durdu. Turkuaz boyunluğu güneşte ışıldıyordu. Patikada küçük bir şey parlıyordu.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p01",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a9_fox_event03_v1",
+      "rawPageMove": "approach",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001",
+        "pilot56_book_a9_fox_event03_v1_wildlife_snail"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_fox_event03_v1_wildlife_snail",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "yaprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Kenardaki ıslak yapraklara gitmek istiyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001",
+              "pilot56_book_a9_fox_event03_v1_wildlife_snail"
+            ],
+            "description": "Patikanın ortasında bir salyangoz vardı. Kenardaki ıslak yapraklara gitmek istiyordu. Ama patika kuru ve sıcaktı. Salyangoz çok yavaş ilerliyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p02",
+            "evidenceText": "Patikanın ortasında bir salyangoz vardı. Kenardaki ıslak yapraklara gitmek istiyordu. Ama patika kuru ve sıcaktı. Salyangoz çok yavaş ilerliyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Patikanın ortasında bir salyangoz vardı. Kenardaki ıslak yapraklara gitmek istiyordu. Ama patika kuru ve sıcaktı. Salyangoz çok yavaş ilerliyordu.",
+        "poseAndActionEvidence": [
+          "Patikanın ortasında bir salyangoz vardı.",
+          "Kenardaki ıslak yapraklara gitmek istiyordu.",
+          "Ama patika kuru ve sıcaktı.",
+          "Salyangoz çok yavaş ilerliyordu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Patikanın ortasında bir salyangoz vardı. Kenardaki ıslak yapraklara gitmek istiyordu. Ama patika kuru ve sıcaktı. Salyangoz çok yavaş ilerliyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p01",
+        "quoteSHA256": "17f31866edef8f3854712c0ab1e0bf95cbbeb4585e88bc7b1348668d332bb680",
+        "bookID": "pilot56_book_a9_fox_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "17f31866edef8f3854712c0ab1e0bf95cbbeb4585e88bc7b1348668d332bb680",
+      "text": "Patikanın ortasında bir salyangoz vardı. Kenardaki ıslak yapraklara gitmek istiyordu. Ama patika kuru ve sıcaktı. Salyangoz çok yavaş ilerliyordu.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p02",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a9_fox_event03_v1",
+      "rawPageMove": "friend_idea",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001",
+        "pilot56_book_a9_fox_event03_v1_wildlife_snail"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_fox_event03_v1_wildlife_snail",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001",
+              "pilot56_book_a9_fox_event03_v1_wildlife_snail"
+            ],
+            "description": "\"Bir koklayalım bakalım,\" dedi Tarçın. Salyangozu kokladı. Salyangoz boynuzlarını içeri çekti, Tarçın şaşırıp geri sıçradı! Deniz gözlerini kısıp güldü. Tarçın da kendi haline güldü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p03",
+            "evidenceText": "\"Bir koklayalım bakalım,\" dedi Tarçın. Salyangozu kokladı. Salyangoz boynuzlarını içeri çekti, Tarçın şaşırıp geri sıçradı! Deniz gözlerini kısıp güldü. Tarçın da kendi haline güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Bir koklayalım bakalım,\" dedi Tarçın. Salyangozu kokladı. Salyangoz boynuzlarını içeri çekti, Tarçın şaşırıp geri sıçradı! Deniz gözlerini kısıp güldü. Tarçın da kendi haline güldü.",
+        "poseAndActionEvidence": [
+          "\"Bir koklayalım bakalım,\" dedi Tarçın.",
+          "Salyangozu kokladı.",
+          "Salyangoz boynuzlarını içeri çekti, Tarçın şaşırıp geri sıçradı!",
+          "Deniz gözlerini kısıp güldü.",
+          "Tarçın da kendi haline güldü."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_fox_pilot_001",
+        "quote": "\"Bir koklayalım bakalım,\" dedi Tarçın. Salyangozu kokladı. Salyangoz boynuzlarını içeri çekti, Tarçın şaşırıp geri sıçradı! Deniz gözlerini kısıp güldü. Tarçın da kendi haline güldü.",
+        "attributionQuote": "Tarçın",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p03",
+        "quoteSHA256": "c3c6a79a968abebdc80622520e6756af3881442977b36347b9e3ea4dffd3178b",
+        "bookID": "pilot56_book_a9_fox_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "c3c6a79a968abebdc80622520e6756af3881442977b36347b9e3ea4dffd3178b",
+      "text": "\"Bir koklayalım bakalım,\" dedi Tarçın. Salyangozu kokladı. Salyangoz boynuzlarını içeri çekti, Tarçın şaşırıp geri sıçradı! Deniz gözlerini kısıp güldü. Tarçın da kendi haline güldü.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p03",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a9_fox_event03_v1",
+      "rawPageMove": "child_picks_material",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001",
+        "pilot56_book_a9_fox_event03_v1_wildlife_snail"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_fox_event03_v1_wildlife_snail",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "yaprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Yerde geniş, ıslak bir yaprak buldu.",
+              "Yaprağı salyangozun önüne koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001",
+              "pilot56_book_a9_fox_event03_v1_wildlife_snail"
+            ],
+            "description": "Deniz salyangoza dokunmak istemedi. Yerde geniş, ıslak bir yaprak buldu. \"Bununla serin bir yol yaparım,\" dedi. Yaprağı salyangozun önüne koydu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p04",
+            "evidenceText": "Deniz salyangoza dokunmak istemedi. Yerde geniş, ıslak bir yaprak buldu. \"Bununla serin bir yol yaparım,\" dedi. Yaprağı salyangozun önüne koydu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz salyangoza dokunmak istemedi. Yerde geniş, ıslak bir yaprak buldu. \"Bununla serin bir yol yaparım,\" dedi. Yaprağı salyangozun önüne koydu.",
+        "poseAndActionEvidence": [
+          "Deniz salyangoza dokunmak istemedi.",
+          "Yerde geniş, ıslak bir yaprak buldu.",
+          "\"Bununla serin bir yol yaparım,\" dedi.",
+          "Yaprağı salyangozun önüne koydu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz salyangoza dokunmak istemedi. Yerde geniş, ıslak bir yaprak buldu. \"Bununla serin bir yol yaparım,\" dedi. Yaprağı salyangozun önüne koydu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p04",
+        "quoteSHA256": "c086249e1e2773f22e7f61350fcb4de08a0e4738639f3be3c4ad40cd147ab182",
+        "bookID": "pilot56_book_a9_fox_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "c086249e1e2773f22e7f61350fcb4de08a0e4738639f3be3c4ad40cd147ab182",
+      "text": "Deniz salyangoza dokunmak istemedi. Yerde geniş, ıslak bir yaprak buldu. \"Bununla serin bir yol yaparım,\" dedi. Yaprağı salyangozun önüne koydu.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p04",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a9_fox_event03_v1",
+      "rawPageMove": "path_built",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001",
+        "pilot56_book_a9_fox_event03_v1_wildlife_snail"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_fox_event03_v1_wildlife_snail",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; canlı yolu",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz ilk yaprağın yanına ikinci ve üçüncü yaprağı koydu.",
+              "Yaprak yolu patikanın kenarına kadar uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "canlı yolu",
+            "evidenceQuotes": [
+              "Yaprak yolu patikanın kenarına kadar uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001",
+              "pilot56_book_a9_fox_event03_v1_wildlife_snail"
+            ],
+            "description": "Deniz ilk yaprağın yanına ikinci ve üçüncü yaprağı koydu. Yaprak yolu patikanın kenarına kadar uzandı. Tarçın burnunu geri çekip sessizce baktı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p05",
+            "evidenceText": "Deniz ilk yaprağın yanına ikinci ve üçüncü yaprağı koydu. Yaprak yolu patikanın kenarına kadar uzandı. Tarçın burnunu geri çekip sessizce baktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ilk yaprağın yanına ikinci ve üçüncü yaprağı koydu. Yaprak yolu patikanın kenarına kadar uzandı. Tarçın burnunu geri çekip sessizce baktı.",
+        "poseAndActionEvidence": [
+          "Deniz ilk yaprağın yanına ikinci ve üçüncü yaprağı koydu.",
+          "Yaprak yolu patikanın kenarına kadar uzandı.",
+          "Tarçın burnunu geri çekip sessizce baktı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz ilk yaprağın yanına ikinci ve üçüncü yaprağı koydu. Yaprak yolu patikanın kenarına kadar uzandı. Tarçın burnunu geri çekip sessizce baktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p05",
+        "quoteSHA256": "4db2449c341fb2df02df041a3d5c811ffd949b252c5cfc606238eb32972d55c8",
+        "bookID": "pilot56_book_a9_fox_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "4db2449c341fb2df02df041a3d5c811ffd949b252c5cfc606238eb32972d55c8",
+      "text": "Deniz ilk yaprağın yanına ikinci ve üçüncü yaprağı koydu. Yaprak yolu patikanın kenarına kadar uzandı. Tarçın burnunu geri çekip sessizce baktı.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p05",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a9_fox_event03_v1",
+      "rawPageMove": "child_waits",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001",
+        "pilot56_book_a9_fox_event03_v1_wildlife_snail"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_fox_event03_v1_wildlife_snail",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "self-propelled-crossing"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; iz/kum",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Sonra yaprağın üstüne çıktı.",
+              "Yaprak serindi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Arkasında ince, parlak bir iz bıraktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001",
+              "pilot56_book_a9_fox_event03_v1_wildlife_snail"
+            ],
+            "description": "Deniz bekledi. Salyangoz önce boynuzlarını uzattı. Sonra yaprağın üstüne çıktı. Yaprak serindi. Salyangoz yavaş yavaş ilerledi. Arkasında ince, parlak bir iz bıraktı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p06",
+            "evidenceText": "Deniz bekledi. Salyangoz önce boynuzlarını uzattı. Sonra yaprağın üstüne çıktı. Yaprak serindi. Salyangoz yavaş yavaş ilerledi. Arkasında ince, parlak bir iz bıraktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz bekledi. Salyangoz önce boynuzlarını uzattı. Sonra yaprağın üstüne çıktı. Yaprak serindi. Salyangoz yavaş yavaş ilerledi. Arkasında ince, parlak bir iz bıraktı.",
+        "poseAndActionEvidence": [
+          "Deniz bekledi.",
+          "Salyangoz önce boynuzlarını uzattı.",
+          "Sonra yaprağın üstüne çıktı.",
+          "Yaprak serindi.",
+          "Salyangoz yavaş yavaş ilerledi.",
+          "Arkasında ince, parlak bir iz bıraktı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz bekledi. Salyangoz önce boynuzlarını uzattı. Sonra yaprağın üstüne çıktı. Yaprak serindi. Salyangoz yavaş yavaş ilerledi. Arkasında ince, parlak bir iz bıraktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p06",
+        "quoteSHA256": "01a8301bbd415936940a7ee0d8bd8bf1127a6f1eff0096510ced9d2639bf0c84",
+        "bookID": "pilot56_book_a9_fox_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "01a8301bbd415936940a7ee0d8bd8bf1127a6f1eff0096510ced9d2639bf0c84",
+      "text": "Deniz bekledi. Salyangoz önce boynuzlarını uzattı. Sonra yaprağın üstüne çıktı. Yaprak serindi. Salyangoz yavaş yavaş ilerledi. Arkasında ince, parlak bir iz bıraktı.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p06",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a9_fox_event03_v1",
+      "rawPageMove": "creature_crosses",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001",
+        "pilot56_book_a9_fox_event03_v1_wildlife_snail"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_fox_event03_v1_wildlife_snail",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "self-propelled-crossing"
+            ]
+          }
+        ],
+        "propDescription": "yaprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Salyangoz sonunda kenardaki ıslak yapraklara vardı.",
+              "Salyangoz yaprakların altına girip dinlendi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001",
+              "pilot56_book_a9_fox_event03_v1_wildlife_snail"
+            ],
+            "description": "Salyangoz sonunda kenardaki ıslak yapraklara vardı. \"Kendi yürüdü,\" dedi Deniz. Tarçın sevinçle kuyruğunu salladı. Salyangoz yaprakların altına girip dinlendi. Tarçın hapşırdı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p07",
+            "evidenceText": "Salyangoz sonunda kenardaki ıslak yapraklara vardı. \"Kendi yürüdü,\" dedi Deniz. Tarçın sevinçle kuyruğunu salladı. Salyangoz yaprakların altına girip dinlendi. Tarçın hapşırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Salyangoz sonunda kenardaki ıslak yapraklara vardı. \"Kendi yürüdü,\" dedi Deniz. Tarçın sevinçle kuyruğunu salladı. Salyangoz yaprakların altına girip dinlendi. Tarçın hapşırdı.",
+        "poseAndActionEvidence": [
+          "Salyangoz sonunda kenardaki ıslak yapraklara vardı.",
+          "\"Kendi yürüdü,\" dedi Deniz.",
+          "Tarçın sevinçle kuyruğunu salladı.",
+          "Salyangoz yaprakların altına girip dinlendi.",
+          "Tarçın hapşırdı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "pilot56_book_a9_fox_event03_v1_wildlife_snail",
+        "quote": "Salyangoz sonunda kenardaki ıslak yapraklara vardı. \"Kendi yürüdü,\" dedi Deniz. Tarçın sevinçle kuyruğunu salladı. Salyangoz yaprakların altına girip dinlendi. Tarçın hapşırdı.",
+        "attributionQuote": "Salyangoz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p02",
+        "quoteSHA256": "7dbdf0dfa41698f318c7d384fe9261ff15d8b3762724243383d03ff51a3378ba",
+        "bookID": "pilot56_book_a9_fox_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "7dbdf0dfa41698f318c7d384fe9261ff15d8b3762724243383d03ff51a3378ba",
+      "text": "Salyangoz sonunda kenardaki ıslak yapraklara vardı. \"Kendi yürüdü,\" dedi Deniz. Tarçın sevinçle kuyruğunu salladı. Salyangoz yaprakların altına girip dinlendi. Tarçın hapşırdı.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p07",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a9_fox_event03_v1",
+      "rawPageMove": "closing",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001",
+        "pilot56_book_a9_fox_event03_v1_wildlife_snail"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_fox_event03_v1_wildlife_snail",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; canlı yolu",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz yaprak yolunu yerinde bıraktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "canlı yolu",
+            "evidenceQuotes": [
+              "Deniz yaprak yolunu yerinde bıraktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001",
+              "pilot56_book_a9_fox_event03_v1_wildlife_snail"
+            ],
+            "description": "Deniz yaprak yolunu yerinde bıraktı. Tarçın salyangozun gittiği yeri kokladı. \"Çok yavaş, ama çok kararlı,\" dedi. Deniz’in kahkahası çınladı. Tarçın da kuyruğunu salladı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p08",
+            "evidenceText": "Deniz yaprak yolunu yerinde bıraktı. Tarçın salyangozun gittiği yeri kokladı. \"Çok yavaş, ama çok kararlı,\" dedi. Deniz’in kahkahası çınladı. Tarçın da kuyruğunu salladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yaprak yolunu yerinde bıraktı. Tarçın salyangozun gittiği yeri kokladı. \"Çok yavaş, ama çok kararlı,\" dedi. Deniz’in kahkahası çınladı. Tarçın da kuyruğunu salladı.",
+        "poseAndActionEvidence": [
+          "Deniz yaprak yolunu yerinde bıraktı.",
+          "Tarçın salyangozun gittiği yeri kokladı.",
+          "\"Çok yavaş, ama çok kararlı,\" dedi.",
+          "Deniz’in kahkahası çınladı.",
+          "Tarçın da kuyruğunu salladı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yaprak yolunu yerinde bıraktı. Tarçın salyangozun gittiği yeri kokladı. \"Çok yavaş, ama çok kararlı,\" dedi. Deniz’in kahkahası çınladı. Tarçın da kuyruğunu salladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p08",
+        "quoteSHA256": "376ff18e22962043dd3099d63f7d9089125285dbbbde49f546cb3927385ef478",
+        "bookID": "pilot56_book_a9_fox_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "376ff18e22962043dd3099d63f7d9089125285dbbbde49f546cb3927385ef478",
+      "text": "Deniz yaprak yolunu yerinde bıraktı. Tarçın salyangozun gittiği yeri kokladı. \"Çok yavaş, ama çok kararlı,\" dedi. Deniz’in kahkahası çınladı. Tarçın da kuyruğunu salladı.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event03_v1_p08",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz canlıya dokunmadan dal ya da yaprakla yol yapar, canlının kendisi yürümesini bekler.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

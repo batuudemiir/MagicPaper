@@ -1,0 +1,942 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l9_owl_event03_v1",
+  "title": "Yıldız Kozalak Tartıyor",
+  "context": {
+    "settingName": "Kozalak Tepesi",
+    "mode": "learning",
+    "companionID": "companion_owl_pilot_001",
+    "structure": "L9",
+    "event": "e3",
+    "mechanism": "balance-stick",
+    "sourceFilename": "learning-owl.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l9_owl_event03_v1",
+    "sourceBookID": "pilot56_book_l9_owl_event03_v1",
+    "structure": "L9",
+    "event": "e3",
+    "sample": false,
+    "title": "Yıldız Kozalak Tartıyor",
+    "pages": [
+      "Kozalak Tepesi’nde serin bir öğleden sonraydı. Deniz alçak kütüğün yanına çömeldi. Yıldız bir dalda gözlerini kırpıyordu. Kozalaklar etrafa saçılmıştı.",
+      "Kütüğün üstündeki dalın iki ucunda birer küçük kozalak vardı. Dal dengedeydi. Deniz yerde büyük bir kozalak buldu. \"Bu büyük kaç küçüğe denk?\" diye merak etti.",
+      "\"Hımm… bence büyük kozalak beş küçüğe denk,\" dedi Yıldız. \"Ya da on. Ya da bir uyku.\" Sonra esnedi. Deniz yanaklarını şişirip güldü.",
+      "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
+      "Deniz öbür uca bir küçük kozalak koydu. Dal biraz kalktı ama yine büyüğün tarafındaydı. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Bir küçük yetmedi,\" dedi Deniz.",
+      "Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. \"Bir büyük, iki küçüğe denk!\" dedi. Bunu kendi denemesiyle bulmuştu.",
+      "Deniz kozalakları değiştirdi. Büyüğü öbür uca, iki küçüğü bu uca koydu. Dal yine ortada durdu. \"Yer değişse de denk,\" dedi Deniz. Yıldız başını salladı.",
+      "Deniz kozalakları kütüğün yanına dizdi. Yıldız’ın tüyleri yumuşacık kabardı. \"Ben de iki küçük baykuşa denk miyim?\" diye sordu. Deniz kahkahayı bastı. Yıldız’ın göğüs tüyleri kabardı."
+    ]
+  },
+  "inputFileSHA256": "7735ffb4ac4a032547638dea480bf268b04da3eb8b9b78b51730ad0e5f898af9",
+  "inputBookPointer": "input/learning-owl.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l9_owl_event03_v1",
+      "rawPageMove": "tilted",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kütük/yuva; kozalak",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Yıldız bir dalda gözlerini kırpıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Deniz alçak kütüğün yanına çömeldi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Kozalak Tepesi’nde serin bir öğleden sonraydı.",
+              "Kozalaklar etrafa saçılmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Kozalak Tepesi’nde serin bir öğleden sonraydı. Deniz alçak kütüğün yanına çömeldi. Yıldız bir dalda gözlerini kırpıyordu. Kozalaklar etrafa saçılmıştı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p01",
+            "evidenceText": "Kozalak Tepesi’nde serin bir öğleden sonraydı. Deniz alçak kütüğün yanına çömeldi. Yıldız bir dalda gözlerini kırpıyordu. Kozalaklar etrafa saçılmıştı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kozalak Tepesi’nde serin bir öğleden sonraydı. Deniz alçak kütüğün yanına çömeldi. Yıldız bir dalda gözlerini kırpıyordu. Kozalaklar etrafa saçılmıştı.",
+        "poseAndActionEvidence": [
+          "Kozalak Tepesi’nde serin bir öğleden sonraydı.",
+          "Deniz alçak kütüğün yanına çömeldi.",
+          "Yıldız bir dalda gözlerini kırpıyordu.",
+          "Kozalaklar etrafa saçılmıştı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kozalak Tepesi’nde serin bir öğleden sonraydı. Deniz alçak kütüğün yanına çömeldi. Yıldız bir dalda gözlerini kırpıyordu. Kozalaklar etrafa saçılmıştı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p01",
+        "quoteSHA256": "c25874bd20d8d41d2f63e64b26006717b4b7b8cd329648c0209a15e33d2f177d",
+        "bookID": "pilot56_book_l9_owl_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "c25874bd20d8d41d2f63e64b26006717b4b7b8cd329648c0209a15e33d2f177d",
+      "text": "Kozalak Tepesi’nde serin bir öğleden sonraydı. Deniz alçak kütüğün yanına çömeldi. Yıldız bir dalda gözlerini kırpıyordu. Kozalaklar etrafa saçılmıştı.",
+      "sourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p01",
+      "sourcePointer": "input/learning-owl.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l9_owl_event03_v1",
+      "rawPageMove": "child_guesses",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kütük/yuva; kozalak",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Kütüğün üstündeki dalın iki ucunda birer küçük kozalak vardı.",
+              "Dal dengedeydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Kütüğün üstündeki dalın iki ucunda birer küçük kozalak vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Kütüğün üstündeki dalın iki ucunda birer küçük kozalak vardı.",
+              "Deniz yerde büyük bir kozalak buldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Kütüğün üstündeki dalın iki ucunda birer küçük kozalak vardı. Dal dengedeydi. Deniz yerde büyük bir kozalak buldu. \"Bu büyük kaç küçüğe denk?\" diye merak etti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p02",
+            "evidenceText": "Kütüğün üstündeki dalın iki ucunda birer küçük kozalak vardı. Dal dengedeydi. Deniz yerde büyük bir kozalak buldu. \"Bu büyük kaç küçüğe denk?\" diye merak etti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+        "balanceStateFromReviewedContext": {
+          "experimentSetOnly": true,
+          "ambientConesNotCounted": true,
+          "first": {
+            "small": 1
+          },
+          "other": {
+            "small": 1
+          }
+        }
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kütüğün üstündeki dalın iki ucunda birer küçük kozalak vardı. Dal dengedeydi. Deniz yerde büyük bir kozalak buldu. \"Bu büyük kaç küçüğe denk?\" diye merak etti.",
+        "poseAndActionEvidence": [
+          "Kütüğün üstündeki dalın iki ucunda birer küçük kozalak vardı.",
+          "Dal dengedeydi.",
+          "Deniz yerde büyük bir kozalak buldu.",
+          "\"Bu büyük kaç küçüğe denk?\" diye merak etti."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+          "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kütüğün üstündeki dalın iki ucunda birer küçük kozalak vardı. Dal dengedeydi. Deniz yerde büyük bir kozalak buldu. \"Bu büyük kaç küçüğe denk?\" diye merak etti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p02",
+        "quoteSHA256": "c370d4d583b20c00f3a68ffd450d8131a44b944f9528ad012ac5cd052132aba3",
+        "bookID": "pilot56_book_l9_owl_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "c370d4d583b20c00f3a68ffd450d8131a44b944f9528ad012ac5cd052132aba3",
+      "text": "Kütüğün üstündeki dalın iki ucunda birer küçük kozalak vardı. Dal dengedeydi. Deniz yerde büyük bir kozalak buldu. \"Bu büyük kaç küçüğe denk?\" diye merak etti.",
+      "sourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p02",
+      "sourcePointer": "input/learning-owl.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l9_owl_event03_v1",
+      "rawPageMove": "friend_try",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kozalak",
+        "propMentions": [
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "bence büyük kozalak beş küçüğe denk,\" dedi Yıldız."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "\"Hımm… bence büyük kozalak beş küçüğe denk,\" dedi Yıldız. \"Ya da on. Ya da bir uyku.\" Sonra esnedi. Deniz yanaklarını şişirip güldü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p03",
+            "evidenceText": "\"Hımm… bence büyük kozalak beş küçüğe denk,\" dedi Yıldız. \"Ya da on. Ya da bir uyku.\" Sonra esnedi. Deniz yanaklarını şişirip güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Hımm… bence büyük kozalak beş küçüğe denk,\" dedi Yıldız. \"Ya da on. Ya da bir uyku.\" Sonra esnedi. Deniz yanaklarını şişirip güldü.",
+        "poseAndActionEvidence": [
+          "\"Hımm…",
+          "bence büyük kozalak beş küçüğe denk,\" dedi Yıldız.",
+          "\"Ya da on.",
+          "Ya da bir uyku.\" Sonra esnedi.",
+          "Deniz yanaklarını şişirip güldü."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_owl_pilot_001",
+        "quote": "\"Hımm… bence büyük kozalak beş küçüğe denk,\" dedi Yıldız. \"Ya da on. Ya da bir uyku.\" Sonra esnedi. Deniz yanaklarını şişirip güldü.",
+        "attributionQuote": "Yıldız",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p03",
+        "quoteSHA256": "77cf859ee265ce286a8e109e88b26fde6bd7586d06dfb8c45c18557762900847",
+        "bookID": "pilot56_book_l9_owl_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "77cf859ee265ce286a8e109e88b26fde6bd7586d06dfb8c45c18557762900847",
+      "text": "\"Hımm… bence büyük kozalak beş küçüğe denk,\" dedi Yıldız. \"Ya da on. Ya da bir uyku.\" Sonra esnedi. Deniz yanaklarını şişirip güldü.",
+      "sourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p03",
+      "sourcePointer": "input/learning-owl.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l9_owl_event03_v1",
+      "rawPageMove": "trial_1",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 2,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; iki küçük kozalak daldan kaldırılır; tek uçtaki büyük kozalak",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          },
+          {
+            "label": "iki küçük kozalak daldan kaldırılır",
+            "evidenceQuotes": [
+              "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          },
+          {
+            "label": "tek uçtaki büyük kozalak",
+            "evidenceQuotes": [
+              "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p04",
+            "evidenceText": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction.",
+        "balanceStateFromReviewedContext": {
+          "experimentSetOnly": true,
+          "ambientConesNotCounted": true,
+          "first": {
+            "large": 1
+          },
+          "other": {},
+          "offBeamSmall": 2
+        }
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
+        "poseAndActionEvidence": [
+          "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+          "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p04",
+        "quoteSHA256": "79bb9822fd4a3f96e68ebeb1a63c710b5fa081254594555c2b45a43029871bd8",
+        "bookID": "pilot56_book_l9_owl_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "79bb9822fd4a3f96e68ebeb1a63c710b5fa081254594555c2b45a43029871bd8",
+      "text": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyük kozalağı koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz.",
+      "sourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p04",
+      "sourcePointer": "input/learning-owl.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l9_owl_event03_v1",
+      "rawPageMove": "trial_2",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kozalak",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Dal biraz kalktı ama yine büyüğün tarafındaydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Deniz öbür uca bir küçük kozalak koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz öbür uca bir küçük kozalak koydu. Dal biraz kalktı ama yine büyüğün tarafındaydı. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Bir küçük yetmedi,\" dedi Deniz.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p05",
+            "evidenceText": "Deniz öbür uca bir küçük kozalak koydu. Dal biraz kalktı ama yine büyüğün tarafındaydı. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Bir küçük yetmedi,\" dedi Deniz.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+        "balanceStateFromReviewedContext": {
+          "experimentSetOnly": true,
+          "ambientConesNotCounted": true,
+          "first": {
+            "large": 1
+          },
+          "other": {
+            "small": 1
+          },
+          "offBeamSmall": 1
+        }
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz öbür uca bir küçük kozalak koydu. Dal biraz kalktı ama yine büyüğün tarafındaydı. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Bir küçük yetmedi,\" dedi Deniz.",
+        "poseAndActionEvidence": [
+          "Deniz öbür uca bir küçük kozalak koydu.",
+          "Dal biraz kalktı ama yine büyüğün tarafındaydı.",
+          "\"Hımm…",
+          "sen ne görüyorsun?\" dedi Yıldız.",
+          "\"Bir küçük yetmedi,\" dedi Deniz."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+          "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz öbür uca bir küçük kozalak koydu. Dal biraz kalktı ama yine büyüğün tarafındaydı. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Bir küçük yetmedi,\" dedi Deniz.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p05",
+        "quoteSHA256": "6dd53388d694facc709df8f3c8981e734877d948703452d728f92b171b599c81",
+        "bookID": "pilot56_book_l9_owl_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "6dd53388d694facc709df8f3c8981e734877d948703452d728f92b171b599c81",
+      "text": "Deniz öbür uca bir küçük kozalak koydu. Dal biraz kalktı ama yine büyüğün tarafındaydı. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Bir küçük yetmedi,\" dedi Deniz.",
+      "sourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p05",
+      "sourcePointer": "input/learning-owl.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l9_owl_event03_v1",
+      "rawPageMove": "child_compares",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kozalak",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Dal sallandı ve ortada durdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Deniz öbür uca bir küçük kozalak daha ekledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. \"Bir büyük, iki küçüğe denk!\" dedi. Bunu kendi denemesiyle bulmuştu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p06",
+            "evidenceText": "Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. \"Bir büyük, iki küçüğe denk!\" dedi. Bunu kendi denemesiyle bulmuştu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+        "balanceStateFromReviewedContext": {
+          "experimentSetOnly": true,
+          "ambientConesNotCounted": true,
+          "first": {
+            "large": 1
+          },
+          "other": {
+            "small": 2
+          },
+          "offBeamSmall": 0
+        }
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. \"Bir büyük, iki küçüğe denk!\" dedi. Bunu kendi denemesiyle bulmuştu.",
+        "poseAndActionEvidence": [
+          "Deniz öbür uca bir küçük kozalak daha ekledi.",
+          "Dal sallandı ve ortada durdu.",
+          "\"Bir büyük, iki küçüğe denk!\" dedi.",
+          "Bunu kendi denemesiyle bulmuştu."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+          "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. \"Bir büyük, iki küçüğe denk!\" dedi. Bunu kendi denemesiyle bulmuştu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p06",
+        "quoteSHA256": "a821d76f7283bd71607fa78c657f7f8f835130ead2ab021b3e1e6c943eaa5548",
+        "bookID": "pilot56_book_l9_owl_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "a821d76f7283bd71607fa78c657f7f8f835130ead2ab021b3e1e6c943eaa5548",
+      "text": "Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. \"Bir büyük, iki küçüğe denk!\" dedi. Bunu kendi denemesiyle bulmuştu.",
+      "sourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p06",
+      "sourcePointer": "input/learning-owl.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l9_owl_event03_v1",
+      "rawPageMove": "balanced",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kozalak",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Dal yine ortada durdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Deniz kozalakları değiştirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz kozalakları değiştirdi. Büyüğü öbür uca, iki küçüğü bu uca koydu. Dal yine ortada durdu. \"Yer değişse de denk,\" dedi Deniz. Yıldız başını salladı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p07",
+            "evidenceText": "Deniz kozalakları değiştirdi. Büyüğü öbür uca, iki küçüğü bu uca koydu. Dal yine ortada durdu. \"Yer değişse de denk,\" dedi Deniz. Yıldız başını salladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+        "balanceStateFromReviewedContext": {
+          "experimentSetOnly": true,
+          "ambientConesNotCounted": true,
+          "first": {
+            "small": 2
+          },
+          "other": {
+            "large": 1
+          }
+        }
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kozalakları değiştirdi. Büyüğü öbür uca, iki küçüğü bu uca koydu. Dal yine ortada durdu. \"Yer değişse de denk,\" dedi Deniz. Yıldız başını salladı.",
+        "poseAndActionEvidence": [
+          "Deniz kozalakları değiştirdi.",
+          "Büyüğü öbür uca, iki küçüğü bu uca koydu.",
+          "Dal yine ortada durdu.",
+          "\"Yer değişse de denk,\" dedi Deniz.",
+          "Yıldız başını salladı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+          "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kozalakları değiştirdi. Büyüğü öbür uca, iki küçüğü bu uca koydu. Dal yine ortada durdu. \"Yer değişse de denk,\" dedi Deniz. Yıldız başını salladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p07",
+        "quoteSHA256": "0fb92daa950c2bd9dda82cd61632e928b60ac67fb37228e94dcacf4ce705db0a",
+        "bookID": "pilot56_book_l9_owl_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "0fb92daa950c2bd9dda82cd61632e928b60ac67fb37228e94dcacf4ce705db0a",
+      "text": "Deniz kozalakları değiştirdi. Büyüğü öbür uca, iki küçüğü bu uca koydu. Dal yine ortada durdu. \"Yer değişse de denk,\" dedi Deniz. Yıldız başını salladı.",
+      "sourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p07",
+      "sourcePointer": "input/learning-owl.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l9_owl_event03_v1",
+      "rawPageMove": "result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; tüy; kozalak",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Deniz kozalakları kütüğün yanına dizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Yıldız’ın tüyleri yumuşacık kabardı.",
+              "Yıldız’ın göğüs tüyleri kabardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Deniz kozalakları kütüğün yanına dizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz kozalakları kütüğün yanına dizdi. Yıldız’ın tüyleri yumuşacık kabardı. \"Ben de iki küçük baykuşa denk miyim?\" diye sordu. Deniz kahkahayı bastı. Yıldız’ın göğüs tüyleri kabardı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p08",
+            "evidenceText": "Deniz kozalakları kütüğün yanına dizdi. Yıldız’ın tüyleri yumuşacık kabardı. \"Ben de iki küçük baykuşa denk miyim?\" diye sordu. Deniz kahkahayı bastı. Yıldız’ın göğüs tüyleri kabardı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+        "balanceStateFromReviewedContext": {
+          "experimentSetOnly": true,
+          "ambientConesNotCounted": true,
+          "experimentSetStored": {
+            "large": 1,
+            "small": 2
+          }
+        }
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kozalakları kütüğün yanına dizdi. Yıldız’ın tüyleri yumuşacık kabardı. \"Ben de iki küçük baykuşa denk miyim?\" diye sordu. Deniz kahkahayı bastı. Yıldız’ın göğüs tüyleri kabardı.",
+        "poseAndActionEvidence": [
+          "Deniz kozalakları kütüğün yanına dizdi.",
+          "Yıldız’ın tüyleri yumuşacık kabardı.",
+          "\"Ben de iki küçük baykuşa denk miyim?\" diye sordu.",
+          "Deniz kahkahayı bastı.",
+          "Yıldız’ın göğüs tüyleri kabardı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+          "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kozalakları kütüğün yanına dizdi. Yıldız’ın tüyleri yumuşacık kabardı. \"Ben de iki küçük baykuşa denk miyim?\" diye sordu. Deniz kahkahayı bastı. Yıldız’ın göğüs tüyleri kabardı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p08",
+        "quoteSHA256": "d973366a5ffd7257d758f1479a06cd59684552e4f12630e2b4eb85b09e1abb4a",
+        "bookID": "pilot56_book_l9_owl_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "d973366a5ffd7257d758f1479a06cd59684552e4f12630e2b4eb85b09e1abb4a",
+      "text": "Deniz kozalakları kütüğün yanına dizdi. Yıldız’ın tüyleri yumuşacık kabardı. \"Ben de iki küçük baykuşa denk miyim?\" diye sordu. Deniz kahkahayı bastı. Yıldız’ın göğüs tüyleri kabardı.",
+      "sourceID": "p56_wave2_pilot56_book_l9_owl_event03_v1_p08",
+      "sourcePointer": "input/learning-owl.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz uçlara kozalak ekleyip çıkararak ya da dalı kaydırarak dengeyi kendisi bulur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

@@ -1,0 +1,805 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l5_hedgehog_event02_v1",
+  "title": "Tırtıklı Kuzen",
+  "context": {
+    "settingName": "Kozalak Tepesi",
+    "mode": "learning",
+    "companionID": "companion_hedgehog_pilot_001",
+    "structure": "L5",
+    "event": "e2",
+    "mechanism": "sort-by-two-features",
+    "sourceFilename": "learning-hedgehog.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l5_hedgehog_event02_v1",
+    "structure": "L5",
+    "event": "e2",
+    "sample": false,
+    "title": "Tırtıklı Kuzen",
+    "pages": [
+      "Kozalak Tepesi’nde rüzgâr yaprakları savurmuştu. Deniz bir avuç yaprak topladı. Kestane yanına geldi. Dikenlerinde üç yaprak vardı. Kestane yapraklara hayranlıkla baktı.",
+      "Deniz yaprakları yere yığdı. Kestane yığının ucundan çıkan sarı bir yaprağı itti. \"Önce renklerine göre ayıracağım,\" dedi Deniz. Sarıları ve yeşilleri ayırdı.",
+      "Kestane dikenlerindeki yaprakları gösterdi. \"Ben onları dikene göre ayırırım,\" dedi. \"Sol diken, sağ diken!\" Deniz yanaklarını şişirip güldü. Yapraklar dikenlerinde sallandı.",
+      "Deniz iki gruba baktı. İkisinde de tırtıklı ve düz kenarlı yapraklar vardı. \"Şimdi kenarlarına bakacağım,\" dedi. Kestane tırtıklı bir yaprağı kokladı.",
+      "\"Şimdi neye bakıyorsun?\" diye sordu Kestane. Deniz iki yaprağın kenarını gösterdi. Biri tırtıklıydı, biri dümdüz. Kestane gözlerini kırpıştırdı.",
+      "Deniz yaprakları baştan ayırdı. Tırtıklılar bir yanda, düzler öbür yanda. \"Aynı yapraklar, iki yeni grup!\" dedi. Kestane iki grubun arasına oturdu.",
+      "Kestane tırtıklı yaprağı kendi dikenleriyle karşılaştırdı. \"Bu benim kuzenim,\" dedi. Deniz bunu çok sevdi. Kestane’nin dikenleri titredi. Dikenlerini kabartıp tırtıklı yaprağa bir daha baktı. Gerçekten benziyordu.",
+      "Deniz yaprakları yere bıraktı. Kestane hardal yaprağını yerinde tuttu. \"O hiçbir gruba girmez, o benim,\" dedi. Deniz başını yana eğip gülümsedi."
+    ],
+    "sourceBookID": "pilot56_book_l5_hedgehog_event02_v1"
+  },
+  "inputFileSHA256": "28e3c20d4304b208461d7d921493fd62d70ef661ccc6c587754cd8fb4b4eed98",
+  "inputBookPointer": "input/learning-hedgehog.json#/books/1",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+      "rawPageMove": "mixed_pile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; kozalak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Kozalak Tepesi’nde rüzgâr yaprakları savurmuştu.",
+              "Deniz bir avuç yaprak topladı.",
+              "Dikenlerinde üç yaprak vardı.",
+              "Kestane yapraklara hayranlıkla baktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Kozalak Tepesi’nde rüzgâr yaprakları savurmuştu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kozalak Tepesi’nde rüzgâr yaprakları savurmuştu. Deniz bir avuç yaprak topladı. Kestane yanına geldi. Dikenlerinde üç yaprak vardı. Kestane yapraklara hayranlıkla baktı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p01",
+            "evidenceText": "Kozalak Tepesi’nde rüzgâr yaprakları savurmuştu. Deniz bir avuç yaprak topladı. Kestane yanına geldi. Dikenlerinde üç yaprak vardı. Kestane yapraklara hayranlıkla baktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kozalak Tepesi’nde rüzgâr yaprakları savurmuştu. Deniz bir avuç yaprak topladı. Kestane yanına geldi. Dikenlerinde üç yaprak vardı. Kestane yapraklara hayranlıkla baktı.",
+        "poseAndActionEvidence": [
+          "Kozalak Tepesi’nde rüzgâr yaprakları savurmuştu.",
+          "Deniz bir avuç yaprak topladı.",
+          "Kestane yanına geldi.",
+          "Dikenlerinde üç yaprak vardı.",
+          "Kestane yapraklara hayranlıkla baktı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kozalak Tepesi’nde rüzgâr yaprakları savurmuştu. Deniz bir avuç yaprak topladı. Kestane yanına geldi. Dikenlerinde üç yaprak vardı. Kestane yapraklara hayranlıkla baktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p01",
+        "quoteSHA256": "a513b904e55cf59e8f3e0341e4b398f6df9e2b2b9430ef5e00f09859367701a9",
+        "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "a513b904e55cf59e8f3e0341e4b398f6df9e2b2b9430ef5e00f09859367701a9",
+      "text": "Kozalak Tepesi’nde rüzgâr yaprakları savurmuştu. Deniz bir avuç yaprak topladı. Kestane yanına geldi. Dikenlerinde üç yaprak vardı. Kestane yapraklara hayranlıkla baktı.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p01",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+      "rawPageMove": "first_feature",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz yaprakları yere yığdı.",
+              "Kestane yığının ucundan çıkan sarı bir yaprağı itti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz yaprakları yere yığdı. Kestane yığının ucundan çıkan sarı bir yaprağı itti. \"Önce renklerine göre ayıracağım,\" dedi Deniz. Sarıları ve yeşilleri ayırdı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p02",
+            "evidenceText": "Deniz yaprakları yere yığdı. Kestane yığının ucundan çıkan sarı bir yaprağı itti. \"Önce renklerine göre ayıracağım,\" dedi Deniz. Sarıları ve yeşilleri ayırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yaprakları yere yığdı. Kestane yığının ucundan çıkan sarı bir yaprağı itti. \"Önce renklerine göre ayıracağım,\" dedi Deniz. Sarıları ve yeşilleri ayırdı.",
+        "poseAndActionEvidence": [
+          "Deniz yaprakları yere yığdı.",
+          "Kestane yığının ucundan çıkan sarı bir yaprağı itti.",
+          "\"Önce renklerine göre ayıracağım,\" dedi Deniz.",
+          "Sarıları ve yeşilleri ayırdı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yaprakları yere yığdı. Kestane yığının ucundan çıkan sarı bir yaprağı itti. \"Önce renklerine göre ayıracağım,\" dedi Deniz. Sarıları ve yeşilleri ayırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p02",
+        "quoteSHA256": "d85c7af24db8c60da05d691616e25bdb123b9eed3a83cb8953b8c023dcd4e616",
+        "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "d85c7af24db8c60da05d691616e25bdb123b9eed3a83cb8953b8c023dcd4e616",
+      "text": "Deniz yaprakları yere yığdı. Kestane yığının ucundan çıkan sarı bir yaprağı itti. \"Önce renklerine göre ayıracağım,\" dedi Deniz. Sarıları ve yeşilleri ayırdı.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p02",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+      "rawPageMove": "friend_sorts_differently",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Kestane dikenlerindeki yaprakları gösterdi.",
+              "Yapraklar dikenlerinde sallandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane dikenlerindeki yaprakları gösterdi. \"Ben onları dikene göre ayırırım,\" dedi. \"Sol diken, sağ diken!\" Deniz yanaklarını şişirip güldü. Yapraklar dikenlerinde sallandı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p03",
+            "evidenceText": "Kestane dikenlerindeki yaprakları gösterdi. \"Ben onları dikene göre ayırırım,\" dedi. \"Sol diken, sağ diken!\" Deniz yanaklarını şişirip güldü. Yapraklar dikenlerinde sallandı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane dikenlerindeki yaprakları gösterdi. \"Ben onları dikene göre ayırırım,\" dedi. \"Sol diken, sağ diken!\" Deniz yanaklarını şişirip güldü. Yapraklar dikenlerinde sallandı.",
+        "poseAndActionEvidence": [
+          "Kestane dikenlerindeki yaprakları gösterdi.",
+          "\"Ben onları dikene göre ayırırım,\" dedi.",
+          "\"Sol diken, sağ diken!\" Deniz yanaklarını şişirip güldü.",
+          "Yapraklar dikenlerinde sallandı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_hedgehog_pilot_001",
+        "quote": "Kestane dikenlerindeki yaprakları gösterdi. \"Ben onları dikene göre ayırırım,\" dedi. \"Sol diken, sağ diken!\" Deniz yanaklarını şişirip güldü. Yapraklar dikenlerinde sallandı.",
+        "attributionQuote": "Kestane",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p03",
+        "quoteSHA256": "89bdd75d7f0d6557061294f8d05e37a73e166a47267f917867bcc96212b053b2",
+        "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "89bdd75d7f0d6557061294f8d05e37a73e166a47267f917867bcc96212b053b2",
+      "text": "Kestane dikenlerindeki yaprakları gösterdi. \"Ben onları dikene göre ayırırım,\" dedi. \"Sol diken, sağ diken!\" Deniz yanaklarını şişirip güldü. Yapraklar dikenlerinde sallandı.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p03",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+      "rawPageMove": "child_sorts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "İkisinde de tırtıklı ve düz kenarlı yapraklar vardı.",
+              "Kestane tırtıklı bir yaprağı kokladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz iki gruba baktı. İkisinde de tırtıklı ve düz kenarlı yapraklar vardı. \"Şimdi kenarlarına bakacağım,\" dedi. Kestane tırtıklı bir yaprağı kokladı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p04",
+            "evidenceText": "Deniz iki gruba baktı. İkisinde de tırtıklı ve düz kenarlı yapraklar vardı. \"Şimdi kenarlarına bakacağım,\" dedi. Kestane tırtıklı bir yaprağı kokladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz iki gruba baktı. İkisinde de tırtıklı ve düz kenarlı yapraklar vardı. \"Şimdi kenarlarına bakacağım,\" dedi. Kestane tırtıklı bir yaprağı kokladı.",
+        "poseAndActionEvidence": [
+          "Deniz iki gruba baktı.",
+          "İkisinde de tırtıklı ve düz kenarlı yapraklar vardı.",
+          "\"Şimdi kenarlarına bakacağım,\" dedi.",
+          "Kestane tırtıklı bir yaprağı kokladı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz iki gruba baktı. İkisinde de tırtıklı ve düz kenarlı yapraklar vardı. \"Şimdi kenarlarına bakacağım,\" dedi. Kestane tırtıklı bir yaprağı kokladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p04",
+        "quoteSHA256": "8cd3bc82155e9e15a48a6d5ebd785650d14d0e80991fae2bd03c733ed61fded9",
+        "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "8cd3bc82155e9e15a48a6d5ebd785650d14d0e80991fae2bd03c733ed61fded9",
+      "text": "Deniz iki gruba baktı. İkisinde de tırtıklı ve düz kenarlı yapraklar vardı. \"Şimdi kenarlarına bakacağım,\" dedi. Kestane tırtıklı bir yaprağı kokladı.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p04",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+      "rawPageMove": "second_feature",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz iki yaprağın kenarını gösterdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "\"Şimdi neye bakıyorsun?\" diye sordu Kestane. Deniz iki yaprağın kenarını gösterdi. Biri tırtıklıydı, biri dümdüz. Kestane gözlerini kırpıştırdı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p05",
+            "evidenceText": "\"Şimdi neye bakıyorsun?\" diye sordu Kestane. Deniz iki yaprağın kenarını gösterdi. Biri tırtıklıydı, biri dümdüz. Kestane gözlerini kırpıştırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Şimdi neye bakıyorsun?\" diye sordu Kestane. Deniz iki yaprağın kenarını gösterdi. Biri tırtıklıydı, biri dümdüz. Kestane gözlerini kırpıştırdı.",
+        "poseAndActionEvidence": [
+          "\"Şimdi neye bakıyorsun?\" diye sordu Kestane.",
+          "Deniz iki yaprağın kenarını gösterdi.",
+          "Biri tırtıklıydı, biri dümdüz.",
+          "Kestane gözlerini kırpıştırdı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Şimdi neye bakıyorsun?\" diye sordu Kestane. Deniz iki yaprağın kenarını gösterdi. Biri tırtıklıydı, biri dümdüz. Kestane gözlerini kırpıştırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p05",
+        "quoteSHA256": "7e61a0b11febc895f4bbc08421ad9dfe8e72fb19c98b7af8c7e00accb111bd39",
+        "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "7e61a0b11febc895f4bbc08421ad9dfe8e72fb19c98b7af8c7e00accb111bd39",
+      "text": "\"Şimdi neye bakıyorsun?\" diye sordu Kestane. Deniz iki yaprağın kenarını gösterdi. Biri tırtıklıydı, biri dümdüz. Kestane gözlerini kırpıştırdı.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p05",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+      "rawPageMove": "child_resorts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz yaprakları baştan ayırdı.",
+              "\"Aynı yapraklar, iki yeni grup!\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz yaprakları baştan ayırdı. Tırtıklılar bir yanda, düzler öbür yanda. \"Aynı yapraklar, iki yeni grup!\" dedi. Kestane iki grubun arasına oturdu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p06",
+            "evidenceText": "Deniz yaprakları baştan ayırdı. Tırtıklılar bir yanda, düzler öbür yanda. \"Aynı yapraklar, iki yeni grup!\" dedi. Kestane iki grubun arasına oturdu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yaprakları baştan ayırdı. Tırtıklılar bir yanda, düzler öbür yanda. \"Aynı yapraklar, iki yeni grup!\" dedi. Kestane iki grubun arasına oturdu.",
+        "poseAndActionEvidence": [
+          "Deniz yaprakları baştan ayırdı.",
+          "Tırtıklılar bir yanda, düzler öbür yanda.",
+          "\"Aynı yapraklar, iki yeni grup!\" dedi.",
+          "Kestane iki grubun arasına oturdu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yaprakları baştan ayırdı. Tırtıklılar bir yanda, düzler öbür yanda. \"Aynı yapraklar, iki yeni grup!\" dedi. Kestane iki grubun arasına oturdu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p06",
+        "quoteSHA256": "a2caf124b6b57dba87c8f982a73c1e32ce4c7b8b97f6cab15379ef30893b7568",
+        "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "a2caf124b6b57dba87c8f982a73c1e32ce4c7b8b97f6cab15379ef30893b7568",
+      "text": "Deniz yaprakları baştan ayırdı. Tırtıklılar bir yanda, düzler öbür yanda. \"Aynı yapraklar, iki yeni grup!\" dedi. Kestane iki grubun arasına oturdu.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p06",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+      "rawPageMove": "groups_seen",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Kestane tırtıklı yaprağı kendi dikenleriyle karşılaştırdı.",
+              "Dikenlerini kabartıp tırtıklı yaprağa bir daha baktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane tırtıklı yaprağı kendi dikenleriyle karşılaştırdı. \"Bu benim kuzenim,\" dedi. Deniz bunu çok sevdi. Kestane’nin dikenleri titredi. Dikenlerini kabartıp tırtıklı yaprağa bir daha baktı. Gerçekten benziyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p07",
+            "evidenceText": "Kestane tırtıklı yaprağı kendi dikenleriyle karşılaştırdı. \"Bu benim kuzenim,\" dedi. Deniz bunu çok sevdi. Kestane’nin dikenleri titredi. Dikenlerini kabartıp tırtıklı yaprağa bir daha baktı. Gerçekten benziyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane tırtıklı yaprağı kendi dikenleriyle karşılaştırdı. \"Bu benim kuzenim,\" dedi. Deniz bunu çok sevdi. Kestane’nin dikenleri titredi. Dikenlerini kabartıp tırtıklı yaprağa bir daha baktı. Gerçekten benziyordu.",
+        "poseAndActionEvidence": [
+          "Kestane tırtıklı yaprağı kendi dikenleriyle karşılaştırdı.",
+          "\"Bu benim kuzenim,\" dedi.",
+          "Deniz bunu çok sevdi.",
+          "Kestane’nin dikenleri titredi.",
+          "Dikenlerini kabartıp tırtıklı yaprağa bir daha baktı.",
+          "Gerçekten benziyordu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kestane tırtıklı yaprağı kendi dikenleriyle karşılaştırdı. \"Bu benim kuzenim,\" dedi. Deniz bunu çok sevdi. Kestane’nin dikenleri titredi. Dikenlerini kabartıp tırtıklı yaprağa bir daha baktı. Gerçekten benziyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p07",
+        "quoteSHA256": "c4906a4fecede940226823ba436ef6b73dcdbf32c709749e042dadd512a5297f",
+        "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "c4906a4fecede940226823ba436ef6b73dcdbf32c709749e042dadd512a5297f",
+      "text": "Kestane tırtıklı yaprağı kendi dikenleriyle karşılaştırdı. \"Bu benim kuzenim,\" dedi. Deniz bunu çok sevdi. Kestane’nin dikenleri titredi. Dikenlerini kabartıp tırtıklı yaprağa bir daha baktı. Gerçekten benziyordu.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p07",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+      "rawPageMove": "closed_result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz yaprakları yere bıraktı.",
+              "Kestane hardal yaprağını yerinde tuttu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz yaprakları yere bıraktı. Kestane hardal yaprağını yerinde tuttu. \"O hiçbir gruba girmez, o benim,\" dedi. Deniz başını yana eğip gülümsedi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p08",
+            "evidenceText": "Deniz yaprakları yere bıraktı. Kestane hardal yaprağını yerinde tuttu. \"O hiçbir gruba girmez, o benim,\" dedi. Deniz başını yana eğip gülümsedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yaprakları yere bıraktı. Kestane hardal yaprağını yerinde tuttu. \"O hiçbir gruba girmez, o benim,\" dedi. Deniz başını yana eğip gülümsedi.",
+        "poseAndActionEvidence": [
+          "Deniz yaprakları yere bıraktı.",
+          "Kestane hardal yaprağını yerinde tuttu.",
+          "\"O hiçbir gruba girmez, o benim,\" dedi.",
+          "Deniz başını yana eğip gülümsedi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yaprakları yere bıraktı. Kestane hardal yaprağını yerinde tuttu. \"O hiçbir gruba girmez, o benim,\" dedi. Deniz başını yana eğip gülümsedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p08",
+        "quoteSHA256": "308186ce45f181b46b41053676d4302bc787958348d59091bd8eba063770d0af",
+        "bookID": "pilot56_book_l5_hedgehog_event02_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "308186ce45f181b46b41053676d4302bc787958348d59091bd8eba063770d0af",
+      "text": "Deniz yaprakları yere bıraktı. Kestane hardal yaprağını yerinde tuttu. \"O hiçbir gruba girmez, o benim,\" dedi. Deniz başını yana eğip gülümsedi.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_event02_v1_p08",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk bir özellikle ikiye ayırır, sonra ikinci özellikle yeniden ayırır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

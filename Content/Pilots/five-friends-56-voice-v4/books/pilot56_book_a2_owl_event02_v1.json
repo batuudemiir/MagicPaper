@@ -1,0 +1,1099 @@
+{
+  "id": "pilot56_book_a2_owl_event02_v1",
+  "title": "Ters Okun Sırrı",
+  "blueprintID": "pilot56_blueprint_a2_v1",
+  "planLabel": "A2",
+  "mechanismKey": "sequence-with-complementary-contribution",
+  "status": "v4-approved-text-metadata-review-candidate",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "adventure",
+    "arc": "editorial-adventure",
+    "companionID": "companion_owl_pilot_001",
+    "settingID": "setting_whispering_forest_001",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Az konuşur; dikkatle gözler; cevabı çocuğa bırakır.",
+  "physicalContract": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+  "childAgency": "Çocuk parçaların yönünü ve sırasını karşılaştırıp işareti kendi tamamlar.",
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "baseBookID": "pilot56_book_a2_owl_v1",
+  "variantID": "event02",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "two_piece_goal",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_1_v1"
+      ],
+      "text": "Deniz geniş kütüğün üstünde iki tahta parça gördü. Yıldız yakındaki alçak dala konmuştu. Birinde çizgi, ötekinde ok ucu vardı. Açıklığın yol işareti yarım kalmıştı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "two_piece_goal",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p01",
+            "sourceTextDigest": "9c5a9d37cf45615a5188b552f59dc73816ed9b1d3bef0c061e5695f10cd5b2f6",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/624",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "two-separate-parts"
+            ]
+          }
+        ],
+        "propDescription": "dal; tahta işaret parçaları; kütük/yuva",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Yıldız yakındaki alçak dala konmuştu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Deniz geniş kütüğün üstünde iki tahta parça gördü.",
+              "Açıklığın yol işareti yarım kalmıştı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Deniz geniş kütüğün üstünde iki tahta parça gördü."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz geniş kütüğün üstünde iki tahta parça gördü. Yıldız yakındaki alçak dala konmuştu. Birinde çizgi, ötekinde ok ucu vardı. Açıklığın yol işareti yarım kalmıştı.",
+            "evidenceSourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p01",
+            "evidenceText": "Deniz geniş kütüğün üstünde iki tahta parça gördü. Yıldız yakındaki alçak dala konmuştu. Birinde çizgi, ötekinde ok ucu vardı. Açıklığın yol işareti yarım kalmıştı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur. Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz geniş kütüğün üstünde iki tahta parça gördü. Yıldız yakındaki alçak dala konmuştu. Birinde çizgi, ötekinde ok ucu vardı. Açıklığın yol işareti yarım kalmıştı.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Deniz geniş kütüğün üstünde iki tahta parça gördü.",
+          "Yıldız yakındaki alçak dala konmuştu.",
+          "Birinde çizgi, ötekinde ok ucu vardı.",
+          "Açıklığın yol işareti yarım kalmıştı."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 2,
+      "role": "approach",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_2_v1"
+      ],
+      "text": "Deniz ok ucunun çizgiye ters baktığını gördü. Kenarlar yakındı ama çizgiler birleşmiyordu. Yıldız başını çevirip baktı. \"Birini çevirmem gerekebilir,\" dedi Deniz.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "two_piece_goal",
+      "stateAfter": "approach",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p02",
+            "sourceTextDigest": "caddae8c3219c0b59b4c0474dea33275d35f91bc03c7793132c79ad119433b9e",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/625",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "two-separate-parts"
+            ]
+          }
+        ],
+        "propDescription": "Bu sayfada yeni fiziksel eşya açıkça adlandırılmıyor; kitap içi sahne sürekliliğini koru.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz ok ucunun çizgiye ters baktığını gördü. Kenarlar yakındı ama çizgiler birleşmiyordu. Yıldız başını çevirip baktı. \"Birini çevirmem gerekebilir,\" dedi Deniz.",
+            "evidenceSourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p02",
+            "evidenceText": "Deniz ok ucunun çizgiye ters baktığını gördü. Kenarlar yakındı ama çizgiler birleşmiyordu. Yıldız başını çevirip baktı. \"Birini çevirmem gerekebilir,\" dedi Deniz.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İstek, olasılık ve henüz gerçekleşmeyen fiilleri bitmiş fiziksel eyleme dönüştürme; kesin eylem alıntının devamıyla belirlenir. Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ok ucunun çizgiye ters baktığını gördü. Kenarlar yakındı ama çizgiler birleşmiyordu. Yıldız başını çevirip baktı. \"Birini çevirmem gerekebilir,\" dedi Deniz.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Deniz ok ucunun çizgiye ters baktığını gördü.",
+          "Kenarlar yakındı ama çizgiler birleşmiyordu.",
+          "Yıldız başını çevirip baktı.",
+          "\"Birini çevirmem gerekebilir,\" dedi Deniz."
+        ],
+        "doNotDraw": [
+          "İstek, olasılık ve henüz gerçekleşmeyen fiilleri bitmiş fiziksel eyleme dönüştürme; kesin eylem alıntının devamıyla belirlenir.",
+          "Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_contribution",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_3_v1"
+      ],
+      "text": "Yıldız başını yavaşça yana, sonra neredeyse ters çevirdi. \"Hımm… ters bakınca ok doğru görünüyor,\" dedi. Deniz’in kahkahası çınladı. \"O zaman oku çevirelim!\"",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "approach",
+      "stateAfter": "friend_contribution",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p03",
+            "sourceTextDigest": "4d4749f2ad3182cbd5a779bfed4eabc96248cc3d33d3e40604a8488048a59403",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/626",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "two-separate-parts"
+            ]
+          }
+        ],
+        "propDescription": "Bu sayfada yeni fiziksel eşya açıkça adlandırılmıyor; kitap içi sahne sürekliliğini koru.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Yıldız başını yavaşça yana, sonra neredeyse ters çevirdi. \"Hımm… ters bakınca ok doğru görünüyor,\" dedi. Deniz’in kahkahası çınladı. \"O zaman oku çevirelim!\"",
+            "evidenceSourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p03",
+            "evidenceText": "Yıldız başını yavaşça yana, sonra neredeyse ters çevirdi. \"Hımm… ters bakınca ok doğru görünüyor,\" dedi. Deniz’in kahkahası çınladı. \"O zaman oku çevirelim!\"",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur. Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yıldız başını yavaşça yana, sonra neredeyse ters çevirdi. \"Hımm… ters bakınca ok doğru görünüyor,\" dedi. Deniz’in kahkahası çınladı. \"O zaman oku çevirelim!\"",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Yıldız başını yavaşça yana, sonra neredeyse ters çevirdi.",
+          "\"Hımm…",
+          "ters bakınca ok doğru görünüyor,\" dedi.",
+          "Deniz’in kahkahası çınladı.",
+          "\"O zaman oku çevirelim!\""
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_orders",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_4_v1"
+      ],
+      "text": "Deniz ok ucunun yönünü çizginin ucuyla karşılaştırdı. \"Bunu çevirip sonra koyacağım,\" dedi. Hangi parçanın önce duracağını kendisi seçti. Yıldız başını düzeltip bekledi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_contribution",
+      "stateAfter": "child_orders",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p04",
+            "sourceTextDigest": "bd5e2e97cef49c4f9c4f3f9fd6988c5444baf1bacae2922a2e0a5b160f996a7e",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/627",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "two-separate-parts"
+            ]
+          }
+        ],
+        "propDescription": "Bu sayfada yeni fiziksel eşya açıkça adlandırılmıyor; kitap içi sahne sürekliliğini koru.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz ok ucunun yönünü çizginin ucuyla karşılaştırdı. \"Bunu çevirip sonra koyacağım,\" dedi. Hangi parçanın önce duracağını kendisi seçti. Yıldız başını düzeltip bekledi.",
+            "evidenceSourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p04",
+            "evidenceText": "Deniz ok ucunun yönünü çizginin ucuyla karşılaştırdı. \"Bunu çevirip sonra koyacağım,\" dedi. Hangi parçanın önce duracağını kendisi seçti. Yıldız başını düzeltip bekledi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur. Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ok ucunun yönünü çizginin ucuyla karşılaştırdı. \"Bunu çevirip sonra koyacağım,\" dedi. Hangi parçanın önce duracağını kendisi seçti. Yıldız başını düzeltip bekledi.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Deniz ok ucunun yönünü çizginin ucuyla karşılaştırdı.",
+          "\"Bunu çevirip sonra koyacağım,\" dedi.",
+          "Hangi parçanın önce duracağını kendisi seçti.",
+          "Yıldız başını düzeltip bekledi."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "first_piece",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_5_v1"
+      ],
+      "text": "Deniz çizgili parçayı ilk yuvaya koydu. Yıldız parçanın kenarına kondu, pençeleriyle sabit tuttu. Çizginin açık ucu ikinci yuvaya bakıyordu. Deniz ok uçlu parçayı eline aldı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_orders",
+      "stateAfter": "first_piece",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p05",
+            "sourceTextDigest": "3d7d94e9b9bd3933394e1891d616a756972cc89fa703a57ed82c0e8866e79699",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/628",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "first-piece-in-slot",
+              "second-piece-not-yet-joined"
+            ]
+          }
+        ],
+        "propDescription": "tahta işaret parçaları; kütük/yuva",
+        "propMentions": [
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Deniz çizgili parçayı ilk yuvaya koydu.",
+              "Deniz ok uçlu parçayı eline aldı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Deniz çizgili parçayı ilk yuvaya koydu.",
+              "Çizginin açık ucu ikinci yuvaya bakıyordu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz çizgili parçayı ilk yuvaya koydu. Yıldız parçanın kenarına kondu, pençeleriyle sabit tuttu. Çizginin açık ucu ikinci yuvaya bakıyordu. Deniz ok uçlu parçayı eline aldı.",
+            "evidenceSourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p05",
+            "evidenceText": "Deniz çizgili parçayı ilk yuvaya koydu. Yıldız parçanın kenarına kondu, pençeleriyle sabit tuttu. Çizginin açık ucu ikinci yuvaya bakıyordu. Deniz ok uçlu parçayı eline aldı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur. Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz çizgili parçayı ilk yuvaya koydu. Yıldız parçanın kenarına kondu, pençeleriyle sabit tuttu. Çizginin açık ucu ikinci yuvaya bakıyordu. Deniz ok uçlu parçayı eline aldı.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Deniz çizgili parçayı ilk yuvaya koydu.",
+          "Yıldız parçanın kenarına kondu, pençeleriyle sabit tuttu.",
+          "Çizginin açık ucu ikinci yuvaya bakıyordu.",
+          "Deniz ok uçlu parçayı eline aldı."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "child_completes",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_6_v1"
+      ],
+      "text": "Deniz ok uçlu parçayı çevirip ikinci yuvaya yerleştirdi. Çizgi ve ok aynı yönde birleşti. \"Tamamladım!\" dedi. Yıldız tüylerini sevinçle kabarttı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "first_piece",
+      "stateAfter": "child_completes",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p06",
+            "sourceTextDigest": "3c17e4a305bf30bfe5dd993995ce63229db87a62e60638394a25c972c640a827",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/629",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "two-parts-joined-in-slots"
+            ]
+          }
+        ],
+        "propDescription": "tahta işaret parçaları; kütük/yuva; tüy",
+        "propMentions": [
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Deniz ok uçlu parçayı çevirip ikinci yuvaya yerleştirdi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Deniz ok uçlu parçayı çevirip ikinci yuvaya yerleştirdi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Yıldız tüylerini sevinçle kabarttı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz ok uçlu parçayı çevirip ikinci yuvaya yerleştirdi. Çizgi ve ok aynı yönde birleşti. \"Tamamladım!\" dedi. Yıldız tüylerini sevinçle kabarttı.",
+            "evidenceSourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p06",
+            "evidenceText": "Deniz ok uçlu parçayı çevirip ikinci yuvaya yerleştirdi. Çizgi ve ok aynı yönde birleşti. \"Tamamladım!\" dedi. Yıldız tüylerini sevinçle kabarttı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur. Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ok uçlu parçayı çevirip ikinci yuvaya yerleştirdi. Çizgi ve ok aynı yönde birleşti. \"Tamamladım!\" dedi. Yıldız tüylerini sevinçle kabarttı.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Deniz ok uçlu parçayı çevirip ikinci yuvaya yerleştirdi.",
+          "Çizgi ve ok aynı yönde birleşti.",
+          "\"Tamamladım!\" dedi.",
+          "Yıldız tüylerini sevinçle kabarttı."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 7,
+      "role": "route_confirmed",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_7_v1"
+      ],
+      "text": "Ok, düz açıklığı gösteriyordu. Deniz arkadaşına teşekkür etti. Yıldız bu kez başını düz tutarak baktı. \"Şimdi iki türlü de doğru,\" dedi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "child_completes",
+      "stateAfter": "route_confirmed",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p07",
+            "sourceTextDigest": "f4d5bab1ffa82e6006f4fd5a2c9b4c3b2372235914fbbab70f390cd60bdbf729",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/630",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "two-parts-joined-in-slots"
+            ]
+          }
+        ],
+        "propDescription": "Bu sayfada yeni fiziksel eşya açıkça adlandırılmıyor; kitap içi sahne sürekliliğini koru.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Ok, düz açıklığı gösteriyordu. Deniz arkadaşına teşekkür etti. Yıldız bu kez başını düz tutarak baktı. \"Şimdi iki türlü de doğru,\" dedi.",
+            "evidenceSourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p07",
+            "evidenceText": "Ok, düz açıklığı gösteriyordu. Deniz arkadaşına teşekkür etti. Yıldız bu kez başını düz tutarak baktı. \"Şimdi iki türlü de doğru,\" dedi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur. Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Ok, düz açıklığı gösteriyordu. Deniz arkadaşına teşekkür etti. Yıldız bu kez başını düz tutarak baktı. \"Şimdi iki türlü de doğru,\" dedi.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Ok, düz açıklığı gösteriyordu.",
+          "Deniz arkadaşına teşekkür etti.",
+          "Yıldız bu kez başını düz tutarak baktı.",
+          "\"Şimdi iki türlü de doğru,\" dedi."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_return",
+      "orderedBeatIDs": [
+        "pilot56_beat_a2_8_v1"
+      ],
+      "text": "Deniz açıklığa yürüyüp aynı patikaya döndü. Yıldız alçaktan süzülüp yanına geldi. Yolda bir kez daha esnedi. Deniz de onu görünce esnedi, ikisi güldü.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "adventure",
+        "arc": "editorial-adventure",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "route_confirmed",
+      "stateAfter": "closed_return",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p08",
+            "sourceTextDigest": "cbd0bb408141e3569dbb7ce33c1dc0df86000e4b790eec34c902a0dddea1b52f",
+            "templateID": "pilot56_blueprint_a2_v1",
+            "sourcePointer": "sources.json#/sources/631",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "adventure",
+              "arc": "editorial-adventure",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_rotated_marker_parts_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_rotated_marker_parts_v1",
+            "presence": "present",
+            "states": [
+              "two-parts-joined-in-slots"
+            ]
+          }
+        ],
+        "propDescription": "Bu sayfada yeni fiziksel eşya açıkça adlandırılmıyor; kitap içi sahne sürekliliğini koru.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz açıklığa yürüyüp aynı patikaya döndü. Yıldız alçaktan süzülüp yanına geldi. Yolda bir kez daha esnedi. Deniz de onu görünce esnedi, ikisi güldü.",
+            "evidenceSourceID": "p56_v4_pilot56_book_a2_owl_event02_v1_p08",
+            "evidenceText": "Deniz açıklığa yürüyüp aynı patikaya döndü. Yıldız alçaktan süzülüp yanına geldi. Yolda bir kez daha esnedi. Deniz de onu görünce esnedi, ikisi güldü.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur. Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz açıklığa yürüyüp aynı patikaya döndü. Yıldız alçaktan süzülüp yanına geldi. Yolda bir kez daha esnedi. Deniz de onu görünce esnedi, ikisi güldü.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Deniz açıklığa yürüyüp aynı patikaya döndü.",
+          "Yıldız alçaktan süzülüp yanına geldi.",
+          "Yolda bir kez daha esnedi.",
+          "Deniz de onu görünce esnedi, ikisi güldü."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Parçayı p5 pençeleriyle sabit tutar; kanatla tutma çizilmez. Deniz sıralama ve yerleştirme kararını verir. p3 soru/esneme henüz parça tutma değildir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    }
+  ],
+  "sourceBookID": "pilot56_book_a2_owl_event02_v1"
+}

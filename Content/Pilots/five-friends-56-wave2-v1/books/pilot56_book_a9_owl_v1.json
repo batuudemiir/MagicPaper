@@ -1,0 +1,930 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a9_owl_v1",
+  "title": "Yıldız ve Uğur Böceği",
+  "context": {
+    "settingName": "Çiçekli Çayır",
+    "mode": "adventure",
+    "companionID": "companion_owl_pilot_001",
+    "structure": "A9",
+    "event": "e1",
+    "mechanism": "path-for-small-creature",
+    "sourceFilename": "adventure-owl.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a9_owl_v1",
+    "sourceBookID": "pilot56_book_a9_owl_v1",
+    "structure": "A9",
+    "event": "e1",
+    "sample": true,
+    "title": "Yıldız ve Uğur Böceği",
+    "pages": [
+      "Çiçekli Çayır’da güneş vardı. Deniz bir papatyanın yanında durdu. Yıldız alçak bir dala kondu. Gözlerini kırpıştırarak aşağı baktı.",
+      "Çimenin üstünde küçük bir uğur böceği vardı. Papatyaya dönmek istiyordu ama çimenler çok sıktı. Böcek bir yöne, sonra öbür yöne gitti.",
+      "\"Hımm… bence uçar,\" dedi Yıldız ve kocaman esnedi. Esnerken dalda bir yana kaydı. Tüyleri karıştı, gözleri yine kapandı. Deniz kıkırdadı.",
+      "Deniz böceğe dokunmak istemedi. Yerde ince bir dal buldu. \"Bununla yol yaparım,\" dedi. Dalı böcekle papatyanın arasına uzattı.",
+      "Deniz dalın iki ucuna baktı. Biri böceğin önündeydi, öteki papatyanın sapına değiyordu. Yol hazırdı. Yıldız başını yana yatırdı.",
+      "Deniz bekledi. Böcek önce durdu, sonra dalın üstüne çıktı. Minik ayaklarıyla yürüdü. \"Hımm… sen ne görüyorsun?\" diye fısıldadı Yıldız.",
+      "\"Kendi yürüyor,\" dedi Deniz. Böcek dalın sonuna gelip papatyaya tırmandı. Sarı ortasına kondu ve durdu. Deniz sevinçle gülümsedi.",
+      "Sonra uğur böceği kanatlarını açtı ve uçtu. \"Gördün mü, uçtu!\" dedi Yıldız. Deniz güldü. Yıldız da haklı çıkmıştı, Deniz de."
+    ]
+  },
+  "inputFileSHA256": "d0e77df2cfbeb2b6d8d21e936c891aec9b630d49794ffbd2f2b70e89c557aa69",
+  "inputBookPointer": "input/adventure-owl.json#/books/3",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a9_owl_v1",
+      "rawPageMove": "creature_noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Yıldız alçak bir dala kondu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da güneş vardı.",
+              "Deniz bir papatyanın yanında durdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Çiçekli Çayır’da güneş vardı. Deniz bir papatyanın yanında durdu. Yıldız alçak bir dala kondu. Gözlerini kırpıştırarak aşağı baktı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p01",
+            "evidenceText": "Çiçekli Çayır’da güneş vardı. Deniz bir papatyanın yanında durdu. Yıldız alçak bir dala kondu. Gözlerini kırpıştırarak aşağı baktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da güneş vardı. Deniz bir papatyanın yanında durdu. Yıldız alçak bir dala kondu. Gözlerini kırpıştırarak aşağı baktı.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da güneş vardı.",
+          "Deniz bir papatyanın yanında durdu.",
+          "Yıldız alçak bir dala kondu.",
+          "Gözlerini kırpıştırarak aşağı baktı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da güneş vardı. Deniz bir papatyanın yanında durdu. Yıldız alçak bir dala kondu. Gözlerini kırpıştırarak aşağı baktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p01",
+        "quoteSHA256": "9065d48708339b02d609aa9734d1b22278baa5848b064e255d8f8ba445c67081",
+        "bookID": "pilot56_book_a9_owl_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "9065d48708339b02d609aa9734d1b22278baa5848b064e255d8f8ba445c67081",
+      "text": "Çiçekli Çayır’da güneş vardı. Deniz bir papatyanın yanında durdu. Yıldız alçak bir dala kondu. Gözlerini kırpıştırarak aşağı baktı.",
+      "sourceID": "p56_wave2_pilot56_book_a9_owl_v1_p01",
+      "sourcePointer": "input/adventure-owl.json#/books/3/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a9_owl_v1",
+      "rawPageMove": "approach",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001",
+        "pilot56_book_a9_owl_v1_wildlife_ladybird"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_owl_v1_wildlife_ladybird",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Papatyaya dönmek istiyordu ama çimenler çok sıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001",
+              "pilot56_book_a9_owl_v1_wildlife_ladybird"
+            ],
+            "description": "Çimenin üstünde küçük bir uğur böceği vardı. Papatyaya dönmek istiyordu ama çimenler çok sıktı. Böcek bir yöne, sonra öbür yöne gitti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p02",
+            "evidenceText": "Çimenin üstünde küçük bir uğur böceği vardı. Papatyaya dönmek istiyordu ama çimenler çok sıktı. Böcek bir yöne, sonra öbür yöne gitti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çimenin üstünde küçük bir uğur böceği vardı. Papatyaya dönmek istiyordu ama çimenler çok sıktı. Böcek bir yöne, sonra öbür yöne gitti.",
+        "poseAndActionEvidence": [
+          "Çimenin üstünde küçük bir uğur böceği vardı.",
+          "Papatyaya dönmek istiyordu ama çimenler çok sıktı.",
+          "Böcek bir yöne, sonra öbür yöne gitti."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çimenin üstünde küçük bir uğur böceği vardı. Papatyaya dönmek istiyordu ama çimenler çok sıktı. Böcek bir yöne, sonra öbür yöne gitti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p01",
+        "quoteSHA256": "fdd2e685ebce4bcaf95880d77c7026af17c9cddbf20e6f2ad9db5aea8061dcae",
+        "bookID": "pilot56_book_a9_owl_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "fdd2e685ebce4bcaf95880d77c7026af17c9cddbf20e6f2ad9db5aea8061dcae",
+      "text": "Çimenin üstünde küçük bir uğur böceği vardı. Papatyaya dönmek istiyordu ama çimenler çok sıktı. Böcek bir yöne, sonra öbür yöne gitti.",
+      "sourceID": "p56_wave2_pilot56_book_a9_owl_v1_p02",
+      "sourcePointer": "input/adventure-owl.json#/books/3/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a9_owl_v1",
+      "rawPageMove": "friend_idea",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001",
+        "pilot56_book_a9_owl_v1_wildlife_ladybird"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_owl_v1_wildlife_ladybird",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "dal; tüy; yağmur/cam/oluk; kar/battaniye",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Esnerken dalda bir yana kaydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Tüyleri karıştı, gözleri yine kapandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "bence uçar,\" dedi Yıldız ve kocaman esnedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Tüyleri karıştı, gözleri yine kapandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001",
+              "pilot56_book_a9_owl_v1_wildlife_ladybird"
+            ],
+            "description": "\"Hımm… bence uçar,\" dedi Yıldız ve kocaman esnedi. Esnerken dalda bir yana kaydı. Tüyleri karıştı, gözleri yine kapandı. Deniz kıkırdadı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p03",
+            "evidenceText": "\"Hımm… bence uçar,\" dedi Yıldız ve kocaman esnedi. Esnerken dalda bir yana kaydı. Tüyleri karıştı, gözleri yine kapandı. Deniz kıkırdadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Hımm… bence uçar,\" dedi Yıldız ve kocaman esnedi. Esnerken dalda bir yana kaydı. Tüyleri karıştı, gözleri yine kapandı. Deniz kıkırdadı.",
+        "poseAndActionEvidence": [
+          "\"Hımm…",
+          "bence uçar,\" dedi Yıldız ve kocaman esnedi.",
+          "Esnerken dalda bir yana kaydı.",
+          "Tüyleri karıştı, gözleri yine kapandı.",
+          "Deniz kıkırdadı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_owl_pilot_001",
+        "quote": "\"Hımm… bence uçar,\" dedi Yıldız ve kocaman esnedi. Esnerken dalda bir yana kaydı. Tüyleri karıştı, gözleri yine kapandı. Deniz kıkırdadı.",
+        "attributionQuote": "Yıldız",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p03",
+        "quoteSHA256": "62a112ee437e1342fc3753792d7b54bc45e14f5d8ecb31c5eaff92838a8dbe29",
+        "bookID": "pilot56_book_a9_owl_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "62a112ee437e1342fc3753792d7b54bc45e14f5d8ecb31c5eaff92838a8dbe29",
+      "text": "\"Hımm… bence uçar,\" dedi Yıldız ve kocaman esnedi. Esnerken dalda bir yana kaydı. Tüyleri karıştı, gözleri yine kapandı. Deniz kıkırdadı.",
+      "sourceID": "p56_wave2_pilot56_book_a9_owl_v1_p03",
+      "sourcePointer": "input/adventure-owl.json#/books/3/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a9_owl_v1",
+      "rawPageMove": "child_picks_material",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001",
+        "pilot56_book_a9_owl_v1_wildlife_ladybird"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_owl_v1_wildlife_ladybird",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "dal; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Yerde ince bir dal buldu.",
+              "Dalı böcekle papatyanın arasına uzattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Dalı böcekle papatyanın arasına uzattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001",
+              "pilot56_book_a9_owl_v1_wildlife_ladybird"
+            ],
+            "description": "Deniz böceğe dokunmak istemedi. Yerde ince bir dal buldu. \"Bununla yol yaparım,\" dedi. Dalı böcekle papatyanın arasına uzattı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p04",
+            "evidenceText": "Deniz böceğe dokunmak istemedi. Yerde ince bir dal buldu. \"Bununla yol yaparım,\" dedi. Dalı böcekle papatyanın arasına uzattı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz böceğe dokunmak istemedi. Yerde ince bir dal buldu. \"Bununla yol yaparım,\" dedi. Dalı böcekle papatyanın arasına uzattı.",
+        "poseAndActionEvidence": [
+          "Deniz böceğe dokunmak istemedi.",
+          "Yerde ince bir dal buldu.",
+          "\"Bununla yol yaparım,\" dedi.",
+          "Dalı böcekle papatyanın arasına uzattı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz böceğe dokunmak istemedi. Yerde ince bir dal buldu. \"Bununla yol yaparım,\" dedi. Dalı böcekle papatyanın arasına uzattı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p04",
+        "quoteSHA256": "1fae243895528d84328a8f6e98a5440c65751fad9a91b78b782878fc8eae8d27",
+        "bookID": "pilot56_book_a9_owl_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "1fae243895528d84328a8f6e98a5440c65751fad9a91b78b782878fc8eae8d27",
+      "text": "Deniz böceğe dokunmak istemedi. Yerde ince bir dal buldu. \"Bununla yol yaparım,\" dedi. Dalı böcekle papatyanın arasına uzattı.",
+      "sourceID": "p56_wave2_pilot56_book_a9_owl_v1_p04",
+      "sourcePointer": "input/adventure-owl.json#/books/3/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a9_owl_v1",
+      "rawPageMove": "path_built",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001",
+        "pilot56_book_a9_owl_v1_wildlife_ladybird"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_owl_v1_wildlife_ladybird",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "yaprak damarı/sapı; dal; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "yaprak damarı/sapı",
+            "evidenceQuotes": [
+              "Biri böceğin önündeydi, öteki papatyanın sapına değiyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz dalın iki ucuna baktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Biri böceğin önündeydi, öteki papatyanın sapına değiyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001",
+              "pilot56_book_a9_owl_v1_wildlife_ladybird"
+            ],
+            "description": "Deniz dalın iki ucuna baktı. Biri böceğin önündeydi, öteki papatyanın sapına değiyordu. Yol hazırdı. Yıldız başını yana yatırdı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p05",
+            "evidenceText": "Deniz dalın iki ucuna baktı. Biri böceğin önündeydi, öteki papatyanın sapına değiyordu. Yol hazırdı. Yıldız başını yana yatırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz dalın iki ucuna baktı. Biri böceğin önündeydi, öteki papatyanın sapına değiyordu. Yol hazırdı. Yıldız başını yana yatırdı.",
+        "poseAndActionEvidence": [
+          "Deniz dalın iki ucuna baktı.",
+          "Biri böceğin önündeydi, öteki papatyanın sapına değiyordu.",
+          "Yol hazırdı.",
+          "Yıldız başını yana yatırdı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz dalın iki ucuna baktı. Biri böceğin önündeydi, öteki papatyanın sapına değiyordu. Yol hazırdı. Yıldız başını yana yatırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p05",
+        "quoteSHA256": "2339d944489b8d3fc30b69853ec7a479dc5eb9e61206906cc90bdf4c05dcd6a5",
+        "bookID": "pilot56_book_a9_owl_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "2339d944489b8d3fc30b69853ec7a479dc5eb9e61206906cc90bdf4c05dcd6a5",
+      "text": "Deniz dalın iki ucuna baktı. Biri böceğin önündeydi, öteki papatyanın sapına değiyordu. Yol hazırdı. Yıldız başını yana yatırdı.",
+      "sourceID": "p56_wave2_pilot56_book_a9_owl_v1_p05",
+      "sourcePointer": "input/adventure-owl.json#/books/3/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a9_owl_v1",
+      "rawPageMove": "child_waits",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001",
+        "pilot56_book_a9_owl_v1_wildlife_ladybird"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_owl_v1_wildlife_ladybird",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "self-propelled-crossing"
+            ]
+          }
+        ],
+        "propDescription": "dal; canlı yolu",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Böcek önce durdu, sonra dalın üstüne çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "canlı yolu",
+            "evidenceQuotes": [
+              "Böcek önce durdu, sonra dalın üstüne çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001",
+              "pilot56_book_a9_owl_v1_wildlife_ladybird"
+            ],
+            "description": "Deniz bekledi. Böcek önce durdu, sonra dalın üstüne çıktı. Minik ayaklarıyla yürüdü. \"Hımm… sen ne görüyorsun?\" diye fısıldadı Yıldız.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p06",
+            "evidenceText": "Deniz bekledi. Böcek önce durdu, sonra dalın üstüne çıktı. Minik ayaklarıyla yürüdü. \"Hımm… sen ne görüyorsun?\" diye fısıldadı Yıldız.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz bekledi. Böcek önce durdu, sonra dalın üstüne çıktı. Minik ayaklarıyla yürüdü. \"Hımm… sen ne görüyorsun?\" diye fısıldadı Yıldız.",
+        "poseAndActionEvidence": [
+          "Deniz bekledi.",
+          "Böcek önce durdu, sonra dalın üstüne çıktı.",
+          "Minik ayaklarıyla yürüdü.",
+          "\"Hımm…",
+          "sen ne görüyorsun?\" diye fısıldadı Yıldız."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz bekledi. Böcek önce durdu, sonra dalın üstüne çıktı. Minik ayaklarıyla yürüdü. \"Hımm… sen ne görüyorsun?\" diye fısıldadı Yıldız.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p06",
+        "quoteSHA256": "c1f8d33c4c50f4e7b28a70ee1d38c31dc71389073ffb676525d56373a2e682fd",
+        "bookID": "pilot56_book_a9_owl_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "c1f8d33c4c50f4e7b28a70ee1d38c31dc71389073ffb676525d56373a2e682fd",
+      "text": "Deniz bekledi. Böcek önce durdu, sonra dalın üstüne çıktı. Minik ayaklarıyla yürüdü. \"Hımm… sen ne görüyorsun?\" diye fısıldadı Yıldız.",
+      "sourceID": "p56_wave2_pilot56_book_a9_owl_v1_p06",
+      "sourcePointer": "input/adventure-owl.json#/books/3/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a9_owl_v1",
+      "rawPageMove": "creature_crosses",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001",
+        "pilot56_book_a9_owl_v1_wildlife_ladybird"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_owl_v1_wildlife_ladybird",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "self-propelled-crossing"
+            ]
+          }
+        ],
+        "propDescription": "dal; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Böcek dalın sonuna gelip papatyaya tırmandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Böcek dalın sonuna gelip papatyaya tırmandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001",
+              "pilot56_book_a9_owl_v1_wildlife_ladybird"
+            ],
+            "description": "\"Kendi yürüyor,\" dedi Deniz. Böcek dalın sonuna gelip papatyaya tırmandı. Sarı ortasına kondu ve durdu. Deniz sevinçle gülümsedi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p07",
+            "evidenceText": "\"Kendi yürüyor,\" dedi Deniz. Böcek dalın sonuna gelip papatyaya tırmandı. Sarı ortasına kondu ve durdu. Deniz sevinçle gülümsedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Kendi yürüyor,\" dedi Deniz. Böcek dalın sonuna gelip papatyaya tırmandı. Sarı ortasına kondu ve durdu. Deniz sevinçle gülümsedi.",
+        "poseAndActionEvidence": [
+          "\"Kendi yürüyor,\" dedi Deniz.",
+          "Böcek dalın sonuna gelip papatyaya tırmandı.",
+          "Sarı ortasına kondu ve durdu.",
+          "Deniz sevinçle gülümsedi."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "pilot56_book_a9_owl_v1_wildlife_ladybird",
+        "quote": "\"Kendi yürüyor,\" dedi Deniz. Böcek dalın sonuna gelip papatyaya tırmandı. Sarı ortasına kondu ve durdu. Deniz sevinçle gülümsedi.",
+        "attributionQuote": "Böcek",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p02",
+        "quoteSHA256": "8861dcfb5e8357b38e1fc4f1faeb2ddb6786bb03bc86314d9552791b03aeaa90",
+        "bookID": "pilot56_book_a9_owl_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "8861dcfb5e8357b38e1fc4f1faeb2ddb6786bb03bc86314d9552791b03aeaa90",
+      "text": "\"Kendi yürüyor,\" dedi Deniz. Böcek dalın sonuna gelip papatyaya tırmandı. Sarı ortasına kondu ve durdu. Deniz sevinçle gülümsedi.",
+      "sourceID": "p56_wave2_pilot56_book_a9_owl_v1_p07",
+      "sourcePointer": "input/adventure-owl.json#/books/3/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a9_owl_v1",
+      "rawPageMove": "closing",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001",
+        "pilot56_book_a9_owl_v1_wildlife_ladybird"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_owl_v1_wildlife_ladybird",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature",
+              "flies-away-by-page-end"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001",
+              "pilot56_book_a9_owl_v1_wildlife_ladybird"
+            ],
+            "description": "Sonra uğur böceği kanatlarını açtı ve uçtu. \"Gördün mü, uçtu!\" dedi Yıldız. Deniz güldü. Yıldız da haklı çıkmıştı, Deniz de.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p08",
+            "evidenceText": "Sonra uğur böceği kanatlarını açtı ve uçtu. \"Gördün mü, uçtu!\" dedi Yıldız. Deniz güldü. Yıldız da haklı çıkmıştı, Deniz de.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Sonra uğur böceği kanatlarını açtı ve uçtu. \"Gördün mü, uçtu!\" dedi Yıldız. Deniz güldü. Yıldız da haklı çıkmıştı, Deniz de.",
+        "poseAndActionEvidence": [
+          "Sonra uğur böceği kanatlarını açtı ve uçtu.",
+          "\"Gördün mü, uçtu!\" dedi Yıldız.",
+          "Deniz güldü.",
+          "Yıldız da haklı çıkmıştı, Deniz de."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Sonra uğur böceği kanatlarını açtı ve uçtu. \"Gördün mü, uçtu!\" dedi Yıldız. Deniz güldü. Yıldız da haklı çıkmıştı, Deniz de.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_owl_v1_p08",
+        "quoteSHA256": "1701f35d94282bc30b1d715b95008f4cfe6f4f6dc67d84af37a285e752a4bf6e",
+        "bookID": "pilot56_book_a9_owl_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "1701f35d94282bc30b1d715b95008f4cfe6f4f6dc67d84af37a285e752a4bf6e",
+      "text": "Sonra uğur böceği kanatlarını açtı ve uçtu. \"Gördün mü, uçtu!\" dedi Yıldız. Deniz güldü. Yıldız da haklı çıkmıştı, Deniz de.",
+      "sourceID": "p56_wave2_pilot56_book_a9_owl_v1_p08",
+      "sourcePointer": "input/adventure-owl.json#/books/3/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz canlıya dokunmadan dal ya da yaprakla yol yapar, canlının kendisi yürümesini bekler.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

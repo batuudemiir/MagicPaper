@@ -1,0 +1,968 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u4_hedgehog_event03_v1",
+  "title": "Kestane ve Son Damla",
+  "context": {
+    "settingName": "Çatı Katı Odası",
+    "mode": "bedtime",
+    "companionID": "companion_hedgehog_pilot_001",
+    "structure": "U4",
+    "event": "e3",
+    "mechanism": "rain-breath-pacing",
+    "sourceFilename": "bedtime-hedgehog.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u4_hedgehog_event03_v1",
+    "structure": "U4",
+    "event": "e3",
+    "sample": false,
+    "title": "Kestane ve Son Damla",
+    "pages": [
+      "Çatı Katı Odası’nda pijama vakti gelmişti. Deniz örtüsünü dizlerine aldı. Kestane minderinden pencereye bakıyordu. Hardal yaprağı ışıkta parlıyordu. Camın üstünde damlalar birikiyordu.",
+      "Yağmur dinmek üzereydi. Oluktan seyrek damlalar düşüyordu. Dıp… dıp… Kestane her damlada bir kez göz kırptı. \"Yağmur yoruldu,\" dedi Deniz. Pencereye bakıp bekledi.",
+      "Kestane damlaları adımlarıyla saydı. Dıp, bir adım! Dıp, bir adım daha! Minderin kenarına kadar yürüdü. Bu Deniz’i çok güldürdü. Kestane gururla burnunu kaldırdı.",
+      "Deniz her damlayı bekledi. Damla düşünce nefesini usulca bıraktı. Damlalar seyreldikçe nefesi uzadı. Kestane’nin burnu da yavaş yavaş kıpırdadı. Oda sessizdi.",
+      "Damlalar seyrekleşince Kestane de yavaşladı. \"Küçük bir adım, sonra bir tane daha,\" dedi. Sonra uzun uzun bekledi. Deniz başını sallayıp gülümsedi. Kestane minik bir top oldu.",
+      "Son damla da düştü. Deniz yenisini beklemedi. \"Saymayı bitirdim,\" dedi. Kestane’nin dikenleri tek tek yattı. Gece yağmurdan da sessizdi artık.",
+      "Kestane minderin ortasına döndü. Dikenlerini indirip kıvrıldı. Oda serin ve sakindi. Deniz son damlanın düşmesini bekledi. Pencerede yağmur artık durmuştu.",
+      "\"Uyku vakti, Deniz,\" dedi küçük top. Deniz yavaşça gözlerini yumdu. Son damla düşmüş, gece başlamıştı. Kestane minderinde mışıl mışıl soludu."
+    ],
+    "sourceBookID": "pilot56_book_u4_hedgehog_event03_v1"
+  },
+  "inputFileSHA256": "ef2cea6931dd3eb8bb30f95501ceb9be193ab52ce70c457fc117266805c6d48d",
+  "inputBookPointer": "input/bedtime-hedgehog.json#/books/2",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; damla; örtü; minder; perde/pencere; yağmur/cam/oluk; lamba/fener/ışık; iz/kum",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Hardal yaprağı ışıkta parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "damla",
+            "evidenceQuotes": [
+              "Camın üstünde damlalar birikiyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Deniz örtüsünü dizlerine aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Kestane minderinden pencereye bakıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "perde/pencere",
+            "evidenceQuotes": [
+              "Kestane minderinden pencereye bakıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Camın üstünde damlalar birikiyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Hardal yaprağı ışıkta parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Deniz örtüsünü dizlerine aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Çatı Katı Odası’nda pijama vakti gelmişti. Deniz örtüsünü dizlerine aldı. Kestane minderinden pencereye bakıyordu. Hardal yaprağı ışıkta parlıyordu. Camın üstünde damlalar birikiyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p01",
+            "evidenceText": "Çatı Katı Odası’nda pijama vakti gelmişti. Deniz örtüsünü dizlerine aldı. Kestane minderinden pencereye bakıyordu. Hardal yaprağı ışıkta parlıyordu. Camın üstünde damlalar birikiyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çatı Katı Odası’nda pijama vakti gelmişti. Deniz örtüsünü dizlerine aldı. Kestane minderinden pencereye bakıyordu. Hardal yaprağı ışıkta parlıyordu. Camın üstünde damlalar birikiyordu.",
+        "poseAndActionEvidence": [
+          "Çatı Katı Odası’nda pijama vakti gelmişti.",
+          "Deniz örtüsünü dizlerine aldı.",
+          "Kestane minderinden pencereye bakıyordu.",
+          "Hardal yaprağı ışıkta parlıyordu.",
+          "Camın üstünde damlalar birikiyordu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çatı Katı Odası’nda pijama vakti gelmişti. Deniz örtüsünü dizlerine aldı. Kestane minderinden pencereye bakıyordu. Hardal yaprağı ışıkta parlıyordu. Camın üstünde damlalar birikiyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p01",
+        "quoteSHA256": "256ec137099b657a7adb9beb00a6354ed31e75057d14edbb70c7d1cd8435e4f0",
+        "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "256ec137099b657a7adb9beb00a6354ed31e75057d14edbb70c7d1cd8435e4f0",
+      "text": "Çatı Katı Odası’nda pijama vakti gelmişti. Deniz örtüsünü dizlerine aldı. Kestane minderinden pencereye bakıyordu. Hardal yaprağı ışıkta parlıyordu. Camın üstünde damlalar birikiyordu.",
+      "sourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p01",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+      "rawPageMove": "rain_noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "damla; perde/pencere; yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "damla",
+            "evidenceQuotes": [
+              "Oluktan seyrek damlalar düşüyordu.",
+              "Kestane her damlada bir kez göz kırptı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "perde/pencere",
+            "evidenceQuotes": [
+              "Pencereye bakıp bekledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Yağmur dinmek üzereydi.",
+              "Oluktan seyrek damlalar düşüyordu.",
+              "Kestane her damlada bir kez göz kırptı.",
+              "\"Yağmur yoruldu,\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Yağmur dinmek üzereydi. Oluktan seyrek damlalar düşüyordu. Dıp… dıp… Kestane her damlada bir kez göz kırptı. \"Yağmur yoruldu,\" dedi Deniz. Pencereye bakıp bekledi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p02",
+            "evidenceText": "Yağmur dinmek üzereydi. Oluktan seyrek damlalar düşüyordu. Dıp… dıp… Kestane her damlada bir kez göz kırptı. \"Yağmur yoruldu,\" dedi Deniz. Pencereye bakıp bekledi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yağmur dinmek üzereydi. Oluktan seyrek damlalar düşüyordu. Dıp… dıp… Kestane her damlada bir kez göz kırptı. \"Yağmur yoruldu,\" dedi Deniz. Pencereye bakıp bekledi.",
+        "poseAndActionEvidence": [
+          "Yağmur dinmek üzereydi.",
+          "Oluktan seyrek damlalar düşüyordu.",
+          "Dıp…",
+          "dıp…",
+          "Kestane her damlada bir kez göz kırptı.",
+          "\"Yağmur yoruldu,\" dedi Deniz.",
+          "Pencereye bakıp bekledi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Yağmur dinmek üzereydi. Oluktan seyrek damlalar düşüyordu. Dıp… dıp… Kestane her damlada bir kez göz kırptı. \"Yağmur yoruldu,\" dedi Deniz. Pencereye bakıp bekledi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p02",
+        "quoteSHA256": "453d5038ebd0f8484bce1a216b6dd138ab7e0f419800eaf8361117b170d5e822",
+        "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "453d5038ebd0f8484bce1a216b6dd138ab7e0f419800eaf8361117b170d5e822",
+      "text": "Yağmur dinmek üzereydi. Oluktan seyrek damlalar düşüyordu. Dıp… dıp… Kestane her damlada bir kez göz kırptı. \"Yağmur yoruldu,\" dedi Deniz. Pencereye bakıp bekledi.",
+      "sourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p02",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+      "rawPageMove": "friend_counts_along",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "damla; minder; yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "damla",
+            "evidenceQuotes": [
+              "Kestane damlaları adımlarıyla saydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Minderin kenarına kadar yürüdü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Kestane damlaları adımlarıyla saydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane damlaları adımlarıyla saydı. Dıp, bir adım! Dıp, bir adım daha! Minderin kenarına kadar yürüdü. Bu Deniz’i çok güldürdü. Kestane gururla burnunu kaldırdı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p03",
+            "evidenceText": "Kestane damlaları adımlarıyla saydı. Dıp, bir adım! Dıp, bir adım daha! Minderin kenarına kadar yürüdü. Bu Deniz’i çok güldürdü. Kestane gururla burnunu kaldırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane damlaları adımlarıyla saydı. Dıp, bir adım! Dıp, bir adım daha! Minderin kenarına kadar yürüdü. Bu Deniz’i çok güldürdü. Kestane gururla burnunu kaldırdı.",
+        "poseAndActionEvidence": [
+          "Kestane damlaları adımlarıyla saydı.",
+          "Dıp, bir adım!",
+          "Dıp, bir adım daha!",
+          "Minderin kenarına kadar yürüdü.",
+          "Bu Deniz’i çok güldürdü.",
+          "Kestane gururla burnunu kaldırdı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_hedgehog_pilot_001",
+        "quote": "Kestane damlaları adımlarıyla saydı. Dıp, bir adım! Dıp, bir adım daha! Minderin kenarına kadar yürüdü. Bu Deniz’i çok güldürdü. Kestane gururla burnunu kaldırdı.",
+        "attributionQuote": "Kestane",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p03",
+        "quoteSHA256": "a91e3c6c74ea6ced6568a16dcb3eeda655f82e06ea9a4a6fe2a27b51088707f9",
+        "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "a91e3c6c74ea6ced6568a16dcb3eeda655f82e06ea9a4a6fe2a27b51088707f9",
+      "text": "Kestane damlaları adımlarıyla saydı. Dıp, bir adım! Dıp, bir adım daha! Minderin kenarına kadar yürüdü. Bu Deniz’i çok güldürdü. Kestane gururla burnunu kaldırdı.",
+      "sourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p03",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+      "rawPageMove": "child_slows_breath",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "damla; yağmur/cam/oluk; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "damla",
+            "evidenceQuotes": [
+              "Deniz her damlayı bekledi.",
+              "Damla düşünce nefesini usulca bıraktı.",
+              "Damlalar seyreldikçe nefesi uzadı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Deniz her damlayı bekledi.",
+              "Damla düşünce nefesini usulca bıraktı.",
+              "Damlalar seyreldikçe nefesi uzadı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kestane’nin burnu da yavaş yavaş kıpırdadı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz her damlayı bekledi. Damla düşünce nefesini usulca bıraktı. Damlalar seyreldikçe nefesi uzadı. Kestane’nin burnu da yavaş yavaş kıpırdadı. Oda sessizdi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p04",
+            "evidenceText": "Deniz her damlayı bekledi. Damla düşünce nefesini usulca bıraktı. Damlalar seyreldikçe nefesi uzadı. Kestane’nin burnu da yavaş yavaş kıpırdadı. Oda sessizdi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz her damlayı bekledi. Damla düşünce nefesini usulca bıraktı. Damlalar seyreldikçe nefesi uzadı. Kestane’nin burnu da yavaş yavaş kıpırdadı. Oda sessizdi.",
+        "poseAndActionEvidence": [
+          "Deniz her damlayı bekledi.",
+          "Damla düşünce nefesini usulca bıraktı.",
+          "Damlalar seyreldikçe nefesi uzadı.",
+          "Kestane’nin burnu da yavaş yavaş kıpırdadı.",
+          "Oda sessizdi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz her damlayı bekledi. Damla düşünce nefesini usulca bıraktı. Damlalar seyreldikçe nefesi uzadı. Kestane’nin burnu da yavaş yavaş kıpırdadı. Oda sessizdi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p04",
+        "quoteSHA256": "9e1208e703382f2c7d0af2ac35a3b7ee550098ef6622334a94ef43656879de2b",
+        "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "9e1208e703382f2c7d0af2ac35a3b7ee550098ef6622334a94ef43656879de2b",
+      "text": "Deniz her damlayı bekledi. Damla düşünce nefesini usulca bıraktı. Damlalar seyreldikçe nefesi uzadı. Kestane’nin burnu da yavaş yavaş kıpırdadı. Oda sessizdi.",
+      "sourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p04",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+      "rawPageMove": "soft_smile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "damla; yağmur/cam/oluk; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "damla",
+            "evidenceQuotes": [
+              "Damlalar seyrekleşince Kestane de yavaşladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Damlalar seyrekleşince Kestane de yavaşladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kestane minik bir top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Damlalar seyrekleşince Kestane de yavaşladı. \"Küçük bir adım, sonra bir tane daha,\" dedi. Sonra uzun uzun bekledi. Deniz başını sallayıp gülümsedi. Kestane minik bir top oldu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p05",
+            "evidenceText": "Damlalar seyrekleşince Kestane de yavaşladı. \"Küçük bir adım, sonra bir tane daha,\" dedi. Sonra uzun uzun bekledi. Deniz başını sallayıp gülümsedi. Kestane minik bir top oldu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Damlalar seyrekleşince Kestane de yavaşladı. \"Küçük bir adım, sonra bir tane daha,\" dedi. Sonra uzun uzun bekledi. Deniz başını sallayıp gülümsedi. Kestane minik bir top oldu.",
+        "poseAndActionEvidence": [
+          "Damlalar seyrekleşince Kestane de yavaşladı.",
+          "\"Küçük bir adım, sonra bir tane daha,\" dedi.",
+          "Sonra uzun uzun bekledi.",
+          "Deniz başını sallayıp gülümsedi.",
+          "Kestane minik bir top oldu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Damlalar seyrekleşince Kestane de yavaşladı. \"Küçük bir adım, sonra bir tane daha,\" dedi. Sonra uzun uzun bekledi. Deniz başını sallayıp gülümsedi. Kestane minik bir top oldu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p05",
+        "quoteSHA256": "144d806a40b057f9c4b263295044891d9eb8b1aa261cd7cf9448ca1791d4ed5d",
+        "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "144d806a40b057f9c4b263295044891d9eb8b1aa261cd7cf9448ca1791d4ed5d",
+      "text": "Damlalar seyrekleşince Kestane de yavaşladı. \"Küçük bir adım, sonra bir tane daha,\" dedi. Sonra uzun uzun bekledi. Deniz başını sallayıp gülümsedi. Kestane minik bir top oldu.",
+      "sourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p05",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+      "rawPageMove": "counting_released",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "damla; yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "damla",
+            "evidenceQuotes": [
+              "Son damla da düştü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Son damla da düştü.",
+              "Gece yağmurdan da sessizdi artık."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Son damla da düştü. Deniz yenisini beklemedi. \"Saymayı bitirdim,\" dedi. Kestane’nin dikenleri tek tek yattı. Gece yağmurdan da sessizdi artık.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p06",
+            "evidenceText": "Son damla da düştü. Deniz yenisini beklemedi. \"Saymayı bitirdim,\" dedi. Kestane’nin dikenleri tek tek yattı. Gece yağmurdan da sessizdi artık.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Son damla da düştü. Deniz yenisini beklemedi. \"Saymayı bitirdim,\" dedi. Kestane’nin dikenleri tek tek yattı. Gece yağmurdan da sessizdi artık.",
+        "poseAndActionEvidence": [
+          "Son damla da düştü.",
+          "Deniz yenisini beklemedi.",
+          "\"Saymayı bitirdim,\" dedi.",
+          "Kestane’nin dikenleri tek tek yattı.",
+          "Gece yağmurdan da sessizdi artık."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Son damla da düştü. Deniz yenisini beklemedi. \"Saymayı bitirdim,\" dedi. Kestane’nin dikenleri tek tek yattı. Gece yağmurdan da sessizdi artık.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p06",
+        "quoteSHA256": "37ae1453b465acbbeb6005ad4a9d3e46c2ed6fa9a9c0a007ca7eb9bf3ab50078",
+        "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "37ae1453b465acbbeb6005ad4a9d3e46c2ed6fa9a9c0a007ca7eb9bf3ab50078",
+      "text": "Son damla da düştü. Deniz yenisini beklemedi. \"Saymayı bitirdim,\" dedi. Kestane’nin dikenleri tek tek yattı. Gece yağmurdan da sessizdi artık.",
+      "sourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p06",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "damla; minder; perde/pencere; yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "damla",
+            "evidenceQuotes": [
+              "Deniz son damlanın düşmesini bekledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Kestane minderin ortasına döndü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "perde/pencere",
+            "evidenceQuotes": [
+              "Pencerede yağmur artık durmuştu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Deniz son damlanın düşmesini bekledi.",
+              "Pencerede yağmur artık durmuştu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane minderin ortasına döndü. Dikenlerini indirip kıvrıldı. Oda serin ve sakindi. Deniz son damlanın düşmesini bekledi. Pencerede yağmur artık durmuştu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p07",
+            "evidenceText": "Kestane minderin ortasına döndü. Dikenlerini indirip kıvrıldı. Oda serin ve sakindi. Deniz son damlanın düşmesini bekledi. Pencerede yağmur artık durmuştu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane minderin ortasına döndü. Dikenlerini indirip kıvrıldı. Oda serin ve sakindi. Deniz son damlanın düşmesini bekledi. Pencerede yağmur artık durmuştu.",
+        "poseAndActionEvidence": [
+          "Kestane minderin ortasına döndü.",
+          "Dikenlerini indirip kıvrıldı.",
+          "Oda serin ve sakindi.",
+          "Deniz son damlanın düşmesini bekledi.",
+          "Pencerede yağmur artık durmuştu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kestane minderin ortasına döndü. Dikenlerini indirip kıvrıldı. Oda serin ve sakindi. Deniz son damlanın düşmesini bekledi. Pencerede yağmur artık durmuştu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p07",
+        "quoteSHA256": "a02f47a278c6fe94e81f14f910ef28974ddd55e77da393905158bd4310d2f813",
+        "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "a02f47a278c6fe94e81f14f910ef28974ddd55e77da393905158bd4310d2f813",
+      "text": "Kestane minderin ortasına döndü. Dikenlerini indirip kıvrıldı. Oda serin ve sakindi. Deniz son damlanın düşmesini bekledi. Pencerede yağmur artık durmuştu.",
+      "sourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p07",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "damla; minder; yağmur/cam/oluk; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "damla",
+            "evidenceQuotes": [
+              "Son damla düşmüş, gece başlamıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Kestane minderinde mışıl mışıl soludu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Son damla düşmüş, gece başlamıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "\"Uyku vakti, Deniz,\" dedi küçük top."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "\"Uyku vakti, Deniz,\" dedi küçük top. Deniz yavaşça gözlerini yumdu. Son damla düşmüş, gece başlamıştı. Kestane minderinde mışıl mışıl soludu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p08",
+            "evidenceText": "\"Uyku vakti, Deniz,\" dedi küçük top. Deniz yavaşça gözlerini yumdu. Son damla düşmüş, gece başlamıştı. Kestane minderinde mışıl mışıl soludu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Uyku vakti, Deniz,\" dedi küçük top. Deniz yavaşça gözlerini yumdu. Son damla düşmüş, gece başlamıştı. Kestane minderinde mışıl mışıl soludu.",
+        "poseAndActionEvidence": [
+          "\"Uyku vakti, Deniz,\" dedi küçük top.",
+          "Deniz yavaşça gözlerini yumdu.",
+          "Son damla düşmüş, gece başlamıştı.",
+          "Kestane minderinde mışıl mışıl soludu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Uyku vakti, Deniz,\" dedi küçük top. Deniz yavaşça gözlerini yumdu. Son damla düşmüş, gece başlamıştı. Kestane minderinde mışıl mışıl soludu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p08",
+        "quoteSHA256": "85ca5d0e0632b4c6869f4a573017d3196e0b468bddf8a26eaf3c98234a1f5c69",
+        "bookID": "pilot56_book_u4_hedgehog_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "85ca5d0e0632b4c6869f4a573017d3196e0b468bddf8a26eaf3c98234a1f5c69",
+      "text": "\"Uyku vakti, Deniz,\" dedi küçük top. Deniz yavaşça gözlerini yumdu. Son damla düşmüş, gece başlamıştı. Kestane minderinde mışıl mışıl soludu.",
+      "sourceID": "p56_wave1_pilot56_book_u4_hedgehog_event03_v1_p08",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/2/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk damlaları sayarken nefesini yavaşlatır, sonra saymayı kendisi bırakır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

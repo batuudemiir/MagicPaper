@@ -1,0 +1,841 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u6_hedgehog_event03_v1",
+  "title": "Kestane'nin Gümüş Dikenleri",
+  "context": {
+    "settingName": "Ağaç Ev Odası",
+    "mode": "bedtime",
+    "companionID": "companion_hedgehog_pilot_001",
+    "structure": "U6",
+    "event": "e3",
+    "mechanism": "lights-goodnight-round",
+    "sourceFilename": "bedtime-hedgehog.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u6_hedgehog_event03_v1",
+    "structure": "U6",
+    "event": "e3",
+    "sample": false,
+    "title": "Kestane'nin Gümüş Dikenleri",
+    "pages": [
+      "Ağaç Ev Odası’nda gece lambası yanıyordu. Deniz battaniyesine sarıldı. Kestane pencerenin altındaki minderdeydi. Burnunu perdeye uzatmıştı. Ay ışığı perdenin aralığından sızıyordu.",
+      "Masa lambası sarı sarı yanıyordu. Perdenin aralığından gümüş bir ay ışığı giriyordu. Kestane iki ışığın arasında durdu. \"Hangisi kalsın?\" diye sordu Deniz.",
+      "Ay ışığı Kestane'nin dikenlerine düştü. Her diken gümüş gibi parladı. \"Ay benim dikenlerimi boyuyor!\" dedi Kestane. Deniz eğilip kıkırdadı.",
+      "Deniz masa lambasını kapattı. Yere ay ışığından bir şerit düştü. Kestane şeridin ucuna kadar yürüyüp oturdu. Oda gümüşi bir loşluğa büründü.",
+      "Kestane ay şeridinin içine yürüdü. \"Küçük bir adım, sonra bir tane daha,\" dedi. Tam ortasına yerleşti. Deniz’in gözleri parladı. Kestane de burnunu kırıştırdı.",
+      "Deniz perdeyi biraz daha açtı. \"Ay ışığı kalıyor,\" dedi. Şerit genişleyip Kestane’ye kadar uzandı. Deniz gümüş şeride bakıp rahatladı. Oda serin ve sakindi.",
+      "Kestane gümüş bir top oldu. Hardal yaprağı ay ışığında soluk görünüyordu. Oda sakindi. Kestane uykulu gözlerle ay şeridine baktı. Deniz yorganını düzeltti.",
+      "\"Dinlen artık, Deniz,\" diye fısıldadı küçük top. Deniz yavaşça gözlerini yumdu. Ay ışığı yerde uyudu. Kestane'nin burnu son kez kıpırdadı."
+    ],
+    "sourceBookID": "pilot56_book_u6_hedgehog_event03_v1"
+  },
+  "inputFileSHA256": "ef2cea6931dd3eb8bb30f95501ceb9be193ab52ce70c457fc117266805c6d48d",
+  "inputBookPointer": "input/bedtime-hedgehog.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; minder; perde/pencere; lamba/fener/ışık; kar/battaniye; iz/kum",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Ağaç Ev Odası’nda gece lambası yanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Kestane pencerenin altındaki minderdeydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "perde/pencere",
+            "evidenceQuotes": [
+              "Kestane pencerenin altındaki minderdeydi.",
+              "Burnunu perdeye uzatmıştı.",
+              "Ay ışığı perdenin aralığından sızıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Ağaç Ev Odası’nda gece lambası yanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Deniz battaniyesine sarıldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Ay ışığı perdenin aralığından sızıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Ağaç Ev Odası’nda gece lambası yanıyordu. Deniz battaniyesine sarıldı. Kestane pencerenin altındaki minderdeydi. Burnunu perdeye uzatmıştı. Ay ışığı perdenin aralığından sızıyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p01",
+            "evidenceText": "Ağaç Ev Odası’nda gece lambası yanıyordu. Deniz battaniyesine sarıldı. Kestane pencerenin altındaki minderdeydi. Burnunu perdeye uzatmıştı. Ay ışığı perdenin aralığından sızıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Ağaç Ev Odası’nda gece lambası yanıyordu. Deniz battaniyesine sarıldı. Kestane pencerenin altındaki minderdeydi. Burnunu perdeye uzatmıştı. Ay ışığı perdenin aralığından sızıyordu.",
+        "poseAndActionEvidence": [
+          "Ağaç Ev Odası’nda gece lambası yanıyordu.",
+          "Deniz battaniyesine sarıldı.",
+          "Kestane pencerenin altındaki minderdeydi.",
+          "Burnunu perdeye uzatmıştı.",
+          "Ay ışığı perdenin aralığından sızıyordu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Ağaç Ev Odası’nda gece lambası yanıyordu. Deniz battaniyesine sarıldı. Kestane pencerenin altındaki minderdeydi. Burnunu perdeye uzatmıştı. Ay ışığı perdenin aralığından sızıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p01",
+        "quoteSHA256": "ee00e532ba76c76604492db1a5c5ef736f51a29bf80dbc3bb7d4197024047af1",
+        "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "ee00e532ba76c76604492db1a5c5ef736f51a29bf80dbc3bb7d4197024047af1",
+      "text": "Ağaç Ev Odası’nda gece lambası yanıyordu. Deniz battaniyesine sarıldı. Kestane pencerenin altındaki minderdeydi. Burnunu perdeye uzatmıştı. Ay ışığı perdenin aralığından sızıyordu.",
+      "sourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p01",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+      "rawPageMove": "lights_noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "perde/pencere; lamba/fener/ışık",
+        "propMentions": [
+          {
+            "label": "perde/pencere",
+            "evidenceQuotes": [
+              "Perdenin aralığından gümüş bir ay ışığı giriyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Masa lambası sarı sarı yanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Masa lambası sarı sarı yanıyordu. Perdenin aralığından gümüş bir ay ışığı giriyordu. Kestane iki ışığın arasında durdu. \"Hangisi kalsın?\" diye sordu Deniz.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p02",
+            "evidenceText": "Masa lambası sarı sarı yanıyordu. Perdenin aralığından gümüş bir ay ışığı giriyordu. Kestane iki ışığın arasında durdu. \"Hangisi kalsın?\" diye sordu Deniz.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Masa lambası sarı sarı yanıyordu. Perdenin aralığından gümüş bir ay ışığı giriyordu. Kestane iki ışığın arasında durdu. \"Hangisi kalsın?\" diye sordu Deniz.",
+        "poseAndActionEvidence": [
+          "Masa lambası sarı sarı yanıyordu.",
+          "Perdenin aralığından gümüş bir ay ışığı giriyordu.",
+          "Kestane iki ışığın arasında durdu.",
+          "\"Hangisi kalsın?\" diye sordu Deniz."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Masa lambası sarı sarı yanıyordu. Perdenin aralığından gümüş bir ay ışığı giriyordu. Kestane iki ışığın arasında durdu. \"Hangisi kalsın?\" diye sordu Deniz.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p02",
+        "quoteSHA256": "0487ac7d145f5c98e9db8428e7a5a7ab536c92a064604ce73fc1f578517fc291",
+        "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "0487ac7d145f5c98e9db8428e7a5a7ab536c92a064604ce73fc1f578517fc291",
+      "text": "Masa lambası sarı sarı yanıyordu. Perdenin aralığından gümüş bir ay ışığı giriyordu. Kestane iki ışığın arasında durdu. \"Hangisi kalsın?\" diye sordu Deniz.",
+      "sourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p02",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+      "rawPageMove": "friend_preference",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Ay ışığı Kestane'nin dikenlerine düştü. Her diken gümüş gibi parladı. \"Ay benim dikenlerimi boyuyor!\" dedi Kestane. Deniz eğilip kıkırdadı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p03",
+            "evidenceText": "Ay ışığı Kestane'nin dikenlerine düştü. Her diken gümüş gibi parladı. \"Ay benim dikenlerimi boyuyor!\" dedi Kestane. Deniz eğilip kıkırdadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Ay ışığı Kestane'nin dikenlerine düştü. Her diken gümüş gibi parladı. \"Ay benim dikenlerimi boyuyor!\" dedi Kestane. Deniz eğilip kıkırdadı.",
+        "poseAndActionEvidence": [
+          "Ay ışığı Kestane'nin dikenlerine düştü.",
+          "Her diken gümüş gibi parladı.",
+          "\"Ay benim dikenlerimi boyuyor!\" dedi Kestane.",
+          "Deniz eğilip kıkırdadı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_hedgehog_pilot_001",
+        "quote": "Ay ışığı Kestane'nin dikenlerine düştü. Her diken gümüş gibi parladı. \"Ay benim dikenlerimi boyuyor!\" dedi Kestane. Deniz eğilip kıkırdadı.",
+        "attributionQuote": "Kestane",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p03",
+        "quoteSHA256": "ba86258396c8af80ace27a23faf8f16cff65e4faa72e23653bb61cc5784d499f",
+        "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "ba86258396c8af80ace27a23faf8f16cff65e4faa72e23653bb61cc5784d499f",
+      "text": "Ay ışığı Kestane'nin dikenlerine düştü. Her diken gümüş gibi parladı. \"Ay benim dikenlerimi boyuyor!\" dedi Kestane. Deniz eğilip kıkırdadı.",
+      "sourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p03",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+      "rawPageMove": "child_orders_lights",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "lamba/fener/ışık",
+        "propMentions": [
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Deniz masa lambasını kapattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz masa lambasını kapattı. Yere ay ışığından bir şerit düştü. Kestane şeridin ucuna kadar yürüyüp oturdu. Oda gümüşi bir loşluğa büründü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p04",
+            "evidenceText": "Deniz masa lambasını kapattı. Yere ay ışığından bir şerit düştü. Kestane şeridin ucuna kadar yürüyüp oturdu. Oda gümüşi bir loşluğa büründü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz masa lambasını kapattı. Yere ay ışığından bir şerit düştü. Kestane şeridin ucuna kadar yürüyüp oturdu. Oda gümüşi bir loşluğa büründü.",
+        "poseAndActionEvidence": [
+          "Deniz masa lambasını kapattı.",
+          "Yere ay ışığından bir şerit düştü.",
+          "Kestane şeridin ucuna kadar yürüyüp oturdu.",
+          "Oda gümüşi bir loşluğa büründü."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz masa lambasını kapattı. Yere ay ışığından bir şerit düştü. Kestane şeridin ucuna kadar yürüyüp oturdu. Oda gümüşi bir loşluğa büründü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p04",
+        "quoteSHA256": "baf87740e1ebb0294c766005f77401f3883f827a1c28b8b94717b7fdaf6bb749",
+        "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "baf87740e1ebb0294c766005f77401f3883f827a1c28b8b94717b7fdaf6bb749",
+      "text": "Deniz masa lambasını kapattı. Yere ay ışığından bir şerit düştü. Kestane şeridin ucuna kadar yürüyüp oturdu. Oda gümüşi bir loşluğa büründü.",
+      "sourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p04",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+      "rawPageMove": "soft_trial",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane ay şeridinin içine yürüdü. \"Küçük bir adım, sonra bir tane daha,\" dedi. Tam ortasına yerleşti. Deniz’in gözleri parladı. Kestane de burnunu kırıştırdı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p05",
+            "evidenceText": "Kestane ay şeridinin içine yürüdü. \"Küçük bir adım, sonra bir tane daha,\" dedi. Tam ortasına yerleşti. Deniz’in gözleri parladı. Kestane de burnunu kırıştırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane ay şeridinin içine yürüdü. \"Küçük bir adım, sonra bir tane daha,\" dedi. Tam ortasına yerleşti. Deniz’in gözleri parladı. Kestane de burnunu kırıştırdı.",
+        "poseAndActionEvidence": [
+          "Kestane ay şeridinin içine yürüdü.",
+          "\"Küçük bir adım, sonra bir tane daha,\" dedi.",
+          "Tam ortasına yerleşti.",
+          "Deniz’in gözleri parladı.",
+          "Kestane de burnunu kırıştırdı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kestane ay şeridinin içine yürüdü. \"Küçük bir adım, sonra bir tane daha,\" dedi. Tam ortasına yerleşti. Deniz’in gözleri parladı. Kestane de burnunu kırıştırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p05",
+        "quoteSHA256": "2f688095e9642a1fc681703bb20128acd1babcf7c9c9c40fa7fec38cc78eb52d",
+        "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "2f688095e9642a1fc681703bb20128acd1babcf7c9c9c40fa7fec38cc78eb52d",
+      "text": "Kestane ay şeridinin içine yürüdü. \"Küçük bir adım, sonra bir tane daha,\" dedi. Tam ortasına yerleşti. Deniz’in gözleri parladı. Kestane de burnunu kırıştırdı.",
+      "sourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p05",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+      "rawPageMove": "night_light_kept",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "perde/pencere",
+        "propMentions": [
+          {
+            "label": "perde/pencere",
+            "evidenceQuotes": [
+              "Deniz perdeyi biraz daha açtı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz perdeyi biraz daha açtı. \"Ay ışığı kalıyor,\" dedi. Şerit genişleyip Kestane’ye kadar uzandı. Deniz gümüş şeride bakıp rahatladı. Oda serin ve sakindi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p06",
+            "evidenceText": "Deniz perdeyi biraz daha açtı. \"Ay ışığı kalıyor,\" dedi. Şerit genişleyip Kestane’ye kadar uzandı. Deniz gümüş şeride bakıp rahatladı. Oda serin ve sakindi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz perdeyi biraz daha açtı. \"Ay ışığı kalıyor,\" dedi. Şerit genişleyip Kestane’ye kadar uzandı. Deniz gümüş şeride bakıp rahatladı. Oda serin ve sakindi.",
+        "poseAndActionEvidence": [
+          "Deniz perdeyi biraz daha açtı.",
+          "\"Ay ışığı kalıyor,\" dedi.",
+          "Şerit genişleyip Kestane’ye kadar uzandı.",
+          "Deniz gümüş şeride bakıp rahatladı.",
+          "Oda serin ve sakindi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz perdeyi biraz daha açtı. \"Ay ışığı kalıyor,\" dedi. Şerit genişleyip Kestane’ye kadar uzandı. Deniz gümüş şeride bakıp rahatladı. Oda serin ve sakindi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p06",
+        "quoteSHA256": "2e500f0c3f262754aecc173b82807e8d795ede79cf1b4f180846be95190dda08",
+        "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "2e500f0c3f262754aecc173b82807e8d795ede79cf1b4f180846be95190dda08",
+      "text": "Deniz perdeyi biraz daha açtı. \"Ay ışığı kalıyor,\" dedi. Şerit genişleyip Kestane’ye kadar uzandı. Deniz gümüş şeride bakıp rahatladı. Oda serin ve sakindi.",
+      "sourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p06",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; yağmur/cam/oluk; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Hardal yaprağı ay ışığında soluk görünüyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Hardal yaprağı ay ışığında soluk görünüyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kestane gümüş bir top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane gümüş bir top oldu. Hardal yaprağı ay ışığında soluk görünüyordu. Oda sakindi. Kestane uykulu gözlerle ay şeridine baktı. Deniz yorganını düzeltti.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p07",
+            "evidenceText": "Kestane gümüş bir top oldu. Hardal yaprağı ay ışığında soluk görünüyordu. Oda sakindi. Kestane uykulu gözlerle ay şeridine baktı. Deniz yorganını düzeltti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane gümüş bir top oldu. Hardal yaprağı ay ışığında soluk görünüyordu. Oda sakindi. Kestane uykulu gözlerle ay şeridine baktı. Deniz yorganını düzeltti.",
+        "poseAndActionEvidence": [
+          "Kestane gümüş bir top oldu.",
+          "Hardal yaprağı ay ışığında soluk görünüyordu.",
+          "Oda sakindi.",
+          "Kestane uykulu gözlerle ay şeridine baktı.",
+          "Deniz yorganını düzeltti."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kestane gümüş bir top oldu. Hardal yaprağı ay ışığında soluk görünüyordu. Oda sakindi. Kestane uykulu gözlerle ay şeridine baktı. Deniz yorganını düzeltti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p07",
+        "quoteSHA256": "adf35ded323a31141894a98683138c4de86208cb780861e828e76db9f6a3597d",
+        "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "adf35ded323a31141894a98683138c4de86208cb780861e828e76db9f6a3597d",
+      "text": "Kestane gümüş bir top oldu. Hardal yaprağı ay ışığında soluk görünüyordu. Oda sakindi. Kestane uykulu gözlerle ay şeridine baktı. Deniz yorganını düzeltti.",
+      "sourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p07",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "\"Dinlen artık, Deniz,\" diye fısıldadı küçük top.",
+              "Kestane'nin burnu son kez kıpırdadı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "\"Dinlen artık, Deniz,\" diye fısıldadı küçük top. Deniz yavaşça gözlerini yumdu. Ay ışığı yerde uyudu. Kestane'nin burnu son kez kıpırdadı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p08",
+            "evidenceText": "\"Dinlen artık, Deniz,\" diye fısıldadı küçük top. Deniz yavaşça gözlerini yumdu. Ay ışığı yerde uyudu. Kestane'nin burnu son kez kıpırdadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Dinlen artık, Deniz,\" diye fısıldadı küçük top. Deniz yavaşça gözlerini yumdu. Ay ışığı yerde uyudu. Kestane'nin burnu son kez kıpırdadı.",
+        "poseAndActionEvidence": [
+          "\"Dinlen artık, Deniz,\" diye fısıldadı küçük top.",
+          "Deniz yavaşça gözlerini yumdu.",
+          "Ay ışığı yerde uyudu.",
+          "Kestane'nin burnu son kez kıpırdadı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Dinlen artık, Deniz,\" diye fısıldadı küçük top. Deniz yavaşça gözlerini yumdu. Ay ışığı yerde uyudu. Kestane'nin burnu son kez kıpırdadı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p08",
+        "quoteSHA256": "e5e305aa08210341a08365185651e29f475195e18c0f369679907363f58065d1",
+        "bookID": "pilot56_book_u6_hedgehog_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "e5e305aa08210341a08365185651e29f475195e18c0f369679907363f58065d1",
+      "text": "\"Dinlen artık, Deniz,\" diye fısıldadı küçük top. Deniz yavaşça gözlerini yumdu. Ay ışığı yerde uyudu. Kestane'nin burnu son kez kıpırdadı.",
+      "sourceID": "p56_wave1_pilot56_book_u6_hedgehog_event03_v1_p08",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk sırayla hangi ışığın söneceğini seçer, tek bir ışığı kendisi bırakır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

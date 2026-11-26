@@ -1,0 +1,923 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l8_hedgehog_event02_v1",
+  "title": "Kestane'nin Kayıp Yaprağı",
+  "context": {
+    "settingName": "Dere Kenarı (yeni mekân)",
+    "mode": "learning",
+    "companionID": "companion_hedgehog_pilot_001",
+    "structure": "L8",
+    "event": "e2",
+    "mechanism": "whose-tracks",
+    "sourceFilename": "learning-hedgehog.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l8_hedgehog_event02_v1",
+    "sourceBookID": "pilot56_book_l8_hedgehog_event02_v1",
+    "structure": "L8",
+    "event": "e2",
+    "sample": false,
+    "title": "Kestane'nin Kayıp Yaprağı",
+    "pages": [
+      "Dere Kenarı’nda öğle güneşi vardı. Kum ıslak ve yumuşaktı. Deniz ile Kestane kıyıda duruyordu. Kestane'nin dikeninde bu kez hardal yaprağı yoktu.",
+      "Kumda bir sıra iz vardı. Her izin bir ucu yuvarlak, öbür ucu parmaklıydı. \"Bu izler nereye gidiyor?\" dedi Deniz. \"Dereye mi, ağaçlara mı?\"",
+      "\"Yaprağımı kaybettim,\" dedi Kestane. \"Bence izler ağaçlara gidiyor, yaprağım da ağaçta.\" Dikenlerini kabarttı, bir yaprak takıldı, ama yeşildi. Deniz zıplayarak güldü.",
+      "Deniz kendi ayağıyla kuma bastı ve ileri yürüdü. Arkasına baktı. Ayakkabısının burnu hep yürüdüğü yöne bakıyordu. \"Burun önde, topuk arkada,\" dedi.",
+      "Kestane de Deniz’in yanında yürüdü. Arkasında minik izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. \"Küçük bir adım, sonra bir tane daha,\" dedi.",
+      "Deniz eski izleri yeniden inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle karşılaştırarak bulmuştu.",
+      "İzleri takip edip dereye vardılar. Suyun kenarında, ıslak bir taşın üstünde hardal yaprağı duruyordu! \"Az önce burada su içmiştim,\" dedi Kestane.",
+      "Deniz yaprağı alıp Kestane'nin dikenine taktı. Kestane sevinçle kıvrılıp top oldu. \"İzler beni yaprağıma götürdü,\" dedi. Deniz’in gözleri parladı. Kestane minik bir top oldu. Yönü o bulmuştu."
+    ]
+  },
+  "inputFileSHA256": "c11ab0d5e4d32f9cd0fcc294c02496625e0230415a1bc65790d4a4c2e6190487",
+  "inputBookPointer": "input/learning-hedgehog.json#/books/1",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+      "rawPageMove": "noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted",
+              "signature-item-missing-until-recovery"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; su/birikinti; iz/kum",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Kestane'nin dikeninde bu kez hardal yaprağı yoktu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Dere Kenarı’nda öğle güneşi vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kum ıslak ve yumuşaktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Dere Kenarı’nda öğle güneşi vardı. Kum ıslak ve yumuşaktı. Deniz ile Kestane kıyıda duruyordu. Kestane'nin dikeninde bu kez hardal yaprağı yoktu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p01",
+            "evidenceText": "Dere Kenarı’nda öğle güneşi vardı. Kum ıslak ve yumuşaktı. Deniz ile Kestane kıyıda duruyordu. Kestane'nin dikeninde bu kez hardal yaprağı yoktu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Dere Kenarı’nda öğle güneşi vardı. Kum ıslak ve yumuşaktı. Deniz ile Kestane kıyıda duruyordu. Kestane'nin dikeninde bu kez hardal yaprağı yoktu.",
+        "poseAndActionEvidence": [
+          "Dere Kenarı’nda öğle güneşi vardı.",
+          "Kum ıslak ve yumuşaktı.",
+          "Deniz ile Kestane kıyıda duruyordu.",
+          "Kestane'nin dikeninde bu kez hardal yaprağı yoktu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Dere Kenarı’nda öğle güneşi vardı. Kum ıslak ve yumuşaktı. Deniz ile Kestane kıyıda duruyordu. Kestane'nin dikeninde bu kez hardal yaprağı yoktu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p01",
+        "quoteSHA256": "3563edd016e933edc7c8ecf7bb8f63849330d553fb8c7462eed26a230ecf9f87",
+        "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "3563edd016e933edc7c8ecf7bb8f63849330d553fb8c7462eed26a230ecf9f87",
+      "text": "Dere Kenarı’nda öğle güneşi vardı. Kum ıslak ve yumuşaktı. Deniz ile Kestane kıyıda duruyordu. Kestane'nin dikeninde bu kez hardal yaprağı yoktu.",
+      "sourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p01",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+      "rawPageMove": "child_guesses",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted",
+              "signature-item-missing-until-recovery"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; kütük/yuva; su/birikinti; iz/kum; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "\"Dereye mi, ağaçlara mı?\""
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Her izin bir ucu yuvarlak, öbür ucu parmaklıydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "\"Dereye mi, ağaçlara mı?\""
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kumda bir sıra iz vardı.",
+              "Her izin bir ucu yuvarlak, öbür ucu parmaklıydı.",
+              "\"Bu izler nereye gidiyor?\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Her izin bir ucu yuvarlak, öbür ucu parmaklıydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kumda bir sıra iz vardı. Her izin bir ucu yuvarlak, öbür ucu parmaklıydı. \"Bu izler nereye gidiyor?\" dedi Deniz. \"Dereye mi, ağaçlara mı?\"",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p02",
+            "evidenceText": "Kumda bir sıra iz vardı. Her izin bir ucu yuvarlak, öbür ucu parmaklıydı. \"Bu izler nereye gidiyor?\" dedi Deniz. \"Dereye mi, ağaçlara mı?\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kumda bir sıra iz vardı. Her izin bir ucu yuvarlak, öbür ucu parmaklıydı. \"Bu izler nereye gidiyor?\" dedi Deniz. \"Dereye mi, ağaçlara mı?\"",
+        "poseAndActionEvidence": [
+          "Kumda bir sıra iz vardı.",
+          "Her izin bir ucu yuvarlak, öbür ucu parmaklıydı.",
+          "\"Bu izler nereye gidiyor?\" dedi Deniz.",
+          "\"Dereye mi, ağaçlara mı?\""
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kumda bir sıra iz vardı. Her izin bir ucu yuvarlak, öbür ucu parmaklıydı. \"Bu izler nereye gidiyor?\" dedi Deniz. \"Dereye mi, ağaçlara mı?\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p02",
+        "quoteSHA256": "7600a5f320e02fed79512b6a218b73b285fed284fa64b6b0ddc4c10119f5d180",
+        "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "7600a5f320e02fed79512b6a218b73b285fed284fa64b6b0ddc4c10119f5d180",
+      "text": "Kumda bir sıra iz vardı. Her izin bir ucu yuvarlak, öbür ucu parmaklıydı. \"Bu izler nereye gidiyor?\" dedi Deniz. \"Dereye mi, ağaçlara mı?\"",
+      "sourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p02",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+      "rawPageMove": "friend_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted",
+              "signature-item-missing-until-recovery"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; ağaç/gövde; iz/kum",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "\"Yaprağımı kaybettim,\" dedi Kestane.",
+              "\"Bence izler ağaçlara gidiyor, yaprağım da ağaçta.\" Dikenlerini kabarttı, bir yaprak takıldı, ama yeşildi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "\"Bence izler ağaçlara gidiyor, yaprağım da ağaçta.\" Dikenlerini kabarttı, bir yaprak takıldı, ama yeşildi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "\"Bence izler ağaçlara gidiyor, yaprağım da ağaçta.\" Dikenlerini kabarttı, bir yaprak takıldı, ama yeşildi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "\"Yaprağımı kaybettim,\" dedi Kestane. \"Bence izler ağaçlara gidiyor, yaprağım da ağaçta.\" Dikenlerini kabarttı, bir yaprak takıldı, ama yeşildi. Deniz zıplayarak güldü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p03",
+            "evidenceText": "\"Yaprağımı kaybettim,\" dedi Kestane. \"Bence izler ağaçlara gidiyor, yaprağım da ağaçta.\" Dikenlerini kabarttı, bir yaprak takıldı, ama yeşildi. Deniz zıplayarak güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Yaprağımı kaybettim,\" dedi Kestane. \"Bence izler ağaçlara gidiyor, yaprağım da ağaçta.\" Dikenlerini kabarttı, bir yaprak takıldı, ama yeşildi. Deniz zıplayarak güldü.",
+        "poseAndActionEvidence": [
+          "\"Yaprağımı kaybettim,\" dedi Kestane.",
+          "\"Bence izler ağaçlara gidiyor, yaprağım da ağaçta.\" Dikenlerini kabarttı, bir yaprak takıldı, ama yeşildi.",
+          "Deniz zıplayarak güldü."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_hedgehog_pilot_001",
+        "quote": "\"Yaprağımı kaybettim,\" dedi Kestane. \"Bence izler ağaçlara gidiyor, yaprağım da ağaçta.\" Dikenlerini kabarttı, bir yaprak takıldı, ama yeşildi. Deniz zıplayarak güldü.",
+        "attributionQuote": "Kestane",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p03",
+        "quoteSHA256": "8ff6a0b8af3d3b99c74b2509507cdbeae164ca7f4d4b704fae2579c28c82031d",
+        "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "8ff6a0b8af3d3b99c74b2509507cdbeae164ca7f4d4b704fae2579c28c82031d",
+      "text": "\"Yaprağımı kaybettim,\" dedi Kestane. \"Bence izler ağaçlara gidiyor, yaprağım da ağaçta.\" Dikenlerini kabarttı, bir yaprak takıldı, ama yeşildi. Deniz zıplayarak güldü.",
+      "sourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p03",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+      "rawPageMove": "first_print",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted",
+              "signature-item-missing-until-recovery"
+            ]
+          }
+        ],
+        "propDescription": "top/şapka/uçurtma; iz/kum",
+        "propMentions": [
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "\"Burun önde, topuk arkada,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Deniz kendi ayağıyla kuma bastı ve ileri yürüdü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz kendi ayağıyla kuma bastı ve ileri yürüdü. Arkasına baktı. Ayakkabısının burnu hep yürüdüğü yöne bakıyordu. \"Burun önde, topuk arkada,\" dedi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p04",
+            "evidenceText": "Deniz kendi ayağıyla kuma bastı ve ileri yürüdü. Arkasına baktı. Ayakkabısının burnu hep yürüdüğü yöne bakıyordu. \"Burun önde, topuk arkada,\" dedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kendi ayağıyla kuma bastı ve ileri yürüdü. Arkasına baktı. Ayakkabısının burnu hep yürüdüğü yöne bakıyordu. \"Burun önde, topuk arkada,\" dedi.",
+        "poseAndActionEvidence": [
+          "Deniz kendi ayağıyla kuma bastı ve ileri yürüdü.",
+          "Arkasına baktı.",
+          "Ayakkabısının burnu hep yürüdüğü yöne bakıyordu.",
+          "\"Burun önde, topuk arkada,\" dedi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kendi ayağıyla kuma bastı ve ileri yürüdü. Arkasına baktı. Ayakkabısının burnu hep yürüdüğü yöne bakıyordu. \"Burun önde, topuk arkada,\" dedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p04",
+        "quoteSHA256": "0ac9968a038c666e6c9922160d687d3cf4ce6830cd4eb782a43f7db578d08fd3",
+        "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "0ac9968a038c666e6c9922160d687d3cf4ce6830cd4eb782a43f7db578d08fd3",
+      "text": "Deniz kendi ayağıyla kuma bastı ve ileri yürüdü. Arkasına baktı. Ayakkabısının burnu hep yürüdüğü yöne bakıyordu. \"Burun önde, topuk arkada,\" dedi.",
+      "sourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p04",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+      "rawPageMove": "second_print",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted",
+              "signature-item-missing-until-recovery"
+            ]
+          }
+        ],
+        "propDescription": "iz/kum",
+        "propMentions": [
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Arkasında minik izler kaldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane de Deniz’in yanında yürüdü. Arkasında minik izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. \"Küçük bir adım, sonra bir tane daha,\" dedi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p05",
+            "evidenceText": "Kestane de Deniz’in yanında yürüdü. Arkasında minik izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. \"Küçük bir adım, sonra bir tane daha,\" dedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane de Deniz’in yanında yürüdü. Arkasında minik izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. \"Küçük bir adım, sonra bir tane daha,\" dedi.",
+        "poseAndActionEvidence": [
+          "Kestane de Deniz’in yanında yürüdü.",
+          "Arkasında minik izler kaldı.",
+          "Onların da parmakları hep yürüdüğü yöne bakıyordu.",
+          "\"Küçük bir adım, sonra bir tane daha,\" dedi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kestane de Deniz’in yanında yürüdü. Arkasında minik izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. \"Küçük bir adım, sonra bir tane daha,\" dedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p05",
+        "quoteSHA256": "b4a1b1e91965fbd5c486e5d572d17b8f59cfa56d5529dd2f8b4decf9f379e428",
+        "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "b4a1b1e91965fbd5c486e5d572d17b8f59cfa56d5529dd2f8b4decf9f379e428",
+      "text": "Kestane de Deniz’in yanında yürüdü. Arkasında minik izler kaldı. Onların da parmakları hep yürüdüğü yöne bakıyordu. \"Küçük bir adım, sonra bir tane daha,\" dedi.",
+      "sourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p05",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+      "rawPageMove": "child_compares",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted",
+              "signature-item-missing-until-recovery"
+            ]
+          }
+        ],
+        "propDescription": "su/birikinti; iz/kum",
+        "propMentions": [
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Parmaklar dereye bakıyordu.",
+              "\"Bu izler dereye gitmiş!\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Deniz eski izleri yeniden inceledi.",
+              "\"Bu izler dereye gitmiş!\" dedi.",
+              "Yönü kendi izleriyle karşılaştırarak bulmuştu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz eski izleri yeniden inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle karşılaştırarak bulmuştu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p06",
+            "evidenceText": "Deniz eski izleri yeniden inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle karşılaştırarak bulmuştu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz eski izleri yeniden inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle karşılaştırarak bulmuştu.",
+        "poseAndActionEvidence": [
+          "Deniz eski izleri yeniden inceledi.",
+          "Parmaklar dereye bakıyordu.",
+          "\"Bu izler dereye gitmiş!\" dedi.",
+          "Yönü kendi izleriyle karşılaştırarak bulmuştu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz eski izleri yeniden inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle karşılaştırarak bulmuştu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p06",
+        "quoteSHA256": "271b7936f019280f520935b57bb85dc1cc74bb089a528cec01bc9c7f2b9f1329",
+        "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "271b7936f019280f520935b57bb85dc1cc74bb089a528cec01bc9c7f2b9f1329",
+      "text": "Deniz eski izleri yeniden inceledi. Parmaklar dereye bakıyordu. \"Bu izler dereye gitmiş!\" dedi. Yönü kendi izleriyle karşılaştırarak bulmuştu.",
+      "sourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p06",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+      "rawPageMove": "final_check",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted",
+              "signature-item-found-not-yet-reattached"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; taş; su/birikinti; taş/çakıl; iz/kum",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Suyun kenarında, ıslak bir taşın üstünde hardal yaprağı duruyordu!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Suyun kenarında, ıslak bir taşın üstünde hardal yaprağı duruyordu!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "İzleri takip edip dereye vardılar.",
+              "Suyun kenarında, ıslak bir taşın üstünde hardal yaprağı duruyordu!",
+              "\"Az önce burada su içmiştim,\" dedi Kestane."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Suyun kenarında, ıslak bir taşın üstünde hardal yaprağı duruyordu!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "İzleri takip edip dereye vardılar."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "İzleri takip edip dereye vardılar. Suyun kenarında, ıslak bir taşın üstünde hardal yaprağı duruyordu! \"Az önce burada su içmiştim,\" dedi Kestane.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p07",
+            "evidenceText": "İzleri takip edip dereye vardılar. Suyun kenarında, ıslak bir taşın üstünde hardal yaprağı duruyordu! \"Az önce burada su içmiştim,\" dedi Kestane.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "İzleri takip edip dereye vardılar. Suyun kenarında, ıslak bir taşın üstünde hardal yaprağı duruyordu! \"Az önce burada su içmiştim,\" dedi Kestane.",
+        "poseAndActionEvidence": [
+          "İzleri takip edip dereye vardılar.",
+          "Suyun kenarında, ıslak bir taşın üstünde hardal yaprağı duruyordu!",
+          "\"Az önce burada su içmiştim,\" dedi Kestane."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "İzleri takip edip dereye vardılar. Suyun kenarında, ıslak bir taşın üstünde hardal yaprağı duruyordu! \"Az önce burada su içmiştim,\" dedi Kestane.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p01",
+        "quoteSHA256": "52a8ec90d906d215e2b7b436cb9e5414ea12629e7e9a4b42db3b1378326491f1",
+        "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "52a8ec90d906d215e2b7b436cb9e5414ea12629e7e9a4b42db3b1378326491f1",
+      "text": "İzleri takip edip dereye vardılar. Suyun kenarında, ıslak bir taşın üstünde hardal yaprağı duruyordu! \"Az önce burada su içmiştim,\" dedi Kestane.",
+      "sourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p07",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+      "rawPageMove": "result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; top/şapka/uçurtma; iz/kum",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz yaprağı alıp Kestane'nin dikenine taktı.",
+              "\"İzler beni yaprağıma götürdü,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kestane sevinçle kıvrılıp top oldu.",
+              "Kestane minik bir top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "\"İzler beni yaprağıma götürdü,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz yaprağı alıp Kestane'nin dikenine taktı. Kestane sevinçle kıvrılıp top oldu. \"İzler beni yaprağıma götürdü,\" dedi. Deniz’in gözleri parladı. Kestane minik bir top oldu. Yönü o bulmuştu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p08",
+            "evidenceText": "Deniz yaprağı alıp Kestane'nin dikenine taktı. Kestane sevinçle kıvrılıp top oldu. \"İzler beni yaprağıma götürdü,\" dedi. Deniz’in gözleri parladı. Kestane minik bir top oldu. Yönü o bulmuştu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yaprağı alıp Kestane'nin dikenine taktı. Kestane sevinçle kıvrılıp top oldu. \"İzler beni yaprağıma götürdü,\" dedi. Deniz’in gözleri parladı. Kestane minik bir top oldu. Yönü o bulmuştu.",
+        "poseAndActionEvidence": [
+          "Deniz yaprağı alıp Kestane'nin dikenine taktı.",
+          "Kestane sevinçle kıvrılıp top oldu.",
+          "\"İzler beni yaprağıma götürdü,\" dedi.",
+          "Deniz’in gözleri parladı.",
+          "Kestane minik bir top oldu.",
+          "Yönü o bulmuştu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "İmza eşya p1de eksiktir; p7 kıyıda görünür bulunur, p8 geri takılır. Önceki sayfalarda boyunluk/yaprak/zil/çanta karakterin üstünde çizilmez veya ses çıkarmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yaprağı alıp Kestane'nin dikenine taktı. Kestane sevinçle kıvrılıp top oldu. \"İzler beni yaprağıma götürdü,\" dedi. Deniz’in gözleri parladı. Kestane minik bir top oldu. Yönü o bulmuştu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p08",
+        "quoteSHA256": "f5b9151605f7726f45ad85bbb61f3c95d3eb49f50b4e1097b6d3fb21df7d5106",
+        "bookID": "pilot56_book_l8_hedgehog_event02_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "f5b9151605f7726f45ad85bbb61f3c95d3eb49f50b4e1097b6d3fb21df7d5106",
+      "text": "Deniz yaprağı alıp Kestane'nin dikenine taktı. Kestane sevinçle kıvrılıp top oldu. \"İzler beni yaprağıma götürdü,\" dedi. Deniz’in gözleri parladı. Kestane minik bir top oldu. Yönü o bulmuştu.",
+      "sourceID": "p56_wave2_pilot56_book_l8_hedgehog_event02_v1_p08",
+      "sourcePointer": "input/learning-hedgehog.json#/books/1/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz arkadaşından izini yanına basmasını ister, boyutu ve parmakları karşılaştırarak izleri eşleştirir.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

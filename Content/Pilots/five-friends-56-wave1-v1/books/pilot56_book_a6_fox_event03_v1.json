@@ -1,0 +1,927 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a6_fox_event03_v1",
+  "title": "Burnum Doğru Söyledi",
+  "context": {
+    "settingName": "Fısıldayan Orman",
+    "mode": "adventure",
+    "companionID": "companion_fox_pilot_001",
+    "structure": "A6",
+    "event": "e3",
+    "mechanism": "stick-map-landmarks",
+    "sourceFilename": "adventure-fox.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a6_fox_event03_v1",
+    "structure": "A6",
+    "event": "e3",
+    "sample": false,
+    "title": "Burnum Doğru Söyledi",
+    "pages": [
+      "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı. Deniz oraya gitmek istedi. Tarçın hemen yanı başındaydı. Kapının üstünde küçük bir çan sallanıyordu. Tilki havayı kokladı.",
+      "Deniz çanlı bahçe kapısına giden yolu düşündü. \"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi. Üç işareti sırayla aklında tuttu.",
+      "Tarçın havayı kokladı. \"Kapının arkasında elma ağacı var,\" dedi. \"Ya da elmalı turta. Ya da elma!\" Deniz zıplayarak güldü.",
+      "Deniz dalla toprağa bir çatlak kaya, eğrelti otları ve bir taş duvar çizdi. Sonuna küçük bir çan ekledi.",
+      "Haritayı izleyip çatlak kayaya vardılar. Tarçın çatlağı kokladı. \"Doğru kaya, nemli kokuyor,\" dedi. Çatlak tam çizdiği gibiydi. Deniz bir sonraki işareti hatırladı ve yürüdü.",
+      "Deniz çizdiği eğrelti otlarını hatırladı. Yeşil yapraklar yolun iki yanındaydı. Sonra taş duvar göründü. \"Az kaldı,\" dedi. Eğreltilerin arasından yürüdü.",
+      "Taş duvarın sonunda çanlı kapı vardı. Deniz çanı çaldı. Tın tın! Tarçın kulaklarını dikti. Deniz sevindi. Tarçın hapşırıp katıldı. Çanın sesi ormana yayıldı.",
+      "Kapının arkasında gerçekten bir elma ağacı vardı. \"Burnum doğru söyledi,\" dedi Tarçın gururla. Deniz’in gözleri parladı. Dallarında kırmızı elmalar parlıyordu."
+    ],
+    "sourceBookID": "pilot56_book_a6_fox_event03_v1"
+  },
+  "inputFileSHA256": "2472f562b0ad66d85854840664c7f348292d5ce02bcba3073894d1e7d0181d7b",
+  "inputBookPointer": "input/adventure-fox.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a6_fox_event03_v1",
+      "rawPageMove": "route_unclear",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı.",
+              "Kapının üstünde küçük bir çan sallanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı. Deniz oraya gitmek istedi. Tarçın hemen yanı başındaydı. Kapının üstünde küçük bir çan sallanıyordu. Tilki havayı kokladı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p01",
+            "evidenceText": "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı. Deniz oraya gitmek istedi. Tarçın hemen yanı başındaydı. Kapının üstünde küçük bir çan sallanıyordu. Tilki havayı kokladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı. Deniz oraya gitmek istedi. Tarçın hemen yanı başındaydı. Kapının üstünde küçük bir çan sallanıyordu. Tilki havayı kokladı.",
+        "poseAndActionEvidence": [
+          "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı.",
+          "Deniz oraya gitmek istedi.",
+          "Tarçın hemen yanı başındaydı.",
+          "Kapının üstünde küçük bir çan sallanıyordu.",
+          "Tilki havayı kokladı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı. Deniz oraya gitmek istedi. Tarçın hemen yanı başındaydı. Kapının üstünde küçük bir çan sallanıyordu. Tilki havayı kokladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p01",
+        "quoteSHA256": "49ecedd8eb4cc4571de09195d520ff29dc326002b3b3bf4073139b1c45081716",
+        "bookID": "pilot56_book_a6_fox_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "49ecedd8eb4cc4571de09195d520ff29dc326002b3b3bf4073139b1c45081716",
+      "text": "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı. Deniz oraya gitmek istedi. Tarçın hemen yanı başındaydı. Kapının üstünde küçük bir çan sallanıyordu. Tilki havayı kokladı.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p01",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a6_fox_event03_v1",
+      "rawPageMove": "landmarks_recalled",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tahta işaret parçaları; taş; taş/çakıl; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Üç işareti sırayla aklında tuttu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "\"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "\"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Deniz çanlı bahçe kapısına giden yolu düşündü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz çanlı bahçe kapısına giden yolu düşündü. \"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi. Üç işareti sırayla aklında tuttu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p02",
+            "evidenceText": "Deniz çanlı bahçe kapısına giden yolu düşündü. \"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi. Üç işareti sırayla aklında tuttu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz çanlı bahçe kapısına giden yolu düşündü. \"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi. Üç işareti sırayla aklında tuttu.",
+        "poseAndActionEvidence": [
+          "Deniz çanlı bahçe kapısına giden yolu düşündü.",
+          "\"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi.",
+          "Üç işareti sırayla aklında tuttu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz çanlı bahçe kapısına giden yolu düşündü. \"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi. Üç işareti sırayla aklında tuttu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p02",
+        "quoteSHA256": "565632caf5d82ce411599489a395f66b0391a87c5f579116ac1e57cb84733fd2",
+        "bookID": "pilot56_book_a6_fox_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "565632caf5d82ce411599489a395f66b0391a87c5f579116ac1e57cb84733fd2",
+      "text": "Deniz çanlı bahçe kapısına giden yolu düşündü. \"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi. Üç işareti sırayla aklında tuttu.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p02",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a6_fox_event03_v1",
+      "rawPageMove": "friend_adds_landmark",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "\"Kapının arkasında elma ağacı var,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "\"Kapının arkasında elma ağacı var,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın havayı kokladı. \"Kapının arkasında elma ağacı var,\" dedi. \"Ya da elmalı turta. Ya da elma!\" Deniz zıplayarak güldü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p03",
+            "evidenceText": "Tarçın havayı kokladı. \"Kapının arkasında elma ağacı var,\" dedi. \"Ya da elmalı turta. Ya da elma!\" Deniz zıplayarak güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın havayı kokladı. \"Kapının arkasında elma ağacı var,\" dedi. \"Ya da elmalı turta. Ya da elma!\" Deniz zıplayarak güldü.",
+        "poseAndActionEvidence": [
+          "Tarçın havayı kokladı.",
+          "\"Kapının arkasında elma ağacı var,\" dedi.",
+          "\"Ya da elmalı turta.",
+          "Ya da elma!\" Deniz zıplayarak güldü."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_fox_pilot_001",
+        "quote": "Tarçın havayı kokladı. \"Kapının arkasında elma ağacı var,\" dedi. \"Ya da elmalı turta. Ya da elma!\" Deniz zıplayarak güldü.",
+        "attributionQuote": "Tarçın",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p03",
+        "quoteSHA256": "39e38f8c0530d3bdc823e1848796d3b243b5b7790a9ee7067d5bb68114d0e787",
+        "bookID": "pilot56_book_a6_fox_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "39e38f8c0530d3bdc823e1848796d3b243b5b7790a9ee7067d5bb68114d0e787",
+      "text": "Tarçın havayı kokladı. \"Kapının arkasında elma ağacı var,\" dedi. \"Ya da elmalı turta. Ya da elma!\" Deniz zıplayarak güldü.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p03",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a6_fox_event03_v1",
+      "rawPageMove": "child_draws_map",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; taş; toprak; taş/çakıl; harita/çizim; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz dalla toprağa bir çatlak kaya, eğrelti otları ve bir taş duvar çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Deniz dalla toprağa bir çatlak kaya, eğrelti otları ve bir taş duvar çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "toprak",
+            "evidenceQuotes": [
+              "Deniz dalla toprağa bir çatlak kaya, eğrelti otları ve bir taş duvar çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Deniz dalla toprağa bir çatlak kaya, eğrelti otları ve bir taş duvar çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "harita/çizim",
+            "evidenceQuotes": [
+              "Deniz dalla toprağa bir çatlak kaya, eğrelti otları ve bir taş duvar çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Sonuna küçük bir çan ekledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz dalla toprağa bir çatlak kaya, eğrelti otları ve bir taş duvar çizdi. Sonuna küçük bir çan ekledi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p04",
+            "evidenceText": "Deniz dalla toprağa bir çatlak kaya, eğrelti otları ve bir taş duvar çizdi. Sonuna küçük bir çan ekledi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz dalla toprağa bir çatlak kaya, eğrelti otları ve bir taş duvar çizdi. Sonuna küçük bir çan ekledi.",
+        "poseAndActionEvidence": [
+          "Deniz dalla toprağa bir çatlak kaya, eğrelti otları ve bir taş duvar çizdi.",
+          "Sonuna küçük bir çan ekledi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz dalla toprağa bir çatlak kaya, eğrelti otları ve bir taş duvar çizdi. Sonuna küçük bir çan ekledi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p04",
+        "quoteSHA256": "23f43be78ebac09531112db12122f844e3de65817bd284294fedcaec461ae42e",
+        "bookID": "pilot56_book_a6_fox_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "23f43be78ebac09531112db12122f844e3de65817bd284294fedcaec461ae42e",
+      "text": "Deniz dalla toprağa bir çatlak kaya, eğrelti otları ve bir taş duvar çizdi. Sonuna küçük bir çan ekledi.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p04",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a6_fox_event03_v1",
+      "rawPageMove": "follow_first",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tahta işaret parçaları; harita/çizim",
+        "propMentions": [
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Deniz bir sonraki işareti hatırladı ve yürüdü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "harita/çizim",
+            "evidenceQuotes": [
+              "Haritayı izleyip çatlak kayaya vardılar.",
+              "Çatlak tam çizdiği gibiydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Haritayı izleyip çatlak kayaya vardılar. Tarçın çatlağı kokladı. \"Doğru kaya, nemli kokuyor,\" dedi. Çatlak tam çizdiği gibiydi. Deniz bir sonraki işareti hatırladı ve yürüdü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p05",
+            "evidenceText": "Haritayı izleyip çatlak kayaya vardılar. Tarçın çatlağı kokladı. \"Doğru kaya, nemli kokuyor,\" dedi. Çatlak tam çizdiği gibiydi. Deniz bir sonraki işareti hatırladı ve yürüdü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Haritayı izleyip çatlak kayaya vardılar. Tarçın çatlağı kokladı. \"Doğru kaya, nemli kokuyor,\" dedi. Çatlak tam çizdiği gibiydi. Deniz bir sonraki işareti hatırladı ve yürüdü.",
+        "poseAndActionEvidence": [
+          "Haritayı izleyip çatlak kayaya vardılar.",
+          "Tarçın çatlağı kokladı.",
+          "\"Doğru kaya, nemli kokuyor,\" dedi.",
+          "Çatlak tam çizdiği gibiydi.",
+          "Deniz bir sonraki işareti hatırladı ve yürüdü."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Haritayı izleyip çatlak kayaya vardılar. Tarçın çatlağı kokladı. \"Doğru kaya, nemli kokuyor,\" dedi. Çatlak tam çizdiği gibiydi. Deniz bir sonraki işareti hatırladı ve yürüdü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p05",
+        "quoteSHA256": "2a9645fb52f48c4ff6a0e7a67ee24cb44010b27e306a90fedc67bb13bfefd174",
+        "bookID": "pilot56_book_a6_fox_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "2a9645fb52f48c4ff6a0e7a67ee24cb44010b27e306a90fedc67bb13bfefd174",
+      "text": "Haritayı izleyip çatlak kayaya vardılar. Tarçın çatlağı kokladı. \"Doğru kaya, nemli kokuyor,\" dedi. Çatlak tam çizdiği gibiydi. Deniz bir sonraki işareti hatırladı ve yürüdü.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p05",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a6_fox_event03_v1",
+      "rawPageMove": "child_checks_map",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; taş; taş/çakıl; harita/çizim",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Yeşil yapraklar yolun iki yanındaydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Sonra taş duvar göründü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Sonra taş duvar göründü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "harita/çizim",
+            "evidenceQuotes": [
+              "Deniz çizdiği eğrelti otlarını hatırladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz çizdiği eğrelti otlarını hatırladı. Yeşil yapraklar yolun iki yanındaydı. Sonra taş duvar göründü. \"Az kaldı,\" dedi. Eğreltilerin arasından yürüdü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p06",
+            "evidenceText": "Deniz çizdiği eğrelti otlarını hatırladı. Yeşil yapraklar yolun iki yanındaydı. Sonra taş duvar göründü. \"Az kaldı,\" dedi. Eğreltilerin arasından yürüdü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz çizdiği eğrelti otlarını hatırladı. Yeşil yapraklar yolun iki yanındaydı. Sonra taş duvar göründü. \"Az kaldı,\" dedi. Eğreltilerin arasından yürüdü.",
+        "poseAndActionEvidence": [
+          "Deniz çizdiği eğrelti otlarını hatırladı.",
+          "Yeşil yapraklar yolun iki yanındaydı.",
+          "Sonra taş duvar göründü.",
+          "\"Az kaldı,\" dedi.",
+          "Eğreltilerin arasından yürüdü."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz çizdiği eğrelti otlarını hatırladı. Yeşil yapraklar yolun iki yanındaydı. Sonra taş duvar göründü. \"Az kaldı,\" dedi. Eğreltilerin arasından yürüdü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p06",
+        "quoteSHA256": "976606505ad5dcbfe40c1526ece1f7264bbadc81025050ea86b50945cc478952",
+        "bookID": "pilot56_book_a6_fox_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "976606505ad5dcbfe40c1526ece1f7264bbadc81025050ea86b50945cc478952",
+      "text": "Deniz çizdiği eğrelti otlarını hatırladı. Yeşil yapraklar yolun iki yanındaydı. Sonra taş duvar göründü. \"Az kaldı,\" dedi. Eğreltilerin arasından yürüdü.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p06",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a6_fox_event03_v1",
+      "rawPageMove": "goal_reached",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Taş duvarın sonunda çanlı kapı vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Taş duvarın sonunda çanlı kapı vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Taş duvarın sonunda çanlı kapı vardı.",
+              "Deniz çanı çaldı.",
+              "Çanın sesi ormana yayıldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Taş duvarın sonunda çanlı kapı vardı. Deniz çanı çaldı. Tın tın! Tarçın kulaklarını dikti. Deniz sevindi. Tarçın hapşırıp katıldı. Çanın sesi ormana yayıldı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p07",
+            "evidenceText": "Taş duvarın sonunda çanlı kapı vardı. Deniz çanı çaldı. Tın tın! Tarçın kulaklarını dikti. Deniz sevindi. Tarçın hapşırıp katıldı. Çanın sesi ormana yayıldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Taş duvarın sonunda çanlı kapı vardı. Deniz çanı çaldı. Tın tın! Tarçın kulaklarını dikti. Deniz sevindi. Tarçın hapşırıp katıldı. Çanın sesi ormana yayıldı.",
+        "poseAndActionEvidence": [
+          "Taş duvarın sonunda çanlı kapı vardı.",
+          "Deniz çanı çaldı.",
+          "Tın tın!",
+          "Tarçın kulaklarını dikti.",
+          "Deniz sevindi.",
+          "Tarçın hapşırıp katıldı.",
+          "Çanın sesi ormana yayıldı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Taş duvarın sonunda çanlı kapı vardı. Deniz çanı çaldı. Tın tın! Tarçın kulaklarını dikti. Deniz sevindi. Tarçın hapşırıp katıldı. Çanın sesi ormana yayıldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p07",
+        "quoteSHA256": "ee79c7dd82a982295df375406e8d74fdda4bc55f7fd277d9ed7008ff1aa987bd",
+        "bookID": "pilot56_book_a6_fox_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "ee79c7dd82a982295df375406e8d74fdda4bc55f7fd277d9ed7008ff1aa987bd",
+      "text": "Taş duvarın sonunda çanlı kapı vardı. Deniz çanı çaldı. Tın tın! Tarçın kulaklarını dikti. Deniz sevindi. Tarçın hapşırıp katıldı. Çanın sesi ormana yayıldı.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p07",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a6_fox_event03_v1",
+      "rawPageMove": "closed_return",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; ağaç/gövde; iz/kum; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Dallarında kırmızı elmalar parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Kapının arkasında gerçekten bir elma ağacı vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Dallarında kırmızı elmalar parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Kapının arkasında gerçekten bir elma ağacı vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Kapının arkasında gerçekten bir elma ağacı vardı. \"Burnum doğru söyledi,\" dedi Tarçın gururla. Deniz’in gözleri parladı. Dallarında kırmızı elmalar parlıyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p08",
+            "evidenceText": "Kapının arkasında gerçekten bir elma ağacı vardı. \"Burnum doğru söyledi,\" dedi Tarçın gururla. Deniz’in gözleri parladı. Dallarında kırmızı elmalar parlıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kapının arkasında gerçekten bir elma ağacı vardı. \"Burnum doğru söyledi,\" dedi Tarçın gururla. Deniz’in gözleri parladı. Dallarında kırmızı elmalar parlıyordu.",
+        "poseAndActionEvidence": [
+          "Kapının arkasında gerçekten bir elma ağacı vardı.",
+          "\"Burnum doğru söyledi,\" dedi Tarçın gururla.",
+          "Deniz’in gözleri parladı.",
+          "Dallarında kırmızı elmalar parlıyordu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kapının arkasında gerçekten bir elma ağacı vardı. \"Burnum doğru söyledi,\" dedi Tarçın gururla. Deniz’in gözleri parladı. Dallarında kırmızı elmalar parlıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p08",
+        "quoteSHA256": "45fa774ebd56a391ba933f4d084d8d717943496d2da213e3746d1d12748a46bd",
+        "bookID": "pilot56_book_a6_fox_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "45fa774ebd56a391ba933f4d084d8d717943496d2da213e3746d1d12748a46bd",
+      "text": "Kapının arkasında gerçekten bir elma ağacı vardı. \"Burnum doğru söyledi,\" dedi Tarçın gururla. Deniz’in gözleri parladı. Dallarında kırmızı elmalar parlıyordu.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_event03_v1_p08",
+      "sourcePointer": "input/adventure-fox.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk bildiği üç işareti dalla yere çizer ve haritayı izleyerek yolu bulur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

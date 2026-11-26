@@ -1,0 +1,889 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a7_bear_event03_v1",
+  "title": "Böğürtlen'in Uçurtması",
+  "context": {
+    "settingName": "Eğrelti Kenarı (yeni mekân)",
+    "mode": "adventure",
+    "companionID": "companion_bear_001",
+    "structure": "A7",
+    "event": "e3",
+    "mechanism": "reach-with-stick",
+    "sourceFilename": "adventure-bear.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a7_bear_event03_v1",
+    "sourceBookID": "pilot56_book_a7_bear_event03_v1",
+    "structure": "A7",
+    "event": "e3",
+    "sample": false,
+    "title": "Böğürtlen'in Uçurtması",
+    "pages": [
+      "Eğrelti Kenarı’nın yanındaki çayırda Deniz uçurtma uçuruyordu. Rüzgâr durunca uçurtma indi. İpi çalılığın arkasına kaydı. Böğürtlen başını kaşıdı.",
+      "Uçurtmanın ipi çalılığın arkasına uzanıyordu. İpin ucu sık dalların arasında görünüyordu, ama Deniz’in kolu yetişmiyordu. Deniz çalılığa girmeden dikkatle baktı.",
+      "Böğürtlen ipi çekmek için pençesini uzattı. Pençesi çalıların arasında kaldı, yapraklar kafasına döküldü! \"Şimdi ben de bir çalıyım,\" dedi. Deniz eğilip kıkırdadı.",
+      "Deniz yerdeki dallara baktı. \"Uzun olsun, ucunda küçük bir çatal olsun,\" dedi. Önce en uzun ve düz dalı seçti.",
+      "Deniz düz dalı ipe uzattı. Dal ipe değdi, ama ip dalın üstünden kayıp düştü. \"Acele yok, ben buradayım,\" dedi Böğürtlen. Deniz yeniden düşündü.",
+      "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı aldı. Çatalı ipe geçirip çevirdi. İp çatala sarıldı. Deniz dalı yavaşça kendine çekti.",
+      "İpin ucu Deniz’in eline geldi. \"Çatal tuttu!\" dedi Deniz. Böğürtlen başındaki yaprakları silkeledi. Deniz burnunu kırıştırıp kıkırdadı. Böğürtlen patisini salladı. Uçurtma çimenlerin üstünde sakince yatıyordu.",
+      "Rüzgâr yeniden esti. Deniz ipi tuttu, uçurtma havalandı. Böğürtlen mor lekeli patisini salladı. \"Uçurtma da çantam gibi bordo olsaydı,\" dedi."
+    ]
+  },
+  "inputFileSHA256": "095ae97293e2d392c35dd7a2b60ba977da211f8f650e872515723e5094fcbffe",
+  "inputBookPointer": "input/adventure-bear.json#/books/2",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a7_bear_event03_v1",
+      "rawPageMove": "item_lost",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Eğrelti Kenarı’nın yanındaki çayırda Deniz uçurtma uçuruyordu.",
+              "Rüzgâr durunca uçurtma indi.",
+              "İpi çalılığın arkasına kaydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Eğrelti Kenarı’nın yanındaki çayırda Deniz uçurtma uçuruyordu. Rüzgâr durunca uçurtma indi. İpi çalılığın arkasına kaydı. Böğürtlen başını kaşıdı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p01",
+            "evidenceText": "Eğrelti Kenarı’nın yanındaki çayırda Deniz uçurtma uçuruyordu. Rüzgâr durunca uçurtma indi. İpi çalılığın arkasına kaydı. Böğürtlen başını kaşıdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Eğrelti Kenarı’nın yanındaki çayırda Deniz uçurtma uçuruyordu. Rüzgâr durunca uçurtma indi. İpi çalılığın arkasına kaydı. Böğürtlen başını kaşıdı.",
+        "poseAndActionEvidence": [
+          "Eğrelti Kenarı’nın yanındaki çayırda Deniz uçurtma uçuruyordu.",
+          "Rüzgâr durunca uçurtma indi.",
+          "İpi çalılığın arkasına kaydı.",
+          "Böğürtlen başını kaşıdı."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Eğrelti Kenarı’nın yanındaki çayırda Deniz uçurtma uçuruyordu. Rüzgâr durunca uçurtma indi. İpi çalılığın arkasına kaydı. Böğürtlen başını kaşıdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p01",
+        "quoteSHA256": "aa72bff209388850de0025f40bca3962544bd538d6d2e0550614bd76b4ccb19a",
+        "bookID": "pilot56_book_a7_bear_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "aa72bff209388850de0025f40bca3962544bd538d6d2e0550614bd76b4ccb19a",
+      "text": "Eğrelti Kenarı’nın yanındaki çayırda Deniz uçurtma uçuruyordu. Rüzgâr durunca uçurtma indi. İpi çalılığın arkasına kaydı. Böğürtlen başını kaşıdı.",
+      "sourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p01",
+      "sourcePointer": "input/adventure-bear.json#/books/2/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a7_bear_event03_v1",
+      "rawPageMove": "approach",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "İpin ucu sık dalların arasında görünüyordu, ama Deniz’in kolu yetişmiyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Uçurtmanın ipi çalılığın arkasına uzanıyordu.",
+              "İpin ucu sık dalların arasında görünüyordu, ama Deniz’in kolu yetişmiyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Uçurtmanın ipi çalılığın arkasına uzanıyordu. İpin ucu sık dalların arasında görünüyordu, ama Deniz’in kolu yetişmiyordu. Deniz çalılığa girmeden dikkatle baktı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p02",
+            "evidenceText": "Uçurtmanın ipi çalılığın arkasına uzanıyordu. İpin ucu sık dalların arasında görünüyordu, ama Deniz’in kolu yetişmiyordu. Deniz çalılığa girmeden dikkatle baktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Uçurtmanın ipi çalılığın arkasına uzanıyordu. İpin ucu sık dalların arasında görünüyordu, ama Deniz’in kolu yetişmiyordu. Deniz çalılığa girmeden dikkatle baktı.",
+        "poseAndActionEvidence": [
+          "Uçurtmanın ipi çalılığın arkasına uzanıyordu.",
+          "İpin ucu sık dalların arasında görünüyordu, ama Deniz’in kolu yetişmiyordu.",
+          "Deniz çalılığa girmeden dikkatle baktı."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Uçurtmanın ipi çalılığın arkasına uzanıyordu. İpin ucu sık dalların arasında görünüyordu, ama Deniz’in kolu yetişmiyordu. Deniz çalılığa girmeden dikkatle baktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p02",
+        "quoteSHA256": "33b61ddcedc028bf2d3229c71dc7f962d0a663edbb84325a698b9b6ff417364b",
+        "bookID": "pilot56_book_a7_bear_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "33b61ddcedc028bf2d3229c71dc7f962d0a663edbb84325a698b9b6ff417364b",
+      "text": "Uçurtmanın ipi çalılığın arkasına uzanıyordu. İpin ucu sık dalların arasında görünüyordu, ama Deniz’in kolu yetişmiyordu. Deniz çalılığa girmeden dikkatle baktı.",
+      "sourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p02",
+      "sourcePointer": "input/adventure-bear.json#/books/2/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a7_bear_event03_v1",
+      "rawPageMove": "friend_tries",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Pençesi çalıların arasında kaldı, yapraklar kafasına döküldü!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Böğürtlen ipi çekmek için pençesini uzattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen ipi çekmek için pençesini uzattı. Pençesi çalıların arasında kaldı, yapraklar kafasına döküldü! \"Şimdi ben de bir çalıyım,\" dedi. Deniz eğilip kıkırdadı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p03",
+            "evidenceText": "Böğürtlen ipi çekmek için pençesini uzattı. Pençesi çalıların arasında kaldı, yapraklar kafasına döküldü! \"Şimdi ben de bir çalıyım,\" dedi. Deniz eğilip kıkırdadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen ipi çekmek için pençesini uzattı. Pençesi çalıların arasında kaldı, yapraklar kafasına döküldü! \"Şimdi ben de bir çalıyım,\" dedi. Deniz eğilip kıkırdadı.",
+        "poseAndActionEvidence": [
+          "Böğürtlen ipi çekmek için pençesini uzattı.",
+          "Pençesi çalıların arasında kaldı, yapraklar kafasına döküldü!",
+          "\"Şimdi ben de bir çalıyım,\" dedi.",
+          "Deniz eğilip kıkırdadı."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_bear_001",
+        "quote": "Böğürtlen ipi çekmek için pençesini uzattı. Pençesi çalıların arasında kaldı, yapraklar kafasına döküldü! \"Şimdi ben de bir çalıyım,\" dedi. Deniz eğilip kıkırdadı.",
+        "attributionQuote": "Böğürtlen",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p03",
+        "quoteSHA256": "616c098786489a4aaf3a460568351bf032ea9d28258b246dba1fbc5b5f8aebc5",
+        "bookID": "pilot56_book_a7_bear_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "616c098786489a4aaf3a460568351bf032ea9d28258b246dba1fbc5b5f8aebc5",
+      "text": "Böğürtlen ipi çekmek için pençesini uzattı. Pençesi çalıların arasında kaldı, yapraklar kafasına döküldü! \"Şimdi ben de bir çalıyım,\" dedi. Deniz eğilip kıkırdadı.",
+      "sourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p03",
+      "sourcePointer": "input/adventure-bear.json#/books/2/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a7_bear_event03_v1",
+      "rawPageMove": "child_picks_stick",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; çatal/kanca dal",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz yerdeki dallara baktı.",
+              "Önce en uzun ve düz dalı seçti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "\"Uzun olsun, ucunda küçük bir çatal olsun,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz yerdeki dallara baktı. \"Uzun olsun, ucunda küçük bir çatal olsun,\" dedi. Önce en uzun ve düz dalı seçti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p04",
+            "evidenceText": "Deniz yerdeki dallara baktı. \"Uzun olsun, ucunda küçük bir çatal olsun,\" dedi. Önce en uzun ve düz dalı seçti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yerdeki dallara baktı. \"Uzun olsun, ucunda küçük bir çatal olsun,\" dedi. Önce en uzun ve düz dalı seçti.",
+        "poseAndActionEvidence": [
+          "Deniz yerdeki dallara baktı.",
+          "\"Uzun olsun, ucunda küçük bir çatal olsun,\" dedi.",
+          "Önce en uzun ve düz dalı seçti."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yerdeki dallara baktı. \"Uzun olsun, ucunda küçük bir çatal olsun,\" dedi. Önce en uzun ve düz dalı seçti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p04",
+        "quoteSHA256": "968858074f42c90bc8ced79cd45891392d520ddb2593a58d769b55599744da4e",
+        "bookID": "pilot56_book_a7_bear_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "968858074f42c90bc8ced79cd45891392d520ddb2593a58d769b55599744da4e",
+      "text": "Deniz yerdeki dallara baktı. \"Uzun olsun, ucunda küçük bir çatal olsun,\" dedi. Önce en uzun ve düz dalı seçti.",
+      "sourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p04",
+      "sourcePointer": "input/adventure-bear.json#/books/2/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a7_bear_event03_v1",
+      "rawPageMove": "first_pull",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; top/şapka/uçurtma; canlı yolu",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz düz dalı ipe uzattı.",
+              "Dal ipe değdi, ama ip dalın üstünden kayıp düştü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Dal ipe değdi, ama ip dalın üstünden kayıp düştü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "canlı yolu",
+            "evidenceQuotes": [
+              "Dal ipe değdi, ama ip dalın üstünden kayıp düştü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz düz dalı ipe uzattı. Dal ipe değdi, ama ip dalın üstünden kayıp düştü. \"Acele yok, ben buradayım,\" dedi Böğürtlen. Deniz yeniden düşündü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p05",
+            "evidenceText": "Deniz düz dalı ipe uzattı. Dal ipe değdi, ama ip dalın üstünden kayıp düştü. \"Acele yok, ben buradayım,\" dedi Böğürtlen. Deniz yeniden düşündü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz düz dalı ipe uzattı. Dal ipe değdi, ama ip dalın üstünden kayıp düştü. \"Acele yok, ben buradayım,\" dedi Böğürtlen. Deniz yeniden düşündü.",
+        "poseAndActionEvidence": [
+          "Deniz düz dalı ipe uzattı.",
+          "Dal ipe değdi, ama ip dalın üstünden kayıp düştü.",
+          "\"Acele yok, ben buradayım,\" dedi Böğürtlen.",
+          "Deniz yeniden düşündü."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz düz dalı ipe uzattı. Dal ipe değdi, ama ip dalın üstünden kayıp düştü. \"Acele yok, ben buradayım,\" dedi Böğürtlen. Deniz yeniden düşündü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p05",
+        "quoteSHA256": "eac407b4c5fb46d66e83dc602bf0fe5b0d1941d14916dba9e47d63c79ab20848",
+        "bookID": "pilot56_book_a7_bear_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "eac407b4c5fb46d66e83dc602bf0fe5b0d1941d14916dba9e47d63c79ab20848",
+      "text": "Deniz düz dalı ipe uzattı. Dal ipe değdi, ama ip dalın üstünden kayıp düştü. \"Acele yok, ben buradayım,\" dedi Böğürtlen. Deniz yeniden düşündü.",
+      "sourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p05",
+      "sourcePointer": "input/adventure-bear.json#/books/2/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a7_bear_event03_v1",
+      "rawPageMove": "child_changes_stick",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "çatallı kök; dal; çatal/kanca dal; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "Bu kez ucu çatallı olanı aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz dalı değiştirdi.",
+              "Deniz dalı yavaşça kendine çekti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "Bu kez ucu çatallı olanı aldı.",
+              "Çatalı ipe geçirip çevirdi.",
+              "İp çatala sarıldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "İp çatala sarıldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı aldı. Çatalı ipe geçirip çevirdi. İp çatala sarıldı. Deniz dalı yavaşça kendine çekti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p06",
+            "evidenceText": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı aldı. Çatalı ipe geçirip çevirdi. İp çatala sarıldı. Deniz dalı yavaşça kendine çekti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı aldı. Çatalı ipe geçirip çevirdi. İp çatala sarıldı. Deniz dalı yavaşça kendine çekti.",
+        "poseAndActionEvidence": [
+          "Deniz dalı değiştirdi.",
+          "Bu kez ucu çatallı olanı aldı.",
+          "Çatalı ipe geçirip çevirdi.",
+          "İp çatala sarıldı.",
+          "Deniz dalı yavaşça kendine çekti."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı aldı. Çatalı ipe geçirip çevirdi. İp çatala sarıldı. Deniz dalı yavaşça kendine çekti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p06",
+        "quoteSHA256": "c162fac9f83fba5caec7a716421e0e93ff89d4200f65a0fa463de1b765996763",
+        "bookID": "pilot56_book_a7_bear_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "c162fac9f83fba5caec7a716421e0e93ff89d4200f65a0fa463de1b765996763",
+      "text": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı aldı. Çatalı ipe geçirip çevirdi. İp çatala sarıldı. Deniz dalı yavaşça kendine çekti.",
+      "sourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p06",
+      "sourcePointer": "input/adventure-bear.json#/books/2/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a7_bear_event03_v1",
+      "rawPageMove": "item_back",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; çatal/kanca dal; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Böğürtlen başındaki yaprakları silkeledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "\"Çatal tuttu!\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "İpin ucu Deniz’in eline geldi.",
+              "Uçurtma çimenlerin üstünde sakince yatıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "İpin ucu Deniz’in eline geldi. \"Çatal tuttu!\" dedi Deniz. Böğürtlen başındaki yaprakları silkeledi. Deniz burnunu kırıştırıp kıkırdadı. Böğürtlen patisini salladı. Uçurtma çimenlerin üstünde sakince yatıyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p07",
+            "evidenceText": "İpin ucu Deniz’in eline geldi. \"Çatal tuttu!\" dedi Deniz. Böğürtlen başındaki yaprakları silkeledi. Deniz burnunu kırıştırıp kıkırdadı. Böğürtlen patisini salladı. Uçurtma çimenlerin üstünde sakince yatıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "İpin ucu Deniz’in eline geldi. \"Çatal tuttu!\" dedi Deniz. Böğürtlen başındaki yaprakları silkeledi. Deniz burnunu kırıştırıp kıkırdadı. Böğürtlen patisini salladı. Uçurtma çimenlerin üstünde sakince yatıyordu.",
+        "poseAndActionEvidence": [
+          "İpin ucu Deniz’in eline geldi.",
+          "\"Çatal tuttu!\" dedi Deniz.",
+          "Böğürtlen başındaki yaprakları silkeledi.",
+          "Deniz burnunu kırıştırıp kıkırdadı.",
+          "Böğürtlen patisini salladı.",
+          "Uçurtma çimenlerin üstünde sakince yatıyordu."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "İpin ucu Deniz’in eline geldi. \"Çatal tuttu!\" dedi Deniz. Böğürtlen başındaki yaprakları silkeledi. Deniz burnunu kırıştırıp kıkırdadı. Böğürtlen patisini salladı. Uçurtma çimenlerin üstünde sakince yatıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p07",
+        "quoteSHA256": "8d4545f4596e3e0feba77bff738c952c00073b4dbc30a73d37f5d85634e8a464",
+        "bookID": "pilot56_book_a7_bear_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "8d4545f4596e3e0feba77bff738c952c00073b4dbc30a73d37f5d85634e8a464",
+      "text": "İpin ucu Deniz’in eline geldi. \"Çatal tuttu!\" dedi Deniz. Böğürtlen başındaki yaprakları silkeledi. Deniz burnunu kırıştırıp kıkırdadı. Böğürtlen patisini salladı. Uçurtma çimenlerin üstünde sakince yatıyordu.",
+      "sourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p07",
+      "sourcePointer": "input/adventure-bear.json#/books/2/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a7_bear_event03_v1",
+      "rawPageMove": "return",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "çanta/askı; top/şapka/uçurtma; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "çanta/askı",
+            "evidenceQuotes": [
+              "\"Uçurtma da çantam gibi bordo olsaydı,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Deniz ipi tuttu, uçurtma havalandı.",
+              "\"Uçurtma da çantam gibi bordo olsaydı,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "\"Uçurtma da çantam gibi bordo olsaydı,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Rüzgâr yeniden esti. Deniz ipi tuttu, uçurtma havalandı. Böğürtlen mor lekeli patisini salladı. \"Uçurtma da çantam gibi bordo olsaydı,\" dedi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p08",
+            "evidenceText": "Rüzgâr yeniden esti. Deniz ipi tuttu, uçurtma havalandı. Böğürtlen mor lekeli patisini salladı. \"Uçurtma da çantam gibi bordo olsaydı,\" dedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Rüzgâr yeniden esti. Deniz ipi tuttu, uçurtma havalandı. Böğürtlen mor lekeli patisini salladı. \"Uçurtma da çantam gibi bordo olsaydı,\" dedi.",
+        "poseAndActionEvidence": [
+          "Rüzgâr yeniden esti.",
+          "Deniz ipi tuttu, uçurtma havalandı.",
+          "Böğürtlen mor lekeli patisini salladı.",
+          "\"Uçurtma da çantam gibi bordo olsaydı,\" dedi."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Rüzgâr yeniden esti. Deniz ipi tuttu, uçurtma havalandı. Böğürtlen mor lekeli patisini salladı. \"Uçurtma da çantam gibi bordo olsaydı,\" dedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p08",
+        "quoteSHA256": "872ec90cfdbf6437e88553135c2f990b138918d0ca647c18638f02d2fda8d81d",
+        "bookID": "pilot56_book_a7_bear_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "872ec90cfdbf6437e88553135c2f990b138918d0ca647c18638f02d2fda8d81d",
+      "text": "Rüzgâr yeniden esti. Deniz ipi tuttu, uçurtma havalandı. Böğürtlen mor lekeli patisini salladı. \"Uçurtma da çantam gibi bordo olsaydı,\" dedi.",
+      "sourceID": "p56_wave2_pilot56_book_a7_bear_event03_v1_p08",
+      "sourcePointer": "input/adventure-bear.json#/books/2/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz içeri girmeden uzun, ucu çatallı doğru dalı seçer, eşyayı kendine doğru çeker.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}
