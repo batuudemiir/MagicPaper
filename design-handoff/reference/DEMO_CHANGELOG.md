@@ -1,3 +1,10 @@
+## 27 Kasım 2026 — V4 15 görsellik nesne paketi
+
+- Pilot metinlerinden seçilen 15 nesne/mekân durumu ayrı PNG dosyaları, kaynak SHA listeli manifest, beyaz/gece HTML galerisi ve paylaşılabilir ZIP olarak paketlendi.
+- Bu tur 13 yeni durum çizimi üretildi; önceki yaprak/dal iki durumu pakete dahil. Düz örtünün desen/bakış farkı aynı katlı örtü referansıyla v2’de düzeltildi; reddedilen v1 saklandı.
+- Yerleşik imagegen, onaylı marka ve gerekli nesne/çanta referansları kullanıldı; tam prompt ve üretim kayıtları mevcut. 15 PNG decode/alfa/SHA, kaynak adayları ve ZIP bütünlük kontrolü geçti.
+- Tarayıcı beyaz/gece kompoziti incelenmedi; uygulama/motor/metin değişmedi. Build/test/simülatör çalıştırılmadı. Paket inceleme adaylarıdır; runtime kapsamı veya yayın onayı değildir.
+
 ## 27 Kasım 2026 — V4 15 kitaplık sayfa incelemesi ve ilk nesne durumları
 
 - 120 sayfa elle okunup kaynak/template SHA taşıyan planlama notlarına işlendi: 45 aday an, 35 farklı ihtiyaç; henüz runtime kapsaması değil. 75 sayfa ilk pilotta metin.

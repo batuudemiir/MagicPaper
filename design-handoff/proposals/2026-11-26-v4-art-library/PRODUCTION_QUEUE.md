@@ -65,3 +65,7 @@
 ## Doğrulama
 
 `python3 Tools/story-art/build_v4_pilot_review.py` 120/120 metin SHA, 15 kitap, kitap başına 3 aday ve toplam 45 an kontrolünü yapar. Bu veri doğrulamasıdır; uygulama testi veya sanatın doğruluğuna otomatik onay değildir.
+
+## 27 Kasım — nesne paketi 1
+
+15 seçili PNG ve kaynak adayları `object-package-v1/manifest.json` içinde; paylaşım arşivi `MagicPaper-V4-Nesneler-Paket-1.zip`. Ortak yedi ihtiyaç yanında minder, katlı/düz örtü, tüy, taş, böğürtlen, mendil ve askıdaki çanta var. Karakter aksiyonları bu paketle tamamlanmış sayılmaz. Düz örtü v1 desen/bakış farkı nedeniyle elendi; v2 seçildi. 15 PNG decode/alfa/SHA ve ZIP bütünlüğü doğrulandı. Tarayıcı beyaz/gece kompoziti ve runtime bağlama henüz yapılmadı.
