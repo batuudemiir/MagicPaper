@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · codex/cocugun-masal-yolu-gorselleri · Son portre ve poz düzeltmeleri
+
+- Böğürtlen’in kapalı gözlü uyuklama ve üç böğürtlen sayma çizimleri ile Yıldız’ın portre ve üç mod çizimindeki yumuşak konturlar güncellendi.
+- Beş baş ve omuz kırpması ayrı asset setlerine eklendi. Galeride “Kim gelsin?” bu portreleri, siyah siluet karşılaştırması tam gövdeleri kullanıyor. ZIP her iki portreyi içeriyor.
+- Şeffaf PNG’ler, 64 px önizleme, galeri bağlantıları ve 26 dosyalık ZIP kontrol edildi. Uygulama testi ve simülatör çalıştırılmadı.
+
 ### 2026-11-26 · codex/cocugun-masal-yolu-gorselleri · Beş arkadaş portreleri ve mod çizimleri v2
 
 - Beş portreye v2 asset setleri eklendi. Renkler, imza eşyaları ve siluetler karaktere göre ayrıldı. Galerideki 15 mod görseli yeni poz ve ışıklarla güncellendi. Sürpriz görseli korundu.
