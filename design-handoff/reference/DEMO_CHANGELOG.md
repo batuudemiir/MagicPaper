@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · codex/bes-arkadas/claude-uygulama@62e39224 · P56 v4 pininin uygulama tarafı
+- Codex'in motor pini 87c8ea0 (v4, `v3SHA256` tarihsel) hatta birleşti; uygulama paketi v4 baytları (`cmp` eşit, SHA c06a5dfc…), v3 kopyası çıktı.
+- `P56SnapshotStore` v1–v4'ü tanır; testler etkin pini `P56PinnedSource`'tan okur, tarihsel v1/v2/v3 SHA'ları ayrı denetlenir.
+- Bilerek değişmeyen: v1/v2/v3 içerik dosyaları, motor sözleşmesi, üretim ve görsel onayları kapalı, push yok.
+- Test: seçili 9 uygulama suite'i 78 test, 0 hata. Simülatör (iPhone Air): bayrak açık, en korumalı profil, uyku öncesi + Yıldız masalı v4 kaynakla yazıldı/kaydedildi/açıldı; eski v3 masalı yerinde. Bayrak kapalı yol simülatörde ayrıca açılmadı (birim testi var).
+
 ### 26 Kasım 2026 — Codex: V4 motor pin geçişi
 
 - Etkin pin V4; v3 ayrı geçmiş hash sabitiyle korunur. V1–V4 paket baytları değişmedi.
