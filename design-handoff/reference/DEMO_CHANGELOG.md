@@ -133,6 +133,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · codex/karakter-kartlari · Karakter kartları öncesi görsel düzeltmeleri
+
+- Böğürtlen öğrenme görselinde açık patisindeki üç böğürtleni sayıyor. Beş şeffaf baş-omuz görseli 1024 × 1024 px boyutuna getirildi.
+- PNG boyutu, alfa kanalı ve 26 dosyalık ZIP doğrulandı. Uygulama testi ve simülatör çalıştırılmadı.
+
 ### 2026-11-26 · codex/cocugun-masal-yolu-gorselleri · Son portre ve poz düzeltmeleri
 
 - Böğürtlen’in kapalı gözlü uyuklama ve üç böğürtlen sayma çizimleri ile Yıldız’ın portre ve üç mod çizimindeki yumuşak konturlar güncellendi.
