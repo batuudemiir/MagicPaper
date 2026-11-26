@@ -19,10 +19,10 @@
 
 Files: `design-handoff/proposals/2026-11-26-v4-art-library/assets/`, `GENERATION_RECORD.json`.
 
-- [ ] Onaylı marka referansını ve önceki beş tekil karakter çizimini açıp incele.
-- [ ] Her karakteri ayrı şeffaf PNG olarak imagegen ile üret; onaylı imza ayrıntılarını README tablosundan al. Önceki dosyaların üzerine yazma.
+- [x] Onaylı marka referansını ve önceki beş tekil karakter çizimini açıp incele.
+- [x] Her karakteri ayrı şeffaf PNG olarak imagegen ile üret; onaylı imza ayrıntılarını README tablosundan al. Önceki dosyaların üzerine yazma.
 - [ ] Yüz, anatomi, tek gövde, aksesuar, saydam kenar ve beyaz/gece zemini incelemesini yap; reddedilen sürümleri kayıttan silme.
-- [ ] Tam prompt, kullanılan referans yolları, üretim çıktısı, seçilen dosya SHA ve inceleme sonucunu kaydet. Kimlik pozu, bütün sayfalarda kullanım onayı değildir.
+- [x] Tam prompt, kullanılan referans yolları, üretim çıktısı, seçilen dosya SHA ve inceleme sonucunu kaydet. Kimlik pozu, bütün sayfalarda kullanım onayı değildir.
 
 ## 3. 15 kitaplık görsel senaryo incelemesi
 

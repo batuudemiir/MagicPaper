@@ -1,3 +1,9 @@
+## 26 Kasım 2026 — Beş arkadaş V4 kimlik çizimleri
+
+- Yerleşik imagegen ile onaylı marka ve tekil karakter referanslarından beş ayrı V4 PNG üretildi; imza aksesuarları, Yıldız’ın gece mavisi tüyleri ve Böğürtlen’in pati lekesi eklendi.
+- Kimlik/gövde/aksesuar görselleri tek tek incelendi; dosyalarda alfa kanalı doğrulandı. Beyaz/gece inceleme galerisi hazır; tarayıcıdaki kompozit görünüm henüz elle doğrulanmadı.
+- Promptlar, kaynak yolları ve SHA değerleri `2026-11-26-v4-art-library/GENERATION_RECORD.json` içinde. Eski görseller korunuyor; app/runtime eşleşmesi değişmedi. Test/build/simülatör çalıştırılmadı.
+
 ## 26 Kasım 2026 — V4 görsel havuzu kaynak envanteri ve onaylı plan
 
 - V4 imza ayrıntıları için kullanıcı onayı kaydedildi; 90 kitap/720 sayfa/25 keşif ve 15 inceleme kitabı kaynak manifestine alındı.
