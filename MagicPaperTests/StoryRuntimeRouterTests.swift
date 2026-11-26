@@ -260,4 +260,16 @@ final class StoryRuntimeRouterTests: XCTestCase {
         XCTAssertFalse(StoryRuntimeFlags.fiveFriendsPilot)
         #endif
     }
+
+    func testDebugPilotIsOnByDefaultAndLaunchArgumentWins() {
+        XCTAssertTrue(StoryRuntimeFlags.resolve(debug: true, launchValue: nil, underTests: false),
+                      "Debug'da ana ekrandan açılış beşliyi gösterir")
+        XCTAssertFalse(StoryRuntimeFlags.resolve(debug: true, launchValue: false, underTests: false),
+                       "-mpFiveFriendsPilot NO kapatır")
+        XCTAssertTrue(StoryRuntimeFlags.resolve(debug: true, launchValue: true, underTests: true))
+        XCTAssertFalse(StoryRuntimeFlags.resolve(debug: true, launchValue: nil, underTests: true),
+                       "testlerde varsayılan bugünkü akış")
+        XCTAssertFalse(StoryRuntimeFlags.resolve(debug: false, launchValue: true, underTests: false),
+                       "Release her zaman kapalı")
+    }
 }

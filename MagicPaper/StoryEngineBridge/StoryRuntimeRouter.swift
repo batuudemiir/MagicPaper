@@ -40,13 +40,26 @@ struct StoryRuntimeRequest {
 }
 
 enum StoryRuntimeFlags {
-    /// Internal pilot only (K-C): `-mpFiveFriendsPilot YES` in a Debug build.
+    /// Internal pilot only (K-C), never in Release. Debug builds have it on by
+    /// default so the phone opened from the home screen shows the five friends
+    /// (Batuhan, 26 Kasım 2026); `-mpFiveFriendsPilot NO` turns it off. Under
+    /// unit tests the default stays off, so tests see today's flow unless
+    /// they ask for the pilot.
     static var fiveFriendsPilot: Bool {
         #if DEBUG
-        UserDefaults.standard.bool(forKey: "mpFiveFriendsPilot")
+        resolve(debug: true,
+                launchValue: UserDefaults.standard.object(forKey: "mpFiveFriendsPilot") as? Bool,
+                underTests: ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil)
         #else
         false
         #endif
+    }
+
+    /// The decision without the process: an explicit launch value wins in
+    /// Debug; otherwise on, except under tests. Release is always off.
+    static func resolve(debug: Bool, launchValue: Bool?, underTests: Bool) -> Bool {
+        guard debug else { return false }
+        return launchValue ?? !underTests
     }
 }
 
