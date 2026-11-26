@@ -1,0 +1,1140 @@
+{
+  "id": "pilot56_book_l1_owl_event03_v1",
+  "title": "Dedektif Yıldız",
+  "blueprintID": "pilot56_blueprint_l1_v1",
+  "planLabel": "L1",
+  "mechanismKey": "two-observation-causal-test",
+  "status": "v4-approved-text-metadata-review-candidate",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "learning",
+    "arc": "editorial-learning",
+    "companionID": "companion_owl_pilot_001",
+    "settingID": "setting_whispering_forest_001",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "G",
+  "personalityContract": "Az konuşur; dikkatle gözler; cevabı çocuğa bırakır.",
+  "physicalContract": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+  "childAgency": "Çocuk aynı anda görülen temas ve duyulan sesi birleştirir.",
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "baseBookID": "pilot56_book_l1_owl_v1",
+  "variantID": "event03",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "sound_noticed",
+      "orderedBeatIDs": [
+        "pilot56_beat_l1_1_v1"
+      ],
+      "text": "Deniz alçak dalın yanında iki kuru yaprak gördü. Yıldız yakındaki bir dala konmuştu. Yapraklar aynı esintide sallanıyordu. Tık! Ses hangisinden geliyordu?",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "sound_noticed",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p01",
+            "sourceTextDigest": "684a9e3d180c38fdf7cfb579b8f69a4d61721600eaa9f73051a46e47576bc28d",
+            "templateID": "pilot56_blueprint_l1_v1",
+            "sourcePointer": "sources.json#/sources/424",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_two_leaves_contact_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; dal",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz alçak dalın yanında iki kuru yaprak gördü.",
+              "Yapraklar aynı esintide sallanıyordu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz alçak dalın yanında iki kuru yaprak gördü.",
+              "Yıldız yakındaki bir dala konmuştu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz alçak dalın yanında iki kuru yaprak gördü. Yıldız yakındaki bir dala konmuştu. Yapraklar aynı esintide sallanıyordu. Tık! Ses hangisinden geliyordu?",
+            "evidenceSourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p01",
+            "evidenceText": "Deniz alçak dalın yanında iki kuru yaprak gördü. Yıldız yakındaki bir dala konmuştu. Yapraklar aynı esintide sallanıyordu. Tık! Ses hangisinden geliyordu?",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz alçak dalın yanında iki kuru yaprak gördü. Yıldız yakındaki bir dala konmuştu. Yapraklar aynı esintide sallanıyordu. Tık! Ses hangisinden geliyordu?",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Deniz alçak dalın yanında iki kuru yaprak gördü.",
+          "Yıldız yakındaki bir dala konmuştu.",
+          "Yapraklar aynı esintide sallanıyordu.",
+          "Tık!",
+          "Ses hangisinden geliyordu?"
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 2,
+      "role": "first_guess",
+      "orderedBeatIDs": [
+        "pilot56_beat_l1_2_v1"
+      ],
+      "text": "Deniz sesin büyük yapraktan geldiğini tahmin etti. Ama ikisi de sallanıyordu. Yıldız iki yaprağa sırayla baktı. \"Önce ikisine ayrı ayrı bakacağım,\" dedi Deniz.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "sound_noticed",
+      "stateAfter": "first_guess",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p02",
+            "sourceTextDigest": "0c7247494ffee43ef7699fe4a17ed64bb1b8ab7d45a5ad64153b168e06b2a1ab",
+            "templateID": "pilot56_blueprint_l1_v1",
+            "sourcePointer": "sources.json#/sources/425",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_two_leaves_contact_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz sesin büyük yapraktan geldiğini tahmin etti.",
+              "Yıldız iki yaprağa sırayla baktı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz sesin büyük yapraktan geldiğini tahmin etti. Ama ikisi de sallanıyordu. Yıldız iki yaprağa sırayla baktı. \"Önce ikisine ayrı ayrı bakacağım,\" dedi Deniz.",
+            "evidenceSourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p02",
+            "evidenceText": "Deniz sesin büyük yapraktan geldiğini tahmin etti. Ama ikisi de sallanıyordu. Yıldız iki yaprağa sırayla baktı. \"Önce ikisine ayrı ayrı bakacağım,\" dedi Deniz.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz sesin büyük yapraktan geldiğini tahmin etti. Ama ikisi de sallanıyordu. Yıldız iki yaprağa sırayla baktı. \"Önce ikisine ayrı ayrı bakacağım,\" dedi Deniz.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Deniz sesin büyük yapraktan geldiğini tahmin etti.",
+          "Ama ikisi de sallanıyordu.",
+          "Yıldız iki yaprağa sırayla baktı.",
+          "\"Önce ikisine ayrı ayrı bakacağım,\" dedi Deniz."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_one_observation",
+      "orderedBeatIDs": [
+        "pilot56_beat_l1_3_v1"
+      ],
+      "text": "Yıldız da gözünü iki yaprak arasında gezdirdi. Başını bir yana, bir öbür yana çevirdi. \"Hımm… sen ne görüyorsun?\" diye sordu. \"İki şüpheli,\" dedi Deniz gülerek.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "first_guess",
+      "stateAfter": "friend_one_observation",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p03",
+            "sourceTextDigest": "58a7b975ee131524136f4ea6cc25233bd95b6e438a9fbf6cf04d8c40010145b6",
+            "templateID": "pilot56_blueprint_l1_v1",
+            "sourcePointer": "sources.json#/sources/426",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_two_leaves_contact_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Yıldız da gözünü iki yaprak arasında gezdirdi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Yıldız da gözünü iki yaprak arasında gezdirdi. Başını bir yana, bir öbür yana çevirdi. \"Hımm… sen ne görüyorsun?\" diye sordu. \"İki şüpheli,\" dedi Deniz gülerek.",
+            "evidenceSourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p03",
+            "evidenceText": "Yıldız da gözünü iki yaprak arasında gezdirdi. Başını bir yana, bir öbür yana çevirdi. \"Hımm… sen ne görüyorsun?\" diye sordu. \"İki şüpheli,\" dedi Deniz gülerek.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yıldız da gözünü iki yaprak arasında gezdirdi. Başını bir yana, bir öbür yana çevirdi. \"Hımm… sen ne görüyorsun?\" diye sordu. \"İki şüpheli,\" dedi Deniz gülerek.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Yıldız da gözünü iki yaprak arasında gezdirdi.",
+          "Başını bir yana, bir öbür yana çevirdi.",
+          "\"Hımm…",
+          "sen ne görüyorsun?\" diye sordu.",
+          "\"İki şüpheli,\" dedi Deniz gülerek."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_predicts",
+      "orderedBeatIDs": [
+        "pilot56_beat_l1_4_v1"
+      ],
+      "text": "Deniz önce uzak yaprağı, sonra dala yakın olanı izlemeyi seçti. \"Hangisi değiyor, göreceğim,\" dedi. Yıldız da iki yaprağa sırayla baktı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_one_observation",
+      "stateAfter": "child_predicts",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p04",
+            "sourceTextDigest": "612abf55dc41af3d2479239bf1a8e0c34d43dfafcbbe078ac2b58bee72ac90e2",
+            "templateID": "pilot56_blueprint_l1_v1",
+            "sourcePointer": "sources.json#/sources/427",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_two_leaves_contact_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; dal",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz önce uzak yaprağı, sonra dala yakın olanı izlemeyi seçti.",
+              "Yıldız da iki yaprağa sırayla baktı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz önce uzak yaprağı, sonra dala yakın olanı izlemeyi seçti."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz önce uzak yaprağı, sonra dala yakın olanı izlemeyi seçti. \"Hangisi değiyor, göreceğim,\" dedi. Yıldız da iki yaprağa sırayla baktı.",
+            "evidenceSourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p04",
+            "evidenceText": "Deniz önce uzak yaprağı, sonra dala yakın olanı izlemeyi seçti. \"Hangisi değiyor, göreceğim,\" dedi. Yıldız da iki yaprağa sırayla baktı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz önce uzak yaprağı, sonra dala yakın olanı izlemeyi seçti. \"Hangisi değiyor, göreceğim,\" dedi. Yıldız da iki yaprağa sırayla baktı.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Deniz önce uzak yaprağı, sonra dala yakın olanı izlemeyi seçti.",
+          "\"Hangisi değiyor, göreceğim,\" dedi.",
+          "Yıldız da iki yaprağa sırayla baktı."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 5,
+      "role": "observe_contact",
+      "orderedBeatIDs": [
+        "pilot56_beat_l1_5_v1"
+      ],
+      "text": "Uzaktaki yaprak sallandı; ses gelmedi. Sonra yakındaki yaprak dala değdi. Tık! Yıldız'ın kocaman gözleri hemen o yana döndü.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_predicts",
+      "stateAfter": "observe_contact",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p05",
+            "sourceTextDigest": "2c306e9e6b27997c553dae5a4df797f8177747f57938e76f7c129d7b779f7dc2",
+            "templateID": "pilot56_blueprint_l1_v1",
+            "sourcePointer": "sources.json#/sources/428",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_two_leaves_contact_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; dal",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Uzaktaki yaprak sallandı; ses gelmedi.",
+              "Sonra yakındaki yaprak dala değdi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Sonra yakındaki yaprak dala değdi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Uzaktaki yaprak sallandı; ses gelmedi. Sonra yakındaki yaprak dala değdi. Tık! Yıldız'ın kocaman gözleri hemen o yana döndü.",
+            "evidenceSourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p05",
+            "evidenceText": "Uzaktaki yaprak sallandı; ses gelmedi. Sonra yakındaki yaprak dala değdi. Tık! Yıldız'ın kocaman gözleri hemen o yana döndü.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Uzaktaki yaprak sallandı; ses gelmedi. Sonra yakındaki yaprak dala değdi. Tık! Yıldız'ın kocaman gözleri hemen o yana döndü.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Uzaktaki yaprak sallandı; ses gelmedi.",
+          "Sonra yakındaki yaprak dala değdi.",
+          "Tık!",
+          "Yıldız'ın kocaman gözleri hemen o yana döndü."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 6,
+      "role": "child_infers",
+      "orderedBeatIDs": [
+        "pilot56_beat_l1_6_v1"
+      ],
+      "text": "Deniz gözlemlerini topladı. \"Ses, dala değen yapraktan geldi!\" dedi. İkisi de sallanmıştı, yalnız biri değmişti. Yıldız gözlerini kocaman açtı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "observe_contact",
+      "stateAfter": "child_infers",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p06",
+            "sourceTextDigest": "90cea0c27a657ff3dc81b61e0eefc2153feba3aeaf6b93af4d8b18c093ce0a60",
+            "templateID": "pilot56_blueprint_l1_v1",
+            "sourcePointer": "sources.json#/sources/429",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_two_leaves_contact_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; dal",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "\"Ses, dala değen yapraktan geldi!\" dedi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "\"Ses, dala değen yapraktan geldi!\" dedi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz gözlemlerini topladı. \"Ses, dala değen yapraktan geldi!\" dedi. İkisi de sallanmıştı, yalnız biri değmişti. Yıldız gözlerini kocaman açtı.",
+            "evidenceSourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p06",
+            "evidenceText": "Deniz gözlemlerini topladı. \"Ses, dala değen yapraktan geldi!\" dedi. İkisi de sallanmıştı, yalnız biri değmişti. Yıldız gözlerini kocaman açtı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz gözlemlerini topladı. \"Ses, dala değen yapraktan geldi!\" dedi. İkisi de sallanmıştı, yalnız biri değmişti. Yıldız gözlerini kocaman açtı.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Deniz gözlemlerini topladı.",
+          "\"Ses, dala değen yapraktan geldi!\" dedi.",
+          "İkisi de sallanmıştı, yalnız biri değmişti.",
+          "Yıldız gözlerini kocaman açtı."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 7,
+      "role": "recheck",
+      "orderedBeatIDs": [
+        "pilot56_beat_l1_7_v1"
+      ],
+      "text": "Bir esinti daha geldi. Yakındaki yaprak dala değince yine tık! \"Yine aynı yaprak,\" dedi Deniz. Yıldız memnun bir \"Hu-hu\" dedi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "child_infers",
+      "stateAfter": "recheck",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p07",
+            "sourceTextDigest": "f13c66585ae889a949c307412f2d5f240d9fcbe1ba54cc037e1ce5604cbe0a2c",
+            "templateID": "pilot56_blueprint_l1_v1",
+            "sourcePointer": "sources.json#/sources/430",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_two_leaves_contact_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; dal",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Yakındaki yaprak dala değince yine tık!",
+              "\"Yine aynı yaprak,\" dedi Deniz."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Yakındaki yaprak dala değince yine tık!"
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Bir esinti daha geldi. Yakındaki yaprak dala değince yine tık! \"Yine aynı yaprak,\" dedi Deniz. Yıldız memnun bir \"Hu-hu\" dedi.",
+            "evidenceSourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p07",
+            "evidenceText": "Bir esinti daha geldi. Yakındaki yaprak dala değince yine tık! \"Yine aynı yaprak,\" dedi Deniz. Yıldız memnun bir \"Hu-hu\" dedi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Bir esinti daha geldi. Yakındaki yaprak dala değince yine tık! \"Yine aynı yaprak,\" dedi Deniz. Yıldız memnun bir \"Hu-hu\" dedi.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Bir esinti daha geldi.",
+          "Yakındaki yaprak dala değince yine tık!",
+          "\"Yine aynı yaprak,\" dedi Deniz.",
+          "Yıldız memnun bir \"Hu-hu\" dedi."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_result",
+      "orderedBeatIDs": [
+        "pilot56_beat_l1_8_v1"
+      ],
+      "text": "Deniz iki yaprağı yerlerinde bırakıp patikaya döndü. Yıldız alçaktan süzüldü. Bir dala kondu ve esnedi. \"Dedektiflik yorucu iş,\" dedi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "learning",
+        "arc": "editorial-learning",
+        "companionID": "companion_owl_pilot_001",
+        "settingID": "setting_whispering_forest_001",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "recheck",
+      "stateAfter": "closed_result",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p08",
+            "sourceTextDigest": "2fbc583b79ea90b67883bb75f6129211a78141889bfd5216fa4010c11e7dc18a",
+            "templateID": "pilot56_blueprint_l1_v1",
+            "sourcePointer": "sources.json#/sources/431",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "learning",
+              "arc": "editorial-learning",
+              "companionID": "companion_owl_pilot_001",
+              "settingID": "setting_whispering_forest_001",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_two_leaves_contact_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_two_leaves_contact_v1",
+            "presence": "off-scene",
+            "states": [
+              "left-at-observation-location"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; dal",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz iki yaprağı yerlerinde bırakıp patikaya döndü."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Bir dala kondu ve esnedi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz iki yaprağı yerlerinde bırakıp patikaya döndü. Yıldız alçaktan süzüldü. Bir dala kondu ve esnedi. \"Dedektiflik yorucu iş,\" dedi.",
+            "evidenceSourceID": "p56_v4_pilot56_book_l1_owl_event03_v1_p08",
+            "evidenceText": "Deniz iki yaprağı yerlerinde bırakıp patikaya döndü. Yıldız alçaktan süzüldü. Bir dala kondu ve esnedi. \"Dedektiflik yorucu iş,\" dedi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz iki yaprağı yerlerinde bırakıp patikaya döndü. Yıldız alçaktan süzüldü. Bir dala kondu ve esnedi. \"Dedektiflik yorucu iş,\" dedi.",
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "poseAndActionEvidence": [
+          "Deniz iki yaprağı yerlerinde bırakıp patikaya döndü.",
+          "Yıldız alçaktan süzüldü.",
+          "Bir dala kondu ve esnedi.",
+          "\"Dedektiflik yorucu iş,\" dedi."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 1
+    }
+  ],
+  "sourceBookID": "pilot56_book_l1_owl_event03_v1"
+}

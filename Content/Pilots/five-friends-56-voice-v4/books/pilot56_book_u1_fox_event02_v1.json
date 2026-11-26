@@ -1,0 +1,1096 @@
+{
+  "id": "pilot56_book_u1_fox_event02_v1",
+  "title": "Tarçın'ın Kuyruk Sesi",
+  "blueprintID": "pilot56_blueprint_u1_v1",
+  "planLabel": "U1",
+  "mechanismKey": "familiar-sound-ritual",
+  "status": "v4-approved-text-metadata-review-candidate",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "bedtime",
+    "arc": "charge-bedtime-editorial",
+    "companionID": "companion_fox_pilot_001",
+    "settingID": "pilot56_setting_forest_edge_room_v1",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Sakin eşlik; acele ettirmez; çocuğun kararını bekler.",
+  "physicalContract": "Dört ayak; doğal tilki ölçeği.",
+  "childAgency": "Çocuk bildiği sesleri sırayla seçip dinlemeyi bırakır.",
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "baseBookID": "pilot56_book_u1_fox_v1",
+  "variantID": "event02",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "settled_room",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_1_v1"
+      ],
+      "text": "Orman Kıyısındaki Oda’da akşam ışığı yumuşaktı. Deniz ellerini örtüsünün üstüne koydu. Tarçın minderinde yatıyordu. Burnu her zamanki gibi kıpır kıpırdı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "settled_room",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p01",
+            "sourceTextDigest": "0d4e7c45c1d1440bcdb428ae7f256754fc23ac2335fb05dae48ebc7d69c98d82",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/240",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_hand_rubbing_sound_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "örtü; minder",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Deniz ellerini örtüsünün üstüne koydu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Tarçın minderinde yatıyordu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Orman Kıyısındaki Oda’da akşam ışığı yumuşaktı. Deniz ellerini örtüsünün üstüne koydu. Tarçın minderinde yatıyordu. Burnu her zamanki gibi kıpır kıpırdı.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p01",
+            "evidenceText": "Orman Kıyısındaki Oda’da akşam ışığı yumuşaktı. Deniz ellerini örtüsünün üstüne koydu. Tarçın minderinde yatıyordu. Burnu her zamanki gibi kıpır kıpırdı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Benzetme, şehir anısı ve koku tahmini sahneye yeni yiyecek, eşya, bina veya karakter eklemez."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Orman Kıyısındaki Oda’da akşam ışığı yumuşaktı. Deniz ellerini örtüsünün üstüne koydu. Tarçın minderinde yatıyordu. Burnu her zamanki gibi kıpır kıpırdı.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "poseAndActionEvidence": [
+          "Orman Kıyısındaki Oda’da akşam ışığı yumuşaktı.",
+          "Deniz ellerini örtüsünün üstüne koydu.",
+          "Tarçın minderinde yatıyordu.",
+          "Burnu her zamanki gibi kıpır kıpırdı."
+        ],
+        "doNotDraw": [
+          "Benzetme, şehir anısı ve koku tahmini sahneye yeni yiyecek, eşya, bina veya karakter eklemez.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 2,
+      "role": "ritual_chosen",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_2_v1"
+      ],
+      "text": "Deniz avuçlarını usulca birbirine sürttü. Hış, hış… İncecik bir ses duydu. Tarçın kulaklarını oynattı. Deniz ellerini yavaşlatınca ses de yavaşladı. Bu ses hoşuna gitti.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "settled_room",
+      "stateAfter": "ritual_chosen",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p02",
+            "sourceTextDigest": "b92171870657d3d2cde5e956dc2901b41d860c19d6b821f5b0b5d7dd2de2a4fd",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/241",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_hand_rubbing_sound_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "Bu sayfada yeni fiziksel eşya açıkça adlandırılmıyor; kitap içi sahne sürekliliğini koru.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz avuçlarını usulca birbirine sürttü. Hış, hış… İncecik bir ses duydu. Tarçın kulaklarını oynattı. Deniz ellerini yavaşlatınca ses de yavaşladı. Bu ses hoşuna gitti.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p02",
+            "evidenceText": "Deniz avuçlarını usulca birbirine sürttü. Hış, hış… İncecik bir ses duydu. Tarçın kulaklarını oynattı. Deniz ellerini yavaşlatınca ses de yavaşladı. Bu ses hoşuna gitti.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz avuçlarını usulca birbirine sürttü. Hış, hış… İncecik bir ses duydu. Tarçın kulaklarını oynattı. Deniz ellerini yavaşlatınca ses de yavaşladı. Bu ses hoşuna gitti.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "poseAndActionEvidence": [
+          "Deniz avuçlarını usulca birbirine sürttü.",
+          "Hış, hış…",
+          "İncecik bir ses duydu.",
+          "Tarçın kulaklarını oynattı.",
+          "Deniz ellerini yavaşlatınca ses de yavaşladı.",
+          "Bu ses hoşuna gitti."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_listens",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_3_v1"
+      ],
+      "text": "Tarçın başını kaldırdı. \"Bu ses nereden geliyor?\" dedi. Minderini kokladı, sonra kendi kuyruğunu kokladı. Deniz’in kahkahası çınladı. \"Benim ellerimden, Tarçın!\"",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "ritual_chosen",
+      "stateAfter": "friend_listens",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p03",
+            "sourceTextDigest": "3256549765d74b037ef0f7e3d20fb433e668dca65cf14ac89f46fd8c305b9cca",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/242",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_hand_rubbing_sound_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "minder",
+        "propMentions": [
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Minderini kokladı, sonra kendi kuyruğunu kokladı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın başını kaldırdı. \"Bu ses nereden geliyor?\" dedi. Minderini kokladı, sonra kendi kuyruğunu kokladı. Deniz’in kahkahası çınladı. \"Benim ellerimden, Tarçın!\"",
+            "evidenceSourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p03",
+            "evidenceText": "Tarçın başını kaldırdı. \"Bu ses nereden geliyor?\" dedi. Minderini kokladı, sonra kendi kuyruğunu kokladı. Deniz’in kahkahası çınladı. \"Benim ellerimden, Tarçın!\"",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın başını kaldırdı. \"Bu ses nereden geliyor?\" dedi. Minderini kokladı, sonra kendi kuyruğunu kokladı. Deniz’in kahkahası çınladı. \"Benim ellerimden, Tarçın!\"",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "poseAndActionEvidence": [
+          "Tarçın başını kaldırdı.",
+          "\"Bu ses nereden geliyor?\" dedi.",
+          "Minderini kokladı, sonra kendi kuyruğunu kokladı.",
+          "Deniz’in kahkahası çınladı.",
+          "\"Benim ellerimden, Tarçın!\""
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_names_sound",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_4_v1"
+      ],
+      "text": "Deniz sese bir ad verdi. \"Bu, ellerimin yumuşak sesi,\" dedi. Avuçlarını aynı yavaşlıkta oynattı. Tarçın da dinledi. Ne zaman duracağını Deniz seçecekti.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_listens",
+      "stateAfter": "child_names_sound",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p04",
+            "sourceTextDigest": "fa73eb53b7bd2c6a4b756bbfaf36487c12a82b6ca140398aa44a1d23a3b50f21",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/243",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_hand_rubbing_sound_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "Bu sayfada yeni fiziksel eşya açıkça adlandırılmıyor; kitap içi sahne sürekliliğini koru.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz sese bir ad verdi. \"Bu, ellerimin yumuşak sesi,\" dedi. Avuçlarını aynı yavaşlıkta oynattı. Tarçın da dinledi. Ne zaman duracağını Deniz seçecekti.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p04",
+            "evidenceText": "Deniz sese bir ad verdi. \"Bu, ellerimin yumuşak sesi,\" dedi. Avuçlarını aynı yavaşlıkta oynattı. Tarçın da dinledi. Ne zaman duracağını Deniz seçecekti.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "İstek, olasılık ve henüz gerçekleşmeyen fiilleri bitmiş fiziksel eyleme dönüştürme; kesin eylem alıntının devamıyla belirlenir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz sese bir ad verdi. \"Bu, ellerimin yumuşak sesi,\" dedi. Avuçlarını aynı yavaşlıkta oynattı. Tarçın da dinledi. Ne zaman duracağını Deniz seçecekti.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "poseAndActionEvidence": [
+          "Deniz sese bir ad verdi.",
+          "\"Bu, ellerimin yumuşak sesi,\" dedi.",
+          "Avuçlarını aynı yavaşlıkta oynattı.",
+          "Tarçın da dinledi.",
+          "Ne zaman duracağını Deniz seçecekti."
+        ],
+        "doNotDraw": [
+          "İstek, olasılık ve henüz gerçekleşmeyen fiilleri bitmiş fiziksel eyleme dönüştürme; kesin eylem alıntının devamıyla belirlenir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 5,
+      "role": "soft_smile",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_5_v1"
+      ],
+      "text": "Tarçın da kuyruğunu minderin üstünde yavaşça kaydırdı. Hış… Kuyruğu da yumuşak bir ses çıkardı. \"Bak, benim de sesim var,\" dedi. Deniz’in gözleri parladı. Tarçın’ın kulakları dikildi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_names_sound",
+      "stateAfter": "soft_smile",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p05",
+            "sourceTextDigest": "8f2fd9a9668c8f021015ba895d804b5060c1e0e8128d8454142e9b2194586932",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/244",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_hand_rubbing_sound_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "minder",
+        "propMentions": [
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Tarçın da kuyruğunu minderin üstünde yavaşça kaydırdı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın da kuyruğunu minderin üstünde yavaşça kaydırdı. Hış… Kuyruğu da yumuşak bir ses çıkardı. \"Bak, benim de sesim var,\" dedi. Deniz’in gözleri parladı. Tarçın’ın kulakları dikildi.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p05",
+            "evidenceText": "Tarçın da kuyruğunu minderin üstünde yavaşça kaydırdı. Hış… Kuyruğu da yumuşak bir ses çıkardı. \"Bak, benim de sesim var,\" dedi. Deniz’in gözleri parladı. Tarçın’ın kulakları dikildi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın da kuyruğunu minderin üstünde yavaşça kaydırdı. Hış… Kuyruğu da yumuşak bir ses çıkardı. \"Bak, benim de sesim var,\" dedi. Deniz’in gözleri parladı. Tarçın’ın kulakları dikildi.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "poseAndActionEvidence": [
+          "Tarçın da kuyruğunu minderin üstünde yavaşça kaydırdı.",
+          "Hış…",
+          "Kuyruğu da yumuşak bir ses çıkardı.",
+          "\"Bak, benim de sesim var,\" dedi.",
+          "Deniz’in gözleri parladı.",
+          "Tarçın’ın kulakları dikildi."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 6,
+      "role": "attention_released",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_6_v1"
+      ],
+      "text": "Deniz ellerini ayırıp örtünün üstüne koydu. \"Dinlemeyi bitirdim,\" dedi. Elleri dinleniyordu. Tarçın kuyruğunu burnunun üstüne örttü. Oda sessiz, ışık yumuşaktı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "soft_smile",
+      "stateAfter": "attention_released",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p06",
+            "sourceTextDigest": "52303f5daa957fafe695a52149703068b2f98f13b543ca52ebdaf1103d32d677",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/245",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_hand_rubbing_sound_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "örtü",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Deniz ellerini ayırıp örtünün üstüne koydu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz ellerini ayırıp örtünün üstüne koydu. \"Dinlemeyi bitirdim,\" dedi. Elleri dinleniyordu. Tarçın kuyruğunu burnunun üstüne örttü. Oda sessiz, ışık yumuşaktı.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p06",
+            "evidenceText": "Deniz ellerini ayırıp örtünün üstüne koydu. \"Dinlemeyi bitirdim,\" dedi. Elleri dinleniyordu. Tarçın kuyruğunu burnunun üstüne örttü. Oda sessiz, ışık yumuşaktı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ellerini ayırıp örtünün üstüne koydu. \"Dinlemeyi bitirdim,\" dedi. Elleri dinleniyordu. Tarçın kuyruğunu burnunun üstüne örttü. Oda sessiz, ışık yumuşaktı.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "poseAndActionEvidence": [
+          "Deniz ellerini ayırıp örtünün üstüne koydu.",
+          "\"Dinlemeyi bitirdim,\" dedi.",
+          "Elleri dinleniyordu.",
+          "Tarçın kuyruğunu burnunun üstüne örttü.",
+          "Oda sessiz, ışık yumuşaktı."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 7,
+      "role": "awake_rest",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_7_v1"
+      ],
+      "text": "Tarçın kuyruğunu durdurdu. Burnunu patilerinin arasına gömdü. Deniz’in elleri de, Tarçın'ın kuyruğu da dinleniyordu. Odaya derin bir sessizlik yayıldı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "attention_released",
+      "stateAfter": "awake_rest",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p07",
+            "sourceTextDigest": "56474e278250986916a4545706392fd2f4206a6ddfca09d2ca119e69b36ef7bb",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/246",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_hand_rubbing_sound_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "Bu sayfada yeni fiziksel eşya açıkça adlandırılmıyor; kitap içi sahne sürekliliğini koru.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın kuyruğunu durdurdu. Burnunu patilerinin arasına gömdü. Deniz’in elleri de, Tarçın'ın kuyruğu da dinleniyordu. Odaya derin bir sessizlik yayıldı.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p07",
+            "evidenceText": "Tarçın kuyruğunu durdurdu. Burnunu patilerinin arasına gömdü. Deniz’in elleri de, Tarçın'ın kuyruğu da dinleniyordu. Odaya derin bir sessizlik yayıldı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın kuyruğunu durdurdu. Burnunu patilerinin arasına gömdü. Deniz’in elleri de, Tarçın'ın kuyruğu da dinleniyordu. Odaya derin bir sessizlik yayıldı.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "poseAndActionEvidence": [
+          "Tarçın kuyruğunu durdurdu.",
+          "Burnunu patilerinin arasına gömdü.",
+          "Deniz’in elleri de, Tarçın'ın kuyruğu da dinleniyordu.",
+          "Odaya derin bir sessizlik yayıldı."
+        ],
+        "doNotDraw": [
+          "Sayfadaki geçmiş karşılaştırma, açık olumsuzlama ve gelecek niyeti mevcut fiziksel eylem sayılmaz; birebir alıntıdaki zaman ve özne korunur.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_calm",
+      "orderedBeatIDs": [
+        "pilot56_beat_u1_8_v1"
+      ],
+      "text": "\"İyi geceler,\" diye fısıldadı Tarçın. Turkuaz boyunluğu minderin üstünde parlıyordu. Deniz’in gözleri usulca kapandı. Eller de kuyruk da uykuya daldı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_fox_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "awake_rest",
+      "stateAfter": "closed_calm",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p08",
+            "sourceTextDigest": "b3a40f11ebd0e9e55e6272b54155d305812341c83711f8d51ec1818743979177",
+            "templateID": "pilot56_blueprint_u1_v1",
+            "sourcePointer": "sources.json#/sources/247",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_fox_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_hand_rubbing_sound_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_hand_rubbing_sound_v1",
+            "presence": "present",
+            "states": [
+              "scene-prop"
+            ]
+          }
+        ],
+        "propDescription": "dal; minder; boyunluk",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Eller de kuyruk da uykuya daldı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Turkuaz boyunluğu minderin üstünde parlıyordu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "Turkuaz boyunluğu minderin üstünde parlıyordu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"İyi geceler,\" diye fısıldadı Tarçın. Turkuaz boyunluğu minderin üstünde parlıyordu. Deniz’in gözleri usulca kapandı. Eller de kuyruk da uykuya daldı.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u1_fox_event02_v1_p08",
+            "evidenceText": "\"İyi geceler,\" diye fısıldadı Tarçın. Turkuaz boyunluğu minderin üstünde parlıyordu. Deniz’in gözleri usulca kapandı. Eller de kuyruk da uykuya daldı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Kapalı/yarı kapalı göz, esneme, uyku niyeti veya beden parçasına söylenen uyku mecazı fiilen uyudu kanıtı değildir; mevcut uyku durumu iddia edilmez."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"İyi geceler,\" diye fısıldadı Tarçın. Turkuaz boyunluğu minderin üstünde parlıyordu. Deniz’in gözleri usulca kapandı. Eller de kuyruk da uykuya daldı.",
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "poseAndActionEvidence": [
+          "\"İyi geceler,\" diye fısıldadı Tarçın.",
+          "Turkuaz boyunluğu minderin üstünde parlıyordu.",
+          "Deniz’in gözleri usulca kapandı.",
+          "Eller de kuyruk da uykuya daldı."
+        ],
+        "doNotDraw": [
+          "Kapalı/yarı kapalı göz, esneme, uyku niyeti veya beden parçasına söylenen uyku mecazı fiilen uyudu kanıtı değildir; mevcut uyku durumu iddia edilmez.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    }
+  ],
+  "sourceBookID": "pilot56_book_u1_fox_event02_v1"
+}

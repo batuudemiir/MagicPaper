@@ -1,0 +1,930 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a8_cat_v1",
+  "title": "Simit Sepete Giriyor",
+  "context": {
+    "settingName": "Kozalak Tepesi'nden Ağaç Ev'e patika",
+    "mode": "adventure",
+    "companionID": "companion_city_cat_001",
+    "structure": "A8",
+    "event": "e1",
+    "mechanism": "share-the-load",
+    "sourceFilename": "adventure-cat.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a8_cat_v1",
+    "sourceBookID": "pilot56_book_a8_cat_v1",
+    "structure": "A8",
+    "event": "e1",
+    "sample": false,
+    "title": "Simit Sepete Giriyor",
+    "pages": [
+      "Kozalak Tepesi’nde sepet kozalakla dolmuştu. Deniz ile Simit Ağaç Ev’e dönecekti. Sepet kocamandı. Simit'in kırmızı tasmasındaki zil tın etti.",
+      "Deniz sepeti kaldırmaya çalıştı. Sepet hafifti ama çok genişti. Kozalaklar dökülünce Simit peşlerinden koştu. Kolları yetişmiyordu. Deniz sepeti yere bıraktı.",
+      "Simit sepeti görünce içine zıpladı. Önce zıpladı, sonra düşündü. Kozalaklar dört bir yana döküldü, Simit sepetin ortasında kaldı! Deniz kıkır kıkır güldü.",
+      "Deniz kaşlarını çatıp düşündü. \"Kozalakları bölelim,\" dedi. Büyükleri kucağına aldı, küçükleri sepette bıraktı. Sepet küçüldü, kozalaklar dökülmedi. Simit küçük bir kozalağı kokladı.",
+      "Deniz başını kaşıdı. Simit sepeti taşıyamazdı ama hafif şeyleri ağzıyla tutabilirdi. Küçük bir kozalağı Simit'e uzattı. \"Sen bunu taşı,\" dedi.",
+      "Deniz büyük kozalakları kucağına aldı, sepeti koluna taktı. \"Sen küçüğü, ben gerisini taşıyorum,\" dedi. İkisine de uygun bir yük olmuştu.",
+      "Patika boyunca yan yana yürüdüler. Simit kozalağı ağzında gururla taşıdı. Ağaç Ev göründü. Deniz kozalakları kapının önüne dizdi.",
+      "Simit kendi kozalağını en öne koydu. \"Şehirde böyle değil ama,\" dedi. \"Orada kozalakları marketten alırlar.\" Deniz elini ağzına kapatıp kıkırdadı. Simit bıyıklarını oynattı. Simit zilini tın diye salladı."
+    ]
+  },
+  "inputFileSHA256": "cfc7c497fc656a53b044dce8a133414b951a773f8c64cd41e6b4f9010d0146b2",
+  "inputBookPointer": "input/adventure-cat.json#/books/3",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a8_cat_v1",
+      "rawPageMove": "load_full",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; tasma/zil; yağmur/cam/oluk; kozalak; sepet/kutu; iz/kum",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Deniz ile Simit Ağaç Ev’e dönecekti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Simit'in kırmızı tasmasındaki zil tın etti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Sepet kocamandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Kozalak Tepesi’nde sepet kozalakla dolmuştu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Kozalak Tepesi’nde sepet kozalakla dolmuştu.",
+              "Sepet kocamandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Simit'in kırmızı tasmasındaki zil tın etti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Kozalak Tepesi’nde sepet kozalakla dolmuştu. Deniz ile Simit Ağaç Ev’e dönecekti. Sepet kocamandı. Simit'in kırmızı tasmasındaki zil tın etti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p01",
+            "evidenceText": "Kozalak Tepesi’nde sepet kozalakla dolmuştu. Deniz ile Simit Ağaç Ev’e dönecekti. Sepet kocamandı. Simit'in kırmızı tasmasındaki zil tın etti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kozalak Tepesi’nde sepet kozalakla dolmuştu. Deniz ile Simit Ağaç Ev’e dönecekti. Sepet kocamandı. Simit'in kırmızı tasmasındaki zil tın etti.",
+        "poseAndActionEvidence": [
+          "Kozalak Tepesi’nde sepet kozalakla dolmuştu.",
+          "Deniz ile Simit Ağaç Ev’e dönecekti.",
+          "Sepet kocamandı.",
+          "Simit'in kırmızı tasmasındaki zil tın etti."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kozalak Tepesi’nde sepet kozalakla dolmuştu. Deniz ile Simit Ağaç Ev’e dönecekti. Sepet kocamandı. Simit'in kırmızı tasmasındaki zil tın etti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p01",
+        "quoteSHA256": "f3cc210444ca00fec1d38d8a299e318d44b923125c35ebbec09e84015cca4032",
+        "bookID": "pilot56_book_a8_cat_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "f3cc210444ca00fec1d38d8a299e318d44b923125c35ebbec09e84015cca4032",
+      "text": "Kozalak Tepesi’nde sepet kozalakla dolmuştu. Deniz ile Simit Ağaç Ev’e dönecekti. Sepet kocamandı. Simit'in kırmızı tasmasındaki zil tın etti.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_v1_p01",
+      "sourcePointer": "input/adventure-cat.json#/books/3/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a8_cat_v1",
+      "rawPageMove": "lift_try",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kozalak; sepet/kutu",
+        "propMentions": [
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Kozalaklar dökülünce Simit peşlerinden koştu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Deniz sepeti kaldırmaya çalıştı.",
+              "Sepet hafifti ama çok genişti.",
+              "Deniz sepeti yere bıraktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz sepeti kaldırmaya çalıştı. Sepet hafifti ama çok genişti. Kozalaklar dökülünce Simit peşlerinden koştu. Kolları yetişmiyordu. Deniz sepeti yere bıraktı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p02",
+            "evidenceText": "Deniz sepeti kaldırmaya çalıştı. Sepet hafifti ama çok genişti. Kozalaklar dökülünce Simit peşlerinden koştu. Kolları yetişmiyordu. Deniz sepeti yere bıraktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz sepeti kaldırmaya çalıştı. Sepet hafifti ama çok genişti. Kozalaklar dökülünce Simit peşlerinden koştu. Kolları yetişmiyordu. Deniz sepeti yere bıraktı.",
+        "poseAndActionEvidence": [
+          "Deniz sepeti kaldırmaya çalıştı.",
+          "Sepet hafifti ama çok genişti.",
+          "Kozalaklar dökülünce Simit peşlerinden koştu.",
+          "Kolları yetişmiyordu.",
+          "Deniz sepeti yere bıraktı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz sepeti kaldırmaya çalıştı. Sepet hafifti ama çok genişti. Kozalaklar dökülünce Simit peşlerinden koştu. Kolları yetişmiyordu. Deniz sepeti yere bıraktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p02",
+        "quoteSHA256": "430c1def173ce6b3f84e7e5e2684fb1fc3c6115440176bc9fea6336a49b92d8a",
+        "bookID": "pilot56_book_a8_cat_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "430c1def173ce6b3f84e7e5e2684fb1fc3c6115440176bc9fea6336a49b92d8a",
+      "text": "Deniz sepeti kaldırmaya çalıştı. Sepet hafifti ama çok genişti. Kozalaklar dökülünce Simit peşlerinden koştu. Kolları yetişmiyordu. Deniz sepeti yere bıraktı.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_v1_p02",
+      "sourcePointer": "input/adventure-cat.json#/books/3/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a8_cat_v1",
+      "rawPageMove": "friend_tries",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kozalak; sepet/kutu",
+        "propMentions": [
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Kozalaklar dört bir yana döküldü, Simit sepetin ortasında kaldı!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Simit sepeti görünce içine zıpladı.",
+              "Kozalaklar dört bir yana döküldü, Simit sepetin ortasında kaldı!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit sepeti görünce içine zıpladı. Önce zıpladı, sonra düşündü. Kozalaklar dört bir yana döküldü, Simit sepetin ortasında kaldı! Deniz kıkır kıkır güldü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p03",
+            "evidenceText": "Simit sepeti görünce içine zıpladı. Önce zıpladı, sonra düşündü. Kozalaklar dört bir yana döküldü, Simit sepetin ortasında kaldı! Deniz kıkır kıkır güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit sepeti görünce içine zıpladı. Önce zıpladı, sonra düşündü. Kozalaklar dört bir yana döküldü, Simit sepetin ortasında kaldı! Deniz kıkır kıkır güldü.",
+        "poseAndActionEvidence": [
+          "Simit sepeti görünce içine zıpladı.",
+          "Önce zıpladı, sonra düşündü.",
+          "Kozalaklar dört bir yana döküldü, Simit sepetin ortasında kaldı!",
+          "Deniz kıkır kıkır güldü."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_city_cat_001",
+        "quote": "Simit sepeti görünce içine zıpladı. Önce zıpladı, sonra düşündü. Kozalaklar dört bir yana döküldü, Simit sepetin ortasında kaldı! Deniz kıkır kıkır güldü.",
+        "attributionQuote": "Simit",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p03",
+        "quoteSHA256": "18063d2024c7a0aa7a6806157f86d2196763ad72c29035c73b868e94ab79c9ce",
+        "bookID": "pilot56_book_a8_cat_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "18063d2024c7a0aa7a6806157f86d2196763ad72c29035c73b868e94ab79c9ce",
+      "text": "Simit sepeti görünce içine zıpladı. Önce zıpladı, sonra düşündü. Kozalaklar dört bir yana döküldü, Simit sepetin ortasında kaldı! Deniz kıkır kıkır güldü.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_v1_p03",
+      "sourcePointer": "input/adventure-cat.json#/books/3/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a8_cat_v1",
+      "rawPageMove": "child_splits",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kozalak; sepet/kutu",
+        "propMentions": [
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "\"Kozalakları bölelim,\" dedi.",
+              "Sepet küçüldü, kozalaklar dökülmedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Büyükleri kucağına aldı, küçükleri sepette bıraktı.",
+              "Sepet küçüldü, kozalaklar dökülmedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz kaşlarını çatıp düşündü. \"Kozalakları bölelim,\" dedi. Büyükleri kucağına aldı, küçükleri sepette bıraktı. Sepet küçüldü, kozalaklar dökülmedi. Simit küçük bir kozalağı kokladı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p04",
+            "evidenceText": "Deniz kaşlarını çatıp düşündü. \"Kozalakları bölelim,\" dedi. Büyükleri kucağına aldı, küçükleri sepette bıraktı. Sepet küçüldü, kozalaklar dökülmedi. Simit küçük bir kozalağı kokladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kaşlarını çatıp düşündü. \"Kozalakları bölelim,\" dedi. Büyükleri kucağına aldı, küçükleri sepette bıraktı. Sepet küçüldü, kozalaklar dökülmedi. Simit küçük bir kozalağı kokladı.",
+        "poseAndActionEvidence": [
+          "Deniz kaşlarını çatıp düşündü.",
+          "\"Kozalakları bölelim,\" dedi.",
+          "Büyükleri kucağına aldı, küçükleri sepette bıraktı.",
+          "Sepet küçüldü, kozalaklar dökülmedi.",
+          "Simit küçük bir kozalağı kokladı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kaşlarını çatıp düşündü. \"Kozalakları bölelim,\" dedi. Büyükleri kucağına aldı, küçükleri sepette bıraktı. Sepet küçüldü, kozalaklar dökülmedi. Simit küçük bir kozalağı kokladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p04",
+        "quoteSHA256": "f7b149bbf7193c0ee876f53467253c15112643d3decb8e7e2ccf32626b7ea581",
+        "bookID": "pilot56_book_a8_cat_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "f7b149bbf7193c0ee876f53467253c15112643d3decb8e7e2ccf32626b7ea581",
+      "text": "Deniz kaşlarını çatıp düşündü. \"Kozalakları bölelim,\" dedi. Büyükleri kucağına aldı, küçükleri sepette bıraktı. Sepet küçüldü, kozalaklar dökülmedi. Simit küçük bir kozalağı kokladı.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_v1_p04",
+      "sourcePointer": "input/adventure-cat.json#/books/3/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a8_cat_v1",
+      "rawPageMove": "first_piece",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl; sepet/kutu",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Simit sepeti taşıyamazdı ama hafif şeyleri ağzıyla tutabilirdi.",
+              "\"Sen bunu taşı,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Simit sepeti taşıyamazdı ama hafif şeyleri ağzıyla tutabilirdi.",
+              "\"Sen bunu taşı,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Simit sepeti taşıyamazdı ama hafif şeyleri ağzıyla tutabilirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz başını kaşıdı. Simit sepeti taşıyamazdı ama hafif şeyleri ağzıyla tutabilirdi. Küçük bir kozalağı Simit'e uzattı. \"Sen bunu taşı,\" dedi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p05",
+            "evidenceText": "Deniz başını kaşıdı. Simit sepeti taşıyamazdı ama hafif şeyleri ağzıyla tutabilirdi. Küçük bir kozalağı Simit'e uzattı. \"Sen bunu taşı,\" dedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz başını kaşıdı. Simit sepeti taşıyamazdı ama hafif şeyleri ağzıyla tutabilirdi. Küçük bir kozalağı Simit'e uzattı. \"Sen bunu taşı,\" dedi.",
+        "poseAndActionEvidence": [
+          "Deniz başını kaşıdı.",
+          "Simit sepeti taşıyamazdı ama hafif şeyleri ağzıyla tutabilirdi.",
+          "Küçük bir kozalağı Simit'e uzattı.",
+          "\"Sen bunu taşı,\" dedi."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz başını kaşıdı. Simit sepeti taşıyamazdı ama hafif şeyleri ağzıyla tutabilirdi. Küçük bir kozalağı Simit'e uzattı. \"Sen bunu taşı,\" dedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p05",
+        "quoteSHA256": "424f600729fd36054880751a6d2f26ac6627f2af329f963ebb76cbf59e129e3d",
+        "bookID": "pilot56_book_a8_cat_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "424f600729fd36054880751a6d2f26ac6627f2af329f963ebb76cbf59e129e3d",
+      "text": "Deniz başını kaşıdı. Simit sepeti taşıyamazdı ama hafif şeyleri ağzıyla tutabilirdi. Küçük bir kozalağı Simit'e uzattı. \"Sen bunu taşı,\" dedi.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_v1_p05",
+      "sourcePointer": "input/adventure-cat.json#/books/3/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a8_cat_v1",
+      "rawPageMove": "child_matches",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; kozalak; taş/çakıl; sepet/kutu",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "\"Sen küçüğü, ben gerisini taşıyorum,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Deniz büyük kozalakları kucağına aldı, sepeti koluna taktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "\"Sen küçüğü, ben gerisini taşıyorum,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Deniz büyük kozalakları kucağına aldı, sepeti koluna taktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz büyük kozalakları kucağına aldı, sepeti koluna taktı. \"Sen küçüğü, ben gerisini taşıyorum,\" dedi. İkisine de uygun bir yük olmuştu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p06",
+            "evidenceText": "Deniz büyük kozalakları kucağına aldı, sepeti koluna taktı. \"Sen küçüğü, ben gerisini taşıyorum,\" dedi. İkisine de uygun bir yük olmuştu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz büyük kozalakları kucağına aldı, sepeti koluna taktı. \"Sen küçüğü, ben gerisini taşıyorum,\" dedi. İkisine de uygun bir yük olmuştu.",
+        "poseAndActionEvidence": [
+          "Deniz büyük kozalakları kucağına aldı, sepeti koluna taktı.",
+          "\"Sen küçüğü, ben gerisini taşıyorum,\" dedi.",
+          "İkisine de uygun bir yük olmuştu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz büyük kozalakları kucağına aldı, sepeti koluna taktı. \"Sen küçüğü, ben gerisini taşıyorum,\" dedi. İkisine de uygun bir yük olmuştu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p06",
+        "quoteSHA256": "dab8f2d5fe95c8de9fd74eff638a65d5279a7d47e0b79d65fdb6cf480d86a344",
+        "bookID": "pilot56_book_a8_cat_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "dab8f2d5fe95c8de9fd74eff638a65d5279a7d47e0b79d65fdb6cf480d86a344",
+      "text": "Deniz büyük kozalakları kucağına aldı, sepeti koluna taktı. \"Sen küçüğü, ben gerisini taşıyorum,\" dedi. İkisine de uygun bir yük olmuştu.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_v1_p06",
+      "sourcePointer": "input/adventure-cat.json#/books/3/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a8_cat_v1",
+      "rawPageMove": "arrival",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; taş; kozalak; taş/çakıl; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Ağaç Ev göründü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Simit kozalağı ağzında gururla taşıdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Deniz kozalakları kapının önüne dizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Simit kozalağı ağzında gururla taşıdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Deniz kozalakları kapının önüne dizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Patika boyunca yan yana yürüdüler. Simit kozalağı ağzında gururla taşıdı. Ağaç Ev göründü. Deniz kozalakları kapının önüne dizdi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p07",
+            "evidenceText": "Patika boyunca yan yana yürüdüler. Simit kozalağı ağzında gururla taşıdı. Ağaç Ev göründü. Deniz kozalakları kapının önüne dizdi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Patika boyunca yan yana yürüdüler. Simit kozalağı ağzında gururla taşıdı. Ağaç Ev göründü. Deniz kozalakları kapının önüne dizdi.",
+        "poseAndActionEvidence": [
+          "Patika boyunca yan yana yürüdüler.",
+          "Simit kozalağı ağzında gururla taşıdı.",
+          "Ağaç Ev göründü.",
+          "Deniz kozalakları kapının önüne dizdi."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Patika boyunca yan yana yürüdüler. Simit kozalağı ağzında gururla taşıdı. Ağaç Ev göründü. Deniz kozalakları kapının önüne dizdi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p07",
+        "quoteSHA256": "0ffb84cb487a6c3ce61adbe10a72e3d791206bd45a88af69ce9434c9e1cab236",
+        "bookID": "pilot56_book_a8_cat_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "0ffb84cb487a6c3ce61adbe10a72e3d791206bd45a88af69ce9434c9e1cab236",
+      "text": "Patika boyunca yan yana yürüdüler. Simit kozalağı ağzında gururla taşıdı. Ağaç Ev göründü. Deniz kozalakları kapının önüne dizdi.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_v1_p07",
+      "sourcePointer": "input/adventure-cat.json#/books/3/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a8_cat_v1",
+      "rawPageMove": "closing",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tasma/zil; kozalak",
+        "propMentions": [
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Simit zilini tın diye salladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "\"Orada kozalakları marketten alırlar.\" Deniz elini ağzına kapatıp kıkırdadı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit kendi kozalağını en öne koydu. \"Şehirde böyle değil ama,\" dedi. \"Orada kozalakları marketten alırlar.\" Deniz elini ağzına kapatıp kıkırdadı. Simit bıyıklarını oynattı. Simit zilini tın diye salladı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p08",
+            "evidenceText": "Simit kendi kozalağını en öne koydu. \"Şehirde böyle değil ama,\" dedi. \"Orada kozalakları marketten alırlar.\" Deniz elini ağzına kapatıp kıkırdadı. Simit bıyıklarını oynattı. Simit zilini tın diye salladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit kendi kozalağını en öne koydu. \"Şehirde böyle değil ama,\" dedi. \"Orada kozalakları marketten alırlar.\" Deniz elini ağzına kapatıp kıkırdadı. Simit bıyıklarını oynattı. Simit zilini tın diye salladı.",
+        "poseAndActionEvidence": [
+          "Simit kendi kozalağını en öne koydu.",
+          "\"Şehirde böyle değil ama,\" dedi.",
+          "\"Orada kozalakları marketten alırlar.\" Deniz elini ağzına kapatıp kıkırdadı.",
+          "Simit bıyıklarını oynattı.",
+          "Simit zilini tın diye salladı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Simit kendi kozalağını en öne koydu. \"Şehirde böyle değil ama,\" dedi. \"Orada kozalakları marketten alırlar.\" Deniz elini ağzına kapatıp kıkırdadı. Simit bıyıklarını oynattı. Simit zilini tın diye salladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_v1_p08",
+        "quoteSHA256": "b07d98477122dadbc1dde8427cc8c5749b92afc1e11f9c339e77015bf9be7cf3",
+        "bookID": "pilot56_book_a8_cat_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "b07d98477122dadbc1dde8427cc8c5749b92afc1e11f9c339e77015bf9be7cf3",
+      "text": "Simit kendi kozalağını en öne koydu. \"Şehirde böyle değil ama,\" dedi. \"Orada kozalakları marketten alırlar.\" Deniz elini ağzına kapatıp kıkırdadı. Simit bıyıklarını oynattı. Simit zilini tın diye salladı.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_v1_p08",
+      "sourcePointer": "input/adventure-cat.json#/books/3/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz yükü böler ve kimin neyi taşıyacağını arkadaşın bedenine göre eşleştirir.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

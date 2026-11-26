@@ -1,0 +1,919 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a6_cat_event02_v1",
+  "title": "Önce Koştum, Sonra Düşündüm",
+  "context": {
+    "settingName": "Fısıldayan Orman",
+    "mode": "adventure",
+    "companionID": "companion_city_cat_001",
+    "structure": "A6",
+    "event": "e2",
+    "mechanism": "stick-map-landmarks",
+    "sourceFilename": "adventure-cat.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a6_cat_event02_v1",
+    "structure": "A6",
+    "event": "e2",
+    "sample": false,
+    "title": "Önce Koştum, Sonra Düşündüm",
+    "pages": [
+      "Eski ahşap bank ormanın derinlerindeydi. Deniz ile Simit üç yolun ayrıldığı yere geldi. Hangi yol banka gidiyordu? Üç yol da birbirine benziyordu.",
+      "Deniz ahşap bankın yolunu düşündü. \"Önce büyük kütük, sonra beyaz taş, sonra iki çam,\" dedi. Simit kütüğün üstüne zıpladı. Deniz yolu biliyordu.",
+      "Simit haritaya bakmadan bir patikaya fırladı. Az sonra geri geldi. \"Önce koştum, sonra düşündüm,\" dedi. Deniz’in kıkırtısı her yere yayıldı. Kuyruğu çam iğneleriyle doluydu.",
+      "Deniz bir dal alıp toprağa bir kütük, beyaz bir taş ve iki çam çizdi. Sonuna minik bir bank ekledi. Simit çizimin üstüne basmamaya çalıştı.",
+      "İlk işarete, büyük kütüğe geldiler. Simit kütüğün üstünde yürüdü. \"Doğru kütük, şehirdeki duvarlar gibi,\" dedi. Kedi kütüğün sonuna kadar dengeyle yürüdü.",
+      "Deniz ikinci işareti aradı. Beyaz taş tam oradaydı, iki çam da arkasında. \"Doğru yoldayım!\" dedi. Simit beyaz taşın üstüne oturdu.",
+      "İki çamın arkasında eski bank duruyordu. Simit banka zıpladı ve kuyruğunu kıvırdı. Deniz’in içi kıpır kıpır oldu. Simit kuyruğunu dikti. Bankın tahtaları güneşte ılımıştı. Kedi hemen orayı beğendi.",
+      "Bankta oturup dinlendiler. Simit Deniz’in yanına kıvrıldı. Bu kez hiç fırlamadı. Zili tın etti, Deniz keyifle gülümsedi. Ormanın sesleri yumuşacıktı."
+    ],
+    "sourceBookID": "pilot56_book_a6_cat_event02_v1"
+  },
+  "inputFileSHA256": "83ff912ab1a5569eee87a1dffcb72f542ac0b2abe9a998ac179aba37730d2733",
+  "inputBookPointer": "input/adventure-cat.json#/books/4",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a6_cat_event02_v1",
+      "rawPageMove": "route_unclear",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Eski ahşap bank ormanın derinlerindeydi.",
+              "Hangi yol banka gidiyordu?"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Eski ahşap bank ormanın derinlerindeydi. Deniz ile Simit üç yolun ayrıldığı yere geldi. Hangi yol banka gidiyordu? Üç yol da birbirine benziyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p01",
+            "evidenceText": "Eski ahşap bank ormanın derinlerindeydi. Deniz ile Simit üç yolun ayrıldığı yere geldi. Hangi yol banka gidiyordu? Üç yol da birbirine benziyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Eski ahşap bank ormanın derinlerindeydi. Deniz ile Simit üç yolun ayrıldığı yere geldi. Hangi yol banka gidiyordu? Üç yol da birbirine benziyordu.",
+        "poseAndActionEvidence": [
+          "Eski ahşap bank ormanın derinlerindeydi.",
+          "Deniz ile Simit üç yolun ayrıldığı yere geldi.",
+          "Hangi yol banka gidiyordu?",
+          "Üç yol da birbirine benziyordu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Eski ahşap bank ormanın derinlerindeydi. Deniz ile Simit üç yolun ayrıldığı yere geldi. Hangi yol banka gidiyordu? Üç yol da birbirine benziyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p01",
+        "quoteSHA256": "c41996378b22fc6cd53e5f6833c74978b2fa75b13e1d40393e944f83fd6a2af7",
+        "bookID": "pilot56_book_a6_cat_event02_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "c41996378b22fc6cd53e5f6833c74978b2fa75b13e1d40393e944f83fd6a2af7",
+      "text": "Eski ahşap bank ormanın derinlerindeydi. Deniz ile Simit üç yolun ayrıldığı yere geldi. Hangi yol banka gidiyordu? Üç yol da birbirine benziyordu.",
+      "sourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p01",
+      "sourcePointer": "input/adventure-cat.json#/books/4/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a6_cat_event02_v1",
+      "rawPageMove": "landmarks_recalled",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; taş; taş/çakıl; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "\"Önce büyük kütük, sonra beyaz taş, sonra iki çam,\" dedi.",
+              "Simit kütüğün üstüne zıpladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "\"Önce büyük kütük, sonra beyaz taş, sonra iki çam,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "\"Önce büyük kütük, sonra beyaz taş, sonra iki çam,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Deniz ahşap bankın yolunu düşündü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz ahşap bankın yolunu düşündü. \"Önce büyük kütük, sonra beyaz taş, sonra iki çam,\" dedi. Simit kütüğün üstüne zıpladı. Deniz yolu biliyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p02",
+            "evidenceText": "Deniz ahşap bankın yolunu düşündü. \"Önce büyük kütük, sonra beyaz taş, sonra iki çam,\" dedi. Simit kütüğün üstüne zıpladı. Deniz yolu biliyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ahşap bankın yolunu düşündü. \"Önce büyük kütük, sonra beyaz taş, sonra iki çam,\" dedi. Simit kütüğün üstüne zıpladı. Deniz yolu biliyordu.",
+        "poseAndActionEvidence": [
+          "Deniz ahşap bankın yolunu düşündü.",
+          "\"Önce büyük kütük, sonra beyaz taş, sonra iki çam,\" dedi.",
+          "Simit kütüğün üstüne zıpladı.",
+          "Deniz yolu biliyordu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz ahşap bankın yolunu düşündü. \"Önce büyük kütük, sonra beyaz taş, sonra iki çam,\" dedi. Simit kütüğün üstüne zıpladı. Deniz yolu biliyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p02",
+        "quoteSHA256": "0eea71e5f4b4723dbbc8539e1bc54906abe36ed92964108d12f408dc8fde6a7c",
+        "bookID": "pilot56_book_a6_cat_event02_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "0eea71e5f4b4723dbbc8539e1bc54906abe36ed92964108d12f408dc8fde6a7c",
+      "text": "Deniz ahşap bankın yolunu düşündü. \"Önce büyük kütük, sonra beyaz taş, sonra iki çam,\" dedi. Simit kütüğün üstüne zıpladı. Deniz yolu biliyordu.",
+      "sourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p02",
+      "sourcePointer": "input/adventure-cat.json#/books/4/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a6_cat_event02_v1",
+      "rawPageMove": "friend_adds_landmark",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "harita/çizim",
+        "propMentions": [
+          {
+            "label": "harita/çizim",
+            "evidenceQuotes": [
+              "Simit haritaya bakmadan bir patikaya fırladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit haritaya bakmadan bir patikaya fırladı. Az sonra geri geldi. \"Önce koştum, sonra düşündüm,\" dedi. Deniz’in kıkırtısı her yere yayıldı. Kuyruğu çam iğneleriyle doluydu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p03",
+            "evidenceText": "Simit haritaya bakmadan bir patikaya fırladı. Az sonra geri geldi. \"Önce koştum, sonra düşündüm,\" dedi. Deniz’in kıkırtısı her yere yayıldı. Kuyruğu çam iğneleriyle doluydu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit haritaya bakmadan bir patikaya fırladı. Az sonra geri geldi. \"Önce koştum, sonra düşündüm,\" dedi. Deniz’in kıkırtısı her yere yayıldı. Kuyruğu çam iğneleriyle doluydu.",
+        "poseAndActionEvidence": [
+          "Simit haritaya bakmadan bir patikaya fırladı.",
+          "Az sonra geri geldi.",
+          "\"Önce koştum, sonra düşündüm,\" dedi.",
+          "Deniz’in kıkırtısı her yere yayıldı.",
+          "Kuyruğu çam iğneleriyle doluydu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_city_cat_001",
+        "quote": "Simit haritaya bakmadan bir patikaya fırladı. Az sonra geri geldi. \"Önce koştum, sonra düşündüm,\" dedi. Deniz’in kıkırtısı her yere yayıldı. Kuyruğu çam iğneleriyle doluydu.",
+        "attributionQuote": "Simit",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p03",
+        "quoteSHA256": "a18bc199327e4d370c5304de20c3a061412d74feee6af0e08b7b739467174147",
+        "bookID": "pilot56_book_a6_cat_event02_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "a18bc199327e4d370c5304de20c3a061412d74feee6af0e08b7b739467174147",
+      "text": "Simit haritaya bakmadan bir patikaya fırladı. Az sonra geri geldi. \"Önce koştum, sonra düşündüm,\" dedi. Deniz’in kıkırtısı her yere yayıldı. Kuyruğu çam iğneleriyle doluydu.",
+      "sourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p03",
+      "sourcePointer": "input/adventure-cat.json#/books/4/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a6_cat_event02_v1",
+      "rawPageMove": "child_draws_map",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kütük/yuva; taş; toprak; taş/çakıl; harita/çizim; iz/kum; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz bir dal alıp toprağa bir kütük, beyaz bir taş ve iki çam çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Deniz bir dal alıp toprağa bir kütük, beyaz bir taş ve iki çam çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Deniz bir dal alıp toprağa bir kütük, beyaz bir taş ve iki çam çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "toprak",
+            "evidenceQuotes": [
+              "Deniz bir dal alıp toprağa bir kütük, beyaz bir taş ve iki çam çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Deniz bir dal alıp toprağa bir kütük, beyaz bir taş ve iki çam çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "harita/çizim",
+            "evidenceQuotes": [
+              "Deniz bir dal alıp toprağa bir kütük, beyaz bir taş ve iki çam çizdi.",
+              "Simit çizimin üstüne basmamaya çalıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Simit çizimin üstüne basmamaya çalıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Sonuna minik bir bank ekledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz bir dal alıp toprağa bir kütük, beyaz bir taş ve iki çam çizdi. Sonuna minik bir bank ekledi. Simit çizimin üstüne basmamaya çalıştı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p04",
+            "evidenceText": "Deniz bir dal alıp toprağa bir kütük, beyaz bir taş ve iki çam çizdi. Sonuna minik bir bank ekledi. Simit çizimin üstüne basmamaya çalıştı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz bir dal alıp toprağa bir kütük, beyaz bir taş ve iki çam çizdi. Sonuna minik bir bank ekledi. Simit çizimin üstüne basmamaya çalıştı.",
+        "poseAndActionEvidence": [
+          "Deniz bir dal alıp toprağa bir kütük, beyaz bir taş ve iki çam çizdi.",
+          "Sonuna minik bir bank ekledi.",
+          "Simit çizimin üstüne basmamaya çalıştı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz bir dal alıp toprağa bir kütük, beyaz bir taş ve iki çam çizdi. Sonuna minik bir bank ekledi. Simit çizimin üstüne basmamaya çalıştı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p04",
+        "quoteSHA256": "e87a2c8ae5df7a4aee47439366b778924c55d11602cbb99caea17c1f1d73f8ab",
+        "bookID": "pilot56_book_a6_cat_event02_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "e87a2c8ae5df7a4aee47439366b778924c55d11602cbb99caea17c1f1d73f8ab",
+      "text": "Deniz bir dal alıp toprağa bir kütük, beyaz bir taş ve iki çam çizdi. Sonuna minik bir bank ekledi. Simit çizimin üstüne basmamaya çalıştı.",
+      "sourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p04",
+      "sourcePointer": "input/adventure-cat.json#/books/4/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a6_cat_event02_v1",
+      "rawPageMove": "follow_first",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tahta işaret parçaları; kütük/yuva",
+        "propMentions": [
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "İlk işarete, büyük kütüğe geldiler."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "İlk işarete, büyük kütüğe geldiler.",
+              "Simit kütüğün üstünde yürüdü.",
+              "\"Doğru kütük, şehirdeki duvarlar gibi,\" dedi.",
+              "Kedi kütüğün sonuna kadar dengeyle yürüdü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "İlk işarete, büyük kütüğe geldiler. Simit kütüğün üstünde yürüdü. \"Doğru kütük, şehirdeki duvarlar gibi,\" dedi. Kedi kütüğün sonuna kadar dengeyle yürüdü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p05",
+            "evidenceText": "İlk işarete, büyük kütüğe geldiler. Simit kütüğün üstünde yürüdü. \"Doğru kütük, şehirdeki duvarlar gibi,\" dedi. Kedi kütüğün sonuna kadar dengeyle yürüdü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "İlk işarete, büyük kütüğe geldiler. Simit kütüğün üstünde yürüdü. \"Doğru kütük, şehirdeki duvarlar gibi,\" dedi. Kedi kütüğün sonuna kadar dengeyle yürüdü.",
+        "poseAndActionEvidence": [
+          "İlk işarete, büyük kütüğe geldiler.",
+          "Simit kütüğün üstünde yürüdü.",
+          "\"Doğru kütük, şehirdeki duvarlar gibi,\" dedi.",
+          "Kedi kütüğün sonuna kadar dengeyle yürüdü."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "İlk işarete, büyük kütüğe geldiler. Simit kütüğün üstünde yürüdü. \"Doğru kütük, şehirdeki duvarlar gibi,\" dedi. Kedi kütüğün sonuna kadar dengeyle yürüdü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p01",
+        "quoteSHA256": "79af2fbc2fdc024ce8ac2026fffe3e7c20a8c6b88b90f33d8bbbb4781224f289",
+        "bookID": "pilot56_book_a6_cat_event02_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "79af2fbc2fdc024ce8ac2026fffe3e7c20a8c6b88b90f33d8bbbb4781224f289",
+      "text": "İlk işarete, büyük kütüğe geldiler. Simit kütüğün üstünde yürüdü. \"Doğru kütük, şehirdeki duvarlar gibi,\" dedi. Kedi kütüğün sonuna kadar dengeyle yürüdü.",
+      "sourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p05",
+      "sourcePointer": "input/adventure-cat.json#/books/4/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a6_cat_event02_v1",
+      "rawPageMove": "child_checks_map",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tahta işaret parçaları; taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Deniz ikinci işareti aradı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Beyaz taş tam oradaydı, iki çam da arkasında.",
+              "Simit beyaz taşın üstüne oturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Beyaz taş tam oradaydı, iki çam da arkasında.",
+              "Simit beyaz taşın üstüne oturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz ikinci işareti aradı. Beyaz taş tam oradaydı, iki çam da arkasında. \"Doğru yoldayım!\" dedi. Simit beyaz taşın üstüne oturdu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p06",
+            "evidenceText": "Deniz ikinci işareti aradı. Beyaz taş tam oradaydı, iki çam da arkasında. \"Doğru yoldayım!\" dedi. Simit beyaz taşın üstüne oturdu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ikinci işareti aradı. Beyaz taş tam oradaydı, iki çam da arkasında. \"Doğru yoldayım!\" dedi. Simit beyaz taşın üstüne oturdu.",
+        "poseAndActionEvidence": [
+          "Deniz ikinci işareti aradı.",
+          "Beyaz taş tam oradaydı, iki çam da arkasında.",
+          "\"Doğru yoldayım!\" dedi.",
+          "Simit beyaz taşın üstüne oturdu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz ikinci işareti aradı. Beyaz taş tam oradaydı, iki çam da arkasında. \"Doğru yoldayım!\" dedi. Simit beyaz taşın üstüne oturdu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p06",
+        "quoteSHA256": "074b2cbfef0fe82df6ff99b6509f22b608cbcf90f7b381f2b2b6d1e54918619b",
+        "bookID": "pilot56_book_a6_cat_event02_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "074b2cbfef0fe82df6ff99b6509f22b608cbcf90f7b381f2b2b6d1e54918619b",
+      "text": "Deniz ikinci işareti aradı. Beyaz taş tam oradaydı, iki çam da arkasında. \"Doğru yoldayım!\" dedi. Simit beyaz taşın üstüne oturdu.",
+      "sourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p06",
+      "sourcePointer": "input/adventure-cat.json#/books/4/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a6_cat_event02_v1",
+      "rawPageMove": "goal_reached",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tahta işaret parçaları; top/şapka/uçurtma; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Bankın tahtaları güneşte ılımıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Deniz’in içi kıpır kıpır oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "İki çamın arkasında eski bank duruyordu.",
+              "Simit banka zıpladı ve kuyruğunu kıvırdı.",
+              "Bankın tahtaları güneşte ılımıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "İki çamın arkasında eski bank duruyordu. Simit banka zıpladı ve kuyruğunu kıvırdı. Deniz’in içi kıpır kıpır oldu. Simit kuyruğunu dikti. Bankın tahtaları güneşte ılımıştı. Kedi hemen orayı beğendi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p07",
+            "evidenceText": "İki çamın arkasında eski bank duruyordu. Simit banka zıpladı ve kuyruğunu kıvırdı. Deniz’in içi kıpır kıpır oldu. Simit kuyruğunu dikti. Bankın tahtaları güneşte ılımıştı. Kedi hemen orayı beğendi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "İki çamın arkasında eski bank duruyordu. Simit banka zıpladı ve kuyruğunu kıvırdı. Deniz’in içi kıpır kıpır oldu. Simit kuyruğunu dikti. Bankın tahtaları güneşte ılımıştı. Kedi hemen orayı beğendi.",
+        "poseAndActionEvidence": [
+          "İki çamın arkasında eski bank duruyordu.",
+          "Simit banka zıpladı ve kuyruğunu kıvırdı.",
+          "Deniz’in içi kıpır kıpır oldu.",
+          "Simit kuyruğunu dikti.",
+          "Bankın tahtaları güneşte ılımıştı.",
+          "Kedi hemen orayı beğendi."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "İki çamın arkasında eski bank duruyordu. Simit banka zıpladı ve kuyruğunu kıvırdı. Deniz’in içi kıpır kıpır oldu. Simit kuyruğunu dikti. Bankın tahtaları güneşte ılımıştı. Kedi hemen orayı beğendi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p07",
+        "quoteSHA256": "b0f3b52c186981d9cd77872c20643d82bd13a4420f3727b7429474311cb9d477",
+        "bookID": "pilot56_book_a6_cat_event02_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "b0f3b52c186981d9cd77872c20643d82bd13a4420f3727b7429474311cb9d477",
+      "text": "İki çamın arkasında eski bank duruyordu. Simit banka zıpladı ve kuyruğunu kıvırdı. Deniz’in içi kıpır kıpır oldu. Simit kuyruğunu dikti. Bankın tahtaları güneşte ılımıştı. Kedi hemen orayı beğendi.",
+      "sourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p07",
+      "sourcePointer": "input/adventure-cat.json#/books/4/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a6_cat_event02_v1",
+      "rawPageMove": "closed_return",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tasma/zil; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Zili tın etti, Deniz keyifle gülümsedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Bankta oturup dinlendiler."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Bankta oturup dinlendiler. Simit Deniz’in yanına kıvrıldı. Bu kez hiç fırlamadı. Zili tın etti, Deniz keyifle gülümsedi. Ormanın sesleri yumuşacıktı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p08",
+            "evidenceText": "Bankta oturup dinlendiler. Simit Deniz’in yanına kıvrıldı. Bu kez hiç fırlamadı. Zili tın etti, Deniz keyifle gülümsedi. Ormanın sesleri yumuşacıktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Bankta oturup dinlendiler. Simit Deniz’in yanına kıvrıldı. Bu kez hiç fırlamadı. Zili tın etti, Deniz keyifle gülümsedi. Ormanın sesleri yumuşacıktı.",
+        "poseAndActionEvidence": [
+          "Bankta oturup dinlendiler.",
+          "Simit Deniz’in yanına kıvrıldı.",
+          "Bu kez hiç fırlamadı.",
+          "Zili tın etti, Deniz keyifle gülümsedi.",
+          "Ormanın sesleri yumuşacıktı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Bankta oturup dinlendiler. Simit Deniz’in yanına kıvrıldı. Bu kez hiç fırlamadı. Zili tın etti, Deniz keyifle gülümsedi. Ormanın sesleri yumuşacıktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p08",
+        "quoteSHA256": "2836bf328aabb9d45d394718463c9c8c81607a5a13795f081df86661a681e88a",
+        "bookID": "pilot56_book_a6_cat_event02_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "2836bf328aabb9d45d394718463c9c8c81607a5a13795f081df86661a681e88a",
+      "text": "Bankta oturup dinlendiler. Simit Deniz’in yanına kıvrıldı. Bu kez hiç fırlamadı. Zili tın etti, Deniz keyifle gülümsedi. Ormanın sesleri yumuşacıktı.",
+      "sourceID": "p56_wave1_pilot56_book_a6_cat_event02_v1_p08",
+      "sourcePointer": "input/adventure-cat.json#/books/4/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk bildiği üç işareti dalla yere çizer ve haritayı izleyerek yolu bulur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

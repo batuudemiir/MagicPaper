@@ -1,0 +1,855 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l6_cat_event03_v1",
+  "title": "Kıvrık Kuyrukla Ölçülmez",
+  "context": {
+    "settingName": "Çiçekli Çayır",
+    "mode": "learning",
+    "companionID": "companion_city_cat_001",
+    "structure": "L6",
+    "event": "e3",
+    "mechanism": "measure-with-same-unit",
+    "sourceFilename": "learning-cat.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l6_cat_event03_v1",
+    "structure": "L6",
+    "event": "e3",
+    "sample": false,
+    "title": "Kıvrık Kuyrukla Ölçülmez",
+    "pages": [
+      "Çiçekli Çayır’da Deniz ile Simit yerde iki dal buldu. Simit hemen dallardan birine pati attı. Biri dümdüzdü, öteki eğriydi.",
+      "Çayırda yerde iki uzun dal vardı. Biri düz, biri biraz eğriydi. Simit eğri dalın üstünden atladı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+      "Simit düz dalı kuyruğuyla ölçtü. \"Üç kuyruk!\" dedi. Sonra kuyruğu kıvrıldı, sayı karıştı. Deniz zıplayarak güldü. Simit kuyruğunu düzeltmeye çalıştı.",
+      "Deniz düz dalı kendi karışıyla ölçtü. Elini açtı, bir karış, iki karış… Beş karış çıktı. \"Beş!\" dedi. Simit dalın ucunu patisiyle tuttu.",
+      "\"Üç kuyruk mu, beş karış mı?\" dedi Deniz. Simit kuyruğuna baktı. \"Kuyruğum hiç düz durmuyor,\" dedi. Kuyruğun ucu yine kıvrıldı.",
+      "\"Kıvrık kuyrukla ölçülmez,\" dedi Deniz. \"Hep aynı şeyle ölçmeliyiz.\" Kendi karışını gösterdi. Simit karışa dikkatle baktı. \"Karış hiç kıvrılmıyor,\" dedi.",
+      "Deniz eğri dalı da karış karış ölçtü. Dört çıktı. \"Düz dal beş, eğri dal dört,\" dedi. \"Düz olan daha uzun!\" Simit kıvrık kuyruğunu dalın yanına uzattı.",
+      "Simit eğri dalı kuyruğunun yanına koydu. \"Bu benim kuyruğum kadar eğri,\" dedi. Deniz keyifle gülümsedi. Simit bıyıklarını oynattı. Zil tın etti. Kuyruğunun ucu kıvrıldı."
+    ],
+    "sourceBookID": "pilot56_book_l6_cat_event03_v1"
+  },
+  "inputFileSHA256": "c289fcdce68cfea3c3beddd3c2047eae89f84cf224f4ba600611d9015fac1e0f",
+  "inputBookPointer": "input/learning-cat.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l6_cat_event03_v1",
+      "rawPageMove": "two_paths",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da Deniz ile Simit yerde iki dal buldu.",
+              "Simit hemen dallardan birine pati attı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da Deniz ile Simit yerde iki dal buldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Çiçekli Çayır’da Deniz ile Simit yerde iki dal buldu. Simit hemen dallardan birine pati attı. Biri dümdüzdü, öteki eğriydi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p01",
+            "evidenceText": "Çiçekli Çayır’da Deniz ile Simit yerde iki dal buldu. Simit hemen dallardan birine pati attı. Biri dümdüzdü, öteki eğriydi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da Deniz ile Simit yerde iki dal buldu. Simit hemen dallardan birine pati attı. Biri dümdüzdü, öteki eğriydi.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da Deniz ile Simit yerde iki dal buldu.",
+          "Simit hemen dallardan birine pati attı.",
+          "Biri dümdüzdü, öteki eğriydi."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da Deniz ile Simit yerde iki dal buldu. Simit hemen dallardan birine pati attı. Biri dümdüzdü, öteki eğriydi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p01",
+        "quoteSHA256": "afab1d880e8267a56aa73f8a5c3a567e241f13cbc7d04a631060eeb89715b190",
+        "bookID": "pilot56_book_l6_cat_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "afab1d880e8267a56aa73f8a5c3a567e241f13cbc7d04a631060eeb89715b190",
+      "text": "Çiçekli Çayır’da Deniz ile Simit yerde iki dal buldu. Simit hemen dallardan birine pati attı. Biri dümdüzdü, öteki eğriydi.",
+      "sourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p01",
+      "sourcePointer": "input/learning-cat.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l6_cat_event03_v1",
+      "rawPageMove": "first_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; canlı yolu",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Çayırda yerde iki uzun dal vardı.",
+              "Simit eğri dalın üstünden atladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "canlı yolu",
+            "evidenceQuotes": [
+              "Simit eğri dalın üstünden atladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Çayırda yerde iki uzun dal vardı. Biri düz, biri biraz eğriydi. Simit eğri dalın üstünden atladı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p02",
+            "evidenceText": "Çayırda yerde iki uzun dal vardı. Biri düz, biri biraz eğriydi. Simit eğri dalın üstünden atladı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çayırda yerde iki uzun dal vardı. Biri düz, biri biraz eğriydi. Simit eğri dalın üstünden atladı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+        "poseAndActionEvidence": [
+          "Çayırda yerde iki uzun dal vardı.",
+          "Biri düz, biri biraz eğriydi.",
+          "Simit eğri dalın üstünden atladı.",
+          "\"Hangisi daha uzun?\" diye sordu Deniz.",
+          "\"Bence düz olan.\""
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çayırda yerde iki uzun dal vardı. Biri düz, biri biraz eğriydi. Simit eğri dalın üstünden atladı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p02",
+        "quoteSHA256": "f66ca67e81dc971a554f7b0364024530cbef5d0652e293e09d4fbeea9f898257",
+        "bookID": "pilot56_book_l6_cat_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "f66ca67e81dc971a554f7b0364024530cbef5d0652e293e09d4fbeea9f898257",
+      "text": "Çayırda yerde iki uzun dal vardı. Biri düz, biri biraz eğriydi. Simit eğri dalın üstünden atladı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+      "sourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p02",
+      "sourcePointer": "input/learning-cat.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l6_cat_event03_v1",
+      "rawPageMove": "friend_counts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kar/battaniye",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Simit düz dalı kuyruğuyla ölçtü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Sonra kuyruğu kıvrıldı, sayı karıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit düz dalı kuyruğuyla ölçtü. \"Üç kuyruk!\" dedi. Sonra kuyruğu kıvrıldı, sayı karıştı. Deniz zıplayarak güldü. Simit kuyruğunu düzeltmeye çalıştı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p03",
+            "evidenceText": "Simit düz dalı kuyruğuyla ölçtü. \"Üç kuyruk!\" dedi. Sonra kuyruğu kıvrıldı, sayı karıştı. Deniz zıplayarak güldü. Simit kuyruğunu düzeltmeye çalıştı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit düz dalı kuyruğuyla ölçtü. \"Üç kuyruk!\" dedi. Sonra kuyruğu kıvrıldı, sayı karıştı. Deniz zıplayarak güldü. Simit kuyruğunu düzeltmeye çalıştı.",
+        "poseAndActionEvidence": [
+          "Simit düz dalı kuyruğuyla ölçtü.",
+          "\"Üç kuyruk!\" dedi.",
+          "Sonra kuyruğu kıvrıldı, sayı karıştı.",
+          "Deniz zıplayarak güldü.",
+          "Simit kuyruğunu düzeltmeye çalıştı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_city_cat_001",
+        "quote": "Simit düz dalı kuyruğuyla ölçtü. \"Üç kuyruk!\" dedi. Sonra kuyruğu kıvrıldı, sayı karıştı. Deniz zıplayarak güldü. Simit kuyruğunu düzeltmeye çalıştı.",
+        "attributionQuote": "Simit",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p03",
+        "quoteSHA256": "bfd6bb41ef1be3ee74fbd7ba2c5218a6fd8be05a49b797c4f1461db53955eab1",
+        "bookID": "pilot56_book_l6_cat_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "bfd6bb41ef1be3ee74fbd7ba2c5218a6fd8be05a49b797c4f1461db53955eab1",
+      "text": "Simit düz dalı kuyruğuyla ölçtü. \"Üç kuyruk!\" dedi. Sonra kuyruğu kıvrıldı, sayı karıştı. Deniz zıplayarak güldü. Simit kuyruğunu düzeltmeye çalıştı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p03",
+      "sourcePointer": "input/learning-cat.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l6_cat_event03_v1",
+      "rawPageMove": "child_counts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kar/battaniye",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz düz dalı kendi karışıyla ölçtü.",
+              "Simit dalın ucunu patisiyle tuttu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Deniz düz dalı kendi karışıyla ölçtü.",
+              "Elini açtı, bir karış, iki karış…",
+              "Beş karış çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz düz dalı kendi karışıyla ölçtü. Elini açtı, bir karış, iki karış… Beş karış çıktı. \"Beş!\" dedi. Simit dalın ucunu patisiyle tuttu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p04",
+            "evidenceText": "Deniz düz dalı kendi karışıyla ölçtü. Elini açtı, bir karış, iki karış… Beş karış çıktı. \"Beş!\" dedi. Simit dalın ucunu patisiyle tuttu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz düz dalı kendi karışıyla ölçtü. Elini açtı, bir karış, iki karış… Beş karış çıktı. \"Beş!\" dedi. Simit dalın ucunu patisiyle tuttu.",
+        "poseAndActionEvidence": [
+          "Deniz düz dalı kendi karışıyla ölçtü.",
+          "Elini açtı, bir karış, iki karış…",
+          "Beş karış çıktı.",
+          "\"Beş!\" dedi.",
+          "Simit dalın ucunu patisiyle tuttu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz düz dalı kendi karışıyla ölçtü. Elini açtı, bir karış, iki karış… Beş karış çıktı. \"Beş!\" dedi. Simit dalın ucunu patisiyle tuttu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p04",
+        "quoteSHA256": "4d62ba5063d22a5cfb40eac5de8fd3e371559d56548812ff960b69d8696f650c",
+        "bookID": "pilot56_book_l6_cat_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "4d62ba5063d22a5cfb40eac5de8fd3e371559d56548812ff960b69d8696f650c",
+      "text": "Deniz düz dalı kendi karışıyla ölçtü. Elini açtı, bir karış, iki karış… Beş karış çıktı. \"Beş!\" dedi. Simit dalın ucunu patisiyle tuttu.",
+      "sourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p04",
+      "sourcePointer": "input/learning-cat.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l6_cat_event03_v1",
+      "rawPageMove": "different_numbers",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kar/battaniye",
+        "propMentions": [
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "\"Üç kuyruk mu, beş karış mı?\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "\"Üç kuyruk mu, beş karış mı?\" dedi Deniz. Simit kuyruğuna baktı. \"Kuyruğum hiç düz durmuyor,\" dedi. Kuyruğun ucu yine kıvrıldı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p05",
+            "evidenceText": "\"Üç kuyruk mu, beş karış mı?\" dedi Deniz. Simit kuyruğuna baktı. \"Kuyruğum hiç düz durmuyor,\" dedi. Kuyruğun ucu yine kıvrıldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Üç kuyruk mu, beş karış mı?\" dedi Deniz. Simit kuyruğuna baktı. \"Kuyruğum hiç düz durmuyor,\" dedi. Kuyruğun ucu yine kıvrıldı.",
+        "poseAndActionEvidence": [
+          "\"Üç kuyruk mu, beş karış mı?\" dedi Deniz.",
+          "Simit kuyruğuna baktı.",
+          "\"Kuyruğum hiç düz durmuyor,\" dedi.",
+          "Kuyruğun ucu yine kıvrıldı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Üç kuyruk mu, beş karış mı?\" dedi Deniz. Simit kuyruğuna baktı. \"Kuyruğum hiç düz durmuyor,\" dedi. Kuyruğun ucu yine kıvrıldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p05",
+        "quoteSHA256": "58a2512be550e0ef73e6bdd5e23caf1d6a009be3dd555446967561dc0d4857e0",
+        "bookID": "pilot56_book_l6_cat_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "58a2512be550e0ef73e6bdd5e23caf1d6a009be3dd555446967561dc0d4857e0",
+      "text": "\"Üç kuyruk mu, beş karış mı?\" dedi Deniz. Simit kuyruğuna baktı. \"Kuyruğum hiç düz durmuyor,\" dedi. Kuyruğun ucu yine kıvrıldı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p05",
+      "sourcePointer": "input/learning-cat.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l6_cat_event03_v1",
+      "rawPageMove": "child_explains",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kar/battaniye; çatal/kanca dal",
+        "propMentions": [
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "\"Hep aynı şeyle ölçmeliyiz.\" Kendi karışını gösterdi.",
+              "Simit karışa dikkatle baktı.",
+              "\"Karış hiç kıvrılmıyor,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "\"Kıvrık kuyrukla ölçülmez,\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "\"Kıvrık kuyrukla ölçülmez,\" dedi Deniz. \"Hep aynı şeyle ölçmeliyiz.\" Kendi karışını gösterdi. Simit karışa dikkatle baktı. \"Karış hiç kıvrılmıyor,\" dedi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p06",
+            "evidenceText": "\"Kıvrık kuyrukla ölçülmez,\" dedi Deniz. \"Hep aynı şeyle ölçmeliyiz.\" Kendi karışını gösterdi. Simit karışa dikkatle baktı. \"Karış hiç kıvrılmıyor,\" dedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Kıvrık kuyrukla ölçülmez,\" dedi Deniz. \"Hep aynı şeyle ölçmeliyiz.\" Kendi karışını gösterdi. Simit karışa dikkatle baktı. \"Karış hiç kıvrılmıyor,\" dedi.",
+        "poseAndActionEvidence": [
+          "\"Kıvrık kuyrukla ölçülmez,\" dedi Deniz.",
+          "\"Hep aynı şeyle ölçmeliyiz.\" Kendi karışını gösterdi.",
+          "Simit karışa dikkatle baktı.",
+          "\"Karış hiç kıvrılmıyor,\" dedi."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Kıvrık kuyrukla ölçülmez,\" dedi Deniz. \"Hep aynı şeyle ölçmeliyiz.\" Kendi karışını gösterdi. Simit karışa dikkatle baktı. \"Karış hiç kıvrılmıyor,\" dedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p06",
+        "quoteSHA256": "b23c17fd8545d35dd8364fbf7224d6357a2c5e70e6074fc017a992ed893e30f4",
+        "bookID": "pilot56_book_l6_cat_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "b23c17fd8545d35dd8364fbf7224d6357a2c5e70e6074fc017a992ed893e30f4",
+      "text": "\"Kıvrık kuyrukla ölçülmez,\" dedi Deniz. \"Hep aynı şeyle ölçmeliyiz.\" Kendi karışını gösterdi. Simit karışa dikkatle baktı. \"Karış hiç kıvrılmıyor,\" dedi.",
+      "sourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p06",
+      "sourcePointer": "input/learning-cat.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l6_cat_event03_v1",
+      "rawPageMove": "recheck",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kar/battaniye; çatal/kanca dal",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz eğri dalı da karış karış ölçtü.",
+              "\"Düz dal beş, eğri dal dört,\" dedi.",
+              "\"Düz olan daha uzun!\" Simit kıvrık kuyruğunu dalın yanına uzattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Deniz eğri dalı da karış karış ölçtü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "\"Düz olan daha uzun!\" Simit kıvrık kuyruğunu dalın yanına uzattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz eğri dalı da karış karış ölçtü. Dört çıktı. \"Düz dal beş, eğri dal dört,\" dedi. \"Düz olan daha uzun!\" Simit kıvrık kuyruğunu dalın yanına uzattı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p07",
+            "evidenceText": "Deniz eğri dalı da karış karış ölçtü. Dört çıktı. \"Düz dal beş, eğri dal dört,\" dedi. \"Düz olan daha uzun!\" Simit kıvrık kuyruğunu dalın yanına uzattı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz eğri dalı da karış karış ölçtü. Dört çıktı. \"Düz dal beş, eğri dal dört,\" dedi. \"Düz olan daha uzun!\" Simit kıvrık kuyruğunu dalın yanına uzattı.",
+        "poseAndActionEvidence": [
+          "Deniz eğri dalı da karış karış ölçtü.",
+          "Dört çıktı.",
+          "\"Düz dal beş, eğri dal dört,\" dedi.",
+          "\"Düz olan daha uzun!\" Simit kıvrık kuyruğunu dalın yanına uzattı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz eğri dalı da karış karış ölçtü. Dört çıktı. \"Düz dal beş, eğri dal dört,\" dedi. \"Düz olan daha uzun!\" Simit kıvrık kuyruğunu dalın yanına uzattı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p07",
+        "quoteSHA256": "c499c2775266336991a0908a9bca24abaa281d27450a06fd66eccdb2bc04d067",
+        "bookID": "pilot56_book_l6_cat_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "c499c2775266336991a0908a9bca24abaa281d27450a06fd66eccdb2bc04d067",
+      "text": "Deniz eğri dalı da karış karış ölçtü. Dört çıktı. \"Düz dal beş, eğri dal dört,\" dedi. \"Düz olan daha uzun!\" Simit kıvrık kuyruğunu dalın yanına uzattı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p07",
+      "sourcePointer": "input/learning-cat.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l6_cat_event03_v1",
+      "rawPageMove": "closed_result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; tasma/zil",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Simit eğri dalı kuyruğunun yanına koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Zil tın etti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit eğri dalı kuyruğunun yanına koydu. \"Bu benim kuyruğum kadar eğri,\" dedi. Deniz keyifle gülümsedi. Simit bıyıklarını oynattı. Zil tın etti. Kuyruğunun ucu kıvrıldı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p08",
+            "evidenceText": "Simit eğri dalı kuyruğunun yanına koydu. \"Bu benim kuyruğum kadar eğri,\" dedi. Deniz keyifle gülümsedi. Simit bıyıklarını oynattı. Zil tın etti. Kuyruğunun ucu kıvrıldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit eğri dalı kuyruğunun yanına koydu. \"Bu benim kuyruğum kadar eğri,\" dedi. Deniz keyifle gülümsedi. Simit bıyıklarını oynattı. Zil tın etti. Kuyruğunun ucu kıvrıldı.",
+        "poseAndActionEvidence": [
+          "Simit eğri dalı kuyruğunun yanına koydu.",
+          "\"Bu benim kuyruğum kadar eğri,\" dedi.",
+          "Deniz keyifle gülümsedi.",
+          "Simit bıyıklarını oynattı.",
+          "Zil tın etti.",
+          "Kuyruğunun ucu kıvrıldı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Simit eğri dalı kuyruğunun yanına koydu. \"Bu benim kuyruğum kadar eğri,\" dedi. Deniz keyifle gülümsedi. Simit bıyıklarını oynattı. Zil tın etti. Kuyruğunun ucu kıvrıldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p08",
+        "quoteSHA256": "619b082e48e8e0a6823105ff8a8b75e2cce9c2169445898f9f35873c9c8f766a",
+        "bookID": "pilot56_book_l6_cat_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "619b082e48e8e0a6823105ff8a8b75e2cce9c2169445898f9f35873c9c8f766a",
+      "text": "Simit eğri dalı kuyruğunun yanına koydu. \"Bu benim kuyruğum kadar eğri,\" dedi. Deniz keyifle gülümsedi. Simit bıyıklarını oynattı. Zil tın etti. Kuyruğunun ucu kıvrıldı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_cat_event03_v1_p08",
+      "sourcePointer": "input/learning-cat.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk kendi ölçüsüyle ikisini sayar, arkadaşının sayısının neden farklı çıktığını bulur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

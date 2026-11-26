@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · codex/bes-arkadas/codex-motor, commit yok · V4 aday ve270güncel metin denetimi
+
+- V4yeni90kitaplık korpus/runtime/strictloader/metadatahazırlandı;v1/v2/v3byteveetkinpinv3korundu. İki dalga180kitap için authoring-onlykorpuslar ve güncelkaynakenvanteri üretildi;waveengine/typed/recencyuygulanmadı.
+- 270başlık/2160sayfa güncelmetinlerdenC3/semantik/causal/artincelemesi aldı,quote/page/bookhashbağları0uyuşmazlıkla doğrulandı. Metinler değiştirilmedi. V4iki p8kapanışı ve dalgalarda5semantikengel metinsahibineraporlandı;engeller gizlenmedi.
+- Release15testte birkabul testinin4assertion'ıred;diğer14testgeçti. V4fixture616/630,N15001475/1500,25bedtime-open-ending,0retry;0age/trace/safetybinding sorunu. Python/Swift720metrikparitesi0fark. V4kabul/pingeçişiyok.
+- Kanonik270pool/45tekil lintpass;8eskikopyalıham318poolfailayrıloglandı,orijinallersilinmedi. ÖrnekJSONeşleşmeleri6/9ve3/9olaraktazelendi;eskionaymetniyenikanıtolarakkullanılmadı. Dalga2teslimine nefes tutma hatasıatfedilmedi.
+- Art90kaynakta88runtime+2authored-only;waveart180authoredkitap. Görsel/atomic/yayınonayıyok. Dosyalar:yeniV4vewave1/2Content,loader/metadata/testler,research/v4veenvanter,plan/durum/hafıza/günlük. App/main/entegrasyon/pushyok.
+
+
 ### 2026-11-26 · codex/bes-arkadas/codex-motor@024b8a5 · Onaylı v3 motor pini ve iki dalga hazırlığı
 
 - Batuhan'ınpinonayı dosyası okundu; etkinmotorversion+SHA birlikte v3'e geçti, v2SHA tarihsel sabite ayrıldı. V2package/safety/reading/metadata testleri tarihselpine bağlandı. V1/v2/v3payloadbyte'ları değişmedi.

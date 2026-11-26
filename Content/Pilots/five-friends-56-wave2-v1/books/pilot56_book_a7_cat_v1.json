@@ -1,0 +1,968 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a7_cat_v1",
+  "title": "Simit Çalıyı Kokluyor",
+  "context": {
+    "settingName": "Eğrelti Kenarı (yeni mekân)",
+    "mode": "adventure",
+    "companionID": "companion_city_cat_001",
+    "structure": "A7",
+    "event": "e1",
+    "mechanism": "reach-with-stick",
+    "sourceFilename": "adventure-cat.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a7_cat_v1",
+    "sourceBookID": "pilot56_book_a7_cat_v1",
+    "structure": "A7",
+    "event": "e1",
+    "sample": false,
+    "title": "Simit Çalıyı Kokluyor",
+    "pages": [
+      "Eğrelti Kenarı’nda kırmızı top yuvarlandı. Pıt pıt pıt! Sık ve alçak çalıların altına girdi. Deniz durdu. Simit'in zili telaşla tın etti.",
+      "Deniz eğilip baktı. Top çalıların altındaydı, kolu yetişmiyordu. Simit çalıyı koklayınca hapşırdı. Dallar çok sıktı. Deniz içeri girmek yerine bir yol düşündü.",
+      "Simit çalının altına başını soktu ve kokladı. Sonra kocaman hapşırdı! Hapşırık topu biraz daha içeri itti. \"Şehirde böyle değil ama,\" dedi Simit. Deniz dizlerine vurup güldü.",
+      "Deniz yerdeki dallara baktı. \"Uzun ve ucu çatallı olsun,\" dedi. Simit dalların arasında zıplayıp ikisini kuyruğuyla itti. Deniz önce en uzununu seçti.",
+      "Deniz dalı çalının altına uzattı. Dal topa değdi ama top kaydı. Dalın ucu düzdü, topu tutamıyordu. Simit kuyruğunu sabırsızca salladı.",
+      "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı seçti. Çatalı topun arkasına koyup yavaşça kendine çekti. Top yuvarlandı. Simit topa doğru zıpladı.",
+      "Kırmızı top Deniz’in ayaklarının dibine geldi. \"Çatal tuttu!\" dedi Deniz. Simit topun üstüne zıpladı, top yine kaçtı. Deniz güldü ve topu yakaladı.",
+      "Dönüşte Deniz topu kucağında taşıdı. Simit çatallı dalı ağzında getirdi. \"Bunu şehre götürsem herkes şaşırır,\" dedi. Zili tın tın çaldı."
+    ]
+  },
+  "inputFileSHA256": "cfc7c497fc656a53b044dce8a133414b951a773f8c64cd41e6b4f9010d0146b2",
+  "inputBookPointer": "input/adventure-cat.json#/books/0",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a7_cat_v1",
+      "rawPageMove": "item_lost",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; tasma/zil; top/şapka/uçurtma; iz/kum; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Eğrelti Kenarı’nda kırmızı top yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Simit'in zili telaşla tın etti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Eğrelti Kenarı’nda kırmızı top yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Eğrelti Kenarı’nda kırmızı top yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Eğrelti Kenarı’nda kırmızı top yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Eğrelti Kenarı’nda kırmızı top yuvarlandı. Pıt pıt pıt! Sık ve alçak çalıların altına girdi. Deniz durdu. Simit'in zili telaşla tın etti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p01",
+            "evidenceText": "Eğrelti Kenarı’nda kırmızı top yuvarlandı. Pıt pıt pıt! Sık ve alçak çalıların altına girdi. Deniz durdu. Simit'in zili telaşla tın etti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Eğrelti Kenarı’nda kırmızı top yuvarlandı. Pıt pıt pıt! Sık ve alçak çalıların altına girdi. Deniz durdu. Simit'in zili telaşla tın etti.",
+        "poseAndActionEvidence": [
+          "Eğrelti Kenarı’nda kırmızı top yuvarlandı.",
+          "Pıt pıt pıt!",
+          "Sık ve alçak çalıların altına girdi.",
+          "Deniz durdu.",
+          "Simit'in zili telaşla tın etti."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Eğrelti Kenarı’nda kırmızı top yuvarlandı. Pıt pıt pıt! Sık ve alçak çalıların altına girdi. Deniz durdu. Simit'in zili telaşla tın etti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p01",
+        "quoteSHA256": "d0be097fc4176936f1f045a35b13f1d6ec681452b955709d36ce0526c81cd755",
+        "bookID": "pilot56_book_a7_cat_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "d0be097fc4176936f1f045a35b13f1d6ec681452b955709d36ce0526c81cd755",
+      "text": "Eğrelti Kenarı’nda kırmızı top yuvarlandı. Pıt pıt pıt! Sık ve alçak çalıların altına girdi. Deniz durdu. Simit'in zili telaşla tın etti.",
+      "sourceID": "p56_wave2_pilot56_book_a7_cat_v1_p01",
+      "sourcePointer": "input/adventure-cat.json#/books/0/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a7_cat_v1",
+      "rawPageMove": "approach",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Dallar çok sıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Top çalıların altındaydı, kolu yetişmiyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz eğilip baktı. Top çalıların altındaydı, kolu yetişmiyordu. Simit çalıyı koklayınca hapşırdı. Dallar çok sıktı. Deniz içeri girmek yerine bir yol düşündü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p02",
+            "evidenceText": "Deniz eğilip baktı. Top çalıların altındaydı, kolu yetişmiyordu. Simit çalıyı koklayınca hapşırdı. Dallar çok sıktı. Deniz içeri girmek yerine bir yol düşündü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz eğilip baktı. Top çalıların altındaydı, kolu yetişmiyordu. Simit çalıyı koklayınca hapşırdı. Dallar çok sıktı. Deniz içeri girmek yerine bir yol düşündü.",
+        "poseAndActionEvidence": [
+          "Deniz eğilip baktı.",
+          "Top çalıların altındaydı, kolu yetişmiyordu.",
+          "Simit çalıyı koklayınca hapşırdı.",
+          "Dallar çok sıktı.",
+          "Deniz içeri girmek yerine bir yol düşündü."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz eğilip baktı. Top çalıların altındaydı, kolu yetişmiyordu. Simit çalıyı koklayınca hapşırdı. Dallar çok sıktı. Deniz içeri girmek yerine bir yol düşündü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p02",
+        "quoteSHA256": "b10768dbc6f27b3e2655d24222d5ca174da31487de673707a880ccebf16f9332",
+        "bookID": "pilot56_book_a7_cat_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "b10768dbc6f27b3e2655d24222d5ca174da31487de673707a880ccebf16f9332",
+      "text": "Deniz eğilip baktı. Top çalıların altındaydı, kolu yetişmiyordu. Simit çalıyı koklayınca hapşırdı. Dallar çok sıktı. Deniz içeri girmek yerine bir yol düşündü.",
+      "sourceID": "p56_wave2_pilot56_book_a7_cat_v1_p02",
+      "sourcePointer": "input/adventure-cat.json#/books/0/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a7_cat_v1",
+      "rawPageMove": "friend_tries",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yağmur/cam/oluk; top/şapka/uçurtma; iz/kum",
+        "propMentions": [
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Sonra kocaman hapşırdı!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Hapşırık topu biraz daha içeri itti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Deniz dizlerine vurup güldü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit çalının altına başını soktu ve kokladı. Sonra kocaman hapşırdı! Hapşırık topu biraz daha içeri itti. \"Şehirde böyle değil ama,\" dedi Simit. Deniz dizlerine vurup güldü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p03",
+            "evidenceText": "Simit çalının altına başını soktu ve kokladı. Sonra kocaman hapşırdı! Hapşırık topu biraz daha içeri itti. \"Şehirde böyle değil ama,\" dedi Simit. Deniz dizlerine vurup güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit çalının altına başını soktu ve kokladı. Sonra kocaman hapşırdı! Hapşırık topu biraz daha içeri itti. \"Şehirde böyle değil ama,\" dedi Simit. Deniz dizlerine vurup güldü.",
+        "poseAndActionEvidence": [
+          "Simit çalının altına başını soktu ve kokladı.",
+          "Sonra kocaman hapşırdı!",
+          "Hapşırık topu biraz daha içeri itti.",
+          "\"Şehirde böyle değil ama,\" dedi Simit.",
+          "Deniz dizlerine vurup güldü."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_city_cat_001",
+        "quote": "Simit çalının altına başını soktu ve kokladı. Sonra kocaman hapşırdı! Hapşırık topu biraz daha içeri itti. \"Şehirde böyle değil ama,\" dedi Simit. Deniz dizlerine vurup güldü.",
+        "attributionQuote": "Simit",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p03",
+        "quoteSHA256": "d5ed223817ceac52eb772c294927744eeff4f88f6bad3720e724754e818cad63",
+        "bookID": "pilot56_book_a7_cat_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "d5ed223817ceac52eb772c294927744eeff4f88f6bad3720e724754e818cad63",
+      "text": "Simit çalının altına başını soktu ve kokladı. Sonra kocaman hapşırdı! Hapşırık topu biraz daha içeri itti. \"Şehirde böyle değil ama,\" dedi Simit. Deniz dizlerine vurup güldü.",
+      "sourceID": "p56_wave2_pilot56_book_a7_cat_v1_p03",
+      "sourcePointer": "input/adventure-cat.json#/books/0/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a7_cat_v1",
+      "rawPageMove": "child_picks_stick",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "çatallı kök; dal; çatal/kanca dal",
+        "propMentions": [
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "\"Uzun ve ucu çatallı olsun,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz yerdeki dallara baktı.",
+              "Simit dalların arasında zıplayıp ikisini kuyruğuyla itti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "\"Uzun ve ucu çatallı olsun,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz yerdeki dallara baktı. \"Uzun ve ucu çatallı olsun,\" dedi. Simit dalların arasında zıplayıp ikisini kuyruğuyla itti. Deniz önce en uzununu seçti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p04",
+            "evidenceText": "Deniz yerdeki dallara baktı. \"Uzun ve ucu çatallı olsun,\" dedi. Simit dalların arasında zıplayıp ikisini kuyruğuyla itti. Deniz önce en uzununu seçti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yerdeki dallara baktı. \"Uzun ve ucu çatallı olsun,\" dedi. Simit dalların arasında zıplayıp ikisini kuyruğuyla itti. Deniz önce en uzununu seçti.",
+        "poseAndActionEvidence": [
+          "Deniz yerdeki dallara baktı.",
+          "\"Uzun ve ucu çatallı olsun,\" dedi.",
+          "Simit dalların arasında zıplayıp ikisini kuyruğuyla itti.",
+          "Deniz önce en uzununu seçti."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yerdeki dallara baktı. \"Uzun ve ucu çatallı olsun,\" dedi. Simit dalların arasında zıplayıp ikisini kuyruğuyla itti. Deniz önce en uzununu seçti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p04",
+        "quoteSHA256": "7cd9368496dfa3d8812e56f2f8010554d778b061f20e776eb0c5f49dd07c708a",
+        "bookID": "pilot56_book_a7_cat_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "7cd9368496dfa3d8812e56f2f8010554d778b061f20e776eb0c5f49dd07c708a",
+      "text": "Deniz yerdeki dallara baktı. \"Uzun ve ucu çatallı olsun,\" dedi. Simit dalların arasında zıplayıp ikisini kuyruğuyla itti. Deniz önce en uzununu seçti.",
+      "sourceID": "p56_wave2_pilot56_book_a7_cat_v1_p04",
+      "sourcePointer": "input/adventure-cat.json#/books/0/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a7_cat_v1",
+      "rawPageMove": "first_pull",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz dalı çalının altına uzattı.",
+              "Dal topa değdi ama top kaydı.",
+              "Dalın ucu düzdü, topu tutamıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Dal topa değdi ama top kaydı.",
+              "Dalın ucu düzdü, topu tutamıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz dalı çalının altına uzattı. Dal topa değdi ama top kaydı. Dalın ucu düzdü, topu tutamıyordu. Simit kuyruğunu sabırsızca salladı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p05",
+            "evidenceText": "Deniz dalı çalının altına uzattı. Dal topa değdi ama top kaydı. Dalın ucu düzdü, topu tutamıyordu. Simit kuyruğunu sabırsızca salladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz dalı çalının altına uzattı. Dal topa değdi ama top kaydı. Dalın ucu düzdü, topu tutamıyordu. Simit kuyruğunu sabırsızca salladı.",
+        "poseAndActionEvidence": [
+          "Deniz dalı çalının altına uzattı.",
+          "Dal topa değdi ama top kaydı.",
+          "Dalın ucu düzdü, topu tutamıyordu.",
+          "Simit kuyruğunu sabırsızca salladı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz dalı çalının altına uzattı. Dal topa değdi ama top kaydı. Dalın ucu düzdü, topu tutamıyordu. Simit kuyruğunu sabırsızca salladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p05",
+        "quoteSHA256": "f1d8345bdc1e4c3146a7038d59462d30023b0620621eb4cfa152f702bb26ea23",
+        "bookID": "pilot56_book_a7_cat_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "f1d8345bdc1e4c3146a7038d59462d30023b0620621eb4cfa152f702bb26ea23",
+      "text": "Deniz dalı çalının altına uzattı. Dal topa değdi ama top kaydı. Dalın ucu düzdü, topu tutamıyordu. Simit kuyruğunu sabırsızca salladı.",
+      "sourceID": "p56_wave2_pilot56_book_a7_cat_v1_p05",
+      "sourcePointer": "input/adventure-cat.json#/books/0/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a7_cat_v1",
+      "rawPageMove": "child_changes_stick",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "çatallı kök; dal; kütük/yuva; çatal/kanca dal; top/şapka/uçurtma; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "Bu kez ucu çatallı olanı seçti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz dalı değiştirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Top yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "Bu kez ucu çatallı olanı seçti.",
+              "Çatalı topun arkasına koyup yavaşça kendine çekti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Çatalı topun arkasına koyup yavaşça kendine çekti.",
+              "Top yuvarlandı.",
+              "Simit topa doğru zıpladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Top yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı seçti. Çatalı topun arkasına koyup yavaşça kendine çekti. Top yuvarlandı. Simit topa doğru zıpladı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p06",
+            "evidenceText": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı seçti. Çatalı topun arkasına koyup yavaşça kendine çekti. Top yuvarlandı. Simit topa doğru zıpladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı seçti. Çatalı topun arkasına koyup yavaşça kendine çekti. Top yuvarlandı. Simit topa doğru zıpladı.",
+        "poseAndActionEvidence": [
+          "Deniz dalı değiştirdi.",
+          "Bu kez ucu çatallı olanı seçti.",
+          "Çatalı topun arkasına koyup yavaşça kendine çekti.",
+          "Top yuvarlandı.",
+          "Simit topa doğru zıpladı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı seçti. Çatalı topun arkasına koyup yavaşça kendine çekti. Top yuvarlandı. Simit topa doğru zıpladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p06",
+        "quoteSHA256": "1dbc934b7c13cae47438fc4d0540f24537f5106162fa28417cbc056b79127173",
+        "bookID": "pilot56_book_a7_cat_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "1dbc934b7c13cae47438fc4d0540f24537f5106162fa28417cbc056b79127173",
+      "text": "Deniz dalı değiştirdi. Bu kez ucu çatallı olanı seçti. Çatalı topun arkasına koyup yavaşça kendine çekti. Top yuvarlandı. Simit topa doğru zıpladı.",
+      "sourceID": "p56_wave2_pilot56_book_a7_cat_v1_p06",
+      "sourcePointer": "input/adventure-cat.json#/books/0/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a7_cat_v1",
+      "rawPageMove": "item_back",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "çatal/kanca dal; top/şapka/uçurtma; iz/kum",
+        "propMentions": [
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "\"Çatal tuttu!\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kırmızı top Deniz’in ayaklarının dibine geldi.",
+              "Simit topun üstüne zıpladı, top yine kaçtı.",
+              "Deniz güldü ve topu yakaladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kırmızı top Deniz’in ayaklarının dibine geldi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Kırmızı top Deniz’in ayaklarının dibine geldi. \"Çatal tuttu!\" dedi Deniz. Simit topun üstüne zıpladı, top yine kaçtı. Deniz güldü ve topu yakaladı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p07",
+            "evidenceText": "Kırmızı top Deniz’in ayaklarının dibine geldi. \"Çatal tuttu!\" dedi Deniz. Simit topun üstüne zıpladı, top yine kaçtı. Deniz güldü ve topu yakaladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kırmızı top Deniz’in ayaklarının dibine geldi. \"Çatal tuttu!\" dedi Deniz. Simit topun üstüne zıpladı, top yine kaçtı. Deniz güldü ve topu yakaladı.",
+        "poseAndActionEvidence": [
+          "Kırmızı top Deniz’in ayaklarının dibine geldi.",
+          "\"Çatal tuttu!\" dedi Deniz.",
+          "Simit topun üstüne zıpladı, top yine kaçtı.",
+          "Deniz güldü ve topu yakaladı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kırmızı top Deniz’in ayaklarının dibine geldi. \"Çatal tuttu!\" dedi Deniz. Simit topun üstüne zıpladı, top yine kaçtı. Deniz güldü ve topu yakaladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p07",
+        "quoteSHA256": "c0cfd9bdae3a6e6ec00d010cc2874f27999c66bfe1841992ed535a9f8e8c669e",
+        "bookID": "pilot56_book_a7_cat_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "c0cfd9bdae3a6e6ec00d010cc2874f27999c66bfe1841992ed535a9f8e8c669e",
+      "text": "Kırmızı top Deniz’in ayaklarının dibine geldi. \"Çatal tuttu!\" dedi Deniz. Simit topun üstüne zıpladı, top yine kaçtı. Deniz güldü ve topu yakaladı.",
+      "sourceID": "p56_wave2_pilot56_book_a7_cat_v1_p07",
+      "sourcePointer": "input/adventure-cat.json#/books/0/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a7_cat_v1",
+      "rawPageMove": "return",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "çatallı kök; dal; taş; tasma/zil; taş/çakıl; çatal/kanca dal; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "Simit çatallı dalı ağzında getirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Simit çatallı dalı ağzında getirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Dönüşte Deniz topu kucağında taşıdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Zili tın tın çaldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Dönüşte Deniz topu kucağında taşıdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "Simit çatallı dalı ağzında getirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Dönüşte Deniz topu kucağında taşıdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Dönüşte Deniz topu kucağında taşıdı. Simit çatallı dalı ağzında getirdi. \"Bunu şehre götürsem herkes şaşırır,\" dedi. Zili tın tın çaldı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p08",
+            "evidenceText": "Dönüşte Deniz topu kucağında taşıdı. Simit çatallı dalı ağzında getirdi. \"Bunu şehre götürsem herkes şaşırır,\" dedi. Zili tın tın çaldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Dönüşte Deniz topu kucağında taşıdı. Simit çatallı dalı ağzında getirdi. \"Bunu şehre götürsem herkes şaşırır,\" dedi. Zili tın tın çaldı.",
+        "poseAndActionEvidence": [
+          "Dönüşte Deniz topu kucağında taşıdı.",
+          "Simit çatallı dalı ağzında getirdi.",
+          "\"Bunu şehre götürsem herkes şaşırır,\" dedi.",
+          "Zili tın tın çaldı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Deniz çalının içine girmez; düz dalın başarısız denemesi ve sonraki çatal/kanca dalın çözümü ayrıdır. Top/şapka/ip p7de çocuğa döner. Arkadaş denemesi başarılı kurtarma diye etiketlenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Dönüşte Deniz topu kucağında taşıdı. Simit çatallı dalı ağzında getirdi. \"Bunu şehre götürsem herkes şaşırır,\" dedi. Zili tın tın çaldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_a7_cat_v1_p08",
+        "quoteSHA256": "336ed4d192a7c4486df0e07e63b7c18bc2b6a2a76e27379087c47ea82069c482",
+        "bookID": "pilot56_book_a7_cat_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "336ed4d192a7c4486df0e07e63b7c18bc2b6a2a76e27379087c47ea82069c482",
+      "text": "Dönüşte Deniz topu kucağında taşıdı. Simit çatallı dalı ağzında getirdi. \"Bunu şehre götürsem herkes şaşırır,\" dedi. Zili tın tın çaldı.",
+      "sourceID": "p56_wave2_pilot56_book_a7_cat_v1_p08",
+      "sourcePointer": "input/adventure-cat.json#/books/0/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz içeri girmeden uzun, ucu çatallı doğru dalı seçer, eşyayı kendine doğru çeker.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

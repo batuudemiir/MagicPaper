@@ -1,0 +1,852 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u4_cat_event02_v1",
+  "title": "Çatıdaki Güvercinler",
+  "context": {
+    "settingName": "Çatı Katı Odası",
+    "mode": "bedtime",
+    "companionID": "companion_city_cat_001",
+    "structure": "U4",
+    "event": "e2",
+    "mechanism": "rain-breath-pacing",
+    "sourceFilename": "bedtime-cat.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u4_cat_event02_v1",
+    "structure": "U4",
+    "event": "e2",
+    "sample": false,
+    "title": "Çatıdaki Güvercinler",
+    "pages": [
+      "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz yorganın altına kaydı. Simit minderinde kıpır kıpırdı. Çatıdan gelen ses kulaklarını oynatıyordu. Kırmızı tasması karanlıkta seçiliyordu.",
+      "Çatıda minik ayaklar yürüyor gibiydi. Pıtır, pıtır… Çisentiydi bu. Simit tavana bakıp kulaklarını oynattı. \"Yağmur çatıda geziniyor,\" dedi Deniz. Ses çok yumuşaktı.",
+      "Simit kulaklarını dikti. \"Şehirde böyle değil ama,\" dedi. \"Orada çatıda güvercinler yürür!\" Deniz’in kıkırtısı her yere yayıldı. \"Bu güvercin değil, çisenti.\"",
+      "Deniz pıtırtılarla nefes almaya başladı. Bir pıtırtıda aldı, bir pıtırtıda verdi. Simit’in kuyruğu da aynı hızla inip kalktı. Nefesi yağmur kadar yavaşladı.",
+      "Simit kulaklarını yavaşça indirdi. Pıtırtılarla birlikte mırladı. Mır, pıt, mır, pıt… Deniz keyifle gülümsedi. Simit bıyıklarını oynattı. Kedinin sesi yağmura karıştı. Oda sakinleşti.",
+      "\"Artık saymıyorum,\" dedi Deniz. Pıtırtılar sürdü ama Deniz yalnız dinledi. Simit patilerini altına topladı. Çatıdaki ses odaya yumuşak bir örtü gibi yayıldı.",
+      "Simit zilini patisinin altına sakladı. Tın sesi kesildi. Yalnız çisentinin pıtırtısı kaldı. Kedi gözlerini kapadı. Deniz de yastığına yaslandı ve dinledi.",
+      "\"İyi geceler,\" diye mırladı Simit. Deniz gözlerini kapattı. Çisenti çatıda usul usul yürüdü. Kedinin kuyruğu yavaşça kıvrıldı. Oda sakin ve sessizdi."
+    ],
+    "sourceBookID": "pilot56_book_u4_cat_event02_v1"
+  },
+  "inputFileSHA256": "c18255861f6fc12514d55ddd8ad703c13fe41296db63331646230220f40b2ff6",
+  "inputBookPointer": "input/bedtime-cat.json#/books/1",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u4_cat_event02_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "minder; tasma/zil; lamba/fener/ışık; top/şapka/uçurtma; iz/kum",
+        "propMentions": [
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Simit minderinde kıpır kıpırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Kırmızı tasması karanlıkta seçiliyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Çatı Katı Odası’nda gece lambası yanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Simit minderinde kıpır kıpırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kırmızı tasması karanlıkta seçiliyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz yorganın altına kaydı. Simit minderinde kıpır kıpırdı. Çatıdan gelen ses kulaklarını oynatıyordu. Kırmızı tasması karanlıkta seçiliyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p01",
+            "evidenceText": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz yorganın altına kaydı. Simit minderinde kıpır kıpırdı. Çatıdan gelen ses kulaklarını oynatıyordu. Kırmızı tasması karanlıkta seçiliyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz yorganın altına kaydı. Simit minderinde kıpır kıpırdı. Çatıdan gelen ses kulaklarını oynatıyordu. Kırmızı tasması karanlıkta seçiliyordu.",
+        "poseAndActionEvidence": [
+          "Çatı Katı Odası’nda gece lambası yanıyordu.",
+          "Deniz yorganın altına kaydı.",
+          "Simit minderinde kıpır kıpırdı.",
+          "Çatıdan gelen ses kulaklarını oynatıyordu.",
+          "Kırmızı tasması karanlıkta seçiliyordu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz yorganın altına kaydı. Simit minderinde kıpır kıpırdı. Çatıdan gelen ses kulaklarını oynatıyordu. Kırmızı tasması karanlıkta seçiliyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p01",
+        "quoteSHA256": "8f6342d11f86c6e6d533276153ecb2153fd9f1bae7a005b46835d4d6f5251a10",
+        "bookID": "pilot56_book_u4_cat_event02_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "8f6342d11f86c6e6d533276153ecb2153fd9f1bae7a005b46835d4d6f5251a10",
+      "text": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz yorganın altına kaydı. Simit minderinde kıpır kıpırdı. Çatıdan gelen ses kulaklarını oynatıyordu. Kırmızı tasması karanlıkta seçiliyordu.",
+      "sourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p01",
+      "sourcePointer": "input/bedtime-cat.json#/books/1/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u4_cat_event02_v1",
+      "rawPageMove": "rain_noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Çisentiydi bu.",
+              "\"Yağmur çatıda geziniyor,\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Çatıda minik ayaklar yürüyor gibiydi. Pıtır, pıtır… Çisentiydi bu. Simit tavana bakıp kulaklarını oynattı. \"Yağmur çatıda geziniyor,\" dedi Deniz. Ses çok yumuşaktı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p02",
+            "evidenceText": "Çatıda minik ayaklar yürüyor gibiydi. Pıtır, pıtır… Çisentiydi bu. Simit tavana bakıp kulaklarını oynattı. \"Yağmur çatıda geziniyor,\" dedi Deniz. Ses çok yumuşaktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çatıda minik ayaklar yürüyor gibiydi. Pıtır, pıtır… Çisentiydi bu. Simit tavana bakıp kulaklarını oynattı. \"Yağmur çatıda geziniyor,\" dedi Deniz. Ses çok yumuşaktı.",
+        "poseAndActionEvidence": [
+          "Çatıda minik ayaklar yürüyor gibiydi.",
+          "Pıtır, pıtır…",
+          "Çisentiydi bu.",
+          "Simit tavana bakıp kulaklarını oynattı.",
+          "\"Yağmur çatıda geziniyor,\" dedi Deniz.",
+          "Ses çok yumuşaktı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çatıda minik ayaklar yürüyor gibiydi. Pıtır, pıtır… Çisentiydi bu. Simit tavana bakıp kulaklarını oynattı. \"Yağmur çatıda geziniyor,\" dedi Deniz. Ses çok yumuşaktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p02",
+        "quoteSHA256": "5dcd93e91d8ec8721db2acec1fdea031b3c0c81d7e76ea9049dfbaa1f6b8105f",
+        "bookID": "pilot56_book_u4_cat_event02_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "5dcd93e91d8ec8721db2acec1fdea031b3c0c81d7e76ea9049dfbaa1f6b8105f",
+      "text": "Çatıda minik ayaklar yürüyor gibiydi. Pıtır, pıtır… Çisentiydi bu. Simit tavana bakıp kulaklarını oynattı. \"Yağmur çatıda geziniyor,\" dedi Deniz. Ses çok yumuşaktı.",
+      "sourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p02",
+      "sourcePointer": "input/bedtime-cat.json#/books/1/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u4_cat_event02_v1",
+      "rawPageMove": "friend_counts_along",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "\"Bu güvercin değil, çisenti.\""
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit kulaklarını dikti. \"Şehirde böyle değil ama,\" dedi. \"Orada çatıda güvercinler yürür!\" Deniz’in kıkırtısı her yere yayıldı. \"Bu güvercin değil, çisenti.\"",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p03",
+            "evidenceText": "Simit kulaklarını dikti. \"Şehirde böyle değil ama,\" dedi. \"Orada çatıda güvercinler yürür!\" Deniz’in kıkırtısı her yere yayıldı. \"Bu güvercin değil, çisenti.\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit kulaklarını dikti. \"Şehirde böyle değil ama,\" dedi. \"Orada çatıda güvercinler yürür!\" Deniz’in kıkırtısı her yere yayıldı. \"Bu güvercin değil, çisenti.\"",
+        "poseAndActionEvidence": [
+          "Simit kulaklarını dikti.",
+          "\"Şehirde böyle değil ama,\" dedi.",
+          "\"Orada çatıda güvercinler yürür!\" Deniz’in kıkırtısı her yere yayıldı.",
+          "\"Bu güvercin değil, çisenti.\""
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_city_cat_001",
+        "quote": "Simit kulaklarını dikti. \"Şehirde böyle değil ama,\" dedi. \"Orada çatıda güvercinler yürür!\" Deniz’in kıkırtısı her yere yayıldı. \"Bu güvercin değil, çisenti.\"",
+        "attributionQuote": "Simit",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p03",
+        "quoteSHA256": "2b3d20e818c008e53438441a5bba91e4dd071c44fbe37707e6f3953c1b7baf65",
+        "bookID": "pilot56_book_u4_cat_event02_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "2b3d20e818c008e53438441a5bba91e4dd071c44fbe37707e6f3953c1b7baf65",
+      "text": "Simit kulaklarını dikti. \"Şehirde böyle değil ama,\" dedi. \"Orada çatıda güvercinler yürür!\" Deniz’in kıkırtısı her yere yayıldı. \"Bu güvercin değil, çisenti.\"",
+      "sourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p03",
+      "sourcePointer": "input/bedtime-cat.json#/books/1/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u4_cat_event02_v1",
+      "rawPageMove": "child_slows_breath",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Nefesi yağmur kadar yavaşladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz pıtırtılarla nefes almaya başladı. Bir pıtırtıda aldı, bir pıtırtıda verdi. Simit’in kuyruğu da aynı hızla inip kalktı. Nefesi yağmur kadar yavaşladı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p04",
+            "evidenceText": "Deniz pıtırtılarla nefes almaya başladı. Bir pıtırtıda aldı, bir pıtırtıda verdi. Simit’in kuyruğu da aynı hızla inip kalktı. Nefesi yağmur kadar yavaşladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz pıtırtılarla nefes almaya başladı. Bir pıtırtıda aldı, bir pıtırtıda verdi. Simit’in kuyruğu da aynı hızla inip kalktı. Nefesi yağmur kadar yavaşladı.",
+        "poseAndActionEvidence": [
+          "Deniz pıtırtılarla nefes almaya başladı.",
+          "Bir pıtırtıda aldı, bir pıtırtıda verdi.",
+          "Simit’in kuyruğu da aynı hızla inip kalktı.",
+          "Nefesi yağmur kadar yavaşladı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz pıtırtılarla nefes almaya başladı. Bir pıtırtıda aldı, bir pıtırtıda verdi. Simit’in kuyruğu da aynı hızla inip kalktı. Nefesi yağmur kadar yavaşladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p04",
+        "quoteSHA256": "67d9f36d1ff863fa38df571155a75d834372e2f3a428e281ad81b120008af9c2",
+        "bookID": "pilot56_book_u4_cat_event02_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "67d9f36d1ff863fa38df571155a75d834372e2f3a428e281ad81b120008af9c2",
+      "text": "Deniz pıtırtılarla nefes almaya başladı. Bir pıtırtıda aldı, bir pıtırtıda verdi. Simit’in kuyruğu da aynı hızla inip kalktı. Nefesi yağmur kadar yavaşladı.",
+      "sourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p04",
+      "sourcePointer": "input/bedtime-cat.json#/books/1/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u4_cat_event02_v1",
+      "rawPageMove": "soft_smile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yağmur/cam/oluk; kar/battaniye",
+        "propMentions": [
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Kedinin sesi yağmura karıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Kedinin sesi yağmura karıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit kulaklarını yavaşça indirdi. Pıtırtılarla birlikte mırladı. Mır, pıt, mır, pıt… Deniz keyifle gülümsedi. Simit bıyıklarını oynattı. Kedinin sesi yağmura karıştı. Oda sakinleşti.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p05",
+            "evidenceText": "Simit kulaklarını yavaşça indirdi. Pıtırtılarla birlikte mırladı. Mır, pıt, mır, pıt… Deniz keyifle gülümsedi. Simit bıyıklarını oynattı. Kedinin sesi yağmura karıştı. Oda sakinleşti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit kulaklarını yavaşça indirdi. Pıtırtılarla birlikte mırladı. Mır, pıt, mır, pıt… Deniz keyifle gülümsedi. Simit bıyıklarını oynattı. Kedinin sesi yağmura karıştı. Oda sakinleşti.",
+        "poseAndActionEvidence": [
+          "Simit kulaklarını yavaşça indirdi.",
+          "Pıtırtılarla birlikte mırladı.",
+          "Mır, pıt, mır, pıt…",
+          "Deniz keyifle gülümsedi.",
+          "Simit bıyıklarını oynattı.",
+          "Kedinin sesi yağmura karıştı.",
+          "Oda sakinleşti."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Simit kulaklarını yavaşça indirdi. Pıtırtılarla birlikte mırladı. Mır, pıt, mır, pıt… Deniz keyifle gülümsedi. Simit bıyıklarını oynattı. Kedinin sesi yağmura karıştı. Oda sakinleşti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p05",
+        "quoteSHA256": "4389f29394478f11b581eca9a091c849546e3f097b4b25e7fe2aede7e1714c9f",
+        "bookID": "pilot56_book_u4_cat_event02_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "4389f29394478f11b581eca9a091c849546e3f097b4b25e7fe2aede7e1714c9f",
+      "text": "Simit kulaklarını yavaşça indirdi. Pıtırtılarla birlikte mırladı. Mır, pıt, mır, pıt… Deniz keyifle gülümsedi. Simit bıyıklarını oynattı. Kedinin sesi yağmura karıştı. Oda sakinleşti.",
+      "sourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p05",
+      "sourcePointer": "input/bedtime-cat.json#/books/1/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u4_cat_event02_v1",
+      "rawPageMove": "counting_released",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Çatıdaki ses odaya yumuşak bir örtü gibi yayıldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "\"Artık saymıyorum,\" dedi Deniz. Pıtırtılar sürdü ama Deniz yalnız dinledi. Simit patilerini altına topladı. Çatıdaki ses odaya yumuşak bir örtü gibi yayıldı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p06",
+            "evidenceText": "\"Artık saymıyorum,\" dedi Deniz. Pıtırtılar sürdü ama Deniz yalnız dinledi. Simit patilerini altına topladı. Çatıdaki ses odaya yumuşak bir örtü gibi yayıldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Artık saymıyorum,\" dedi Deniz. Pıtırtılar sürdü ama Deniz yalnız dinledi. Simit patilerini altına topladı. Çatıdaki ses odaya yumuşak bir örtü gibi yayıldı.",
+        "poseAndActionEvidence": [
+          "\"Artık saymıyorum,\" dedi Deniz.",
+          "Pıtırtılar sürdü ama Deniz yalnız dinledi.",
+          "Simit patilerini altına topladı.",
+          "Çatıdaki ses odaya yumuşak bir örtü gibi yayıldı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Artık saymıyorum,\" dedi Deniz. Pıtırtılar sürdü ama Deniz yalnız dinledi. Simit patilerini altına topladı. Çatıdaki ses odaya yumuşak bir örtü gibi yayıldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p06",
+        "quoteSHA256": "872f2f5767e78dd2fd24581baf2eac0bec3a4fbb06352b097beeda43d34495f2",
+        "bookID": "pilot56_book_u4_cat_event02_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "872f2f5767e78dd2fd24581baf2eac0bec3a4fbb06352b097beeda43d34495f2",
+      "text": "\"Artık saymıyorum,\" dedi Deniz. Pıtırtılar sürdü ama Deniz yalnız dinledi. Simit patilerini altına topladı. Çatıdaki ses odaya yumuşak bir örtü gibi yayıldı.",
+      "sourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p06",
+      "sourcePointer": "input/bedtime-cat.json#/books/1/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u4_cat_event02_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek; tasma/zil; yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz de yastığına yaslandı ve dinledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Simit zilini patisinin altına sakladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Yalnız çisentinin pıtırtısı kaldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit zilini patisinin altına sakladı. Tın sesi kesildi. Yalnız çisentinin pıtırtısı kaldı. Kedi gözlerini kapadı. Deniz de yastığına yaslandı ve dinledi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p07",
+            "evidenceText": "Simit zilini patisinin altına sakladı. Tın sesi kesildi. Yalnız çisentinin pıtırtısı kaldı. Kedi gözlerini kapadı. Deniz de yastığına yaslandı ve dinledi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit zilini patisinin altına sakladı. Tın sesi kesildi. Yalnız çisentinin pıtırtısı kaldı. Kedi gözlerini kapadı. Deniz de yastığına yaslandı ve dinledi.",
+        "poseAndActionEvidence": [
+          "Simit zilini patisinin altına sakladı.",
+          "Tın sesi kesildi.",
+          "Yalnız çisentinin pıtırtısı kaldı.",
+          "Kedi gözlerini kapadı.",
+          "Deniz de yastığına yaslandı ve dinledi."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Simit zilini patisinin altına sakladı. Tın sesi kesildi. Yalnız çisentinin pıtırtısı kaldı. Kedi gözlerini kapadı. Deniz de yastığına yaslandı ve dinledi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p07",
+        "quoteSHA256": "69e069d39f2b426ff22010d11c15330166a70937b927a96a24bf5f0ff1dc1c63",
+        "bookID": "pilot56_book_u4_cat_event02_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "69e069d39f2b426ff22010d11c15330166a70937b927a96a24bf5f0ff1dc1c63",
+      "text": "Simit zilini patisinin altına sakladı. Tın sesi kesildi. Yalnız çisentinin pıtırtısı kaldı. Kedi gözlerini kapadı. Deniz de yastığına yaslandı ve dinledi.",
+      "sourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p07",
+      "sourcePointer": "input/bedtime-cat.json#/books/1/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u4_cat_event02_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Çisenti çatıda usul usul yürüdü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "\"İyi geceler,\" diye mırladı Simit. Deniz gözlerini kapattı. Çisenti çatıda usul usul yürüdü. Kedinin kuyruğu yavaşça kıvrıldı. Oda sakin ve sessizdi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p08",
+            "evidenceText": "\"İyi geceler,\" diye mırladı Simit. Deniz gözlerini kapattı. Çisenti çatıda usul usul yürüdü. Kedinin kuyruğu yavaşça kıvrıldı. Oda sakin ve sessizdi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"İyi geceler,\" diye mırladı Simit. Deniz gözlerini kapattı. Çisenti çatıda usul usul yürüdü. Kedinin kuyruğu yavaşça kıvrıldı. Oda sakin ve sessizdi.",
+        "poseAndActionEvidence": [
+          "\"İyi geceler,\" diye mırladı Simit.",
+          "Deniz gözlerini kapattı.",
+          "Çisenti çatıda usul usul yürüdü.",
+          "Kedinin kuyruğu yavaşça kıvrıldı.",
+          "Oda sakin ve sessizdi."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Nefes alma/verme ve damla sayma metindeki doğal ritimdedir. Açıkça yazılmayan nefes tutma veya süre sınırı eklenmez. Yağmur dışarıda, çocuk odadadır; camın öte yanındaki damlaya dokunulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"İyi geceler,\" diye mırladı Simit. Deniz gözlerini kapattı. Çisenti çatıda usul usul yürüdü. Kedinin kuyruğu yavaşça kıvrıldı. Oda sakin ve sessizdi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p08",
+        "quoteSHA256": "bea5a120ee5df995b96cab5db24576631cc01ab9160e6fb84bd79962216a7e93",
+        "bookID": "pilot56_book_u4_cat_event02_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "bea5a120ee5df995b96cab5db24576631cc01ab9160e6fb84bd79962216a7e93",
+      "text": "\"İyi geceler,\" diye mırladı Simit. Deniz gözlerini kapattı. Çisenti çatıda usul usul yürüdü. Kedinin kuyruğu yavaşça kıvrıldı. Oda sakin ve sessizdi.",
+      "sourceID": "p56_wave1_pilot56_book_u4_cat_event02_v1_p08",
+      "sourcePointer": "input/bedtime-cat.json#/books/1/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk damlaları sayarken nefesini yavaşlatır, sonra saymayı kendisi bırakır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

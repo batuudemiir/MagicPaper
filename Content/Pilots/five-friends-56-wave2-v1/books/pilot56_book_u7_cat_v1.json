@@ -1,0 +1,941 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u7_cat_v1",
+  "title": "Simit Yün Kuzuyla Oynuyor",
+  "context": {
+    "settingName": "Orman Kıyısındaki Oda",
+    "mode": "bedtime",
+    "companionID": "companion_city_cat_001",
+    "structure": "U7",
+    "event": "e1",
+    "mechanism": "toys-to-bed",
+    "sourceFilename": "bedtime-cat.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u7_cat_v1",
+    "sourceBookID": "pilot56_book_u7_cat_v1",
+    "structure": "U7",
+    "event": "e1",
+    "sample": false,
+    "title": "Simit Yün Kuzuyla Oynuyor",
+    "pages": [
+      "Orman Kıyısındaki Oda’da lambalar kısılmıştı. Deniz yerde oyuncaklarının arasındaydı. Simit kapının yanındaki mindere kıvrılmıştı. Kırmızı tasmasındaki zil sessizdi.",
+      "Oyuncaklar halıya saçılmıştı. Kumaş tavşan, yün kuzu, küçük bir ayı… Simit yün kuzuya patisiyle dokundu. \"Biraz daha oynasam,\" dedi Deniz. Ama gözleri ağırdı.",
+      "Simit yün kuzuyu görünce zıpladı. Kuzuyu patileriyle yuvarlayıp yatağın altına soktu. \"Şehirde oyuncaklar kanepenin altında uyur,\" dedi. Deniz yastığına gömülüp güldü.",
+      "Deniz her oyuncağa bir yatak seçti. \"Tavşan sepette, kuzu da rafta,\" dedi. Simit sepetin içine bakmak için zıpladı. Deniz sırayı kendisi belirledi.",
+      "Simit yatağın altından kuzuyu patisiyle geri çekti. Kuzunun yünü tozlanmıştı. Simit onu yaladı, sonra hapşırdı. Zili tın etti. Deniz başını sallayıp gülümsedi. Simit kuyruğunu kıvırdı.",
+      "Deniz yalnız kumaş tavşanı geri aldı. \"Bu benimle kalıyor,\" dedi. Ötekiler yerlerindeydi. Simit boş sepete kıvrılmayı düşündü. Akşam yavaşlamıştı.",
+      "Simit minderinde kıvrıldı. Kuyruğunu burnunun üstüne doladı. Zilini patisiyle susturdu. Deniz kumaş tavşanı koynuna alıp yatağına usulca uzandı.",
+      "\"Uyku vakti, Deniz,\" diye mırladı Simit. \"Şehirde böyle değil ama, burada her oyuncağın yatağı var.\" Deniz yavaşça gözlerini yumdu. Oda sessizleşti."
+    ]
+  },
+  "inputFileSHA256": "d2cf0a47309f48e05623e4bab45aadbbe91a6cb1ffd366e8af852a0c4b234b6f",
+  "inputBookPointer": "input/bedtime-cat.json#/books/0",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u7_cat_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "minder; tasma/zil; su/birikinti; lamba/fener/ışık; oyuncak; iz/kum; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Simit kapının yanındaki mindere kıvrılmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Kırmızı tasmasındaki zil sessizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Simit kapının yanındaki mindere kıvrılmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Orman Kıyısındaki Oda’da lambalar kısılmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Deniz yerde oyuncaklarının arasındaydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kırmızı tasmasındaki zil sessizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Simit kapının yanındaki mindere kıvrılmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Orman Kıyısındaki Oda’da lambalar kısılmıştı. Deniz yerde oyuncaklarının arasındaydı. Simit kapının yanındaki mindere kıvrılmıştı. Kırmızı tasmasındaki zil sessizdi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p01",
+            "evidenceText": "Orman Kıyısındaki Oda’da lambalar kısılmıştı. Deniz yerde oyuncaklarının arasındaydı. Simit kapının yanındaki mindere kıvrılmıştı. Kırmızı tasmasındaki zil sessizdi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Orman Kıyısındaki Oda’da lambalar kısılmıştı. Deniz yerde oyuncaklarının arasındaydı. Simit kapının yanındaki mindere kıvrılmıştı. Kırmızı tasmasındaki zil sessizdi.",
+        "poseAndActionEvidence": [
+          "Orman Kıyısındaki Oda’da lambalar kısılmıştı.",
+          "Deniz yerde oyuncaklarının arasındaydı.",
+          "Simit kapının yanındaki mindere kıvrılmıştı.",
+          "Kırmızı tasmasındaki zil sessizdi."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Orman Kıyısındaki Oda’da lambalar kısılmıştı. Deniz yerde oyuncaklarının arasındaydı. Simit kapının yanındaki mindere kıvrılmıştı. Kırmızı tasmasındaki zil sessizdi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p01",
+        "quoteSHA256": "285c1286067f666eaefd29a0dc28ad4ca3a7ec6f59973dd0ab526d527b8fa4d9",
+        "bookID": "pilot56_book_u7_cat_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "285c1286067f666eaefd29a0dc28ad4ca3a7ec6f59973dd0ab526d527b8fa4d9",
+      "text": "Orman Kıyısındaki Oda’da lambalar kısılmıştı. Deniz yerde oyuncaklarının arasındaydı. Simit kapının yanındaki mindere kıvrılmıştı. Kırmızı tasmasındaki zil sessizdi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_v1_p01",
+      "sourcePointer": "input/bedtime-cat.json#/books/0/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u7_cat_v1",
+      "rawPageMove": "toys_scattered",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü; oyuncak; iz/kum",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Kumaş tavşan, yün kuzu, küçük bir ayı…"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Oyuncaklar halıya saçılmıştı.",
+              "Kumaş tavşan, yün kuzu, küçük bir ayı…",
+              "Simit yün kuzuya patisiyle dokundu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kumaş tavşan, yün kuzu, küçük bir ayı…"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Oyuncaklar halıya saçılmıştı. Kumaş tavşan, yün kuzu, küçük bir ayı… Simit yün kuzuya patisiyle dokundu. \"Biraz daha oynasam,\" dedi Deniz. Ama gözleri ağırdı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p02",
+            "evidenceText": "Oyuncaklar halıya saçılmıştı. Kumaş tavşan, yün kuzu, küçük bir ayı… Simit yün kuzuya patisiyle dokundu. \"Biraz daha oynasam,\" dedi Deniz. Ama gözleri ağırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Oyuncaklar halıya saçılmıştı. Kumaş tavşan, yün kuzu, küçük bir ayı… Simit yün kuzuya patisiyle dokundu. \"Biraz daha oynasam,\" dedi Deniz. Ama gözleri ağırdı.",
+        "poseAndActionEvidence": [
+          "Oyuncaklar halıya saçılmıştı.",
+          "Kumaş tavşan, yün kuzu, küçük bir ayı…",
+          "Simit yün kuzuya patisiyle dokundu.",
+          "\"Biraz daha oynasam,\" dedi Deniz.",
+          "Ama gözleri ağırdı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Oyuncaklar halıya saçılmıştı. Kumaş tavşan, yün kuzu, küçük bir ayı… Simit yün kuzuya patisiyle dokundu. \"Biraz daha oynasam,\" dedi Deniz. Ama gözleri ağırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p02",
+        "quoteSHA256": "99368916ef3ad2d98763bae438f6c4bb7ec5446e788155befb0ed0a72f3924dc",
+        "bookID": "pilot56_book_u7_cat_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "99368916ef3ad2d98763bae438f6c4bb7ec5446e788155befb0ed0a72f3924dc",
+      "text": "Oyuncaklar halıya saçılmıştı. Kumaş tavşan, yün kuzu, küçük bir ayı… Simit yün kuzuya patisiyle dokundu. \"Biraz daha oynasam,\" dedi Deniz. Ama gözleri ağırdı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_v1_p02",
+      "sourcePointer": "input/bedtime-cat.json#/books/0/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u7_cat_v1",
+      "rawPageMove": "friend_beds_wrong",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; yatak/yastık/döşek; oyuncak; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Kuzuyu patileriyle yuvarlayıp yatağın altına soktu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Kuzuyu patileriyle yuvarlayıp yatağın altına soktu.",
+              "Deniz yastığına gömülüp güldü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Simit yün kuzuyu görünce zıpladı.",
+              "\"Şehirde oyuncaklar kanepenin altında uyur,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Kuzuyu patileriyle yuvarlayıp yatağın altına soktu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit yün kuzuyu görünce zıpladı. Kuzuyu patileriyle yuvarlayıp yatağın altına soktu. \"Şehirde oyuncaklar kanepenin altında uyur,\" dedi. Deniz yastığına gömülüp güldü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p03",
+            "evidenceText": "Simit yün kuzuyu görünce zıpladı. Kuzuyu patileriyle yuvarlayıp yatağın altına soktu. \"Şehirde oyuncaklar kanepenin altında uyur,\" dedi. Deniz yastığına gömülüp güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit yün kuzuyu görünce zıpladı. Kuzuyu patileriyle yuvarlayıp yatağın altına soktu. \"Şehirde oyuncaklar kanepenin altında uyur,\" dedi. Deniz yastığına gömülüp güldü.",
+        "poseAndActionEvidence": [
+          "Simit yün kuzuyu görünce zıpladı.",
+          "Kuzuyu patileriyle yuvarlayıp yatağın altına soktu.",
+          "\"Şehirde oyuncaklar kanepenin altında uyur,\" dedi.",
+          "Deniz yastığına gömülüp güldü."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_city_cat_001",
+        "quote": "Simit yün kuzuyu görünce zıpladı. Kuzuyu patileriyle yuvarlayıp yatağın altına soktu. \"Şehirde oyuncaklar kanepenin altında uyur,\" dedi. Deniz yastığına gömülüp güldü.",
+        "attributionQuote": "Simit",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p03",
+        "quoteSHA256": "77f73f2babce36b13da12cd0c994742a6a80d0d0e5edcfbc60dac3a4f6003b35",
+        "bookID": "pilot56_book_u7_cat_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "77f73f2babce36b13da12cd0c994742a6a80d0d0e5edcfbc60dac3a4f6003b35",
+      "text": "Simit yün kuzuyu görünce zıpladı. Kuzuyu patileriyle yuvarlayıp yatağın altına soktu. \"Şehirde oyuncaklar kanepenin altında uyur,\" dedi. Deniz yastığına gömülüp güldü.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_v1_p03",
+      "sourcePointer": "input/bedtime-cat.json#/books/0/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u7_cat_v1",
+      "rawPageMove": "child_picks_places",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek; sepet/kutu",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz her oyuncağa bir yatak seçti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "\"Tavşan sepette, kuzu da rafta,\" dedi.",
+              "Simit sepetin içine bakmak için zıpladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz her oyuncağa bir yatak seçti. \"Tavşan sepette, kuzu da rafta,\" dedi. Simit sepetin içine bakmak için zıpladı. Deniz sırayı kendisi belirledi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p04",
+            "evidenceText": "Deniz her oyuncağa bir yatak seçti. \"Tavşan sepette, kuzu da rafta,\" dedi. Simit sepetin içine bakmak için zıpladı. Deniz sırayı kendisi belirledi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz her oyuncağa bir yatak seçti. \"Tavşan sepette, kuzu da rafta,\" dedi. Simit sepetin içine bakmak için zıpladı. Deniz sırayı kendisi belirledi.",
+        "poseAndActionEvidence": [
+          "Deniz her oyuncağa bir yatak seçti.",
+          "\"Tavşan sepette, kuzu da rafta,\" dedi.",
+          "Simit sepetin içine bakmak için zıpladı.",
+          "Deniz sırayı kendisi belirledi."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz her oyuncağa bir yatak seçti. \"Tavşan sepette, kuzu da rafta,\" dedi. Simit sepetin içine bakmak için zıpladı. Deniz sırayı kendisi belirledi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p04",
+        "quoteSHA256": "5a91c5817f3f46beec3fafb46e2a4ca33cafcacbf9f6e09f5165e1420effc42d",
+        "bookID": "pilot56_book_u7_cat_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "5a91c5817f3f46beec3fafb46e2a4ca33cafcacbf9f6e09f5165e1420effc42d",
+      "text": "Deniz her oyuncağa bir yatak seçti. \"Tavşan sepette, kuzu da rafta,\" dedi. Simit sepetin içine bakmak için zıpladı. Deniz sırayı kendisi belirledi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_v1_p04",
+      "sourcePointer": "input/bedtime-cat.json#/books/0/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u7_cat_v1",
+      "rawPageMove": "soft_smile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek; tasma/zil",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Simit yatağın altından kuzuyu patisiyle geri çekti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Zili tın etti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit yatağın altından kuzuyu patisiyle geri çekti. Kuzunun yünü tozlanmıştı. Simit onu yaladı, sonra hapşırdı. Zili tın etti. Deniz başını sallayıp gülümsedi. Simit kuyruğunu kıvırdı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p05",
+            "evidenceText": "Simit yatağın altından kuzuyu patisiyle geri çekti. Kuzunun yünü tozlanmıştı. Simit onu yaladı, sonra hapşırdı. Zili tın etti. Deniz başını sallayıp gülümsedi. Simit kuyruğunu kıvırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit yatağın altından kuzuyu patisiyle geri çekti. Kuzunun yünü tozlanmıştı. Simit onu yaladı, sonra hapşırdı. Zili tın etti. Deniz başını sallayıp gülümsedi. Simit kuyruğunu kıvırdı.",
+        "poseAndActionEvidence": [
+          "Simit yatağın altından kuzuyu patisiyle geri çekti.",
+          "Kuzunun yünü tozlanmıştı.",
+          "Simit onu yaladı, sonra hapşırdı.",
+          "Zili tın etti.",
+          "Deniz başını sallayıp gülümsedi.",
+          "Simit kuyruğunu kıvırdı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Simit yatağın altından kuzuyu patisiyle geri çekti. Kuzunun yünü tozlanmıştı. Simit onu yaladı, sonra hapşırdı. Zili tın etti. Deniz başını sallayıp gülümsedi. Simit kuyruğunu kıvırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p05",
+        "quoteSHA256": "785c91710863c8610e506466ee930e2eff0b1a2a1c3d371f0fa65496cde011a5",
+        "bookID": "pilot56_book_u7_cat_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "785c91710863c8610e506466ee930e2eff0b1a2a1c3d371f0fa65496cde011a5",
+      "text": "Simit yatağın altından kuzuyu patisiyle geri çekti. Kuzunun yünü tozlanmıştı. Simit onu yaladı, sonra hapşırdı. Zili tın etti. Deniz başını sallayıp gülümsedi. Simit kuyruğunu kıvırdı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_v1_p05",
+      "sourcePointer": "input/bedtime-cat.json#/books/0/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u7_cat_v1",
+      "rawPageMove": "one_toy_kept",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü; sepet/kutu; oyuncak; iz/kum",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Deniz yalnız kumaş tavşanı geri aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Simit boş sepete kıvrılmayı düşündü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Deniz yalnız kumaş tavşanı geri aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Deniz yalnız kumaş tavşanı geri aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz yalnız kumaş tavşanı geri aldı. \"Bu benimle kalıyor,\" dedi. Ötekiler yerlerindeydi. Simit boş sepete kıvrılmayı düşündü. Akşam yavaşlamıştı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p06",
+            "evidenceText": "Deniz yalnız kumaş tavşanı geri aldı. \"Bu benimle kalıyor,\" dedi. Ötekiler yerlerindeydi. Simit boş sepete kıvrılmayı düşündü. Akşam yavaşlamıştı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yalnız kumaş tavşanı geri aldı. \"Bu benimle kalıyor,\" dedi. Ötekiler yerlerindeydi. Simit boş sepete kıvrılmayı düşündü. Akşam yavaşlamıştı.",
+        "poseAndActionEvidence": [
+          "Deniz yalnız kumaş tavşanı geri aldı.",
+          "\"Bu benimle kalıyor,\" dedi.",
+          "Ötekiler yerlerindeydi.",
+          "Simit boş sepete kıvrılmayı düşündü.",
+          "Akşam yavaşlamıştı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yalnız kumaş tavşanı geri aldı. \"Bu benimle kalıyor,\" dedi. Ötekiler yerlerindeydi. Simit boş sepete kıvrılmayı düşündü. Akşam yavaşlamıştı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p06",
+        "quoteSHA256": "72adac8459b921ce4971b83a5fcc2b95c75cf2b68517162a4453d1f9f33e7ed1",
+        "bookID": "pilot56_book_u7_cat_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "72adac8459b921ce4971b83a5fcc2b95c75cf2b68517162a4453d1f9f33e7ed1",
+      "text": "Deniz yalnız kumaş tavşanı geri aldı. \"Bu benimle kalıyor,\" dedi. Ötekiler yerlerindeydi. Simit boş sepete kıvrılmayı düşündü. Akşam yavaşlamıştı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_v1_p06",
+      "sourcePointer": "input/bedtime-cat.json#/books/0/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u7_cat_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü; minder; yatak/yastık/döşek; tasma/zil; oyuncak; iz/kum",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Deniz kumaş tavşanı koynuna alıp yatağına usulca uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Simit minderinde kıvrıldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz kumaş tavşanı koynuna alıp yatağına usulca uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Zilini patisiyle susturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Deniz kumaş tavşanı koynuna alıp yatağına usulca uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Deniz kumaş tavşanı koynuna alıp yatağına usulca uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit minderinde kıvrıldı. Kuyruğunu burnunun üstüne doladı. Zilini patisiyle susturdu. Deniz kumaş tavşanı koynuna alıp yatağına usulca uzandı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p07",
+            "evidenceText": "Simit minderinde kıvrıldı. Kuyruğunu burnunun üstüne doladı. Zilini patisiyle susturdu. Deniz kumaş tavşanı koynuna alıp yatağına usulca uzandı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit minderinde kıvrıldı. Kuyruğunu burnunun üstüne doladı. Zilini patisiyle susturdu. Deniz kumaş tavşanı koynuna alıp yatağına usulca uzandı.",
+        "poseAndActionEvidence": [
+          "Simit minderinde kıvrıldı.",
+          "Kuyruğunu burnunun üstüne doladı.",
+          "Zilini patisiyle susturdu.",
+          "Deniz kumaş tavşanı koynuna alıp yatağına usulca uzandı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Simit minderinde kıvrıldı. Kuyruğunu burnunun üstüne doladı. Zilini patisiyle susturdu. Deniz kumaş tavşanı koynuna alıp yatağına usulca uzandı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p07",
+        "quoteSHA256": "036c416f8ff62a70cd76a70261e808357d1204e5db2e65d7d9ecb48fec7555c0",
+        "bookID": "pilot56_book_u7_cat_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "036c416f8ff62a70cd76a70261e808357d1204e5db2e65d7d9ecb48fec7555c0",
+      "text": "Simit minderinde kıvrıldı. Kuyruğunu burnunun üstüne doladı. Zilini patisiyle susturdu. Deniz kumaş tavşanı koynuna alıp yatağına usulca uzandı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_v1_p07",
+      "sourcePointer": "input/bedtime-cat.json#/books/0/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u7_cat_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "\"Şehirde böyle değil ama, burada her oyuncağın yatağı var.\" Deniz yavaşça gözlerini yumdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "\"Uyku vakti, Deniz,\" diye mırladı Simit. \"Şehirde böyle değil ama, burada her oyuncağın yatağı var.\" Deniz yavaşça gözlerini yumdu. Oda sessizleşti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p08",
+            "evidenceText": "\"Uyku vakti, Deniz,\" diye mırladı Simit. \"Şehirde böyle değil ama, burada her oyuncağın yatağı var.\" Deniz yavaşça gözlerini yumdu. Oda sessizleşti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Uyku vakti, Deniz,\" diye mırladı Simit. \"Şehirde böyle değil ama, burada her oyuncağın yatağı var.\" Deniz yavaşça gözlerini yumdu. Oda sessizleşti.",
+        "poseAndActionEvidence": [
+          "\"Uyku vakti, Deniz,\" diye mırladı Simit.",
+          "\"Şehirde böyle değil ama, burada her oyuncağın yatağı var.\" Deniz yavaşça gözlerini yumdu.",
+          "Oda sessizleşti."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Uyku vakti, Deniz,\" diye mırladı Simit. \"Şehirde böyle değil ama, burada her oyuncağın yatağı var.\" Deniz yavaşça gözlerini yumdu. Oda sessizleşti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_v1_p08",
+        "quoteSHA256": "5afbfa88ed2b5dc2d60a5200396958a049c9f451eb1784d5b355ac3600580021",
+        "bookID": "pilot56_book_u7_cat_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "5afbfa88ed2b5dc2d60a5200396958a049c9f451eb1784d5b355ac3600580021",
+      "text": "\"Uyku vakti, Deniz,\" diye mırladı Simit. \"Şehirde böyle değil ama, burada her oyuncağın yatağı var.\" Deniz yavaşça gözlerini yumdu. Oda sessizleşti.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_v1_p08",
+      "sourcePointer": "input/bedtime-cat.json#/books/0/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz her oyuncağa bir yatak yeri seçer, sırayı kendisi belirler, yalnız birini yanına alır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

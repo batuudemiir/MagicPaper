@@ -1,0 +1,917 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l5_hedgehog_v1",
+  "title": "Kestane Pütürlüler Grubunda",
+  "context": {
+    "settingName": "Kozalak Tepesi",
+    "mode": "learning",
+    "companionID": "companion_hedgehog_pilot_001",
+    "structure": "L5",
+    "event": "e1",
+    "mechanism": "sort-by-two-features",
+    "sourceFilename": "learning-hedgehog.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l5_hedgehog_v1",
+    "structure": "L5",
+    "event": "e1",
+    "sample": false,
+    "title": "Kestane Pütürlüler Grubunda",
+    "pages": [
+      "Kozalak Tepesi’nde Deniz yere bir yığın koydu. İçinde taşlar ve kozalaklar vardı. Kestane tıpış tıpış yanına geldi. Hardal yaprağı sallanıyordu.",
+      "Taşlar ve kozalaklar karışık duruyordu. \"Önce büyük ve küçük diye ayıracağım,\" dedi Deniz. Büyükleri bir yana, küçükleri öbür yana koydu. Kestane küçüklerin yanına oturdu.",
+      "Kestane yığına daldı ve yuvarlandı. Çıktığında dikenlerinde iki kozalak vardı! \"Bunlar benim grubum,\" dedi. Deniz gözlerini kısıp güldü. Kozalaklar dikenlerinde sallandı.",
+      "Deniz gruplarına baktı. Büyük grupta taş da kozalak da vardı. \"Başka türlü ayırmalıyım,\" dedi. Kestane bir kozalağa burnunu dayadı. \"Bu da dikenli!\"",
+      "\"Bu kez neye göre?\" diye sordu Kestane. Deniz bir kozalağı ve bir taşı eline aldı. Biri pütürlü, biri pürüzsüzdü.",
+      "Deniz hepsini yeniden ayırdı. Pütürlüler bir yanda, pürüzsüzler öbür yanda. \"Kozalaklar pütürlü, taşlar pürüzsüz!\" dedi. Kestane pütürlülere yakın durdu.",
+      "Kestane kendi dikenlerine dokundu. \"Ben pütürlüler grubundayım,\" dedi. Deniz bir kıkırtıyı zor tuttu. Kestane minik bir top oldu. Kendi gruplarını tanıyordu. Kestane gururla burnunu kaldırdı. Dikenleri güneşte parladı.",
+      "Deniz taşları ve kozalakları yere bıraktı. Kestane dikenlerindeki iki kozalağı da bıraktı. \"Küçük bir adım, sonra bir tane daha,\" dedi."
+    ],
+    "sourceBookID": "pilot56_book_l5_hedgehog_v1"
+  },
+  "inputFileSHA256": "28e3c20d4304b208461d7d921493fd62d70ef661ccc6c587754cd8fb4b4eed98",
+  "inputBookPointer": "input/learning-hedgehog.json#/books/0",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l5_hedgehog_v1",
+      "rawPageMove": "mixed_pile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; taş; kozalak; taş/çakıl; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Hardal yaprağı sallanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "İçinde taşlar ve kozalaklar vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Kozalak Tepesi’nde Deniz yere bir yığın koydu.",
+              "İçinde taşlar ve kozalaklar vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "İçinde taşlar ve kozalaklar vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kestane tıpış tıpış yanına geldi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kozalak Tepesi’nde Deniz yere bir yığın koydu. İçinde taşlar ve kozalaklar vardı. Kestane tıpış tıpış yanına geldi. Hardal yaprağı sallanıyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p01",
+            "evidenceText": "Kozalak Tepesi’nde Deniz yere bir yığın koydu. İçinde taşlar ve kozalaklar vardı. Kestane tıpış tıpış yanına geldi. Hardal yaprağı sallanıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kozalak Tepesi’nde Deniz yere bir yığın koydu. İçinde taşlar ve kozalaklar vardı. Kestane tıpış tıpış yanına geldi. Hardal yaprağı sallanıyordu.",
+        "poseAndActionEvidence": [
+          "Kozalak Tepesi’nde Deniz yere bir yığın koydu.",
+          "İçinde taşlar ve kozalaklar vardı.",
+          "Kestane tıpış tıpış yanına geldi.",
+          "Hardal yaprağı sallanıyordu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kozalak Tepesi’nde Deniz yere bir yığın koydu. İçinde taşlar ve kozalaklar vardı. Kestane tıpış tıpış yanına geldi. Hardal yaprağı sallanıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p01",
+        "quoteSHA256": "cd41e1d40d1ff8db94e246f0dfa217260119534d52239b66d968a551ba6e45f1",
+        "bookID": "pilot56_book_l5_hedgehog_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "cd41e1d40d1ff8db94e246f0dfa217260119534d52239b66d968a551ba6e45f1",
+      "text": "Kozalak Tepesi’nde Deniz yere bir yığın koydu. İçinde taşlar ve kozalaklar vardı. Kestane tıpış tıpış yanına geldi. Hardal yaprağı sallanıyordu.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p01",
+      "sourcePointer": "input/learning-hedgehog.json#/books/0/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l5_hedgehog_v1",
+      "rawPageMove": "first_feature",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; kozalak; taş/çakıl; lamba/fener/ışık; kar/battaniye",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Taşlar ve kozalaklar karışık duruyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Taşlar ve kozalaklar karışık duruyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Taşlar ve kozalaklar karışık duruyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Taşlar ve kozalaklar karışık duruyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Taşlar ve kozalaklar karışık duruyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Taşlar ve kozalaklar karışık duruyordu. \"Önce büyük ve küçük diye ayıracağım,\" dedi Deniz. Büyükleri bir yana, küçükleri öbür yana koydu. Kestane küçüklerin yanına oturdu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p02",
+            "evidenceText": "Taşlar ve kozalaklar karışık duruyordu. \"Önce büyük ve küçük diye ayıracağım,\" dedi Deniz. Büyükleri bir yana, küçükleri öbür yana koydu. Kestane küçüklerin yanına oturdu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Taşlar ve kozalaklar karışık duruyordu. \"Önce büyük ve küçük diye ayıracağım,\" dedi Deniz. Büyükleri bir yana, küçükleri öbür yana koydu. Kestane küçüklerin yanına oturdu.",
+        "poseAndActionEvidence": [
+          "Taşlar ve kozalaklar karışık duruyordu.",
+          "\"Önce büyük ve küçük diye ayıracağım,\" dedi Deniz.",
+          "Büyükleri bir yana, küçükleri öbür yana koydu.",
+          "Kestane küçüklerin yanına oturdu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Taşlar ve kozalaklar karışık duruyordu. \"Önce büyük ve küçük diye ayıracağım,\" dedi Deniz. Büyükleri bir yana, küçükleri öbür yana koydu. Kestane küçüklerin yanına oturdu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p02",
+        "quoteSHA256": "8f71dacb4b5728bab1f0062a668b846b21af055fa9ad03607a87a1fe08cdb40b",
+        "bookID": "pilot56_book_l5_hedgehog_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "8f71dacb4b5728bab1f0062a668b846b21af055fa9ad03607a87a1fe08cdb40b",
+      "text": "Taşlar ve kozalaklar karışık duruyordu. \"Önce büyük ve küçük diye ayıracağım,\" dedi Deniz. Büyükleri bir yana, küçükleri öbür yana koydu. Kestane küçüklerin yanına oturdu.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p02",
+      "sourcePointer": "input/learning-hedgehog.json#/books/0/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l5_hedgehog_v1",
+      "rawPageMove": "friend_sorts_differently",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kütük/yuva; kozalak; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Kestane yığına daldı ve yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Kestane yığına daldı ve yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Çıktığında dikenlerinde iki kozalak vardı!",
+              "Kozalaklar dikenlerinde sallandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Kestane yığına daldı ve yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane yığına daldı ve yuvarlandı. Çıktığında dikenlerinde iki kozalak vardı! \"Bunlar benim grubum,\" dedi. Deniz gözlerini kısıp güldü. Kozalaklar dikenlerinde sallandı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p03",
+            "evidenceText": "Kestane yığına daldı ve yuvarlandı. Çıktığında dikenlerinde iki kozalak vardı! \"Bunlar benim grubum,\" dedi. Deniz gözlerini kısıp güldü. Kozalaklar dikenlerinde sallandı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane yığına daldı ve yuvarlandı. Çıktığında dikenlerinde iki kozalak vardı! \"Bunlar benim grubum,\" dedi. Deniz gözlerini kısıp güldü. Kozalaklar dikenlerinde sallandı.",
+        "poseAndActionEvidence": [
+          "Kestane yığına daldı ve yuvarlandı.",
+          "Çıktığında dikenlerinde iki kozalak vardı!",
+          "\"Bunlar benim grubum,\" dedi.",
+          "Deniz gözlerini kısıp güldü.",
+          "Kozalaklar dikenlerinde sallandı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_hedgehog_pilot_001",
+        "quote": "Kestane yığına daldı ve yuvarlandı. Çıktığında dikenlerinde iki kozalak vardı! \"Bunlar benim grubum,\" dedi. Deniz gözlerini kısıp güldü. Kozalaklar dikenlerinde sallandı.",
+        "attributionQuote": "Kestane",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p03",
+        "quoteSHA256": "10f6b9bb843669ae26b0dde94c6e407c91ffb38f09ff012475619c4ba996543b",
+        "bookID": "pilot56_book_l5_hedgehog_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "10f6b9bb843669ae26b0dde94c6e407c91ffb38f09ff012475619c4ba996543b",
+      "text": "Kestane yığına daldı ve yuvarlandı. Çıktığında dikenlerinde iki kozalak vardı! \"Bunlar benim grubum,\" dedi. Deniz gözlerini kısıp güldü. Kozalaklar dikenlerinde sallandı.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p03",
+      "sourcePointer": "input/learning-hedgehog.json#/books/0/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l5_hedgehog_v1",
+      "rawPageMove": "child_sorts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; kozalak; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Büyük grupta taş da kozalak da vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Büyük grupta taş da kozalak da vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Büyük grupta taş da kozalak da vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz gruplarına baktı. Büyük grupta taş da kozalak da vardı. \"Başka türlü ayırmalıyım,\" dedi. Kestane bir kozalağa burnunu dayadı. \"Bu da dikenli!\"",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p04",
+            "evidenceText": "Deniz gruplarına baktı. Büyük grupta taş da kozalak da vardı. \"Başka türlü ayırmalıyım,\" dedi. Kestane bir kozalağa burnunu dayadı. \"Bu da dikenli!\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz gruplarına baktı. Büyük grupta taş da kozalak da vardı. \"Başka türlü ayırmalıyım,\" dedi. Kestane bir kozalağa burnunu dayadı. \"Bu da dikenli!\"",
+        "poseAndActionEvidence": [
+          "Deniz gruplarına baktı.",
+          "Büyük grupta taş da kozalak da vardı.",
+          "\"Başka türlü ayırmalıyım,\" dedi.",
+          "Kestane bir kozalağa burnunu dayadı.",
+          "\"Bu da dikenli!\""
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz gruplarına baktı. Büyük grupta taş da kozalak da vardı. \"Başka türlü ayırmalıyım,\" dedi. Kestane bir kozalağa burnunu dayadı. \"Bu da dikenli!\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p04",
+        "quoteSHA256": "9a33aac78b80ca76bfd8a786e4b28dd068b7ff6a63e08db05c621c0ea0c9058a",
+        "bookID": "pilot56_book_l5_hedgehog_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "9a33aac78b80ca76bfd8a786e4b28dd068b7ff6a63e08db05c621c0ea0c9058a",
+      "text": "Deniz gruplarına baktı. Büyük grupta taş da kozalak da vardı. \"Başka türlü ayırmalıyım,\" dedi. Kestane bir kozalağa burnunu dayadı. \"Bu da dikenli!\"",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p04",
+      "sourcePointer": "input/learning-hedgehog.json#/books/0/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l5_hedgehog_v1",
+      "rawPageMove": "second_feature",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Deniz bir kozalağı ve bir taşı eline aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Deniz bir kozalağı ve bir taşı eline aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "\"Bu kez neye göre?\" diye sordu Kestane. Deniz bir kozalağı ve bir taşı eline aldı. Biri pütürlü, biri pürüzsüzdü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p05",
+            "evidenceText": "\"Bu kez neye göre?\" diye sordu Kestane. Deniz bir kozalağı ve bir taşı eline aldı. Biri pütürlü, biri pürüzsüzdü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Bu kez neye göre?\" diye sordu Kestane. Deniz bir kozalağı ve bir taşı eline aldı. Biri pütürlü, biri pürüzsüzdü.",
+        "poseAndActionEvidence": [
+          "\"Bu kez neye göre?\" diye sordu Kestane.",
+          "Deniz bir kozalağı ve bir taşı eline aldı.",
+          "Biri pütürlü, biri pürüzsüzdü."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Bu kez neye göre?\" diye sordu Kestane. Deniz bir kozalağı ve bir taşı eline aldı. Biri pütürlü, biri pürüzsüzdü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p05",
+        "quoteSHA256": "14a2d902561a407519cf544e77585464cb785968cf643b7ee0a908e043ac00ec",
+        "bookID": "pilot56_book_l5_hedgehog_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "14a2d902561a407519cf544e77585464cb785968cf643b7ee0a908e043ac00ec",
+      "text": "\"Bu kez neye göre?\" diye sordu Kestane. Deniz bir kozalağı ve bir taşı eline aldı. Biri pütürlü, biri pürüzsüzdü.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p05",
+      "sourcePointer": "input/learning-hedgehog.json#/books/0/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l5_hedgehog_v1",
+      "rawPageMove": "child_resorts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; kozalak; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "\"Kozalaklar pütürlü, taşlar pürüzsüz!\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "\"Kozalaklar pütürlü, taşlar pürüzsüz!\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "\"Kozalaklar pütürlü, taşlar pürüzsüz!\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz hepsini yeniden ayırdı. Pütürlüler bir yanda, pürüzsüzler öbür yanda. \"Kozalaklar pütürlü, taşlar pürüzsüz!\" dedi. Kestane pütürlülere yakın durdu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p06",
+            "evidenceText": "Deniz hepsini yeniden ayırdı. Pütürlüler bir yanda, pürüzsüzler öbür yanda. \"Kozalaklar pütürlü, taşlar pürüzsüz!\" dedi. Kestane pütürlülere yakın durdu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz hepsini yeniden ayırdı. Pütürlüler bir yanda, pürüzsüzler öbür yanda. \"Kozalaklar pütürlü, taşlar pürüzsüz!\" dedi. Kestane pütürlülere yakın durdu.",
+        "poseAndActionEvidence": [
+          "Deniz hepsini yeniden ayırdı.",
+          "Pütürlüler bir yanda, pürüzsüzler öbür yanda.",
+          "\"Kozalaklar pütürlü, taşlar pürüzsüz!\" dedi.",
+          "Kestane pütürlülere yakın durdu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz hepsini yeniden ayırdı. Pütürlüler bir yanda, pürüzsüzler öbür yanda. \"Kozalaklar pütürlü, taşlar pürüzsüz!\" dedi. Kestane pütürlülere yakın durdu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p06",
+        "quoteSHA256": "5579c328cfd56c7bc1c3a2a8436efd7f651181766b567888a1211bba594e8e0a",
+        "bookID": "pilot56_book_l5_hedgehog_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "5579c328cfd56c7bc1c3a2a8436efd7f651181766b567888a1211bba594e8e0a",
+      "text": "Deniz hepsini yeniden ayırdı. Pütürlüler bir yanda, pürüzsüzler öbür yanda. \"Kozalaklar pütürlü, taşlar pürüzsüz!\" dedi. Kestane pütürlülere yakın durdu.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p06",
+      "sourcePointer": "input/learning-hedgehog.json#/books/0/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l5_hedgehog_v1",
+      "rawPageMove": "groups_seen",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kestane minik bir top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane kendi dikenlerine dokundu. \"Ben pütürlüler grubundayım,\" dedi. Deniz bir kıkırtıyı zor tuttu. Kestane minik bir top oldu. Kendi gruplarını tanıyordu. Kestane gururla burnunu kaldırdı. Dikenleri güneşte parladı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p07",
+            "evidenceText": "Kestane kendi dikenlerine dokundu. \"Ben pütürlüler grubundayım,\" dedi. Deniz bir kıkırtıyı zor tuttu. Kestane minik bir top oldu. Kendi gruplarını tanıyordu. Kestane gururla burnunu kaldırdı. Dikenleri güneşte parladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane kendi dikenlerine dokundu. \"Ben pütürlüler grubundayım,\" dedi. Deniz bir kıkırtıyı zor tuttu. Kestane minik bir top oldu. Kendi gruplarını tanıyordu. Kestane gururla burnunu kaldırdı. Dikenleri güneşte parladı.",
+        "poseAndActionEvidence": [
+          "Kestane kendi dikenlerine dokundu.",
+          "\"Ben pütürlüler grubundayım,\" dedi.",
+          "Deniz bir kıkırtıyı zor tuttu.",
+          "Kestane minik bir top oldu.",
+          "Kendi gruplarını tanıyordu.",
+          "Kestane gururla burnunu kaldırdı.",
+          "Dikenleri güneşte parladı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kestane kendi dikenlerine dokundu. \"Ben pütürlüler grubundayım,\" dedi. Deniz bir kıkırtıyı zor tuttu. Kestane minik bir top oldu. Kendi gruplarını tanıyordu. Kestane gururla burnunu kaldırdı. Dikenleri güneşte parladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p07",
+        "quoteSHA256": "38ff77353b178e48685873d3495e5a9dcb05411d83bca6d0d0cb02df47c53582",
+        "bookID": "pilot56_book_l5_hedgehog_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "38ff77353b178e48685873d3495e5a9dcb05411d83bca6d0d0cb02df47c53582",
+      "text": "Kestane kendi dikenlerine dokundu. \"Ben pütürlüler grubundayım,\" dedi. Deniz bir kıkırtıyı zor tuttu. Kestane minik bir top oldu. Kendi gruplarını tanıyordu. Kestane gururla burnunu kaldırdı. Dikenleri güneşte parladı.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p07",
+      "sourcePointer": "input/learning-hedgehog.json#/books/0/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l5_hedgehog_v1",
+      "rawPageMove": "closed_result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; kozalak; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Deniz taşları ve kozalakları yere bıraktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Deniz taşları ve kozalakları yere bıraktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Deniz taşları ve kozalakları yere bıraktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz taşları ve kozalakları yere bıraktı. Kestane dikenlerindeki iki kozalağı da bıraktı. \"Küçük bir adım, sonra bir tane daha,\" dedi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p08",
+            "evidenceText": "Deniz taşları ve kozalakları yere bıraktı. Kestane dikenlerindeki iki kozalağı da bıraktı. \"Küçük bir adım, sonra bir tane daha,\" dedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz taşları ve kozalakları yere bıraktı. Kestane dikenlerindeki iki kozalağı da bıraktı. \"Küçük bir adım, sonra bir tane daha,\" dedi.",
+        "poseAndActionEvidence": [
+          "Deniz taşları ve kozalakları yere bıraktı.",
+          "Kestane dikenlerindeki iki kozalağı da bıraktı.",
+          "\"Küçük bir adım, sonra bir tane daha,\" dedi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz taşları ve kozalakları yere bıraktı. Kestane dikenlerindeki iki kozalağı da bıraktı. \"Küçük bir adım, sonra bir tane daha,\" dedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p08",
+        "quoteSHA256": "6a4d0bf2e51247c571a1169201aa036f04c31a512f9f577e574121de789e3851",
+        "bookID": "pilot56_book_l5_hedgehog_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "6a4d0bf2e51247c571a1169201aa036f04c31a512f9f577e574121de789e3851",
+      "text": "Deniz taşları ve kozalakları yere bıraktı. Kestane dikenlerindeki iki kozalağı da bıraktı. \"Küçük bir adım, sonra bir tane daha,\" dedi.",
+      "sourceID": "p56_wave1_pilot56_book_l5_hedgehog_v1_p08",
+      "sourcePointer": "input/learning-hedgehog.json#/books/0/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk bir özellikle ikiye ayırır, sonra ikinci özellikle yeniden ayırır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

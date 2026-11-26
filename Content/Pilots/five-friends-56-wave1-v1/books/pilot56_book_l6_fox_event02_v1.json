@@ -1,0 +1,886 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l6_fox_event02_v1",
+  "title": "Pati mi, Ayak mı?",
+  "context": {
+    "settingName": "Çiçekli Çayır",
+    "mode": "learning",
+    "companionID": "companion_fox_pilot_001",
+    "structure": "L6",
+    "event": "e2",
+    "mechanism": "measure-with-same-unit",
+    "sourceFilename": "learning-fox.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l6_fox_event02_v1",
+    "structure": "L6",
+    "event": "e2",
+    "sample": false,
+    "title": "Pati mi, Ayak mı?",
+    "pages": [
+      "Çiçekli Çayır’da güneş vardı. Deniz ile Tarçın piknik yerine geldi. Tarçın'ın turkuaz boyunluğu güneşte parlıyordu. Yere kocaman bir örtü serilmişti.",
+      "Çiçekli Çayır’da bir piknik örtüsü ve bir bank vardı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence bank,\" dedi.",
+      "Tarçın bankı patileriyle ölçtü. Pati, pati, pati… On iki pati saydı. \"Bank on iki!\" dedi gururla. Kuyruğu gururla salladı.",
+      "Deniz örtüyü kendi ayaklarıyla ölçtü. Topuğunu öbür ayağının ucuna koyarak yürüdü. Sekiz ayak saydı. \"Sekiz!\" dedi. Tarçın örtünün kokusuna daldı.",
+      "\"Bank on iki, örtü sekiz mi?\" dedi Deniz. Tarçın sevindi. \"O zaman bank uzun!\" Deniz durup düşündü. Tarçın burnunu kaldırdı.",
+      "\"Ama sen patinle, ben ayağımla ölçtüm,\" dedi Deniz. \"Senin patin benim ayağımdan küçük.\" İki ölçü karışmıştı. Tarçın patisine şaşkın şaşkın baktı.",
+      "Deniz bankı da ayaklarıyla ölçtü. Altı ayak çıktı. \"Örtü sekiz, bank altı,\" dedi. \"Örtü daha uzun!\" Tarçın örtünün ucunu kokladı.",
+      "Tarçın örtünün üstüne kıvrıldı. \"Uzun olan benim yatağım olsun,\" dedi. Deniz güldü. Turkuaz boyunluğu örtünün üstünde parladı. Deniz örtüye uzanıp gökyüzüne baktı."
+    ],
+    "sourceBookID": "pilot56_book_l6_fox_event02_v1"
+  },
+  "inputFileSHA256": "733bb8aaaa34ab2b9bf7b9125300b76c3005b579c051f0155732e54bda48cb5b",
+  "inputBookPointer": "input/learning-fox.json#/books/4",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l6_fox_event02_v1",
+      "rawPageMove": "two_paths",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü; boyunluk; papatya/çiçek/yonca; yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Yere kocaman bir örtü serilmişti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "Tarçın'ın turkuaz boyunluğu güneşte parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da güneş vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Yere kocaman bir örtü serilmişti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Çiçekli Çayır’da güneş vardı. Deniz ile Tarçın piknik yerine geldi. Tarçın'ın turkuaz boyunluğu güneşte parlıyordu. Yere kocaman bir örtü serilmişti.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p01",
+            "evidenceText": "Çiçekli Çayır’da güneş vardı. Deniz ile Tarçın piknik yerine geldi. Tarçın'ın turkuaz boyunluğu güneşte parlıyordu. Yere kocaman bir örtü serilmişti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da güneş vardı. Deniz ile Tarçın piknik yerine geldi. Tarçın'ın turkuaz boyunluğu güneşte parlıyordu. Yere kocaman bir örtü serilmişti.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da güneş vardı.",
+          "Deniz ile Tarçın piknik yerine geldi.",
+          "Tarçın'ın turkuaz boyunluğu güneşte parlıyordu.",
+          "Yere kocaman bir örtü serilmişti."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da güneş vardı. Deniz ile Tarçın piknik yerine geldi. Tarçın'ın turkuaz boyunluğu güneşte parlıyordu. Yere kocaman bir örtü serilmişti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p01",
+        "quoteSHA256": "9093e476a3164938c0a61d43bfa5677a057053bf75827cc42383b41b3c94740b",
+        "bookID": "pilot56_book_l6_fox_event02_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "9093e476a3164938c0a61d43bfa5677a057053bf75827cc42383b41b3c94740b",
+      "text": "Çiçekli Çayır’da güneş vardı. Deniz ile Tarçın piknik yerine geldi. Tarçın'ın turkuaz boyunluğu güneşte parlıyordu. Yere kocaman bir örtü serilmişti.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p01",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l6_fox_event02_v1",
+      "rawPageMove": "first_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü; papatya/çiçek/yonca; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da bir piknik örtüsü ve bir bank vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da bir piknik örtüsü ve bir bank vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da bir piknik örtüsü ve bir bank vardı.",
+              "\"Bence bank,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Çiçekli Çayır’da bir piknik örtüsü ve bir bank vardı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence bank,\" dedi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p02",
+            "evidenceText": "Çiçekli Çayır’da bir piknik örtüsü ve bir bank vardı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence bank,\" dedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da bir piknik örtüsü ve bir bank vardı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence bank,\" dedi.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da bir piknik örtüsü ve bir bank vardı.",
+          "\"Hangisi daha uzun?\" diye sordu Deniz.",
+          "\"Bence bank,\" dedi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da bir piknik örtüsü ve bir bank vardı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence bank,\" dedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p02",
+        "quoteSHA256": "4f6a644a6ffebbb71f2a807435c03796ae630c9b3f95716d31e0e0fba6714f89",
+        "bookID": "pilot56_book_l6_fox_event02_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "4f6a644a6ffebbb71f2a807435c03796ae630c9b3f95716d31e0e0fba6714f89",
+      "text": "Çiçekli Çayır’da bir piknik örtüsü ve bir bank vardı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence bank,\" dedi.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p02",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l6_fox_event02_v1",
+      "rawPageMove": "friend_counts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Tarçın bankı patileriyle ölçtü.",
+              "\"Bank on iki!\" dedi gururla."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın bankı patileriyle ölçtü. Pati, pati, pati… On iki pati saydı. \"Bank on iki!\" dedi gururla. Kuyruğu gururla salladı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p03",
+            "evidenceText": "Tarçın bankı patileriyle ölçtü. Pati, pati, pati… On iki pati saydı. \"Bank on iki!\" dedi gururla. Kuyruğu gururla salladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın bankı patileriyle ölçtü. Pati, pati, pati… On iki pati saydı. \"Bank on iki!\" dedi gururla. Kuyruğu gururla salladı.",
+        "poseAndActionEvidence": [
+          "Tarçın bankı patileriyle ölçtü.",
+          "Pati, pati, pati…",
+          "On iki pati saydı.",
+          "\"Bank on iki!\" dedi gururla.",
+          "Kuyruğu gururla salladı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_fox_pilot_001",
+        "quote": "Tarçın bankı patileriyle ölçtü. Pati, pati, pati… On iki pati saydı. \"Bank on iki!\" dedi gururla. Kuyruğu gururla salladı.",
+        "attributionQuote": "Tarçın",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p03",
+        "quoteSHA256": "893dce836504a099ff82340ed0f85122085c2b964d5e2043bfe4ae9f023721c0",
+        "bookID": "pilot56_book_l6_fox_event02_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "893dce836504a099ff82340ed0f85122085c2b964d5e2043bfe4ae9f023721c0",
+      "text": "Tarçın bankı patileriyle ölçtü. Pati, pati, pati… On iki pati saydı. \"Bank on iki!\" dedi gururla. Kuyruğu gururla salladı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p03",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l6_fox_event02_v1",
+      "rawPageMove": "child_counts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; örtü; tüy; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Tarçın örtünün kokusuna daldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Deniz örtüyü kendi ayaklarıyla ölçtü.",
+              "Tarçın örtünün kokusuna daldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Deniz örtüyü kendi ayaklarıyla ölçtü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Topuğunu öbür ayağının ucuna koyarak yürüdü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz örtüyü kendi ayaklarıyla ölçtü. Topuğunu öbür ayağının ucuna koyarak yürüdü. Sekiz ayak saydı. \"Sekiz!\" dedi. Tarçın örtünün kokusuna daldı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p04",
+            "evidenceText": "Deniz örtüyü kendi ayaklarıyla ölçtü. Topuğunu öbür ayağının ucuna koyarak yürüdü. Sekiz ayak saydı. \"Sekiz!\" dedi. Tarçın örtünün kokusuna daldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz örtüyü kendi ayaklarıyla ölçtü. Topuğunu öbür ayağının ucuna koyarak yürüdü. Sekiz ayak saydı. \"Sekiz!\" dedi. Tarçın örtünün kokusuna daldı.",
+        "poseAndActionEvidence": [
+          "Deniz örtüyü kendi ayaklarıyla ölçtü.",
+          "Topuğunu öbür ayağının ucuna koyarak yürüdü.",
+          "Sekiz ayak saydı.",
+          "\"Sekiz!\" dedi.",
+          "Tarçın örtünün kokusuna daldı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz örtüyü kendi ayaklarıyla ölçtü. Topuğunu öbür ayağının ucuna koyarak yürüdü. Sekiz ayak saydı. \"Sekiz!\" dedi. Tarçın örtünün kokusuna daldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p04",
+        "quoteSHA256": "8a9f483ca67d457e45a0bb13b9f0888438256f8f596e5e0f77605ee6560d76b7",
+        "bookID": "pilot56_book_l6_fox_event02_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "8a9f483ca67d457e45a0bb13b9f0888438256f8f596e5e0f77605ee6560d76b7",
+      "text": "Deniz örtüyü kendi ayaklarıyla ölçtü. Topuğunu öbür ayağının ucuna koyarak yürüdü. Sekiz ayak saydı. \"Sekiz!\" dedi. Tarçın örtünün kokusuna daldı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p04",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l6_fox_event02_v1",
+      "rawPageMove": "different_numbers",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "\"Bank on iki, örtü sekiz mi?\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "\"Bank on iki, örtü sekiz mi?\" dedi Deniz.",
+              "\"O zaman bank uzun!\" Deniz durup düşündü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Bank on iki, örtü sekiz mi?\" dedi Deniz. Tarçın sevindi. \"O zaman bank uzun!\" Deniz durup düşündü. Tarçın burnunu kaldırdı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p05",
+            "evidenceText": "\"Bank on iki, örtü sekiz mi?\" dedi Deniz. Tarçın sevindi. \"O zaman bank uzun!\" Deniz durup düşündü. Tarçın burnunu kaldırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Bank on iki, örtü sekiz mi?\" dedi Deniz. Tarçın sevindi. \"O zaman bank uzun!\" Deniz durup düşündü. Tarçın burnunu kaldırdı.",
+        "poseAndActionEvidence": [
+          "\"Bank on iki, örtü sekiz mi?\" dedi Deniz.",
+          "Tarçın sevindi.",
+          "\"O zaman bank uzun!\" Deniz durup düşündü.",
+          "Tarçın burnunu kaldırdı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Bank on iki, örtü sekiz mi?\" dedi Deniz. Tarçın sevindi. \"O zaman bank uzun!\" Deniz durup düşündü. Tarçın burnunu kaldırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p05",
+        "quoteSHA256": "a41e65c02ddd76bfcc61d66216605acf001c7d315483083f1e48099968fd2ff9",
+        "bookID": "pilot56_book_l6_fox_event02_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "a41e65c02ddd76bfcc61d66216605acf001c7d315483083f1e48099968fd2ff9",
+      "text": "\"Bank on iki, örtü sekiz mi?\" dedi Deniz. Tarçın sevindi. \"O zaman bank uzun!\" Deniz durup düşündü. Tarçın burnunu kaldırdı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p05",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l6_fox_event02_v1",
+      "rawPageMove": "child_explains",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kar/battaniye",
+        "propMentions": [
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "\"Senin patin benim ayağımdan küçük.\" İki ölçü karışmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Ama sen patinle, ben ayağımla ölçtüm,\" dedi Deniz. \"Senin patin benim ayağımdan küçük.\" İki ölçü karışmıştı. Tarçın patisine şaşkın şaşkın baktı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p06",
+            "evidenceText": "\"Ama sen patinle, ben ayağımla ölçtüm,\" dedi Deniz. \"Senin patin benim ayağımdan küçük.\" İki ölçü karışmıştı. Tarçın patisine şaşkın şaşkın baktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Ama sen patinle, ben ayağımla ölçtüm,\" dedi Deniz. \"Senin patin benim ayağımdan küçük.\" İki ölçü karışmıştı. Tarçın patisine şaşkın şaşkın baktı.",
+        "poseAndActionEvidence": [
+          "\"Ama sen patinle, ben ayağımla ölçtüm,\" dedi Deniz.",
+          "\"Senin patin benim ayağımdan küçük.\" İki ölçü karışmıştı.",
+          "Tarçın patisine şaşkın şaşkın baktı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Ama sen patinle, ben ayağımla ölçtüm,\" dedi Deniz. \"Senin patin benim ayağımdan küçük.\" İki ölçü karışmıştı. Tarçın patisine şaşkın şaşkın baktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p06",
+        "quoteSHA256": "79323a52a8265e7cafbeb0242eea517a3254679b4526ab877106a523a8f99dea",
+        "bookID": "pilot56_book_l6_fox_event02_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "79323a52a8265e7cafbeb0242eea517a3254679b4526ab877106a523a8f99dea",
+      "text": "\"Ama sen patinle, ben ayağımla ölçtüm,\" dedi Deniz. \"Senin patin benim ayağımdan küçük.\" İki ölçü karışmıştı. Tarçın patisine şaşkın şaşkın baktı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p06",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l6_fox_event02_v1",
+      "rawPageMove": "recheck",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "\"Örtü sekiz, bank altı,\" dedi.",
+              "\"Örtü daha uzun!\" Tarçın örtünün ucunu kokladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Deniz bankı da ayaklarıyla ölçtü.",
+              "\"Örtü sekiz, bank altı,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz bankı da ayaklarıyla ölçtü. Altı ayak çıktı. \"Örtü sekiz, bank altı,\" dedi. \"Örtü daha uzun!\" Tarçın örtünün ucunu kokladı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p07",
+            "evidenceText": "Deniz bankı da ayaklarıyla ölçtü. Altı ayak çıktı. \"Örtü sekiz, bank altı,\" dedi. \"Örtü daha uzun!\" Tarçın örtünün ucunu kokladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz bankı da ayaklarıyla ölçtü. Altı ayak çıktı. \"Örtü sekiz, bank altı,\" dedi. \"Örtü daha uzun!\" Tarçın örtünün ucunu kokladı.",
+        "poseAndActionEvidence": [
+          "Deniz bankı da ayaklarıyla ölçtü.",
+          "Altı ayak çıktı.",
+          "\"Örtü sekiz, bank altı,\" dedi.",
+          "\"Örtü daha uzun!\" Tarçın örtünün ucunu kokladı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz bankı da ayaklarıyla ölçtü. Altı ayak çıktı. \"Örtü sekiz, bank altı,\" dedi. \"Örtü daha uzun!\" Tarçın örtünün ucunu kokladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p07",
+        "quoteSHA256": "f3da780b3e628471f5ee14b205c06f6212d0d7c21bf8103f17b0875a1d3daed8",
+        "bookID": "pilot56_book_l6_fox_event02_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "f3da780b3e628471f5ee14b205c06f6212d0d7c21bf8103f17b0875a1d3daed8",
+      "text": "Deniz bankı da ayaklarıyla ölçtü. Altı ayak çıktı. \"Örtü sekiz, bank altı,\" dedi. \"Örtü daha uzun!\" Tarçın örtünün ucunu kokladı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p07",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l6_fox_event02_v1",
+      "rawPageMove": "closed_result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü; yatak/yastık/döşek; boyunluk; tüy",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Tarçın örtünün üstüne kıvrıldı.",
+              "Turkuaz boyunluğu örtünün üstünde parladı.",
+              "Deniz örtüye uzanıp gökyüzüne baktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "\"Uzun olan benim yatağım olsun,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "Turkuaz boyunluğu örtünün üstünde parladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Deniz örtüye uzanıp gökyüzüne baktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın örtünün üstüne kıvrıldı. \"Uzun olan benim yatağım olsun,\" dedi. Deniz güldü. Turkuaz boyunluğu örtünün üstünde parladı. Deniz örtüye uzanıp gökyüzüne baktı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p08",
+            "evidenceText": "Tarçın örtünün üstüne kıvrıldı. \"Uzun olan benim yatağım olsun,\" dedi. Deniz güldü. Turkuaz boyunluğu örtünün üstünde parladı. Deniz örtüye uzanıp gökyüzüne baktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın örtünün üstüne kıvrıldı. \"Uzun olan benim yatağım olsun,\" dedi. Deniz güldü. Turkuaz boyunluğu örtünün üstünde parladı. Deniz örtüye uzanıp gökyüzüne baktı.",
+        "poseAndActionEvidence": [
+          "Tarçın örtünün üstüne kıvrıldı.",
+          "\"Uzun olan benim yatağım olsun,\" dedi.",
+          "Deniz güldü.",
+          "Turkuaz boyunluğu örtünün üstünde parladı.",
+          "Deniz örtüye uzanıp gökyüzüne baktı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Tarçın örtünün üstüne kıvrıldı. \"Uzun olan benim yatağım olsun,\" dedi. Deniz güldü. Turkuaz boyunluğu örtünün üstünde parladı. Deniz örtüye uzanıp gökyüzüne baktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p08",
+        "quoteSHA256": "c04798949bc2b01cc014ab154ebdc4816c3beb9cccb030fad548dca37970bcdd",
+        "bookID": "pilot56_book_l6_fox_event02_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "c04798949bc2b01cc014ab154ebdc4816c3beb9cccb030fad548dca37970bcdd",
+      "text": "Tarçın örtünün üstüne kıvrıldı. \"Uzun olan benim yatağım olsun,\" dedi. Deniz güldü. Turkuaz boyunluğu örtünün üstünde parladı. Deniz örtüye uzanıp gökyüzüne baktı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_fox_event02_v1_p08",
+      "sourcePointer": "input/learning-fox.json#/books/4/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk kendi ölçüsüyle ikisini sayar, arkadaşının sayısının neden farklı çıktığını bulur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

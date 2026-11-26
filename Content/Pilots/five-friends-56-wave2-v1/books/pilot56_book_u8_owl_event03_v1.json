@@ -1,0 +1,830 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u8_owl_event03_v1",
+  "title": "Yıldız'ın Kocaman Gözleri",
+  "context": {
+    "settingName": "Çatı Katı Odası",
+    "mode": "bedtime",
+    "companionID": "companion_owl_pilot_001",
+    "structure": "U8",
+    "event": "e3",
+    "mechanism": "body-part-rest",
+    "sourceFilename": "bedtime-owl.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u8_owl_event03_v1",
+    "sourceBookID": "pilot56_book_u8_owl_event03_v1",
+    "structure": "U8",
+    "event": "e3",
+    "sample": false,
+    "title": "Yıldız'ın Kocaman Gözleri",
+    "pages": [
+      "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz başını yastığa koydu. Yıldız tüneğinde oturuyordu. İri, yuvarlak gözleri lambanın ışığını yansıtıyordu. Deniz ona bakıp gülümsedi.",
+      "Deniz’in yüzü hâlâ gün gibiydi. Kaşları kalkık, gözleri kocaman açıktı. \"Yüzüm uyumak istemiyor,\" dedi. Burnunu kırıştırıp gülümsedi. Uyku daha çok uzaktaydı.",
+      "Yıldız gözlerini kocaman açtı, sonra kıstı. \"Benim kaşlarım yok,\" dedi. \"Ben gözlerimi uyuturum!\" Bir gözünü kapadı, öteki açık kaldı. Deniz’in kıkırtısı her yere yayıldı.",
+      "Deniz kaşlarını yukarı kaldırdı. Bir, iki, üç. Sonra bıraktı. Alnı yumuşadı. \"Kaşlarım uyudu,\" dedi. Sıra yanaklarına geldi. Deniz bunu da kendisi seçti.",
+      "\"Hımm… sen ne görüyorsun?\" diye sordu Yıldız. \"Göz kırpan bir baykuş,\" dedi Deniz. Yıldız ötekini de kırptı. Deniz başını sallayıp gülümsedi. Yıldız’ın tüyleri kabardı.",
+      "Deniz yanaklarını şişirdi, sonra havayı yavaşça bıraktı. Ağzı, çenesi gevşedi. \"Sıra bitti,\" dedi. Yüzü yastığın üstünde yumuşacıktı. Bu sırayı da kendisi seçmişti.",
+      "Yıldız kanatlarını gövdesine çekti. Gözleri yarıya kadar kapandı. Göğsündeki yıldız tüyü yavaşça inip kalktı. Oda dingindi. Deniz de gözlerini yavaşça kırptı.",
+      "\"Uyku vakti, Deniz,\" diye fısıldadı Yıldız. \"Bir gözüm sende kalacak.\" Deniz yavaşça gözlerini yumdu. Yüzü de, oda da dinlendi."
+    ]
+  },
+  "inputFileSHA256": "8fd9b2ebd87aa531529048f76599e44da39bc9026af9e010ad26913c1fbcf105",
+  "inputBookPointer": "input/bedtime-owl.json#/books/2",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u8_owl_event03_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; yatak/yastık/döşek; tünek; lamba/fener/ışık; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "İri, yuvarlak gözleri lambanın ışığını yansıtıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz başını yastığa koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tünek",
+            "evidenceQuotes": [
+              "Yıldız tüneğinde oturuyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Çatı Katı Odası’nda gece lambası yanıyordu.",
+              "İri, yuvarlak gözleri lambanın ışığını yansıtıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "İri, yuvarlak gözleri lambanın ışığını yansıtıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz başını yastığa koydu. Yıldız tüneğinde oturuyordu. İri, yuvarlak gözleri lambanın ışığını yansıtıyordu. Deniz ona bakıp gülümsedi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p01",
+            "evidenceText": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz başını yastığa koydu. Yıldız tüneğinde oturuyordu. İri, yuvarlak gözleri lambanın ışığını yansıtıyordu. Deniz ona bakıp gülümsedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz başını yastığa koydu. Yıldız tüneğinde oturuyordu. İri, yuvarlak gözleri lambanın ışığını yansıtıyordu. Deniz ona bakıp gülümsedi.",
+        "poseAndActionEvidence": [
+          "Çatı Katı Odası’nda gece lambası yanıyordu.",
+          "Deniz başını yastığa koydu.",
+          "Yıldız tüneğinde oturuyordu.",
+          "İri, yuvarlak gözleri lambanın ışığını yansıtıyordu.",
+          "Deniz ona bakıp gülümsedi."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz başını yastığa koydu. Yıldız tüneğinde oturuyordu. İri, yuvarlak gözleri lambanın ışığını yansıtıyordu. Deniz ona bakıp gülümsedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p01",
+        "quoteSHA256": "bb1b922b9de1979324a631a7056907295d70be9f8bacf0f6592351fa8272b8b5",
+        "bookID": "pilot56_book_u8_owl_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "bb1b922b9de1979324a631a7056907295d70be9f8bacf0f6592351fa8272b8b5",
+      "text": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz başını yastığa koydu. Yıldız tüneğinde oturuyordu. İri, yuvarlak gözleri lambanın ışığını yansıtıyordu. Deniz ona bakıp gülümsedi.",
+      "sourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p01",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u8_owl_event03_v1",
+      "rawPageMove": "body_fidgety",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Kaşları kalkık, gözleri kocaman açıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz’in yüzü hâlâ gün gibiydi. Kaşları kalkık, gözleri kocaman açıktı. \"Yüzüm uyumak istemiyor,\" dedi. Burnunu kırıştırıp gülümsedi. Uyku daha çok uzaktaydı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p02",
+            "evidenceText": "Deniz’in yüzü hâlâ gün gibiydi. Kaşları kalkık, gözleri kocaman açıktı. \"Yüzüm uyumak istemiyor,\" dedi. Burnunu kırıştırıp gülümsedi. Uyku daha çok uzaktaydı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz’in yüzü hâlâ gün gibiydi. Kaşları kalkık, gözleri kocaman açıktı. \"Yüzüm uyumak istemiyor,\" dedi. Burnunu kırıştırıp gülümsedi. Uyku daha çok uzaktaydı.",
+        "poseAndActionEvidence": [
+          "Deniz’in yüzü hâlâ gün gibiydi.",
+          "Kaşları kalkık, gözleri kocaman açıktı.",
+          "\"Yüzüm uyumak istemiyor,\" dedi.",
+          "Burnunu kırıştırıp gülümsedi.",
+          "Uyku daha çok uzaktaydı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz’in yüzü hâlâ gün gibiydi. Kaşları kalkık, gözleri kocaman açıktı. \"Yüzüm uyumak istemiyor,\" dedi. Burnunu kırıştırıp gülümsedi. Uyku daha çok uzaktaydı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p02",
+        "quoteSHA256": "6a38ebfa9340fe1d587bc402ef048fdf3010f7a5d92b0ab4fe4681f4c2814f95",
+        "bookID": "pilot56_book_u8_owl_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "6a38ebfa9340fe1d587bc402ef048fdf3010f7a5d92b0ab4fe4681f4c2814f95",
+      "text": "Deniz’in yüzü hâlâ gün gibiydi. Kaşları kalkık, gözleri kocaman açıktı. \"Yüzüm uyumak istemiyor,\" dedi. Burnunu kırıştırıp gülümsedi. Uyku daha çok uzaktaydı.",
+      "sourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p02",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u8_owl_event03_v1",
+      "rawPageMove": "friend_shows_own_body",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Yıldız gözlerini kocaman açtı, sonra kıstı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Yıldız gözlerini kocaman açtı, sonra kıstı. \"Benim kaşlarım yok,\" dedi. \"Ben gözlerimi uyuturum!\" Bir gözünü kapadı, öteki açık kaldı. Deniz’in kıkırtısı her yere yayıldı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p03",
+            "evidenceText": "Yıldız gözlerini kocaman açtı, sonra kıstı. \"Benim kaşlarım yok,\" dedi. \"Ben gözlerimi uyuturum!\" Bir gözünü kapadı, öteki açık kaldı. Deniz’in kıkırtısı her yere yayıldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yıldız gözlerini kocaman açtı, sonra kıstı. \"Benim kaşlarım yok,\" dedi. \"Ben gözlerimi uyuturum!\" Bir gözünü kapadı, öteki açık kaldı. Deniz’in kıkırtısı her yere yayıldı.",
+        "poseAndActionEvidence": [
+          "Yıldız gözlerini kocaman açtı, sonra kıstı.",
+          "\"Benim kaşlarım yok,\" dedi.",
+          "\"Ben gözlerimi uyuturum!\" Bir gözünü kapadı, öteki açık kaldı.",
+          "Deniz’in kıkırtısı her yere yayıldı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_owl_pilot_001",
+        "quote": "Yıldız gözlerini kocaman açtı, sonra kıstı. \"Benim kaşlarım yok,\" dedi. \"Ben gözlerimi uyuturum!\" Bir gözünü kapadı, öteki açık kaldı. Deniz’in kıkırtısı her yere yayıldı.",
+        "attributionQuote": "Yıldız",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p03",
+        "quoteSHA256": "f2c53fad3831d3db5a713a866793f6a22a497f7ca3d42a2125d25556f52d8a0d",
+        "bookID": "pilot56_book_u8_owl_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "f2c53fad3831d3db5a713a866793f6a22a497f7ca3d42a2125d25556f52d8a0d",
+      "text": "Yıldız gözlerini kocaman açtı, sonra kıstı. \"Benim kaşlarım yok,\" dedi. \"Ben gözlerimi uyuturum!\" Bir gözünü kapadı, öteki açık kaldı. Deniz’in kıkırtısı her yere yayıldı.",
+      "sourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p03",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u8_owl_event03_v1",
+      "rawPageMove": "child_releases_first_part",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kar/battaniye",
+        "propMentions": [
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Deniz kaşlarını yukarı kaldırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz kaşlarını yukarı kaldırdı. Bir, iki, üç. Sonra bıraktı. Alnı yumuşadı. \"Kaşlarım uyudu,\" dedi. Sıra yanaklarına geldi. Deniz bunu da kendisi seçti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p04",
+            "evidenceText": "Deniz kaşlarını yukarı kaldırdı. Bir, iki, üç. Sonra bıraktı. Alnı yumuşadı. \"Kaşlarım uyudu,\" dedi. Sıra yanaklarına geldi. Deniz bunu da kendisi seçti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kaşlarını yukarı kaldırdı. Bir, iki, üç. Sonra bıraktı. Alnı yumuşadı. \"Kaşlarım uyudu,\" dedi. Sıra yanaklarına geldi. Deniz bunu da kendisi seçti.",
+        "poseAndActionEvidence": [
+          "Deniz kaşlarını yukarı kaldırdı.",
+          "Bir, iki, üç.",
+          "Sonra bıraktı.",
+          "Alnı yumuşadı.",
+          "\"Kaşlarım uyudu,\" dedi.",
+          "Sıra yanaklarına geldi.",
+          "Deniz bunu da kendisi seçti."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kaşlarını yukarı kaldırdı. Bir, iki, üç. Sonra bıraktı. Alnı yumuşadı. \"Kaşlarım uyudu,\" dedi. Sıra yanaklarına geldi. Deniz bunu da kendisi seçti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p04",
+        "quoteSHA256": "9d3cfb8ab889afb0f01d150b7627d49c764fc0723e951a842fcfc856e1a543dc",
+        "bookID": "pilot56_book_u8_owl_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "9d3cfb8ab889afb0f01d150b7627d49c764fc0723e951a842fcfc856e1a543dc",
+      "text": "Deniz kaşlarını yukarı kaldırdı. Bir, iki, üç. Sonra bıraktı. Alnı yumuşadı. \"Kaşlarım uyudu,\" dedi. Sıra yanaklarına geldi. Deniz bunu da kendisi seçti.",
+      "sourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p04",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u8_owl_event03_v1",
+      "rawPageMove": "soft_smile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tüy",
+        "propMentions": [
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Yıldız’ın tüyleri kabardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "\"Hımm… sen ne görüyorsun?\" diye sordu Yıldız. \"Göz kırpan bir baykuş,\" dedi Deniz. Yıldız ötekini de kırptı. Deniz başını sallayıp gülümsedi. Yıldız’ın tüyleri kabardı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p05",
+            "evidenceText": "\"Hımm… sen ne görüyorsun?\" diye sordu Yıldız. \"Göz kırpan bir baykuş,\" dedi Deniz. Yıldız ötekini de kırptı. Deniz başını sallayıp gülümsedi. Yıldız’ın tüyleri kabardı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Hımm… sen ne görüyorsun?\" diye sordu Yıldız. \"Göz kırpan bir baykuş,\" dedi Deniz. Yıldız ötekini de kırptı. Deniz başını sallayıp gülümsedi. Yıldız’ın tüyleri kabardı.",
+        "poseAndActionEvidence": [
+          "\"Hımm…",
+          "sen ne görüyorsun?\" diye sordu Yıldız.",
+          "\"Göz kırpan bir baykuş,\" dedi Deniz.",
+          "Yıldız ötekini de kırptı.",
+          "Deniz başını sallayıp gülümsedi.",
+          "Yıldız’ın tüyleri kabardı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Hımm… sen ne görüyorsun?\" diye sordu Yıldız. \"Göz kırpan bir baykuş,\" dedi Deniz. Yıldız ötekini de kırptı. Deniz başını sallayıp gülümsedi. Yıldız’ın tüyleri kabardı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p05",
+        "quoteSHA256": "fbb0dfce4658e778350bedfdb9bd41c500aad28b15eefa8f1dc9915b7c5c7418",
+        "bookID": "pilot56_book_u8_owl_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "fbb0dfce4658e778350bedfdb9bd41c500aad28b15eefa8f1dc9915b7c5c7418",
+      "text": "\"Hımm… sen ne görüyorsun?\" diye sordu Yıldız. \"Göz kırpan bir baykuş,\" dedi Deniz. Yıldız ötekini de kırptı. Deniz başını sallayıp gülümsedi. Yıldız’ın tüyleri kabardı.",
+      "sourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p05",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u8_owl_event03_v1",
+      "rawPageMove": "sequence_done",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Yüzü yastığın üstünde yumuşacıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz yanaklarını şişirdi, sonra havayı yavaşça bıraktı. Ağzı, çenesi gevşedi. \"Sıra bitti,\" dedi. Yüzü yastığın üstünde yumuşacıktı. Bu sırayı da kendisi seçmişti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p06",
+            "evidenceText": "Deniz yanaklarını şişirdi, sonra havayı yavaşça bıraktı. Ağzı, çenesi gevşedi. \"Sıra bitti,\" dedi. Yüzü yastığın üstünde yumuşacıktı. Bu sırayı da kendisi seçmişti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yanaklarını şişirdi, sonra havayı yavaşça bıraktı. Ağzı, çenesi gevşedi. \"Sıra bitti,\" dedi. Yüzü yastığın üstünde yumuşacıktı. Bu sırayı da kendisi seçmişti.",
+        "poseAndActionEvidence": [
+          "Deniz yanaklarını şişirdi, sonra havayı yavaşça bıraktı.",
+          "Ağzı, çenesi gevşedi.",
+          "\"Sıra bitti,\" dedi.",
+          "Yüzü yastığın üstünde yumuşacıktı.",
+          "Bu sırayı da kendisi seçmişti."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yanaklarını şişirdi, sonra havayı yavaşça bıraktı. Ağzı, çenesi gevşedi. \"Sıra bitti,\" dedi. Yüzü yastığın üstünde yumuşacıktı. Bu sırayı da kendisi seçmişti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p06",
+        "quoteSHA256": "6318487ff1d99e6b6d5f26fcf2403b51d9609405204bf5214ddba1a0bce77aa4",
+        "bookID": "pilot56_book_u8_owl_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "6318487ff1d99e6b6d5f26fcf2403b51d9609405204bf5214ddba1a0bce77aa4",
+      "text": "Deniz yanaklarını şişirdi, sonra havayı yavaşça bıraktı. Ağzı, çenesi gevşedi. \"Sıra bitti,\" dedi. Yüzü yastığın üstünde yumuşacıktı. Bu sırayı da kendisi seçmişti.",
+      "sourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p06",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u8_owl_event03_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; tüy",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Yıldız kanatlarını gövdesine çekti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Göğsündeki yıldız tüyü yavaşça inip kalktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Yıldız kanatlarını gövdesine çekti. Gözleri yarıya kadar kapandı. Göğsündeki yıldız tüyü yavaşça inip kalktı. Oda dingindi. Deniz de gözlerini yavaşça kırptı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p07",
+            "evidenceText": "Yıldız kanatlarını gövdesine çekti. Gözleri yarıya kadar kapandı. Göğsündeki yıldız tüyü yavaşça inip kalktı. Oda dingindi. Deniz de gözlerini yavaşça kırptı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yıldız kanatlarını gövdesine çekti. Gözleri yarıya kadar kapandı. Göğsündeki yıldız tüyü yavaşça inip kalktı. Oda dingindi. Deniz de gözlerini yavaşça kırptı.",
+        "poseAndActionEvidence": [
+          "Yıldız kanatlarını gövdesine çekti.",
+          "Gözleri yarıya kadar kapandı.",
+          "Göğsündeki yıldız tüyü yavaşça inip kalktı.",
+          "Oda dingindi.",
+          "Deniz de gözlerini yavaşça kırptı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Yıldız kanatlarını gövdesine çekti. Gözleri yarıya kadar kapandı. Göğsündeki yıldız tüyü yavaşça inip kalktı. Oda dingindi. Deniz de gözlerini yavaşça kırptı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p07",
+        "quoteSHA256": "5600d9fada1fd53bf1902ad7e29ef29396a9ff777a4ae875e21c7b8281bb0555",
+        "bookID": "pilot56_book_u8_owl_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "5600d9fada1fd53bf1902ad7e29ef29396a9ff777a4ae875e21c7b8281bb0555",
+      "text": "Yıldız kanatlarını gövdesine çekti. Gözleri yarıya kadar kapandı. Göğsündeki yıldız tüyü yavaşça inip kalktı. Oda dingindi. Deniz de gözlerini yavaşça kırptı.",
+      "sourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p07",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u8_owl_event03_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "\"Uyku vakti, Deniz,\" diye fısıldadı Yıldız. \"Bir gözüm sende kalacak.\" Deniz yavaşça gözlerini yumdu. Yüzü de, oda da dinlendi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p08",
+            "evidenceText": "\"Uyku vakti, Deniz,\" diye fısıldadı Yıldız. \"Bir gözüm sende kalacak.\" Deniz yavaşça gözlerini yumdu. Yüzü de, oda da dinlendi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Uyku vakti, Deniz,\" diye fısıldadı Yıldız. \"Bir gözüm sende kalacak.\" Deniz yavaşça gözlerini yumdu. Yüzü de, oda da dinlendi.",
+        "poseAndActionEvidence": [
+          "\"Uyku vakti, Deniz,\" diye fısıldadı Yıldız.",
+          "\"Bir gözüm sende kalacak.\" Deniz yavaşça gözlerini yumdu.",
+          "Yüzü de, oda da dinlendi."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Uyku vakti, Deniz,\" diye fısıldadı Yıldız. \"Bir gözüm sende kalacak.\" Deniz yavaşça gözlerini yumdu. Yüzü de, oda da dinlendi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p08",
+        "quoteSHA256": "d7770e73fd3f69fef6480380cf3f323993a372d5c745daf2565744d2bf2e95d0",
+        "bookID": "pilot56_book_u8_owl_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "d7770e73fd3f69fef6480380cf3f323993a372d5c745daf2565744d2bf2e95d0",
+      "text": "\"Uyku vakti, Deniz,\" diye fısıldadı Yıldız. \"Bir gözüm sende kalacak.\" Deniz yavaşça gözlerini yumdu. Yüzü de, oda da dinlendi.",
+      "sourceID": "p56_wave2_pilot56_book_u8_owl_event03_v1_p08",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz bir bölümü önce sıkar, sonra gevşetir; sırayı kendisi söyler, bitirdiğine kendisi karar verir.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

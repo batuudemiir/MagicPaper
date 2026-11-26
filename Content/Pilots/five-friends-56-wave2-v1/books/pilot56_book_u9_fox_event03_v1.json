@@ -1,0 +1,902 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u9_fox_event03_v1",
+  "title": "Tarçın'ın Ağaç Kökü",
+  "context": {
+    "settingName": "Ağaç Ev Odası",
+    "mode": "bedtime",
+    "companionID": "companion_fox_pilot_001",
+    "structure": "U9",
+    "event": "e3",
+    "mechanism": "calm-place-imagining",
+    "sourceFilename": "bedtime-fox.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u9_fox_event03_v1",
+    "sourceBookID": "pilot56_book_u9_fox_event03_v1",
+    "structure": "U9",
+    "event": "e3",
+    "sample": false,
+    "title": "Tarçın'ın Ağaç Kökü",
+    "pages": [
+      "Ağaç Ev Odası’nda gece lambası yanıyordu. Deniz yorganın altına kaydı. Tarçın pencerenin altındaki minderdeydi. Turkuaz boyunluğu ay ışığında parlıyordu. Perde biraz aralıktı.",
+      "Deniz yatağında döndü durdu. Aklında oyunlar, sesler, renkler vardı. Hepsi aynı anda geliyordu. \"Kafamda resimler yarışıyor,\" dedi Deniz.",
+      "\"Benim sakin yerim bir ağaç kökü,\" dedi Tarçın. \"Kökün altına tam bir tilki sığar. Ama kuyruğum hep dışarıda kalır!\" Deniz elini ağzına kapatıp kıkırdadı.",
+      "Deniz gözlerini kapattı ve bir yer seçti. \"Gece çayırı,\" dedi. \"Çimenler serin. Gökte ay var, yumuşacık bir ışık.\"",
+      "\"Bir koklayalım bakalım,\" dedi Tarçın. \"Senin çayırın ne kokuyor?\" \"Serin çimen,\" dedi Deniz. Tarçın burnunu kıpırdatıp gülümsedi. Kuyruğu da sallandı.",
+      "Deniz bir ayrıntı daha söyledi. \"Uzakta bir cırcır böceği ötüyor.\" Sonra durdu. \"Bu kadar,\" dedi. Çayır yavaşça karardı.",
+      "Tarçın kuyruğunu burnuna sardı. Ay ışığı kuyruğunu gümüşe boyadı. Deniz örtüsünün altında rahatça uzandı. Ay ışığı yerde kaldı.",
+      "\"Dinlen artık, Deniz,\" diye fısıldadı Tarçın. Deniz’in kirpikleri yanaklarına indi. Hayaldeki çayır da, gerçek oda da sessizdi. Ay perdenin arkasından baktı."
+    ]
+  },
+  "inputFileSHA256": "fa745c4695185a69c55f50334df79ee92e63670df330aa78b27f22bedb17f92e",
+  "inputBookPointer": "input/bedtime-fox.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u9_fox_event03_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u9_fox_event03_v1_imagined_place",
+            "presence": "imagined",
+            "states": [
+              "mental-image-not-physical-room",
+              "fade-is-mental-release"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; minder; perde/pencere; boyunluk; lamba/fener/ışık",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Ağaç Ev Odası’nda gece lambası yanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Tarçın pencerenin altındaki minderdeydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "perde/pencere",
+            "evidenceQuotes": [
+              "Tarçın pencerenin altındaki minderdeydi.",
+              "Perde biraz aralıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "Turkuaz boyunluğu ay ışığında parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Ağaç Ev Odası’nda gece lambası yanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Ağaç Ev Odası’nda gece lambası yanıyordu. Deniz yorganın altına kaydı. Tarçın pencerenin altındaki minderdeydi. Turkuaz boyunluğu ay ışığında parlıyordu. Perde biraz aralıktı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p01",
+            "evidenceText": "Ağaç Ev Odası’nda gece lambası yanıyordu. Deniz yorganın altına kaydı. Tarçın pencerenin altındaki minderdeydi. Turkuaz boyunluğu ay ışığında parlıyordu. Perde biraz aralıktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Ağaç Ev Odası’nda gece lambası yanıyordu. Deniz yorganın altına kaydı. Tarçın pencerenin altındaki minderdeydi. Turkuaz boyunluğu ay ışığında parlıyordu. Perde biraz aralıktı.",
+        "poseAndActionEvidence": [
+          "Ağaç Ev Odası’nda gece lambası yanıyordu.",
+          "Deniz yorganın altına kaydı.",
+          "Tarçın pencerenin altındaki minderdeydi.",
+          "Turkuaz boyunluğu ay ışığında parlıyordu.",
+          "Perde biraz aralıktı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Ağaç Ev Odası’nda gece lambası yanıyordu. Deniz yorganın altına kaydı. Tarçın pencerenin altındaki minderdeydi. Turkuaz boyunluğu ay ışığında parlıyordu. Perde biraz aralıktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p01",
+        "quoteSHA256": "e6d6f1b7ec3a353b0778cf95803076232be4077db3e70f153e77b0cca53aa162",
+        "bookID": "pilot56_book_u9_fox_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "e6d6f1b7ec3a353b0778cf95803076232be4077db3e70f153e77b0cca53aa162",
+      "text": "Ağaç Ev Odası’nda gece lambası yanıyordu. Deniz yorganın altına kaydı. Tarçın pencerenin altındaki minderdeydi. Turkuaz boyunluğu ay ışığında parlıyordu. Perde biraz aralıktı.",
+      "sourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p01",
+      "sourcePointer": "input/bedtime-fox.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u9_fox_event03_v1",
+      "rawPageMove": "busy_pictures",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u9_fox_event03_v1_imagined_place",
+            "presence": "imagined",
+            "states": [
+              "mental-image-not-physical-room",
+              "fade-is-mental-release"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz yatağında döndü durdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz yatağında döndü durdu. Aklında oyunlar, sesler, renkler vardı. Hepsi aynı anda geliyordu. \"Kafamda resimler yarışıyor,\" dedi Deniz.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p02",
+            "evidenceText": "Deniz yatağında döndü durdu. Aklında oyunlar, sesler, renkler vardı. Hepsi aynı anda geliyordu. \"Kafamda resimler yarışıyor,\" dedi Deniz.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yatağında döndü durdu. Aklında oyunlar, sesler, renkler vardı. Hepsi aynı anda geliyordu. \"Kafamda resimler yarışıyor,\" dedi Deniz.",
+        "poseAndActionEvidence": [
+          "Deniz yatağında döndü durdu.",
+          "Aklında oyunlar, sesler, renkler vardı.",
+          "Hepsi aynı anda geliyordu.",
+          "\"Kafamda resimler yarışıyor,\" dedi Deniz."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yatağında döndü durdu. Aklında oyunlar, sesler, renkler vardı. Hepsi aynı anda geliyordu. \"Kafamda resimler yarışıyor,\" dedi Deniz.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p02",
+        "quoteSHA256": "97a77e2b646ae54652e00ad441e75c4f07e3610650a407f91920d4768b294f5c",
+        "bookID": "pilot56_book_u9_fox_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "97a77e2b646ae54652e00ad441e75c4f07e3610650a407f91920d4768b294f5c",
+      "text": "Deniz yatağında döndü durdu. Aklında oyunlar, sesler, renkler vardı. Hepsi aynı anda geliyordu. \"Kafamda resimler yarışıyor,\" dedi Deniz.",
+      "sourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p02",
+      "sourcePointer": "input/bedtime-fox.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u9_fox_event03_v1",
+      "rawPageMove": "friend_calm_place",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u9_fox_event03_v1_imagined_place",
+            "presence": "imagined",
+            "states": [
+              "mental-image-not-physical-room",
+              "fade-is-mental-release"
+            ]
+          }
+        ],
+        "propDescription": "çatallı kök; ağaç/gövde",
+        "propMentions": [
+          {
+            "label": "çatallı kök",
+            "evidenceQuotes": [
+              "\"Benim sakin yerim bir ağaç kökü,\" dedi Tarçın.",
+              "\"Kökün altına tam bir tilki sığar."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "\"Benim sakin yerim bir ağaç kökü,\" dedi Tarçın."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Benim sakin yerim bir ağaç kökü,\" dedi Tarçın. \"Kökün altına tam bir tilki sığar. Ama kuyruğum hep dışarıda kalır!\" Deniz elini ağzına kapatıp kıkırdadı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p03",
+            "evidenceText": "\"Benim sakin yerim bir ağaç kökü,\" dedi Tarçın. \"Kökün altına tam bir tilki sığar. Ama kuyruğum hep dışarıda kalır!\" Deniz elini ağzına kapatıp kıkırdadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Benim sakin yerim bir ağaç kökü,\" dedi Tarçın. \"Kökün altına tam bir tilki sığar. Ama kuyruğum hep dışarıda kalır!\" Deniz elini ağzına kapatıp kıkırdadı.",
+        "poseAndActionEvidence": [
+          "\"Benim sakin yerim bir ağaç kökü,\" dedi Tarçın.",
+          "\"Kökün altına tam bir tilki sığar.",
+          "Ama kuyruğum hep dışarıda kalır!\" Deniz elini ağzına kapatıp kıkırdadı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_fox_pilot_001",
+        "quote": "\"Benim sakin yerim bir ağaç kökü,\" dedi Tarçın. \"Kökün altına tam bir tilki sığar. Ama kuyruğum hep dışarıda kalır!\" Deniz elini ağzına kapatıp kıkırdadı.",
+        "attributionQuote": "Tarçın",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p03",
+        "quoteSHA256": "b07298cd81ca2e7d3e6d3cf0d014c586e20c6a901a4aa1a345d33bab017aaada",
+        "bookID": "pilot56_book_u9_fox_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "b07298cd81ca2e7d3e6d3cf0d014c586e20c6a901a4aa1a345d33bab017aaada",
+      "text": "\"Benim sakin yerim bir ağaç kökü,\" dedi Tarçın. \"Kökün altına tam bir tilki sığar. Ama kuyruğum hep dışarıda kalır!\" Deniz elini ağzına kapatıp kıkırdadı.",
+      "sourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p03",
+      "sourcePointer": "input/bedtime-fox.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u9_fox_event03_v1",
+      "rawPageMove": "child_picks_place",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u9_fox_event03_v1_imagined_place",
+            "presence": "imagined",
+            "states": [
+              "mental-image-not-physical-room",
+              "fade-is-mental-release"
+            ]
+          }
+        ],
+        "propDescription": "lamba/fener/ışık",
+        "propMentions": [
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Gökte ay var, yumuşacık bir ışık.\""
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz gözlerini kapattı ve bir yer seçti. \"Gece çayırı,\" dedi. \"Çimenler serin. Gökte ay var, yumuşacık bir ışık.\"",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p04",
+            "evidenceText": "Deniz gözlerini kapattı ve bir yer seçti. \"Gece çayırı,\" dedi. \"Çimenler serin. Gökte ay var, yumuşacık bir ışık.\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz gözlerini kapattı ve bir yer seçti. \"Gece çayırı,\" dedi. \"Çimenler serin. Gökte ay var, yumuşacık bir ışık.\"",
+        "poseAndActionEvidence": [
+          "Deniz gözlerini kapattı ve bir yer seçti.",
+          "\"Gece çayırı,\" dedi.",
+          "\"Çimenler serin.",
+          "Gökte ay var, yumuşacık bir ışık.\""
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz gözlerini kapattı ve bir yer seçti. \"Gece çayırı,\" dedi. \"Çimenler serin. Gökte ay var, yumuşacık bir ışık.\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p04",
+        "quoteSHA256": "5f901bc916dc25d744739bcf9853d7a617997c95c48e68632d77b0defaef4e49",
+        "bookID": "pilot56_book_u9_fox_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "5f901bc916dc25d744739bcf9853d7a617997c95c48e68632d77b0defaef4e49",
+      "text": "Deniz gözlerini kapattı ve bir yer seçti. \"Gece çayırı,\" dedi. \"Çimenler serin. Gökte ay var, yumuşacık bir ışık.\"",
+      "sourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p04",
+      "sourcePointer": "input/bedtime-fox.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u9_fox_event03_v1",
+      "rawPageMove": "soft_smile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u9_fox_event03_v1_imagined_place",
+            "presence": "imagined",
+            "states": [
+              "mental-image-not-physical-room",
+              "fade-is-mental-release"
+            ]
+          }
+        ],
+        "propDescription": "top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Tarçın burnunu kıpırdatıp gülümsedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Bir koklayalım bakalım,\" dedi Tarçın. \"Senin çayırın ne kokuyor?\" \"Serin çimen,\" dedi Deniz. Tarçın burnunu kıpırdatıp gülümsedi. Kuyruğu da sallandı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p05",
+            "evidenceText": "\"Bir koklayalım bakalım,\" dedi Tarçın. \"Senin çayırın ne kokuyor?\" \"Serin çimen,\" dedi Deniz. Tarçın burnunu kıpırdatıp gülümsedi. Kuyruğu da sallandı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Bir koklayalım bakalım,\" dedi Tarçın. \"Senin çayırın ne kokuyor?\" \"Serin çimen,\" dedi Deniz. Tarçın burnunu kıpırdatıp gülümsedi. Kuyruğu da sallandı.",
+        "poseAndActionEvidence": [
+          "\"Bir koklayalım bakalım,\" dedi Tarçın.",
+          "\"Senin çayırın ne kokuyor?\" \"Serin çimen,\" dedi Deniz.",
+          "Tarçın burnunu kıpırdatıp gülümsedi.",
+          "Kuyruğu da sallandı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Bir koklayalım bakalım,\" dedi Tarçın. \"Senin çayırın ne kokuyor?\" \"Serin çimen,\" dedi Deniz. Tarçın burnunu kıpırdatıp gülümsedi. Kuyruğu da sallandı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p05",
+        "quoteSHA256": "5ddea8f07992408194ca850610be295a2fa7e735e0b7f86620301737d1ddbfbc",
+        "bookID": "pilot56_book_u9_fox_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "5ddea8f07992408194ca850610be295a2fa7e735e0b7f86620301737d1ddbfbc",
+      "text": "\"Bir koklayalım bakalım,\" dedi Tarçın. \"Senin çayırın ne kokuyor?\" \"Serin çimen,\" dedi Deniz. Tarçın burnunu kıpırdatıp gülümsedi. Kuyruğu da sallandı.",
+      "sourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p05",
+      "sourcePointer": "input/bedtime-fox.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u9_fox_event03_v1",
+      "rawPageMove": "details_done",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u9_fox_event03_v1_imagined_place",
+            "presence": "imagined",
+            "states": [
+              "mental-image-not-physical-room",
+              "fade-is-mental-release"
+            ]
+          }
+        ],
+        "propDescription": "tüy",
+        "propMentions": [
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "\"Uzakta bir cırcır böceği ötüyor.\" Sonra durdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz bir ayrıntı daha söyledi. \"Uzakta bir cırcır böceği ötüyor.\" Sonra durdu. \"Bu kadar,\" dedi. Çayır yavaşça karardı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p06",
+            "evidenceText": "Deniz bir ayrıntı daha söyledi. \"Uzakta bir cırcır böceği ötüyor.\" Sonra durdu. \"Bu kadar,\" dedi. Çayır yavaşça karardı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz bir ayrıntı daha söyledi. \"Uzakta bir cırcır böceği ötüyor.\" Sonra durdu. \"Bu kadar,\" dedi. Çayır yavaşça karardı.",
+        "poseAndActionEvidence": [
+          "Deniz bir ayrıntı daha söyledi.",
+          "\"Uzakta bir cırcır böceği ötüyor.\" Sonra durdu.",
+          "\"Bu kadar,\" dedi.",
+          "Çayır yavaşça karardı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz bir ayrıntı daha söyledi. \"Uzakta bir cırcır böceği ötüyor.\" Sonra durdu. \"Bu kadar,\" dedi. Çayır yavaşça karardı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p06",
+        "quoteSHA256": "1cbd7aafaf78ec4d3dc68e00f249f6875b409cddbb1a123654b9d1ad278e87b0",
+        "bookID": "pilot56_book_u9_fox_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "1cbd7aafaf78ec4d3dc68e00f249f6875b409cddbb1a123654b9d1ad278e87b0",
+      "text": "Deniz bir ayrıntı daha söyledi. \"Uzakta bir cırcır böceği ötüyor.\" Sonra durdu. \"Bu kadar,\" dedi. Çayır yavaşça karardı.",
+      "sourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p06",
+      "sourcePointer": "input/bedtime-fox.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u9_fox_event03_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u9_fox_event03_v1_imagined_place",
+            "presence": "imagined",
+            "states": [
+              "mental-image-not-physical-room",
+              "fade-is-mental-release"
+            ]
+          }
+        ],
+        "propDescription": "örtü; resim eşyası",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Deniz örtüsünün altında rahatça uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Ay ışığı kuyruğunu gümüşe boyadı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın kuyruğunu burnuna sardı. Ay ışığı kuyruğunu gümüşe boyadı. Deniz örtüsünün altında rahatça uzandı. Ay ışığı yerde kaldı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p07",
+            "evidenceText": "Tarçın kuyruğunu burnuna sardı. Ay ışığı kuyruğunu gümüşe boyadı. Deniz örtüsünün altında rahatça uzandı. Ay ışığı yerde kaldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın kuyruğunu burnuna sardı. Ay ışığı kuyruğunu gümüşe boyadı. Deniz örtüsünün altında rahatça uzandı. Ay ışığı yerde kaldı.",
+        "poseAndActionEvidence": [
+          "Tarçın kuyruğunu burnuna sardı.",
+          "Ay ışığı kuyruğunu gümüşe boyadı.",
+          "Deniz örtüsünün altında rahatça uzandı.",
+          "Ay ışığı yerde kaldı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Tarçın kuyruğunu burnuna sardı. Ay ışığı kuyruğunu gümüşe boyadı. Deniz örtüsünün altında rahatça uzandı. Ay ışığı yerde kaldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p07",
+        "quoteSHA256": "779db3057fd1eb515fd2d4d89ee1e15cf2e0b0f39f5eb668aaaa299f8bcde046",
+        "bookID": "pilot56_book_u9_fox_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "779db3057fd1eb515fd2d4d89ee1e15cf2e0b0f39f5eb668aaaa299f8bcde046",
+      "text": "Tarçın kuyruğunu burnuna sardı. Ay ışığı kuyruğunu gümüşe boyadı. Deniz örtüsünün altında rahatça uzandı. Ay ışığı yerde kaldı.",
+      "sourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p07",
+      "sourcePointer": "input/bedtime-fox.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u9_fox_event03_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u9_fox_event03_v1_imagined_place",
+            "presence": "imagined",
+            "states": [
+              "mental-image-not-physical-room",
+              "fade-is-mental-release"
+            ]
+          }
+        ],
+        "propDescription": "perde/pencere",
+        "propMentions": [
+          {
+            "label": "perde/pencere",
+            "evidenceQuotes": [
+              "Ay perdenin arkasından baktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Dinlen artık, Deniz,\" diye fısıldadı Tarçın. Deniz’in kirpikleri yanaklarına indi. Hayaldeki çayır da, gerçek oda da sessizdi. Ay perdenin arkasından baktı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p08",
+            "evidenceText": "\"Dinlen artık, Deniz,\" diye fısıldadı Tarçın. Deniz’in kirpikleri yanaklarına indi. Hayaldeki çayır da, gerçek oda da sessizdi. Ay perdenin arkasından baktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Dinlen artık, Deniz,\" diye fısıldadı Tarçın. Deniz’in kirpikleri yanaklarına indi. Hayaldeki çayır da, gerçek oda da sessizdi. Ay perdenin arkasından baktı.",
+        "poseAndActionEvidence": [
+          "\"Dinlen artık, Deniz,\" diye fısıldadı Tarçın.",
+          "Deniz’in kirpikleri yanaklarına indi.",
+          "Hayaldeki çayır da, gerçek oda da sessizdi.",
+          "Ay perdenin arkasından baktı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Ana fiziksel sahne Ağaç Ev Odasıdır. Seçilen dere/karlı pencere/gece çayırı ve arkadaşın sakin yeri zihindeki resimdir; yatak/döşek/tünek odada kalır. Hayal resmi ayrı çerçevede gösterilebilir, oda su/kum/çimen/mağaraya dönüşmez. Resmin solması mekânın fiziksel yok olması değildir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Dinlen artık, Deniz,\" diye fısıldadı Tarçın. Deniz’in kirpikleri yanaklarına indi. Hayaldeki çayır da, gerçek oda da sessizdi. Ay perdenin arkasından baktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p08",
+        "quoteSHA256": "dc46ddc414e69509ac17ef7ef9a78fb171fd7e3ac125cb88a2d12bfd8c28ab1a",
+        "bookID": "pilot56_book_u9_fox_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "dc46ddc414e69509ac17ef7ef9a78fb171fd7e3ac125cb88a2d12bfd8c28ab1a",
+      "text": "\"Dinlen artık, Deniz,\" diye fısıldadı Tarçın. Deniz’in kirpikleri yanaklarına indi. Hayaldeki çayır da, gerçek oda da sessizdi. Ay perdenin arkasından baktı.",
+      "sourceID": "p56_wave2_pilot56_book_u9_fox_event03_v1_p08",
+      "sourcePointer": "input/bedtime-fox.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz gözlerini kapatıp sakin bir yer seçer, üç ayrıntısını söyler, sonra resmi kendisi soldurur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

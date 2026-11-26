@@ -1,0 +1,261 @@
+{
+ "schema": "bes-arkadas.dalga1-structures.draft",
+ "note": "Batuhan onayı 2026-11-26; motor sözleşmesi Codex tarafından kurulacak",
+ "structures": [
+  {
+   "planLabel": "U4",
+   "mode": "bedtime",
+   "mechanismKey": "rain-breath-pacing",
+   "setting": "Çatı Katı Odası",
+   "obstacle": "Cama ya da çatıya vuran yağmurun ritmi.",
+   "solution": "Çocuk damlaları sayarken nefesini yavaşlatır, sonra saymayı kendisi bırakır.",
+   "allowedCompanionIDs": [
+    "companion_hedgehog_pilot_001",
+    "companion_city_cat_001",
+    "companion_bear_001"
+   ],
+   "pageMoves": [
+    "settled_room",
+    "rain_noticed",
+    "friend_counts_along",
+    "child_slows_breath",
+    "soft_smile",
+    "counting_released",
+    "awake_rest",
+    "closed_calm"
+   ],
+   "events": [
+    "e1 = _v1",
+    "e2 = _event02_v1",
+    "e3 = _event03_v1"
+   ]
+  },
+  {
+   "planLabel": "U5",
+   "mode": "bedtime",
+   "mechanismKey": "one-plan-for-tomorrow",
+   "setting": "Orman Kıyısındaki Oda",
+   "obstacle": "Yarın yapılacak bir sürü şeyi düşünmek.",
+   "solution": "Çocuk tek bir planı seçip söyler, gerisini sabaha bırakır.",
+   "allowedCompanionIDs": [
+    "companion_fox_pilot_001",
+    "companion_owl_pilot_001",
+    "companion_bear_001"
+   ],
+   "pageMoves": [
+    "settled_room",
+    "many_plans",
+    "friend_shares_wish",
+    "child_picks_one",
+    "soft_smile",
+    "rest_left_for_morning",
+    "awake_rest",
+    "closed_calm"
+   ],
+   "events": [
+    "e1 = _v1",
+    "e2 = _event02_v1",
+    "e3 = _event03_v1"
+   ]
+  },
+  {
+   "planLabel": "U6",
+   "mode": "bedtime",
+   "mechanismKey": "lights-goodnight-round",
+   "setting": "Ağaç Ev Odası",
+   "obstacle": "Odada hâlâ yanan küçük ışıklar.",
+   "solution": "Çocuk sırayla hangi ışığın söneceğini seçer, tek bir ışığı kendisi bırakır.",
+   "allowedCompanionIDs": [
+    "companion_fox_pilot_001",
+    "companion_owl_pilot_001",
+    "companion_hedgehog_pilot_001",
+    "companion_city_cat_001"
+   ],
+   "pageMoves": [
+    "settled_room",
+    "lights_noticed",
+    "friend_preference",
+    "child_orders_lights",
+    "soft_trial",
+    "night_light_kept",
+    "awake_rest",
+    "closed_calm"
+   ],
+   "events": [
+    "e1 = _v1",
+    "e2 = _event02_v1",
+    "e3 = _event03_v1"
+   ]
+  },
+  {
+   "planLabel": "L4",
+   "mode": "learning",
+   "mechanismKey": "predict-float-sink",
+   "setting": "Yağmur sonrası bahçe, sığ su birikintisi",
+   "obstacle": "Hangi şeyin suyun üstünde kalacağı bilinmiyor.",
+   "solution": "Çocuk tahmin eder, nesneleri tek tek dener ve sonucu kendisi karşılaştırır.",
+   "allowedCompanionIDs": [
+    "companion_fox_pilot_001",
+    "companion_owl_pilot_001",
+    "companion_bear_001"
+   ],
+   "pageMoves": [
+    "puddle_noticed",
+    "child_predicts",
+    "friend_guess",
+    "test_one",
+    "test_two",
+    "child_compares",
+    "test_three",
+    "closed_result"
+   ],
+   "events": [
+    "e1 = _v1",
+    "e2 = _event02_v1",
+    "e3 = _event03_v1"
+   ]
+  },
+  {
+   "planLabel": "L5",
+   "mode": "learning",
+   "mechanismKey": "sort-by-two-features",
+   "setting": "Kozalak Tepesi",
+   "obstacle": "Toplanan şeyler karışık duruyor.",
+   "solution": "Çocuk bir özellikle ikiye ayırır, sonra ikinci özellikle yeniden ayırır.",
+   "allowedCompanionIDs": [
+    "companion_owl_pilot_001",
+    "companion_city_cat_001",
+    "companion_hedgehog_pilot_001"
+   ],
+   "pageMoves": [
+    "mixed_pile",
+    "first_feature",
+    "friend_sorts_differently",
+    "child_sorts",
+    "second_feature",
+    "child_resorts",
+    "groups_seen",
+    "closed_result"
+   ],
+   "events": [
+    "e1 = _v1",
+    "e2 = _event02_v1",
+    "e3 = _event03_v1"
+   ]
+  },
+  {
+   "planLabel": "L6",
+   "mode": "learning",
+   "mechanismKey": "measure-with-same-unit",
+   "setting": "Çiçekli Çayır",
+   "obstacle": "İki şeyden hangisinin uzun olduğu anlaşılmıyor.",
+   "solution": "Çocuk kendi ölçüsüyle ikisini sayar, arkadaşının sayısının neden farklı çıktığını bulur.",
+   "allowedCompanionIDs": [
+    "companion_fox_pilot_001",
+    "companion_city_cat_001",
+    "companion_hedgehog_pilot_001",
+    "companion_bear_001"
+   ],
+   "pageMoves": [
+    "two_paths",
+    "first_guess",
+    "friend_counts",
+    "child_counts",
+    "different_numbers",
+    "child_explains",
+    "recheck",
+    "closed_result"
+   ],
+   "events": [
+    "e1 = _v1",
+    "e2 = _event02_v1",
+    "e3 = _event03_v1"
+   ]
+  },
+  {
+   "planLabel": "A4",
+   "mode": "adventure",
+   "mechanismKey": "build-stepping-path",
+   "setting": "Çamurlu Patika",
+   "obstacle": "Patikanın ortası yumuşak çamur.",
+   "solution": "Çocuk malzemeyi seçip kendi adım aralığına göre dizer, yolu kendisi yürür.",
+   "allowedCompanionIDs": [
+    "companion_hedgehog_pilot_001",
+    "companion_city_cat_001",
+    "companion_bear_001"
+   ],
+   "pageMoves": [
+    "goal_beyond_mud",
+    "approach",
+    "friend_tries",
+    "child_selects_material",
+    "first_piece",
+    "child_completes_path",
+    "goal_reached",
+    "closed_return"
+   ],
+   "events": [
+    "e1 = _v1",
+    "e2 = _event02_v1",
+    "e3 = _event03_v1"
+   ]
+  },
+  {
+   "planLabel": "A5",
+   "mode": "adventure",
+   "mechanismKey": "take-turns-at-view",
+   "setting": "Seyir Taşı, Kütük Yolu, Gün Batımı Tepesi",
+   "obstacle": "Bakılan yerde tek kişilik yer var.",
+   "solution": "Çocuk sırayı kendisi önerir, beklerken tahmin eder, sonra yerini paylaşır.",
+   "allowedCompanionIDs": [
+    "companion_fox_pilot_001",
+    "companion_owl_pilot_001",
+    "companion_bear_001"
+   ],
+   "pageMoves": [
+    "shared_spot",
+    "approach",
+    "friend_wants_turn",
+    "child_proposes_order",
+    "wait_and_guess",
+    "child_takes_turn",
+    "view_shared",
+    "closed_return"
+   ],
+   "events": [
+    "e1 = _v1",
+    "e2 = _event02_v1",
+    "e3 = _event03_v1"
+   ]
+  },
+  {
+   "planLabel": "A6",
+   "mode": "adventure",
+   "mechanismKey": "stick-map-landmarks",
+   "setting": "Fısıldayan Orman",
+   "obstacle": "Hedefe giden yol karışık.",
+   "solution": "Çocuk bildiği üç işareti dalla yere çizer ve haritayı izleyerek yolu bulur.",
+   "allowedCompanionIDs": [
+    "companion_fox_pilot_001",
+    "companion_hedgehog_pilot_001",
+    "companion_owl_pilot_001",
+    "companion_city_cat_001"
+   ],
+   "pageMoves": [
+    "route_unclear",
+    "landmarks_recalled",
+    "friend_adds_landmark",
+    "child_draws_map",
+    "follow_first",
+    "child_checks_map",
+    "goal_reached",
+    "closed_return"
+   ],
+   "events": [
+    "e1 = _v1",
+    "e2 = _event02_v1",
+    "e3 = _event03_v1"
+   ]
+  }
+ ]
+}

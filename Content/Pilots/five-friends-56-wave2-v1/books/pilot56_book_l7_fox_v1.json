@@ -1,0 +1,818 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l7_fox_v1",
+  "title": "Tarçın Gölgesini Kokluyor",
+  "context": {
+    "settingName": "Çiçekli Çayır",
+    "mode": "learning",
+    "companionID": "companion_fox_pilot_001",
+    "structure": "L7",
+    "event": "e1",
+    "mechanism": "shadow-direction",
+    "sourceFilename": "learning-fox.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l7_fox_v1",
+    "sourceBookID": "pilot56_book_l7_fox_v1",
+    "structure": "L7",
+    "event": "e1",
+    "sample": true,
+    "title": "Tarçın Gölgesini Kokluyor",
+    "pages": [
+      "Çiçekli Çayır’da öğleden sonraydı. Güneş ağaçların üstündeydi. Deniz çimenlerin arasında yürüyordu. Tarçın yanında koşuyordu. Turkuaz boyunluğu güneşte parlıyordu.",
+      "Deniz yere baktı. Önünde uzun, koyu bir şekil vardı. \"Gölgem önümde,\" dedi. \"Ama sabah arkamdaydı galiba.\" Nereye düşeceğini merak etti.",
+      "\"Bir koklayalım bakalım,\" dedi Tarçın. Gölgeyi kokladı. \"Hiç kokmuyor! Bence rüzgâr gölgeyi sürüklüyor.\" Deniz kıkırdadı. Rüzgâr hiç esmiyordu.",
+      "Deniz arkasını döndü. Güneş şimdi önündeydi. Yere baktı. Gölgesi arkasına geçmişti! \"Döndüm, gölgem de benimle döndü,\" dedi şaşkınlıkla.",
+      "Deniz yan döndü. Güneş sol yanındaydı. Gölgesi sağ yanına düştü. Tarçın gölgeye atladı, gölge de onun sırtına çıktı.",
+      "Deniz üç durumu düşündü. \"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi. Bunu kendi gözleriyle bulmuştu. Tarçın’ın kuyruğu pır pır etti.",
+      "\"Şimdi tahmin edeyim,\" dedi Deniz. Güneşe sırtını verdi. \"Gölgem önüme düşecek!\" Yere baktı. Gölge tam önündeydi. Deniz sevindi.",
+      "Deniz geri dönmeye başladı. Gölgesi önünde yürüyordu. Tarçın kendi gölgesinin peşinden koştu. \"Bunu hiç yakalayamıyorum!\" dedi. Deniz güldü."
+    ]
+  },
+  "inputFileSHA256": "5aab0007031b15890d8001939cd946ad64e9ba73c1a434c41567eb97d372f978",
+  "inputBookPointer": "input/learning-fox.json#/books/0",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l7_fox_v1",
+      "rawPageMove": "noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; boyunluk; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Güneş ağaçların üstündeydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "Turkuaz boyunluğu güneşte parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da öğleden sonraydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Çiçekli Çayır’da öğleden sonraydı. Güneş ağaçların üstündeydi. Deniz çimenlerin arasında yürüyordu. Tarçın yanında koşuyordu. Turkuaz boyunluğu güneşte parlıyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p01",
+            "evidenceText": "Çiçekli Çayır’da öğleden sonraydı. Güneş ağaçların üstündeydi. Deniz çimenlerin arasında yürüyordu. Tarçın yanında koşuyordu. Turkuaz boyunluğu güneşte parlıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da öğleden sonraydı. Güneş ağaçların üstündeydi. Deniz çimenlerin arasında yürüyordu. Tarçın yanında koşuyordu. Turkuaz boyunluğu güneşte parlıyordu.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da öğleden sonraydı.",
+          "Güneş ağaçların üstündeydi.",
+          "Deniz çimenlerin arasında yürüyordu.",
+          "Tarçın yanında koşuyordu.",
+          "Turkuaz boyunluğu güneşte parlıyordu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da öğleden sonraydı. Güneş ağaçların üstündeydi. Deniz çimenlerin arasında yürüyordu. Tarçın yanında koşuyordu. Turkuaz boyunluğu güneşte parlıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p01",
+        "quoteSHA256": "19b28432937d33ec0dadd99424b2c89b3b1094801278fb3ea715b2cdf1cff049",
+        "bookID": "pilot56_book_l7_fox_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "19b28432937d33ec0dadd99424b2c89b3b1094801278fb3ea715b2cdf1cff049",
+      "text": "Çiçekli Çayır’da öğleden sonraydı. Güneş ağaçların üstündeydi. Deniz çimenlerin arasında yürüyordu. Tarçın yanında koşuyordu. Turkuaz boyunluğu güneşte parlıyordu.",
+      "sourceID": "p56_wave2_pilot56_book_l7_fox_v1_p01",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l7_fox_v1",
+      "rawPageMove": "child_guesses",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "gölge",
+        "propMentions": [
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "\"Gölgem önümde,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz yere baktı. Önünde uzun, koyu bir şekil vardı. \"Gölgem önümde,\" dedi. \"Ama sabah arkamdaydı galiba.\" Nereye düşeceğini merak etti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p02",
+            "evidenceText": "Deniz yere baktı. Önünde uzun, koyu bir şekil vardı. \"Gölgem önümde,\" dedi. \"Ama sabah arkamdaydı galiba.\" Nereye düşeceğini merak etti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yere baktı. Önünde uzun, koyu bir şekil vardı. \"Gölgem önümde,\" dedi. \"Ama sabah arkamdaydı galiba.\" Nereye düşeceğini merak etti.",
+        "poseAndActionEvidence": [
+          "Deniz yere baktı.",
+          "Önünde uzun, koyu bir şekil vardı.",
+          "\"Gölgem önümde,\" dedi.",
+          "\"Ama sabah arkamdaydı galiba.\" Nereye düşeceğini merak etti."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yere baktı. Önünde uzun, koyu bir şekil vardı. \"Gölgem önümde,\" dedi. \"Ama sabah arkamdaydı galiba.\" Nereye düşeceğini merak etti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p02",
+        "quoteSHA256": "34fbb6769f348601ca565b5b0d59fdb683d97048156bd6a295881bad92bcbe1d",
+        "bookID": "pilot56_book_l7_fox_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "34fbb6769f348601ca565b5b0d59fdb683d97048156bd6a295881bad92bcbe1d",
+      "text": "Deniz yere baktı. Önünde uzun, koyu bir şekil vardı. \"Gölgem önümde,\" dedi. \"Ama sabah arkamdaydı galiba.\" Nereye düşeceğini merak etti.",
+      "sourceID": "p56_wave2_pilot56_book_l7_fox_v1_p02",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l7_fox_v1",
+      "rawPageMove": "friend_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "gölge",
+        "propMentions": [
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Gölgeyi kokladı.",
+              "Bence rüzgâr gölgeyi sürüklüyor.\" Deniz kıkırdadı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Bir koklayalım bakalım,\" dedi Tarçın. Gölgeyi kokladı. \"Hiç kokmuyor! Bence rüzgâr gölgeyi sürüklüyor.\" Deniz kıkırdadı. Rüzgâr hiç esmiyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p03",
+            "evidenceText": "\"Bir koklayalım bakalım,\" dedi Tarçın. Gölgeyi kokladı. \"Hiç kokmuyor! Bence rüzgâr gölgeyi sürüklüyor.\" Deniz kıkırdadı. Rüzgâr hiç esmiyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Bir koklayalım bakalım,\" dedi Tarçın. Gölgeyi kokladı. \"Hiç kokmuyor! Bence rüzgâr gölgeyi sürüklüyor.\" Deniz kıkırdadı. Rüzgâr hiç esmiyordu.",
+        "poseAndActionEvidence": [
+          "\"Bir koklayalım bakalım,\" dedi Tarçın.",
+          "Gölgeyi kokladı.",
+          "\"Hiç kokmuyor!",
+          "Bence rüzgâr gölgeyi sürüklüyor.\" Deniz kıkırdadı.",
+          "Rüzgâr hiç esmiyordu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_fox_pilot_001",
+        "quote": "\"Bir koklayalım bakalım,\" dedi Tarçın. Gölgeyi kokladı. \"Hiç kokmuyor! Bence rüzgâr gölgeyi sürüklüyor.\" Deniz kıkırdadı. Rüzgâr hiç esmiyordu.",
+        "attributionQuote": "Tarçın",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p03",
+        "quoteSHA256": "ae8f150903376cc3b5bfc1b91e604f5d9990697f767c2a1887660852b6781f59",
+        "bookID": "pilot56_book_l7_fox_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "ae8f150903376cc3b5bfc1b91e604f5d9990697f767c2a1887660852b6781f59",
+      "text": "\"Bir koklayalım bakalım,\" dedi Tarçın. Gölgeyi kokladı. \"Hiç kokmuyor! Bence rüzgâr gölgeyi sürüklüyor.\" Deniz kıkırdadı. Rüzgâr hiç esmiyordu.",
+      "sourceID": "p56_wave2_pilot56_book_l7_fox_v1_p03",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l7_fox_v1",
+      "rawPageMove": "trial_1",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "gölge",
+        "propMentions": [
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Gölgesi arkasına geçmişti!",
+              "\"Döndüm, gölgem de benimle döndü,\" dedi şaşkınlıkla."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz arkasını döndü. Güneş şimdi önündeydi. Yere baktı. Gölgesi arkasına geçmişti! \"Döndüm, gölgem de benimle döndü,\" dedi şaşkınlıkla.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p04",
+            "evidenceText": "Deniz arkasını döndü. Güneş şimdi önündeydi. Yere baktı. Gölgesi arkasına geçmişti! \"Döndüm, gölgem de benimle döndü,\" dedi şaşkınlıkla.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz arkasını döndü. Güneş şimdi önündeydi. Yere baktı. Gölgesi arkasına geçmişti! \"Döndüm, gölgem de benimle döndü,\" dedi şaşkınlıkla.",
+        "poseAndActionEvidence": [
+          "Deniz arkasını döndü.",
+          "Güneş şimdi önündeydi.",
+          "Yere baktı.",
+          "Gölgesi arkasına geçmişti!",
+          "\"Döndüm, gölgem de benimle döndü,\" dedi şaşkınlıkla."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz arkasını döndü. Güneş şimdi önündeydi. Yere baktı. Gölgesi arkasına geçmişti! \"Döndüm, gölgem de benimle döndü,\" dedi şaşkınlıkla.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p04",
+        "quoteSHA256": "d5ca12a1441cc2e7d1bd5468613a0ec818407e248fef5adc2abd9971f633116e",
+        "bookID": "pilot56_book_l7_fox_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "d5ca12a1441cc2e7d1bd5468613a0ec818407e248fef5adc2abd9971f633116e",
+      "text": "Deniz arkasını döndü. Güneş şimdi önündeydi. Yere baktı. Gölgesi arkasına geçmişti! \"Döndüm, gölgem de benimle döndü,\" dedi şaşkınlıkla.",
+      "sourceID": "p56_wave2_pilot56_book_l7_fox_v1_p04",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l7_fox_v1",
+      "rawPageMove": "trial_2",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "gölge",
+        "propMentions": [
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Gölgesi sağ yanına düştü.",
+              "Tarçın gölgeye atladı, gölge de onun sırtına çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz yan döndü. Güneş sol yanındaydı. Gölgesi sağ yanına düştü. Tarçın gölgeye atladı, gölge de onun sırtına çıktı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p05",
+            "evidenceText": "Deniz yan döndü. Güneş sol yanındaydı. Gölgesi sağ yanına düştü. Tarçın gölgeye atladı, gölge de onun sırtına çıktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yan döndü. Güneş sol yanındaydı. Gölgesi sağ yanına düştü. Tarçın gölgeye atladı, gölge de onun sırtına çıktı.",
+        "poseAndActionEvidence": [
+          "Deniz yan döndü.",
+          "Güneş sol yanındaydı.",
+          "Gölgesi sağ yanına düştü.",
+          "Tarçın gölgeye atladı, gölge de onun sırtına çıktı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yan döndü. Güneş sol yanındaydı. Gölgesi sağ yanına düştü. Tarçın gölgeye atladı, gölge de onun sırtına çıktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p05",
+        "quoteSHA256": "cc8ef15d046f5b24dc69510b18069b6775238c5de2a5166ae1bf14735a2e0d83",
+        "bookID": "pilot56_book_l7_fox_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "cc8ef15d046f5b24dc69510b18069b6775238c5de2a5166ae1bf14735a2e0d83",
+      "text": "Deniz yan döndü. Güneş sol yanındaydı. Gölgesi sağ yanına düştü. Tarçın gölgeye atladı, gölge de onun sırtına çıktı.",
+      "sourceID": "p56_wave2_pilot56_book_l7_fox_v1_p05",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l7_fox_v1",
+      "rawPageMove": "child_compares",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "gölge",
+        "propMentions": [
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "\"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz üç durumu düşündü. \"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi. Bunu kendi gözleriyle bulmuştu. Tarçın’ın kuyruğu pır pır etti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p06",
+            "evidenceText": "Deniz üç durumu düşündü. \"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi. Bunu kendi gözleriyle bulmuştu. Tarçın’ın kuyruğu pır pır etti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz üç durumu düşündü. \"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi. Bunu kendi gözleriyle bulmuştu. Tarçın’ın kuyruğu pır pır etti.",
+        "poseAndActionEvidence": [
+          "Deniz üç durumu düşündü.",
+          "\"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi.",
+          "Bunu kendi gözleriyle bulmuştu.",
+          "Tarçın’ın kuyruğu pır pır etti."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz üç durumu düşündü. \"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi. Bunu kendi gözleriyle bulmuştu. Tarçın’ın kuyruğu pır pır etti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p06",
+        "quoteSHA256": "66e5ed33885b6c53815d7d6333fb6798507ae13179051dcbe6b272f4a6660324",
+        "bookID": "pilot56_book_l7_fox_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "66e5ed33885b6c53815d7d6333fb6798507ae13179051dcbe6b272f4a6660324",
+      "text": "Deniz üç durumu düşündü. \"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi. Bunu kendi gözleriyle bulmuştu. Tarçın’ın kuyruğu pır pır etti.",
+      "sourceID": "p56_wave2_pilot56_book_l7_fox_v1_p06",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l7_fox_v1",
+      "rawPageMove": "trial_3",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "gölge",
+        "propMentions": [
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "\"Gölgem önüme düşecek!\" Yere baktı.",
+              "Gölge tam önündeydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Şimdi tahmin edeyim,\" dedi Deniz. Güneşe sırtını verdi. \"Gölgem önüme düşecek!\" Yere baktı. Gölge tam önündeydi. Deniz sevindi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p07",
+            "evidenceText": "\"Şimdi tahmin edeyim,\" dedi Deniz. Güneşe sırtını verdi. \"Gölgem önüme düşecek!\" Yere baktı. Gölge tam önündeydi. Deniz sevindi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Şimdi tahmin edeyim,\" dedi Deniz. Güneşe sırtını verdi. \"Gölgem önüme düşecek!\" Yere baktı. Gölge tam önündeydi. Deniz sevindi.",
+        "poseAndActionEvidence": [
+          "\"Şimdi tahmin edeyim,\" dedi Deniz.",
+          "Güneşe sırtını verdi.",
+          "\"Gölgem önüme düşecek!\" Yere baktı.",
+          "Gölge tam önündeydi.",
+          "Deniz sevindi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Şimdi tahmin edeyim,\" dedi Deniz. Güneşe sırtını verdi. \"Gölgem önüme düşecek!\" Yere baktı. Gölge tam önündeydi. Deniz sevindi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p07",
+        "quoteSHA256": "a0ced746816f96e408e3bd836bd26aab794d95f498434fd67f7afc78152c5b65",
+        "bookID": "pilot56_book_l7_fox_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "a0ced746816f96e408e3bd836bd26aab794d95f498434fd67f7afc78152c5b65",
+      "text": "\"Şimdi tahmin edeyim,\" dedi Deniz. Güneşe sırtını verdi. \"Gölgem önüme düşecek!\" Yere baktı. Gölge tam önündeydi. Deniz sevindi.",
+      "sourceID": "p56_wave2_pilot56_book_l7_fox_v1_p07",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l7_fox_v1",
+      "rawPageMove": "result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "gölge",
+        "propMentions": [
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Gölgesi önünde yürüyordu.",
+              "Tarçın kendi gölgesinin peşinden koştu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz geri dönmeye başladı. Gölgesi önünde yürüyordu. Tarçın kendi gölgesinin peşinden koştu. \"Bunu hiç yakalayamıyorum!\" dedi. Deniz güldü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p08",
+            "evidenceText": "Deniz geri dönmeye başladı. Gölgesi önünde yürüyordu. Tarçın kendi gölgesinin peşinden koştu. \"Bunu hiç yakalayamıyorum!\" dedi. Deniz güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz geri dönmeye başladı. Gölgesi önünde yürüyordu. Tarçın kendi gölgesinin peşinden koştu. \"Bunu hiç yakalayamıyorum!\" dedi. Deniz güldü.",
+        "poseAndActionEvidence": [
+          "Deniz geri dönmeye başladı.",
+          "Gölgesi önünde yürüyordu.",
+          "Tarçın kendi gölgesinin peşinden koştu.",
+          "\"Bunu hiç yakalayamıyorum!\" dedi.",
+          "Deniz güldü."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz geri dönmeye başladı. Gölgesi önünde yürüyordu. Tarçın kendi gölgesinin peşinden koştu. \"Bunu hiç yakalayamıyorum!\" dedi. Deniz güldü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_fox_v1_p08",
+        "quoteSHA256": "672b872f4f53e3805b7caa6feb1fce13c91aa75afec86947c1c1dc03d8a96013",
+        "bookID": "pilot56_book_l7_fox_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "672b872f4f53e3805b7caa6feb1fce13c91aa75afec86947c1c1dc03d8a96013",
+      "text": "Deniz geri dönmeye başladı. Gölgesi önünde yürüyordu. Tarçın kendi gölgesinin peşinden koştu. \"Bunu hiç yakalayamıyorum!\" dedi. Deniz güldü.",
+      "sourceID": "p56_wave2_pilot56_book_l7_fox_v1_p08",
+      "sourcePointer": "input/learning-fox.json#/books/0/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz dönerek dener ve gölgenin hep güneşin karşı tarafına düştüğünü kendisi bulur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

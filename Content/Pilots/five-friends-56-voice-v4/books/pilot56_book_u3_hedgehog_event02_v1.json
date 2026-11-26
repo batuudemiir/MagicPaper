@@ -1,0 +1,1116 @@
+{
+  "id": "pilot56_book_u3_hedgehog_event02_v1",
+  "title": "Kestane Durunca Top Olur",
+  "blueprintID": "pilot56_blueprint_u3_v1",
+  "planLabel": "U3",
+  "mechanismKey": "one-memory-then-release",
+  "status": "v4-approved-text-metadata-review-candidate",
+  "context": {
+    "ageBand": "5-6",
+    "mode": "bedtime",
+    "arc": "charge-bedtime-editorial",
+    "companionID": "companion_hedgehog_pilot_001",
+    "settingID": "pilot56_setting_forest_edge_room_v1",
+    "worldID": "pilot56_world_whispering_forest_v1",
+    "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+    "family": [],
+    "guest": null,
+    "occasion": null,
+    "series": null,
+    "recall": null,
+    "syntheticChildID": "pilot56_synthetic_child_deniz",
+    "syntheticChildName": "Deniz"
+  },
+  "fixedCompanionRole": "R",
+  "personalityContract": "Küçük adımlarla cesaretlenir; her sahnede kaygılı değildir.",
+  "physicalContract": "Dört kısa ayak; dikenler korunur.",
+  "childAgency": "Çocuk bir ayrıntı seçer ve anlatının bittiğine kendisi karar verir.",
+  "runtimeCompatible": false,
+  "independentEditorialApproval": false,
+  "baseBookID": "pilot56_book_u3_hedgehog_v1",
+  "variantID": "event02",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "role": "settled_room",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_1_v1"
+      ],
+      "text": "Orman Kıyısındaki Oda’da akşam yemeği bitmişti. Deniz yatağında oturuyordu. Kestane minderinde burnunu kıpırdatıyordu. Gündüzün uzun yürüyüşü artık bitmişti. Şimdi dinlenme vaktiydi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": null,
+      "nextPageNumber": 2,
+      "stateBefore": "not-started",
+      "stateAfter": "settled_room",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p01",
+            "sourceTextDigest": "a075ebcbd8cb2390180b15b7b977bb334494fa0a859f01eb5d94f31090045c22",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/352",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "daytime-memory-not-current-room-prop"
+            ]
+          }
+        ],
+        "propDescription": "minder; yatak/yastık/döşek",
+        "propMentions": [
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Kestane minderinde burnunu kıpırdatıyordu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz yatağında oturuyordu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Orman Kıyısındaki Oda’da akşam yemeği bitmişti. Deniz yatağında oturuyordu. Kestane minderinde burnunu kıpırdatıyordu. Gündüzün uzun yürüyüşü artık bitmişti. Şimdi dinlenme vaktiydi.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p01",
+            "evidenceText": "Orman Kıyısındaki Oda’da akşam yemeği bitmişti. Deniz yatağında oturuyordu. Kestane minderinde burnunu kıpırdatıyordu. Gündüzün uzun yürüyüşü artık bitmişti. Şimdi dinlenme vaktiydi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Orman Kıyısındaki Oda’da akşam yemeği bitmişti. Deniz yatağında oturuyordu. Kestane minderinde burnunu kıpırdatıyordu. Gündüzün uzun yürüyüşü artık bitmişti. Şimdi dinlenme vaktiydi.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "Orman Kıyısındaki Oda’da akşam yemeği bitmişti.",
+          "Deniz yatağında oturuyordu.",
+          "Kestane minderinde burnunu kıpırdatıyordu.",
+          "Gündüzün uzun yürüyüşü artık bitmişti.",
+          "Şimdi dinlenme vaktiydi."
+        ],
+        "doNotDraw": [
+          "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 2,
+      "role": "one_memory_selected",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_2_v1"
+      ],
+      "text": "Deniz gündüzden bir an seçti. Yürürken durmuştu. Gölgesi de ayaklarının yanında durmuştu. Kestane dinlemek için yaklaştı. \"Bugünden bunu anlatacağım,\" dedi Deniz.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 1,
+      "nextPageNumber": 3,
+      "stateBefore": "settled_room",
+      "stateAfter": "one_memory_selected",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p02",
+            "sourceTextDigest": "e764b855e493037356720ef12a3f966e4581100fea1c9f91650471ab84efdbf7",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/353",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "daytime-memory-not-current-room-prop"
+            ]
+          }
+        ],
+        "propDescription": "gölge",
+        "propMentions": [
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Gölgesi de ayaklarının yanında durmuştu."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz gündüzden bir an seçti. Yürürken durmuştu. Gölgesi de ayaklarının yanında durmuştu. Kestane dinlemek için yaklaştı. \"Bugünden bunu anlatacağım,\" dedi Deniz.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p02",
+            "evidenceText": "Deniz gündüzden bir an seçti. Yürürken durmuştu. Gölgesi de ayaklarının yanında durmuştu. Kestane dinlemek için yaklaştı. \"Bugünden bunu anlatacağım,\" dedi Deniz.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz gündüzden bir an seçti. Yürürken durmuştu. Gölgesi de ayaklarının yanında durmuştu. Kestane dinlemek için yaklaştı. \"Bugünden bunu anlatacağım,\" dedi Deniz.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "Deniz gündüzden bir an seçti.",
+          "Yürürken durmuştu.",
+          "Gölgesi de ayaklarının yanında durmuştu.",
+          "Kestane dinlemek için yaklaştı.",
+          "\"Bugünden bunu anlatacağım,\" dedi Deniz."
+        ],
+        "doNotDraw": [
+          "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 3,
+      "role": "friend_receives_memory",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_3_v1"
+      ],
+      "text": "Kestane başını kaldırdı. \"Ben de durmuştum,\" dedi. \"Ama ben durunca top oluyorum!\" Hemen gösterdi: tıp, yuvarlak bir top. Deniz’in kıkırtısı her yere yayıldı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 2,
+      "nextPageNumber": 4,
+      "stateBefore": "one_memory_selected",
+      "stateAfter": "friend_receives_memory",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p03",
+            "sourceTextDigest": "2e4021465d9baaab3eb441becb846a5a42abc3bfb768c15d7ce23d061addbc10",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/354",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "daytime-memory-not-current-room-prop"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "\"Ama ben durunca top oluyorum!\" Hemen gösterdi: tıp, yuvarlak bir top."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane başını kaldırdı. \"Ben de durmuştum,\" dedi. \"Ama ben durunca top oluyorum!\" Hemen gösterdi: tıp, yuvarlak bir top. Deniz’in kıkırtısı her yere yayıldı.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p03",
+            "evidenceText": "Kestane başını kaldırdı. \"Ben de durmuştum,\" dedi. \"Ama ben durunca top oluyorum!\" Hemen gösterdi: tıp, yuvarlak bir top. Deniz’in kıkırtısı her yere yayıldı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane başını kaldırdı. \"Ben de durmuştum,\" dedi. \"Ama ben durunca top oluyorum!\" Hemen gösterdi: tıp, yuvarlak bir top. Deniz’in kıkırtısı her yere yayıldı.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "Kestane başını kaldırdı.",
+          "\"Ben de durmuştum,\" dedi.",
+          "\"Ama ben durunca top oluyorum!\" Hemen gösterdi: tıp, yuvarlak bir top.",
+          "Deniz’in kıkırtısı her yere yayıldı."
+        ],
+        "doNotDraw": [
+          "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 4,
+      "role": "child_limits_telling",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_4_v1"
+      ],
+      "text": "\"Ben durunca gölgem de durdu,\" dedi Deniz. Gerisini anlatacaktı ama vazgeçti. \"Bu akşam yalnız o an,\" dedi. Kestane minderinde sessizce dinledi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 3,
+      "nextPageNumber": 5,
+      "stateBefore": "friend_receives_memory",
+      "stateAfter": "child_limits_telling",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p04",
+            "sourceTextDigest": "33d01c6b6cb8275f09784918df2a9026eaed7e6ceb18ab1db1c331794c9e1087",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/355",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "daytime-memory-not-current-room-prop"
+            ]
+          }
+        ],
+        "propDescription": "minder; gölge",
+        "propMentions": [
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Kestane minderinde sessizce dinledi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "\"Ben durunca gölgem de durdu,\" dedi Deniz."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "\"Ben durunca gölgem de durdu,\" dedi Deniz. Gerisini anlatacaktı ama vazgeçti. \"Bu akşam yalnız o an,\" dedi. Kestane minderinde sessizce dinledi.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p04",
+            "evidenceText": "\"Ben durunca gölgem de durdu,\" dedi Deniz. Gerisini anlatacaktı ama vazgeçti. \"Bu akşam yalnız o an,\" dedi. Kestane minderinde sessizce dinledi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir. İstek, olasılık ve henüz gerçekleşmeyen fiilleri bitmiş fiziksel eyleme dönüştürme; kesin eylem alıntının devamıyla belirlenir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Ben durunca gölgem de durdu,\" dedi Deniz. Gerisini anlatacaktı ama vazgeçti. \"Bu akşam yalnız o an,\" dedi. Kestane minderinde sessizce dinledi.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "\"Ben durunca gölgem de durdu,\" dedi Deniz.",
+          "Gerisini anlatacaktı ama vazgeçti.",
+          "\"Bu akşam yalnız o an,\" dedi.",
+          "Kestane minderinde sessizce dinledi."
+        ],
+        "doNotDraw": [
+          "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir.",
+          "İstek, olasılık ve henüz gerçekleşmeyen fiilleri bitmiş fiziksel eyleme dönüştürme; kesin eylem alıntının devamıyla belirlenir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 5,
+      "role": "soft_shared_memory",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_5_v1"
+      ],
+      "text": "Kestane yavaşça açıldı. \"Sen durdun, gölgen durdu,\" dedi. \"Ben durdum, top oldum.\" Deniz o küçük anı düşünüp gülümsedi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 4,
+      "nextPageNumber": 6,
+      "stateBefore": "child_limits_telling",
+      "stateAfter": "soft_shared_memory",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p05",
+            "sourceTextDigest": "06832a95c937e9ffa0fc772ed70075f34181f97f27cf208ba855d279e1e4c498",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/356",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "daytime-memory-not-current-room-prop"
+            ]
+          }
+        ],
+        "propDescription": "gölge",
+        "propMentions": [
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "\"Sen durdun, gölgen durdu,\" dedi."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane yavaşça açıldı. \"Sen durdun, gölgen durdu,\" dedi. \"Ben durdum, top oldum.\" Deniz o küçük anı düşünüp gülümsedi.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p05",
+            "evidenceText": "Kestane yavaşça açıldı. \"Sen durdun, gölgen durdu,\" dedi. \"Ben durdum, top oldum.\" Deniz o küçük anı düşünüp gülümsedi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane yavaşça açıldı. \"Sen durdun, gölgen durdu,\" dedi. \"Ben durdum, top oldum.\" Deniz o küçük anı düşünüp gülümsedi.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "Kestane yavaşça açıldı.",
+          "\"Sen durdun, gölgen durdu,\" dedi.",
+          "\"Ben durdum, top oldum.\" Deniz o küçük anı düşünüp gülümsedi."
+        ],
+        "doNotDraw": [
+          "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 6,
+      "role": "story_released",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_6_v1"
+      ],
+      "text": "Deniz ellerini örtüsünün üstüne bıraktı. \"Anlatacağım bu kadar,\" dedi. Gündüzün adımları gündüzde kaldı. Kestane’nin dikenleri yumuşadı. Oda sessizdi.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 5,
+      "nextPageNumber": 7,
+      "stateBefore": "soft_shared_memory",
+      "stateAfter": "story_released",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p06",
+            "sourceTextDigest": "296b2c8f1624c5a055801438a996e1e104f9a1d9b6c84c911e015031b8f65b24",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/357",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "daytime-memory-not-current-room-prop"
+            ]
+          }
+        ],
+        "propDescription": "örtü",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Deniz ellerini örtüsünün üstüne bıraktı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz ellerini örtüsünün üstüne bıraktı. \"Anlatacağım bu kadar,\" dedi. Gündüzün adımları gündüzde kaldı. Kestane’nin dikenleri yumuşadı. Oda sessizdi.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p06",
+            "evidenceText": "Deniz ellerini örtüsünün üstüne bıraktı. \"Anlatacağım bu kadar,\" dedi. Gündüzün adımları gündüzde kaldı. Kestane’nin dikenleri yumuşadı. Oda sessizdi.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir. Benzetme, şehir anısı ve koku tahmini sahneye yeni yiyecek, eşya, bina veya karakter eklemez."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ellerini örtüsünün üstüne bıraktı. \"Anlatacağım bu kadar,\" dedi. Gündüzün adımları gündüzde kaldı. Kestane’nin dikenleri yumuşadı. Oda sessizdi.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "Deniz ellerini örtüsünün üstüne bıraktı.",
+          "\"Anlatacağım bu kadar,\" dedi.",
+          "Gündüzün adımları gündüzde kaldı.",
+          "Kestane’nin dikenleri yumuşadı.",
+          "Oda sessizdi."
+        ],
+        "doNotDraw": [
+          "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir.",
+          "Benzetme, şehir anısı ve koku tahmini sahneye yeni yiyecek, eşya, bina veya karakter eklemez.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 7,
+      "role": "awake_rest",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_7_v1"
+      ],
+      "text": "Kestane minderinde yerleşti. Hardal yaprağı dikeninin ucunda hafifçe sallandı. Deniz de örtüsünün altında rahatladı. Oda sessiz ve sıcaktı.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 6,
+      "nextPageNumber": 8,
+      "stateBefore": "story_released",
+      "stateAfter": "awake_rest",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p07",
+            "sourceTextDigest": "5cfcddaef66fb5d777b5c5ccf3634249591f1dff393d3519c73e520531c2553f",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/358",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "daytime-memory-not-current-room-prop"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; örtü; minder",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Hardal yaprağı dikeninin ucunda hafifçe sallandı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Deniz de örtüsünün altında rahatladı."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Kestane minderinde yerleşti."
+            ],
+            "interpretation": "mention-only; distinguish current object, memory, comparison, negation and intention in exact quote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane minderinde yerleşti. Hardal yaprağı dikeninin ucunda hafifçe sallandı. Deniz de örtüsünün altında rahatladı. Oda sessiz ve sıcaktı.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p07",
+            "evidenceText": "Kestane minderinde yerleşti. Hardal yaprağı dikeninin ucunda hafifçe sallandı. Deniz de örtüsünün altında rahatladı. Oda sessiz ve sıcaktı.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane minderinde yerleşti. Hardal yaprağı dikeninin ucunda hafifçe sallandı. Deniz de örtüsünün altında rahatladı. Oda sessiz ve sıcaktı.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "Kestane minderinde yerleşti.",
+          "Hardal yaprağı dikeninin ucunda hafifçe sallandı.",
+          "Deniz de örtüsünün altında rahatladı.",
+          "Oda sessiz ve sıcaktı."
+        ],
+        "doNotDraw": [
+          "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    },
+    {
+      "pageNumber": 8,
+      "role": "closed_calm",
+      "orderedBeatIDs": [
+        "pilot56_beat_u3_8_v1"
+      ],
+      "text": "\"Küçük bir esneme, sonra bir tane daha,\" dedi Kestane. İkisi de esnedi. Deniz’in gözleri kapandı. Kestane bu kez uyumak için top oldu.",
+      "context": {
+        "ageBand": "5-6",
+        "mode": "bedtime",
+        "arc": "charge-bedtime-editorial",
+        "companionID": "companion_hedgehog_pilot_001",
+        "settingID": "pilot56_setting_forest_edge_room_v1",
+        "worldID": "pilot56_world_whispering_forest_v1",
+        "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+        "family": [],
+        "guest": null,
+        "occasion": null,
+        "series": null,
+        "recall": null,
+        "syntheticChildID": "pilot56_synthetic_child_deniz",
+        "syntheticChildName": "Deniz"
+      },
+      "previousPageNumber": 7,
+      "nextPageNumber": null,
+      "stateBefore": "awake_rest",
+      "stateAfter": "closed_calm",
+      "provenance": {
+        "complete": true,
+        "partCount": 1,
+        "parts": [
+          {
+            "order": 0,
+            "sourceKind": "pilotAuthoredFullPage",
+            "sourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p08",
+            "sourceTextDigest": "067c1065edee3e389459ddcefd8b943234b44eeba9aec7f49cc93f7912205ccd",
+            "templateID": "pilot56_blueprint_u3_v1",
+            "sourcePointer": "sources.json#/sources/359",
+            "contexts": {
+              "ageBand": "5-6",
+              "mode": "bedtime",
+              "arc": "charge-bedtime-editorial",
+              "companionID": "companion_hedgehog_pilot_001",
+              "settingID": "pilot56_setting_forest_edge_room_v1",
+              "worldID": "pilot56_world_whispering_forest_v1",
+              "discoveryID": "pilot56_discovery_remembered_stopping_shadow_v1",
+              "family": [],
+              "guest": null,
+              "occasion": null,
+              "series": null,
+              "recall": null,
+              "syntheticChildID": "pilot56_synthetic_child_deniz",
+              "syntheticChildName": "Deniz"
+            }
+          }
+        ]
+      },
+      "sentenceSourceIDs": [],
+      "semantics": {
+        "annotationStatus": "v4-source-grounded-review; independent-editorial-approval-not-asserted",
+        "inventoryScope": "Present child and companion include continuity from surrounding pages. Discovery temporal status follows v4 text. propMentions are exact lexical mentions, not a render whitelist.",
+        "metadataRevision": 3,
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_discovery_remembered_stopping_shadow_v1",
+            "presence": "remembered",
+            "states": [
+              "daytime-memory-not-current-room-prop"
+            ]
+          }
+        ],
+        "propDescription": "Bu sayfada yeni fiziksel eşya açıkça adlandırılmıyor; kitap içi sahne sürekliliğini koru.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "\"Küçük bir esneme, sonra bir tane daha,\" dedi Kestane. İkisi de esnedi. Deniz’in gözleri kapandı. Kestane bu kez uyumak için top oldu.",
+            "evidenceSourceID": "p56_v4_pilot56_book_u3_hedgehog_event02_v1_p08",
+            "evidenceText": "\"Küçük bir esneme, sonra bir tane daha,\" dedi Kestane. İkisi de esnedi. Deniz’in gözleri kapandı. Kestane bu kez uyumak için top oldu.",
+            "scope": "literal-page-context; dialogue, perception and physical action remain in their exact textual order; not atomic executable action",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "v4-source-grounded-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Küçük bir esneme, sonra bir tane daha,\" dedi Kestane. İkisi de esnedi. Deniz’in gözleri kapandı. Kestane bu kez uyumak için top oldu.",
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "poseAndActionEvidence": [
+          "\"Küçük bir esneme, sonra bir tane daha,\" dedi Kestane.",
+          "İkisi de esnedi.",
+          "Deniz’in gözleri kapandı.",
+          "Kestane bu kez uyumak için top oldu."
+        ],
+        "doNotDraw": [
+          "Gündüz gölgesi/yürüyüşü/avuçtan bırakılan yaprak yalnız anlatılan anıdır. Odada yaprak bırakma, gölge oyunu ya da gündüz yürüyüşü yeniden yapılmaz. Kestane’nin gerçek diken yaprakları ve Yıldız’ın tünekte sallanması ayrıca mevcut eylemlerdir.",
+          "Metinde bulunmayan yeni eşya veya karakter ekleme. Canonical imza eşyasının bu sayfada taşındığı yeri metin açıkça söylüyorsa o konumu kullan."
+        ]
+      },
+      "editorialIntensity": 0
+    }
+  ],
+  "sourceBookID": "pilot56_book_u3_hedgehog_event02_v1"
+}

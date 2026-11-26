@@ -2,6 +2,22 @@
 
 Yalnız Codex yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Karşılık: [Claude durum dosyası](claude-durum.md).
 
+## 2026-11-26 · V4 kaynak adayı ve270güncel metin incelemesi — kabul engelli
+
+Son istek uygulandı: V4yeni90kitaplık voice/runtime,iki dalganın180kitabı yeni authoringkorpusları. Tüm270başlık/2160tam sayfanın semantik,causal fullquote,C3veart ihtiyaçları güncel metin/hash'e yeniden bağlandı; eski onay taşınmadı. Wavekorpusları runtimeCompatible=false/typedContractApproved=false; yeni dalgaruntime/recencykodu yok,appv3kapısınıbekler.
+
+**V4adaySHA:** `1c8a21b56c40f051873b2f1bd956c21e016846911a082c1f11f37cb510b6a077`. Pinv3/SHA855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3cdeğişmedi. V1/v2/v3byte'larıkorundu;başlık/kimlikleraynı. V3'e göre289sayfa bytefarklı (155arkadaşözel sayfayaekkalıpçeşitlendirmeleridahil).
+
+**V4kapısı GEÇMEDİ:** 630fixture616başarı/14red;N15001475başarı/25red/0retry/88farklıkitap. İki son sayfa “Yarın görüşürüz” yüzünden `bedtime-open-ending`: `pilot56_book_u3_cat_v1`p8, `pilot56_book_u2_hedgehog_event03_v1`p8. DeğişmeyenCalmEnding`yarın`önekiniyasaklıyor. Metinveguarddeğiştirilmedi;badkitaplarhavuzdançıkarılmadı.15Release testinde tek kabul testinin4assertion'ıhatalı;diğer14testgeçti. Kaynak/safety/typedtrace/sayfabütçesi0sorun;720sayfaPython/Swiftmetrikparitesi0fark. **Buaday entegrasyon/pin için kabul edilmedi.**
+
+**270kanonik metnin lint'i geçti:** 45dosya/270kitap/2160sayfa,270farklıbaşlık;--poolbirebirsayfa0,25havuz/3hücre sınırınıaşancümle0,tekildosya45/45. Sözcükselbaşarıanlamgarantisideğil. Dalga1A4Simitp5ayı/çantasızıntısı;Dalga2L8Simit event02p6bulunmadançalanzil;L9event03ayı/kirpi/baykuşta3küçükkozalakolurken2sonucu:beşkesinsemantikengel. Ek küçük/kısıtkararlarıraporlarda. MetinlerCodextarafındandeğiştirilmedi.
+
+**Envanter tazelendi:** Dalga1'de8eski“ 2.json”kopyası kanoniksözleşmedışında/hashkaydıvar,orijinallersilinmedi. Hamglob318kitaptafail;kanonik270passilekarıştırılmadı. YardımcıörnekJSON'ların güncelmetin eşleşmesiDalga1'de6/9,Dalga2'de3/9;eskiörnekmetniyenionaykanıtıgibikullanılmadı. Güncel270metin onayı ayrı kullanıcıtalimatıdır.
+
+Dalga2teslimmetninde nefes tutma bulunduğu iddia edilmedi;editnotuatılmıştaslağadair. Appv3pin geçişiClaude'da,V4pinayrıBatuhanonayıveönceiki kapanışın düzeltilmesinibekler. V3pingeçişi için motorstablecommit024b8a5;buV4adayının kırmızıiçerikkapısıaktifV3kaynağıdeğiştirmez. Main/entegrasyon/pushyok,art/productionfalse.
+
+Teslim: `docs/research/five-friends-p56-runtime/v4/REPORT.md`, `METIN_DUZELTME_LISTESI.md`, `verification-summary.json`, `release-tests.log`;hamfixture/sampling/parityve270poolloglarıaynıklasörde. Art90kaynak/720sayfa:88composefixture+2authored-only açıkayrıldı. Waveart180authoredkitaptır,runtimeçıktısıdeğil. Bağımsızreviewer270/2160kaynak/quote/hashbağında0uyuşmazlık,yeniimplementationengeliyok dedi;testlerikendikoşmadı.
+
 ## 2026-11-26 · Motor teslimi 024b8a5 · V3 etkin pini geçirildi; app kapısı Claude'da
 
 `v3-pin-gecisi-is-tanimi.md` artık okundu; Batuhan'ın26Kasım00:57“geçir” onayı var. Aktifmotorpin `five-friends-56-runtime-v3` +SHA`855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3c`. v2SHA256tarihsel sabite ayrıldı;v2testreferansları artıkaktifpini kullanmıyor. V1/v2/v3payloadbyte'ları9204cf2ileaynı.

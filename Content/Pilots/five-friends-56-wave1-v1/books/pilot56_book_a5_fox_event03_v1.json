@@ -1,0 +1,800 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a5_fox_event03_v1",
+  "title": "Tarçın Renginde Gün Batımı",
+  "context": {
+    "settingName": "Seyir Taşı, Kütük Yolu, Gün Batımı Tepesi",
+    "mode": "adventure",
+    "companionID": "companion_fox_pilot_001",
+    "structure": "A5",
+    "event": "e3",
+    "mechanism": "take-turns-at-view",
+    "sourceFilename": "adventure-fox.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a5_fox_event03_v1",
+    "structure": "A5",
+    "event": "e3",
+    "sample": false,
+    "title": "Tarçın Renginde Gün Batımı",
+    "pages": [
+      "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Tarçın tepeye vardı. Tarçın'ın turuncu tüyleri güneşte parlıyordu. Gökyüzü yavaş yavaş renk değiştiriyordu.",
+      "Tepede güneşin battığı yeri en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Deniz de oturmak istedi.",
+      "Tarçın taşa bakıp kuyruğunu salladı. \"Ben de oturmak istiyorum,\" dedi. \"Güneş benim rengimde batacak!\" Bu Deniz’i çok güldürdü. Tilkinin kuyruğu taşı süpürdü.",
+      "Deniz düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Beklerken gökyüzünün hangi renge döneceğini tahmin etti. Bulutların kenarı şimdiden parlamaya başlamıştı.",
+      "Tarçın taşa oturdu. Deniz beklerken tahmin etti. \"Önce turuncu, sonra pembe olacak,\" dedi. \"Turuncu benim!\" dedi Tarçın. Gökyüzü yavaş yavaş ısınıyordu.",
+      "Sonra sıra Deniz’e geldi. Taşa oturdu. Gökyüzü turuncuya, sonra pembeye döndü. \"Pembeyi tahmin etmiştim!\" dedi. Bulutlar da pembe pembe parlıyordu.",
+      "Deniz yerini yeniden Tarçın'a verdi. Gökyüzü mora döndü. Tarçın şaşırdı. \"Bu benim rengim değil,\" dedi. Deniz gülmeden duramadı. Tarçın da kuyruğunu salladı. Mor, tilkinin turuncusundan çok farklıydı.",
+      "Tepeden inerken hava serinledi. Tarçın burnunu havaya kaldırdı. \"Bir koklayalım bakalım… akşam kokusu,\" dedi. Deniz’in dudakları usulca kıvrıldı. İkisi ağır adımlarla tepeden indi."
+    ],
+    "sourceBookID": "pilot56_book_a5_fox_event03_v1"
+  },
+  "inputFileSHA256": "2472f562b0ad66d85854840664c7f348292d5ce02bcba3073894d1e7d0181d7b",
+  "inputBookPointer": "input/adventure-fox.json#/books/2",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a5_fox_event03_v1",
+      "rawPageMove": "shared_spot",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tüy",
+        "propMentions": [
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Tarçın'ın turuncu tüyleri güneşte parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Tarçın tepeye vardı. Tarçın'ın turuncu tüyleri güneşte parlıyordu. Gökyüzü yavaş yavaş renk değiştiriyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p01",
+            "evidenceText": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Tarçın tepeye vardı. Tarçın'ın turuncu tüyleri güneşte parlıyordu. Gökyüzü yavaş yavaş renk değiştiriyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Tarçın tepeye vardı. Tarçın'ın turuncu tüyleri güneşte parlıyordu. Gökyüzü yavaş yavaş renk değiştiriyordu.",
+        "poseAndActionEvidence": [
+          "Gün Batımı Tepesi’nde akşam yaklaşıyordu.",
+          "Deniz ile Tarçın tepeye vardı.",
+          "Tarçın'ın turuncu tüyleri güneşte parlıyordu.",
+          "Gökyüzü yavaş yavaş renk değiştiriyordu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Tarçın tepeye vardı. Tarçın'ın turuncu tüyleri güneşte parlıyordu. Gökyüzü yavaş yavaş renk değiştiriyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p01",
+        "quoteSHA256": "19be0c91f67e4d86f549b954120af05a84019614f3b36f3493ae7876f60d93b7",
+        "bookID": "pilot56_book_a5_fox_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "19be0c91f67e4d86f549b954120af05a84019614f3b36f3493ae7876f60d93b7",
+      "text": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Tarçın tepeye vardı. Tarçın'ın turuncu tüyleri güneşte parlıyordu. Gökyüzü yavaş yavaş renk değiştiriyordu.",
+      "sourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p01",
+      "sourcePointer": "input/adventure-fox.json#/books/2/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a5_fox_event03_v1",
+      "rawPageMove": "approach",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Tepede güneşin battığı yeri en iyi gösteren düz bir taş vardı.",
+              "Taşa yalnız bir kişi sığıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Tepede güneşin battığı yeri en iyi gösteren düz bir taş vardı.",
+              "Taşa yalnız bir kişi sığıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tepede güneşin battığı yeri en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Deniz de oturmak istedi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p02",
+            "evidenceText": "Tepede güneşin battığı yeri en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Deniz de oturmak istedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tepede güneşin battığı yeri en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Deniz de oturmak istedi.",
+        "poseAndActionEvidence": [
+          "Tepede güneşin battığı yeri en iyi gösteren düz bir taş vardı.",
+          "Taşa yalnız bir kişi sığıyordu.",
+          "Deniz de oturmak istedi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Tepede güneşin battığı yeri en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Deniz de oturmak istedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p02",
+        "quoteSHA256": "3084692815210f333fbdbbdeeaaedb050f15bdc60d626782321b6e5dc2a21048",
+        "bookID": "pilot56_book_a5_fox_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "3084692815210f333fbdbbdeeaaedb050f15bdc60d626782321b6e5dc2a21048",
+      "text": "Tepede güneşin battığı yeri en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Deniz de oturmak istedi.",
+      "sourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p02",
+      "sourcePointer": "input/adventure-fox.json#/books/2/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a5_fox_event03_v1",
+      "rawPageMove": "friend_wants_turn",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Tarçın taşa bakıp kuyruğunu salladı.",
+              "Tilkinin kuyruğu taşı süpürdü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Tarçın taşa bakıp kuyruğunu salladı.",
+              "Tilkinin kuyruğu taşı süpürdü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın taşa bakıp kuyruğunu salladı. \"Ben de oturmak istiyorum,\" dedi. \"Güneş benim rengimde batacak!\" Bu Deniz’i çok güldürdü. Tilkinin kuyruğu taşı süpürdü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p03",
+            "evidenceText": "Tarçın taşa bakıp kuyruğunu salladı. \"Ben de oturmak istiyorum,\" dedi. \"Güneş benim rengimde batacak!\" Bu Deniz’i çok güldürdü. Tilkinin kuyruğu taşı süpürdü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın taşa bakıp kuyruğunu salladı. \"Ben de oturmak istiyorum,\" dedi. \"Güneş benim rengimde batacak!\" Bu Deniz’i çok güldürdü. Tilkinin kuyruğu taşı süpürdü.",
+        "poseAndActionEvidence": [
+          "Tarçın taşa bakıp kuyruğunu salladı.",
+          "\"Ben de oturmak istiyorum,\" dedi.",
+          "\"Güneş benim rengimde batacak!\" Bu Deniz’i çok güldürdü.",
+          "Tilkinin kuyruğu taşı süpürdü."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_fox_pilot_001",
+        "quote": "Tarçın taşa bakıp kuyruğunu salladı. \"Ben de oturmak istiyorum,\" dedi. \"Güneş benim rengimde batacak!\" Bu Deniz’i çok güldürdü. Tilkinin kuyruğu taşı süpürdü.",
+        "attributionQuote": "Tarçın",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p03",
+        "quoteSHA256": "245dc15198b101d9c26b445b15b3a9ebc15c89adcc5399d8a1d82831882e3c56",
+        "bookID": "pilot56_book_a5_fox_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "245dc15198b101d9c26b445b15b3a9ebc15c89adcc5399d8a1d82831882e3c56",
+      "text": "Tarçın taşa bakıp kuyruğunu salladı. \"Ben de oturmak istiyorum,\" dedi. \"Güneş benim rengimde batacak!\" Bu Deniz’i çok güldürdü. Tilkinin kuyruğu taşı süpürdü.",
+      "sourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p03",
+      "sourcePointer": "input/adventure-fox.json#/books/2/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a5_fox_event03_v1",
+      "rawPageMove": "child_proposes_order",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Beklerken gökyüzünün hangi renge döneceğini tahmin etti. Bulutların kenarı şimdiden parlamaya başlamıştı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p04",
+            "evidenceText": "Deniz düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Beklerken gökyüzünün hangi renge döneceğini tahmin etti. Bulutların kenarı şimdiden parlamaya başlamıştı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Beklerken gökyüzünün hangi renge döneceğini tahmin etti. Bulutların kenarı şimdiden parlamaya başlamıştı.",
+        "poseAndActionEvidence": [
+          "Deniz düşündü.",
+          "\"Sırayla oturalım,\" dedi.",
+          "\"Önce sen otur.\" Beklerken gökyüzünün hangi renge döneceğini tahmin etti.",
+          "Bulutların kenarı şimdiden parlamaya başlamıştı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Beklerken gökyüzünün hangi renge döneceğini tahmin etti. Bulutların kenarı şimdiden parlamaya başlamıştı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p04",
+        "quoteSHA256": "6cfb909218f069bd0abf7b401a92a23b28257c0f61388e225381b0f68256d9e9",
+        "bookID": "pilot56_book_a5_fox_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "6cfb909218f069bd0abf7b401a92a23b28257c0f61388e225381b0f68256d9e9",
+      "text": "Deniz düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Beklerken gökyüzünün hangi renge döneceğini tahmin etti. Bulutların kenarı şimdiden parlamaya başlamıştı.",
+      "sourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p04",
+      "sourcePointer": "input/adventure-fox.json#/books/2/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a5_fox_event03_v1",
+      "rawPageMove": "wait_and_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Tarçın taşa oturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Tarçın taşa oturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın taşa oturdu. Deniz beklerken tahmin etti. \"Önce turuncu, sonra pembe olacak,\" dedi. \"Turuncu benim!\" dedi Tarçın. Gökyüzü yavaş yavaş ısınıyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p05",
+            "evidenceText": "Tarçın taşa oturdu. Deniz beklerken tahmin etti. \"Önce turuncu, sonra pembe olacak,\" dedi. \"Turuncu benim!\" dedi Tarçın. Gökyüzü yavaş yavaş ısınıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın taşa oturdu. Deniz beklerken tahmin etti. \"Önce turuncu, sonra pembe olacak,\" dedi. \"Turuncu benim!\" dedi Tarçın. Gökyüzü yavaş yavaş ısınıyordu.",
+        "poseAndActionEvidence": [
+          "Tarçın taşa oturdu.",
+          "Deniz beklerken tahmin etti.",
+          "\"Önce turuncu, sonra pembe olacak,\" dedi.",
+          "\"Turuncu benim!\" dedi Tarçın.",
+          "Gökyüzü yavaş yavaş ısınıyordu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Tarçın taşa oturdu. Deniz beklerken tahmin etti. \"Önce turuncu, sonra pembe olacak,\" dedi. \"Turuncu benim!\" dedi Tarçın. Gökyüzü yavaş yavaş ısınıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p05",
+        "quoteSHA256": "d6868ca60f3c3b50576510265c82c6ab2980e8682870ee3fed4f1eb3978fd929",
+        "bookID": "pilot56_book_a5_fox_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "d6868ca60f3c3b50576510265c82c6ab2980e8682870ee3fed4f1eb3978fd929",
+      "text": "Tarçın taşa oturdu. Deniz beklerken tahmin etti. \"Önce turuncu, sonra pembe olacak,\" dedi. \"Turuncu benim!\" dedi Tarçın. Gökyüzü yavaş yavaş ısınıyordu.",
+      "sourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p05",
+      "sourcePointer": "input/adventure-fox.json#/books/2/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a5_fox_event03_v1",
+      "rawPageMove": "child_takes_turn",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Taşa oturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Taşa oturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Sonra sıra Deniz’e geldi. Taşa oturdu. Gökyüzü turuncuya, sonra pembeye döndü. \"Pembeyi tahmin etmiştim!\" dedi. Bulutlar da pembe pembe parlıyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p06",
+            "evidenceText": "Sonra sıra Deniz’e geldi. Taşa oturdu. Gökyüzü turuncuya, sonra pembeye döndü. \"Pembeyi tahmin etmiştim!\" dedi. Bulutlar da pembe pembe parlıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Sonra sıra Deniz’e geldi. Taşa oturdu. Gökyüzü turuncuya, sonra pembeye döndü. \"Pembeyi tahmin etmiştim!\" dedi. Bulutlar da pembe pembe parlıyordu.",
+        "poseAndActionEvidence": [
+          "Sonra sıra Deniz’e geldi.",
+          "Taşa oturdu.",
+          "Gökyüzü turuncuya, sonra pembeye döndü.",
+          "\"Pembeyi tahmin etmiştim!\" dedi.",
+          "Bulutlar da pembe pembe parlıyordu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Sonra sıra Deniz’e geldi. Taşa oturdu. Gökyüzü turuncuya, sonra pembeye döndü. \"Pembeyi tahmin etmiştim!\" dedi. Bulutlar da pembe pembe parlıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p06",
+        "quoteSHA256": "1a59650bfee0a9f7b178533b1e82118e1fb6e9425d61d4baa37d6c162b45a80a",
+        "bookID": "pilot56_book_a5_fox_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "1a59650bfee0a9f7b178533b1e82118e1fb6e9425d61d4baa37d6c162b45a80a",
+      "text": "Sonra sıra Deniz’e geldi. Taşa oturdu. Gökyüzü turuncuya, sonra pembeye döndü. \"Pembeyi tahmin etmiştim!\" dedi. Bulutlar da pembe pembe parlıyordu.",
+      "sourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p06",
+      "sourcePointer": "input/adventure-fox.json#/books/2/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a5_fox_event03_v1",
+      "rawPageMove": "view_shared",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz yerini yeniden Tarçın'a verdi. Gökyüzü mora döndü. Tarçın şaşırdı. \"Bu benim rengim değil,\" dedi. Deniz gülmeden duramadı. Tarçın da kuyruğunu salladı. Mor, tilkinin turuncusundan çok farklıydı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p07",
+            "evidenceText": "Deniz yerini yeniden Tarçın'a verdi. Gökyüzü mora döndü. Tarçın şaşırdı. \"Bu benim rengim değil,\" dedi. Deniz gülmeden duramadı. Tarçın da kuyruğunu salladı. Mor, tilkinin turuncusundan çok farklıydı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yerini yeniden Tarçın'a verdi. Gökyüzü mora döndü. Tarçın şaşırdı. \"Bu benim rengim değil,\" dedi. Deniz gülmeden duramadı. Tarçın da kuyruğunu salladı. Mor, tilkinin turuncusundan çok farklıydı.",
+        "poseAndActionEvidence": [
+          "Deniz yerini yeniden Tarçın'a verdi.",
+          "Gökyüzü mora döndü.",
+          "Tarçın şaşırdı.",
+          "\"Bu benim rengim değil,\" dedi.",
+          "Deniz gülmeden duramadı.",
+          "Tarçın da kuyruğunu salladı.",
+          "Mor, tilkinin turuncusundan çok farklıydı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yerini yeniden Tarçın'a verdi. Gökyüzü mora döndü. Tarçın şaşırdı. \"Bu benim rengim değil,\" dedi. Deniz gülmeden duramadı. Tarçın da kuyruğunu salladı. Mor, tilkinin turuncusundan çok farklıydı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p07",
+        "quoteSHA256": "7fd6488601419a4397a9bae6682a6f4de6f6f1eae38d0e8b9a6dbe0b69258e6e",
+        "bookID": "pilot56_book_a5_fox_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "7fd6488601419a4397a9bae6682a6f4de6f6f1eae38d0e8b9a6dbe0b69258e6e",
+      "text": "Deniz yerini yeniden Tarçın'a verdi. Gökyüzü mora döndü. Tarçın şaşırdı. \"Bu benim rengim değil,\" dedi. Deniz gülmeden duramadı. Tarçın da kuyruğunu salladı. Mor, tilkinin turuncusundan çok farklıydı.",
+      "sourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p07",
+      "sourcePointer": "input/adventure-fox.json#/books/2/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a5_fox_event03_v1",
+      "rawPageMove": "closed_return",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tepeden inerken hava serinledi. Tarçın burnunu havaya kaldırdı. \"Bir koklayalım bakalım… akşam kokusu,\" dedi. Deniz’in dudakları usulca kıvrıldı. İkisi ağır adımlarla tepeden indi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p08",
+            "evidenceText": "Tepeden inerken hava serinledi. Tarçın burnunu havaya kaldırdı. \"Bir koklayalım bakalım… akşam kokusu,\" dedi. Deniz’in dudakları usulca kıvrıldı. İkisi ağır adımlarla tepeden indi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tepeden inerken hava serinledi. Tarçın burnunu havaya kaldırdı. \"Bir koklayalım bakalım… akşam kokusu,\" dedi. Deniz’in dudakları usulca kıvrıldı. İkisi ağır adımlarla tepeden indi.",
+        "poseAndActionEvidence": [
+          "Tepeden inerken hava serinledi.",
+          "Tarçın burnunu havaya kaldırdı.",
+          "\"Bir koklayalım bakalım…",
+          "akşam kokusu,\" dedi.",
+          "Deniz’in dudakları usulca kıvrıldı.",
+          "İkisi ağır adımlarla tepeden indi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Tepeden inerken hava serinledi. Tarçın burnunu havaya kaldırdı. \"Bir koklayalım bakalım… akşam kokusu,\" dedi. Deniz’in dudakları usulca kıvrıldı. İkisi ağır adımlarla tepeden indi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p08",
+        "quoteSHA256": "9dc40774af4b34e9c062a3e9bd5f14bafe0701bf032a5c5617a3f2187ec67b1e",
+        "bookID": "pilot56_book_a5_fox_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "9dc40774af4b34e9c062a3e9bd5f14bafe0701bf032a5c5617a3f2187ec67b1e",
+      "text": "Tepeden inerken hava serinledi. Tarçın burnunu havaya kaldırdı. \"Bir koklayalım bakalım… akşam kokusu,\" dedi. Deniz’in dudakları usulca kıvrıldı. İkisi ağır adımlarla tepeden indi.",
+      "sourceID": "p56_wave1_pilot56_book_a5_fox_event03_v1_p08",
+      "sourcePointer": "input/adventure-fox.json#/books/2/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk sırayı kendisi önerir, beklerken tahmin eder, sonra yerini paylaşır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

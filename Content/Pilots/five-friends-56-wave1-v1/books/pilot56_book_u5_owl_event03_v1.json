@@ -1,0 +1,948 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u5_owl_event03_v1",
+  "title": "Raftaki Küçük Ay",
+  "context": {
+    "settingName": "Orman Kıyısındaki Oda",
+    "mode": "bedtime",
+    "companionID": "companion_owl_pilot_001",
+    "structure": "U5",
+    "event": "e3",
+    "mechanism": "one-plan-for-tomorrow",
+    "sourceFilename": "bedtime-owl.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u5_owl_event03_v1",
+    "structure": "U5",
+    "event": "e3",
+    "sample": false,
+    "title": "Raftaki Küçük Ay",
+    "pages": [
+      "Orman Kıyısındaki Oda’da gün bitmişti. Deniz yorganın ucunu açtı. Yıldız tüneğinden rafa bakıyordu. Gözleri iki küçük ay gibiydi. Rafta parlak bir taş duruyordu.",
+      "Deniz yarın göstereceklerini düşündü. Parlak taş, sarı yaprak, yeni resim… Yıldız hepsine teker teker baktı. \"Hepsini göstermek istiyorum,\" dedi Deniz. Hepsi çok güzeldi.",
+      "\"Hımm… o parlayan ne?\" diye sordu Yıldız. \"Benim taşım,\" dedi Deniz. Yıldız gözlerini kırptı. \"Ben onu küçük bir ay sandım.\" Deniz yastığına gömülüp güldü.",
+      "Deniz parlak taşı seçti. \"Yarın bunu göstereceğim,\" dedi. Taşı rafa koydu. Yıldız taşa uzun uzun baktı. Taş rafta küçük bir ay gibi parlıyordu.",
+      "Yıldız taşı gözleriyle süzdü. \"Yarın herkes bu küçük ayı görecek,\" dedi. Deniz ona sıcacık gülümsedi. Yıldız başını yana yatırdı. Taşı yarın götürmeye kendisi karar vermişti.",
+      "\"Yaprak ve resim sabaha kalsın,\" dedi Deniz. Rafta yalnız taş duruyordu. Yıldız da gözünü taştan ayırdı. Plan hazırdı ve Deniz’in içi rahatlamıştı.",
+      "Yıldız tüneğinde yerleşti. Göğsündeki yıldız tüyü hafifçe inip kalktı. Oda sakindi. Deniz yorganını düzeltti. Parlak taş rafta küçük bir ay gibi duruyordu.",
+      "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Yıldız. \"Ben küçük aya göz kulak olurum.\" Deniz gözlerini kapattı. Yıldız'ın gözleri rafa döndü."
+    ],
+    "sourceBookID": "pilot56_book_u5_owl_event03_v1"
+  },
+  "inputFileSHA256": "238ff5981f611da0185340e11380bf9188cd0a77e35069ffeb59cd17a1c61765",
+  "inputBookPointer": "input/bedtime-owl.json#/books/2",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u5_owl_event03_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_owl_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "taş; tünek; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Rafta parlak bir taş duruyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tünek",
+            "evidenceQuotes": [
+              "Yıldız tüneğinden rafa bakıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Rafta parlak bir taş duruyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Orman Kıyısındaki Oda’da gün bitmişti. Deniz yorganın ucunu açtı. Yıldız tüneğinden rafa bakıyordu. Gözleri iki küçük ay gibiydi. Rafta parlak bir taş duruyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p01",
+            "evidenceText": "Orman Kıyısındaki Oda’da gün bitmişti. Deniz yorganın ucunu açtı. Yıldız tüneğinden rafa bakıyordu. Gözleri iki küçük ay gibiydi. Rafta parlak bir taş duruyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Orman Kıyısındaki Oda’da gün bitmişti. Deniz yorganın ucunu açtı. Yıldız tüneğinden rafa bakıyordu. Gözleri iki küçük ay gibiydi. Rafta parlak bir taş duruyordu.",
+        "poseAndActionEvidence": [
+          "Orman Kıyısındaki Oda’da gün bitmişti.",
+          "Deniz yorganın ucunu açtı.",
+          "Yıldız tüneğinden rafa bakıyordu.",
+          "Gözleri iki küçük ay gibiydi.",
+          "Rafta parlak bir taş duruyordu."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Orman Kıyısındaki Oda’da gün bitmişti. Deniz yorganın ucunu açtı. Yıldız tüneğinden rafa bakıyordu. Gözleri iki küçük ay gibiydi. Rafta parlak bir taş duruyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p01",
+        "quoteSHA256": "3ceceec95f2a6425424d42fdc51a826905511a921dad22bb94b918396e9c5967",
+        "bookID": "pilot56_book_u5_owl_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "3ceceec95f2a6425424d42fdc51a826905511a921dad22bb94b918396e9c5967",
+      "text": "Orman Kıyısındaki Oda’da gün bitmişti. Deniz yorganın ucunu açtı. Yıldız tüneğinden rafa bakıyordu. Gözleri iki küçük ay gibiydi. Rafta parlak bir taş duruyordu.",
+      "sourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p01",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u5_owl_event03_v1",
+      "rawPageMove": "many_plans",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_owl_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Parlak taş, sarı yaprak, yeni resim…"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Parlak taş, sarı yaprak, yeni resim…"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Parlak taş, sarı yaprak, yeni resim…"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz yarın göstereceklerini düşündü. Parlak taş, sarı yaprak, yeni resim… Yıldız hepsine teker teker baktı. \"Hepsini göstermek istiyorum,\" dedi Deniz. Hepsi çok güzeldi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p02",
+            "evidenceText": "Deniz yarın göstereceklerini düşündü. Parlak taş, sarı yaprak, yeni resim… Yıldız hepsine teker teker baktı. \"Hepsini göstermek istiyorum,\" dedi Deniz. Hepsi çok güzeldi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yarın göstereceklerini düşündü. Parlak taş, sarı yaprak, yeni resim… Yıldız hepsine teker teker baktı. \"Hepsini göstermek istiyorum,\" dedi Deniz. Hepsi çok güzeldi.",
+        "poseAndActionEvidence": [
+          "Deniz yarın göstereceklerini düşündü.",
+          "Parlak taş, sarı yaprak, yeni resim…",
+          "Yıldız hepsine teker teker baktı.",
+          "\"Hepsini göstermek istiyorum,\" dedi Deniz.",
+          "Hepsi çok güzeldi."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yarın göstereceklerini düşündü. Parlak taş, sarı yaprak, yeni resim… Yıldız hepsine teker teker baktı. \"Hepsini göstermek istiyorum,\" dedi Deniz. Hepsi çok güzeldi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p02",
+        "quoteSHA256": "70752b68dfe5bc7eb4b8f98453607155657041aae43420a4f59683c72c66947a",
+        "bookID": "pilot56_book_u5_owl_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "70752b68dfe5bc7eb4b8f98453607155657041aae43420a4f59683c72c66947a",
+      "text": "Deniz yarın göstereceklerini düşündü. Parlak taş, sarı yaprak, yeni resim… Yıldız hepsine teker teker baktı. \"Hepsini göstermek istiyorum,\" dedi Deniz. Hepsi çok güzeldi.",
+      "sourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p02",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u5_owl_event03_v1",
+      "rawPageMove": "friend_shares_wish",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_owl_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "taş; yatak/yastık/döşek; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "\"Benim taşım,\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "\"Ben onu küçük bir ay sandım.\" Deniz yastığına gömülüp güldü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "\"Benim taşım,\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "\"Hımm… o parlayan ne?\" diye sordu Yıldız. \"Benim taşım,\" dedi Deniz. Yıldız gözlerini kırptı. \"Ben onu küçük bir ay sandım.\" Deniz yastığına gömülüp güldü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p03",
+            "evidenceText": "\"Hımm… o parlayan ne?\" diye sordu Yıldız. \"Benim taşım,\" dedi Deniz. Yıldız gözlerini kırptı. \"Ben onu küçük bir ay sandım.\" Deniz yastığına gömülüp güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Hımm… o parlayan ne?\" diye sordu Yıldız. \"Benim taşım,\" dedi Deniz. Yıldız gözlerini kırptı. \"Ben onu küçük bir ay sandım.\" Deniz yastığına gömülüp güldü.",
+        "poseAndActionEvidence": [
+          "\"Hımm…",
+          "o parlayan ne?\" diye sordu Yıldız.",
+          "\"Benim taşım,\" dedi Deniz.",
+          "Yıldız gözlerini kırptı.",
+          "\"Ben onu küçük bir ay sandım.\" Deniz yastığına gömülüp güldü."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_owl_pilot_001",
+        "quote": "\"Hımm… o parlayan ne?\" diye sordu Yıldız. \"Benim taşım,\" dedi Deniz. Yıldız gözlerini kırptı. \"Ben onu küçük bir ay sandım.\" Deniz yastığına gömülüp güldü.",
+        "attributionQuote": "Yıldız",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p03",
+        "quoteSHA256": "6a30b962b38118539ec61ec9ed6c9f9ec4d32b3a2a122377b3b827a5d89bfa2a",
+        "bookID": "pilot56_book_u5_owl_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "6a30b962b38118539ec61ec9ed6c9f9ec4d32b3a2a122377b3b827a5d89bfa2a",
+      "text": "\"Hımm… o parlayan ne?\" diye sordu Yıldız. \"Benim taşım,\" dedi Deniz. Yıldız gözlerini kırptı. \"Ben onu küçük bir ay sandım.\" Deniz yastığına gömülüp güldü.",
+      "sourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p03",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u5_owl_event03_v1",
+      "rawPageMove": "child_picks_one",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_owl_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Deniz parlak taşı seçti.",
+              "Taşı rafa koydu.",
+              "Yıldız taşa uzun uzun baktı.",
+              "Taş rafta küçük bir ay gibi parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Deniz parlak taşı seçti.",
+              "Taşı rafa koydu.",
+              "Yıldız taşa uzun uzun baktı.",
+              "Taş rafta küçük bir ay gibi parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz parlak taşı seçti. \"Yarın bunu göstereceğim,\" dedi. Taşı rafa koydu. Yıldız taşa uzun uzun baktı. Taş rafta küçük bir ay gibi parlıyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p04",
+            "evidenceText": "Deniz parlak taşı seçti. \"Yarın bunu göstereceğim,\" dedi. Taşı rafa koydu. Yıldız taşa uzun uzun baktı. Taş rafta küçük bir ay gibi parlıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz parlak taşı seçti. \"Yarın bunu göstereceğim,\" dedi. Taşı rafa koydu. Yıldız taşa uzun uzun baktı. Taş rafta küçük bir ay gibi parlıyordu.",
+        "poseAndActionEvidence": [
+          "Deniz parlak taşı seçti.",
+          "\"Yarın bunu göstereceğim,\" dedi.",
+          "Taşı rafa koydu.",
+          "Yıldız taşa uzun uzun baktı.",
+          "Taş rafta küçük bir ay gibi parlıyordu."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz parlak taşı seçti. \"Yarın bunu göstereceğim,\" dedi. Taşı rafa koydu. Yıldız taşa uzun uzun baktı. Taş rafta küçük bir ay gibi parlıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p04",
+        "quoteSHA256": "38a185b8ac43e0b63fdec346d03372f3a4d63a33ec9ebfe47a6c73a7d863f5ce",
+        "bookID": "pilot56_book_u5_owl_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "38a185b8ac43e0b63fdec346d03372f3a4d63a33ec9ebfe47a6c73a7d863f5ce",
+      "text": "Deniz parlak taşı seçti. \"Yarın bunu göstereceğim,\" dedi. Taşı rafa koydu. Yıldız taşa uzun uzun baktı. Taş rafta küçük bir ay gibi parlıyordu.",
+      "sourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p04",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u5_owl_event03_v1",
+      "rawPageMove": "soft_smile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_owl_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Yıldız taşı gözleriyle süzdü.",
+              "Taşı yarın götürmeye kendisi karar vermişti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Yıldız taşı gözleriyle süzdü.",
+              "Taşı yarın götürmeye kendisi karar vermişti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Yıldız taşı gözleriyle süzdü. \"Yarın herkes bu küçük ayı görecek,\" dedi. Deniz ona sıcacık gülümsedi. Yıldız başını yana yatırdı. Taşı yarın götürmeye kendisi karar vermişti.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p05",
+            "evidenceText": "Yıldız taşı gözleriyle süzdü. \"Yarın herkes bu küçük ayı görecek,\" dedi. Deniz ona sıcacık gülümsedi. Yıldız başını yana yatırdı. Taşı yarın götürmeye kendisi karar vermişti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yıldız taşı gözleriyle süzdü. \"Yarın herkes bu küçük ayı görecek,\" dedi. Deniz ona sıcacık gülümsedi. Yıldız başını yana yatırdı. Taşı yarın götürmeye kendisi karar vermişti.",
+        "poseAndActionEvidence": [
+          "Yıldız taşı gözleriyle süzdü.",
+          "\"Yarın herkes bu küçük ayı görecek,\" dedi.",
+          "Deniz ona sıcacık gülümsedi.",
+          "Yıldız başını yana yatırdı.",
+          "Taşı yarın götürmeye kendisi karar vermişti."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Yıldız taşı gözleriyle süzdü. \"Yarın herkes bu küçük ayı görecek,\" dedi. Deniz ona sıcacık gülümsedi. Yıldız başını yana yatırdı. Taşı yarın götürmeye kendisi karar vermişti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p05",
+        "quoteSHA256": "fcff73d89408e691a6f35efe1ae405e1df3dcdb0a113c9f8bbeadf199cf7954b",
+        "bookID": "pilot56_book_u5_owl_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "fcff73d89408e691a6f35efe1ae405e1df3dcdb0a113c9f8bbeadf199cf7954b",
+      "text": "Yıldız taşı gözleriyle süzdü. \"Yarın herkes bu küçük ayı görecek,\" dedi. Deniz ona sıcacık gülümsedi. Yıldız başını yana yatırdı. Taşı yarın götürmeye kendisi karar vermişti.",
+      "sourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p05",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u5_owl_event03_v1",
+      "rawPageMove": "rest_left_for_morning",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_owl_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "\"Yaprak ve resim sabaha kalsın,\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Rafta yalnız taş duruyordu.",
+              "Yıldız da gözünü taştan ayırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Rafta yalnız taş duruyordu.",
+              "Yıldız da gözünü taştan ayırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "\"Yaprak ve resim sabaha kalsın,\" dedi Deniz. Rafta yalnız taş duruyordu. Yıldız da gözünü taştan ayırdı. Plan hazırdı ve Deniz’in içi rahatlamıştı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p06",
+            "evidenceText": "\"Yaprak ve resim sabaha kalsın,\" dedi Deniz. Rafta yalnız taş duruyordu. Yıldız da gözünü taştan ayırdı. Plan hazırdı ve Deniz’in içi rahatlamıştı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Yaprak ve resim sabaha kalsın,\" dedi Deniz. Rafta yalnız taş duruyordu. Yıldız da gözünü taştan ayırdı. Plan hazırdı ve Deniz’in içi rahatlamıştı.",
+        "poseAndActionEvidence": [
+          "\"Yaprak ve resim sabaha kalsın,\" dedi Deniz.",
+          "Rafta yalnız taş duruyordu.",
+          "Yıldız da gözünü taştan ayırdı.",
+          "Plan hazırdı ve Deniz’in içi rahatlamıştı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Yaprak ve resim sabaha kalsın,\" dedi Deniz. Rafta yalnız taş duruyordu. Yıldız da gözünü taştan ayırdı. Plan hazırdı ve Deniz’in içi rahatlamıştı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p06",
+        "quoteSHA256": "0b7e989fbb2adca58d385b2d46b735f465d3f2fda64b28fec824392a79f6c17f",
+        "bookID": "pilot56_book_u5_owl_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "0b7e989fbb2adca58d385b2d46b735f465d3f2fda64b28fec824392a79f6c17f",
+      "text": "\"Yaprak ve resim sabaha kalsın,\" dedi Deniz. Rafta yalnız taş duruyordu. Yıldız da gözünü taştan ayırdı. Plan hazırdı ve Deniz’in içi rahatlamıştı.",
+      "sourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p06",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u5_owl_event03_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_owl_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "taş; tünek; tüy; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Parlak taş rafta küçük bir ay gibi duruyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tünek",
+            "evidenceQuotes": [
+              "Yıldız tüneğinde yerleşti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Göğsündeki yıldız tüyü hafifçe inip kalktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Parlak taş rafta küçük bir ay gibi duruyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Yıldız tüneğinde yerleşti. Göğsündeki yıldız tüyü hafifçe inip kalktı. Oda sakindi. Deniz yorganını düzeltti. Parlak taş rafta küçük bir ay gibi duruyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p07",
+            "evidenceText": "Yıldız tüneğinde yerleşti. Göğsündeki yıldız tüyü hafifçe inip kalktı. Oda sakindi. Deniz yorganını düzeltti. Parlak taş rafta küçük bir ay gibi duruyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yıldız tüneğinde yerleşti. Göğsündeki yıldız tüyü hafifçe inip kalktı. Oda sakindi. Deniz yorganını düzeltti. Parlak taş rafta küçük bir ay gibi duruyordu.",
+        "poseAndActionEvidence": [
+          "Yıldız tüneğinde yerleşti.",
+          "Göğsündeki yıldız tüyü hafifçe inip kalktı.",
+          "Oda sakindi.",
+          "Deniz yorganını düzeltti.",
+          "Parlak taş rafta küçük bir ay gibi duruyordu."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Yıldız tüneğinde yerleşti. Göğsündeki yıldız tüyü hafifçe inip kalktı. Oda sakindi. Deniz yorganını düzeltti. Parlak taş rafta küçük bir ay gibi duruyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p07",
+        "quoteSHA256": "8639f22fc72210b1948ef8aad24d3fa3e548db89fc308e4f8b73caf8f77508b4",
+        "bookID": "pilot56_book_u5_owl_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "8639f22fc72210b1948ef8aad24d3fa3e548db89fc308e4f8b73caf8f77508b4",
+      "text": "Yıldız tüneğinde yerleşti. Göğsündeki yıldız tüyü hafifçe inip kalktı. Oda sakindi. Deniz yorganını düzeltti. Parlak taş rafta küçük bir ay gibi duruyordu.",
+      "sourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p07",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u5_owl_event03_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_owl_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Yıldız. \"Ben küçük aya göz kulak olurum.\" Deniz gözlerini kapattı. Yıldız'ın gözleri rafa döndü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p08",
+            "evidenceText": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Yıldız. \"Ben küçük aya göz kulak olurum.\" Deniz gözlerini kapattı. Yıldız'ın gözleri rafa döndü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Yıldız. \"Ben küçük aya göz kulak olurum.\" Deniz gözlerini kapattı. Yıldız'ın gözleri rafa döndü.",
+        "poseAndActionEvidence": [
+          "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Yıldız.",
+          "\"Ben küçük aya göz kulak olurum.\" Deniz gözlerini kapattı.",
+          "Yıldız'ın gözleri rafa döndü."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Yıldız. \"Ben küçük aya göz kulak olurum.\" Deniz gözlerini kapattı. Yıldız'ın gözleri rafa döndü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p08",
+        "quoteSHA256": "296360e207a707e5b0fb6d8829d576ada5e4a2c4c17ef96bdee44d042636420e",
+        "bookID": "pilot56_book_u5_owl_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "296360e207a707e5b0fb6d8829d576ada5e4a2c4c17ef96bdee44d042636420e",
+      "text": "\"Tatlı rüyalar, Deniz,\" diye fısıldadı Yıldız. \"Ben küçük aya göz kulak olurum.\" Deniz gözlerini kapattı. Yıldız'ın gözleri rafa döndü.",
+      "sourceID": "p56_wave1_pilot56_book_u5_owl_event03_v1_p08",
+      "sourcePointer": "input/bedtime-owl.json#/books/2/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk tek bir planı seçip söyler, gerisini sabaha bırakır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

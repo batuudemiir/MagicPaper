@@ -1,0 +1,938 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u7_cat_event03_v1",
+  "title": "Simit Kalem Kovalıyor",
+  "context": {
+    "settingName": "Orman Kıyısındaki Oda",
+    "mode": "bedtime",
+    "companionID": "companion_city_cat_001",
+    "structure": "U7",
+    "event": "e3",
+    "mechanism": "toys-to-bed",
+    "sourceFilename": "bedtime-cat.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u7_cat_event03_v1",
+    "sourceBookID": "pilot56_book_u7_cat_event03_v1",
+    "structure": "U7",
+    "event": "e3",
+    "sample": false,
+    "title": "Simit Kalem Kovalıyor",
+    "pages": [
+      "Orman Kıyısındaki Oda’da gün bitmişti. Deniz masasının başındaydı. Simit masanın kenarına oturmuştu. Kırmızı tasmasındaki zil lambanın altında parlıyordu.",
+      "Masada boya kalemleri dağınıktı. Simit masaya zıplayınca kalemler yuvarlandı. Kırmızı, mavi, sarı, yeşil… \"Bir resim daha yapsam,\" dedi Deniz. Ama gözleri kapanıyordu.",
+      "Masadan bir kalem yuvarlandı. Simit önce zıpladı, sonra düşündü. Kalemi patisiyle kovaladı, yatağın altına kadar gitti! Deniz’in kahkahası çınladı.",
+      "Deniz kalemleri renklerine göre topladı. \"Maviler bu kutuda, kırmızılar şurada uyusun,\" dedi. Simit kırmızı tasmasını gösterdi. \"Ben de kırmızıyım!\"",
+      "Simit kalemi ağzında getirip masaya bıraktı. \"Şehirde böyle değil ama,\" dedi. \"Orada kalemler hiç kaçmaz.\" Deniz’in yanakları gülümsemeyle kabardı. Simit’in bıyıkları titredi. Kuyruğu da gururla dikildi.",
+      "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Kalemler kutulardaydı, masa toplanmıştı. Simit masadan usulca indi.",
+      "Simit minderine kıvrıldı. Patisini ziline koyup susturdu. Deniz masa lambasını kapattı. Sarı kalem yastığının yanında duruyordu. Oda karanlık ve sessizdi.",
+      "\"Gece seni sarsın, Deniz,\" diye mırladı Simit. Deniz yavaşça gözlerini yumdu. Kalemler kutularında, Simit minderinde sessizce uyudu. Sarı kalem de sabahı bekledi."
+    ]
+  },
+  "inputFileSHA256": "d2cf0a47309f48e05623e4bab45aadbbe91a6cb1ffd366e8af852a0c4b234b6f",
+  "inputBookPointer": "input/bedtime-cat.json#/books/2",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u7_cat_event03_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tasma/zil; lamba/fener/ışık; iz/kum",
+        "propMentions": [
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Kırmızı tasmasındaki zil lambanın altında parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Kırmızı tasmasındaki zil lambanın altında parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kırmızı tasmasındaki zil lambanın altında parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Orman Kıyısındaki Oda’da gün bitmişti. Deniz masasının başındaydı. Simit masanın kenarına oturmuştu. Kırmızı tasmasındaki zil lambanın altında parlıyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p01",
+            "evidenceText": "Orman Kıyısındaki Oda’da gün bitmişti. Deniz masasının başındaydı. Simit masanın kenarına oturmuştu. Kırmızı tasmasındaki zil lambanın altında parlıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Orman Kıyısındaki Oda’da gün bitmişti. Deniz masasının başındaydı. Simit masanın kenarına oturmuştu. Kırmızı tasmasındaki zil lambanın altında parlıyordu.",
+        "poseAndActionEvidence": [
+          "Orman Kıyısındaki Oda’da gün bitmişti.",
+          "Deniz masasının başındaydı.",
+          "Simit masanın kenarına oturmuştu.",
+          "Kırmızı tasmasındaki zil lambanın altında parlıyordu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Orman Kıyısındaki Oda’da gün bitmişti. Deniz masasının başındaydı. Simit masanın kenarına oturmuştu. Kırmızı tasmasındaki zil lambanın altında parlıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p01",
+        "quoteSHA256": "56581b1a395703e5626c0c8d42d6ca790a0b7f40d3f432b4c52dbd166bc7fbb4",
+        "bookID": "pilot56_book_u7_cat_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "56581b1a395703e5626c0c8d42d6ca790a0b7f40d3f432b4c52dbd166bc7fbb4",
+      "text": "Orman Kıyısındaki Oda’da gün bitmişti. Deniz masasının başındaydı. Simit masanın kenarına oturmuştu. Kırmızı tasmasındaki zil lambanın altında parlıyordu.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p01",
+      "sourcePointer": "input/bedtime-cat.json#/books/2/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u7_cat_event03_v1",
+      "rawPageMove": "toys_scattered",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; renkli kalem; resim eşyası; iz/kum; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Simit masaya zıplayınca kalemler yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Masada boya kalemleri dağınıktı.",
+              "Simit masaya zıplayınca kalemler yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Masada boya kalemleri dağınıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kırmızı, mavi, sarı, yeşil…"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Simit masaya zıplayınca kalemler yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Masada boya kalemleri dağınıktı. Simit masaya zıplayınca kalemler yuvarlandı. Kırmızı, mavi, sarı, yeşil… \"Bir resim daha yapsam,\" dedi Deniz. Ama gözleri kapanıyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p02",
+            "evidenceText": "Masada boya kalemleri dağınıktı. Simit masaya zıplayınca kalemler yuvarlandı. Kırmızı, mavi, sarı, yeşil… \"Bir resim daha yapsam,\" dedi Deniz. Ama gözleri kapanıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Masada boya kalemleri dağınıktı. Simit masaya zıplayınca kalemler yuvarlandı. Kırmızı, mavi, sarı, yeşil… \"Bir resim daha yapsam,\" dedi Deniz. Ama gözleri kapanıyordu.",
+        "poseAndActionEvidence": [
+          "Masada boya kalemleri dağınıktı.",
+          "Simit masaya zıplayınca kalemler yuvarlandı.",
+          "Kırmızı, mavi, sarı, yeşil…",
+          "\"Bir resim daha yapsam,\" dedi Deniz.",
+          "Ama gözleri kapanıyordu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Masada boya kalemleri dağınıktı. Simit masaya zıplayınca kalemler yuvarlandı. Kırmızı, mavi, sarı, yeşil… \"Bir resim daha yapsam,\" dedi Deniz. Ama gözleri kapanıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p02",
+        "quoteSHA256": "d1882d93f028270a3f79c68758d3b78b6307e8e117da4fe34008c01db947df2d",
+        "bookID": "pilot56_book_u7_cat_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "d1882d93f028270a3f79c68758d3b78b6307e8e117da4fe34008c01db947df2d",
+      "text": "Masada boya kalemleri dağınıktı. Simit masaya zıplayınca kalemler yuvarlandı. Kırmızı, mavi, sarı, yeşil… \"Bir resim daha yapsam,\" dedi Deniz. Ama gözleri kapanıyordu.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p02",
+      "sourcePointer": "input/bedtime-cat.json#/books/2/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u7_cat_event03_v1",
+      "rawPageMove": "friend_beds_wrong",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; yatak/yastık/döşek; renkli kalem; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Masadan bir kalem yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Kalemi patisiyle kovaladı, yatağın altına kadar gitti!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Masadan bir kalem yuvarlandı.",
+              "Kalemi patisiyle kovaladı, yatağın altına kadar gitti!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Masadan bir kalem yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Masadan bir kalem yuvarlandı. Simit önce zıpladı, sonra düşündü. Kalemi patisiyle kovaladı, yatağın altına kadar gitti! Deniz’in kahkahası çınladı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p03",
+            "evidenceText": "Masadan bir kalem yuvarlandı. Simit önce zıpladı, sonra düşündü. Kalemi patisiyle kovaladı, yatağın altına kadar gitti! Deniz’in kahkahası çınladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Masadan bir kalem yuvarlandı. Simit önce zıpladı, sonra düşündü. Kalemi patisiyle kovaladı, yatağın altına kadar gitti! Deniz’in kahkahası çınladı.",
+        "poseAndActionEvidence": [
+          "Masadan bir kalem yuvarlandı.",
+          "Simit önce zıpladı, sonra düşündü.",
+          "Kalemi patisiyle kovaladı, yatağın altına kadar gitti!",
+          "Deniz’in kahkahası çınladı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_city_cat_001",
+        "quote": "Masadan bir kalem yuvarlandı. Simit önce zıpladı, sonra düşündü. Kalemi patisiyle kovaladı, yatağın altına kadar gitti! Deniz’in kahkahası çınladı.",
+        "attributionQuote": "Simit",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p03",
+        "quoteSHA256": "20bba416f433df9ad04fb7027d555713fd94eb171b1d7201b22569a20efd33df",
+        "bookID": "pilot56_book_u7_cat_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "20bba416f433df9ad04fb7027d555713fd94eb171b1d7201b22569a20efd33df",
+      "text": "Masadan bir kalem yuvarlandı. Simit önce zıpladı, sonra düşündü. Kalemi patisiyle kovaladı, yatağın altına kadar gitti! Deniz’in kahkahası çınladı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p03",
+      "sourcePointer": "input/bedtime-cat.json#/books/2/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u7_cat_event03_v1",
+      "rawPageMove": "child_picks_places",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tasma/zil; sepet/kutu; renkli kalem; iz/kum",
+        "propMentions": [
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "\"Maviler bu kutuda, kırmızılar şurada uyusun,\" dedi.",
+              "Simit kırmızı tasmasını gösterdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "\"Maviler bu kutuda, kırmızılar şurada uyusun,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Deniz kalemleri renklerine göre topladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "\"Maviler bu kutuda, kırmızılar şurada uyusun,\" dedi.",
+              "Simit kırmızı tasmasını gösterdi.",
+              "\"Ben de kırmızıyım!\""
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz kalemleri renklerine göre topladı. \"Maviler bu kutuda, kırmızılar şurada uyusun,\" dedi. Simit kırmızı tasmasını gösterdi. \"Ben de kırmızıyım!\"",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p04",
+            "evidenceText": "Deniz kalemleri renklerine göre topladı. \"Maviler bu kutuda, kırmızılar şurada uyusun,\" dedi. Simit kırmızı tasmasını gösterdi. \"Ben de kırmızıyım!\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kalemleri renklerine göre topladı. \"Maviler bu kutuda, kırmızılar şurada uyusun,\" dedi. Simit kırmızı tasmasını gösterdi. \"Ben de kırmızıyım!\"",
+        "poseAndActionEvidence": [
+          "Deniz kalemleri renklerine göre topladı.",
+          "\"Maviler bu kutuda, kırmızılar şurada uyusun,\" dedi.",
+          "Simit kırmızı tasmasını gösterdi.",
+          "\"Ben de kırmızıyım!\""
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kalemleri renklerine göre topladı. \"Maviler bu kutuda, kırmızılar şurada uyusun,\" dedi. Simit kırmızı tasmasını gösterdi. \"Ben de kırmızıyım!\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p04",
+        "quoteSHA256": "c96f5bed4eda6c569314818e65b1a79a6ebee36e2792db6e560527623a47ef16",
+        "bookID": "pilot56_book_u7_cat_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "c96f5bed4eda6c569314818e65b1a79a6ebee36e2792db6e560527623a47ef16",
+      "text": "Deniz kalemleri renklerine göre topladı. \"Maviler bu kutuda, kırmızılar şurada uyusun,\" dedi. Simit kırmızı tasmasını gösterdi. \"Ben de kırmızıyım!\"",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p04",
+      "sourcePointer": "input/bedtime-cat.json#/books/2/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u7_cat_event03_v1",
+      "rawPageMove": "soft_smile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "renkli kalem",
+        "propMentions": [
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Simit kalemi ağzında getirip masaya bıraktı.",
+              "\"Orada kalemler hiç kaçmaz.\" Deniz’in yanakları gülümsemeyle kabardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit kalemi ağzında getirip masaya bıraktı. \"Şehirde böyle değil ama,\" dedi. \"Orada kalemler hiç kaçmaz.\" Deniz’in yanakları gülümsemeyle kabardı. Simit’in bıyıkları titredi. Kuyruğu da gururla dikildi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p05",
+            "evidenceText": "Simit kalemi ağzında getirip masaya bıraktı. \"Şehirde böyle değil ama,\" dedi. \"Orada kalemler hiç kaçmaz.\" Deniz’in yanakları gülümsemeyle kabardı. Simit’in bıyıkları titredi. Kuyruğu da gururla dikildi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit kalemi ağzında getirip masaya bıraktı. \"Şehirde böyle değil ama,\" dedi. \"Orada kalemler hiç kaçmaz.\" Deniz’in yanakları gülümsemeyle kabardı. Simit’in bıyıkları titredi. Kuyruğu da gururla dikildi.",
+        "poseAndActionEvidence": [
+          "Simit kalemi ağzında getirip masaya bıraktı.",
+          "\"Şehirde böyle değil ama,\" dedi.",
+          "\"Orada kalemler hiç kaçmaz.\" Deniz’in yanakları gülümsemeyle kabardı.",
+          "Simit’in bıyıkları titredi.",
+          "Kuyruğu da gururla dikildi."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Simit kalemi ağzında getirip masaya bıraktı. \"Şehirde böyle değil ama,\" dedi. \"Orada kalemler hiç kaçmaz.\" Deniz’in yanakları gülümsemeyle kabardı. Simit’in bıyıkları titredi. Kuyruğu da gururla dikildi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p05",
+        "quoteSHA256": "4a391a3375120b6a72187dd5ff3229b6186dfbd8429ea2c3d4a0c97eade537f8",
+        "bookID": "pilot56_book_u7_cat_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "4a391a3375120b6a72187dd5ff3229b6186dfbd8429ea2c3d4a0c97eade537f8",
+      "text": "Simit kalemi ağzında getirip masaya bıraktı. \"Şehirde böyle değil ama,\" dedi. \"Orada kalemler hiç kaçmaz.\" Deniz’in yanakları gülümsemeyle kabardı. Simit’in bıyıkları titredi. Kuyruğu da gururla dikildi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p05",
+      "sourcePointer": "input/bedtime-cat.json#/books/2/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u7_cat_event03_v1",
+      "rawPageMove": "one_toy_kept",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek; sepet/kutu; renkli kalem",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz yalnız sarı kalemi yastığının yanına koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Kalemler kutulardaydı, masa toplanmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Deniz yalnız sarı kalemi yastığının yanına koydu.",
+              "Kalemler kutulardaydı, masa toplanmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Kalemler kutulardaydı, masa toplanmıştı. Simit masadan usulca indi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p06",
+            "evidenceText": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Kalemler kutulardaydı, masa toplanmıştı. Simit masadan usulca indi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Kalemler kutulardaydı, masa toplanmıştı. Simit masadan usulca indi.",
+        "poseAndActionEvidence": [
+          "Deniz yalnız sarı kalemi yastığının yanına koydu.",
+          "\"Yarın güneşi bununla çizeceğim,\" dedi.",
+          "Kalemler kutulardaydı, masa toplanmıştı.",
+          "Simit masadan usulca indi."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Kalemler kutulardaydı, masa toplanmıştı. Simit masadan usulca indi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p06",
+        "quoteSHA256": "b50529079e6f606b3b811ad5a2a380d7e335087c4c237a8b9aa93e37149ab3c4",
+        "bookID": "pilot56_book_u7_cat_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "b50529079e6f606b3b811ad5a2a380d7e335087c4c237a8b9aa93e37149ab3c4",
+      "text": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Kalemler kutulardaydı, masa toplanmıştı. Simit masadan usulca indi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p06",
+      "sourcePointer": "input/bedtime-cat.json#/books/2/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u7_cat_event03_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "minder; yatak/yastık/döşek; tasma/zil; lamba/fener/ışık; renkli kalem",
+        "propMentions": [
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Simit minderine kıvrıldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Sarı kalem yastığının yanında duruyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Patisini ziline koyup susturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Deniz masa lambasını kapattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Sarı kalem yastığının yanında duruyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit minderine kıvrıldı. Patisini ziline koyup susturdu. Deniz masa lambasını kapattı. Sarı kalem yastığının yanında duruyordu. Oda karanlık ve sessizdi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p07",
+            "evidenceText": "Simit minderine kıvrıldı. Patisini ziline koyup susturdu. Deniz masa lambasını kapattı. Sarı kalem yastığının yanında duruyordu. Oda karanlık ve sessizdi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit minderine kıvrıldı. Patisini ziline koyup susturdu. Deniz masa lambasını kapattı. Sarı kalem yastığının yanında duruyordu. Oda karanlık ve sessizdi.",
+        "poseAndActionEvidence": [
+          "Simit minderine kıvrıldı.",
+          "Patisini ziline koyup susturdu.",
+          "Deniz masa lambasını kapattı.",
+          "Sarı kalem yastığının yanında duruyordu.",
+          "Oda karanlık ve sessizdi."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Simit minderine kıvrıldı. Patisini ziline koyup susturdu. Deniz masa lambasını kapattı. Sarı kalem yastığının yanında duruyordu. Oda karanlık ve sessizdi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p07",
+        "quoteSHA256": "5470972fb7b6043e6a8fe816b37cb0775ed3f791653f36662836a126309715b4",
+        "bookID": "pilot56_book_u7_cat_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "5470972fb7b6043e6a8fe816b37cb0775ed3f791653f36662836a126309715b4",
+      "text": "Simit minderine kıvrıldı. Patisini ziline koyup susturdu. Deniz masa lambasını kapattı. Sarı kalem yastığının yanında duruyordu. Oda karanlık ve sessizdi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p07",
+      "sourcePointer": "input/bedtime-cat.json#/books/2/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u7_cat_event03_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "asleep",
+              "explicit-source-sleep"
+            ]
+          }
+        ],
+        "propDescription": "minder; sepet/kutu; renkli kalem",
+        "propMentions": [
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Kalemler kutularında, Simit minderinde sessizce uyudu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Kalemler kutularında, Simit minderinde sessizce uyudu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Kalemler kutularında, Simit minderinde sessizce uyudu.",
+              "Sarı kalem de sabahı bekledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "\"Gece seni sarsın, Deniz,\" diye mırladı Simit. Deniz yavaşça gözlerini yumdu. Kalemler kutularında, Simit minderinde sessizce uyudu. Sarı kalem de sabahı bekledi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p08",
+            "evidenceText": "\"Gece seni sarsın, Deniz,\" diye mırladı Simit. Deniz yavaşça gözlerini yumdu. Kalemler kutularında, Simit minderinde sessizce uyudu. Sarı kalem de sabahı bekledi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Gece seni sarsın, Deniz,\" diye mırladı Simit. Deniz yavaşça gözlerini yumdu. Kalemler kutularında, Simit minderinde sessizce uyudu. Sarı kalem de sabahı bekledi.",
+        "poseAndActionEvidence": [
+          "\"Gece seni sarsın, Deniz,\" diye mırladı Simit.",
+          "Deniz yavaşça gözlerini yumdu.",
+          "Kalemler kutularında, Simit minderinde sessizce uyudu.",
+          "Sarı kalem de sabahı bekledi."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Gece seni sarsın, Deniz,\" diye mırladı Simit. Deniz yavaşça gözlerini yumdu. Kalemler kutularında, Simit minderinde sessizce uyudu. Sarı kalem de sabahı bekledi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p08",
+        "quoteSHA256": "4215d8e052d1fc7fc86cb72684495534f033b1e2699bf4384c1686dded9b238b",
+        "bookID": "pilot56_book_u7_cat_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "4215d8e052d1fc7fc86cb72684495534f033b1e2699bf4384c1686dded9b238b",
+      "text": "\"Gece seni sarsın, Deniz,\" diye mırladı Simit. Deniz yavaşça gözlerini yumdu. Kalemler kutularında, Simit minderinde sessizce uyudu. Sarı kalem de sabahı bekledi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_cat_event03_v1_p08",
+      "sourcePointer": "input/bedtime-cat.json#/books/2/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz her oyuncağa bir yatak yeri seçer, sırayı kendisi belirler, yalnız birini yanına alır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

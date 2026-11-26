@@ -1,0 +1,1005 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u5_bear_event03_v1",
+  "title": "Böğürtlen'in Gösterecek Bir Şeyi",
+  "context": {
+    "settingName": "Orman Kıyısındaki Oda",
+    "mode": "bedtime",
+    "companionID": "companion_bear_001",
+    "structure": "U5",
+    "event": "e3",
+    "mechanism": "one-plan-for-tomorrow",
+    "sourceFilename": "bedtime-bear.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u5_bear_event03_v1",
+    "structure": "U5",
+    "event": "e3",
+    "sample": false,
+    "title": "Böğürtlen'in Gösterecek Bir Şeyi",
+    "pages": [
+      "Orman Kıyısındaki Oda’da gece lambası yanıyordu. Deniz yastığını kabarttı. Böğürtlen geniş döşeğine uzandı. Çantasını göbeğinin üstüne koymuştu. Çantanın içinden bir şeyler tıkırdıyordu.",
+      "Deniz arkadaşlarına yarın göstereceklerini düşündü. Parlak taş, sarı yaprak, yeni resim… Böğürtlen hepsini koklamak istedi. \"Hepsini göstermek istiyorum,\" dedi Deniz.",
+      "Böğürtlen çantasını karıştırdı. \"Ben de yarın bir şey göstereceğim,\" dedi. Çantadan bir böğürtlen, bir yaprak ve bir mendil çıktı. Deniz kıkırdadı.",
+      "Deniz parlak taşı seçti. \"Yarın bunu göstereceğim,\" dedi. Taşı yatağının yanındaki rafa yerleştirdi. Böğürtlen taşı bordo çantasına koymayı önerdi. Deniz başını salladı: rafta kalacaktı.",
+      "\"Ben de bir tane seçeyim,\" dedi Böğürtlen. Mendili gösterdi. \"Mor lekeli mendilim!\" Deniz’in dudakları usulca kıvrıldı. Böğürtlen’in göbeği sallandı. Mendil, ayının patisi kadar mordu.",
+      "\"Yaprakla resim sabahı beklesin,\" dedi Deniz. Rafta tek taş parlıyordu. Böğürtlen yavaşça döşeğine uzandı. Deniz tek planla yatmanın kolay olduğunu gördü.",
+      "Böğürtlen çantasını askıya astı. Yan yatıp alçak sesle mırıldandı. Hım hım… Ninnisi gittikçe yavaşladı. Deniz’in gözleri ağırlaştı, yastığa gömüldü.",
+      "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in göz kapakları indi. Raf da çanta da sabahı bekledi. Ayının ninnisi usulca bitti."
+    ],
+    "sourceBookID": "pilot56_book_u5_bear_event03_v1"
+  },
+  "inputFileSHA256": "f59885cb291ebf2e69dc6d07630b7c7d34fafee4be0ed255494206b11e00eb1e",
+  "inputBookPointer": "input/bedtime-bear.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u5_bear_event03_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_bear_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek; çanta/askı; lamba/fener/ışık; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz yastığını kabarttı.",
+              "Böğürtlen geniş döşeğine uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çanta/askı",
+            "evidenceQuotes": [
+              "Çantasını göbeğinin üstüne koymuştu.",
+              "Çantanın içinden bir şeyler tıkırdıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Orman Kıyısındaki Oda’da gece lambası yanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Çantasını göbeğinin üstüne koymuştu.",
+              "Çantanın içinden bir şeyler tıkırdıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Orman Kıyısındaki Oda’da gece lambası yanıyordu. Deniz yastığını kabarttı. Böğürtlen geniş döşeğine uzandı. Çantasını göbeğinin üstüne koymuştu. Çantanın içinden bir şeyler tıkırdıyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p01",
+            "evidenceText": "Orman Kıyısındaki Oda’da gece lambası yanıyordu. Deniz yastığını kabarttı. Böğürtlen geniş döşeğine uzandı. Çantasını göbeğinin üstüne koymuştu. Çantanın içinden bir şeyler tıkırdıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Orman Kıyısındaki Oda’da gece lambası yanıyordu. Deniz yastığını kabarttı. Böğürtlen geniş döşeğine uzandı. Çantasını göbeğinin üstüne koymuştu. Çantanın içinden bir şeyler tıkırdıyordu.",
+        "poseAndActionEvidence": [
+          "Orman Kıyısındaki Oda’da gece lambası yanıyordu.",
+          "Deniz yastığını kabarttı.",
+          "Böğürtlen geniş döşeğine uzandı.",
+          "Çantasını göbeğinin üstüne koymuştu.",
+          "Çantanın içinden bir şeyler tıkırdıyordu."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Orman Kıyısındaki Oda’da gece lambası yanıyordu. Deniz yastığını kabarttı. Böğürtlen geniş döşeğine uzandı. Çantasını göbeğinin üstüne koymuştu. Çantanın içinden bir şeyler tıkırdıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p01",
+        "quoteSHA256": "f4ba9a4174943b2b24539ba7660c643706ddec05f9c97623c2edc15d14e7ad5e",
+        "bookID": "pilot56_book_u5_bear_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "f4ba9a4174943b2b24539ba7660c643706ddec05f9c97623c2edc15d14e7ad5e",
+      "text": "Orman Kıyısındaki Oda’da gece lambası yanıyordu. Deniz yastığını kabarttı. Böğürtlen geniş döşeğine uzandı. Çantasını göbeğinin üstüne koymuştu. Çantanın içinden bir şeyler tıkırdıyordu.",
+      "sourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p01",
+      "sourcePointer": "input/bedtime-bear.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u5_bear_event03_v1",
+      "rawPageMove": "many_plans",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_bear_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Parlak taş, sarı yaprak, yeni resim…"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Parlak taş, sarı yaprak, yeni resim…"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Parlak taş, sarı yaprak, yeni resim…"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz arkadaşlarına yarın göstereceklerini düşündü. Parlak taş, sarı yaprak, yeni resim… Böğürtlen hepsini koklamak istedi. \"Hepsini göstermek istiyorum,\" dedi Deniz.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p02",
+            "evidenceText": "Deniz arkadaşlarına yarın göstereceklerini düşündü. Parlak taş, sarı yaprak, yeni resim… Böğürtlen hepsini koklamak istedi. \"Hepsini göstermek istiyorum,\" dedi Deniz.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz arkadaşlarına yarın göstereceklerini düşündü. Parlak taş, sarı yaprak, yeni resim… Böğürtlen hepsini koklamak istedi. \"Hepsini göstermek istiyorum,\" dedi Deniz.",
+        "poseAndActionEvidence": [
+          "Deniz arkadaşlarına yarın göstereceklerini düşündü.",
+          "Parlak taş, sarı yaprak, yeni resim…",
+          "Böğürtlen hepsini koklamak istedi.",
+          "\"Hepsini göstermek istiyorum,\" dedi Deniz."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz arkadaşlarına yarın göstereceklerini düşündü. Parlak taş, sarı yaprak, yeni resim… Böğürtlen hepsini koklamak istedi. \"Hepsini göstermek istiyorum,\" dedi Deniz.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p02",
+        "quoteSHA256": "f4e46c98254661235d3834ff6045717ee2db0a2ae97b453557efa5a8d61a922b",
+        "bookID": "pilot56_book_u5_bear_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "f4e46c98254661235d3834ff6045717ee2db0a2ae97b453557efa5a8d61a922b",
+      "text": "Deniz arkadaşlarına yarın göstereceklerini düşündü. Parlak taş, sarı yaprak, yeni resim… Böğürtlen hepsini koklamak istedi. \"Hepsini göstermek istiyorum,\" dedi Deniz.",
+      "sourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p02",
+      "sourcePointer": "input/bedtime-bear.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u5_bear_event03_v1",
+      "rawPageMove": "friend_shares_wish",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_bear_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "mendil; yaprak; çanta/askı; böğürtlen meyvesi; kar/battaniye; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "mendil",
+            "evidenceQuotes": [
+              "Çantadan bir böğürtlen, bir yaprak ve bir mendil çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Çantadan bir böğürtlen, bir yaprak ve bir mendil çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çanta/askı",
+            "evidenceQuotes": [
+              "Böğürtlen çantasını karıştırdı.",
+              "Çantadan bir böğürtlen, bir yaprak ve bir mendil çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "böğürtlen meyvesi",
+            "evidenceQuotes": [
+              "Çantadan bir böğürtlen, bir yaprak ve bir mendil çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Böğürtlen çantasını karıştırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Böğürtlen çantasını karıştırdı.",
+              "Çantadan bir böğürtlen, bir yaprak ve bir mendil çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen çantasını karıştırdı. \"Ben de yarın bir şey göstereceğim,\" dedi. Çantadan bir böğürtlen, bir yaprak ve bir mendil çıktı. Deniz kıkırdadı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p03",
+            "evidenceText": "Böğürtlen çantasını karıştırdı. \"Ben de yarın bir şey göstereceğim,\" dedi. Çantadan bir böğürtlen, bir yaprak ve bir mendil çıktı. Deniz kıkırdadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen çantasını karıştırdı. \"Ben de yarın bir şey göstereceğim,\" dedi. Çantadan bir böğürtlen, bir yaprak ve bir mendil çıktı. Deniz kıkırdadı.",
+        "poseAndActionEvidence": [
+          "Böğürtlen çantasını karıştırdı.",
+          "\"Ben de yarın bir şey göstereceğim,\" dedi.",
+          "Çantadan bir böğürtlen, bir yaprak ve bir mendil çıktı.",
+          "Deniz kıkırdadı."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_bear_001",
+        "quote": "Böğürtlen çantasını karıştırdı. \"Ben de yarın bir şey göstereceğim,\" dedi. Çantadan bir böğürtlen, bir yaprak ve bir mendil çıktı. Deniz kıkırdadı.",
+        "attributionQuote": "Böğürtlen",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p03",
+        "quoteSHA256": "5ac4ba9a7e20f25b60d3a2b2db1963388d0bd6997f632d1f99c42e8c7874900c",
+        "bookID": "pilot56_book_u5_bear_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "5ac4ba9a7e20f25b60d3a2b2db1963388d0bd6997f632d1f99c42e8c7874900c",
+      "text": "Böğürtlen çantasını karıştırdı. \"Ben de yarın bir şey göstereceğim,\" dedi. Çantadan bir böğürtlen, bir yaprak ve bir mendil çıktı. Deniz kıkırdadı.",
+      "sourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p03",
+      "sourcePointer": "input/bedtime-bear.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u5_bear_event03_v1",
+      "rawPageMove": "child_picks_one",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_bear_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "taş; yatak/yastık/döşek; çanta/askı; taş/çakıl; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Deniz parlak taşı seçti.",
+              "Taşı yatağının yanındaki rafa yerleştirdi.",
+              "Böğürtlen taşı bordo çantasına koymayı önerdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Taşı yatağının yanındaki rafa yerleştirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çanta/askı",
+            "evidenceQuotes": [
+              "Böğürtlen taşı bordo çantasına koymayı önerdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Deniz parlak taşı seçti.",
+              "Taşı yatağının yanındaki rafa yerleştirdi.",
+              "Böğürtlen taşı bordo çantasına koymayı önerdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Böğürtlen taşı bordo çantasına koymayı önerdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz parlak taşı seçti. \"Yarın bunu göstereceğim,\" dedi. Taşı yatağının yanındaki rafa yerleştirdi. Böğürtlen taşı bordo çantasına koymayı önerdi. Deniz başını salladı: rafta kalacaktı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p04",
+            "evidenceText": "Deniz parlak taşı seçti. \"Yarın bunu göstereceğim,\" dedi. Taşı yatağının yanındaki rafa yerleştirdi. Böğürtlen taşı bordo çantasına koymayı önerdi. Deniz başını salladı: rafta kalacaktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz parlak taşı seçti. \"Yarın bunu göstereceğim,\" dedi. Taşı yatağının yanındaki rafa yerleştirdi. Böğürtlen taşı bordo çantasına koymayı önerdi. Deniz başını salladı: rafta kalacaktı.",
+        "poseAndActionEvidence": [
+          "Deniz parlak taşı seçti.",
+          "\"Yarın bunu göstereceğim,\" dedi.",
+          "Taşı yatağının yanındaki rafa yerleştirdi.",
+          "Böğürtlen taşı bordo çantasına koymayı önerdi.",
+          "Deniz başını salladı: rafta kalacaktı."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz parlak taşı seçti. \"Yarın bunu göstereceğim,\" dedi. Taşı yatağının yanındaki rafa yerleştirdi. Böğürtlen taşı bordo çantasına koymayı önerdi. Deniz başını salladı: rafta kalacaktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p04",
+        "quoteSHA256": "f26b7721d211b85283e64be9d8b5a0ab96d64b41d5385819d46c103e4015c8ce",
+        "bookID": "pilot56_book_u5_bear_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "f26b7721d211b85283e64be9d8b5a0ab96d64b41d5385819d46c103e4015c8ce",
+      "text": "Deniz parlak taşı seçti. \"Yarın bunu göstereceğim,\" dedi. Taşı yatağının yanındaki rafa yerleştirdi. Böğürtlen taşı bordo çantasına koymayı önerdi. Deniz başını salladı: rafta kalacaktı.",
+      "sourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p04",
+      "sourcePointer": "input/bedtime-bear.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u5_bear_event03_v1",
+      "rawPageMove": "soft_smile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_bear_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "mendil",
+        "propMentions": [
+          {
+            "label": "mendil",
+            "evidenceQuotes": [
+              "Mendili gösterdi.",
+              "\"Mor lekeli mendilim!\" Deniz’in dudakları usulca kıvrıldı.",
+              "Mendil, ayının patisi kadar mordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "\"Ben de bir tane seçeyim,\" dedi Böğürtlen. Mendili gösterdi. \"Mor lekeli mendilim!\" Deniz’in dudakları usulca kıvrıldı. Böğürtlen’in göbeği sallandı. Mendil, ayının patisi kadar mordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p05",
+            "evidenceText": "\"Ben de bir tane seçeyim,\" dedi Böğürtlen. Mendili gösterdi. \"Mor lekeli mendilim!\" Deniz’in dudakları usulca kıvrıldı. Böğürtlen’in göbeği sallandı. Mendil, ayının patisi kadar mordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Ben de bir tane seçeyim,\" dedi Böğürtlen. Mendili gösterdi. \"Mor lekeli mendilim!\" Deniz’in dudakları usulca kıvrıldı. Böğürtlen’in göbeği sallandı. Mendil, ayının patisi kadar mordu.",
+        "poseAndActionEvidence": [
+          "\"Ben de bir tane seçeyim,\" dedi Böğürtlen.",
+          "Mendili gösterdi.",
+          "\"Mor lekeli mendilim!\" Deniz’in dudakları usulca kıvrıldı.",
+          "Böğürtlen’in göbeği sallandı.",
+          "Mendil, ayının patisi kadar mordu."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Ben de bir tane seçeyim,\" dedi Böğürtlen. Mendili gösterdi. \"Mor lekeli mendilim!\" Deniz’in dudakları usulca kıvrıldı. Böğürtlen’in göbeği sallandı. Mendil, ayının patisi kadar mordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p05",
+        "quoteSHA256": "0c3e3702819b883292169d4f29c7bfd97d19677ae99834e170242f310ee6dfe3",
+        "bookID": "pilot56_book_u5_bear_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "0c3e3702819b883292169d4f29c7bfd97d19677ae99834e170242f310ee6dfe3",
+      "text": "\"Ben de bir tane seçeyim,\" dedi Böğürtlen. Mendili gösterdi. \"Mor lekeli mendilim!\" Deniz’in dudakları usulca kıvrıldı. Böğürtlen’in göbeği sallandı. Mendil, ayının patisi kadar mordu.",
+      "sourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p05",
+      "sourcePointer": "input/bedtime-bear.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u5_bear_event03_v1",
+      "rawPageMove": "rest_left_for_morning",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_bear_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; taş; yatak/yastık/döşek; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "\"Yaprakla resim sabahı beklesin,\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Rafta tek taş parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Böğürtlen yavaşça döşeğine uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Rafta tek taş parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "\"Yaprakla resim sabahı beklesin,\" dedi Deniz. Rafta tek taş parlıyordu. Böğürtlen yavaşça döşeğine uzandı. Deniz tek planla yatmanın kolay olduğunu gördü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p06",
+            "evidenceText": "\"Yaprakla resim sabahı beklesin,\" dedi Deniz. Rafta tek taş parlıyordu. Böğürtlen yavaşça döşeğine uzandı. Deniz tek planla yatmanın kolay olduğunu gördü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Yaprakla resim sabahı beklesin,\" dedi Deniz. Rafta tek taş parlıyordu. Böğürtlen yavaşça döşeğine uzandı. Deniz tek planla yatmanın kolay olduğunu gördü.",
+        "poseAndActionEvidence": [
+          "\"Yaprakla resim sabahı beklesin,\" dedi Deniz.",
+          "Rafta tek taş parlıyordu.",
+          "Böğürtlen yavaşça döşeğine uzandı.",
+          "Deniz tek planla yatmanın kolay olduğunu gördü."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Yaprakla resim sabahı beklesin,\" dedi Deniz. Rafta tek taş parlıyordu. Böğürtlen yavaşça döşeğine uzandı. Deniz tek planla yatmanın kolay olduğunu gördü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p06",
+        "quoteSHA256": "35542f51b540b27dccb40bd2936cd6c4ae93dbad983f483ad7af854a1a5919f7",
+        "bookID": "pilot56_book_u5_bear_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "35542f51b540b27dccb40bd2936cd6c4ae93dbad983f483ad7af854a1a5919f7",
+      "text": "\"Yaprakla resim sabahı beklesin,\" dedi Deniz. Rafta tek taş parlıyordu. Böğürtlen yavaşça döşeğine uzandı. Deniz tek planla yatmanın kolay olduğunu gördü.",
+      "sourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p06",
+      "sourcePointer": "input/bedtime-bear.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u5_bear_event03_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_bear_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek; çanta/askı; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz’in gözleri ağırlaştı, yastığa gömüldü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çanta/askı",
+            "evidenceQuotes": [
+              "Böğürtlen çantasını askıya astı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Böğürtlen çantasını askıya astı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen çantasını askıya astı. Yan yatıp alçak sesle mırıldandı. Hım hım… Ninnisi gittikçe yavaşladı. Deniz’in gözleri ağırlaştı, yastığa gömüldü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p07",
+            "evidenceText": "Böğürtlen çantasını askıya astı. Yan yatıp alçak sesle mırıldandı. Hım hım… Ninnisi gittikçe yavaşladı. Deniz’in gözleri ağırlaştı, yastığa gömüldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen çantasını askıya astı. Yan yatıp alçak sesle mırıldandı. Hım hım… Ninnisi gittikçe yavaşladı. Deniz’in gözleri ağırlaştı, yastığa gömüldü.",
+        "poseAndActionEvidence": [
+          "Böğürtlen çantasını askıya astı.",
+          "Yan yatıp alçak sesle mırıldandı.",
+          "Hım hım…",
+          "Ninnisi gittikçe yavaşladı.",
+          "Deniz’in gözleri ağırlaştı, yastığa gömüldü."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Böğürtlen çantasını askıya astı. Yan yatıp alçak sesle mırıldandı. Hım hım… Ninnisi gittikçe yavaşladı. Deniz’in gözleri ağırlaştı, yastığa gömüldü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p07",
+        "quoteSHA256": "9c9c80e434c87fb03d1af68a74e1b8d71e549eb4d27c547e4fe4d5aef7e0ca78",
+        "bookID": "pilot56_book_u5_bear_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "9c9c80e434c87fb03d1af68a74e1b8d71e549eb4d27c547e4fe4d5aef7e0ca78",
+      "text": "Böğürtlen çantasını askıya astı. Yan yatıp alçak sesle mırıldandı. Hım hım… Ninnisi gittikçe yavaşladı. Deniz’in gözleri ağırlaştı, yastığa gömüldü.",
+      "sourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p07",
+      "sourcePointer": "input/bedtime-bear.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u5_bear_event03_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_u5_bear_event03_v1_tomorrow_plan",
+            "presence": "intended",
+            "states": [
+              "future-plan-not-present-play"
+            ]
+          }
+        ],
+        "propDescription": "çanta/askı; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "çanta/askı",
+            "evidenceQuotes": [
+              "Raf da çanta da sabahı bekledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Raf da çanta da sabahı bekledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in göz kapakları indi. Raf da çanta da sabahı bekledi. Ayının ninnisi usulca bitti.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p08",
+            "evidenceText": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in göz kapakları indi. Raf da çanta da sabahı bekledi. Ayının ninnisi usulca bitti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in göz kapakları indi. Raf da çanta da sabahı bekledi. Ayının ninnisi usulca bitti.",
+        "poseAndActionEvidence": [
+          "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen.",
+          "Deniz’in göz kapakları indi.",
+          "Raf da çanta da sabahı bekledi.",
+          "Ayının ninnisi usulca bitti."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Yarına seçilen oyun/resim/gösterme niyeti bu gece yapılmış eylem değildir. e3 raftaki taş ve çantadan çıkarılan eşyalar metinde gerçekten mevcut olabilir; planın hayali olması onları otomatik yok saymaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in göz kapakları indi. Raf da çanta da sabahı bekledi. Ayının ninnisi usulca bitti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p08",
+        "quoteSHA256": "cd9c772e77a2c5b8f8e12dd47d5b61eb1f19d8f5a2f65818ae02ac199091c35b",
+        "bookID": "pilot56_book_u5_bear_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "cd9c772e77a2c5b8f8e12dd47d5b61eb1f19d8f5a2f65818ae02ac199091c35b",
+      "text": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in göz kapakları indi. Raf da çanta da sabahı bekledi. Ayının ninnisi usulca bitti.",
+      "sourceID": "p56_wave1_pilot56_book_u5_bear_event03_v1_p08",
+      "sourcePointer": "input/bedtime-bear.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk tek bir planı seçip söyler, gerisini sabaha bırakır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

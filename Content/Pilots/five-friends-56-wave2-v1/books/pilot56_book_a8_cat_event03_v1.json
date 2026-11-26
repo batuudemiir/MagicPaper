@@ -1,0 +1,943 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a8_cat_event03_v1",
+  "title": "Simit'in Pembe Patisi",
+  "context": {
+    "settingName": "Kozalak Tepesi'nden Ağaç Ev'e patika",
+    "mode": "adventure",
+    "companionID": "companion_city_cat_001",
+    "structure": "A8",
+    "event": "e3",
+    "mechanism": "share-the-load",
+    "sourceFilename": "adventure-cat.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a8_cat_event03_v1",
+    "sourceBookID": "pilot56_book_a8_cat_event03_v1",
+    "structure": "A8",
+    "event": "e3",
+    "sample": false,
+    "title": "Simit'in Pembe Patisi",
+    "pages": [
+      "Çiçekli Çayır’da resim yapmışlardı. Ağaç Ev’e dönme vakti gelmişti. Simit su kabının yanında oturuyordu. Kırmızı tasmasındaki zil tın etti.",
+      "Resim günü bitmişti. Kâğıtlar, boya kutusu, fırçalar ve su kabı çimendeydi. Deniz hepsini bir seferde almayı denedi. Kâğıtlar uçuştu, Simit peşlerinden koştu.",
+      "Simit su kabına patisini daldırdı. Önce daldırdı, sonra düşündü. Su renkliydi, patisi pembeye döndü! \"Şehirde böyle değil ama,\" dedi. Deniz burnunu kırıştırıp kıkırdadı.",
+      "Deniz eşyaları yere koydu. \"Bunları bölelim,\" dedi. Kâğıtları üst üste dizip bir taşla bastırdı. Fırçaları kutuya koydu. Simit kâğıtların yanında nöbet tuttu.",
+      "Deniz biraz düşündü. Simit küçük ve hafifti, boya kutusunun kapağını ağzıyla tutabilirdi. \"Sen kapağı taşı,\" dedi. Simit kapağı ağzına aldı.",
+      "Deniz kâğıtları, kutuyu, fırçaları ve su kabını aldı. \"Sen kapağı, ben gerisini taşıyorum,\" dedi. İkisine de uygun bir yük olmuştu.",
+      "Patika boyunca yan yana yürüdüler. Simit'in pembe patisi yolda minik izler bıraktı. Ağaç Ev göründü. Deniz eşyaları masaya koydu.",
+      "Simit kapağı kutunun üstüne bıraktı. Sonra pembe patisine baktı. \"Bu benim yeni rengim,\" dedi. Zili tın etti. Deniz’in omuzları kıkırdamaktan sarsıldı. Simit’in zili minik bir ses çıkardı."
+    ]
+  },
+  "inputFileSHA256": "cfc7c497fc656a53b044dce8a133414b951a773f8c64cd41e6b4f9010d0146b2",
+  "inputBookPointer": "input/adventure-cat.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a8_cat_event03_v1",
+      "rawPageMove": "load_full",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; tasma/zil; papatya/çiçek/yonca; su/birikinti; iz/kum",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Ağaç Ev’e dönme vakti gelmişti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Kırmızı tasmasındaki zil tın etti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da resim yapmışlardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Simit su kabının yanında oturuyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kırmızı tasmasındaki zil tın etti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Çiçekli Çayır’da resim yapmışlardı. Ağaç Ev’e dönme vakti gelmişti. Simit su kabının yanında oturuyordu. Kırmızı tasmasındaki zil tın etti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p01",
+            "evidenceText": "Çiçekli Çayır’da resim yapmışlardı. Ağaç Ev’e dönme vakti gelmişti. Simit su kabının yanında oturuyordu. Kırmızı tasmasındaki zil tın etti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da resim yapmışlardı. Ağaç Ev’e dönme vakti gelmişti. Simit su kabının yanında oturuyordu. Kırmızı tasmasındaki zil tın etti.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da resim yapmışlardı.",
+          "Ağaç Ev’e dönme vakti gelmişti.",
+          "Simit su kabının yanında oturuyordu.",
+          "Kırmızı tasmasındaki zil tın etti."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da resim yapmışlardı. Ağaç Ev’e dönme vakti gelmişti. Simit su kabının yanında oturuyordu. Kırmızı tasmasındaki zil tın etti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p02",
+        "quoteSHA256": "24959434383ca472d871a03f6e949cc73ce61388e3f4a1811b8f48516d5e1c49",
+        "bookID": "pilot56_book_a8_cat_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "24959434383ca472d871a03f6e949cc73ce61388e3f4a1811b8f48516d5e1c49",
+      "text": "Çiçekli Çayır’da resim yapmışlardı. Ağaç Ev’e dönme vakti gelmişti. Simit su kabının yanında oturuyordu. Kırmızı tasmasındaki zil tın etti.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p01",
+      "sourcePointer": "input/adventure-cat.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a8_cat_event03_v1",
+      "rawPageMove": "lift_try",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "su/birikinti; sepet/kutu; resim eşyası",
+        "propMentions": [
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Kâğıtlar, boya kutusu, fırçalar ve su kabı çimendeydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Kâğıtlar, boya kutusu, fırçalar ve su kabı çimendeydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Kâğıtlar, boya kutusu, fırçalar ve su kabı çimendeydi.",
+              "Kâğıtlar uçuştu, Simit peşlerinden koştu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Resim günü bitmişti. Kâğıtlar, boya kutusu, fırçalar ve su kabı çimendeydi. Deniz hepsini bir seferde almayı denedi. Kâğıtlar uçuştu, Simit peşlerinden koştu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p02",
+            "evidenceText": "Resim günü bitmişti. Kâğıtlar, boya kutusu, fırçalar ve su kabı çimendeydi. Deniz hepsini bir seferde almayı denedi. Kâğıtlar uçuştu, Simit peşlerinden koştu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Resim günü bitmişti. Kâğıtlar, boya kutusu, fırçalar ve su kabı çimendeydi. Deniz hepsini bir seferde almayı denedi. Kâğıtlar uçuştu, Simit peşlerinden koştu.",
+        "poseAndActionEvidence": [
+          "Resim günü bitmişti.",
+          "Kâğıtlar, boya kutusu, fırçalar ve su kabı çimendeydi.",
+          "Deniz hepsini bir seferde almayı denedi.",
+          "Kâğıtlar uçuştu, Simit peşlerinden koştu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Resim günü bitmişti. Kâğıtlar, boya kutusu, fırçalar ve su kabı çimendeydi. Deniz hepsini bir seferde almayı denedi. Kâğıtlar uçuştu, Simit peşlerinden koştu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p02",
+        "quoteSHA256": "5ad9931973a5e9f84881b7aa5fa0538facaad124fa879b7809811e03d1fa112c",
+        "bookID": "pilot56_book_a8_cat_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "5ad9931973a5e9f84881b7aa5fa0538facaad124fa879b7809811e03d1fa112c",
+      "text": "Resim günü bitmişti. Kâğıtlar, boya kutusu, fırçalar ve su kabı çimendeydi. Deniz hepsini bir seferde almayı denedi. Kâğıtlar uçuştu, Simit peşlerinden koştu.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p02",
+      "sourcePointer": "input/adventure-cat.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a8_cat_event03_v1",
+      "rawPageMove": "friend_tries",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; su/birikinti",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Simit su kabına patisini daldırdı.",
+              "Önce daldırdı, sonra düşündü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Simit su kabına patisini daldırdı.",
+              "Su renkliydi, patisi pembeye döndü!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit su kabına patisini daldırdı. Önce daldırdı, sonra düşündü. Su renkliydi, patisi pembeye döndü! \"Şehirde böyle değil ama,\" dedi. Deniz burnunu kırıştırıp kıkırdadı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p03",
+            "evidenceText": "Simit su kabına patisini daldırdı. Önce daldırdı, sonra düşündü. Su renkliydi, patisi pembeye döndü! \"Şehirde böyle değil ama,\" dedi. Deniz burnunu kırıştırıp kıkırdadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit su kabına patisini daldırdı. Önce daldırdı, sonra düşündü. Su renkliydi, patisi pembeye döndü! \"Şehirde böyle değil ama,\" dedi. Deniz burnunu kırıştırıp kıkırdadı.",
+        "poseAndActionEvidence": [
+          "Simit su kabına patisini daldırdı.",
+          "Önce daldırdı, sonra düşündü.",
+          "Su renkliydi, patisi pembeye döndü!",
+          "\"Şehirde böyle değil ama,\" dedi.",
+          "Deniz burnunu kırıştırıp kıkırdadı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_city_cat_001",
+        "quote": "Simit su kabına patisini daldırdı. Önce daldırdı, sonra düşündü. Su renkliydi, patisi pembeye döndü! \"Şehirde böyle değil ama,\" dedi. Deniz burnunu kırıştırıp kıkırdadı.",
+        "attributionQuote": "Simit",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p03",
+        "quoteSHA256": "f07bd916f2a1681e5c040aa620ce557ba8c584a6993d02051d1f73f1927a0913",
+        "bookID": "pilot56_book_a8_cat_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "f07bd916f2a1681e5c040aa620ce557ba8c584a6993d02051d1f73f1927a0913",
+      "text": "Simit su kabına patisini daldırdı. Önce daldırdı, sonra düşündü. Su renkliydi, patisi pembeye döndü! \"Şehirde böyle değil ama,\" dedi. Deniz burnunu kırıştırıp kıkırdadı.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p03",
+      "sourcePointer": "input/adventure-cat.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a8_cat_event03_v1",
+      "rawPageMove": "child_splits",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl; sepet/kutu; resim eşyası; iz/kum",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Kâğıtları üst üste dizip bir taşla bastırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Kâğıtları üst üste dizip bir taşla bastırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Fırçaları kutuya koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Kâğıtları üst üste dizip bir taşla bastırdı.",
+              "Fırçaları kutuya koydu.",
+              "Simit kâğıtların yanında nöbet tuttu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kâğıtları üst üste dizip bir taşla bastırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz eşyaları yere koydu. \"Bunları bölelim,\" dedi. Kâğıtları üst üste dizip bir taşla bastırdı. Fırçaları kutuya koydu. Simit kâğıtların yanında nöbet tuttu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p04",
+            "evidenceText": "Deniz eşyaları yere koydu. \"Bunları bölelim,\" dedi. Kâğıtları üst üste dizip bir taşla bastırdı. Fırçaları kutuya koydu. Simit kâğıtların yanında nöbet tuttu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz eşyaları yere koydu. \"Bunları bölelim,\" dedi. Kâğıtları üst üste dizip bir taşla bastırdı. Fırçaları kutuya koydu. Simit kâğıtların yanında nöbet tuttu.",
+        "poseAndActionEvidence": [
+          "Deniz eşyaları yere koydu.",
+          "\"Bunları bölelim,\" dedi.",
+          "Kâğıtları üst üste dizip bir taşla bastırdı.",
+          "Fırçaları kutuya koydu.",
+          "Simit kâğıtların yanında nöbet tuttu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz eşyaları yere koydu. \"Bunları bölelim,\" dedi. Kâğıtları üst üste dizip bir taşla bastırdı. Fırçaları kutuya koydu. Simit kâğıtların yanında nöbet tuttu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p04",
+        "quoteSHA256": "260cee5cf3bbcaf6f857a5a8f5250bc3c2aea282fb7cfa837dfb25cdb3092504",
+        "bookID": "pilot56_book_a8_cat_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "260cee5cf3bbcaf6f857a5a8f5250bc3c2aea282fb7cfa837dfb25cdb3092504",
+      "text": "Deniz eşyaları yere koydu. \"Bunları bölelim,\" dedi. Kâğıtları üst üste dizip bir taşla bastırdı. Fırçaları kutuya koydu. Simit kâğıtların yanında nöbet tuttu.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p04",
+      "sourcePointer": "input/adventure-cat.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a8_cat_event03_v1",
+      "rawPageMove": "first_piece",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl; sepet/kutu; resim eşyası",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "\"Sen kapağı taşı,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "\"Sen kapağı taşı,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Simit küçük ve hafifti, boya kutusunun kapağını ağzıyla tutabilirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Simit küçük ve hafifti, boya kutusunun kapağını ağzıyla tutabilirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz biraz düşündü. Simit küçük ve hafifti, boya kutusunun kapağını ağzıyla tutabilirdi. \"Sen kapağı taşı,\" dedi. Simit kapağı ağzına aldı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p05",
+            "evidenceText": "Deniz biraz düşündü. Simit küçük ve hafifti, boya kutusunun kapağını ağzıyla tutabilirdi. \"Sen kapağı taşı,\" dedi. Simit kapağı ağzına aldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz biraz düşündü. Simit küçük ve hafifti, boya kutusunun kapağını ağzıyla tutabilirdi. \"Sen kapağı taşı,\" dedi. Simit kapağı ağzına aldı.",
+        "poseAndActionEvidence": [
+          "Deniz biraz düşündü.",
+          "Simit küçük ve hafifti, boya kutusunun kapağını ağzıyla tutabilirdi.",
+          "\"Sen kapağı taşı,\" dedi.",
+          "Simit kapağı ağzına aldı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz biraz düşündü. Simit küçük ve hafifti, boya kutusunun kapağını ağzıyla tutabilirdi. \"Sen kapağı taşı,\" dedi. Simit kapağı ağzına aldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p05",
+        "quoteSHA256": "a761099ac09a0ea09f98ea7ebf4d0f5456b68326c30a55bdf38060f5ba3badb7",
+        "bookID": "pilot56_book_a8_cat_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "a761099ac09a0ea09f98ea7ebf4d0f5456b68326c30a55bdf38060f5ba3badb7",
+      "text": "Deniz biraz düşündü. Simit küçük ve hafifti, boya kutusunun kapağını ağzıyla tutabilirdi. \"Sen kapağı taşı,\" dedi. Simit kapağı ağzına aldı.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p05",
+      "sourcePointer": "input/adventure-cat.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a8_cat_event03_v1",
+      "rawPageMove": "child_matches",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; su/birikinti; taş/çakıl; sepet/kutu; resim eşyası",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "\"Sen kapağı, ben gerisini taşıyorum,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Deniz kâğıtları, kutuyu, fırçaları ve su kabını aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "\"Sen kapağı, ben gerisini taşıyorum,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Deniz kâğıtları, kutuyu, fırçaları ve su kabını aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Deniz kâğıtları, kutuyu, fırçaları ve su kabını aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz kâğıtları, kutuyu, fırçaları ve su kabını aldı. \"Sen kapağı, ben gerisini taşıyorum,\" dedi. İkisine de uygun bir yük olmuştu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p06",
+            "evidenceText": "Deniz kâğıtları, kutuyu, fırçaları ve su kabını aldı. \"Sen kapağı, ben gerisini taşıyorum,\" dedi. İkisine de uygun bir yük olmuştu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kâğıtları, kutuyu, fırçaları ve su kabını aldı. \"Sen kapağı, ben gerisini taşıyorum,\" dedi. İkisine de uygun bir yük olmuştu.",
+        "poseAndActionEvidence": [
+          "Deniz kâğıtları, kutuyu, fırçaları ve su kabını aldı.",
+          "\"Sen kapağı, ben gerisini taşıyorum,\" dedi.",
+          "İkisine de uygun bir yük olmuştu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kâğıtları, kutuyu, fırçaları ve su kabını aldı. \"Sen kapağı, ben gerisini taşıyorum,\" dedi. İkisine de uygun bir yük olmuştu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p06",
+        "quoteSHA256": "5a35ddc4d6193108b25d422be2d9635885856c1ff1ab55823c6ab6ade5257db1",
+        "bookID": "pilot56_book_a8_cat_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "5a35ddc4d6193108b25d422be2d9635885856c1ff1ab55823c6ab6ade5257db1",
+      "text": "Deniz kâğıtları, kutuyu, fırçaları ve su kabını aldı. \"Sen kapağı, ben gerisini taşıyorum,\" dedi. İkisine de uygun bir yük olmuştu.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p06",
+      "sourcePointer": "input/adventure-cat.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a8_cat_event03_v1",
+      "rawPageMove": "arrival",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; iz/kum",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Ağaç Ev göründü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Simit'in pembe patisi yolda minik izler bıraktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Patika boyunca yan yana yürüdüler. Simit'in pembe patisi yolda minik izler bıraktı. Ağaç Ev göründü. Deniz eşyaları masaya koydu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p07",
+            "evidenceText": "Patika boyunca yan yana yürüdüler. Simit'in pembe patisi yolda minik izler bıraktı. Ağaç Ev göründü. Deniz eşyaları masaya koydu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Patika boyunca yan yana yürüdüler. Simit'in pembe patisi yolda minik izler bıraktı. Ağaç Ev göründü. Deniz eşyaları masaya koydu.",
+        "poseAndActionEvidence": [
+          "Patika boyunca yan yana yürüdüler.",
+          "Simit'in pembe patisi yolda minik izler bıraktı.",
+          "Ağaç Ev göründü.",
+          "Deniz eşyaları masaya koydu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Patika boyunca yan yana yürüdüler. Simit'in pembe patisi yolda minik izler bıraktı. Ağaç Ev göründü. Deniz eşyaları masaya koydu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p07",
+        "quoteSHA256": "f4d962a7882a8e732dd24eab0fa9b12c79b14452c6e9ffec76abf41b4ba4b53c",
+        "bookID": "pilot56_book_a8_cat_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "f4d962a7882a8e732dd24eab0fa9b12c79b14452c6e9ffec76abf41b4ba4b53c",
+      "text": "Patika boyunca yan yana yürüdüler. Simit'in pembe patisi yolda minik izler bıraktı. Ağaç Ev göründü. Deniz eşyaları masaya koydu.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p07",
+      "sourcePointer": "input/adventure-cat.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a8_cat_event03_v1",
+      "rawPageMove": "closing",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tasma/zil; sepet/kutu",
+        "propMentions": [
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Zili tın etti.",
+              "Simit’in zili minik bir ses çıkardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Simit kapağı kutunun üstüne bıraktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit kapağı kutunun üstüne bıraktı. Sonra pembe patisine baktı. \"Bu benim yeni rengim,\" dedi. Zili tın etti. Deniz’in omuzları kıkırdamaktan sarsıldı. Simit’in zili minik bir ses çıkardı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p08",
+            "evidenceText": "Simit kapağı kutunun üstüne bıraktı. Sonra pembe patisine baktı. \"Bu benim yeni rengim,\" dedi. Zili tın etti. Deniz’in omuzları kıkırdamaktan sarsıldı. Simit’in zili minik bir ses çıkardı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit kapağı kutunun üstüne bıraktı. Sonra pembe patisine baktı. \"Bu benim yeni rengim,\" dedi. Zili tın etti. Deniz’in omuzları kıkırdamaktan sarsıldı. Simit’in zili minik bir ses çıkardı.",
+        "poseAndActionEvidence": [
+          "Simit kapağı kutunun üstüne bıraktı.",
+          "Sonra pembe patisine baktı.",
+          "\"Bu benim yeni rengim,\" dedi.",
+          "Zili tın etti.",
+          "Deniz’in omuzları kıkırdamaktan sarsıldı.",
+          "Simit’in zili minik bir ses çıkardı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Simit kapağı kutunun üstüne bıraktı. Sonra pembe patisine baktı. \"Bu benim yeni rengim,\" dedi. Zili tın etti. Deniz’in omuzları kıkırdamaktan sarsıldı. Simit’in zili minik bir ses çıkardı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p08",
+        "quoteSHA256": "4adad986640bda4cd75ef1f86f31cb344636de7f1d370baa9da32bdd4ce0804f",
+        "bookID": "pilot56_book_a8_cat_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "4adad986640bda4cd75ef1f86f31cb344636de7f1d370baa9da32bdd4ce0804f",
+      "text": "Simit kapağı kutunun üstüne bıraktı. Sonra pembe patisine baktı. \"Bu benim yeni rengim,\" dedi. Zili tın etti. Deniz’in omuzları kıkırdamaktan sarsıldı. Simit’in zili minik bir ses çıkardı.",
+      "sourceID": "p56_wave2_pilot56_book_a8_cat_event03_v1_p08",
+      "sourcePointer": "input/adventure-cat.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz yükü böler ve kimin neyi taşıyacağını arkadaşın bedenine göre eşleştirir.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

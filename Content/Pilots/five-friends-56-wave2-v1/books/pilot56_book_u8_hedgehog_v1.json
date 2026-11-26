@@ -1,0 +1,838 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u8_hedgehog_v1",
+  "title": "Kestane Dikenlerini Uyutuyor",
+  "context": {
+    "settingName": "Çatı Katı Odası",
+    "mode": "bedtime",
+    "companionID": "companion_hedgehog_pilot_001",
+    "structure": "U8",
+    "event": "e1",
+    "mechanism": "body-part-rest",
+    "sourceFilename": "bedtime-hedgehog.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u8_hedgehog_v1",
+    "sourceBookID": "pilot56_book_u8_hedgehog_v1",
+    "structure": "U8",
+    "event": "e1",
+    "sample": true,
+    "title": "Kestane Dikenlerini Uyutuyor",
+    "pages": [
+      "Çatı Katı Odası’nda akşam olmuştu. Deniz yatağına uzandı. Kestane minderindeydi. Dikenindeki hardal yaprağı lambanın ışığında parlıyordu. Yağmur dinmişti, çatı sessizdi.",
+      "Deniz’in bacakları hâlâ kıpır kıpırdı. Bütün gün koşmuş, zıplamıştı. \"Ayaklarım uyumak istemiyor,\" dedi. Örtünün altında parmaklarını oynattı, dizlerini kıpırdattı.",
+      "Kestane dikenlerini dimdik kabarttı. \"Ben dikenlerimi tek tek uyuturum,\" dedi. Bir dikeni indirdi, öbürü kalktı! Bir tane daha indirdi, iki tane kalktı. Deniz kıkırdadı.",
+      "Deniz ayak parmaklarını sıkıca büktü. Bir, iki, üç. Sonra bıraktı. Parmakları yumuşadı. \"Ayaklarım uyudu,\" dedi. Sıra bacaklarına geldi.",
+      "Kestane de Deniz gibi yaptı. \"Küçük bir adım, sonra bir tane daha,\" dedi. Dikenlerini sırayla indirdi. Deniz bunu görünce gülümsedi.",
+      "Deniz bacaklarını, sonra kollarını gevşetti. Omuzlarını kaldırıp bıraktı. \"Sıra bitti,\" dedi. Bütün bedeni örtünün altında yumuşacıktı. Bu sırayı kendisi seçmişti.",
+      "Kestane yuvarlak bir top oldu. Bütün dikenleri yatmıştı. Yalnız hardal yaprağı dikeninin ucunda duruyordu. Oda sessiz ve ılıktı.",
+      "\"İyi geceler, Deniz,\" diye fısıldadı küçük top. Deniz gözlerini yavaşça kapadı. Ayakları, elleri ve kirpinin dikenleri birlikte, sessizce dinlendi."
+    ]
+  },
+  "inputFileSHA256": "be50740a18277453d3fee4b1afbbb393ba7f9adddd094497901713dd5b743cec",
+  "inputBookPointer": "input/bedtime-hedgehog.json#/books/3",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u8_hedgehog_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; minder; yatak/yastık/döşek; yağmur/cam/oluk; lamba/fener/ışık",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Dikenindeki hardal yaprağı lambanın ışığında parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Kestane minderindeydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz yatağına uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Yağmur dinmişti, çatı sessizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Dikenindeki hardal yaprağı lambanın ışığında parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Çatı Katı Odası’nda akşam olmuştu. Deniz yatağına uzandı. Kestane minderindeydi. Dikenindeki hardal yaprağı lambanın ışığında parlıyordu. Yağmur dinmişti, çatı sessizdi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p01",
+            "evidenceText": "Çatı Katı Odası’nda akşam olmuştu. Deniz yatağına uzandı. Kestane minderindeydi. Dikenindeki hardal yaprağı lambanın ışığında parlıyordu. Yağmur dinmişti, çatı sessizdi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çatı Katı Odası’nda akşam olmuştu. Deniz yatağına uzandı. Kestane minderindeydi. Dikenindeki hardal yaprağı lambanın ışığında parlıyordu. Yağmur dinmişti, çatı sessizdi.",
+        "poseAndActionEvidence": [
+          "Çatı Katı Odası’nda akşam olmuştu.",
+          "Deniz yatağına uzandı.",
+          "Kestane minderindeydi.",
+          "Dikenindeki hardal yaprağı lambanın ışığında parlıyordu.",
+          "Yağmur dinmişti, çatı sessizdi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çatı Katı Odası’nda akşam olmuştu. Deniz yatağına uzandı. Kestane minderindeydi. Dikenindeki hardal yaprağı lambanın ışığında parlıyordu. Yağmur dinmişti, çatı sessizdi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p01",
+        "quoteSHA256": "4dca7db0358090a63d55c962c846d57f9f4f117964cb596327a94f3fdf0d492f",
+        "bookID": "pilot56_book_u8_hedgehog_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "4dca7db0358090a63d55c962c846d57f9f4f117964cb596327a94f3fdf0d492f",
+      "text": "Çatı Katı Odası’nda akşam olmuştu. Deniz yatağına uzandı. Kestane minderindeydi. Dikenindeki hardal yaprağı lambanın ışığında parlıyordu. Yağmur dinmişti, çatı sessizdi.",
+      "sourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p01",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/3/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u8_hedgehog_v1",
+      "rawPageMove": "body_fidgety",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü; top/şapka/uçurtma; iz/kum",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Örtünün altında parmaklarını oynattı, dizlerini kıpırdattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Deniz’in bacakları hâlâ kıpır kıpırdı.",
+              "Örtünün altında parmaklarını oynattı, dizlerini kıpırdattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Örtünün altında parmaklarını oynattı, dizlerini kıpırdattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz’in bacakları hâlâ kıpır kıpırdı. Bütün gün koşmuş, zıplamıştı. \"Ayaklarım uyumak istemiyor,\" dedi. Örtünün altında parmaklarını oynattı, dizlerini kıpırdattı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p02",
+            "evidenceText": "Deniz’in bacakları hâlâ kıpır kıpırdı. Bütün gün koşmuş, zıplamıştı. \"Ayaklarım uyumak istemiyor,\" dedi. Örtünün altında parmaklarını oynattı, dizlerini kıpırdattı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz’in bacakları hâlâ kıpır kıpırdı. Bütün gün koşmuş, zıplamıştı. \"Ayaklarım uyumak istemiyor,\" dedi. Örtünün altında parmaklarını oynattı, dizlerini kıpırdattı.",
+        "poseAndActionEvidence": [
+          "Deniz’in bacakları hâlâ kıpır kıpırdı.",
+          "Bütün gün koşmuş, zıplamıştı.",
+          "\"Ayaklarım uyumak istemiyor,\" dedi.",
+          "Örtünün altında parmaklarını oynattı, dizlerini kıpırdattı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz’in bacakları hâlâ kıpır kıpırdı. Bütün gün koşmuş, zıplamıştı. \"Ayaklarım uyumak istemiyor,\" dedi. Örtünün altında parmaklarını oynattı, dizlerini kıpırdattı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p02",
+        "quoteSHA256": "efb80fa696364c8ec31b3cd958546d6ae87ebec43b1595db3578ec17f233c466",
+        "bookID": "pilot56_book_u8_hedgehog_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "efb80fa696364c8ec31b3cd958546d6ae87ebec43b1595db3578ec17f233c466",
+      "text": "Deniz’in bacakları hâlâ kıpır kıpırdı. Bütün gün koşmuş, zıplamıştı. \"Ayaklarım uyumak istemiyor,\" dedi. Örtünün altında parmaklarını oynattı, dizlerini kıpırdattı.",
+      "sourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p02",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/3/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u8_hedgehog_v1",
+      "rawPageMove": "friend_shows_own_body",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane dikenlerini dimdik kabarttı. \"Ben dikenlerimi tek tek uyuturum,\" dedi. Bir dikeni indirdi, öbürü kalktı! Bir tane daha indirdi, iki tane kalktı. Deniz kıkırdadı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p03",
+            "evidenceText": "Kestane dikenlerini dimdik kabarttı. \"Ben dikenlerimi tek tek uyuturum,\" dedi. Bir dikeni indirdi, öbürü kalktı! Bir tane daha indirdi, iki tane kalktı. Deniz kıkırdadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane dikenlerini dimdik kabarttı. \"Ben dikenlerimi tek tek uyuturum,\" dedi. Bir dikeni indirdi, öbürü kalktı! Bir tane daha indirdi, iki tane kalktı. Deniz kıkırdadı.",
+        "poseAndActionEvidence": [
+          "Kestane dikenlerini dimdik kabarttı.",
+          "\"Ben dikenlerimi tek tek uyuturum,\" dedi.",
+          "Bir dikeni indirdi, öbürü kalktı!",
+          "Bir tane daha indirdi, iki tane kalktı.",
+          "Deniz kıkırdadı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_hedgehog_pilot_001",
+        "quote": "Kestane dikenlerini dimdik kabarttı. \"Ben dikenlerimi tek tek uyuturum,\" dedi. Bir dikeni indirdi, öbürü kalktı! Bir tane daha indirdi, iki tane kalktı. Deniz kıkırdadı.",
+        "attributionQuote": "Kestane",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p03",
+        "quoteSHA256": "6c13a8fa49248e225e527f6196cc17b3d0aa6eeb01fbe4d906e650b1f604f1e2",
+        "bookID": "pilot56_book_u8_hedgehog_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "6c13a8fa49248e225e527f6196cc17b3d0aa6eeb01fbe4d906e650b1f604f1e2",
+      "text": "Kestane dikenlerini dimdik kabarttı. \"Ben dikenlerimi tek tek uyuturum,\" dedi. Bir dikeni indirdi, öbürü kalktı! Bir tane daha indirdi, iki tane kalktı. Deniz kıkırdadı.",
+      "sourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p03",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/3/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u8_hedgehog_v1",
+      "rawPageMove": "child_releases_first_part",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz ayak parmaklarını sıkıca büktü. Bir, iki, üç. Sonra bıraktı. Parmakları yumuşadı. \"Ayaklarım uyudu,\" dedi. Sıra bacaklarına geldi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p04",
+            "evidenceText": "Deniz ayak parmaklarını sıkıca büktü. Bir, iki, üç. Sonra bıraktı. Parmakları yumuşadı. \"Ayaklarım uyudu,\" dedi. Sıra bacaklarına geldi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz ayak parmaklarını sıkıca büktü. Bir, iki, üç. Sonra bıraktı. Parmakları yumuşadı. \"Ayaklarım uyudu,\" dedi. Sıra bacaklarına geldi.",
+        "poseAndActionEvidence": [
+          "Deniz ayak parmaklarını sıkıca büktü.",
+          "Bir, iki, üç.",
+          "Sonra bıraktı.",
+          "Parmakları yumuşadı.",
+          "\"Ayaklarım uyudu,\" dedi.",
+          "Sıra bacaklarına geldi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz ayak parmaklarını sıkıca büktü. Bir, iki, üç. Sonra bıraktı. Parmakları yumuşadı. \"Ayaklarım uyudu,\" dedi. Sıra bacaklarına geldi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p04",
+        "quoteSHA256": "5c350bd0e25fcfc36f9f9cc198c70d9d2d1d5e656ddcc7887ab65ac6508f92cf",
+        "bookID": "pilot56_book_u8_hedgehog_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "5c350bd0e25fcfc36f9f9cc198c70d9d2d1d5e656ddcc7887ab65ac6508f92cf",
+      "text": "Deniz ayak parmaklarını sıkıca büktü. Bir, iki, üç. Sonra bıraktı. Parmakları yumuşadı. \"Ayaklarım uyudu,\" dedi. Sıra bacaklarına geldi.",
+      "sourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p04",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/3/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u8_hedgehog_v1",
+      "rawPageMove": "soft_smile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane de Deniz gibi yaptı. \"Küçük bir adım, sonra bir tane daha,\" dedi. Dikenlerini sırayla indirdi. Deniz bunu görünce gülümsedi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p05",
+            "evidenceText": "Kestane de Deniz gibi yaptı. \"Küçük bir adım, sonra bir tane daha,\" dedi. Dikenlerini sırayla indirdi. Deniz bunu görünce gülümsedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane de Deniz gibi yaptı. \"Küçük bir adım, sonra bir tane daha,\" dedi. Dikenlerini sırayla indirdi. Deniz bunu görünce gülümsedi.",
+        "poseAndActionEvidence": [
+          "Kestane de Deniz gibi yaptı.",
+          "\"Küçük bir adım, sonra bir tane daha,\" dedi.",
+          "Dikenlerini sırayla indirdi.",
+          "Deniz bunu görünce gülümsedi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kestane de Deniz gibi yaptı. \"Küçük bir adım, sonra bir tane daha,\" dedi. Dikenlerini sırayla indirdi. Deniz bunu görünce gülümsedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p05",
+        "quoteSHA256": "22d88dece036c4574f6edcb72750e8ea2c6c226469f4365dfc6bf3f26ce32927",
+        "bookID": "pilot56_book_u8_hedgehog_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "22d88dece036c4574f6edcb72750e8ea2c6c226469f4365dfc6bf3f26ce32927",
+      "text": "Kestane de Deniz gibi yaptı. \"Küçük bir adım, sonra bir tane daha,\" dedi. Dikenlerini sırayla indirdi. Deniz bunu görünce gülümsedi.",
+      "sourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p05",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/3/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u8_hedgehog_v1",
+      "rawPageMove": "sequence_done",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Bütün bedeni örtünün altında yumuşacıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz bacaklarını, sonra kollarını gevşetti. Omuzlarını kaldırıp bıraktı. \"Sıra bitti,\" dedi. Bütün bedeni örtünün altında yumuşacıktı. Bu sırayı kendisi seçmişti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p06",
+            "evidenceText": "Deniz bacaklarını, sonra kollarını gevşetti. Omuzlarını kaldırıp bıraktı. \"Sıra bitti,\" dedi. Bütün bedeni örtünün altında yumuşacıktı. Bu sırayı kendisi seçmişti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz bacaklarını, sonra kollarını gevşetti. Omuzlarını kaldırıp bıraktı. \"Sıra bitti,\" dedi. Bütün bedeni örtünün altında yumuşacıktı. Bu sırayı kendisi seçmişti.",
+        "poseAndActionEvidence": [
+          "Deniz bacaklarını, sonra kollarını gevşetti.",
+          "Omuzlarını kaldırıp bıraktı.",
+          "\"Sıra bitti,\" dedi.",
+          "Bütün bedeni örtünün altında yumuşacıktı.",
+          "Bu sırayı kendisi seçmişti."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz bacaklarını, sonra kollarını gevşetti. Omuzlarını kaldırıp bıraktı. \"Sıra bitti,\" dedi. Bütün bedeni örtünün altında yumuşacıktı. Bu sırayı kendisi seçmişti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p06",
+        "quoteSHA256": "54bf5afabcb378fa1baaa3f89303aa82cbd3a9e76e04a76c31614f4ebba86ddd",
+        "bookID": "pilot56_book_u8_hedgehog_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "54bf5afabcb378fa1baaa3f89303aa82cbd3a9e76e04a76c31614f4ebba86ddd",
+      "text": "Deniz bacaklarını, sonra kollarını gevşetti. Omuzlarını kaldırıp bıraktı. \"Sıra bitti,\" dedi. Bütün bedeni örtünün altında yumuşacıktı. Bu sırayı kendisi seçmişti.",
+      "sourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p06",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/3/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u8_hedgehog_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; kütük/yuva; top/şapka/uçurtma; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Yalnız hardal yaprağı dikeninin ucunda duruyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Kestane yuvarlak bir top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kestane yuvarlak bir top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Kestane yuvarlak bir top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane yuvarlak bir top oldu. Bütün dikenleri yatmıştı. Yalnız hardal yaprağı dikeninin ucunda duruyordu. Oda sessiz ve ılıktı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p07",
+            "evidenceText": "Kestane yuvarlak bir top oldu. Bütün dikenleri yatmıştı. Yalnız hardal yaprağı dikeninin ucunda duruyordu. Oda sessiz ve ılıktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane yuvarlak bir top oldu. Bütün dikenleri yatmıştı. Yalnız hardal yaprağı dikeninin ucunda duruyordu. Oda sessiz ve ılıktı.",
+        "poseAndActionEvidence": [
+          "Kestane yuvarlak bir top oldu.",
+          "Bütün dikenleri yatmıştı.",
+          "Yalnız hardal yaprağı dikeninin ucunda duruyordu.",
+          "Oda sessiz ve ılıktı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kestane yuvarlak bir top oldu. Bütün dikenleri yatmıştı. Yalnız hardal yaprağı dikeninin ucunda duruyordu. Oda sessiz ve ılıktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p01",
+        "quoteSHA256": "b83b4c7a2aec3fa862bbc8c683236611ba72652b25b762e46224a536fff735bf",
+        "bookID": "pilot56_book_u8_hedgehog_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "b83b4c7a2aec3fa862bbc8c683236611ba72652b25b762e46224a536fff735bf",
+      "text": "Kestane yuvarlak bir top oldu. Bütün dikenleri yatmıştı. Yalnız hardal yaprağı dikeninin ucunda duruyordu. Oda sessiz ve ılıktı.",
+      "sourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p07",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/3/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u8_hedgehog_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "\"İyi geceler, Deniz,\" diye fısıldadı küçük top."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "\"İyi geceler, Deniz,\" diye fısıldadı küçük top. Deniz gözlerini yavaşça kapadı. Ayakları, elleri ve kirpinin dikenleri birlikte, sessizce dinlendi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p08",
+            "evidenceText": "\"İyi geceler, Deniz,\" diye fısıldadı küçük top. Deniz gözlerini yavaşça kapadı. Ayakları, elleri ve kirpinin dikenleri birlikte, sessizce dinlendi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"İyi geceler, Deniz,\" diye fısıldadı küçük top. Deniz gözlerini yavaşça kapadı. Ayakları, elleri ve kirpinin dikenleri birlikte, sessizce dinlendi.",
+        "poseAndActionEvidence": [
+          "\"İyi geceler, Deniz,\" diye fısıldadı küçük top.",
+          "Deniz gözlerini yavaşça kapadı.",
+          "Ayakları, elleri ve kirpinin dikenleri birlikte, sessizce dinlendi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"İyi geceler, Deniz,\" diye fısıldadı küçük top. Deniz gözlerini yavaşça kapadı. Ayakları, elleri ve kirpinin dikenleri birlikte, sessizce dinlendi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p08",
+        "quoteSHA256": "7d317b8971b5a469420fe7e3e07a8807172014d4fc313c50d0851eeb693c55db",
+        "bookID": "pilot56_book_u8_hedgehog_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "7d317b8971b5a469420fe7e3e07a8807172014d4fc313c50d0851eeb693c55db",
+      "text": "\"İyi geceler, Deniz,\" diye fısıldadı küçük top. Deniz gözlerini yavaşça kapadı. Ayakları, elleri ve kirpinin dikenleri birlikte, sessizce dinlendi.",
+      "sourceID": "p56_wave2_pilot56_book_u8_hedgehog_v1_p08",
+      "sourcePointer": "input/bedtime-hedgehog.json#/books/3/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz bir bölümü önce sıkar, sonra gevşetir; sırayı kendisi söyler, bitirdiğine kendisi karar verir.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

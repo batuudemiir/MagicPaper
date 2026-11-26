@@ -1,232 +1,513 @@
 {
-  "status": "read-only input preparation; runtime implementation awaits completed v3 app pin transition",
-  "waves": [
+  "status": "current source inventory only; wave runtime not implemented",
+  "corpora": [
     {
-      "wave": 1,
-      "structures": 9,
+      "corpus": "v4",
+      "files": [
+        {
+          "file": "adventure-fox.json",
+          "sha256": "771437a64f64cdde4355768ec13af090312f533b574bd596277b796c6c3003d7",
+          "previousSHA256": null
+        },
+        {
+          "file": "adventure-hedgehog.json",
+          "sha256": "d86299ef1dd2967e863a0e6aa1d4b1524b7c289cc7ab309da27961113b1f7ea4",
+          "previousSHA256": null
+        },
+        {
+          "file": "adventure-owl.json",
+          "sha256": "4d6a714d34fc254d9bf5a0b6f13b64fbf883ef36980c7fd695f9dceca935e6ed",
+          "previousSHA256": null
+        },
+        {
+          "file": "adventure-cat.json",
+          "sha256": "8e530f96b386417f08bada5d75ffffa068bc34ffa5506d23d24f210e4cba16c7",
+          "previousSHA256": null
+        },
+        {
+          "file": "adventure-bear.json",
+          "sha256": "d60c6c67fd3484e52dafad3fc0b77c25e842450bc9f6b06cae13e73594f8aa84",
+          "previousSHA256": null
+        },
+        {
+          "file": "learning-fox.json",
+          "sha256": "ed75fe410de9daf63118064f33e272d5c067c57da03547e1f410fa4fb5e2fff9",
+          "previousSHA256": null
+        },
+        {
+          "file": "learning-hedgehog.json",
+          "sha256": "397f5cea7a65d069a26f8a5ff63e6d6047170aaf902c1f63c4de6906546dd648",
+          "previousSHA256": null
+        },
+        {
+          "file": "learning-owl.json",
+          "sha256": "8252b25b80b27c2ffef9e8794f1120269682473d8f1338d3b62efa4c9c311fec",
+          "previousSHA256": null
+        },
+        {
+          "file": "learning-cat.json",
+          "sha256": "c18e181897b84c86c9289645c404ab07f16cd46f9dea957ab5ac37131b8a2d9b",
+          "previousSHA256": null
+        },
+        {
+          "file": "learning-bear.json",
+          "sha256": "8b573b14fc911b0b5b3552cfbe180dbd8af5e21dd490cc8197e660a7d5db083e",
+          "previousSHA256": null
+        },
+        {
+          "file": "bedtime-fox.json",
+          "sha256": "1d4190ae7b1bf38b033adf0eef983d3af393f3794deabe3fc3dcc9bdf4b5fc93",
+          "previousSHA256": null
+        },
+        {
+          "file": "bedtime-hedgehog.json",
+          "sha256": "3e6afc248d418af64fd8106d43d51ec4bcdc0d1fd98d72a1548d2adc5a548591",
+          "previousSHA256": null
+        },
+        {
+          "file": "bedtime-owl.json",
+          "sha256": "01f15ff47387d812c959776c411ea8d39dc1984a93fbe80f8b7a7e9e5bdf77c5",
+          "previousSHA256": null
+        },
+        {
+          "file": "bedtime-cat.json",
+          "sha256": "4bfc608918f1b3617f654f7e413a97cee817c72a5c3ff63fccdcd8fc3b6cd468",
+          "previousSHA256": null
+        },
+        {
+          "file": "bedtime-bear.json",
+          "sha256": "c0a894dfa26de7ebe8f49f595fc56875e48185dc9c470fbfc09d2756f41fa9ee",
+          "previousSHA256": null
+        }
+      ],
       "books": 90,
       "pages": 720,
-      "cells": 15,
-      "booksPerCell": [
-        6
+      "cells": {
+        "adventure/companion_fox_pilot_001": 6,
+        "adventure/companion_hedgehog_pilot_001": 6,
+        "adventure/companion_owl_pilot_001": 6,
+        "adventure/companion_city_cat_001": 6,
+        "adventure/companion_bear_001": 6,
+        "learning/companion_fox_pilot_001": 6,
+        "learning/companion_hedgehog_pilot_001": 6,
+        "learning/companion_owl_pilot_001": 6,
+        "learning/companion_city_cat_001": 6,
+        "learning/companion_bear_001": 6,
+        "bedtime/companion_fox_pilot_001": 6,
+        "bedtime/companion_hedgehog_pilot_001": 6,
+        "bedtime/companion_owl_pilot_001": 6,
+        "bedtime/companion_city_cat_001": 6,
+        "bedtime/companion_bear_001": 6
+      },
+      "excludedFiles": [],
+      "errors": []
+    },
+    {
+      "corpus": "wave1",
+      "files": [
+        {
+          "file": "adventure-fox.json",
+          "sha256": "2472f562b0ad66d85854840664c7f348292d5ce02bcba3073894d1e7d0181d7b",
+          "previousSHA256": "d70b3fb39087bbeb9f52bb1dd12c3ec94f109a0256427eba424ab2da0423e30b"
+        },
+        {
+          "file": "adventure-hedgehog.json",
+          "sha256": "2d9fe7506d6be2eada21afaf1f6036f840296964cae82faa6e0adf933d48a037",
+          "previousSHA256": "6e70e0cb5c2b1b65af4980c709882ff565f270eac67c6ed257d97293dd52e1fa"
+        },
+        {
+          "file": "adventure-owl.json",
+          "sha256": "17bd61b5f5fa784536aac99c53bc0de3d5c2bd0a1d0a9cfb3a73691a35d43351",
+          "previousSHA256": "6b9ceca4305da0ded19f966ae9bc4d10f1fdfa7e4c58f9405d935d81473bcfb6"
+        },
+        {
+          "file": "adventure-cat.json",
+          "sha256": "83ff912ab1a5569eee87a1dffcb72f542ac0b2abe9a998ac179aba37730d2733",
+          "previousSHA256": "49e9a9f997c833a1b3409000bdda3135d478961fc5d6d3e0382c449ee063efbe"
+        },
+        {
+          "file": "adventure-bear.json",
+          "sha256": "2e7bcf50c3ecf1120039080583cf7cad1d98acb650ba3c2279bee8fc3054dd89",
+          "previousSHA256": "a6a0ae63d280a7babff31af209d2a51a1d922f447e8909d03d6ff714b0a461f9"
+        },
+        {
+          "file": "learning-fox.json",
+          "sha256": "733bb8aaaa34ab2b9bf7b9125300b76c3005b579c051f0155732e54bda48cb5b",
+          "previousSHA256": "dfea07d451d70dd6335c318809961190adb882cd424ec781206ad7eb58b3e02f"
+        },
+        {
+          "file": "learning-hedgehog.json",
+          "sha256": "28e3c20d4304b208461d7d921493fd62d70ef661ccc6c587754cd8fb4b4eed98",
+          "previousSHA256": "2210db032b7630abd6be2c2911222c0e6d26dbd019b254185ee069217d3ce158"
+        },
+        {
+          "file": "learning-owl.json",
+          "sha256": "7627f26262b184219eb19a06ec0106d2b51c95d0da266c03b7380f1607fc4879",
+          "previousSHA256": "9519ddf50d7ea704f0452867e90a98bf9333bea8a7af106ef720aef3c2aaeea3"
+        },
+        {
+          "file": "learning-cat.json",
+          "sha256": "c289fcdce68cfea3c3beddd3c2047eae89f84cf224f4ba600611d9015fac1e0f",
+          "previousSHA256": "88c79ca1699fa18b91400f74ebdf0a99d63308ff7acf6b040d4b2d6b5a90ab2b"
+        },
+        {
+          "file": "learning-bear.json",
+          "sha256": "0d5a9afae2ab628cfee856dd77936cf0957c5fbd8d4fce6f5fbb0a66ca2410e2",
+          "previousSHA256": "3868e41582c19f6b3f5e0ae4d97298169c58f4fc6c2a8e0e98e4de4985e77f98"
+        },
+        {
+          "file": "bedtime-fox.json",
+          "sha256": "ddc3a31bb034149ac002188f0d0db6ed089f5227a1a5420ed11ae00c9df8891d",
+          "previousSHA256": "d2a5610d406540cfa99180fb641e12e626c3c634048256a3b3a78ea126b09860"
+        },
+        {
+          "file": "bedtime-hedgehog.json",
+          "sha256": "ef2cea6931dd3eb8bb30f95501ceb9be193ab52ce70c457fc117266805c6d48d",
+          "previousSHA256": "60f8d529f975662596e3a4d20a4fb5c175fa42a1adfd8deac348f853ba72d50c"
+        },
+        {
+          "file": "bedtime-owl.json",
+          "sha256": "238ff5981f611da0185340e11380bf9188cd0a77e35069ffeb59cd17a1c61765",
+          "previousSHA256": "9ecdff8879696fd10dc1219f144c49957ed2fa63a72a53f8f9ac6c2f1391df2f"
+        },
+        {
+          "file": "bedtime-cat.json",
+          "sha256": "c18255861f6fc12514d55ddd8ad703c13fe41296db63331646230220f40b2ff6",
+          "previousSHA256": "e2e44c5b0126d17d6cc70298fd7242efab86b959ced09241afa046c8edabfcbe"
+        },
+        {
+          "file": "bedtime-bear.json",
+          "sha256": "f59885cb291ebf2e69dc6d07630b7c7d34fafee4be0ed255494206b11e00eb1e",
+          "previousSHA256": "962fd5ca7d9981b6ce2d1f9aba4703d0253f489963e770b10f889e4ef70f4080"
+        }
       ],
-      "pairs": 30,
-      "threeEventsPerPair": true,
-      "sampleMatches": [
+      "books": 90,
+      "pages": 720,
+      "cells": {
+        "adventure/companion_fox_pilot_001": 6,
+        "adventure/companion_hedgehog_pilot_001": 6,
+        "adventure/companion_owl_pilot_001": 6,
+        "adventure/companion_city_cat_001": 6,
+        "adventure/companion_bear_001": 6,
+        "learning/companion_fox_pilot_001": 6,
+        "learning/companion_hedgehog_pilot_001": 6,
+        "learning/companion_owl_pilot_001": 6,
+        "learning/companion_city_cat_001": 6,
+        "learning/companion_bear_001": 6,
+        "bedtime/companion_fox_pilot_001": 6,
+        "bedtime/companion_hedgehog_pilot_001": 6,
+        "bedtime/companion_owl_pilot_001": 6,
+        "bedtime/companion_city_cat_001": 6,
+        "bedtime/companion_bear_001": 6
+      },
+      "excludedFiles": [
+        {
+          "file": "adventure-bear 2.json",
+          "sha256": "d4f3a3fd1a3be807be7149d713207abd3fc313ef6b1b40d5d8336c0d1b5d113b",
+          "reason": "not canonical {mode}-{friend}.json; stale duplicate not an approved extra book"
+        },
+        {
+          "file": "adventure-cat 2.json",
+          "sha256": "4d250062841bc362614c9224c9ee11e97cc5d956fdc85425a60082df72dd0c81",
+          "reason": "not canonical {mode}-{friend}.json; stale duplicate not an approved extra book"
+        },
+        {
+          "file": "learning-fox 2.json",
+          "sha256": "7d417da58633934866c7108ac2e17f25cf26ae26d061fe7ee7f32e7cc9c5afc2",
+          "reason": "not canonical {mode}-{friend}.json; stale duplicate not an approved extra book"
+        },
+        {
+          "file": "bedtime-cat 2.json",
+          "sha256": "f23d9f363c96b74e1ba3058820e9c2f165b85afba41bf1b1fea4b0f10267b367",
+          "reason": "not canonical {mode}-{friend}.json; stale duplicate not an approved extra book"
+        },
+        {
+          "file": "adventure-hedgehog 2.json",
+          "sha256": "45fbd21c02da0dd437fadd2d45e39a37d869d17b36e93bdfbbc09ac6919a8811",
+          "reason": "not canonical {mode}-{friend}.json; stale duplicate not an approved extra book"
+        },
+        {
+          "file": "adventure-owl 2.json",
+          "sha256": "8cad3f6f06f4bee9ffec95b9141d4c94303e4e9b58cdb9923c3a2091f7f9ae13",
+          "reason": "not canonical {mode}-{friend}.json; stale duplicate not an approved extra book"
+        },
+        {
+          "file": "adventure-fox 2.json",
+          "sha256": "42f6df0d59d67ee1cf62ecedec2eb2caad46ed8546de66890aac8fa8496604c9",
+          "reason": "not canonical {mode}-{friend}.json; stale duplicate not an approved extra book"
+        },
+        {
+          "file": "learning-owl 2.json",
+          "sha256": "a59e5c49cbfd560b035812d507360c32c484c59e57e5d96772daf0e8991d2c25",
+          "reason": "not canonical {mode}-{friend}.json; stale duplicate not an approved extra book"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "corpus": "wave2",
+      "files": [
+        {
+          "file": "adventure-fox.json",
+          "sha256": "c3c155bef1642b5c196b7aebb993e7e02021f4123f8d1ff7c11831b7af43abc1",
+          "previousSHA256": "bd252184ad3063796215ed492ff455323b6c9bb3ac26b9995090cb980d945f0a"
+        },
+        {
+          "file": "adventure-hedgehog.json",
+          "sha256": "df07a7bbecd11a5eb2376684b8843188cd585ed92512ff8608e430517b27dbd8",
+          "previousSHA256": "97681bb0e5d14135f19cd234034cd272a13afa19cf8b0ab105a038fa491e124a"
+        },
+        {
+          "file": "adventure-owl.json",
+          "sha256": "d0e77df2cfbeb2b6d8d21e936c891aec9b630d49794ffbd2f2b70e89c557aa69",
+          "previousSHA256": "5467e02a6b904c512977d112d37789b1f7650b614faf97a00db7692eb809981e"
+        },
+        {
+          "file": "adventure-cat.json",
+          "sha256": "cfc7c497fc656a53b044dce8a133414b951a773f8c64cd41e6b4f9010d0146b2",
+          "previousSHA256": "c8357cd9c4a94359465528d32f7930aba1cc1c8888888db6ccac2187b2187635"
+        },
+        {
+          "file": "adventure-bear.json",
+          "sha256": "095ae97293e2d392c35dd7a2b60ba977da211f8f650e872515723e5094fcbffe",
+          "previousSHA256": "b2661f551c500105ad13f29d452dd81fd57a2aca8da74c571a69ad5c880f31c8"
+        },
+        {
+          "file": "learning-fox.json",
+          "sha256": "5aab0007031b15890d8001939cd946ad64e9ba73c1a434c41567eb97d372f978",
+          "previousSHA256": "a5b09a42194c80a3a9289b55d0c1b8825759691bb94b1a290101ffce275b6a05"
+        },
+        {
+          "file": "learning-hedgehog.json",
+          "sha256": "c630cfadfea0b1ab9d968364f5864d0d9e0ad0302589ec4028b3fbd76533e267",
+          "previousSHA256": "3e3d968c0eb2a73bf47bda8604a99ce1a5164255c42945468de5e4aac45d5861"
+        },
+        {
+          "file": "learning-owl.json",
+          "sha256": "e5cbd3e0601462c5b9bbb48eea728271475ce73d8706bde35016b043a374e54f",
+          "previousSHA256": "99ef5522547ef79f9bd6dff9aaa66e9c25854b131eefd5d4852faa0434208b9e"
+        },
+        {
+          "file": "learning-cat.json",
+          "sha256": "c4ad8ff1521c9fe6063e1d662be3358f70a0b2eba9fda0b31ea5097de97b4bc1",
+          "previousSHA256": "fa173b3f1474d6600d0f7bfe99fd311c6d270a42ee9b25d7097ea89b2b6f415c"
+        },
+        {
+          "file": "learning-bear.json",
+          "sha256": "b9fcf86e7b9bed977da9a2f2cb21c18c6ae14602108de9b2e7cd02a2c1e02583",
+          "previousSHA256": "4cd588ae85016999db75d2fb41a59d432864227022f57ad3bf71c8435aecce54"
+        },
+        {
+          "file": "bedtime-fox.json",
+          "sha256": "fa745c4695185a69c55f50334df79ee92e63670df330aa78b27f22bedb17f92e",
+          "previousSHA256": "cb9db3b87c4b6a61f5044c02f5a1eb19540af0e2933b2885f8b14a372edb5a28"
+        },
+        {
+          "file": "bedtime-hedgehog.json",
+          "sha256": "be50740a18277453d3fee4b1afbbb393ba7f9adddd094497901713dd5b743cec",
+          "previousSHA256": "6bdc36ec2f517e7f1c43e9af362247666d3973b850468d1e7334a6189c29e0ab"
+        },
+        {
+          "file": "bedtime-owl.json",
+          "sha256": "8fd9b2ebd87aa531529048f76599e44da39bc9026af9e010ad26913c1fbcf105",
+          "previousSHA256": "fd8673bda06ebda3ea47238704d51dbb2d46019408033989baab12f03daabd16"
+        },
+        {
+          "file": "bedtime-cat.json",
+          "sha256": "d2cf0a47309f48e05623e4bab45aadbbe91a6cb1ffd366e8af852a0c4b234b6f",
+          "previousSHA256": "640f41a4bfabc771f0abdbc02d55ffaa64f7513b9c9120cdfee404e16df25a24"
+        },
+        {
+          "file": "bedtime-bear.json",
+          "sha256": "81d248ed167ab9533c378bb02f7ea827c46473ea27e252501a7613815e98f45c",
+          "previousSHA256": "2f9ad3ca4758fe617dc427ec5261665bfba292e44815cb9013bbe0c9838c1800"
+        }
+      ],
+      "books": 90,
+      "pages": 720,
+      "cells": {
+        "adventure/companion_fox_pilot_001": 6,
+        "adventure/companion_hedgehog_pilot_001": 6,
+        "adventure/companion_owl_pilot_001": 6,
+        "adventure/companion_city_cat_001": 6,
+        "adventure/companion_bear_001": 6,
+        "learning/companion_fox_pilot_001": 6,
+        "learning/companion_hedgehog_pilot_001": 6,
+        "learning/companion_owl_pilot_001": 6,
+        "learning/companion_city_cat_001": 6,
+        "learning/companion_bear_001": 6,
+        "bedtime/companion_fox_pilot_001": 6,
+        "bedtime/companion_hedgehog_pilot_001": 6,
+        "bedtime/companion_owl_pilot_001": 6,
+        "bedtime/companion_city_cat_001": 6,
+        "bedtime/companion_bear_001": 6
+      },
+      "excludedFiles": [],
+      "errors": []
+    }
+  ],
+  "books": 270,
+  "pages": 2160,
+  "duplicateCanonicalBookIDs": [],
+  "originalFilesModified": false,
+  "sampleFileAudit": [
+    {
+      "wave": 1,
+      "fileSHA256": "c58544e73264bf3170ce7450c012b7ef5eb2e12a3df6b945cf11fc0ab55f6163",
+      "samples": [
         {
           "code": "U4",
-          "matches": 1
+          "title": "Böğürtlen Damlaları Sayıyor",
+          "matchingBookIDs": [
+            "pilot56_book_u4_bear_v1"
+          ],
+          "currentTextMatches": true
         },
         {
           "code": "U5",
-          "matches": 1
+          "title": "Tarçın'ın Yarın Burnu",
+          "matchingBookIDs": [
+            "pilot56_book_u5_fox_v1"
+          ],
+          "currentTextMatches": true
         },
         {
           "code": "U6",
-          "matches": 1
+          "title": "Kestane'nin Gece Lambası",
+          "matchingBookIDs": [
+            "pilot56_book_u6_hedgehog_v1"
+          ],
+          "currentTextMatches": true
         },
         {
           "code": "L4",
-          "matches": 1
+          "title": "Yıldız Tahmin Ediyor",
+          "matchingBookIDs": [
+            "pilot56_book_l4_owl_v1"
+          ],
+          "currentTextMatches": true
         },
         {
           "code": "L5",
-          "matches": 1
+          "title": "Simit'in Şehir Sırası",
+          "matchingBookIDs": [
+            "pilot56_book_l5_cat_v1"
+          ],
+          "currentTextMatches": true
         },
         {
           "code": "L6",
-          "matches": 1
+          "title": "Böğürtlen'in Kocaman Adımları",
+          "matchingBookIDs": [
+            "pilot56_book_l6_bear_v1"
+          ],
+          "currentTextMatches": false
         },
         {
           "code": "A4",
-          "matches": 1
+          "title": "Simit ve Çamurlu Patika",
+          "matchingBookIDs": [
+            "pilot56_book_a4_cat_v1"
+          ],
+          "currentTextMatches": false
         },
         {
           "code": "A5",
-          "matches": 1
+          "title": "Yıldız'ın Sırası",
+          "matchingBookIDs": [
+            "pilot56_book_a5_owl_v1"
+          ],
+          "currentTextMatches": true
         },
         {
           "code": "A6",
-          "matches": 1
+          "title": "Tarçın Haritayı Kokluyor",
+          "matchingBookIDs": [
+            "pilot56_book_a6_fox_v1"
+          ],
+          "currentTextMatches": false
         }
       ],
-      "errors": [],
-      "inputs": [
-        {
-          "file": "adventure-bear.json",
-          "sha256": "a6a0ae63d280a7babff31af209d2a51a1d922f447e8909d03d6ff714b0a461f9"
-        },
-        {
-          "file": "adventure-cat.json",
-          "sha256": "49e9a9f997c833a1b3409000bdda3135d478961fc5d6d3e0382c449ee063efbe"
-        },
-        {
-          "file": "adventure-fox.json",
-          "sha256": "d70b3fb39087bbeb9f52bb1dd12c3ec94f109a0256427eba424ab2da0423e30b"
-        },
-        {
-          "file": "adventure-hedgehog.json",
-          "sha256": "6e70e0cb5c2b1b65af4980c709882ff565f270eac67c6ed257d97293dd52e1fa"
-        },
-        {
-          "file": "adventure-owl.json",
-          "sha256": "6b9ceca4305da0ded19f966ae9bc4d10f1fdfa7e4c58f9405d935d81473bcfb6"
-        },
-        {
-          "file": "bedtime-bear.json",
-          "sha256": "962fd5ca7d9981b6ce2d1f9aba4703d0253f489963e770b10f889e4ef70f4080"
-        },
-        {
-          "file": "bedtime-cat.json",
-          "sha256": "e2e44c5b0126d17d6cc70298fd7242efab86b959ced09241afa046c8edabfcbe"
-        },
-        {
-          "file": "bedtime-fox.json",
-          "sha256": "d2a5610d406540cfa99180fb641e12e626c3c634048256a3b3a78ea126b09860"
-        },
-        {
-          "file": "bedtime-hedgehog.json",
-          "sha256": "60f8d529f975662596e3a4d20a4fb5c175fa42a1adfd8deac348f853ba72d50c"
-        },
-        {
-          "file": "bedtime-owl.json",
-          "sha256": "9ecdff8879696fd10dc1219f144c49957ed2fa63a72a53f8f9ac6c2f1391df2f"
-        },
-        {
-          "file": "learning-bear.json",
-          "sha256": "3868e41582c19f6b3f5e0ae4d97298169c58f4fc6c2a8e0e98e4de4985e77f98"
-        },
-        {
-          "file": "learning-cat.json",
-          "sha256": "88c79ca1699fa18b91400f74ebdf0a99d63308ff7acf6b040d4b2d6b5a90ab2b"
-        },
-        {
-          "file": "learning-fox.json",
-          "sha256": "dfea07d451d70dd6335c318809961190adb882cd424ec781206ad7eb58b3e02f"
-        },
-        {
-          "file": "learning-hedgehog.json",
-          "sha256": "2210db032b7630abd6be2c2911222c0e6d26dbd019b254185ee069217d3ce158"
-        },
-        {
-          "file": "learning-owl.json",
-          "sha256": "9519ddf50d7ea704f0452867e90a98bf9333bea8a7af106ef720aef3c2aaeea3"
-        }
-      ]
+      "currentTextMatches": 6
     },
     {
       "wave": 2,
-      "structures": 9,
-      "books": 90,
-      "pages": 720,
-      "cells": 15,
-      "booksPerCell": [
-        6
-      ],
-      "pairs": 30,
-      "threeEventsPerPair": true,
-      "sampleMatches": [
+      "fileSHA256": "c6659995363a847a0dba9cf5fe98903acfeff79675e9314fe1ccda3d9e269be2",
+      "samples": [
         {
           "code": "U7",
-          "matches": 1
+          "title": "Böğürtlen'in Oyuncak Kuzeni",
+          "matchingBookIDs": [
+            "pilot56_book_u7_bear_v1"
+          ],
+          "currentTextMatches": false
         },
         {
           "code": "U8",
-          "matches": 1
+          "title": "Kestane Dikenlerini Uyutuyor",
+          "matchingBookIDs": [
+            "pilot56_book_u8_hedgehog_v1"
+          ],
+          "currentTextMatches": false
         },
         {
           "code": "U9",
-          "matches": 1
+          "title": "Yıldız'ın Ay Dalı",
+          "matchingBookIDs": [
+            "pilot56_book_u9_owl_v1"
+          ],
+          "currentTextMatches": false
         },
         {
           "code": "L7",
-          "matches": 1
+          "title": "Tarçın Gölgesini Kokluyor",
+          "matchingBookIDs": [
+            "pilot56_book_l7_fox_v1"
+          ],
+          "currentTextMatches": false
         },
         {
           "code": "L8",
-          "matches": 1
+          "title": "Simit ve Kumdaki İzler",
+          "matchingBookIDs": [
+            "pilot56_book_l8_cat_v1"
+          ],
+          "currentTextMatches": false
         },
         {
           "code": "L9",
-          "matches": 1
+          "title": "Böğürtlen'in Denge Dalı",
+          "matchingBookIDs": [
+            "pilot56_book_l9_bear_v1"
+          ],
+          "currentTextMatches": false
         },
         {
           "code": "A7",
-          "matches": 1
+          "title": "Kestane ve Çalıdaki Top",
+          "matchingBookIDs": [
+            "pilot56_book_a7_hedgehog_v1"
+          ],
+          "currentTextMatches": true
         },
         {
           "code": "A8",
-          "matches": 1
+          "title": "Tarçın ve Kocaman Sepet",
+          "matchingBookIDs": [
+            "pilot56_book_a8_fox_v1"
+          ],
+          "currentTextMatches": true
         },
         {
           "code": "A9",
-          "matches": 1
+          "title": "Yıldız ve Uğur Böceği",
+          "matchingBookIDs": [
+            "pilot56_book_a9_owl_v1"
+          ],
+          "currentTextMatches": true
         }
       ],
-      "errors": [],
-      "inputs": [
-        {
-          "file": "adventure-bear.json",
-          "sha256": "b2661f551c500105ad13f29d452dd81fd57a2aca8da74c571a69ad5c880f31c8"
-        },
-        {
-          "file": "adventure-cat.json",
-          "sha256": "c8357cd9c4a94359465528d32f7930aba1cc1c8888888db6ccac2187b2187635"
-        },
-        {
-          "file": "adventure-fox.json",
-          "sha256": "bd252184ad3063796215ed492ff455323b6c9bb3ac26b9995090cb980d945f0a"
-        },
-        {
-          "file": "adventure-hedgehog.json",
-          "sha256": "97681bb0e5d14135f19cd234034cd272a13afa19cf8b0ab105a038fa491e124a"
-        },
-        {
-          "file": "adventure-owl.json",
-          "sha256": "5467e02a6b904c512977d112d37789b1f7650b614faf97a00db7692eb809981e"
-        },
-        {
-          "file": "bedtime-bear.json",
-          "sha256": "2f9ad3ca4758fe617dc427ec5261665bfba292e44815cb9013bbe0c9838c1800"
-        },
-        {
-          "file": "bedtime-cat.json",
-          "sha256": "640f41a4bfabc771f0abdbc02d55ffaa64f7513b9c9120cdfee404e16df25a24"
-        },
-        {
-          "file": "bedtime-fox.json",
-          "sha256": "cb9db3b87c4b6a61f5044c02f5a1eb19540af0e2933b2885f8b14a372edb5a28"
-        },
-        {
-          "file": "bedtime-hedgehog.json",
-          "sha256": "6bdc36ec2f517e7f1c43e9af362247666d3973b850468d1e7334a6189c29e0ab"
-        },
-        {
-          "file": "bedtime-owl.json",
-          "sha256": "fd8673bda06ebda3ea47238704d51dbb2d46019408033989baab12f03daabd16"
-        },
-        {
-          "file": "learning-bear.json",
-          "sha256": "4cd588ae85016999db75d2fb41a59d432864227022f57ad3bf71c8435aecce54"
-        },
-        {
-          "file": "learning-cat.json",
-          "sha256": "fa173b3f1474d6600d0f7bfe99fd311c6d270a42ee9b25d7097ea89b2b6f415c"
-        },
-        {
-          "file": "learning-fox.json",
-          "sha256": "a5b09a42194c80a3a9289b55d0c1b8825759691bb94b1a290101ffce275b6a05"
-        },
-        {
-          "file": "learning-hedgehog.json",
-          "sha256": "3e3d968c0eb2a73bf47bda8604a99ce1a5164255c42945468de5e4aac45d5861"
-        },
-        {
-          "file": "learning-owl.json",
-          "sha256": "99ef5522547ef79f9bd6dff9aaa66e9c25854b131eefd5d4852faa0434208b9e"
-        }
-      ]
+      "currentTextMatches": 3
     }
-  ],
-  "sourceTextNotModified": true
+  ]
 }

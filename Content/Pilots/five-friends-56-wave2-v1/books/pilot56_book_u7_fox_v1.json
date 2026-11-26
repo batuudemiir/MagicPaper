@@ -1,0 +1,893 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u7_fox_v1",
+  "title": "Tarçın ve Yün Kuzu",
+  "context": {
+    "settingName": "Orman Kıyısındaki Oda",
+    "mode": "bedtime",
+    "companionID": "companion_fox_pilot_001",
+    "structure": "U7",
+    "event": "e1",
+    "mechanism": "toys-to-bed",
+    "sourceFilename": "bedtime-fox.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u7_fox_v1",
+    "sourceBookID": "pilot56_book_u7_fox_v1",
+    "structure": "U7",
+    "event": "e1",
+    "sample": false,
+    "title": "Tarçın ve Yün Kuzu",
+    "pages": [
+      "Orman Kıyısındaki Oda’da pijama vakti gelmişti. Deniz yerde, oyuncaklarının arasında oturuyordu. Tarçın minderine kıvrılmıştı. Turkuaz boyunluğu lambanın ışığında parlıyordu.",
+      "Halıda oyuncaklar dağınıktı. Kumaş tavşan, yün kuzu ve küçük bir ayı yan yana yatıyordu. Tarçın aralarında burnunu gezdirdi. \"Biraz daha oynasam,\" dedi Deniz. Ama esnedi.",
+      "\"Bir koklayalım bakalım,\" dedi Tarçın. Yün kuzuyu kokladı. \"Bu kuzu çimen kokuyor, çayırda uyumalı!\" Kuzuyu ağzıyla kapının önüne taşıdı. Deniz yastığına gömülüp güldü.",
+      "Deniz her oyuncağa bir yer seçti. \"Tavşan sepette uyusun,\" dedi. \"Kuzu da rafta.\" Tarçın her yeri kokladı. Deniz oyuncakları kendi sırasıyla yatırdı.",
+      "Tarçın raftaki kuzuyu bir kez daha kokladı. \"Rafta da biraz çimen kokusu var,\" dedi. Sonra burnunu sepetteki tavşana uzattı. Deniz ona bakıp gülümsedi.",
+      "Deniz yalnız kumaş tavşanı geri aldı. \"Bu benimle kalıyor,\" dedi. Ötekiler yerlerindeydi. Tarçın boşalan halıya uzandı. Akşam da yavaşlamıştı.",
+      "Tarçın minderinde döndü ve kıvrıldı. Kuyruğunu burnunun üstüne örttü. Deniz kumaş tavşanı koynuna alıp yorganın altına girdi. Oda yavaş yavaş sessizleşti.",
+      "\"Gözlerin yoruldu, Deniz,\" diye fısıldadı Tarçın. \"İyi geceler, kuzu.\" Deniz gözlerini yumdu. Raftaki kuzu da, sepetteki tavşanın yeri de sessizce bekledi."
+    ]
+  },
+  "inputFileSHA256": "fa745c4695185a69c55f50334df79ee92e63670df330aa78b27f22bedb17f92e",
+  "inputBookPointer": "input/bedtime-fox.json#/books/0",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u7_fox_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "minder; boyunluk; lamba/fener/ışık; oyuncak",
+        "propMentions": [
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Tarçın minderine kıvrılmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "Turkuaz boyunluğu lambanın ışığında parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Turkuaz boyunluğu lambanın ışığında parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Deniz yerde, oyuncaklarının arasında oturuyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Orman Kıyısındaki Oda’da pijama vakti gelmişti. Deniz yerde, oyuncaklarının arasında oturuyordu. Tarçın minderine kıvrılmıştı. Turkuaz boyunluğu lambanın ışığında parlıyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p01",
+            "evidenceText": "Orman Kıyısındaki Oda’da pijama vakti gelmişti. Deniz yerde, oyuncaklarının arasında oturuyordu. Tarçın minderine kıvrılmıştı. Turkuaz boyunluğu lambanın ışığında parlıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Orman Kıyısındaki Oda’da pijama vakti gelmişti. Deniz yerde, oyuncaklarının arasında oturuyordu. Tarçın minderine kıvrılmıştı. Turkuaz boyunluğu lambanın ışığında parlıyordu.",
+        "poseAndActionEvidence": [
+          "Orman Kıyısındaki Oda’da pijama vakti gelmişti.",
+          "Deniz yerde, oyuncaklarının arasında oturuyordu.",
+          "Tarçın minderine kıvrılmıştı.",
+          "Turkuaz boyunluğu lambanın ışığında parlıyordu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Orman Kıyısındaki Oda’da pijama vakti gelmişti. Deniz yerde, oyuncaklarının arasında oturuyordu. Tarçın minderine kıvrılmıştı. Turkuaz boyunluğu lambanın ışığında parlıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p01",
+        "quoteSHA256": "02cdfb7bb9bb4c602cf7a5a6a7520be49c1ad2b1dbd4c98e1d888246d52d380b",
+        "bookID": "pilot56_book_u7_fox_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "02cdfb7bb9bb4c602cf7a5a6a7520be49c1ad2b1dbd4c98e1d888246d52d380b",
+      "text": "Orman Kıyısındaki Oda’da pijama vakti gelmişti. Deniz yerde, oyuncaklarının arasında oturuyordu. Tarçın minderine kıvrılmıştı. Turkuaz boyunluğu lambanın ışığında parlıyordu.",
+      "sourceID": "p56_wave2_pilot56_book_u7_fox_v1_p01",
+      "sourcePointer": "input/bedtime-fox.json#/books/0/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u7_fox_v1",
+      "rawPageMove": "toys_scattered",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü; oyuncak; iz/kum",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Kumaş tavşan, yün kuzu ve küçük bir ayı yan yana yatıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Halıda oyuncaklar dağınıktı.",
+              "Kumaş tavşan, yün kuzu ve küçük bir ayı yan yana yatıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kumaş tavşan, yün kuzu ve küçük bir ayı yan yana yatıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Halıda oyuncaklar dağınıktı. Kumaş tavşan, yün kuzu ve küçük bir ayı yan yana yatıyordu. Tarçın aralarında burnunu gezdirdi. \"Biraz daha oynasam,\" dedi Deniz. Ama esnedi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p02",
+            "evidenceText": "Halıda oyuncaklar dağınıktı. Kumaş tavşan, yün kuzu ve küçük bir ayı yan yana yatıyordu. Tarçın aralarında burnunu gezdirdi. \"Biraz daha oynasam,\" dedi Deniz. Ama esnedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Halıda oyuncaklar dağınıktı. Kumaş tavşan, yün kuzu ve küçük bir ayı yan yana yatıyordu. Tarçın aralarında burnunu gezdirdi. \"Biraz daha oynasam,\" dedi Deniz. Ama esnedi.",
+        "poseAndActionEvidence": [
+          "Halıda oyuncaklar dağınıktı.",
+          "Kumaş tavşan, yün kuzu ve küçük bir ayı yan yana yatıyordu.",
+          "Tarçın aralarında burnunu gezdirdi.",
+          "\"Biraz daha oynasam,\" dedi Deniz.",
+          "Ama esnedi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Halıda oyuncaklar dağınıktı. Kumaş tavşan, yün kuzu ve küçük bir ayı yan yana yatıyordu. Tarçın aralarında burnunu gezdirdi. \"Biraz daha oynasam,\" dedi Deniz. Ama esnedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p02",
+        "quoteSHA256": "80ef9a4f1453f28ce58af8f2abecccc6c4b793d206e04a7a79b4ac96f866c63b",
+        "bookID": "pilot56_book_u7_fox_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "80ef9a4f1453f28ce58af8f2abecccc6c4b793d206e04a7a79b4ac96f866c63b",
+      "text": "Halıda oyuncaklar dağınıktı. Kumaş tavşan, yün kuzu ve küçük bir ayı yan yana yatıyordu. Tarçın aralarında burnunu gezdirdi. \"Biraz daha oynasam,\" dedi Deniz. Ama esnedi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_fox_v1_p02",
+      "sourcePointer": "input/bedtime-fox.json#/books/0/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u7_fox_v1",
+      "rawPageMove": "friend_beds_wrong",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; yatak/yastık/döşek; taş/çakıl; oyuncak; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "\"Bu kuzu çimen kokuyor, çayırda uyumalı!\" Kuzuyu ağzıyla kapının önüne taşıdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz yastığına gömülüp güldü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "\"Bu kuzu çimen kokuyor, çayırda uyumalı!\" Kuzuyu ağzıyla kapının önüne taşıdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Yün kuzuyu kokladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "\"Bu kuzu çimen kokuyor, çayırda uyumalı!\" Kuzuyu ağzıyla kapının önüne taşıdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Bir koklayalım bakalım,\" dedi Tarçın. Yün kuzuyu kokladı. \"Bu kuzu çimen kokuyor, çayırda uyumalı!\" Kuzuyu ağzıyla kapının önüne taşıdı. Deniz yastığına gömülüp güldü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p03",
+            "evidenceText": "\"Bir koklayalım bakalım,\" dedi Tarçın. Yün kuzuyu kokladı. \"Bu kuzu çimen kokuyor, çayırda uyumalı!\" Kuzuyu ağzıyla kapının önüne taşıdı. Deniz yastığına gömülüp güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Bir koklayalım bakalım,\" dedi Tarçın. Yün kuzuyu kokladı. \"Bu kuzu çimen kokuyor, çayırda uyumalı!\" Kuzuyu ağzıyla kapının önüne taşıdı. Deniz yastığına gömülüp güldü.",
+        "poseAndActionEvidence": [
+          "\"Bir koklayalım bakalım,\" dedi Tarçın.",
+          "Yün kuzuyu kokladı.",
+          "\"Bu kuzu çimen kokuyor, çayırda uyumalı!\" Kuzuyu ağzıyla kapının önüne taşıdı.",
+          "Deniz yastığına gömülüp güldü."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_fox_pilot_001",
+        "quote": "\"Bir koklayalım bakalım,\" dedi Tarçın. Yün kuzuyu kokladı. \"Bu kuzu çimen kokuyor, çayırda uyumalı!\" Kuzuyu ağzıyla kapının önüne taşıdı. Deniz yastığına gömülüp güldü.",
+        "attributionQuote": "Tarçın",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p03",
+        "quoteSHA256": "a3ec2cb1302ed36d2be39bc8807f054856ed483f60c907be07a0e889dbaf581b",
+        "bookID": "pilot56_book_u7_fox_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "a3ec2cb1302ed36d2be39bc8807f054856ed483f60c907be07a0e889dbaf581b",
+      "text": "\"Bir koklayalım bakalım,\" dedi Tarçın. Yün kuzuyu kokladı. \"Bu kuzu çimen kokuyor, çayırda uyumalı!\" Kuzuyu ağzıyla kapının önüne taşıdı. Deniz yastığına gömülüp güldü.",
+      "sourceID": "p56_wave2_pilot56_book_u7_fox_v1_p03",
+      "sourcePointer": "input/bedtime-fox.json#/books/0/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u7_fox_v1",
+      "rawPageMove": "child_picks_places",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "sepet/kutu; oyuncak",
+        "propMentions": [
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "\"Tavşan sepette uyusun,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Deniz oyuncakları kendi sırasıyla yatırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz her oyuncağa bir yer seçti. \"Tavşan sepette uyusun,\" dedi. \"Kuzu da rafta.\" Tarçın her yeri kokladı. Deniz oyuncakları kendi sırasıyla yatırdı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p04",
+            "evidenceText": "Deniz her oyuncağa bir yer seçti. \"Tavşan sepette uyusun,\" dedi. \"Kuzu da rafta.\" Tarçın her yeri kokladı. Deniz oyuncakları kendi sırasıyla yatırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz her oyuncağa bir yer seçti. \"Tavşan sepette uyusun,\" dedi. \"Kuzu da rafta.\" Tarçın her yeri kokladı. Deniz oyuncakları kendi sırasıyla yatırdı.",
+        "poseAndActionEvidence": [
+          "Deniz her oyuncağa bir yer seçti.",
+          "\"Tavşan sepette uyusun,\" dedi.",
+          "\"Kuzu da rafta.\" Tarçın her yeri kokladı.",
+          "Deniz oyuncakları kendi sırasıyla yatırdı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz her oyuncağa bir yer seçti. \"Tavşan sepette uyusun,\" dedi. \"Kuzu da rafta.\" Tarçın her yeri kokladı. Deniz oyuncakları kendi sırasıyla yatırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p04",
+        "quoteSHA256": "c8b1c9467403a2a671a90086c435900496fc46c92ea2462fd2a162797b2d0103",
+        "bookID": "pilot56_book_u7_fox_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "c8b1c9467403a2a671a90086c435900496fc46c92ea2462fd2a162797b2d0103",
+      "text": "Deniz her oyuncağa bir yer seçti. \"Tavşan sepette uyusun,\" dedi. \"Kuzu da rafta.\" Tarçın her yeri kokladı. Deniz oyuncakları kendi sırasıyla yatırdı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_fox_v1_p04",
+      "sourcePointer": "input/bedtime-fox.json#/books/0/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u7_fox_v1",
+      "rawPageMove": "soft_smile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "sepet/kutu",
+        "propMentions": [
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Sonra burnunu sepetteki tavşana uzattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın raftaki kuzuyu bir kez daha kokladı. \"Rafta da biraz çimen kokusu var,\" dedi. Sonra burnunu sepetteki tavşana uzattı. Deniz ona bakıp gülümsedi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p05",
+            "evidenceText": "Tarçın raftaki kuzuyu bir kez daha kokladı. \"Rafta da biraz çimen kokusu var,\" dedi. Sonra burnunu sepetteki tavşana uzattı. Deniz ona bakıp gülümsedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın raftaki kuzuyu bir kez daha kokladı. \"Rafta da biraz çimen kokusu var,\" dedi. Sonra burnunu sepetteki tavşana uzattı. Deniz ona bakıp gülümsedi.",
+        "poseAndActionEvidence": [
+          "Tarçın raftaki kuzuyu bir kez daha kokladı.",
+          "\"Rafta da biraz çimen kokusu var,\" dedi.",
+          "Sonra burnunu sepetteki tavşana uzattı.",
+          "Deniz ona bakıp gülümsedi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Tarçın raftaki kuzuyu bir kez daha kokladı. \"Rafta da biraz çimen kokusu var,\" dedi. Sonra burnunu sepetteki tavşana uzattı. Deniz ona bakıp gülümsedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p05",
+        "quoteSHA256": "8550419611ff071445701862ee830b25bea04443cb218713e344a4035375dd4b",
+        "bookID": "pilot56_book_u7_fox_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "8550419611ff071445701862ee830b25bea04443cb218713e344a4035375dd4b",
+      "text": "Tarçın raftaki kuzuyu bir kez daha kokladı. \"Rafta da biraz çimen kokusu var,\" dedi. Sonra burnunu sepetteki tavşana uzattı. Deniz ona bakıp gülümsedi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_fox_v1_p05",
+      "sourcePointer": "input/bedtime-fox.json#/books/0/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u7_fox_v1",
+      "rawPageMove": "one_toy_kept",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü; oyuncak; iz/kum",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Deniz yalnız kumaş tavşanı geri aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Deniz yalnız kumaş tavşanı geri aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Deniz yalnız kumaş tavşanı geri aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz yalnız kumaş tavşanı geri aldı. \"Bu benimle kalıyor,\" dedi. Ötekiler yerlerindeydi. Tarçın boşalan halıya uzandı. Akşam da yavaşlamıştı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p06",
+            "evidenceText": "Deniz yalnız kumaş tavşanı geri aldı. \"Bu benimle kalıyor,\" dedi. Ötekiler yerlerindeydi. Tarçın boşalan halıya uzandı. Akşam da yavaşlamıştı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yalnız kumaş tavşanı geri aldı. \"Bu benimle kalıyor,\" dedi. Ötekiler yerlerindeydi. Tarçın boşalan halıya uzandı. Akşam da yavaşlamıştı.",
+        "poseAndActionEvidence": [
+          "Deniz yalnız kumaş tavşanı geri aldı.",
+          "\"Bu benimle kalıyor,\" dedi.",
+          "Ötekiler yerlerindeydi.",
+          "Tarçın boşalan halıya uzandı.",
+          "Akşam da yavaşlamıştı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yalnız kumaş tavşanı geri aldı. \"Bu benimle kalıyor,\" dedi. Ötekiler yerlerindeydi. Tarçın boşalan halıya uzandı. Akşam da yavaşlamıştı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p06",
+        "quoteSHA256": "c6ca4d393c1a056d2105f17b42c37e359db474cb9f2ae5aaa5ea4bd4f863c3fd",
+        "bookID": "pilot56_book_u7_fox_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "c6ca4d393c1a056d2105f17b42c37e359db474cb9f2ae5aaa5ea4bd4f863c3fd",
+      "text": "Deniz yalnız kumaş tavşanı geri aldı. \"Bu benimle kalıyor,\" dedi. Ötekiler yerlerindeydi. Tarçın boşalan halıya uzandı. Akşam da yavaşlamıştı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_fox_v1_p06",
+      "sourcePointer": "input/bedtime-fox.json#/books/0/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u7_fox_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü; minder; oyuncak; iz/kum",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Deniz kumaş tavşanı koynuna alıp yorganın altına girdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Tarçın minderinde döndü ve kıvrıldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "oyuncak",
+            "evidenceQuotes": [
+              "Deniz kumaş tavşanı koynuna alıp yorganın altına girdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Deniz kumaş tavşanı koynuna alıp yorganın altına girdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın minderinde döndü ve kıvrıldı. Kuyruğunu burnunun üstüne örttü. Deniz kumaş tavşanı koynuna alıp yorganın altına girdi. Oda yavaş yavaş sessizleşti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p07",
+            "evidenceText": "Tarçın minderinde döndü ve kıvrıldı. Kuyruğunu burnunun üstüne örttü. Deniz kumaş tavşanı koynuna alıp yorganın altına girdi. Oda yavaş yavaş sessizleşti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın minderinde döndü ve kıvrıldı. Kuyruğunu burnunun üstüne örttü. Deniz kumaş tavşanı koynuna alıp yorganın altına girdi. Oda yavaş yavaş sessizleşti.",
+        "poseAndActionEvidence": [
+          "Tarçın minderinde döndü ve kıvrıldı.",
+          "Kuyruğunu burnunun üstüne örttü.",
+          "Deniz kumaş tavşanı koynuna alıp yorganın altına girdi.",
+          "Oda yavaş yavaş sessizleşti."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Tarçın minderinde döndü ve kıvrıldı. Kuyruğunu burnunun üstüne örttü. Deniz kumaş tavşanı koynuna alıp yorganın altına girdi. Oda yavaş yavaş sessizleşti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p07",
+        "quoteSHA256": "2b233a545c719e8b9c6c9b0b1df0e9ee4a0b329dbfa5f15a08c64ec19ea02ffc",
+        "bookID": "pilot56_book_u7_fox_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "2b233a545c719e8b9c6c9b0b1df0e9ee4a0b329dbfa5f15a08c64ec19ea02ffc",
+      "text": "Tarçın minderinde döndü ve kıvrıldı. Kuyruğunu burnunun üstüne örttü. Deniz kumaş tavşanı koynuna alıp yorganın altına girdi. Oda yavaş yavaş sessizleşti.",
+      "sourceID": "p56_wave2_pilot56_book_u7_fox_v1_p07",
+      "sourcePointer": "input/bedtime-fox.json#/books/0/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u7_fox_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "sepet/kutu",
+        "propMentions": [
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Raftaki kuzu da, sepetteki tavşanın yeri de sessizce bekledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "\"Gözlerin yoruldu, Deniz,\" diye fısıldadı Tarçın. \"İyi geceler, kuzu.\" Deniz gözlerini yumdu. Raftaki kuzu da, sepetteki tavşanın yeri de sessizce bekledi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p08",
+            "evidenceText": "\"Gözlerin yoruldu, Deniz,\" diye fısıldadı Tarçın. \"İyi geceler, kuzu.\" Deniz gözlerini yumdu. Raftaki kuzu da, sepetteki tavşanın yeri de sessizce bekledi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Gözlerin yoruldu, Deniz,\" diye fısıldadı Tarçın. \"İyi geceler, kuzu.\" Deniz gözlerini yumdu. Raftaki kuzu da, sepetteki tavşanın yeri de sessizce bekledi.",
+        "poseAndActionEvidence": [
+          "\"Gözlerin yoruldu, Deniz,\" diye fısıldadı Tarçın.",
+          "\"İyi geceler, kuzu.\" Deniz gözlerini yumdu.",
+          "Raftaki kuzu da, sepetteki tavşanın yeri de sessizce bekledi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Gözlerin yoruldu, Deniz,\" diye fısıldadı Tarçın. \"İyi geceler, kuzu.\" Deniz gözlerini yumdu. Raftaki kuzu da, sepetteki tavşanın yeri de sessizce bekledi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_fox_v1_p08",
+        "quoteSHA256": "8ef35ebf3851ba1fd64f51dfb274d318c573cdb34baa51aea19f565d44106d6e",
+        "bookID": "pilot56_book_u7_fox_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "8ef35ebf3851ba1fd64f51dfb274d318c573cdb34baa51aea19f565d44106d6e",
+      "text": "\"Gözlerin yoruldu, Deniz,\" diye fısıldadı Tarçın. \"İyi geceler, kuzu.\" Deniz gözlerini yumdu. Raftaki kuzu da, sepetteki tavşanın yeri de sessizce bekledi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_fox_v1_p08",
+      "sourcePointer": "input/bedtime-fox.json#/books/0/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz her oyuncağa bir yatak yeri seçer, sırayı kendisi belirler, yalnız birini yanına alır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}
