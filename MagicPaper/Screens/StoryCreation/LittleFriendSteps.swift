@@ -229,10 +229,17 @@ struct LittleConfirmStep: View {
             + " " + LittleCreationCopy.startLine
     }
 
+    /// Görünen yükseklik: kartlar ve "Başla" başlığın altındaki boşlukta
+    /// dikeyde ortalanır, sayfanın tepesine yığılmaz (26 Kasım 2026, Batuhan).
+    /// En büyük yazıda içerik sığmazsa sayfa kayar, düzen bugünkü gibi üstten.
+    @State private var viewportHeight: CGFloat = 0
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: MPSpacing.xxl) {
                 LittleSpokenTitle(title: LittleCreationCopy.confirmTitle, spoken: spoken)
+
+                Spacer(minLength: 0)
 
                 HStack(spacing: MPSpacing.md) {
                     LittleFriendTile(name: shownFriend?.name ?? "Sürpriz", companionID: shownFriend?.id,
@@ -244,9 +251,7 @@ struct LittleConfirmStep: View {
                             .foregroundStyle(mode.tone.deep)
                             .frame(width: MPSize.littlePortrait, height: MPSize.littlePortrait)
                             .accessibilityHidden(true)
-                        Text(mode.title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
-                            .multilineTextAlignment(.center)
-                            .fixedSize(horizontal: false, vertical: true)
+                        LittleCardTitle(text: mode.title)
                     }
                     .padding(MPSpacing.md)
                     .frame(maxWidth: .infinity, minHeight: MPSize.minTouchHero * 2)
@@ -259,10 +264,40 @@ struct LittleConfirmStep: View {
                     onStart()
                 }
                 .accessibilityHint(spoken)
+
+                Spacer(minLength: 0)
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.top, MPSpacing.sm)
             .padding(.bottom, MPSpacing.xxxl)
+            .frame(minHeight: viewportHeight, alignment: .top)
         }
+        .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { viewportHeight = $0 }
+    }
+}
+
+/// Kart adı: sığarsa tek satır; sığmazsa her kelime kendi satırında ve
+/// gerekirse küçülür. Kelime ortasından kırılmaz ("Macera / ya", en büyük
+/// yazıda; 26 Kasım 2026).
+private struct LittleCardTitle: View {
+    let text: String
+
+    var body: some View {
+        ViewThatFits(in: .horizontal) {
+            line(text)
+            VStack(spacing: 0) {
+                ForEach(Array(text.split(separator: " ").enumerated()), id: \.offset) { _, word in
+                    line(String(word))
+                }
+            }
+        }
+        .foregroundStyle(MPColor.textPrimary)
+    }
+
+    private func line(_ string: String) -> some View {
+        Text(string).mpText(.cardTitle)
+            .multilineTextAlignment(.center)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
     }
 }
