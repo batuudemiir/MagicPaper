@@ -18,16 +18,26 @@ struct LittleChoiceTile: View {
     /// Karonun altındaki tek kısa not ("Bu akşam").
     var note: String? = nil
     var accessibilityLabel: String? = nil
+    /// Yol arkadaşı karosu: çizilmiş portresi varsa simge yerine o görünür
+    /// (Tarçın tilkidir, köpek simgesi değil). Portresi olmayan simgede kalır.
+    var companionID: String? = nil
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
             VStack(spacing: MPSpacing.sm) {
-                MPIcon(systemImage, size: MP.G.hero, weight: .semibold)
-                    .foregroundStyle(tone.deep)
-                    // Simgelerin boyu farklı: sabit kutu, yan yana karolar eşit dursun.
-                    .frame(width: MPSize.minTouchHero, height: MPSize.minTouchHero)
-                    .accessibilityHidden(true)
+                Group {
+                    if let companionID {
+                        MPCompanionPortrait(companionID: companionID, fallbackSymbol: systemImage,
+                                            size: MPSize.minTouchHero)
+                    } else {
+                        MPIcon(systemImage, size: MP.G.hero, weight: .semibold)
+                            .foregroundStyle(tone.deep)
+                    }
+                }
+                // Simgelerin boyu farklı: sabit kutu, yan yana karolar eşit dursun.
+                .frame(width: MPSize.minTouchHero, height: MPSize.minTouchHero)
+                .accessibilityHidden(true)
                 Text(title).mpText(.cardTitle).foregroundStyle(MPColor.textPrimary)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
@@ -103,6 +113,10 @@ struct LittleCompanionStep: View {
     let onChoose: (_ companionID: String?, _ familyID: UUID?) -> Void
 
     @Environment(\.dynamicTypeSize) private var typeSize
+    /// Kaynak hazır olunca artar; adaylar yeniden sorulur (beş arkadaş pilotu).
+    @State private var readyTick = 0
+    /// Kaynak hazır olmadan bir karoya dokunuldu: son liste bekleniyor.
+    @State private var isWaiting = false
 
     /// Izgara altı karoyu geçmesin: arkadaşlar, en çok iki aile, bir sürpriz.
     /// Arkadaş sayısını kaynak söyler (bugün üç; beş arkadaş pilotunda beş, B5).
@@ -115,6 +129,7 @@ struct LittleCompanionStep: View {
 
     /// Adaylar moda, yaşa ve (seçildiyse) konuya göre süzülür.
     private var candidates: [CompanionChoice] {
+        _ = readyTick
         let limit = source.companionDisplayLimit(forIdeaID: nil, age: age, mode: mode, topicID: topicID, family: nil)
         return Array(source.companionChoices(forIdeaID: nil, mode: mode, age: age, topicID: topicID, family: nil)
             .prefix(Self.shownCompanions(limit: limit, familyCount: family.count)))
@@ -140,9 +155,9 @@ struct LittleCompanionStep: View {
                     ForEach(candidates) { companion in
                         LittleChoiceTile(title: companion.name,
                                          systemImage: CompanionStep.symbol(forType: companion.kind),
-                                         tone: .lav) {
+                                         tone: .lav, companionID: companion.id) {
                             MPHaptics.selection()
-                            onChoose(companion.id, nil)
+                            choose(companion.id, nil)
                         }
                     }
                     ForEach(family) { character in
@@ -153,19 +168,48 @@ struct LittleCompanionStep: View {
                             accessibilityLabel: "\(character.name), \(FamilyCharacterCopy.relation(character.relation.kind))"
                         ) {
                             MPHaptics.selection()
-                            onChoose(nil, character.id)
+                            choose(nil, character.id)
                         }
                     }
                     LittleChoiceTile(title: "Sürpriz", systemImage: "wand.and.sparkles", tone: .yellow,
                                      accessibilityLabel: "Sürpriz, arkadaşı biz seçelim") {
                         MPHaptics.selection()
-                        onChoose(nil, nil)
+                        choose(nil, nil)
+                    }
+                }
+                .disabled(isWaiting)
+                .overlay {
+                    if isWaiting {
+                        ProgressView()
+                            .controlSize(.large)
+                            .tint(MPColor.actionPrimary)
+                            .accessibilityLabel("Arkadaşlar hazırlanıyor")
                     }
                 }
             }
             .padding(.horizontal, MPSpacing.screenH)
             .padding(.top, MPSpacing.sm)
             .padding(.bottom, MPSpacing.xxxl)
+        }
+        // Izgara beklemeden görünür; kaynak hazır olunca son haline döner.
+        .task {
+            guard !source.isReady else { return }
+            await source.waitUntilReady()
+            readyTick += 1
+        }
+    }
+
+    /// Kaynak hazırsa hemen yazar. Değilse kısa bir bekleme: son liste gelince
+    /// seçilen arkadaş hâlâ ızgaradaysa yazar, değilse ızgara yenilenir ve
+    /// çocuk yeniden seçer. Masal ailem ve sürpriz beklemez.
+    private func choose(_ companionID: String?, _ familyID: UUID?) {
+        guard let companionID, !source.isReady else { onChoose(companionID, familyID); return }
+        isWaiting = true
+        Task {
+            await source.waitUntilReady()
+            readyTick += 1
+            isWaiting = false
+            if candidates.contains(where: { $0.id == companionID }) { onChoose(companionID, nil) }
         }
     }
 }

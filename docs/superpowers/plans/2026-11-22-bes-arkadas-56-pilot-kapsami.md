@@ -134,6 +134,10 @@ A0 devamlı okuma deneyi ayrı: aynı 5–6 sentetik profilde 3 × 100, dönüş
 7. **K1 uyumluluğu:** eski kitaplar ve hazırlanmış seri bölümleri/pinler değişmez; pilot kaynağı geçse bile eski hikâyeyi yeni profile yönlendirme yok.
 8. **Release kapısı:** validation raporu + içerik sorumlusu incelemesi + görsel kapsam kabulü + açık ürün yayın kararı. Bunlar olmadan yeni beşli politika kapalı kalır. Eski app yetenekleri, diğer yaş/konu kayıpları ve source migration raporu genel yayın öncesi ayrıca kapanır.
 
+9. **Uygulama yayın kapısı (kod düzeltmeleri, 26 Kasım 2026):**
+   - **Senkronda bilinmeyen alan:** `StoryPageProvenance.p56`'yı bilmeyen eski uygulama sürümü kaydı okur ama yeniden yazarken bu alanı düşürür (sayfa metni ve `origin.contentSource` kalır, sayfa düzeyindeki iz kaybolur). Yayından önce ya senkron bilinmeyen alanları koruyacak, ya da P56 masalını eski sürüm yeniden yazamayacak (en düşük sürüm kapısı). Pilotta bayrak yalnız Debug'da olduğu için risk düşük; genel yayında kapanmadan geçilmez.
+   - **Paket boyutu:** 12 MB P56 payload'ı pilot süresince Release'ten çıkarıldı (`EXCLUDED_SOURCE_FILE_NAMES`, uygulama hedefinin Release ayarı). Yayında sıkıştırılmış gelir; SHA açılmış baytlar üzerinde kalır. Release soğuk/sıcak yükleme ölçümü bu kapıda yapılır.
+
 **Pilot doğrulaması genel yayın izni değildir.** Doğrulanmış 5–6 pilot, 3–4/7–10 veya bütün dünyaları kanıtlamaz. Ayrı app/internal test akışı ile değerlendirilir; kullanıcıya sessizce daha dar “Fark etmez” havuzu sunulmaz.
 
 ## 7. Konuklu ayrı teslimler

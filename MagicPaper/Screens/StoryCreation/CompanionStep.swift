@@ -56,6 +56,10 @@ struct CompanionStep: View {
     let onChoose: (String?) -> Void
 
     @State private var selectedCompanionID: String?
+    /// Kaynak hazır olunca artar; adaylar yeniden sorulur (beş arkadaş pilotu).
+    @State private var readyTick = 0
+    /// "Masalı yaz"a kaynak hazır olmadan basıldı: son liste bekleniyor.
+    @State private var isWaiting = false
 
     /// Only a character this mode can carry shapes the companion list; one
     /// that cannot would leave no blueprint and an empty step.
@@ -64,7 +68,8 @@ struct CompanionStep: View {
     }
 
     private var candidates: [CompanionChoice] {
-        Array(source.companionChoices(forIdeaID: ideaID, mode: mode, age: age,
+        _ = readyTick
+        return Array(source.companionChoices(forIdeaID: ideaID, mode: mode, age: age,
                                       topicID: topicID, family: selectedFamily)
             .prefix(source.companionDisplayLimit(forIdeaID: ideaID, age: age, mode: mode,
                                                 topicID: topicID, family: selectedFamily)))
@@ -93,10 +98,19 @@ struct CompanionStep: View {
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             CreationFooter {
-                MPButton(title: "Masalı yaz", systemImage: "wand.and.sparkles", size: .hero, fullWidth: true) {
-                    onChoose(selectedCompanionID)
+                MPButton(title: "Masalı yaz", systemImage: "wand.and.sparkles", size: .hero, fullWidth: true,
+                         isLoading: isWaiting) {
+                    write()
                 }
+                .disabled(isWaiting)
+                .accessibilityLabel(isWaiting ? "Arkadaşlar hazırlanıyor" : "Masalı yaz")
             }
+        }
+        // Liste beklemeden görünür; kaynak hazır olunca son haline döner.
+        .task {
+            guard !source.isReady else { return }
+            await source.waitUntilReady()
+            readyTick += 1
         }
         // A companion the new family choice no longer allows is dropped,
         // visibly, rather than kept and refused at "Masalı yaz".
@@ -104,6 +118,24 @@ struct CompanionStep: View {
             if let id = selectedCompanionID, !candidates.contains(where: { $0.id == id }) {
                 selectedCompanionID = nil
             }
+        }
+    }
+
+    /// Kaynak hazırsa hemen yazar. Değilse kısa bir bekleme: son liste
+    /// gelince seçilen arkadaş hâlâ listedeyse yazar, değilse seçim görünür
+    /// biçimde kalkar ve ebeveyn yeniden seçer.
+    private func write() {
+        guard !source.isReady else { onChoose(selectedCompanionID); return }
+        isWaiting = true
+        Task {
+            await source.waitUntilReady()
+            readyTick += 1
+            isWaiting = false
+            if let id = selectedCompanionID, !candidates.contains(where: { $0.id == id }) {
+                selectedCompanionID = nil
+                return
+            }
+            onChoose(selectedCompanionID)
         }
     }
 

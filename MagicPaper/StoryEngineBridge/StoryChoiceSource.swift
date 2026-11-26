@@ -120,6 +120,12 @@ protocol StoryChoiceSource {
         forAge age: Int,
         recent: [StoryMode]
     ) throws -> StoryMode
+    /// False while the source is still reading what it needs to give its
+    /// final companion list (the five-friends payload). The list it returns
+    /// meanwhile is provisional; screens ask again after `waitUntilReady`.
+    var isReady: Bool { get }
+    /// Returns once `isReady`, without blocking the main thread.
+    func waitUntilReady() async
 }
 
 /// The source the creation flow uses. The one place that names a provider.
@@ -266,4 +272,7 @@ extension StoryChoiceSource {
     /// Bugünkü sınır: sıralı listenin ilk üçü.
     func companionDisplayLimit(forIdeaID ideaID: String?, age: Int?, mode: StoryMode?,
                                topicID: String?, family: FamilyCharacter?) -> Int { 3 }
+    /// The catalog is read before the flow opens: always ready.
+    var isReady: Bool { true }
+    func waitUntilReady() async {}
 }

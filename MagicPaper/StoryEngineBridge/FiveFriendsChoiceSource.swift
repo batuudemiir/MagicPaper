@@ -47,23 +47,43 @@ struct FiveFriendsChoiceSource: StoryChoiceSource {
             : 5
     }
 
+    /// The five in canonical order (`P56Support.companionIDs`), shown while the
+    /// payload is still being read so the screen never waits for it.
+    static let provisionalIDs = ["companion_fox_pilot_001", "companion_hedgehog_pilot_001",
+                                 "companion_owl_pilot_001", "companion_city_cat_001", "companion_bear_001"]
+
+    var isReady: Bool { router.isReady }
+    func waitUntilReady() async { await router.waitUntilReady() }
+
     /// The friends P56 can really write this request with, in canonical order;
     /// nil sends the screen to the legacy list. Each friend is asked with its
     /// own id, so a friend whose books the safety policy filters out entirely
     /// in this mode is not offered (`companionIDs` knows no safety).
+    ///
+    /// Never waits (kod düzeltmeleri, 26 Kasım 2026): while the payload is
+    /// still being read, a request whose shape P56 carries gets the five at
+    /// once; the screen asks again when the source is ready, and a choice
+    /// made before that waits for the final list (`isReady`).
     private func p56Choices(ideaID: String?, mode: StoryMode?, age: Int?,
                             topicID: String?, family: FamilyCharacter?) -> [CompanionChoice]? {
         guard ideaID == nil, let mode, let age, let p56Mode = P56Mode(rawValue: mode.rawValue) else { return nil }
         let policy = safety()
-        func decision(_ companionID: String?) -> StoryRuntimeDecision {
-            router.decide(StoryRuntimeRequest(age: age, mode: mode, companionID: companionID, family: family,
-                                              topicID: topicID, occasion: nil, safety: policy))
+        func decision(_ companionID: String?) -> StoryRuntimeDecision? {
+            router.decideIfReady(StoryRuntimeRequest(age: age, mode: mode, companionID: companionID, family: family,
+                                                     topicID: topicID, occasion: nil, safety: policy))
         }
-        guard case .p56(let reference) = decision(nil).route, let package = router.package(for: reference) else {
+        guard let overall = decision(nil) else {
+            // Henüz okunuyor: biçimi P56'ya uyan istek beşliyi hemen görür.
+            guard family == nil, topicID == nil, (5...6).contains(age) else { return nil }
+            return Self.provisionalIDs.map { id in
+                catalogChoice(id) ?? CompanionChoice(id: id, name: id, kind: "", personality: "")
+            }
+        }
+        guard case .p56(let reference) = overall.route, let package = router.package(for: reference) else {
             return nil
         }
         let ids = P56Support.companionIDs(age: age, mode: p56Mode, package: package).filter {
-            if case .p56 = decision($0).route { return true } else { return false }
+            if case .p56 = decision($0)?.route { return true } else { return false }
         }
         guard !ids.isEmpty else { return nil }
         return ids.map { id in
