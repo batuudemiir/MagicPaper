@@ -23,11 +23,14 @@ final class LittleFriendFirstTests: XCTestCase {
     private var base: OfflineStoryService { OfflineStoryService.shared }
 
     private func router(enabled: Bool = true) -> StoryRuntimeRouter {
-        StoryRuntimeRouter(isEnabled: enabled, loadSource: { try Self.fixture.get() }, archive: nil)
+        StoryRuntimeRouter(isEnabled: enabled, loadSource: { P56VerifiedSource(try Self.fixture.get()) }, archive: nil)
     }
 
-    private func source(safety: ContentSafety? = nil, enabled: Bool = true) -> FiveFriendsChoiceSource {
-        FiveFriendsChoiceSource(base: base, router: router(enabled: enabled), safety: { safety })
+    /// Yükü okunmuş kaynak: geçici beşli değil, son liste.
+    private func source(safety: ContentSafety? = nil, enabled: Bool = true) async -> FiveFriendsChoiceSource {
+        let source = FiveFriendsChoiceSource(base: base, router: router(enabled: enabled), safety: { safety })
+        await source.waitUntilReady()
+        return source
     }
 
     // MARK: - Sıra ve adımlar
@@ -92,11 +95,12 @@ final class LittleFriendFirstTests: XCTestCase {
     }
 
     /// Sürpriz arkadaş: mod yine sorulur; arkadaşı motor seçer.
-    func testSurpriseStillAsksForTheMode() {
+    func testSurpriseStillAsksForTheMode() async {
         var path = StoryCreationSteps.LittlePath()
         XCTAssertEqual(path.chooseFriend(nil), .show(.mode))
         XCTAssertNil(path.companionID)
-        XCTAssertFalse(source().pilotModes(forCompanionID: nil, age: 5).isEmpty)
+        let anyModes = await source().pilotModes(forCompanionID: nil, age: 5)
+        XCTAssertFalse(anyModes.isEmpty)
         XCTAssertEqual(StoryCreationSteps.littleCast(chosen: nil, topicID: nil, legacyCandidates: [simit]),
                        .init(companionID: nil, keepsFriend: false))
     }
@@ -113,9 +117,9 @@ final class LittleFriendFirstTests: XCTestCase {
     }
 
     /// Modsuz liste: yalnız P56'nın en az bir modda yazabildikleri.
-    func testModelessListIsTheUnionOfWritableFriends() {
+    func testModelessListIsTheUnionOfWritableFriends() async {
         for safety in [nil, ContentSafety.mostProtective] as [ContentSafety?] {
-            let wrapped = source(safety: safety)
+            let wrapped = await source(safety: safety)
             let listed = Set(wrapped.pilotFriendChoices(age: 5).map(\.id))
             XCTAssertFalse(listed.isEmpty)
             var union = Set<String>()
@@ -126,25 +130,26 @@ final class LittleFriendFirstTests: XCTestCase {
             }
             XCTAssertEqual(listed, union)
             for id in listed {
-                XCTAssertTrue(base.availableModes(forAge: 5).contains { mode in
-                    if case .p56 = router().decide(StoryRuntimeRequest(age: 5, mode: mode, companionID: id, family: nil,
-                                                                      topicID: nil, occasion: nil, safety: safety)).route {
-                        return true
+                var writable = false
+                for mode in base.availableModes(forAge: 5) {
+                    if case .p56 = await router().decide(StoryRuntimeRequest(age: 5, mode: mode, companionID: id, family: nil,
+                                                                            topicID: nil, occasion: nil, safety: safety)).route {
+                        writable = true
                     }
-                    return false
-                }, "\(id) hiçbir modda yazılamıyor")
+                }
+                XCTAssertTrue(writable, "\(id) hiçbir modda yazılamıyor")
             }
         }
     }
 
     /// Seçilen arkadaşla mod listesi: yalnız yazılabilen modlar.
-    func testModesForAFriendAreOnlyWritableOnes() {
-        let wrapped = source(safety: .mostProtective)
+    func testModesForAFriendAreOnlyWritableOnes() async {
+        let wrapped = await source(safety: .mostProtective)
         for friend in wrapped.pilotFriendChoices(age: 5) {
             let modes = wrapped.pilotModes(forCompanionID: friend.id, age: 5)
             XCTAssertFalse(modes.isEmpty, friend.id)
             for mode in base.availableModes(forAge: 5) {
-                let route = router().decide(StoryRuntimeRequest(age: 5, mode: mode, companionID: friend.id, family: nil,
+                let route = await router().decide(StoryRuntimeRequest(age: 5, mode: mode, companionID: friend.id, family: nil,
                                                                 topicID: nil, occasion: nil, safety: .mostProtective)).route
                 let writable: Bool = { if case .p56 = route { return true } else { return false } }()
                 XCTAssertEqual(modes.contains(mode), writable, "\(friend.id) \(mode)")
@@ -155,11 +160,12 @@ final class LittleFriendFirstTests: XCTestCase {
     // MARK: - Konu (K4)
 
     /// "Fark etmez" ile istek beşliye gider ve arkadaş korunur.
-    func testAnyTopicKeepsTheP56Route() throws {
+    func testAnyTopicKeepsTheP56Route() async throws {
         let cast = StoryCreationSteps.littleCast(chosen: simit, topicID: nil, legacyCandidates: [])
         XCTAssertEqual(cast, .init(companionID: simit, keepsFriend: true))
-        let mode = try XCTUnwrap(source().pilotModes(forCompanionID: simit, age: 5).first)
-        guard case .p56 = router().decide(StoryRuntimeRequest(age: 5, mode: mode, companionID: cast.companionID,
+        let simitModes = await source().pilotModes(forCompanionID: simit, age: 5)
+        let mode = try XCTUnwrap(simitModes.first)
+        guard case .p56 = await router().decide(StoryRuntimeRequest(age: 5, mode: mode, companionID: cast.companionID,
                                                               family: nil, topicID: nil, occasion: nil, safety: nil)).route
         else { return XCTFail("Fark etmez P56'yı korumalı") }
     }
@@ -170,11 +176,11 @@ final class LittleFriendFirstTests: XCTestCase {
         var checked = 0
         for mode in base.availableModes(forAge: 5) {
             for topic in base.topicChoices(forAge: 5, mode: mode) {
-                guard case .legacy = router().decide(StoryRuntimeRequest(age: 5, mode: mode, companionID: simit,
+                guard case .legacy = await router().decide(StoryRuntimeRequest(age: 5, mode: mode, companionID: simit,
                                                                           family: nil, topicID: topic.id,
                                                                           occasion: nil, safety: nil)).route
                 else { return XCTFail("konu \(topic.id) eski motora gitmeli") }
-                let legacy = source().legacyWritableCompanionIDs(mode: mode, age: 5, topicID: topic.id)
+                let legacy = await source().legacyWritableCompanionIDs(mode: mode, age: 5, topicID: topic.id)
                 for friend in [simit, bogurtlen] {
                     let cast = StoryCreationSteps.littleCast(chosen: friend, topicID: topic.id, legacyCandidates: legacy)
                     XCTAssertEqual(cast.keepsFriend, legacy.contains(friend))
@@ -203,10 +209,12 @@ final class LittleFriendFirstTests: XCTestCase {
     // MARK: - Beşli kapalıyken
 
     /// Bayrak kapalı, beşliyi bilmeyen kaynak ya da yazılamayan yaş: bugünkü sıra.
-    func testWithoutFiveFriendsTheLittleFlowIsTodays() {
-        XCTAssertTrue(source(enabled: false).pilotFriendChoices(age: 5).isEmpty)
+    func testWithoutFiveFriendsTheLittleFlowIsTodays() async {
+        let off = await source(enabled: false).pilotFriendChoices(age: 5)
+        XCTAssertTrue(off.isEmpty)
         XCTAssertTrue(base.pilotFriendChoices(age: 5).isEmpty)
-        XCTAssertTrue(source().pilotFriendChoices(age: 3).isEmpty)
+        let threeYearOld = await source().pilotFriendChoices(age: 3)
+        XCTAssertTrue(threeYearOld.isEmpty)
         XCTAssertFalse(StoryCreationSteps.littleUsesFriendFirst(pilotFriends: [], hasPresetFamily: false))
         let one = [CompanionChoice(id: kestane, name: "Kestane", kind: "", personality: "")]
         XCTAssertTrue(StoryCreationSteps.littleUsesFriendFirst(pilotFriends: one, hasPresetFamily: false))
