@@ -1,3 +1,10 @@
+## 27 Kasım 2026 — Tarçın V4 altı hikâye pozu
+
+- Minderde uyanık dinlenme, minder üzerinde kuyruk, patiler arasında burun, taş yanında oturma, taşı ve çiçeği koklama için altı ayrı PNG üretildi; kaynak sayfa/SHA manifesti ve ZIP eklendi.
+- Yerleşik imagegen ile V4 kimlik, onaylı marka ve nesne referansları kullanıldı; tam promptlar kayıtlı. Altı görsel tek tek incelendi; PNG decode/alfa, tekil kaynak bağlantıları ve ZIP bütünlüğü doğrulandı.
+- Galeri: `2026-11-26-v4-art-library/tarcin-pose-package-v1/index.html`. Beyaz/gece tarayıcı kompoziti ve küçük okuyucu boyutu bekliyor; kuyruk hareketi statik kareden kanıtlanmış sayılmadı.
+- App/motor/metin/eski görseller değişmedi; runtime eşleşmesi yok. Test/build/simülatör çalıştırılmadı.
+
 ## 27 Kasım 2026 — V4 15 görsellik nesne paketi
 
 - Pilot metinlerinden seçilen 15 nesne/mekân durumu ayrı PNG dosyaları, kaynak SHA listeli manifest, beyaz/gece HTML galerisi ve paylaşılabilir ZIP olarak paketlendi.

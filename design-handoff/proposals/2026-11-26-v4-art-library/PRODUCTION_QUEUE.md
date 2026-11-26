@@ -69,3 +69,7 @@
 ## 27 Kasım — nesne paketi 1
 
 15 seçili PNG ve kaynak adayları `object-package-v1/manifest.json` içinde; paylaşım arşivi `MagicPaper-V4-Nesneler-Paket-1.zip`. Ortak yedi ihtiyaç yanında minder, katlı/düz örtü, tüy, taş, böğürtlen, mendil ve askıdaki çanta var. Karakter aksiyonları bu paketle tamamlanmış sayılmaz. Düz örtü v1 desen/bakış farkı nedeniyle elendi; v2 seçildi. 15 PNG decode/alfa/SHA ve ZIP bütünlüğü doğrulandı. Tarayıcı beyaz/gece kompoziti ve runtime bağlama henüz yapılmadı.
+
+## 27 Kasım — Tarçın poz paketi 1
+
+Altı Tarçın ihtiyacı için ayrı aksiyon çizimleri üretildi; `tarcin-pose-package-v1/index.html` kaynak sayfaları yanlarında gösterir. V4 boyunluk, önceki nesne paketi minder/taş referansları kullanıldı. PNG/alfa ve ZIP kontrolü geçti. Kuyruk çizimi statik bir andır, hareketi tek başına ispatlamaz. Beyaz/gece tarayıcı kompoziti ve küçük okuyucu ölçüsü bekliyor. Runtime onayı yok.
