@@ -1,0 +1,831 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a5_owl_event03_v1",
+  "title": "Yıldız'ın Günaydını Gün Batımı",
+  "context": {
+    "settingName": "Seyir Taşı, Kütük Yolu, Gün Batımı Tepesi",
+    "mode": "adventure",
+    "companionID": "companion_owl_pilot_001",
+    "structure": "A5",
+    "event": "e3",
+    "mechanism": "take-turns-at-view",
+    "sourceFilename": "adventure-owl.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a5_owl_event03_v1",
+    "structure": "A5",
+    "event": "e3",
+    "sample": false,
+    "title": "Yıldız'ın Günaydını Gün Batımı",
+    "pages": [
+      "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Yıldız tepeye vardı. Yıldız gözlerini açtı. Akşam onun uyanma zamanıydı. Güneş tepelerin arkasına doğru iniyordu.",
+      "Tepede gün batımını en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Yıldız taşın üstüne konmuştu. Deniz de oturmak istedi.",
+      "Yıldız taşa bakıp kanatlarını çırptı. \"Benim günaydınım gün batımıdır,\" dedi. Deniz eğilip kıkırdadı. Baykuşun gözleri artık kocaman açılmıştı. Gece onun sabahıydı.",
+      "Deniz kaşlarını çatıp düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Yıldız tüylerini kabarttı. Deniz beklerken gökyüzünün hangi renge döneceğini tahmin etti.",
+      "Yıldız taşa kondu. \"Hımm… sen ne görmeyi bekliyorsun?\" diye sordu. \"Önce turuncu, sonra pembe,\" dedi Deniz. Baykuşun gözleri ufka dönmüştü.",
+      "Sıra Deniz’e geldi. Taşa oturdu. Gökyüzü önce turuncu, sonra pembe oldu. \"Pembeyi tahmin etmiştim!\" dedi. Yıldız’ın göğüs tüyü de pembe parladı.",
+      "Deniz yerini yeniden Yıldız'a verdi. Gökyüzü lacivert oldu. \"İşte benim rengim,\" dedi Yıldız. Deniz’in yüzü gülümsemeyle doldu. Yıldız gözlerini kırpıştırdı. Gece mavisi tüyleri parladı.",
+      "Tepeden inerken ilk yıldız göründü. Yıldız göğsündeki yıldız tüyünü kabarttı. \"Kardeşim geldi,\" dedi. Deniz gözlerini kısıp güldü. Gökyüzünde yıldızlar teker teker yanıyordu."
+    ],
+    "sourceBookID": "pilot56_book_a5_owl_event03_v1"
+  },
+  "inputFileSHA256": "17bd61b5f5fa784536aac99c53bc0de3d5c2bd0a1d0a9cfb3a73691a35d43351",
+  "inputBookPointer": "input/adventure-owl.json#/books/2",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a5_owl_event03_v1",
+      "rawPageMove": "shared_spot",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Yıldız tepeye vardı. Yıldız gözlerini açtı. Akşam onun uyanma zamanıydı. Güneş tepelerin arkasına doğru iniyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p01",
+            "evidenceText": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Yıldız tepeye vardı. Yıldız gözlerini açtı. Akşam onun uyanma zamanıydı. Güneş tepelerin arkasına doğru iniyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Yıldız tepeye vardı. Yıldız gözlerini açtı. Akşam onun uyanma zamanıydı. Güneş tepelerin arkasına doğru iniyordu.",
+        "poseAndActionEvidence": [
+          "Gün Batımı Tepesi’nde akşam yaklaşıyordu.",
+          "Deniz ile Yıldız tepeye vardı.",
+          "Yıldız gözlerini açtı.",
+          "Akşam onun uyanma zamanıydı.",
+          "Güneş tepelerin arkasına doğru iniyordu."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Yıldız tepeye vardı. Yıldız gözlerini açtı. Akşam onun uyanma zamanıydı. Güneş tepelerin arkasına doğru iniyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p01",
+        "quoteSHA256": "1644a3173ac6f2eb6e4a61171817ed74ea63cbe9b5f8247c1a54c35e6b88b68e",
+        "bookID": "pilot56_book_a5_owl_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "1644a3173ac6f2eb6e4a61171817ed74ea63cbe9b5f8247c1a54c35e6b88b68e",
+      "text": "Gün Batımı Tepesi’nde akşam yaklaşıyordu. Deniz ile Yıldız tepeye vardı. Yıldız gözlerini açtı. Akşam onun uyanma zamanıydı. Güneş tepelerin arkasına doğru iniyordu.",
+      "sourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p01",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a5_owl_event03_v1",
+      "rawPageMove": "approach",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Tepede gün batımını en iyi gösteren düz bir taş vardı.",
+              "Taşa yalnız bir kişi sığıyordu.",
+              "Yıldız taşın üstüne konmuştu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Tepede gün batımını en iyi gösteren düz bir taş vardı.",
+              "Taşa yalnız bir kişi sığıyordu.",
+              "Yıldız taşın üstüne konmuştu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Tepede gün batımını en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Yıldız taşın üstüne konmuştu. Deniz de oturmak istedi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p02",
+            "evidenceText": "Tepede gün batımını en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Yıldız taşın üstüne konmuştu. Deniz de oturmak istedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tepede gün batımını en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Yıldız taşın üstüne konmuştu. Deniz de oturmak istedi.",
+        "poseAndActionEvidence": [
+          "Tepede gün batımını en iyi gösteren düz bir taş vardı.",
+          "Taşa yalnız bir kişi sığıyordu.",
+          "Yıldız taşın üstüne konmuştu.",
+          "Deniz de oturmak istedi."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Tepede gün batımını en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Yıldız taşın üstüne konmuştu. Deniz de oturmak istedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p02",
+        "quoteSHA256": "b8332f641ac7b356944b4f1a52904f63a74b20d92448ec808b866965be42ac49",
+        "bookID": "pilot56_book_a5_owl_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "b8332f641ac7b356944b4f1a52904f63a74b20d92448ec808b866965be42ac49",
+      "text": "Tepede gün batımını en iyi gösteren düz bir taş vardı. Taşa yalnız bir kişi sığıyordu. Yıldız taşın üstüne konmuştu. Deniz de oturmak istedi.",
+      "sourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p02",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a5_owl_event03_v1",
+      "rawPageMove": "friend_wants_turn",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; yağmur/cam/oluk; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Yıldız taşa bakıp kanatlarını çırptı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Baykuşun gözleri artık kocaman açılmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Yıldız taşa bakıp kanatlarını çırptı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Yıldız taşa bakıp kanatlarını çırptı. \"Benim günaydınım gün batımıdır,\" dedi. Deniz eğilip kıkırdadı. Baykuşun gözleri artık kocaman açılmıştı. Gece onun sabahıydı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p03",
+            "evidenceText": "Yıldız taşa bakıp kanatlarını çırptı. \"Benim günaydınım gün batımıdır,\" dedi. Deniz eğilip kıkırdadı. Baykuşun gözleri artık kocaman açılmıştı. Gece onun sabahıydı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yıldız taşa bakıp kanatlarını çırptı. \"Benim günaydınım gün batımıdır,\" dedi. Deniz eğilip kıkırdadı. Baykuşun gözleri artık kocaman açılmıştı. Gece onun sabahıydı.",
+        "poseAndActionEvidence": [
+          "Yıldız taşa bakıp kanatlarını çırptı.",
+          "\"Benim günaydınım gün batımıdır,\" dedi.",
+          "Deniz eğilip kıkırdadı.",
+          "Baykuşun gözleri artık kocaman açılmıştı.",
+          "Gece onun sabahıydı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_owl_pilot_001",
+        "quote": "Yıldız taşa bakıp kanatlarını çırptı. \"Benim günaydınım gün batımıdır,\" dedi. Deniz eğilip kıkırdadı. Baykuşun gözleri artık kocaman açılmıştı. Gece onun sabahıydı.",
+        "attributionQuote": "Yıldız",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p03",
+        "quoteSHA256": "4e2fb4fb56df9375a1240cedd4d77d34dda4ca26838143d475b6e343b9186bf2",
+        "bookID": "pilot56_book_a5_owl_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "4e2fb4fb56df9375a1240cedd4d77d34dda4ca26838143d475b6e343b9186bf2",
+      "text": "Yıldız taşa bakıp kanatlarını çırptı. \"Benim günaydınım gün batımıdır,\" dedi. Deniz eğilip kıkırdadı. Baykuşun gözleri artık kocaman açılmıştı. Gece onun sabahıydı.",
+      "sourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p03",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a5_owl_event03_v1",
+      "rawPageMove": "child_proposes_order",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tüy",
+        "propMentions": [
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "\"Önce sen otur.\" Yıldız tüylerini kabarttı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz kaşlarını çatıp düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Yıldız tüylerini kabarttı. Deniz beklerken gökyüzünün hangi renge döneceğini tahmin etti.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p04",
+            "evidenceText": "Deniz kaşlarını çatıp düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Yıldız tüylerini kabarttı. Deniz beklerken gökyüzünün hangi renge döneceğini tahmin etti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kaşlarını çatıp düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Yıldız tüylerini kabarttı. Deniz beklerken gökyüzünün hangi renge döneceğini tahmin etti.",
+        "poseAndActionEvidence": [
+          "Deniz kaşlarını çatıp düşündü.",
+          "\"Sırayla oturalım,\" dedi.",
+          "\"Önce sen otur.\" Yıldız tüylerini kabarttı.",
+          "Deniz beklerken gökyüzünün hangi renge döneceğini tahmin etti."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kaşlarını çatıp düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Yıldız tüylerini kabarttı. Deniz beklerken gökyüzünün hangi renge döneceğini tahmin etti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p04",
+        "quoteSHA256": "dd2c2d5f97cd25f77865c0568b4c2d58f5465cef22a95d5a91a2b53d96831d94",
+        "bookID": "pilot56_book_a5_owl_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "dd2c2d5f97cd25f77865c0568b4c2d58f5465cef22a95d5a91a2b53d96831d94",
+      "text": "Deniz kaşlarını çatıp düşündü. \"Sırayla oturalım,\" dedi. \"Önce sen otur.\" Yıldız tüylerini kabarttı. Deniz beklerken gökyüzünün hangi renge döneceğini tahmin etti.",
+      "sourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p04",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a5_owl_event03_v1",
+      "rawPageMove": "wait_and_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Yıldız taşa kondu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Yıldız taşa kondu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Yıldız taşa kondu. \"Hımm… sen ne görmeyi bekliyorsun?\" diye sordu. \"Önce turuncu, sonra pembe,\" dedi Deniz. Baykuşun gözleri ufka dönmüştü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p05",
+            "evidenceText": "Yıldız taşa kondu. \"Hımm… sen ne görmeyi bekliyorsun?\" diye sordu. \"Önce turuncu, sonra pembe,\" dedi Deniz. Baykuşun gözleri ufka dönmüştü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yıldız taşa kondu. \"Hımm… sen ne görmeyi bekliyorsun?\" diye sordu. \"Önce turuncu, sonra pembe,\" dedi Deniz. Baykuşun gözleri ufka dönmüştü.",
+        "poseAndActionEvidence": [
+          "Yıldız taşa kondu.",
+          "\"Hımm…",
+          "sen ne görmeyi bekliyorsun?\" diye sordu.",
+          "\"Önce turuncu, sonra pembe,\" dedi Deniz.",
+          "Baykuşun gözleri ufka dönmüştü."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Yıldız taşa kondu. \"Hımm… sen ne görmeyi bekliyorsun?\" diye sordu. \"Önce turuncu, sonra pembe,\" dedi Deniz. Baykuşun gözleri ufka dönmüştü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p05",
+        "quoteSHA256": "792f010d7611357a6d1af45980701b0e498edac30d9b081812677aa211b74bb5",
+        "bookID": "pilot56_book_a5_owl_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "792f010d7611357a6d1af45980701b0e498edac30d9b081812677aa211b74bb5",
+      "text": "Yıldız taşa kondu. \"Hımm… sen ne görmeyi bekliyorsun?\" diye sordu. \"Önce turuncu, sonra pembe,\" dedi Deniz. Baykuşun gözleri ufka dönmüştü.",
+      "sourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p05",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a5_owl_event03_v1",
+      "rawPageMove": "child_takes_turn",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; tüy; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Taşa oturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Yıldız’ın göğüs tüyü de pembe parladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Taşa oturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Sıra Deniz’e geldi. Taşa oturdu. Gökyüzü önce turuncu, sonra pembe oldu. \"Pembeyi tahmin etmiştim!\" dedi. Yıldız’ın göğüs tüyü de pembe parladı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p06",
+            "evidenceText": "Sıra Deniz’e geldi. Taşa oturdu. Gökyüzü önce turuncu, sonra pembe oldu. \"Pembeyi tahmin etmiştim!\" dedi. Yıldız’ın göğüs tüyü de pembe parladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Sıra Deniz’e geldi. Taşa oturdu. Gökyüzü önce turuncu, sonra pembe oldu. \"Pembeyi tahmin etmiştim!\" dedi. Yıldız’ın göğüs tüyü de pembe parladı.",
+        "poseAndActionEvidence": [
+          "Sıra Deniz’e geldi.",
+          "Taşa oturdu.",
+          "Gökyüzü önce turuncu, sonra pembe oldu.",
+          "\"Pembeyi tahmin etmiştim!\" dedi.",
+          "Yıldız’ın göğüs tüyü de pembe parladı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Sıra Deniz’e geldi. Taşa oturdu. Gökyüzü önce turuncu, sonra pembe oldu. \"Pembeyi tahmin etmiştim!\" dedi. Yıldız’ın göğüs tüyü de pembe parladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p06",
+        "quoteSHA256": "c6d48bbe0d91d35b69c0c54e564c2eb6d3ab7bf61572d17f351336e07b2d16e2",
+        "bookID": "pilot56_book_a5_owl_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "c6d48bbe0d91d35b69c0c54e564c2eb6d3ab7bf61572d17f351336e07b2d16e2",
+      "text": "Sıra Deniz’e geldi. Taşa oturdu. Gökyüzü önce turuncu, sonra pembe oldu. \"Pembeyi tahmin etmiştim!\" dedi. Yıldız’ın göğüs tüyü de pembe parladı.",
+      "sourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p06",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a5_owl_event03_v1",
+      "rawPageMove": "view_shared",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tüy",
+        "propMentions": [
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Gece mavisi tüyleri parladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz yerini yeniden Yıldız'a verdi. Gökyüzü lacivert oldu. \"İşte benim rengim,\" dedi Yıldız. Deniz’in yüzü gülümsemeyle doldu. Yıldız gözlerini kırpıştırdı. Gece mavisi tüyleri parladı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p07",
+            "evidenceText": "Deniz yerini yeniden Yıldız'a verdi. Gökyüzü lacivert oldu. \"İşte benim rengim,\" dedi Yıldız. Deniz’in yüzü gülümsemeyle doldu. Yıldız gözlerini kırpıştırdı. Gece mavisi tüyleri parladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yerini yeniden Yıldız'a verdi. Gökyüzü lacivert oldu. \"İşte benim rengim,\" dedi Yıldız. Deniz’in yüzü gülümsemeyle doldu. Yıldız gözlerini kırpıştırdı. Gece mavisi tüyleri parladı.",
+        "poseAndActionEvidence": [
+          "Deniz yerini yeniden Yıldız'a verdi.",
+          "Gökyüzü lacivert oldu.",
+          "\"İşte benim rengim,\" dedi Yıldız.",
+          "Deniz’in yüzü gülümsemeyle doldu.",
+          "Yıldız gözlerini kırpıştırdı.",
+          "Gece mavisi tüyleri parladı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yerini yeniden Yıldız'a verdi. Gökyüzü lacivert oldu. \"İşte benim rengim,\" dedi Yıldız. Deniz’in yüzü gülümsemeyle doldu. Yıldız gözlerini kırpıştırdı. Gece mavisi tüyleri parladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p07",
+        "quoteSHA256": "c940e389f6c8042387eb442a0535449179103ad4598e8f7c2bbe987405a309bc",
+        "bookID": "pilot56_book_a5_owl_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "c940e389f6c8042387eb442a0535449179103ad4598e8f7c2bbe987405a309bc",
+      "text": "Deniz yerini yeniden Yıldız'a verdi. Gökyüzü lacivert oldu. \"İşte benim rengim,\" dedi Yıldız. Deniz’in yüzü gülümsemeyle doldu. Yıldız gözlerini kırpıştırdı. Gece mavisi tüyleri parladı.",
+      "sourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p07",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a5_owl_event03_v1",
+      "rawPageMove": "closed_return",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tüy",
+        "propMentions": [
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Yıldız göğsündeki yıldız tüyünü kabarttı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Tepeden inerken ilk yıldız göründü. Yıldız göğsündeki yıldız tüyünü kabarttı. \"Kardeşim geldi,\" dedi. Deniz gözlerini kısıp güldü. Gökyüzünde yıldızlar teker teker yanıyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p08",
+            "evidenceText": "Tepeden inerken ilk yıldız göründü. Yıldız göğsündeki yıldız tüyünü kabarttı. \"Kardeşim geldi,\" dedi. Deniz gözlerini kısıp güldü. Gökyüzünde yıldızlar teker teker yanıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tepeden inerken ilk yıldız göründü. Yıldız göğsündeki yıldız tüyünü kabarttı. \"Kardeşim geldi,\" dedi. Deniz gözlerini kısıp güldü. Gökyüzünde yıldızlar teker teker yanıyordu.",
+        "poseAndActionEvidence": [
+          "Tepeden inerken ilk yıldız göründü.",
+          "Yıldız göğsündeki yıldız tüyünü kabarttı.",
+          "\"Kardeşim geldi,\" dedi.",
+          "Deniz gözlerini kısıp güldü.",
+          "Gökyüzünde yıldızlar teker teker yanıyordu."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Tepeden inerken ilk yıldız göründü. Yıldız göğsündeki yıldız tüyünü kabarttı. \"Kardeşim geldi,\" dedi. Deniz gözlerini kısıp güldü. Gökyüzünde yıldızlar teker teker yanıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p08",
+        "quoteSHA256": "62aa1b6416c9e32e230f11309258f745b4668ed44d6f1a528fbe0e3ffb9d6034",
+        "bookID": "pilot56_book_a5_owl_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "62aa1b6416c9e32e230f11309258f745b4668ed44d6f1a528fbe0e3ffb9d6034",
+      "text": "Tepeden inerken ilk yıldız göründü. Yıldız göğsündeki yıldız tüyünü kabarttı. \"Kardeşim geldi,\" dedi. Deniz gözlerini kısıp güldü. Gökyüzünde yıldızlar teker teker yanıyordu.",
+      "sourceID": "p56_wave1_pilot56_book_a5_owl_event03_v1_p08",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk sırayı kendisi önerir, beklerken tahmin eder, sonra yerini paylaşır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

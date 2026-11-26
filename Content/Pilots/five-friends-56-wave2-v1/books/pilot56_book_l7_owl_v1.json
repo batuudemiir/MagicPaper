@@ -1,0 +1,855 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l7_owl_v1",
+  "title": "Yıldız'ın Kanat Gölgesi",
+  "context": {
+    "settingName": "Çiçekli Çayır",
+    "mode": "learning",
+    "companionID": "companion_owl_pilot_001",
+    "structure": "L7",
+    "event": "e1",
+    "mechanism": "shadow-direction",
+    "sourceFilename": "learning-owl.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l7_owl_v1",
+    "sourceBookID": "pilot56_book_l7_owl_v1",
+    "structure": "L7",
+    "event": "e1",
+    "sample": false,
+    "title": "Yıldız'ın Kanat Gölgesi",
+    "pages": [
+      "Çiçekli Çayır’da öğleden sonraydı. Güneş ağaçların üstünde parlıyordu. Deniz çimenlerin arasında yürüyordu. Yıldız alçak bir dalda gözlerini kırpıştırarak oturuyordu.",
+      "Deniz yere baktı. Önünde uzun, koyu bir şekil vardı. Yıldız’ın kanat gölgesi de yanındaydı. \"Gölgem önümde,\" dedi Deniz. \"Ama sabah arkamdaydı galiba.\"",
+      "\"Hımm… bence gölgeler uyur ve uyanır,\" dedi Yıldız. \"Gece hepsi uyur, gündüz uyanır.\" Sonra kocaman esnedi. \"Benim tam tersim yani.\" Deniz kıkır kıkır güldü.",
+      "Deniz arkasını döndü. Güneş şimdi önündeydi. Yere baktı: gölgesi arkasına geçmişti! \"Döndüm, gölgem de döndü,\" dedi. Yıldız da daldan dönüp baktı.",
+      "Deniz yan döndü. Güneş sol yanındaydı. Gölgesi sağ yanına düştü. Yıldız dalda kanatlarını açtı ve yere baktı. \"Kanat gölgem benden büyük!\" dedi sevinçle.",
+      "Deniz üç durumu düşündü. \"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi. Bunu kendi gözleriyle bulmuştu. Yıldız başını yana yatırıp dikkatle dinledi.",
+      "\"Şimdi tahmin edeyim,\" dedi Deniz. Güneşe sırtını verdi. \"Gölgem önüme düşecek!\" Yere baktı. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Önümde gölgemi,\" dedi Deniz sevinçle.",
+      "Deniz geri dönmeye başladı. Gölgesi önünde yürüyordu. Yıldız dalda tüylerini kabarttı. \"Benim gölgem geceleri hiç gelmez,\" dedi ve esnedi. Deniz bunu çok sevdi. Yıldız boynunu merakla büktü."
+    ]
+  },
+  "inputFileSHA256": "7735ffb4ac4a032547638dea480bf268b04da3eb8b9b78b51730ad0e5f898af9",
+  "inputBookPointer": "input/learning-owl.json#/books/0",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l7_owl_v1",
+      "rawPageMove": "noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; ağaç/gövde; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Yıldız alçak bir dalda gözlerini kırpıştırarak oturuyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Güneş ağaçların üstünde parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da öğleden sonraydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Çiçekli Çayır’da öğleden sonraydı. Güneş ağaçların üstünde parlıyordu. Deniz çimenlerin arasında yürüyordu. Yıldız alçak bir dalda gözlerini kırpıştırarak oturuyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p01",
+            "evidenceText": "Çiçekli Çayır’da öğleden sonraydı. Güneş ağaçların üstünde parlıyordu. Deniz çimenlerin arasında yürüyordu. Yıldız alçak bir dalda gözlerini kırpıştırarak oturuyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da öğleden sonraydı. Güneş ağaçların üstünde parlıyordu. Deniz çimenlerin arasında yürüyordu. Yıldız alçak bir dalda gözlerini kırpıştırarak oturuyordu.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da öğleden sonraydı.",
+          "Güneş ağaçların üstünde parlıyordu.",
+          "Deniz çimenlerin arasında yürüyordu.",
+          "Yıldız alçak bir dalda gözlerini kırpıştırarak oturuyordu."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da öğleden sonraydı. Güneş ağaçların üstünde parlıyordu. Deniz çimenlerin arasında yürüyordu. Yıldız alçak bir dalda gözlerini kırpıştırarak oturuyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p01",
+        "quoteSHA256": "18919d3e51dca04c239ac33e7281fed7a1cb4a71a8c2834a02a40f1ba8659de1",
+        "bookID": "pilot56_book_l7_owl_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "18919d3e51dca04c239ac33e7281fed7a1cb4a71a8c2834a02a40f1ba8659de1",
+      "text": "Çiçekli Çayır’da öğleden sonraydı. Güneş ağaçların üstünde parlıyordu. Deniz çimenlerin arasında yürüyordu. Yıldız alçak bir dalda gözlerini kırpıştırarak oturuyordu.",
+      "sourceID": "p56_wave2_pilot56_book_l7_owl_v1_p01",
+      "sourcePointer": "input/learning-owl.json#/books/0/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l7_owl_v1",
+      "rawPageMove": "child_guesses",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "gölge",
+        "propMentions": [
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Yıldız’ın kanat gölgesi de yanındaydı.",
+              "\"Gölgem önümde,\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz yere baktı. Önünde uzun, koyu bir şekil vardı. Yıldız’ın kanat gölgesi de yanındaydı. \"Gölgem önümde,\" dedi Deniz. \"Ama sabah arkamdaydı galiba.\"",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p02",
+            "evidenceText": "Deniz yere baktı. Önünde uzun, koyu bir şekil vardı. Yıldız’ın kanat gölgesi de yanındaydı. \"Gölgem önümde,\" dedi Deniz. \"Ama sabah arkamdaydı galiba.\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yere baktı. Önünde uzun, koyu bir şekil vardı. Yıldız’ın kanat gölgesi de yanındaydı. \"Gölgem önümde,\" dedi Deniz. \"Ama sabah arkamdaydı galiba.\"",
+        "poseAndActionEvidence": [
+          "Deniz yere baktı.",
+          "Önünde uzun, koyu bir şekil vardı.",
+          "Yıldız’ın kanat gölgesi de yanındaydı.",
+          "\"Gölgem önümde,\" dedi Deniz.",
+          "\"Ama sabah arkamdaydı galiba.\""
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yere baktı. Önünde uzun, koyu bir şekil vardı. Yıldız’ın kanat gölgesi de yanındaydı. \"Gölgem önümde,\" dedi Deniz. \"Ama sabah arkamdaydı galiba.\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p02",
+        "quoteSHA256": "b953df4645314cec2c999d62e013f46299214f785be2e4f50fd91435f3ab7b6c",
+        "bookID": "pilot56_book_l7_owl_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "b953df4645314cec2c999d62e013f46299214f785be2e4f50fd91435f3ab7b6c",
+      "text": "Deniz yere baktı. Önünde uzun, koyu bir şekil vardı. Yıldız’ın kanat gölgesi de yanındaydı. \"Gölgem önümde,\" dedi Deniz. \"Ama sabah arkamdaydı galiba.\"",
+      "sourceID": "p56_wave2_pilot56_book_l7_owl_v1_p02",
+      "sourcePointer": "input/learning-owl.json#/books/0/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l7_owl_v1",
+      "rawPageMove": "friend_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "gölge; yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "bence gölgeler uyur ve uyanır,\" dedi Yıldız."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "\"Gece hepsi uyur, gündüz uyanır.\" Sonra kocaman esnedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "\"Hımm… bence gölgeler uyur ve uyanır,\" dedi Yıldız. \"Gece hepsi uyur, gündüz uyanır.\" Sonra kocaman esnedi. \"Benim tam tersim yani.\" Deniz kıkır kıkır güldü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p03",
+            "evidenceText": "\"Hımm… bence gölgeler uyur ve uyanır,\" dedi Yıldız. \"Gece hepsi uyur, gündüz uyanır.\" Sonra kocaman esnedi. \"Benim tam tersim yani.\" Deniz kıkır kıkır güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Hımm… bence gölgeler uyur ve uyanır,\" dedi Yıldız. \"Gece hepsi uyur, gündüz uyanır.\" Sonra kocaman esnedi. \"Benim tam tersim yani.\" Deniz kıkır kıkır güldü.",
+        "poseAndActionEvidence": [
+          "\"Hımm…",
+          "bence gölgeler uyur ve uyanır,\" dedi Yıldız.",
+          "\"Gece hepsi uyur, gündüz uyanır.\" Sonra kocaman esnedi.",
+          "\"Benim tam tersim yani.\" Deniz kıkır kıkır güldü."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_owl_pilot_001",
+        "quote": "\"Hımm… bence gölgeler uyur ve uyanır,\" dedi Yıldız. \"Gece hepsi uyur, gündüz uyanır.\" Sonra kocaman esnedi. \"Benim tam tersim yani.\" Deniz kıkır kıkır güldü.",
+        "attributionQuote": "Yıldız",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p03",
+        "quoteSHA256": "605b3cde4f277bc5a82f1e554c3153df1c952ac095596146efc4f1911e480d8f",
+        "bookID": "pilot56_book_l7_owl_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "605b3cde4f277bc5a82f1e554c3153df1c952ac095596146efc4f1911e480d8f",
+      "text": "\"Hımm… bence gölgeler uyur ve uyanır,\" dedi Yıldız. \"Gece hepsi uyur, gündüz uyanır.\" Sonra kocaman esnedi. \"Benim tam tersim yani.\" Deniz kıkır kıkır güldü.",
+      "sourceID": "p56_wave2_pilot56_book_l7_owl_v1_p03",
+      "sourcePointer": "input/learning-owl.json#/books/0/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l7_owl_v1",
+      "rawPageMove": "trial_1",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; gölge",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Yıldız da daldan dönüp baktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Yere baktı: gölgesi arkasına geçmişti!",
+              "\"Döndüm, gölgem de döndü,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz arkasını döndü. Güneş şimdi önündeydi. Yere baktı: gölgesi arkasına geçmişti! \"Döndüm, gölgem de döndü,\" dedi. Yıldız da daldan dönüp baktı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p04",
+            "evidenceText": "Deniz arkasını döndü. Güneş şimdi önündeydi. Yere baktı: gölgesi arkasına geçmişti! \"Döndüm, gölgem de döndü,\" dedi. Yıldız da daldan dönüp baktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz arkasını döndü. Güneş şimdi önündeydi. Yere baktı: gölgesi arkasına geçmişti! \"Döndüm, gölgem de döndü,\" dedi. Yıldız da daldan dönüp baktı.",
+        "poseAndActionEvidence": [
+          "Deniz arkasını döndü.",
+          "Güneş şimdi önündeydi.",
+          "Yere baktı: gölgesi arkasına geçmişti!",
+          "\"Döndüm, gölgem de döndü,\" dedi.",
+          "Yıldız da daldan dönüp baktı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz arkasını döndü. Güneş şimdi önündeydi. Yere baktı: gölgesi arkasına geçmişti! \"Döndüm, gölgem de döndü,\" dedi. Yıldız da daldan dönüp baktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p04",
+        "quoteSHA256": "2f8e379999d67ea403b1a690d4f90b783b4a7728089ef2cc941b676d3413ce3a",
+        "bookID": "pilot56_book_l7_owl_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "2f8e379999d67ea403b1a690d4f90b783b4a7728089ef2cc941b676d3413ce3a",
+      "text": "Deniz arkasını döndü. Güneş şimdi önündeydi. Yere baktı: gölgesi arkasına geçmişti! \"Döndüm, gölgem de döndü,\" dedi. Yıldız da daldan dönüp baktı.",
+      "sourceID": "p56_wave2_pilot56_book_l7_owl_v1_p04",
+      "sourcePointer": "input/learning-owl.json#/books/0/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l7_owl_v1",
+      "rawPageMove": "trial_2",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; gölge",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Yıldız dalda kanatlarını açtı ve yere baktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Gölgesi sağ yanına düştü.",
+              "\"Kanat gölgem benden büyük!\" dedi sevinçle."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz yan döndü. Güneş sol yanındaydı. Gölgesi sağ yanına düştü. Yıldız dalda kanatlarını açtı ve yere baktı. \"Kanat gölgem benden büyük!\" dedi sevinçle.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p05",
+            "evidenceText": "Deniz yan döndü. Güneş sol yanındaydı. Gölgesi sağ yanına düştü. Yıldız dalda kanatlarını açtı ve yere baktı. \"Kanat gölgem benden büyük!\" dedi sevinçle.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yan döndü. Güneş sol yanındaydı. Gölgesi sağ yanına düştü. Yıldız dalda kanatlarını açtı ve yere baktı. \"Kanat gölgem benden büyük!\" dedi sevinçle.",
+        "poseAndActionEvidence": [
+          "Deniz yan döndü.",
+          "Güneş sol yanındaydı.",
+          "Gölgesi sağ yanına düştü.",
+          "Yıldız dalda kanatlarını açtı ve yere baktı.",
+          "\"Kanat gölgem benden büyük!\" dedi sevinçle."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yan döndü. Güneş sol yanındaydı. Gölgesi sağ yanına düştü. Yıldız dalda kanatlarını açtı ve yere baktı. \"Kanat gölgem benden büyük!\" dedi sevinçle.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p05",
+        "quoteSHA256": "61d47444ec511492bf0d4e48126a906bc5cf31ec2ddc132077b878138b291932",
+        "bookID": "pilot56_book_l7_owl_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "61d47444ec511492bf0d4e48126a906bc5cf31ec2ddc132077b878138b291932",
+      "text": "Deniz yan döndü. Güneş sol yanındaydı. Gölgesi sağ yanına düştü. Yıldız dalda kanatlarını açtı ve yere baktı. \"Kanat gölgem benden büyük!\" dedi sevinçle.",
+      "sourceID": "p56_wave2_pilot56_book_l7_owl_v1_p05",
+      "sourcePointer": "input/learning-owl.json#/books/0/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l7_owl_v1",
+      "rawPageMove": "child_compares",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "gölge",
+        "propMentions": [
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "\"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz üç durumu düşündü. \"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi. Bunu kendi gözleriyle bulmuştu. Yıldız başını yana yatırıp dikkatle dinledi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p06",
+            "evidenceText": "Deniz üç durumu düşündü. \"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi. Bunu kendi gözleriyle bulmuştu. Yıldız başını yana yatırıp dikkatle dinledi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz üç durumu düşündü. \"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi. Bunu kendi gözleriyle bulmuştu. Yıldız başını yana yatırıp dikkatle dinledi.",
+        "poseAndActionEvidence": [
+          "Deniz üç durumu düşündü.",
+          "\"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi.",
+          "Bunu kendi gözleriyle bulmuştu.",
+          "Yıldız başını yana yatırıp dikkatle dinledi."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz üç durumu düşündü. \"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi. Bunu kendi gözleriyle bulmuştu. Yıldız başını yana yatırıp dikkatle dinledi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p06",
+        "quoteSHA256": "ffb4cb0162031367fca5e270c6f0400a774e429f37bb254a48c602e529191684",
+        "bookID": "pilot56_book_l7_owl_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "ffb4cb0162031367fca5e270c6f0400a774e429f37bb254a48c602e529191684",
+      "text": "Deniz üç durumu düşündü. \"Güneş hep bir yanımda, gölgem hep öbür yanımda,\" dedi. Bunu kendi gözleriyle bulmuştu. Yıldız başını yana yatırıp dikkatle dinledi.",
+      "sourceID": "p56_wave2_pilot56_book_l7_owl_v1_p06",
+      "sourcePointer": "input/learning-owl.json#/books/0/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l7_owl_v1",
+      "rawPageMove": "trial_3",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "gölge",
+        "propMentions": [
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "\"Gölgem önüme düşecek!\" Yere baktı.",
+              "\"Önümde gölgemi,\" dedi Deniz sevinçle."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "\"Şimdi tahmin edeyim,\" dedi Deniz. Güneşe sırtını verdi. \"Gölgem önüme düşecek!\" Yere baktı. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Önümde gölgemi,\" dedi Deniz sevinçle.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p07",
+            "evidenceText": "\"Şimdi tahmin edeyim,\" dedi Deniz. Güneşe sırtını verdi. \"Gölgem önüme düşecek!\" Yere baktı. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Önümde gölgemi,\" dedi Deniz sevinçle.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Şimdi tahmin edeyim,\" dedi Deniz. Güneşe sırtını verdi. \"Gölgem önüme düşecek!\" Yere baktı. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Önümde gölgemi,\" dedi Deniz sevinçle.",
+        "poseAndActionEvidence": [
+          "\"Şimdi tahmin edeyim,\" dedi Deniz.",
+          "Güneşe sırtını verdi.",
+          "\"Gölgem önüme düşecek!\" Yere baktı.",
+          "\"Hımm…",
+          "sen ne görüyorsun?\" dedi Yıldız.",
+          "\"Önümde gölgemi,\" dedi Deniz sevinçle."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Şimdi tahmin edeyim,\" dedi Deniz. Güneşe sırtını verdi. \"Gölgem önüme düşecek!\" Yere baktı. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Önümde gölgemi,\" dedi Deniz sevinçle.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p07",
+        "quoteSHA256": "f06b26181abf1ebd6ad02f1e1a7651ac794eea2bb7094b1d640f0f261b6522e0",
+        "bookID": "pilot56_book_l7_owl_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "f06b26181abf1ebd6ad02f1e1a7651ac794eea2bb7094b1d640f0f261b6522e0",
+      "text": "\"Şimdi tahmin edeyim,\" dedi Deniz. Güneşe sırtını verdi. \"Gölgem önüme düşecek!\" Yere baktı. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Önümde gölgemi,\" dedi Deniz sevinçle.",
+      "sourceID": "p56_wave2_pilot56_book_l7_owl_v1_p07",
+      "sourcePointer": "input/learning-owl.json#/books/0/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l7_owl_v1",
+      "rawPageMove": "result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; tüy; gölge",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Yıldız dalda tüylerini kabarttı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Yıldız dalda tüylerini kabarttı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "gölge",
+            "evidenceQuotes": [
+              "Gölgesi önünde yürüyordu.",
+              "\"Benim gölgem geceleri hiç gelmez,\" dedi ve esnedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz geri dönmeye başladı. Gölgesi önünde yürüyordu. Yıldız dalda tüylerini kabarttı. \"Benim gölgem geceleri hiç gelmez,\" dedi ve esnedi. Deniz bunu çok sevdi. Yıldız boynunu merakla büktü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p08",
+            "evidenceText": "Deniz geri dönmeye başladı. Gölgesi önünde yürüyordu. Yıldız dalda tüylerini kabarttı. \"Benim gölgem geceleri hiç gelmez,\" dedi ve esnedi. Deniz bunu çok sevdi. Yıldız boynunu merakla büktü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz geri dönmeye başladı. Gölgesi önünde yürüyordu. Yıldız dalda tüylerini kabarttı. \"Benim gölgem geceleri hiç gelmez,\" dedi ve esnedi. Deniz bunu çok sevdi. Yıldız boynunu merakla büktü.",
+        "poseAndActionEvidence": [
+          "Deniz geri dönmeye başladı.",
+          "Gölgesi önünde yürüyordu.",
+          "Yıldız dalda tüylerini kabarttı.",
+          "\"Benim gölgem geceleri hiç gelmez,\" dedi ve esnedi.",
+          "Deniz bunu çok sevdi.",
+          "Yıldız boynunu merakla büktü."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Gölge cismin ışıkla oluşan izdüşümüdür; ayrı canlı gibi hareket ettirilmez. Yön çocuğun dönüşüne göre göreli anlatılır; gözler yere/cisme bakar, güneşe doğrudan bakış eklenmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz geri dönmeye başladı. Gölgesi önünde yürüyordu. Yıldız dalda tüylerini kabarttı. \"Benim gölgem geceleri hiç gelmez,\" dedi ve esnedi. Deniz bunu çok sevdi. Yıldız boynunu merakla büktü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_l7_owl_v1_p08",
+        "quoteSHA256": "e8dd74aaae51d3a5e238d5f4c8f8431267f954e68af9901ec93891f9e224c5cd",
+        "bookID": "pilot56_book_l7_owl_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "e8dd74aaae51d3a5e238d5f4c8f8431267f954e68af9901ec93891f9e224c5cd",
+      "text": "Deniz geri dönmeye başladı. Gölgesi önünde yürüyordu. Yıldız dalda tüylerini kabarttı. \"Benim gölgem geceleri hiç gelmez,\" dedi ve esnedi. Deniz bunu çok sevdi. Yıldız boynunu merakla büktü.",
+      "sourceID": "p56_wave2_pilot56_book_l7_owl_v1_p08",
+      "sourcePointer": "input/learning-owl.json#/books/0/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz dönerek dener ve gölgenin hep güneşin karşı tarafına düştüğünü kendisi bulur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

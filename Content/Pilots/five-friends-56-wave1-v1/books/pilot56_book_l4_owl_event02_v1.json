@@ -1,0 +1,870 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l4_owl_event02_v1",
+  "title": "Yıldız'ın Tüyü mü?",
+  "context": {
+    "settingName": "Yağmur sonrası bahçe, sığ su birikintisi",
+    "mode": "learning",
+    "companionID": "companion_owl_pilot_001",
+    "structure": "L4",
+    "event": "e2",
+    "mechanism": "predict-float-sink",
+    "sourceFilename": "learning-owl.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l4_owl_event02_v1",
+    "structure": "L4",
+    "event": "e2",
+    "sample": false,
+    "title": "Yıldız'ın Tüyü mü?",
+    "pages": [
+      "Yağmur durmuştu. Bahçede sığ bir su birikintisi vardı. Deniz yanına çömeldi. Yıldız alçak çit direğinde esniyordu. Elinde bir tüy ve bir kozalak vardı.",
+      "Deniz elinde bir tüy, büyük bir kozalak ve küçük bir çakıl tutuyordu. Yıldız tüye gururla baktı. \"Büyük olan batar,\" dedi Deniz. \"Küçükler yüzer.\"",
+      "Yıldız tüye baktı. \"Hımm… o tüy benim olabilir mi?\" dedi. Tüylerini tek tek saydı. \"Hepsi yerinde.\" Deniz kahkahayı bastı.",
+      "Deniz tüyü suya bıraktı. Tüy yüzerek hafifçe döndü. \"Tüy yüzüyor,\" dedi. \"Tüyler hafif olur,\" dedi Yıldız. \"Ben bunu iyi bilirim.\"",
+      "Deniz büyük kozalağı bıraktı. Kozalak suyun üstünde salındı. Yıldız gözlerini kocaman açtı. \"Hımm… sen ne görüyorsun?\" Deniz suya dikkatle baktı.",
+      "\"Kocaman kozalak da yüzüyor,\" dedi Deniz. \"Demek büyük olan hep batmaz.\" Tahminini kendisi düzeltmişti. Yıldız gözlerini kırpıştırıp onayladı.",
+      "\"Şimdi küçük çakıl,\" dedi Deniz. Çakıl hemen dibe indi. Yıldız başını yana eğdi. \"Küçük, ama ağır,\" dedi. Deniz gülümsedi. Yıldız gözlerini kırpıştırdı.",
+      "Deniz kozalakla tüyü sudan aldı. Yıldız kanatlarını kabarttı. \"Ben de tüy gibi hafifim,\" dedi, sonra yine esnedi. Deniz karnını tutarak güldü."
+    ],
+    "sourceBookID": "pilot56_book_l4_owl_event02_v1"
+  },
+  "inputFileSHA256": "7627f26262b184219eb19a06ec0106d2b51c95d0da266c03b7380f1607fc4879",
+  "inputBookPointer": "input/learning-owl.json#/books/1",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l4_owl_event02_v1",
+      "rawPageMove": "puddle_noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tüy; yağmur/cam/oluk; kozalak; su/birikinti",
+        "propMentions": [
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Elinde bir tüy ve bir kozalak vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Yağmur durmuştu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Elinde bir tüy ve bir kozalak vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Bahçede sığ bir su birikintisi vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Yağmur durmuştu. Bahçede sığ bir su birikintisi vardı. Deniz yanına çömeldi. Yıldız alçak çit direğinde esniyordu. Elinde bir tüy ve bir kozalak vardı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p01",
+            "evidenceText": "Yağmur durmuştu. Bahçede sığ bir su birikintisi vardı. Deniz yanına çömeldi. Yıldız alçak çit direğinde esniyordu. Elinde bir tüy ve bir kozalak vardı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yağmur durmuştu. Bahçede sığ bir su birikintisi vardı. Deniz yanına çömeldi. Yıldız alçak çit direğinde esniyordu. Elinde bir tüy ve bir kozalak vardı.",
+        "poseAndActionEvidence": [
+          "Yağmur durmuştu.",
+          "Bahçede sığ bir su birikintisi vardı.",
+          "Deniz yanına çömeldi.",
+          "Yıldız alçak çit direğinde esniyordu.",
+          "Elinde bir tüy ve bir kozalak vardı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Yağmur durmuştu. Bahçede sığ bir su birikintisi vardı. Deniz yanına çömeldi. Yıldız alçak çit direğinde esniyordu. Elinde bir tüy ve bir kozalak vardı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p01",
+        "quoteSHA256": "7a3dbc55ee9c78b59dcd7afb42184a5500930a3fa399dfdfe28a09a7f74f6f68",
+        "bookID": "pilot56_book_l4_owl_event02_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "7a3dbc55ee9c78b59dcd7afb42184a5500930a3fa399dfdfe28a09a7f74f6f68",
+      "text": "Yağmur durmuştu. Bahçede sığ bir su birikintisi vardı. Deniz yanına çömeldi. Yıldız alçak çit direğinde esniyordu. Elinde bir tüy ve bir kozalak vardı.",
+      "sourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p01",
+      "sourcePointer": "input/learning-owl.json#/books/1/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l4_owl_event02_v1",
+      "rawPageMove": "child_predicts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tüy; kozalak; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Deniz elinde bir tüy, büyük bir kozalak ve küçük bir çakıl tutuyordu.",
+              "Yıldız tüye gururla baktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Deniz elinde bir tüy, büyük bir kozalak ve küçük bir çakıl tutuyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Deniz elinde bir tüy, büyük bir kozalak ve küçük bir çakıl tutuyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz elinde bir tüy, büyük bir kozalak ve küçük bir çakıl tutuyordu. Yıldız tüye gururla baktı. \"Büyük olan batar,\" dedi Deniz. \"Küçükler yüzer.\"",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p02",
+            "evidenceText": "Deniz elinde bir tüy, büyük bir kozalak ve küçük bir çakıl tutuyordu. Yıldız tüye gururla baktı. \"Büyük olan batar,\" dedi Deniz. \"Küçükler yüzer.\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz elinde bir tüy, büyük bir kozalak ve küçük bir çakıl tutuyordu. Yıldız tüye gururla baktı. \"Büyük olan batar,\" dedi Deniz. \"Küçükler yüzer.\"",
+        "poseAndActionEvidence": [
+          "Deniz elinde bir tüy, büyük bir kozalak ve küçük bir çakıl tutuyordu.",
+          "Yıldız tüye gururla baktı.",
+          "\"Büyük olan batar,\" dedi Deniz.",
+          "\"Küçükler yüzer.\""
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz elinde bir tüy, büyük bir kozalak ve küçük bir çakıl tutuyordu. Yıldız tüye gururla baktı. \"Büyük olan batar,\" dedi Deniz. \"Küçükler yüzer.\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p02",
+        "quoteSHA256": "3d7bd63d5e19789a466a3f7146d558ac7fd8e0d27ef7bf18442208712979954e",
+        "bookID": "pilot56_book_l4_owl_event02_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "3d7bd63d5e19789a466a3f7146d558ac7fd8e0d27ef7bf18442208712979954e",
+      "text": "Deniz elinde bir tüy, büyük bir kozalak ve küçük bir çakıl tutuyordu. Yıldız tüye gururla baktı. \"Büyük olan batar,\" dedi Deniz. \"Küçükler yüzer.\"",
+      "sourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p02",
+      "sourcePointer": "input/learning-owl.json#/books/1/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l4_owl_event02_v1",
+      "rawPageMove": "friend_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tüy",
+        "propMentions": [
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Yıldız tüye baktı.",
+              "o tüy benim olabilir mi?\" dedi.",
+              "Tüylerini tek tek saydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Yıldız tüye baktı. \"Hımm… o tüy benim olabilir mi?\" dedi. Tüylerini tek tek saydı. \"Hepsi yerinde.\" Deniz kahkahayı bastı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p03",
+            "evidenceText": "Yıldız tüye baktı. \"Hımm… o tüy benim olabilir mi?\" dedi. Tüylerini tek tek saydı. \"Hepsi yerinde.\" Deniz kahkahayı bastı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yıldız tüye baktı. \"Hımm… o tüy benim olabilir mi?\" dedi. Tüylerini tek tek saydı. \"Hepsi yerinde.\" Deniz kahkahayı bastı.",
+        "poseAndActionEvidence": [
+          "Yıldız tüye baktı.",
+          "\"Hımm…",
+          "o tüy benim olabilir mi?\" dedi.",
+          "Tüylerini tek tek saydı.",
+          "\"Hepsi yerinde.\" Deniz kahkahayı bastı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_owl_pilot_001",
+        "quote": "Yıldız tüye baktı. \"Hımm… o tüy benim olabilir mi?\" dedi. Tüylerini tek tek saydı. \"Hepsi yerinde.\" Deniz kahkahayı bastı.",
+        "attributionQuote": "Yıldız",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p03",
+        "quoteSHA256": "fb94a1ef6a38aa207abcf320d6afe3453016b5115878699cae008eb3cc1b35c4",
+        "bookID": "pilot56_book_l4_owl_event02_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "fb94a1ef6a38aa207abcf320d6afe3453016b5115878699cae008eb3cc1b35c4",
+      "text": "Yıldız tüye baktı. \"Hımm… o tüy benim olabilir mi?\" dedi. Tüylerini tek tek saydı. \"Hepsi yerinde.\" Deniz kahkahayı bastı.",
+      "sourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p03",
+      "sourcePointer": "input/learning-owl.json#/books/1/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l4_owl_event02_v1",
+      "rawPageMove": "test_one",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tüy; su/birikinti",
+        "propMentions": [
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Deniz tüyü suya bıraktı.",
+              "Tüy yüzerek hafifçe döndü.",
+              "\"Tüy yüzüyor,\" dedi.",
+              "\"Tüyler hafif olur,\" dedi Yıldız."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Deniz tüyü suya bıraktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz tüyü suya bıraktı. Tüy yüzerek hafifçe döndü. \"Tüy yüzüyor,\" dedi. \"Tüyler hafif olur,\" dedi Yıldız. \"Ben bunu iyi bilirim.\"",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p04",
+            "evidenceText": "Deniz tüyü suya bıraktı. Tüy yüzerek hafifçe döndü. \"Tüy yüzüyor,\" dedi. \"Tüyler hafif olur,\" dedi Yıldız. \"Ben bunu iyi bilirim.\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz tüyü suya bıraktı. Tüy yüzerek hafifçe döndü. \"Tüy yüzüyor,\" dedi. \"Tüyler hafif olur,\" dedi Yıldız. \"Ben bunu iyi bilirim.\"",
+        "poseAndActionEvidence": [
+          "Deniz tüyü suya bıraktı.",
+          "Tüy yüzerek hafifçe döndü.",
+          "\"Tüy yüzüyor,\" dedi.",
+          "\"Tüyler hafif olur,\" dedi Yıldız.",
+          "\"Ben bunu iyi bilirim.\""
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz tüyü suya bıraktı. Tüy yüzerek hafifçe döndü. \"Tüy yüzüyor,\" dedi. \"Tüyler hafif olur,\" dedi Yıldız. \"Ben bunu iyi bilirim.\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p04",
+        "quoteSHA256": "6e16d0eb447d4fb2a982673aadf55e21cc0d0b285d2c9db14616d1950ede12f5",
+        "bookID": "pilot56_book_l4_owl_event02_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "6e16d0eb447d4fb2a982673aadf55e21cc0d0b285d2c9db14616d1950ede12f5",
+      "text": "Deniz tüyü suya bıraktı. Tüy yüzerek hafifçe döndü. \"Tüy yüzüyor,\" dedi. \"Tüyler hafif olur,\" dedi Yıldız. \"Ben bunu iyi bilirim.\"",
+      "sourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p04",
+      "sourcePointer": "input/learning-owl.json#/books/1/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l4_owl_event02_v1",
+      "rawPageMove": "test_two",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yağmur/cam/oluk; kozalak; su/birikinti",
+        "propMentions": [
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Yıldız gözlerini kocaman açtı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Kozalak suyun üstünde salındı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Kozalak suyun üstünde salındı.",
+              "sen ne görüyorsun?\" Deniz suya dikkatle baktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz büyük kozalağı bıraktı. Kozalak suyun üstünde salındı. Yıldız gözlerini kocaman açtı. \"Hımm… sen ne görüyorsun?\" Deniz suya dikkatle baktı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p05",
+            "evidenceText": "Deniz büyük kozalağı bıraktı. Kozalak suyun üstünde salındı. Yıldız gözlerini kocaman açtı. \"Hımm… sen ne görüyorsun?\" Deniz suya dikkatle baktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz büyük kozalağı bıraktı. Kozalak suyun üstünde salındı. Yıldız gözlerini kocaman açtı. \"Hımm… sen ne görüyorsun?\" Deniz suya dikkatle baktı.",
+        "poseAndActionEvidence": [
+          "Deniz büyük kozalağı bıraktı.",
+          "Kozalak suyun üstünde salındı.",
+          "Yıldız gözlerini kocaman açtı.",
+          "\"Hımm…",
+          "sen ne görüyorsun?\" Deniz suya dikkatle baktı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz büyük kozalağı bıraktı. Kozalak suyun üstünde salındı. Yıldız gözlerini kocaman açtı. \"Hımm… sen ne görüyorsun?\" Deniz suya dikkatle baktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p05",
+        "quoteSHA256": "bc476957efdb6bf2d96904e30ce601464a14b37f7f69a1b8487edcf4c3a5855f",
+        "bookID": "pilot56_book_l4_owl_event02_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "bc476957efdb6bf2d96904e30ce601464a14b37f7f69a1b8487edcf4c3a5855f",
+      "text": "Deniz büyük kozalağı bıraktı. Kozalak suyun üstünde salındı. Yıldız gözlerini kocaman açtı. \"Hımm… sen ne görüyorsun?\" Deniz suya dikkatle baktı.",
+      "sourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p05",
+      "sourcePointer": "input/learning-owl.json#/books/1/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l4_owl_event02_v1",
+      "rawPageMove": "child_compares",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yağmur/cam/oluk; kozalak",
+        "propMentions": [
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "\"Kocaman kozalak da yüzüyor,\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "\"Kocaman kozalak da yüzüyor,\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "\"Kocaman kozalak da yüzüyor,\" dedi Deniz. \"Demek büyük olan hep batmaz.\" Tahminini kendisi düzeltmişti. Yıldız gözlerini kırpıştırıp onayladı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p06",
+            "evidenceText": "\"Kocaman kozalak da yüzüyor,\" dedi Deniz. \"Demek büyük olan hep batmaz.\" Tahminini kendisi düzeltmişti. Yıldız gözlerini kırpıştırıp onayladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Kocaman kozalak da yüzüyor,\" dedi Deniz. \"Demek büyük olan hep batmaz.\" Tahminini kendisi düzeltmişti. Yıldız gözlerini kırpıştırıp onayladı.",
+        "poseAndActionEvidence": [
+          "\"Kocaman kozalak da yüzüyor,\" dedi Deniz.",
+          "\"Demek büyük olan hep batmaz.\" Tahminini kendisi düzeltmişti.",
+          "Yıldız gözlerini kırpıştırıp onayladı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Kocaman kozalak da yüzüyor,\" dedi Deniz. \"Demek büyük olan hep batmaz.\" Tahminini kendisi düzeltmişti. Yıldız gözlerini kırpıştırıp onayladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p06",
+        "quoteSHA256": "4890d4a57d1e29c9624be1b17036aecbcb9cf2b034398600663e1b276e509d92",
+        "bookID": "pilot56_book_l4_owl_event02_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "4890d4a57d1e29c9624be1b17036aecbcb9cf2b034398600663e1b276e509d92",
+      "text": "\"Kocaman kozalak da yüzüyor,\" dedi Deniz. \"Demek büyük olan hep batmaz.\" Tahminini kendisi düzeltmişti. Yıldız gözlerini kırpıştırıp onayladı.",
+      "sourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p06",
+      "sourcePointer": "input/learning-owl.json#/books/1/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l4_owl_event02_v1",
+      "rawPageMove": "test_three",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş/çakıl",
+        "propMentions": [
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "\"Şimdi küçük çakıl,\" dedi Deniz.",
+              "Çakıl hemen dibe indi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "\"Şimdi küçük çakıl,\" dedi Deniz. Çakıl hemen dibe indi. Yıldız başını yana eğdi. \"Küçük, ama ağır,\" dedi. Deniz gülümsedi. Yıldız gözlerini kırpıştırdı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p07",
+            "evidenceText": "\"Şimdi küçük çakıl,\" dedi Deniz. Çakıl hemen dibe indi. Yıldız başını yana eğdi. \"Küçük, ama ağır,\" dedi. Deniz gülümsedi. Yıldız gözlerini kırpıştırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Şimdi küçük çakıl,\" dedi Deniz. Çakıl hemen dibe indi. Yıldız başını yana eğdi. \"Küçük, ama ağır,\" dedi. Deniz gülümsedi. Yıldız gözlerini kırpıştırdı.",
+        "poseAndActionEvidence": [
+          "\"Şimdi küçük çakıl,\" dedi Deniz.",
+          "Çakıl hemen dibe indi.",
+          "Yıldız başını yana eğdi.",
+          "\"Küçük, ama ağır,\" dedi.",
+          "Deniz gülümsedi.",
+          "Yıldız gözlerini kırpıştırdı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Şimdi küçük çakıl,\" dedi Deniz. Çakıl hemen dibe indi. Yıldız başını yana eğdi. \"Küçük, ama ağır,\" dedi. Deniz gülümsedi. Yıldız gözlerini kırpıştırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p07",
+        "quoteSHA256": "3538585ea243f2e5b3c6056088cde7afca9b617ad840297bb632b17e7dff0dd2",
+        "bookID": "pilot56_book_l4_owl_event02_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "3538585ea243f2e5b3c6056088cde7afca9b617ad840297bb632b17e7dff0dd2",
+      "text": "\"Şimdi küçük çakıl,\" dedi Deniz. Çakıl hemen dibe indi. Yıldız başını yana eğdi. \"Küçük, ama ağır,\" dedi. Deniz gülümsedi. Yıldız gözlerini kırpıştırdı.",
+      "sourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p07",
+      "sourcePointer": "input/learning-owl.json#/books/1/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l4_owl_event02_v1",
+      "rawPageMove": "closed_result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tüy; kozalak",
+        "propMentions": [
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Deniz kozalakla tüyü sudan aldı.",
+              "\"Ben de tüy gibi hafifim,\" dedi, sonra yine esnedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Deniz kozalakla tüyü sudan aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz kozalakla tüyü sudan aldı. Yıldız kanatlarını kabarttı. \"Ben de tüy gibi hafifim,\" dedi, sonra yine esnedi. Deniz karnını tutarak güldü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p08",
+            "evidenceText": "Deniz kozalakla tüyü sudan aldı. Yıldız kanatlarını kabarttı. \"Ben de tüy gibi hafifim,\" dedi, sonra yine esnedi. Deniz karnını tutarak güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kozalakla tüyü sudan aldı. Yıldız kanatlarını kabarttı. \"Ben de tüy gibi hafifim,\" dedi, sonra yine esnedi. Deniz karnını tutarak güldü.",
+        "poseAndActionEvidence": [
+          "Deniz kozalakla tüyü sudan aldı.",
+          "Yıldız kanatlarını kabarttı.",
+          "\"Ben de tüy gibi hafifim,\" dedi, sonra yine esnedi.",
+          "Deniz karnını tutarak güldü."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kozalakla tüyü sudan aldı. Yıldız kanatlarını kabarttı. \"Ben de tüy gibi hafifim,\" dedi, sonra yine esnedi. Deniz karnını tutarak güldü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p08",
+        "quoteSHA256": "99cd24db7816e9e2bdeb5141c0304cd7b25a3ceef8e878396ce8e105b0400866",
+        "bookID": "pilot56_book_l4_owl_event02_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "99cd24db7816e9e2bdeb5141c0304cd7b25a3ceef8e878396ce8e105b0400866",
+      "text": "Deniz kozalakla tüyü sudan aldı. Yıldız kanatlarını kabarttı. \"Ben de tüy gibi hafifim,\" dedi, sonra yine esnedi. Deniz karnını tutarak güldü.",
+      "sourceID": "p56_wave1_pilot56_book_l4_owl_event02_v1_p08",
+      "sourcePointer": "input/learning-owl.json#/books/1/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk tahmin eder, nesneleri tek tek dener ve sonucu kendisi karşılaştırır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

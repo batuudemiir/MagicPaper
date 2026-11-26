@@ -1,0 +1,950 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a6_hedgehog_event03_v1",
+  "title": "Kestane'nin Yaprak İşaretleri",
+  "context": {
+    "settingName": "Fısıldayan Orman",
+    "mode": "adventure",
+    "companionID": "companion_hedgehog_pilot_001",
+    "structure": "A6",
+    "event": "e3",
+    "mechanism": "stick-map-landmarks",
+    "sourceFilename": "adventure-hedgehog.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a6_hedgehog_event03_v1",
+    "structure": "A6",
+    "event": "e3",
+    "sample": false,
+    "title": "Kestane'nin Yaprak İşaretleri",
+    "pages": [
+      "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı. Deniz oraya gitmek istedi. Kestane bir adım ötedeydi. Kapının üstünde küçük bir çan sallanıyordu. Kirpi burnunu kıpırdattı.",
+      "Deniz çanlı kapıya giden yolu düşündü. \"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi. Kestane her işarette bir diken kaldırdı. Deniz sırayı biliyordu.",
+      "Kestane yolu yapraklarla işaretlemek istedi. Ama yapraklar hep dikenlerinde kaldı! Deniz yanaklarını şişirip güldü. Kirpi her adımda daha da yapraklı oluyordu. Sonunda küçük bir yaprak yığınına döndü.",
+      "Deniz dalla toprağa çatlak bir kaya, eğrelti otları ve bir taş duvar çizdi. Sonuna küçük bir çan ekledi. Kestane çanın yanına oturdu.",
+      "Haritayı izleyip çatlak kayaya vardılar. Kestane çatlağa burnunu yaklaştırdı. \"Doğru kaya, serin,\" dedi. Çatlak tam çizdiği gibiydi. Deniz bir sonraki işareti hatırladı ve yürüdü.",
+      "Deniz eğrelti otlarını hatırladı. Yeşil yapraklar yolun iki yanındaydı. Sonra taş duvar göründü. \"Az kaldı,\" dedi. Kestane eğreltilerin altından geçti.",
+      "Taş duvarın sonunda çanlı kapı vardı. Deniz çanı çaldı. Tın tın! Kestane heyecandan top oldu. Deniz sevinçle zıpladı. Kestane’nin dikenleri titredi. Çanın sesi ormana yayıldı.",
+      "Dönüşte Deniz haritasındaki işaretleri saydı. Kestane hardal yaprağını salladı. \"Haritan benim dikenlerimden iyi,\" dedi. Deniz’in yanakları gülümsemeyle kabardı. Ormanın yolu artık karışık değildi."
+    ],
+    "sourceBookID": "pilot56_book_a6_hedgehog_event03_v1"
+  },
+  "inputFileSHA256": "2d9fe7506d6be2eada21afaf1f6036f840296964cae82faa6e0adf933d48a037",
+  "inputBookPointer": "input/adventure-hedgehog.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+      "rawPageMove": "route_unclear",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "top/şapka/uçurtma; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kirpi burnunu kıpırdattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı.",
+              "Kapının üstünde küçük bir çan sallanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı. Deniz oraya gitmek istedi. Kestane bir adım ötedeydi. Kapının üstünde küçük bir çan sallanıyordu. Kirpi burnunu kıpırdattı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p01",
+            "evidenceText": "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı. Deniz oraya gitmek istedi. Kestane bir adım ötedeydi. Kapının üstünde küçük bir çan sallanıyordu. Kirpi burnunu kıpırdattı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı. Deniz oraya gitmek istedi. Kestane bir adım ötedeydi. Kapının üstünde küçük bir çan sallanıyordu. Kirpi burnunu kıpırdattı.",
+        "poseAndActionEvidence": [
+          "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı.",
+          "Deniz oraya gitmek istedi.",
+          "Kestane bir adım ötedeydi.",
+          "Kapının üstünde küçük bir çan sallanıyordu.",
+          "Kirpi burnunu kıpırdattı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı. Deniz oraya gitmek istedi. Kestane bir adım ötedeydi. Kapının üstünde küçük bir çan sallanıyordu. Kirpi burnunu kıpırdattı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p01",
+        "quoteSHA256": "98a72813f6e0fcc2dd44c9ad26ec1094c8e49fa6c38aaeb375410a4e170e3164",
+        "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "98a72813f6e0fcc2dd44c9ad26ec1094c8e49fa6c38aaeb375410a4e170e3164",
+      "text": "Fısıldayan Orman’ın kenarında çanlı bir bahçe kapısı vardı. Deniz oraya gitmek istedi. Kestane bir adım ötedeydi. Kapının üstünde küçük bir çan sallanıyordu. Kirpi burnunu kıpırdattı.",
+      "sourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p01",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+      "rawPageMove": "landmarks_recalled",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tahta işaret parçaları; taş; taş/çakıl; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Kestane her işarette bir diken kaldırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "\"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "\"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Deniz çanlı kapıya giden yolu düşündü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz çanlı kapıya giden yolu düşündü. \"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi. Kestane her işarette bir diken kaldırdı. Deniz sırayı biliyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p02",
+            "evidenceText": "Deniz çanlı kapıya giden yolu düşündü. \"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi. Kestane her işarette bir diken kaldırdı. Deniz sırayı biliyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz çanlı kapıya giden yolu düşündü. \"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi. Kestane her işarette bir diken kaldırdı. Deniz sırayı biliyordu.",
+        "poseAndActionEvidence": [
+          "Deniz çanlı kapıya giden yolu düşündü.",
+          "\"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi.",
+          "Kestane her işarette bir diken kaldırdı.",
+          "Deniz sırayı biliyordu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz çanlı kapıya giden yolu düşündü. \"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi. Kestane her işarette bir diken kaldırdı. Deniz sırayı biliyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p02",
+        "quoteSHA256": "55d6e44be54c3ffdfe7da37cb82b4be83054058cfcfa68b16c474cdc847b3878",
+        "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "55d6e44be54c3ffdfe7da37cb82b4be83054058cfcfa68b16c474cdc847b3878",
+      "text": "Deniz çanlı kapıya giden yolu düşündü. \"Önce çatlak kaya, sonra eğrelti otları, sonra taş duvar,\" dedi. Kestane her işarette bir diken kaldırdı. Deniz sırayı biliyordu.",
+      "sourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p02",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+      "rawPageMove": "friend_adds_landmark",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; tahta işaret parçaları",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Kestane yolu yapraklarla işaretlemek istedi.",
+              "Ama yapraklar hep dikenlerinde kaldı!",
+              "Kirpi her adımda daha da yapraklı oluyordu.",
+              "Sonunda küçük bir yaprak yığınına döndü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Kestane yolu yapraklarla işaretlemek istedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane yolu yapraklarla işaretlemek istedi. Ama yapraklar hep dikenlerinde kaldı! Deniz yanaklarını şişirip güldü. Kirpi her adımda daha da yapraklı oluyordu. Sonunda küçük bir yaprak yığınına döndü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p03",
+            "evidenceText": "Kestane yolu yapraklarla işaretlemek istedi. Ama yapraklar hep dikenlerinde kaldı! Deniz yanaklarını şişirip güldü. Kirpi her adımda daha da yapraklı oluyordu. Sonunda küçük bir yaprak yığınına döndü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane yolu yapraklarla işaretlemek istedi. Ama yapraklar hep dikenlerinde kaldı! Deniz yanaklarını şişirip güldü. Kirpi her adımda daha da yapraklı oluyordu. Sonunda küçük bir yaprak yığınına döndü.",
+        "poseAndActionEvidence": [
+          "Kestane yolu yapraklarla işaretlemek istedi.",
+          "Ama yapraklar hep dikenlerinde kaldı!",
+          "Deniz yanaklarını şişirip güldü.",
+          "Kirpi her adımda daha da yapraklı oluyordu.",
+          "Sonunda küçük bir yaprak yığınına döndü."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_hedgehog_pilot_001",
+        "quote": "Kestane yolu yapraklarla işaretlemek istedi. Ama yapraklar hep dikenlerinde kaldı! Deniz yanaklarını şişirip güldü. Kirpi her adımda daha da yapraklı oluyordu. Sonunda küçük bir yaprak yığınına döndü.",
+        "attributionQuote": "Kestane",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p03",
+        "quoteSHA256": "cb582fa888c924a632b560783b224d22794a4631f4faacecee2a71555b02dffb",
+        "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "cb582fa888c924a632b560783b224d22794a4631f4faacecee2a71555b02dffb",
+      "text": "Kestane yolu yapraklarla işaretlemek istedi. Ama yapraklar hep dikenlerinde kaldı! Deniz yanaklarını şişirip güldü. Kirpi her adımda daha da yapraklı oluyordu. Sonunda küçük bir yaprak yığınına döndü.",
+      "sourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p03",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+      "rawPageMove": "child_draws_map",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; taş; toprak; taş/çakıl; harita/çizim; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz dalla toprağa çatlak bir kaya, eğrelti otları ve bir taş duvar çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Deniz dalla toprağa çatlak bir kaya, eğrelti otları ve bir taş duvar çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "toprak",
+            "evidenceQuotes": [
+              "Deniz dalla toprağa çatlak bir kaya, eğrelti otları ve bir taş duvar çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Deniz dalla toprağa çatlak bir kaya, eğrelti otları ve bir taş duvar çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "harita/çizim",
+            "evidenceQuotes": [
+              "Deniz dalla toprağa çatlak bir kaya, eğrelti otları ve bir taş duvar çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Sonuna küçük bir çan ekledi.",
+              "Kestane çanın yanına oturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz dalla toprağa çatlak bir kaya, eğrelti otları ve bir taş duvar çizdi. Sonuna küçük bir çan ekledi. Kestane çanın yanına oturdu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p04",
+            "evidenceText": "Deniz dalla toprağa çatlak bir kaya, eğrelti otları ve bir taş duvar çizdi. Sonuna küçük bir çan ekledi. Kestane çanın yanına oturdu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz dalla toprağa çatlak bir kaya, eğrelti otları ve bir taş duvar çizdi. Sonuna küçük bir çan ekledi. Kestane çanın yanına oturdu.",
+        "poseAndActionEvidence": [
+          "Deniz dalla toprağa çatlak bir kaya, eğrelti otları ve bir taş duvar çizdi.",
+          "Sonuna küçük bir çan ekledi.",
+          "Kestane çanın yanına oturdu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz dalla toprağa çatlak bir kaya, eğrelti otları ve bir taş duvar çizdi. Sonuna küçük bir çan ekledi. Kestane çanın yanına oturdu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p04",
+        "quoteSHA256": "e763ac7342cbeeafc3d87c38cdbdca611c379e597535a829f87bf882383ca842",
+        "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "e763ac7342cbeeafc3d87c38cdbdca611c379e597535a829f87bf882383ca842",
+      "text": "Deniz dalla toprağa çatlak bir kaya, eğrelti otları ve bir taş duvar çizdi. Sonuna küçük bir çan ekledi. Kestane çanın yanına oturdu.",
+      "sourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p04",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+      "rawPageMove": "follow_first",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tahta işaret parçaları; harita/çizim",
+        "propMentions": [
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Deniz bir sonraki işareti hatırladı ve yürüdü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "harita/çizim",
+            "evidenceQuotes": [
+              "Haritayı izleyip çatlak kayaya vardılar.",
+              "Çatlak tam çizdiği gibiydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Haritayı izleyip çatlak kayaya vardılar. Kestane çatlağa burnunu yaklaştırdı. \"Doğru kaya, serin,\" dedi. Çatlak tam çizdiği gibiydi. Deniz bir sonraki işareti hatırladı ve yürüdü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p05",
+            "evidenceText": "Haritayı izleyip çatlak kayaya vardılar. Kestane çatlağa burnunu yaklaştırdı. \"Doğru kaya, serin,\" dedi. Çatlak tam çizdiği gibiydi. Deniz bir sonraki işareti hatırladı ve yürüdü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Haritayı izleyip çatlak kayaya vardılar. Kestane çatlağa burnunu yaklaştırdı. \"Doğru kaya, serin,\" dedi. Çatlak tam çizdiği gibiydi. Deniz bir sonraki işareti hatırladı ve yürüdü.",
+        "poseAndActionEvidence": [
+          "Haritayı izleyip çatlak kayaya vardılar.",
+          "Kestane çatlağa burnunu yaklaştırdı.",
+          "\"Doğru kaya, serin,\" dedi.",
+          "Çatlak tam çizdiği gibiydi.",
+          "Deniz bir sonraki işareti hatırladı ve yürüdü."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Haritayı izleyip çatlak kayaya vardılar. Kestane çatlağa burnunu yaklaştırdı. \"Doğru kaya, serin,\" dedi. Çatlak tam çizdiği gibiydi. Deniz bir sonraki işareti hatırladı ve yürüdü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p05",
+        "quoteSHA256": "7563136933e5cde70d11ce14ce6cd35179f50e3de81ea6204c9d7176e0fb5f2b",
+        "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "7563136933e5cde70d11ce14ce6cd35179f50e3de81ea6204c9d7176e0fb5f2b",
+      "text": "Haritayı izleyip çatlak kayaya vardılar. Kestane çatlağa burnunu yaklaştırdı. \"Doğru kaya, serin,\" dedi. Çatlak tam çizdiği gibiydi. Deniz bir sonraki işareti hatırladı ve yürüdü.",
+      "sourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p05",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+      "rawPageMove": "child_checks_map",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; taş; taş/çakıl",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Yeşil yapraklar yolun iki yanındaydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Sonra taş duvar göründü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Sonra taş duvar göründü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz eğrelti otlarını hatırladı. Yeşil yapraklar yolun iki yanındaydı. Sonra taş duvar göründü. \"Az kaldı,\" dedi. Kestane eğreltilerin altından geçti.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p06",
+            "evidenceText": "Deniz eğrelti otlarını hatırladı. Yeşil yapraklar yolun iki yanındaydı. Sonra taş duvar göründü. \"Az kaldı,\" dedi. Kestane eğreltilerin altından geçti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz eğrelti otlarını hatırladı. Yeşil yapraklar yolun iki yanındaydı. Sonra taş duvar göründü. \"Az kaldı,\" dedi. Kestane eğreltilerin altından geçti.",
+        "poseAndActionEvidence": [
+          "Deniz eğrelti otlarını hatırladı.",
+          "Yeşil yapraklar yolun iki yanındaydı.",
+          "Sonra taş duvar göründü.",
+          "\"Az kaldı,\" dedi.",
+          "Kestane eğreltilerin altından geçti."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz eğrelti otlarını hatırladı. Yeşil yapraklar yolun iki yanındaydı. Sonra taş duvar göründü. \"Az kaldı,\" dedi. Kestane eğreltilerin altından geçti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p06",
+        "quoteSHA256": "f473e5aa986870f3c5ec84b972dbff250fe886bad0db13cce53c883edd478349",
+        "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "f473e5aa986870f3c5ec84b972dbff250fe886bad0db13cce53c883edd478349",
+      "text": "Deniz eğrelti otlarını hatırladı. Yeşil yapraklar yolun iki yanındaydı. Sonra taş duvar göründü. \"Az kaldı,\" dedi. Kestane eğreltilerin altından geçti.",
+      "sourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p06",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+      "rawPageMove": "goal_reached",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl; top/şapka/uçurtma; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Taş duvarın sonunda çanlı kapı vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Taş duvarın sonunda çanlı kapı vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kestane heyecandan top oldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Taş duvarın sonunda çanlı kapı vardı.",
+              "Deniz çanı çaldı.",
+              "Çanın sesi ormana yayıldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Taş duvarın sonunda çanlı kapı vardı. Deniz çanı çaldı. Tın tın! Kestane heyecandan top oldu. Deniz sevinçle zıpladı. Kestane’nin dikenleri titredi. Çanın sesi ormana yayıldı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p07",
+            "evidenceText": "Taş duvarın sonunda çanlı kapı vardı. Deniz çanı çaldı. Tın tın! Kestane heyecandan top oldu. Deniz sevinçle zıpladı. Kestane’nin dikenleri titredi. Çanın sesi ormana yayıldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Taş duvarın sonunda çanlı kapı vardı. Deniz çanı çaldı. Tın tın! Kestane heyecandan top oldu. Deniz sevinçle zıpladı. Kestane’nin dikenleri titredi. Çanın sesi ormana yayıldı.",
+        "poseAndActionEvidence": [
+          "Taş duvarın sonunda çanlı kapı vardı.",
+          "Deniz çanı çaldı.",
+          "Tın tın!",
+          "Kestane heyecandan top oldu.",
+          "Deniz sevinçle zıpladı.",
+          "Kestane’nin dikenleri titredi.",
+          "Çanın sesi ormana yayıldı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Taş duvarın sonunda çanlı kapı vardı. Deniz çanı çaldı. Tın tın! Kestane heyecandan top oldu. Deniz sevinçle zıpladı. Kestane’nin dikenleri titredi. Çanın sesi ormana yayıldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p07",
+        "quoteSHA256": "4a41ab5a1a9181ca69501714ea786f51be0e617fac1d8a31b5e74c9dd92f065c",
+        "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "4a41ab5a1a9181ca69501714ea786f51be0e617fac1d8a31b5e74c9dd92f065c",
+      "text": "Taş duvarın sonunda çanlı kapı vardı. Deniz çanı çaldı. Tın tın! Kestane heyecandan top oldu. Deniz sevinçle zıpladı. Kestane’nin dikenleri titredi. Çanın sesi ormana yayıldı.",
+      "sourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p07",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+      "rawPageMove": "closed_return",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; tahta işaret parçaları; lamba/fener/ışık; kar/battaniye; harita/çizim",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Kestane hardal yaprağını salladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Dönüşte Deniz haritasındaki işaretleri saydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Ormanın yolu artık karışık değildi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Ormanın yolu artık karışık değildi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "harita/çizim",
+            "evidenceQuotes": [
+              "Dönüşte Deniz haritasındaki işaretleri saydı.",
+              "\"Haritan benim dikenlerimden iyi,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Dönüşte Deniz haritasındaki işaretleri saydı. Kestane hardal yaprağını salladı. \"Haritan benim dikenlerimden iyi,\" dedi. Deniz’in yanakları gülümsemeyle kabardı. Ormanın yolu artık karışık değildi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p08",
+            "evidenceText": "Dönüşte Deniz haritasındaki işaretleri saydı. Kestane hardal yaprağını salladı. \"Haritan benim dikenlerimden iyi,\" dedi. Deniz’in yanakları gülümsemeyle kabardı. Ormanın yolu artık karışık değildi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Dönüşte Deniz haritasındaki işaretleri saydı. Kestane hardal yaprağını salladı. \"Haritan benim dikenlerimden iyi,\" dedi. Deniz’in yanakları gülümsemeyle kabardı. Ormanın yolu artık karışık değildi.",
+        "poseAndActionEvidence": [
+          "Dönüşte Deniz haritasındaki işaretleri saydı.",
+          "Kestane hardal yaprağını salladı.",
+          "\"Haritan benim dikenlerimden iyi,\" dedi.",
+          "Deniz’in yanakları gülümsemeyle kabardı.",
+          "Ormanın yolu artık karışık değildi."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Dönüşte Deniz haritasındaki işaretleri saydı. Kestane hardal yaprağını salladı. \"Haritan benim dikenlerimden iyi,\" dedi. Deniz’in yanakları gülümsemeyle kabardı. Ormanın yolu artık karışık değildi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p08",
+        "quoteSHA256": "4989b7419c38c318123854385da20d753bbcf04c8e25c1f7f04e5d86a86491db",
+        "bookID": "pilot56_book_a6_hedgehog_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "4989b7419c38c318123854385da20d753bbcf04c8e25c1f7f04e5d86a86491db",
+      "text": "Dönüşte Deniz haritasındaki işaretleri saydı. Kestane hardal yaprağını salladı. \"Haritan benim dikenlerimden iyi,\" dedi. Deniz’in yanakları gülümsemeyle kabardı. Ormanın yolu artık karışık değildi.",
+      "sourceID": "p56_wave1_pilot56_book_a6_hedgehog_event03_v1_p08",
+      "sourcePointer": "input/adventure-hedgehog.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk bildiği üç işareti dalla yere çizer ve haritayı izleyerek yolu bulur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

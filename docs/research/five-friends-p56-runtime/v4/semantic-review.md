@@ -1,0 +1,26 @@
+# v4 revision2 source review
+
+Revision2 delta review by root:18 changed pages and all8current pages of17affected books read; unchanged253books reused only with byte-identical title/pages and unchanged context. Source notes/book identities unchanged. No prose edits; no runtime/art approval.
+
+Current changes:2pages. Known prior blockers resolved by the reviewed corrections; other minor editorial/constraint notes remain. Waves remain authoring-only, no typed/runtime approval.
+
+## Retained non-blocking editorial notes
+
+- pilot56_book_a1_cat_v1 p5: p4 explicitly takes first step. Frozen first_step p5 has Simit reflecting on jump and child laughing/asking friend to walk, no explicit child step on that page.
+- pilot56_book_u3_cat_v1 p3: Frozen memoryShared fact is assigned to p3, but p3 contains friend reception/question/joke and child reaction rather than an explicit telling of the chosen detail. Actual detail is spoken p4. Child selection/limit/release remain supported.
+- pilot56_book_u3_cat_event02_v1 p3: Frozen memoryShared fact is assigned to p3, but p3 contains friend reception/question/joke and child reaction rather than an explicit telling of the chosen detail. Actual detail is spoken p4. Child selection/limit/release remain supported.
+- pilot56_book_u3_cat_event03_v1 p3: Frozen memoryShared fact is assigned to p3, but p3 contains friend reception/question/joke and child reaction rather than an explicit telling of the chosen detail. Actual detail is spoken p4. Child selection/limit/release remain supported.
+- pilot56_book_u3_fox_v1 p3: Frozen memoryShared fact is assigned to p3, but p3 contains friend reception/question/joke and child reaction rather than an explicit telling of the chosen detail. Actual detail is spoken p4. Child selection/limit/release remain supported.
+- pilot56_book_u3_fox_event02_v1 p3: Frozen memoryShared fact is assigned to p3, but p3 contains friend reception/question/joke and child reaction rather than an explicit telling of the chosen detail. Actual detail is spoken p4. Child selection/limit/release remain supported.
+- pilot56_book_u3_fox_event03_v1 p3: Frozen memoryShared fact is assigned to p3, but p3 contains friend reception/question/joke and child reaction rather than an explicit telling of the chosen detail. Actual detail is spoken p4. Child selection/limit/release remain supported.
+- pilot56_book_u3_hedgehog_v1 p3: Frozen memoryShared fact is assigned to p3, but p3 contains friend reception/question/joke and child reaction rather than an explicit telling of the chosen detail. Actual detail is spoken p4. Child selection/limit/release remain supported.
+- pilot56_book_u3_hedgehog_event02_v1 p3: Frozen memoryShared fact is assigned to p3, but p3 contains friend reception/question/joke and child reaction rather than an explicit telling of the chosen detail. Actual detail is spoken p4. Child selection/limit/release remain supported.
+- pilot56_book_u3_hedgehog_event03_v1 p3: Frozen memoryShared fact is assigned to p3, but p3 contains friend reception/question/joke and child reaction rather than an explicit telling of the chosen detail. Actual detail is spoken p4. Child selection/limit/release remain supported.
+- pilot56_book_u3_owl_v1 p3: Frozen memoryShared fact is assigned to p3, but p3 contains friend reception/question/joke and child reaction rather than an explicit telling of the chosen detail. Actual detail is spoken p4. Child selection/limit/release remain supported.
+- pilot56_book_u3_owl_event03_v1 p3: Frozen memoryShared fact is assigned to p3, but p3 contains friend reception/question/joke and child reaction rather than an explicit telling of the chosen detail. Actual detail is spoken p4. Child selection/limit/release remain supported.
+- pilot56_book_l2_bear_event03_v1 p3: Companion offers a curled-leaf joke, not a second-view observation on friend_second_view p3. Child later changes viewpoint independently; do not invent companion viewpoint evidence.
+- pilot56_book_l1_cat_event03_v1 p3: Companion asks a question or compares scents/city bell on friend_one_observation p3; no explicit contact/no-contact observation. Child later directly compares observations. Preserve exact evidence rather than inventing second causal observation.
+- pilot56_book_l1_fox_event03_v1 p3: Companion asks a question or compares scents/city bell on friend_one_observation p3; no explicit contact/no-contact observation. Child later directly compares observations. Preserve exact evidence rather than inventing second causal observation.
+- pilot56_book_l2_hedgehog_event03_v1 p3: Companion offers a curled-leaf joke, not a second-view observation on friend_second_view p3. Child later changes viewpoint independently; do not invent companion viewpoint evidence.
+- pilot56_book_l1_owl_v1 p3: Companion asks a question or compares scents/city bell on friend_one_observation p3; no explicit contact/no-contact observation. Child later directly compares observations. Preserve exact evidence rather than inventing second causal observation.
+- pilot56_book_l1_owl_event03_v1 p3: Companion asks a question or compares scents/city bell on friend_one_observation p3; no explicit contact/no-contact observation. Child later directly compares observations. Preserve exact evidence rather than inventing second causal observation.

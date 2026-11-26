@@ -133,6 +133,37 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · codex/bes-arkadas/claude-uygulama@62e39224 · P56 v4 pininin uygulama tarafı
+- Codex'in motor pini 87c8ea0 (v4, `v3SHA256` tarihsel) hatta birleşti; uygulama paketi v4 baytları (`cmp` eşit, SHA c06a5dfc…), v3 kopyası çıktı.
+- `P56SnapshotStore` v1–v4'ü tanır; testler etkin pini `P56PinnedSource`'tan okur, tarihsel v1/v2/v3 SHA'ları ayrı denetlenir.
+- Bilerek değişmeyen: v1/v2/v3 içerik dosyaları, motor sözleşmesi, üretim ve görsel onayları kapalı, push yok.
+- Test: seçili 9 uygulama suite'i 78 test, 0 hata. Simülatör (iPhone Air): bayrak açık, en korumalı profil, uyku öncesi + Yıldız masalı v4 kaynakla yazıldı/kaydedildi/açıldı; eski v3 masalı yerinde. Bayrak kapalı yol simülatörde ayrıca açılmadı (birim testi var).
+
+### 26 Kasım 2026 — Codex: V4 motor pin geçişi
+
+- Etkin pin V4; v3 ayrı geçmiş hash sabitiyle korunur. V1–V4 paket baytları değişmedi.
+- Yeniden derlenmiş Release: 7 test/0 hata. Uygulama paketleme/simülatör teslimi açıldı; üretim/görsel onayları kapalı.
+- Kanıt: docs/research/five-friends-p56-runtime/v4/pin-transition.md.
+
+
+### 26 Kasım 2026 — Codex: V4 ikinci metin düzeltmesi
+
+- 17 kitaptaki 18 sayfa, dalga envanteri ve hash bağlı semantik/causal/C3/art çıktıları yenilendi.
+- V4 630/630, N1500 1500/1500, Release 15 test/0 hata. Pin v3; eski paket baytları korunur, üretim/görsel kapalı. Dalga runtime kabulü beklemede.
+- Kanıt: docs/research/five-friends-p56-runtime/v4/REPORT.md.
+
+
+### 2026-11-26 · codex/bes-arkadas/codex-motor, commit yok · V4 aday ve270güncel metin denetimi
+
+- V4yeni90kitaplık korpus/runtime/strictloader/metadatahazırlandı;v1/v2/v3byteveetkinpinv3korundu. İki dalga180kitap için authoring-onlykorpuslar ve güncelkaynakenvanteri üretildi;waveengine/typed/recencyuygulanmadı.
+- 270başlık/2160sayfa güncelmetinlerdenC3/semantik/causal/artincelemesi aldı,quote/page/bookhashbağları0uyuşmazlıkla doğrulandı. Metinler değiştirilmedi. V4iki p8kapanışı ve dalgalarda5semantikengel metinsahibineraporlandı;engeller gizlenmedi.
+- Release15testte birkabul testinin4assertion'ıred;diğer14testgeçti. V4fixture616/630,N15001475/1500,25bedtime-open-ending,0retry;0age/trace/safetybinding sorunu. Python/Swift720metrikparitesi0fark. V4kabul/pingeçişiyok.
+- Kanonik270pool/45tekil lintpass;8eskikopyalıham318poolfailayrıloglandı,orijinallersilinmedi. ÖrnekJSONeşleşmeleri6/9ve3/9olaraktazelendi;eskionaymetniyenikanıtolarakkullanılmadı. Dalga2teslimine nefes tutma hatasıatfedilmedi.
+- Art90kaynakta88runtime+2authored-only;waveart180authoredkitap. Görsel/atomic/yayınonayıyok. Dosyalar:yeniV4vewave1/2Content,loader/metadata/testler,research/v4veenvanter,plan/durum/hafıza/günlük. App/main/entegrasyon/pushyok.
+
+
+### 2026-11-26 · codex/bes-arkadas/codex-motor@024b8a5 · Onaylı v3 motor pini ve iki dalga hazırlığı
+
 ### 2026-11-26 · main, commit bu kayıtla · 5 görüntü testinin referansları yenilendi
 - `DesignSystemSnapshotTests`'te eskimiş 5 test (düğmeler, seçim satırları, kahraman kartı, durum görünümü, beş kâğıtta okuyucu sayfası) iPhone 17 Pro (iOS 27) simülatöründe yeniden kaydedildi; 13 PNG. Bölüm ve sekme başlığı referansları değişmedi.
 - Görülen fark bilinçli tasarım değişiklikleri: örneğin devre dışı düğme sıcak griden soğuk lavanta griye geçmiş. Kod değişmedi.

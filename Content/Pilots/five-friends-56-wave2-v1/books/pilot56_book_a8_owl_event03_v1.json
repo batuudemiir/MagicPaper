@@ -1,0 +1,981 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a8_owl_event03_v1",
+  "title": "Yıldız Fırça Taşıyor",
+  "context": {
+    "settingName": "Kozalak Tepesi'nden Ağaç Ev'e patika",
+    "mode": "adventure",
+    "companionID": "companion_owl_pilot_001",
+    "structure": "A8",
+    "event": "e3",
+    "mechanism": "share-the-load",
+    "sourceFilename": "adventure-owl.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a8_owl_event03_v1",
+    "sourceBookID": "pilot56_book_a8_owl_event03_v1",
+    "structure": "A8",
+    "event": "e3",
+    "sample": false,
+    "title": "Yıldız Fırça Taşıyor",
+    "pages": [
+      "Çiçekli Çayır’da resim günü bitmek üzereydi. Deniz Ağaç Ev’e dönmek istedi. Yıldız bir dalda oturuyordu. Bir tüyünün ucu sarıya boyanmıştı.",
+      "Resim günü bitmişti. Çimende kâğıtlar, boya kutusu, fırçalar ve su kabı vardı. Yıldız fırçalara merakla baktı. Deniz hepsini birden aldı. Kâğıtlar rüzgârda uçuştu.",
+      "\"Hımm… ben kâğıtları taşırım,\" dedi Yıldız. Kâğıtlara kondu. Rüzgâr esince kâğıtlar Yıldız'la birlikte kaydı! Yıldız çimene yuvarlandı. Deniz karnını tutarak güldü.",
+      "Deniz eşyaları yere bıraktı. \"Bunları bölelim,\" dedi. Kâğıtları üst üste koyup bir taşla bastırdı. Fırçaları kutuya yerleştirdi. Yıldız tek fırçayı gözüne kestirdi.",
+      "Deniz bir süre düşündü. Yıldız ince ve hafif bir şeyi tutabilirdi. En küçük fırçayı ona uzattı. \"Sen bunu taşı,\" dedi. Yıldız fırçayı pençesine aldı.",
+      "Deniz kâğıtları, kutuyu ve su kabını aldı. \"Sen küçük fırçayı, ben gerisini taşıyorum,\" dedi. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Dengeli bir yük,\" dedi Deniz.",
+      "Patika boyunca ilerlediler. Yıldız fırçayı tutarak dal dal uçtu. Ağaç Ev göründü. Deniz eşyaları masaya dizdi. Fırçanın ucu hiç yere değmedi.",
+      "Yıldız fırçayı kutunun yanına bıraktı. Sonra sarı tüyüne baktı. \"Bu fırçayla mı boyandım acaba?\" dedi. Deniz kıkır kıkır güldü. Yıldız gözlerini kırpıştırdı. Yıldız da kanatlarını açıp kıkırdadı."
+    ]
+  },
+  "inputFileSHA256": "d0e77df2cfbeb2b6d8d21e936c891aec9b630d49794ffbd2f2b70e89c557aa69",
+  "inputBookPointer": "input/adventure-owl.json#/books/2",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a8_owl_event03_v1",
+      "rawPageMove": "load_full",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; ağaç/gövde; tüy; papatya/çiçek/yonca; resim eşyası",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Yıldız bir dalda oturuyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Deniz Ağaç Ev’e dönmek istedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Bir tüyünün ucu sarıya boyanmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da resim günü bitmek üzereydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Bir tüyünün ucu sarıya boyanmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Çiçekli Çayır’da resim günü bitmek üzereydi. Deniz Ağaç Ev’e dönmek istedi. Yıldız bir dalda oturuyordu. Bir tüyünün ucu sarıya boyanmıştı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p01",
+            "evidenceText": "Çiçekli Çayır’da resim günü bitmek üzereydi. Deniz Ağaç Ev’e dönmek istedi. Yıldız bir dalda oturuyordu. Bir tüyünün ucu sarıya boyanmıştı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da resim günü bitmek üzereydi. Deniz Ağaç Ev’e dönmek istedi. Yıldız bir dalda oturuyordu. Bir tüyünün ucu sarıya boyanmıştı.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da resim günü bitmek üzereydi.",
+          "Deniz Ağaç Ev’e dönmek istedi.",
+          "Yıldız bir dalda oturuyordu.",
+          "Bir tüyünün ucu sarıya boyanmıştı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da resim günü bitmek üzereydi. Deniz Ağaç Ev’e dönmek istedi. Yıldız bir dalda oturuyordu. Bir tüyünün ucu sarıya boyanmıştı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p01",
+        "quoteSHA256": "cc3eeab07d9fbae157e3494018b8c50b0d4bb26bb4afc5929c28848aa097da1c",
+        "bookID": "pilot56_book_a8_owl_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "cc3eeab07d9fbae157e3494018b8c50b0d4bb26bb4afc5929c28848aa097da1c",
+      "text": "Çiçekli Çayır’da resim günü bitmek üzereydi. Deniz Ağaç Ev’e dönmek istedi. Yıldız bir dalda oturuyordu. Bir tüyünün ucu sarıya boyanmıştı.",
+      "sourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p01",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a8_owl_event03_v1",
+      "rawPageMove": "lift_try",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "su/birikinti; sepet/kutu; resim eşyası",
+        "propMentions": [
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Çimende kâğıtlar, boya kutusu, fırçalar ve su kabı vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Çimende kâğıtlar, boya kutusu, fırçalar ve su kabı vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Çimende kâğıtlar, boya kutusu, fırçalar ve su kabı vardı.",
+              "Yıldız fırçalara merakla baktı.",
+              "Kâğıtlar rüzgârda uçuştu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Resim günü bitmişti. Çimende kâğıtlar, boya kutusu, fırçalar ve su kabı vardı. Yıldız fırçalara merakla baktı. Deniz hepsini birden aldı. Kâğıtlar rüzgârda uçuştu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p02",
+            "evidenceText": "Resim günü bitmişti. Çimende kâğıtlar, boya kutusu, fırçalar ve su kabı vardı. Yıldız fırçalara merakla baktı. Deniz hepsini birden aldı. Kâğıtlar rüzgârda uçuştu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Resim günü bitmişti. Çimende kâğıtlar, boya kutusu, fırçalar ve su kabı vardı. Yıldız fırçalara merakla baktı. Deniz hepsini birden aldı. Kâğıtlar rüzgârda uçuştu.",
+        "poseAndActionEvidence": [
+          "Resim günü bitmişti.",
+          "Çimende kâğıtlar, boya kutusu, fırçalar ve su kabı vardı.",
+          "Yıldız fırçalara merakla baktı.",
+          "Deniz hepsini birden aldı.",
+          "Kâğıtlar rüzgârda uçuştu."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Resim günü bitmişti. Çimende kâğıtlar, boya kutusu, fırçalar ve su kabı vardı. Yıldız fırçalara merakla baktı. Deniz hepsini birden aldı. Kâğıtlar rüzgârda uçuştu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p02",
+        "quoteSHA256": "54b650e8bed36c35ce53bded06068045a881e6f9f05f0f9f629ddcf550ef8881",
+        "bookID": "pilot56_book_a8_owl_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "54b650e8bed36c35ce53bded06068045a881e6f9f05f0f9f629ddcf550ef8881",
+      "text": "Resim günü bitmişti. Çimende kâğıtlar, boya kutusu, fırçalar ve su kabı vardı. Yıldız fırçalara merakla baktı. Deniz hepsini birden aldı. Kâğıtlar rüzgârda uçuştu.",
+      "sourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p02",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a8_owl_event03_v1",
+      "rawPageMove": "friend_tries",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; taş; taş/çakıl; resim eşyası; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Yıldız çimene yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "ben kâğıtları taşırım,\" dedi Yıldız."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "ben kâğıtları taşırım,\" dedi Yıldız."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "ben kâğıtları taşırım,\" dedi Yıldız.",
+              "Kâğıtlara kondu.",
+              "Rüzgâr esince kâğıtlar Yıldız'la birlikte kaydı!"
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Yıldız çimene yuvarlandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "\"Hımm… ben kâğıtları taşırım,\" dedi Yıldız. Kâğıtlara kondu. Rüzgâr esince kâğıtlar Yıldız'la birlikte kaydı! Yıldız çimene yuvarlandı. Deniz karnını tutarak güldü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p03",
+            "evidenceText": "\"Hımm… ben kâğıtları taşırım,\" dedi Yıldız. Kâğıtlara kondu. Rüzgâr esince kâğıtlar Yıldız'la birlikte kaydı! Yıldız çimene yuvarlandı. Deniz karnını tutarak güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Hımm… ben kâğıtları taşırım,\" dedi Yıldız. Kâğıtlara kondu. Rüzgâr esince kâğıtlar Yıldız'la birlikte kaydı! Yıldız çimene yuvarlandı. Deniz karnını tutarak güldü.",
+        "poseAndActionEvidence": [
+          "\"Hımm…",
+          "ben kâğıtları taşırım,\" dedi Yıldız.",
+          "Kâğıtlara kondu.",
+          "Rüzgâr esince kâğıtlar Yıldız'la birlikte kaydı!",
+          "Yıldız çimene yuvarlandı.",
+          "Deniz karnını tutarak güldü."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_owl_pilot_001",
+        "quote": "\"Hımm… ben kâğıtları taşırım,\" dedi Yıldız. Kâğıtlara kondu. Rüzgâr esince kâğıtlar Yıldız'la birlikte kaydı! Yıldız çimene yuvarlandı. Deniz karnını tutarak güldü.",
+        "attributionQuote": "Yıldız",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p03",
+        "quoteSHA256": "0b5a13423ded4ab35af33fbafd58875caf082a76af4fe8d2ba36c2ef8e049dfc",
+        "bookID": "pilot56_book_a8_owl_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "0b5a13423ded4ab35af33fbafd58875caf082a76af4fe8d2ba36c2ef8e049dfc",
+      "text": "\"Hımm… ben kâğıtları taşırım,\" dedi Yıldız. Kâğıtlara kondu. Rüzgâr esince kâğıtlar Yıldız'la birlikte kaydı! Yıldız çimene yuvarlandı. Deniz karnını tutarak güldü.",
+      "sourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p03",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a8_owl_event03_v1",
+      "rawPageMove": "child_splits",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl; sepet/kutu; resim eşyası",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Kâğıtları üst üste koyup bir taşla bastırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Kâğıtları üst üste koyup bir taşla bastırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Fırçaları kutuya yerleştirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Kâğıtları üst üste koyup bir taşla bastırdı.",
+              "Fırçaları kutuya yerleştirdi.",
+              "Yıldız tek fırçayı gözüne kestirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz eşyaları yere bıraktı. \"Bunları bölelim,\" dedi. Kâğıtları üst üste koyup bir taşla bastırdı. Fırçaları kutuya yerleştirdi. Yıldız tek fırçayı gözüne kestirdi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p04",
+            "evidenceText": "Deniz eşyaları yere bıraktı. \"Bunları bölelim,\" dedi. Kâğıtları üst üste koyup bir taşla bastırdı. Fırçaları kutuya yerleştirdi. Yıldız tek fırçayı gözüne kestirdi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz eşyaları yere bıraktı. \"Bunları bölelim,\" dedi. Kâğıtları üst üste koyup bir taşla bastırdı. Fırçaları kutuya yerleştirdi. Yıldız tek fırçayı gözüne kestirdi.",
+        "poseAndActionEvidence": [
+          "Deniz eşyaları yere bıraktı.",
+          "\"Bunları bölelim,\" dedi.",
+          "Kâğıtları üst üste koyup bir taşla bastırdı.",
+          "Fırçaları kutuya yerleştirdi.",
+          "Yıldız tek fırçayı gözüne kestirdi."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz eşyaları yere bıraktı. \"Bunları bölelim,\" dedi. Kâğıtları üst üste koyup bir taşla bastırdı. Fırçaları kutuya yerleştirdi. Yıldız tek fırçayı gözüne kestirdi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p04",
+        "quoteSHA256": "10b91eac16d1c86078a301984c665c90dcab98e2abd0b4349a2cb41b6c894f6f",
+        "bookID": "pilot56_book_a8_owl_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "10b91eac16d1c86078a301984c665c90dcab98e2abd0b4349a2cb41b6c894f6f",
+      "text": "Deniz eşyaları yere bıraktı. \"Bunları bölelim,\" dedi. Kâğıtları üst üste koyup bir taşla bastırdı. Fırçaları kutuya yerleştirdi. Yıldız tek fırçayı gözüne kestirdi.",
+      "sourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p04",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a8_owl_event03_v1",
+      "rawPageMove": "first_piece",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; taş/çakıl; resim eşyası",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "\"Sen bunu taşı,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "\"Sen bunu taşı,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "En küçük fırçayı ona uzattı.",
+              "Yıldız fırçayı pençesine aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz bir süre düşündü. Yıldız ince ve hafif bir şeyi tutabilirdi. En küçük fırçayı ona uzattı. \"Sen bunu taşı,\" dedi. Yıldız fırçayı pençesine aldı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p05",
+            "evidenceText": "Deniz bir süre düşündü. Yıldız ince ve hafif bir şeyi tutabilirdi. En küçük fırçayı ona uzattı. \"Sen bunu taşı,\" dedi. Yıldız fırçayı pençesine aldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz bir süre düşündü. Yıldız ince ve hafif bir şeyi tutabilirdi. En küçük fırçayı ona uzattı. \"Sen bunu taşı,\" dedi. Yıldız fırçayı pençesine aldı.",
+        "poseAndActionEvidence": [
+          "Deniz bir süre düşündü.",
+          "Yıldız ince ve hafif bir şeyi tutabilirdi.",
+          "En küçük fırçayı ona uzattı.",
+          "\"Sen bunu taşı,\" dedi.",
+          "Yıldız fırçayı pençesine aldı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz bir süre düşündü. Yıldız ince ve hafif bir şeyi tutabilirdi. En küçük fırçayı ona uzattı. \"Sen bunu taşı,\" dedi. Yıldız fırçayı pençesine aldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p05",
+        "quoteSHA256": "2bf7d888e176131dd0e51f80ede29b952795b46e51979c621644c9d770a95b53",
+        "bookID": "pilot56_book_a8_owl_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "2bf7d888e176131dd0e51f80ede29b952795b46e51979c621644c9d770a95b53",
+      "text": "Deniz bir süre düşündü. Yıldız ince ve hafif bir şeyi tutabilirdi. En küçük fırçayı ona uzattı. \"Sen bunu taşı,\" dedi. Yıldız fırçayı pençesine aldı.",
+      "sourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p05",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a8_owl_event03_v1",
+      "rawPageMove": "child_matches",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "taş; su/birikinti; taş/çakıl; sepet/kutu; resim eşyası",
+        "propMentions": [
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "\"Sen küçük fırçayı, ben gerisini taşıyorum,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "su/birikinti",
+            "evidenceQuotes": [
+              "Deniz kâğıtları, kutuyu ve su kabını aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "\"Sen küçük fırçayı, ben gerisini taşıyorum,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Deniz kâğıtları, kutuyu ve su kabını aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Deniz kâğıtları, kutuyu ve su kabını aldı.",
+              "\"Sen küçük fırçayı, ben gerisini taşıyorum,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz kâğıtları, kutuyu ve su kabını aldı. \"Sen küçük fırçayı, ben gerisini taşıyorum,\" dedi. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Dengeli bir yük,\" dedi Deniz.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p06",
+            "evidenceText": "Deniz kâğıtları, kutuyu ve su kabını aldı. \"Sen küçük fırçayı, ben gerisini taşıyorum,\" dedi. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Dengeli bir yük,\" dedi Deniz.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kâğıtları, kutuyu ve su kabını aldı. \"Sen küçük fırçayı, ben gerisini taşıyorum,\" dedi. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Dengeli bir yük,\" dedi Deniz.",
+        "poseAndActionEvidence": [
+          "Deniz kâğıtları, kutuyu ve su kabını aldı.",
+          "\"Sen küçük fırçayı, ben gerisini taşıyorum,\" dedi.",
+          "\"Hımm…",
+          "sen ne görüyorsun?\" dedi Yıldız.",
+          "\"Dengeli bir yük,\" dedi Deniz."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kâğıtları, kutuyu ve su kabını aldı. \"Sen küçük fırçayı, ben gerisini taşıyorum,\" dedi. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Dengeli bir yük,\" dedi Deniz.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p06",
+        "quoteSHA256": "58043bca19fc1f70e6a60248b59b1db063000b2cb31cadda9fccfa469cafa049",
+        "bookID": "pilot56_book_a8_owl_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "58043bca19fc1f70e6a60248b59b1db063000b2cb31cadda9fccfa469cafa049",
+      "text": "Deniz kâğıtları, kutuyu ve su kabını aldı. \"Sen küçük fırçayı, ben gerisini taşıyorum,\" dedi. \"Hımm… sen ne görüyorsun?\" dedi Yıldız. \"Dengeli bir yük,\" dedi Deniz.",
+      "sourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p06",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a8_owl_event03_v1",
+      "rawPageMove": "arrival",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; ağaç/gövde; resim eşyası; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Yıldız fırçayı tutarak dal dal uçtu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Ağaç Ev göründü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Yıldız fırçayı tutarak dal dal uçtu.",
+              "Fırçanın ucu hiç yere değmedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Fırçanın ucu hiç yere değmedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Patika boyunca ilerlediler. Yıldız fırçayı tutarak dal dal uçtu. Ağaç Ev göründü. Deniz eşyaları masaya dizdi. Fırçanın ucu hiç yere değmedi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p07",
+            "evidenceText": "Patika boyunca ilerlediler. Yıldız fırçayı tutarak dal dal uçtu. Ağaç Ev göründü. Deniz eşyaları masaya dizdi. Fırçanın ucu hiç yere değmedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Patika boyunca ilerlediler. Yıldız fırçayı tutarak dal dal uçtu. Ağaç Ev göründü. Deniz eşyaları masaya dizdi. Fırçanın ucu hiç yere değmedi.",
+        "poseAndActionEvidence": [
+          "Patika boyunca ilerlediler.",
+          "Yıldız fırçayı tutarak dal dal uçtu.",
+          "Ağaç Ev göründü.",
+          "Deniz eşyaları masaya dizdi.",
+          "Fırçanın ucu hiç yere değmedi."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Patika boyunca ilerlediler. Yıldız fırçayı tutarak dal dal uçtu. Ağaç Ev göründü. Deniz eşyaları masaya dizdi. Fırçanın ucu hiç yere değmedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p07",
+        "quoteSHA256": "221ea29525751eac423e646b21f665389842a9a1087e8bbaa0aa1dcfa16f71f2",
+        "bookID": "pilot56_book_a8_owl_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "221ea29525751eac423e646b21f665389842a9a1087e8bbaa0aa1dcfa16f71f2",
+      "text": "Patika boyunca ilerlediler. Yıldız fırçayı tutarak dal dal uçtu. Ağaç Ev göründü. Deniz eşyaları masaya dizdi. Fırçanın ucu hiç yere değmedi.",
+      "sourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p07",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a8_owl_event03_v1",
+      "rawPageMove": "closing",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tüy; sepet/kutu; resim eşyası",
+        "propMentions": [
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Sonra sarı tüyüne baktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Yıldız fırçayı kutunun yanına bıraktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Yıldız fırçayı kutunun yanına bıraktı.",
+              "\"Bu fırçayla mı boyandım acaba?\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Yıldız fırçayı kutunun yanına bıraktı. Sonra sarı tüyüne baktı. \"Bu fırçayla mı boyandım acaba?\" dedi. Deniz kıkır kıkır güldü. Yıldız gözlerini kırpıştırdı. Yıldız da kanatlarını açıp kıkırdadı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p08",
+            "evidenceText": "Yıldız fırçayı kutunun yanına bıraktı. Sonra sarı tüyüne baktı. \"Bu fırçayla mı boyandım acaba?\" dedi. Deniz kıkır kıkır güldü. Yıldız gözlerini kırpıştırdı. Yıldız da kanatlarını açıp kıkırdadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yıldız fırçayı kutunun yanına bıraktı. Sonra sarı tüyüne baktı. \"Bu fırçayla mı boyandım acaba?\" dedi. Deniz kıkır kıkır güldü. Yıldız gözlerini kırpıştırdı. Yıldız da kanatlarını açıp kıkırdadı.",
+        "poseAndActionEvidence": [
+          "Yıldız fırçayı kutunun yanına bıraktı.",
+          "Sonra sarı tüyüne baktı.",
+          "\"Bu fırçayla mı boyandım acaba?\" dedi.",
+          "Deniz kıkır kıkır güldü.",
+          "Yıldız gözlerini kırpıştırdı.",
+          "Yıldız da kanatlarını açıp kıkırdadı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Yük geniş/hantaldır; çocuğa aşırı ağır yük görüntüsü eklenmez. Kimin hangi eşyayı taşıdığı p5–p6daki açık sözlere göre korunur. Yıldız küçük parçayı pençeyle, dört ayaklılar açıkça yazılmışsa ağızla taşır; taşıma uzvu uydurulmaz.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Yıldız fırçayı kutunun yanına bıraktı. Sonra sarı tüyüne baktı. \"Bu fırçayla mı boyandım acaba?\" dedi. Deniz kıkır kıkır güldü. Yıldız gözlerini kırpıştırdı. Yıldız da kanatlarını açıp kıkırdadı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p08",
+        "quoteSHA256": "7b96028f371328d0571d8a0b5c77600a00d3b63283f76a30ad4969b4ae262973",
+        "bookID": "pilot56_book_a8_owl_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "7b96028f371328d0571d8a0b5c77600a00d3b63283f76a30ad4969b4ae262973",
+      "text": "Yıldız fırçayı kutunun yanına bıraktı. Sonra sarı tüyüne baktı. \"Bu fırçayla mı boyandım acaba?\" dedi. Deniz kıkır kıkır güldü. Yıldız gözlerini kırpıştırdı. Yıldız da kanatlarını açıp kıkırdadı.",
+      "sourceID": "p56_wave2_pilot56_book_a8_owl_event03_v1_p08",
+      "sourcePointer": "input/adventure-owl.json#/books/2/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz yükü böler ve kimin neyi taşıyacağını arkadaşın bedenine göre eşleştirir.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

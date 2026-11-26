@@ -1,0 +1,50 @@
+[0/1] Planning build
+Test Suite 'Selected tests' started at 2026-11-26 18:13:48.916.
+Test Suite 'StoryEnginePackageTests.xctest' started at 2026-11-26 18:13:48.919.
+Test Suite 'P56PinTransitionTests' started at 2026-11-26 18:13:48.919.
+Test Case '-[StoryEngineTests.P56PinTransitionTests testApprovedActiveV3AndHistoricalPinsMatchExactBytes]' started.
+Test Case '-[StoryEngineTests.P56PinTransitionTests testApprovedActiveV3AndHistoricalPinsMatchExactBytes]' passed (6.526 seconds).
+Test Case '-[StoryEngineTests.P56PinTransitionTests testApprovedV3MostProtectiveOutputRoundTripsWithItsSource]' started.
+Test Case '-[StoryEngineTests.P56PinTransitionTests testApprovedV3MostProtectiveOutputRoundTripsWithItsSource]' passed (2.600 seconds).
+Test Suite 'P56PinTransitionTests' passed at 2026-11-26 18:13:58.045.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 9.125 (9.126) seconds
+Test Suite 'P56SourceMetadataTests' started at 2026-11-26 18:13:58.045.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testAllRuntimeVersionsKeepTheirDistinctReferenceIdentity]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testAllRuntimeVersionsKeepTheirDistinctReferenceIdentity]' passed (0.010 seconds).
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testLegacyExtensionFieldsKeepOriginalClassification]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testLegacyExtensionFieldsKeepOriginalClassification]' passed (0.015 seconds).
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testLegacySourceNeverBackfillsP56Reference]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testLegacySourceNeverBackfillsP56Reference]' passed (0.000 seconds).
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testMalformedAndFutureSourcesRemainLosslessAndNeverResolve]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testMalformedAndFutureSourcesRemainLosslessAndNeverResolve]' passed (0.001 seconds).
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testP56RoundTripUsesOnlyExactSourceFields]' started.
+Test Case '-[StoryEngineTests.P56SourceMetadataTests testP56RoundTripUsesOnlyExactSourceFields]' passed (0.552 seconds).
+Test Suite 'P56SourceMetadataTests' passed at 2026-11-26 18:13:58.623.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.578 (0.579) seconds
+Test Suite 'P56V4DiagnosticTests' started at 2026-11-26 18:13:58.623.
+Test Case '-[StoryEngineTests.P56V4DiagnosticTests testReportEveryPageAndBookWithoutHidingLoaderFailures]' started.
+Test Case '-[StoryEngineTests.P56V4DiagnosticTests testReportEveryPageAndBookWithoutHidingLoaderFailures]' passed (13.530 seconds).
+Test Suite 'P56V4DiagnosticTests' passed at 2026-11-26 18:14:12.154.
+	 Executed 1 test, with 0 failures (0 unexpected) in 13.530 (13.530) seconds
+Test Suite 'P56V4PackageTests' started at 2026-11-26 18:14:12.154.
+Test Case '-[StoryEngineTests.P56V4PackageTests testHistoricalPackagesRemainExplicitlyLoadable]' started.
+Test Case '-[StoryEngineTests.P56V4PackageTests testHistoricalPackagesRemainExplicitlyLoadable]' passed (6.255 seconds).
+Test Case '-[StoryEngineTests.P56V4PackageTests testV4ExactLoadAndReferenceRoundTrip]' started.
+Test Case '-[StoryEngineTests.P56V4PackageTests testV4ExactLoadAndReferenceRoundTrip]' passed (2.772 seconds).
+Test Case '-[StoryEngineTests.P56V4PackageTests testV4RejectsCorpusDigestAndCausalSnapshotCorruption]' started.
+Test Case '-[StoryEngineTests.P56V4PackageTests testV4RejectsCorpusDigestAndCausalSnapshotCorruption]' passed (22.515 seconds).
+Test Case '-[StoryEngineTests.P56V4PackageTests testV4RejectsLineageSourceAndAuthoredCorruption]' started.
+Test Case '-[StoryEngineTests.P56V4PackageTests testV4RejectsLineageSourceAndAuthoredCorruption]' passed (49.885 seconds).
+Test Case '-[StoryEngineTests.P56V4PackageTests testV4RejectsMissingDuplicateAndUnknownEventCoverage]' started.
+Test Case '-[StoryEngineTests.P56V4PackageTests testV4RejectsMissingDuplicateAndUnknownEventCoverage]' passed (15.846 seconds).
+Test Case '-[StoryEngineTests.P56V4PackageTests testV4RejectsUnreviewedTitleAndPage]' started.
+Test Case '-[StoryEngwarning: '--build-system native' has been deprecated and will be removed in a future release; please report an issue at https://github.com/swiftlang/swift-package-manager/issues if you are unable to adopt the default build system.
+ineTests.P56V4PackageTests testV4RejectsUnreviewedTitleAndPage]' passed (14.086 seconds).
+Test Case '-[StoryEngineTests.P56V4PackageTests testV4RequiresCompleteReviewedSafetyAndNoReleaseApproval]' started.
+Test Case '-[StoryEngineTests.P56V4PackageTests testV4RequiresCompleteReviewedSafetyAndNoReleaseApproval]' passed (36.592 seconds).
+Test Suite 'P56V4PackageTests' passed at 2026-11-26 18:16:40.112.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 147.952 (147.958) seconds
+Test Suite 'StoryEnginePackageTests.xctest' passed at 2026-11-26 18:16:40.112.
+	 Executed 15 tests, with 0 failures (0 unexpected) in 171.185 (171.193) seconds
+Test Suite 'Selected tests' passed at 2026-11-26 18:16:40.112.
+	 Executed 15 tests, with 0 failures (0 unexpected) in 171.185 (171.197) seconds

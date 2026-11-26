@@ -1,0 +1,910 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u7_bear_event03_v1",
+  "title": "Böğürtlen'in Mor Kalemi",
+  "context": {
+    "settingName": "Orman Kıyısındaki Oda",
+    "mode": "bedtime",
+    "companionID": "companion_bear_001",
+    "structure": "U7",
+    "event": "e3",
+    "mechanism": "toys-to-bed",
+    "sourceFilename": "bedtime-bear.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u7_bear_event03_v1",
+    "sourceBookID": "pilot56_book_u7_bear_event03_v1",
+    "structure": "U7",
+    "event": "e3",
+    "sample": false,
+    "title": "Böğürtlen'in Mor Kalemi",
+    "pages": [
+      "Orman Kıyısındaki Oda’da lambalar kısılmıştı. Deniz masasında oturuyordu. Böğürtlen masanın yanındaki döşeğe yaslanmıştı. Bordo çantası kapının yanında asılıydı. Ayı masanın üstündeki renklere bakıyordu.",
+      "Masada boya kalemleri dağınıktı. Kırmızı, mavi, sarı ve yeşil kalemler yuvarlanmıştı. Böğürtlen mor bir kalem aradı. \"Bir resim daha yapsam,\" dedi Deniz. Gözleri ağırdı.",
+      "Böğürtlen mor kalemi pençesine aldı. \"Bu benim rengim,\" dedi. Mor lekeli patisini gösterdi. \"Bak, patim de mor!\" Deniz burnunu kırıştırıp kıkırdadı.",
+      "Deniz kalemleri renk renk topladı. \"Maviler bu kutuda uyusun, kırmızılar şu kutuda,\" dedi. Böğürtlen kalemleri tek tek uzattı. Deniz her birini yerine yatırdı.",
+      "Böğürtlen mor kalemi kutusuna koymak istedi. Ama pençesi kutuya sığmadı. Kalemi Deniz’e uzattı. Deniz onu kutuya yatırıp gülümsedi.",
+      "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Öteki kalemler kutularındaydı. Böğürtlen masayı patisiyle sildi.",
+      "Böğürtlen kalın sesiyle mırıldandı. Hım hım… Mor lekeli patisini yanağının altına koydu. Deniz lambayı söndürüp yatağına uzandı. Oda karardı.",
+      "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri usulca kapandı. Kalemler kutularında, ayı döşeğinde dinlendi. Mor kalem de kutusunda sessizce bekledi."
+    ]
+  },
+  "inputFileSHA256": "81d248ed167ab9533c378bb02f7ea827c46473ea27e252501a7613815e98f45c",
+  "inputBookPointer": "input/bedtime-bear.json#/books/2",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u7_bear_event03_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek; çanta/askı; lamba/fener/ışık; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Böğürtlen masanın yanındaki döşeğe yaslanmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çanta/askı",
+            "evidenceQuotes": [
+              "Bordo çantası kapının yanında asılıydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Orman Kıyısındaki Oda’da lambalar kısılmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Bordo çantası kapının yanında asılıydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Orman Kıyısındaki Oda’da lambalar kısılmıştı. Deniz masasında oturuyordu. Böğürtlen masanın yanındaki döşeğe yaslanmıştı. Bordo çantası kapının yanında asılıydı. Ayı masanın üstündeki renklere bakıyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p01",
+            "evidenceText": "Orman Kıyısındaki Oda’da lambalar kısılmıştı. Deniz masasında oturuyordu. Böğürtlen masanın yanındaki döşeğe yaslanmıştı. Bordo çantası kapının yanında asılıydı. Ayı masanın üstündeki renklere bakıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Orman Kıyısındaki Oda’da lambalar kısılmıştı. Deniz masasında oturuyordu. Böğürtlen masanın yanındaki döşeğe yaslanmıştı. Bordo çantası kapının yanında asılıydı. Ayı masanın üstündeki renklere bakıyordu.",
+        "poseAndActionEvidence": [
+          "Orman Kıyısındaki Oda’da lambalar kısılmıştı.",
+          "Deniz masasında oturuyordu.",
+          "Böğürtlen masanın yanındaki döşeğe yaslanmıştı.",
+          "Bordo çantası kapının yanında asılıydı.",
+          "Ayı masanın üstündeki renklere bakıyordu."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Orman Kıyısındaki Oda’da lambalar kısılmıştı. Deniz masasında oturuyordu. Böğürtlen masanın yanındaki döşeğe yaslanmıştı. Bordo çantası kapının yanında asılıydı. Ayı masanın üstündeki renklere bakıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p01",
+        "quoteSHA256": "b6996624f612d83ca2f76d3795e033871481365bde02e2349e4f7397dccc5dc8",
+        "bookID": "pilot56_book_u7_bear_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "b6996624f612d83ca2f76d3795e033871481365bde02e2349e4f7397dccc5dc8",
+      "text": "Orman Kıyısındaki Oda’da lambalar kısılmıştı. Deniz masasında oturuyordu. Böğürtlen masanın yanındaki döşeğe yaslanmıştı. Bordo çantası kapının yanında asılıydı. Ayı masanın üstündeki renklere bakıyordu.",
+      "sourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p01",
+      "sourcePointer": "input/bedtime-bear.json#/books/2/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u7_bear_event03_v1",
+      "rawPageMove": "toys_scattered",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; renkli kalem; resim eşyası; iz/kum; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Kırmızı, mavi, sarı ve yeşil kalemler yuvarlanmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Masada boya kalemleri dağınıktı.",
+              "Kırmızı, mavi, sarı ve yeşil kalemler yuvarlanmıştı.",
+              "Böğürtlen mor bir kalem aradı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "resim eşyası",
+            "evidenceQuotes": [
+              "Masada boya kalemleri dağınıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "Kırmızı, mavi, sarı ve yeşil kalemler yuvarlanmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Kırmızı, mavi, sarı ve yeşil kalemler yuvarlanmıştı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Masada boya kalemleri dağınıktı. Kırmızı, mavi, sarı ve yeşil kalemler yuvarlanmıştı. Böğürtlen mor bir kalem aradı. \"Bir resim daha yapsam,\" dedi Deniz. Gözleri ağırdı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p02",
+            "evidenceText": "Masada boya kalemleri dağınıktı. Kırmızı, mavi, sarı ve yeşil kalemler yuvarlanmıştı. Böğürtlen mor bir kalem aradı. \"Bir resim daha yapsam,\" dedi Deniz. Gözleri ağırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Masada boya kalemleri dağınıktı. Kırmızı, mavi, sarı ve yeşil kalemler yuvarlanmıştı. Böğürtlen mor bir kalem aradı. \"Bir resim daha yapsam,\" dedi Deniz. Gözleri ağırdı.",
+        "poseAndActionEvidence": [
+          "Masada boya kalemleri dağınıktı.",
+          "Kırmızı, mavi, sarı ve yeşil kalemler yuvarlanmıştı.",
+          "Böğürtlen mor bir kalem aradı.",
+          "\"Bir resim daha yapsam,\" dedi Deniz.",
+          "Gözleri ağırdı."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Masada boya kalemleri dağınıktı. Kırmızı, mavi, sarı ve yeşil kalemler yuvarlanmıştı. Böğürtlen mor bir kalem aradı. \"Bir resim daha yapsam,\" dedi Deniz. Gözleri ağırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p02",
+        "quoteSHA256": "8fde3194343efa27c35cdc5bae680d6ea23eb561f477e7d7083722b696b626ac",
+        "bookID": "pilot56_book_u7_bear_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "8fde3194343efa27c35cdc5bae680d6ea23eb561f477e7d7083722b696b626ac",
+      "text": "Masada boya kalemleri dağınıktı. Kırmızı, mavi, sarı ve yeşil kalemler yuvarlanmıştı. Böğürtlen mor bir kalem aradı. \"Bir resim daha yapsam,\" dedi Deniz. Gözleri ağırdı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p02",
+      "sourcePointer": "input/bedtime-bear.json#/books/2/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u7_bear_event03_v1",
+      "rawPageMove": "friend_beds_wrong",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "renkli kalem",
+        "propMentions": [
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Böğürtlen mor kalemi pençesine aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen mor kalemi pençesine aldı. \"Bu benim rengim,\" dedi. Mor lekeli patisini gösterdi. \"Bak, patim de mor!\" Deniz burnunu kırıştırıp kıkırdadı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p03",
+            "evidenceText": "Böğürtlen mor kalemi pençesine aldı. \"Bu benim rengim,\" dedi. Mor lekeli patisini gösterdi. \"Bak, patim de mor!\" Deniz burnunu kırıştırıp kıkırdadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen mor kalemi pençesine aldı. \"Bu benim rengim,\" dedi. Mor lekeli patisini gösterdi. \"Bak, patim de mor!\" Deniz burnunu kırıştırıp kıkırdadı.",
+        "poseAndActionEvidence": [
+          "Böğürtlen mor kalemi pençesine aldı.",
+          "\"Bu benim rengim,\" dedi.",
+          "Mor lekeli patisini gösterdi.",
+          "\"Bak, patim de mor!\" Deniz burnunu kırıştırıp kıkırdadı."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_bear_001",
+        "quote": "Böğürtlen mor kalemi pençesine aldı. \"Bu benim rengim,\" dedi. Mor lekeli patisini gösterdi. \"Bak, patim de mor!\" Deniz burnunu kırıştırıp kıkırdadı.",
+        "attributionQuote": "Böğürtlen",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p03",
+        "quoteSHA256": "c276494d223562f2127773dd48f9f5fc8845b0ea3abaffbc848121ad96168b6a",
+        "bookID": "pilot56_book_u7_bear_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "c276494d223562f2127773dd48f9f5fc8845b0ea3abaffbc848121ad96168b6a",
+      "text": "Böğürtlen mor kalemi pençesine aldı. \"Bu benim rengim,\" dedi. Mor lekeli patisini gösterdi. \"Bak, patim de mor!\" Deniz burnunu kırıştırıp kıkırdadı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p03",
+      "sourcePointer": "input/bedtime-bear.json#/books/2/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u7_bear_event03_v1",
+      "rawPageMove": "child_picks_places",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tasma/zil; sepet/kutu; renkli kalem; iz/kum",
+        "propMentions": [
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "\"Maviler bu kutuda uyusun, kırmızılar şu kutuda,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "\"Maviler bu kutuda uyusun, kırmızılar şu kutuda,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Deniz kalemleri renk renk topladı.",
+              "Böğürtlen kalemleri tek tek uzattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "\"Maviler bu kutuda uyusun, kırmızılar şu kutuda,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz kalemleri renk renk topladı. \"Maviler bu kutuda uyusun, kırmızılar şu kutuda,\" dedi. Böğürtlen kalemleri tek tek uzattı. Deniz her birini yerine yatırdı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p04",
+            "evidenceText": "Deniz kalemleri renk renk topladı. \"Maviler bu kutuda uyusun, kırmızılar şu kutuda,\" dedi. Böğürtlen kalemleri tek tek uzattı. Deniz her birini yerine yatırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kalemleri renk renk topladı. \"Maviler bu kutuda uyusun, kırmızılar şu kutuda,\" dedi. Böğürtlen kalemleri tek tek uzattı. Deniz her birini yerine yatırdı.",
+        "poseAndActionEvidence": [
+          "Deniz kalemleri renk renk topladı.",
+          "\"Maviler bu kutuda uyusun, kırmızılar şu kutuda,\" dedi.",
+          "Böğürtlen kalemleri tek tek uzattı.",
+          "Deniz her birini yerine yatırdı."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kalemleri renk renk topladı. \"Maviler bu kutuda uyusun, kırmızılar şu kutuda,\" dedi. Böğürtlen kalemleri tek tek uzattı. Deniz her birini yerine yatırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p04",
+        "quoteSHA256": "626bc76c27248c4773c6b73a864edbe5d63128dea14392a770e8efbbb5fbcc2e",
+        "bookID": "pilot56_book_u7_bear_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "626bc76c27248c4773c6b73a864edbe5d63128dea14392a770e8efbbb5fbcc2e",
+      "text": "Deniz kalemleri renk renk topladı. \"Maviler bu kutuda uyusun, kırmızılar şu kutuda,\" dedi. Böğürtlen kalemleri tek tek uzattı. Deniz her birini yerine yatırdı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p04",
+      "sourcePointer": "input/bedtime-bear.json#/books/2/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u7_bear_event03_v1",
+      "rawPageMove": "soft_smile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "sepet/kutu; renkli kalem",
+        "propMentions": [
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Böğürtlen mor kalemi kutusuna koymak istedi.",
+              "Ama pençesi kutuya sığmadı.",
+              "Deniz onu kutuya yatırıp gülümsedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Böğürtlen mor kalemi kutusuna koymak istedi.",
+              "Kalemi Deniz’e uzattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen mor kalemi kutusuna koymak istedi. Ama pençesi kutuya sığmadı. Kalemi Deniz’e uzattı. Deniz onu kutuya yatırıp gülümsedi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p05",
+            "evidenceText": "Böğürtlen mor kalemi kutusuna koymak istedi. Ama pençesi kutuya sığmadı. Kalemi Deniz’e uzattı. Deniz onu kutuya yatırıp gülümsedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen mor kalemi kutusuna koymak istedi. Ama pençesi kutuya sığmadı. Kalemi Deniz’e uzattı. Deniz onu kutuya yatırıp gülümsedi.",
+        "poseAndActionEvidence": [
+          "Böğürtlen mor kalemi kutusuna koymak istedi.",
+          "Ama pençesi kutuya sığmadı.",
+          "Kalemi Deniz’e uzattı.",
+          "Deniz onu kutuya yatırıp gülümsedi."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Böğürtlen mor kalemi kutusuna koymak istedi. Ama pençesi kutuya sığmadı. Kalemi Deniz’e uzattı. Deniz onu kutuya yatırıp gülümsedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p05",
+        "quoteSHA256": "04fade756976b3cc5f754ed4c9e59012e927de67cae3cc37ae6d124de0c3b9cc",
+        "bookID": "pilot56_book_u7_bear_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "04fade756976b3cc5f754ed4c9e59012e927de67cae3cc37ae6d124de0c3b9cc",
+      "text": "Böğürtlen mor kalemi kutusuna koymak istedi. Ama pençesi kutuya sığmadı. Kalemi Deniz’e uzattı. Deniz onu kutuya yatırıp gülümsedi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p05",
+      "sourcePointer": "input/bedtime-bear.json#/books/2/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u7_bear_event03_v1",
+      "rawPageMove": "one_toy_kept",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek; sepet/kutu; renkli kalem",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz yalnız sarı kalemi yastığının yanına koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Öteki kalemler kutularındaydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Deniz yalnız sarı kalemi yastığının yanına koydu.",
+              "Öteki kalemler kutularındaydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Öteki kalemler kutularındaydı. Böğürtlen masayı patisiyle sildi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p06",
+            "evidenceText": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Öteki kalemler kutularındaydı. Böğürtlen masayı patisiyle sildi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Öteki kalemler kutularındaydı. Böğürtlen masayı patisiyle sildi.",
+        "poseAndActionEvidence": [
+          "Deniz yalnız sarı kalemi yastığının yanına koydu.",
+          "\"Yarın güneşi bununla çizeceğim,\" dedi.",
+          "Öteki kalemler kutularındaydı.",
+          "Böğürtlen masayı patisiyle sildi."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Öteki kalemler kutularındaydı. Böğürtlen masayı patisiyle sildi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p06",
+        "quoteSHA256": "9348ea5bbc620ef2c0e0cab4df2baa54ff223f77558c0261d2c6d879005a8c8e",
+        "bookID": "pilot56_book_u7_bear_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "9348ea5bbc620ef2c0e0cab4df2baa54ff223f77558c0261d2c6d879005a8c8e",
+      "text": "Deniz yalnız sarı kalemi yastığının yanına koydu. \"Yarın güneşi bununla çizeceğim,\" dedi. Öteki kalemler kutularındaydı. Böğürtlen masayı patisiyle sildi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p06",
+      "sourcePointer": "input/bedtime-bear.json#/books/2/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u7_bear_event03_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek; lamba/fener/ışık",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz lambayı söndürüp yatağına uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Deniz lambayı söndürüp yatağına uzandı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen kalın sesiyle mırıldandı. Hım hım… Mor lekeli patisini yanağının altına koydu. Deniz lambayı söndürüp yatağına uzandı. Oda karardı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p07",
+            "evidenceText": "Böğürtlen kalın sesiyle mırıldandı. Hım hım… Mor lekeli patisini yanağının altına koydu. Deniz lambayı söndürüp yatağına uzandı. Oda karardı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen kalın sesiyle mırıldandı. Hım hım… Mor lekeli patisini yanağının altına koydu. Deniz lambayı söndürüp yatağına uzandı. Oda karardı.",
+        "poseAndActionEvidence": [
+          "Böğürtlen kalın sesiyle mırıldandı.",
+          "Hım hım…",
+          "Mor lekeli patisini yanağının altına koydu.",
+          "Deniz lambayı söndürüp yatağına uzandı.",
+          "Oda karardı."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Böğürtlen kalın sesiyle mırıldandı. Hım hım… Mor lekeli patisini yanağının altına koydu. Deniz lambayı söndürüp yatağına uzandı. Oda karardı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p07",
+        "quoteSHA256": "118b76b9f6c22748221507ce616de1934f6573a39863cad223f2ff7d0e1b5975",
+        "bookID": "pilot56_book_u7_bear_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "118b76b9f6c22748221507ce616de1934f6573a39863cad223f2ff7d0e1b5975",
+      "text": "Böğürtlen kalın sesiyle mırıldandı. Hım hım… Mor lekeli patisini yanağının altına koydu. Deniz lambayı söndürüp yatağına uzandı. Oda karardı.",
+      "sourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p07",
+      "sourcePointer": "input/bedtime-bear.json#/books/2/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u7_bear_event03_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek; sepet/kutu; renkli kalem",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Kalemler kutularında, ayı döşeğinde dinlendi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "sepet/kutu",
+            "evidenceQuotes": [
+              "Kalemler kutularında, ayı döşeğinde dinlendi.",
+              "Mor kalem de kutusunda sessizce bekledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "renkli kalem",
+            "evidenceQuotes": [
+              "Kalemler kutularında, ayı döşeğinde dinlendi.",
+              "Mor kalem de kutusunda sessizce bekledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri usulca kapandı. Kalemler kutularında, ayı döşeğinde dinlendi. Mor kalem de kutusunda sessizce bekledi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p08",
+            "evidenceText": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri usulca kapandı. Kalemler kutularında, ayı döşeğinde dinlendi. Mor kalem de kutusunda sessizce bekledi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri usulca kapandı. Kalemler kutularında, ayı döşeğinde dinlendi. Mor kalem de kutusunda sessizce bekledi.",
+        "poseAndActionEvidence": [
+          "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen.",
+          "Deniz’in gözleri usulca kapandı.",
+          "Kalemler kutularında, ayı döşeğinde dinlendi.",
+          "Mor kalem de kutusunda sessizce bekledi."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri usulca kapandı. Kalemler kutularında, ayı döşeğinde dinlendi. Mor kalem de kutusunda sessizce bekledi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p08",
+        "quoteSHA256": "ffd50703651a65d2c4d74af4c3d4c154ce9432febe31427f371e846bc74bbf4d",
+        "bookID": "pilot56_book_u7_bear_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "ffd50703651a65d2c4d74af4c3d4c154ce9432febe31427f371e846bc74bbf4d",
+      "text": "\"Acele yok, ben buradayım,\" diye fısıldadı Böğürtlen. Deniz’in gözleri usulca kapandı. Kalemler kutularında, ayı döşeğinde dinlendi. Mor kalem de kutusunda sessizce bekledi.",
+      "sourceID": "p56_wave2_pilot56_book_u7_bear_event03_v1_p08",
+      "sourcePointer": "input/bedtime-bear.json#/books/2/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz her oyuncağa bir yatak yeri seçer, sırayı kendisi belirler, yalnız birini yanına alır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

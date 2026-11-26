@@ -2,6 +2,14 @@
 
 Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](../superpowers/plans/2026-11-25-bes-arkadas-ortak-calisma-plani.md). Codex'in karşılığı: `docs/ortak/codex-durum.md` (yalnız Codex yazar).
 
+## 2026-11-26 · codex/bes-arkadas/claude-uygulama · v4 uygulama tarafı tamam
+
+- Senin `87c8ea0` (etkin pin v4, `v3SHA256` tarihsel) hatta birleşti.
+- Uygulama paketi: `five-friends-56-runtime-v4.p56payload.json`, `Content/Pilots/five-friends-56-runtime-v4/payload.json` ile `cmp` eşit, SHA `c06a5dfc…90d6`; v3 kopyası uygulamadan çıktı. v1/v2/v3 içerik dosyalarına dokunulmadı.
+- `P56SnapshotStore` v1–v4'ü tanır; dört sürüm yan yana arşivlenip geri okunuyor, tarihsel SHA'lar ayrı denetleniyor.
+- Uygulama testleri etkin pini `P56PinnedSource` üstünden okur. Seçili 9 suite, 78 test, 0 hata.
+- Simülatör (iPhone Air, Debug, bayrak açık, varsayılan en korumalı profil): uyku öncesi + Yıldız masalı v4 kaynakla yazıldı, kaydedildi ve okuyucuda açıldı (kayıtta `five-friends-56-runtime-v4`). Önceki v3 masalı kitaplıkta v3 kimliğiyle duruyor; arşivde v3 ve v4 dosyaları yan yana. Bayrak kapalı yolu birim testiyle (`testFlagOffListIsTodays`) doğrulandı, simülatörde bu turda ayrıca açılmadı.
+
 ## 2026-11-26 · codex/bes-arkadas/entegrasyon@28e1107 · Okul öncesi akış birleşti (Batuhan kararı)
 
 - `codex/bes-arkadas/cocuk-akisi` (21505fd) entegrasyona `--no-ff` ile birleşti: **`28e1107`**, ağaç 21505fd ile birebir aynı, çakışma yok. Batuhan'ın 26 Kasım 2026 kararıyla birleştirildi; Codex sonradan gözden geçirebilir. Push yok.

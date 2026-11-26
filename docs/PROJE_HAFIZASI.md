@@ -1180,3 +1180,18 @@ Metin sahibinin177sayfa/1başlık düzeltmesi yeni kaynak/güvenlik/semantik/cau
 ### 26 Kasım2026 · Onaylı v3 motor pin geçişi
 
 Batuhan'ın“geçir”onayıyla etkinP56pinv3/SHA855870c8462f167b4031058897c2ddfc8c5f513802ad057758c86e3ff5316c3c. v2SHA ayrıimmutabletarihsel sabit; eskiV2testler aktifsabittenayrıldı.27Release/0hata;v1/v2/v3byteeşitliği korundu. Appbundle/SnapshotStorev3 ve gerçekappsave/reopensimülatör kapısı Claude'da,rootbunlarıkanıtlamadı. Kullanıcısırapin→dalga1→dalga2;appkapısıbeklenirken dalga runtimekoduyok,yalnızenvanter/typedhistoryplanıvar. Kaynak:research/five-friends-p56-runtime/v3-pin/REPORT.md.
+
+
+### 26 Kasım2026 · V4 kaynak adayı: yeni metin, kırmızı içerik kapısı
+
+V4ayrı90kitaplık voice/runtime,SHA1c8a21b56c40f051873b2f1bd956c21e016846911a082c1f11f37cb510b6a077;pinv3vev1/v2/v3bytekorundu.270güncelmetin/2160sayfa yeniden source-boundC3/semantic/causal/art aldı;kanonik270poollintpass,8eskikopyadahilham318poolfail. V4fixture616/630,N15001475/1500,retry0;iki p8“Yarın görüşürüz”CalmEndinguyumsuzluğu.15testtek kabul testinde4assertionred;V4entegrasyon/pinonayıyok. Dalga1bearleak+Dalga2bell+3conemath=5kesinsemantikengel;waveauthoringnotruntime. İkinci dalga teslimine nefes tutma geçmişiatfedilmedi. Actionlistresearch/five-friends-p56-runtime/v4/METIN_DUZELTME_LISTESI.md;metniClaudedüzeltir.
+
+
+## 26 Kasım 2026 — V4 düzeltme 2 sonucu
+
+18 sayfa/17 kitap yeniden bağlandı; 630/630 ve N1500/1500, Release 15/0, metrik720/0. Kaynak dalga engelleri kapandı; typed/runtime beklemede. Pin v3 korunur; v4 onayı ayrı. Güncel rapor: docs/research/five-friends-p56-runtime/v4/REPORT.md.
+
+
+## 26 Kasım 2026 — V4 motor pini etkin
+
+Kullanıcının sonraki pin commit’i talimatıyla etkin motor pini V4’e geçti. SHA256 `c06a5dfc3f586eae5d837926cab915be6b22480c20e11e02c9ea7fd5894990d6`; v3SHA256 geçmiş sabiti eklendi. V1–V4 payload baytları değişmedi. Yeniden derlenen Release: 7 test/0 hata. Önceki aday: 630/630, N1500/1500. Uygulama hattı V4 baytlarını paketleyip app testleri ve simülatör bayrak açık/kapalı kontrolünü tamamlayabilir; snapshot kayıtları yerel main birleşmesinden sonra. productionEnabled=false, artApproved=false. Push/merge yapılmadı. Kanıt: docs/research/five-friends-p56-runtime/v4/pin-transition.md.

@@ -11,8 +11,8 @@ import StoryEngine
 struct P56BundledSource {
     enum SourceError: Error, Equatable { case missingResource }
 
-    /// The shipped package: the engine's pinned, active one (v3 since 26 Kasım; v2 on 25 Kasım).
-    /// v1 and v2 books stay readable from their saved pages and, if present, the archive.
+    /// The shipped package: the engine's pinned, active one (v4 since 26 Kasım akşamı; v3 earlier that day, v2 on 25 Kasım).
+    /// v1, v2 and v3 books stay readable from their saved pages and, if present, the archive.
     static let packageVersion = P56PinnedSource.packageVersion
     static let resourceName = packageVersion + ".p56payload"
 

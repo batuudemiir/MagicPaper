@@ -1,0 +1,867 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l6_bear_event03_v1",
+  "title": "Her Şey Bir Pençe",
+  "context": {
+    "settingName": "Çiçekli Çayır",
+    "mode": "learning",
+    "companionID": "companion_bear_001",
+    "structure": "L6",
+    "event": "e3",
+    "mechanism": "measure-with-same-unit",
+    "sourceFilename": "learning-bear.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l6_bear_event03_v1",
+    "structure": "L6",
+    "event": "e3",
+    "sample": false,
+    "title": "Her Şey Bir Pençe",
+    "pages": [
+      "Çiçekli Çayır’da Deniz ile Böğürtlen yerde iki dal buldu. Böğürtlen dalları kocaman pençesiyle yan yana koydu. Biri dümdüzdü, öteki eğriydi.",
+      "Çiçekli Çayır’da iki uzun dal yatıyordu. Biri düz, biri eğriydi. Böğürtlen ikisini de kaldırıp baktı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+      "Böğürtlen düz dalı pençesiyle ölçtü. \"Bir pençe!\" dedi. Eğriyi de ölçtü. \"O da bir pençe!\" Deniz’in kıkırtısı her yere yayıldı. Pençesi iki dalı da örtüyordu.",
+      "Deniz düz dalı kendi karışıyla ölçtü. Elini açıp kapadı: bir karış, iki karış… Beş karış. \"Beş!\" dedi. Böğürtlen kendi patisiyle de ölçmek istedi.",
+      "\"İkisi de bir pençe mi?\" dedi Deniz. \"Ama ikisi aynı boy değil.\" Böğürtlen pençesine şaşkın şaşkın baktı. \"Bunlar farklı,\" diye ekledi.",
+      "\"Pençen çok büyük,\" dedi Deniz. \"Farkı göremiyorsun.\" Daha küçük bir ölçü seçti: kendi karışını. Karışıyla dalları teker teker ölçtü. Düz dal beş karış çıktı.",
+      "Deniz eğri dalı da karışıyla ölçtü. Dört karış çıktı. \"Düz dal beş, eğri dört,\" dedi. \"Düz olan daha uzun!\" Böğürtlen kendi patisiyle bir daha ölçtü.",
+      "Böğürtlen çantasından bir böğürtlen çıkardı. \"Bu da bir karış mı?\" diye sordu. Deniz eğilip kıkırdadı. Böğürtlen’in göbeği sallandı. \"O bir atıştırmalık!\" Böğürtlen böğürtleni hemen yedi."
+    ],
+    "sourceBookID": "pilot56_book_l6_bear_event03_v1"
+  },
+  "inputFileSHA256": "0d5a9afae2ab628cfee856dd77936cf0957c5fbd8d4fce6f5fbb0a66ca2410e2",
+  "inputBookPointer": "input/learning-bear.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l6_bear_event03_v1",
+      "rawPageMove": "two_paths",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; papatya/çiçek/yonca; yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da Deniz ile Böğürtlen yerde iki dal buldu.",
+              "Böğürtlen dalları kocaman pençesiyle yan yana koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da Deniz ile Böğürtlen yerde iki dal buldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Böğürtlen dalları kocaman pençesiyle yan yana koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Çiçekli Çayır’da Deniz ile Böğürtlen yerde iki dal buldu. Böğürtlen dalları kocaman pençesiyle yan yana koydu. Biri dümdüzdü, öteki eğriydi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p01",
+            "evidenceText": "Çiçekli Çayır’da Deniz ile Böğürtlen yerde iki dal buldu. Böğürtlen dalları kocaman pençesiyle yan yana koydu. Biri dümdüzdü, öteki eğriydi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da Deniz ile Böğürtlen yerde iki dal buldu. Böğürtlen dalları kocaman pençesiyle yan yana koydu. Biri dümdüzdü, öteki eğriydi.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da Deniz ile Böğürtlen yerde iki dal buldu.",
+          "Böğürtlen dalları kocaman pençesiyle yan yana koydu.",
+          "Biri dümdüzdü, öteki eğriydi."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da Deniz ile Böğürtlen yerde iki dal buldu. Böğürtlen dalları kocaman pençesiyle yan yana koydu. Biri dümdüzdü, öteki eğriydi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p01",
+        "quoteSHA256": "6e15b676631489e6891710dd60f9e831a440ff56a7549069ce53d8ff87374482",
+        "bookID": "pilot56_book_l6_bear_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "6e15b676631489e6891710dd60f9e831a440ff56a7549069ce53d8ff87374482",
+      "text": "Çiçekli Çayır’da Deniz ile Böğürtlen yerde iki dal buldu. Böğürtlen dalları kocaman pençesiyle yan yana koydu. Biri dümdüzdü, öteki eğriydi.",
+      "sourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p01",
+      "sourcePointer": "input/learning-bear.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l6_bear_event03_v1",
+      "rawPageMove": "first_guess",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; papatya/çiçek/yonca",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da iki uzun dal yatıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’da iki uzun dal yatıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Çiçekli Çayır’da iki uzun dal yatıyordu. Biri düz, biri eğriydi. Böğürtlen ikisini de kaldırıp baktı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p02",
+            "evidenceText": "Çiçekli Çayır’da iki uzun dal yatıyordu. Biri düz, biri eğriydi. Böğürtlen ikisini de kaldırıp baktı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’da iki uzun dal yatıyordu. Biri düz, biri eğriydi. Böğürtlen ikisini de kaldırıp baktı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’da iki uzun dal yatıyordu.",
+          "Biri düz, biri eğriydi.",
+          "Böğürtlen ikisini de kaldırıp baktı.",
+          "\"Hangisi daha uzun?\" diye sordu Deniz.",
+          "\"Bence düz olan.\""
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’da iki uzun dal yatıyordu. Biri düz, biri eğriydi. Böğürtlen ikisini de kaldırıp baktı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p02",
+        "quoteSHA256": "f7de41d198dce09fb6dbe8960cc57768b7d6451dcbe8b33ef07f706b0333d3d6",
+        "bookID": "pilot56_book_l6_bear_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "f7de41d198dce09fb6dbe8960cc57768b7d6451dcbe8b33ef07f706b0333d3d6",
+      "text": "Çiçekli Çayır’da iki uzun dal yatıyordu. Biri düz, biri eğriydi. Böğürtlen ikisini de kaldırıp baktı. \"Hangisi daha uzun?\" diye sordu Deniz. \"Bence düz olan.\"",
+      "sourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p02",
+      "sourcePointer": "input/learning-bear.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l6_bear_event03_v1",
+      "rawPageMove": "friend_counts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; örtü; tüy",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Böğürtlen düz dalı pençesiyle ölçtü.",
+              "Pençesi iki dalı da örtüyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Pençesi iki dalı da örtüyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Pençesi iki dalı da örtüyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen düz dalı pençesiyle ölçtü. \"Bir pençe!\" dedi. Eğriyi de ölçtü. \"O da bir pençe!\" Deniz’in kıkırtısı her yere yayıldı. Pençesi iki dalı da örtüyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p03",
+            "evidenceText": "Böğürtlen düz dalı pençesiyle ölçtü. \"Bir pençe!\" dedi. Eğriyi de ölçtü. \"O da bir pençe!\" Deniz’in kıkırtısı her yere yayıldı. Pençesi iki dalı da örtüyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen düz dalı pençesiyle ölçtü. \"Bir pençe!\" dedi. Eğriyi de ölçtü. \"O da bir pençe!\" Deniz’in kıkırtısı her yere yayıldı. Pençesi iki dalı da örtüyordu.",
+        "poseAndActionEvidence": [
+          "Böğürtlen düz dalı pençesiyle ölçtü.",
+          "\"Bir pençe!\" dedi.",
+          "Eğriyi de ölçtü.",
+          "\"O da bir pençe!\" Deniz’in kıkırtısı her yere yayıldı.",
+          "Pençesi iki dalı da örtüyordu."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_bear_001",
+        "quote": "Böğürtlen düz dalı pençesiyle ölçtü. \"Bir pençe!\" dedi. Eğriyi de ölçtü. \"O da bir pençe!\" Deniz’in kıkırtısı her yere yayıldı. Pençesi iki dalı da örtüyordu.",
+        "attributionQuote": "Böğürtlen",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p03",
+        "quoteSHA256": "f543484f3207f68577ead4ab3e867168784c412e99cb81c332572c9d8f1437d8",
+        "bookID": "pilot56_book_l6_bear_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "f543484f3207f68577ead4ab3e867168784c412e99cb81c332572c9d8f1437d8",
+      "text": "Böğürtlen düz dalı pençesiyle ölçtü. \"Bir pençe!\" dedi. Eğriyi de ölçtü. \"O da bir pençe!\" Deniz’in kıkırtısı her yere yayıldı. Pençesi iki dalı da örtüyordu.",
+      "sourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p03",
+      "sourcePointer": "input/learning-bear.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l6_bear_event03_v1",
+      "rawPageMove": "child_counts",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kar/battaniye",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz düz dalı kendi karışıyla ölçtü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Deniz düz dalı kendi karışıyla ölçtü.",
+              "Elini açıp kapadı: bir karış, iki karış…",
+              "Beş karış."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz düz dalı kendi karışıyla ölçtü. Elini açıp kapadı: bir karış, iki karış… Beş karış. \"Beş!\" dedi. Böğürtlen kendi patisiyle de ölçmek istedi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p04",
+            "evidenceText": "Deniz düz dalı kendi karışıyla ölçtü. Elini açıp kapadı: bir karış, iki karış… Beş karış. \"Beş!\" dedi. Böğürtlen kendi patisiyle de ölçmek istedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz düz dalı kendi karışıyla ölçtü. Elini açıp kapadı: bir karış, iki karış… Beş karış. \"Beş!\" dedi. Böğürtlen kendi patisiyle de ölçmek istedi.",
+        "poseAndActionEvidence": [
+          "Deniz düz dalı kendi karışıyla ölçtü.",
+          "Elini açıp kapadı: bir karış, iki karış…",
+          "Beş karış.",
+          "\"Beş!\" dedi.",
+          "Böğürtlen kendi patisiyle de ölçmek istedi."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz düz dalı kendi karışıyla ölçtü. Elini açıp kapadı: bir karış, iki karış… Beş karış. \"Beş!\" dedi. Böğürtlen kendi patisiyle de ölçmek istedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p04",
+        "quoteSHA256": "5a5b41720bea9adf344f314151236e4a541f2c9b2e493f839e5717ae6c24ba69",
+        "bookID": "pilot56_book_l6_bear_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "5a5b41720bea9adf344f314151236e4a541f2c9b2e493f839e5717ae6c24ba69",
+      "text": "Deniz düz dalı kendi karışıyla ölçtü. Elini açıp kapadı: bir karış, iki karış… Beş karış. \"Beş!\" dedi. Böğürtlen kendi patisiyle de ölçmek istedi.",
+      "sourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p04",
+      "sourcePointer": "input/learning-bear.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l6_bear_event03_v1",
+      "rawPageMove": "different_numbers",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "\"İkisi de bir pençe mi?\" dedi Deniz. \"Ama ikisi aynı boy değil.\" Böğürtlen pençesine şaşkın şaşkın baktı. \"Bunlar farklı,\" diye ekledi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p05",
+            "evidenceText": "\"İkisi de bir pençe mi?\" dedi Deniz. \"Ama ikisi aynı boy değil.\" Böğürtlen pençesine şaşkın şaşkın baktı. \"Bunlar farklı,\" diye ekledi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"İkisi de bir pençe mi?\" dedi Deniz. \"Ama ikisi aynı boy değil.\" Böğürtlen pençesine şaşkın şaşkın baktı. \"Bunlar farklı,\" diye ekledi.",
+        "poseAndActionEvidence": [
+          "\"İkisi de bir pençe mi?\" dedi Deniz.",
+          "\"Ama ikisi aynı boy değil.\" Böğürtlen pençesine şaşkın şaşkın baktı.",
+          "\"Bunlar farklı,\" diye ekledi."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"İkisi de bir pençe mi?\" dedi Deniz. \"Ama ikisi aynı boy değil.\" Böğürtlen pençesine şaşkın şaşkın baktı. \"Bunlar farklı,\" diye ekledi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p05",
+        "quoteSHA256": "b5f219dda72f8cd1c16418f7ccf445dbc1be33f8d66baa7112152e0ad415fb52",
+        "bookID": "pilot56_book_l6_bear_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "b5f219dda72f8cd1c16418f7ccf445dbc1be33f8d66baa7112152e0ad415fb52",
+      "text": "\"İkisi de bir pençe mi?\" dedi Deniz. \"Ama ikisi aynı boy değil.\" Böğürtlen pençesine şaşkın şaşkın baktı. \"Bunlar farklı,\" diye ekledi.",
+      "sourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p05",
+      "sourcePointer": "input/learning-bear.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l6_bear_event03_v1",
+      "rawPageMove": "child_explains",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kar/battaniye",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Karışıyla dalları teker teker ölçtü.",
+              "Düz dal beş karış çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "\"Farkı göremiyorsun.\" Daha küçük bir ölçü seçti: kendi karışını.",
+              "Karışıyla dalları teker teker ölçtü.",
+              "Düz dal beş karış çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "\"Pençen çok büyük,\" dedi Deniz. \"Farkı göremiyorsun.\" Daha küçük bir ölçü seçti: kendi karışını. Karışıyla dalları teker teker ölçtü. Düz dal beş karış çıktı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p06",
+            "evidenceText": "\"Pençen çok büyük,\" dedi Deniz. \"Farkı göremiyorsun.\" Daha küçük bir ölçü seçti: kendi karışını. Karışıyla dalları teker teker ölçtü. Düz dal beş karış çıktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Pençen çok büyük,\" dedi Deniz. \"Farkı göremiyorsun.\" Daha küçük bir ölçü seçti: kendi karışını. Karışıyla dalları teker teker ölçtü. Düz dal beş karış çıktı.",
+        "poseAndActionEvidence": [
+          "\"Pençen çok büyük,\" dedi Deniz.",
+          "\"Farkı göremiyorsun.\" Daha küçük bir ölçü seçti: kendi karışını.",
+          "Karışıyla dalları teker teker ölçtü.",
+          "Düz dal beş karış çıktı."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Pençen çok büyük,\" dedi Deniz. \"Farkı göremiyorsun.\" Daha küçük bir ölçü seçti: kendi karışını. Karışıyla dalları teker teker ölçtü. Düz dal beş karış çıktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p06",
+        "quoteSHA256": "c35085605326b3d9fca847cb4eb48b8749f860c9990b7f491e82d50b98dd6e96",
+        "bookID": "pilot56_book_l6_bear_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "c35085605326b3d9fca847cb4eb48b8749f860c9990b7f491e82d50b98dd6e96",
+      "text": "\"Pençen çok büyük,\" dedi Deniz. \"Farkı göremiyorsun.\" Daha küçük bir ölçü seçti: kendi karışını. Karışıyla dalları teker teker ölçtü. Düz dal beş karış çıktı.",
+      "sourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p06",
+      "sourcePointer": "input/learning-bear.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l6_bear_event03_v1",
+      "rawPageMove": "recheck",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kar/battaniye",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz eğri dalı da karışıyla ölçtü.",
+              "\"Düz dal beş, eğri dört,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Deniz eğri dalı da karışıyla ölçtü.",
+              "Dört karış çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Deniz eğri dalı da karışıyla ölçtü. Dört karış çıktı. \"Düz dal beş, eğri dört,\" dedi. \"Düz olan daha uzun!\" Böğürtlen kendi patisiyle bir daha ölçtü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p07",
+            "evidenceText": "Deniz eğri dalı da karışıyla ölçtü. Dört karış çıktı. \"Düz dal beş, eğri dört,\" dedi. \"Düz olan daha uzun!\" Böğürtlen kendi patisiyle bir daha ölçtü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz eğri dalı da karışıyla ölçtü. Dört karış çıktı. \"Düz dal beş, eğri dört,\" dedi. \"Düz olan daha uzun!\" Böğürtlen kendi patisiyle bir daha ölçtü.",
+        "poseAndActionEvidence": [
+          "Deniz eğri dalı da karışıyla ölçtü.",
+          "Dört karış çıktı.",
+          "\"Düz dal beş, eğri dört,\" dedi.",
+          "\"Düz olan daha uzun!\" Böğürtlen kendi patisiyle bir daha ölçtü."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz eğri dalı da karışıyla ölçtü. Dört karış çıktı. \"Düz dal beş, eğri dört,\" dedi. \"Düz olan daha uzun!\" Böğürtlen kendi patisiyle bir daha ölçtü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p07",
+        "quoteSHA256": "e73211cadebd44869e66ac3a0b1ee5da7bac2fe83b3a24958f701c35b0dc9a7d",
+        "bookID": "pilot56_book_l6_bear_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "e73211cadebd44869e66ac3a0b1ee5da7bac2fe83b3a24958f701c35b0dc9a7d",
+      "text": "Deniz eğri dalı da karışıyla ölçtü. Dört karış çıktı. \"Düz dal beş, eğri dört,\" dedi. \"Düz olan daha uzun!\" Böğürtlen kendi patisiyle bir daha ölçtü.",
+      "sourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p07",
+      "sourcePointer": "input/learning-bear.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l6_bear_event03_v1",
+      "rawPageMove": "closed_result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_bear_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_bear_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "çanta/askı; böğürtlen meyvesi; kar/battaniye; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "çanta/askı",
+            "evidenceQuotes": [
+              "Böğürtlen çantasından bir böğürtlen çıkardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "böğürtlen meyvesi",
+            "evidenceQuotes": [
+              "Böğürtlen çantasından bir böğürtlen çıkardı.",
+              "\"O bir atıştırmalık!\" Böğürtlen böğürtleni hemen yedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "\"Bu da bir karış mı?\" diye sordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Böğürtlen çantasından bir böğürtlen çıkardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_bear_001"
+            ],
+            "description": "Böğürtlen çantasından bir böğürtlen çıkardı. \"Bu da bir karış mı?\" diye sordu. Deniz eğilip kıkırdadı. Böğürtlen’in göbeği sallandı. \"O bir atıştırmalık!\" Böğürtlen böğürtleni hemen yedi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p08",
+            "evidenceText": "Böğürtlen çantasından bir böğürtlen çıkardı. \"Bu da bir karış mı?\" diye sordu. Deniz eğilip kıkırdadı. Böğürtlen’in göbeği sallandı. \"O bir atıştırmalık!\" Böğürtlen böğürtleni hemen yedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Böğürtlen çantasından bir böğürtlen çıkardı. \"Bu da bir karış mı?\" diye sordu. Deniz eğilip kıkırdadı. Böğürtlen’in göbeği sallandı. \"O bir atıştırmalık!\" Böğürtlen böğürtleni hemen yedi.",
+        "poseAndActionEvidence": [
+          "Böğürtlen çantasından bir böğürtlen çıkardı.",
+          "\"Bu da bir karış mı?\" diye sordu.",
+          "Deniz eğilip kıkırdadı.",
+          "Böğürtlen’in göbeği sallandı.",
+          "\"O bir atıştırmalık!\" Böğürtlen böğürtleni hemen yedi."
+        ],
+        "anatomyAndScale": "Büyük beden; geniş zemin; küçük pervaz/yatak yok.",
+        "signatureIdentity": "bordo çanta ve mor böğürtlen lekeli pati; geniş gövdeye uygun zemin; metinde askıda olan çanta omuzda çizilmez",
+        "doNotDraw": [
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Böğürtlen çantasından bir böğürtlen çıkardı. \"Bu da bir karış mı?\" diye sordu. Deniz eğilip kıkırdadı. Böğürtlen’in göbeği sallandı. \"O bir atıştırmalık!\" Böğürtlen böğürtleni hemen yedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p08",
+        "quoteSHA256": "6f741c604a50ba9f5137eee1aa1073ea0baf7710aa23e644465fd3c514a0a3df",
+        "bookID": "pilot56_book_l6_bear_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "6f741c604a50ba9f5137eee1aa1073ea0baf7710aa23e644465fd3c514a0a3df",
+      "text": "Böğürtlen çantasından bir böğürtlen çıkardı. \"Bu da bir karış mı?\" diye sordu. Deniz eğilip kıkırdadı. Böğürtlen’in göbeği sallandı. \"O bir atıştırmalık!\" Böğürtlen böğürtleni hemen yedi.",
+      "sourceID": "p56_wave1_pilot56_book_l6_bear_event03_v1_p08",
+      "sourcePointer": "input/learning-bear.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk kendi ölçüsüyle ikisini sayar, arkadaşının sayısının neden farklı çıktığını bulur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

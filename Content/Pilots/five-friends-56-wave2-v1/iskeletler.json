@@ -1,0 +1,234 @@
+{
+ "schema": "bes-arkadas.dalga2-structures.draft",
+ "note": "Batuhan onayı 2026-11-26; motor sözleşmesi Codex tarafından kurulacak",
+ "structures": [
+  {
+   "planLabel": "U7",
+   "mode": "bedtime",
+   "mechanismKey": "toys-to-bed",
+   "setting": "Orman Kıyısındaki Oda",
+   "obstacle": "Oyuncaklar yerde dağınık, Deniz biraz daha oynamak istiyor.",
+   "solution": "Deniz her oyuncağa bir yatak yeri seçer, sırayı kendisi belirler, yalnız birini yanına alır.",
+   "allowedCompanionIDs": [
+    "companion_fox_pilot_001",
+    "companion_hedgehog_pilot_001",
+    "companion_city_cat_001",
+    "companion_bear_001"
+   ],
+   "pageMoves": [
+    "settled_room",
+    "toys_scattered",
+    "friend_beds_wrong",
+    "child_picks_places",
+    "soft_smile",
+    "one_toy_kept",
+    "awake_rest",
+    "closed_calm"
+   ],
+   "events": "e1 yumuşak oyuncaklar · e2 tahta oyuncaklar · e3 boya kalemleri kutularına yatar",
+   "safety": "Küçük parça ağıza götürülmez; metin kural anlatmaz."
+  },
+  {
+   "planLabel": "U8",
+   "mode": "bedtime",
+   "mechanismKey": "body-part-rest",
+   "setting": "Çatı Katı Odası",
+   "obstacle": "Gün boyu koşan bacaklar hâlâ kıpır kıpır.",
+   "solution": "Deniz bir bölümü önce sıkar, sonra gevşetir; sırayı kendisi söyler, bitirdiğine kendisi karar verir.",
+   "allowedCompanionIDs": [
+    "companion_owl_pilot_001",
+    "companion_hedgehog_pilot_001",
+    "companion_city_cat_001"
+   ],
+   "pageMoves": [
+    "settled_room",
+    "body_fidgety",
+    "friend_shows_own_body",
+    "child_releases_first_part",
+    "soft_smile",
+    "sequence_done",
+    "awake_rest",
+    "closed_calm"
+   ],
+   "events": "e1 ayaklardan başa · e2 eller · e3 yüz",
+   "safety": "Uyutur ya da sağlık vaadi yok."
+  },
+  {
+   "planLabel": "U9",
+   "mode": "bedtime",
+   "mechanismKey": "calm-place-imagining",
+   "setting": "Ağaç Ev Odası",
+   "obstacle": "Akşam kafada bir sürü hızlı resim dönüyor.",
+   "solution": "Deniz gözlerini kapatıp sakin bir yer seçer, üç ayrıntısını söyler, sonra resmi kendisi soldurur.",
+   "allowedCompanionIDs": [
+    "companion_fox_pilot_001",
+    "companion_owl_pilot_001",
+    "companion_bear_001"
+   ],
+   "pageMoves": [
+    "settled_room",
+    "busy_pictures",
+    "friend_calm_place",
+    "child_picks_place",
+    "soft_smile",
+    "details_done",
+    "awake_rest",
+    "closed_calm"
+   ],
+   "events": "e1 dere kenarı · e2 karlı pencere · e3 gece çayırı",
+   "safety": "Hayal gözler kapalıyken açıkça; uçma, yükseklik yok."
+  },
+  {
+   "planLabel": "L7",
+   "mode": "learning",
+   "mechanismKey": "shadow-direction",
+   "setting": "Çiçekli Çayır",
+   "obstacle": "Deniz'in gölgesi bazen önünde, bazen arkasında.",
+   "solution": "Deniz dönerek dener ve gölgenin hep güneşin karşı tarafına düştüğünü kendisi bulur.",
+   "allowedCompanionIDs": [
+    "companion_owl_pilot_001",
+    "companion_fox_pilot_001",
+    "companion_city_cat_001"
+   ],
+   "pageMoves": [
+    "noticed",
+    "child_guesses",
+    "friend_guess",
+    "trial_1",
+    "trial_2",
+    "child_compares",
+    "trial_3",
+    "result"
+   ],
+   "events": "e1 kendi gölgesi · e2 dalın gölgesi · e3 iki taşın gölgesi",
+   "safety": "Deniz hep yere bakar; güneşe bakılmaz."
+  },
+  {
+   "planLabel": "L8",
+   "mode": "learning",
+   "mechanismKey": "whose-tracks",
+   "setting": "Dere Kenarı (yeni mekân)",
+   "obstacle": "Kumda karışık izler var.",
+   "solution": "Deniz arkadaşından izini yanına basmasını ister, boyutu ve parmakları karşılaştırarak izleri eşleştirir.",
+   "allowedCompanionIDs": [
+    "companion_hedgehog_pilot_001",
+    "companion_bear_001",
+    "companion_fox_pilot_001",
+    "companion_city_cat_001"
+   ],
+   "pageMoves": [
+    "noticed",
+    "child_guesses",
+    "friend_guess",
+    "first_print",
+    "second_print",
+    "child_compares",
+    "final_check",
+    "result"
+   ],
+   "events": "e1 arkadaşın izi ve kuş izi · e2 izlerin yönü · e3 iz sayısıyla kaç adım",
+   "safety": "Su sığ ve uzakta; yabani hayvan yok."
+  },
+  {
+   "planLabel": "L9",
+   "mode": "learning",
+   "mechanismKey": "balance-stick",
+   "setting": "Kozalak Tepesi",
+   "obstacle": "Kütüğün üstündeki dal hep bir yana yatıyor.",
+   "solution": "Deniz uçlara kozalak ekleyip çıkararak ya da dalı kaydırarak dengeyi kendisi bulur.",
+   "allowedCompanionIDs": [
+    "companion_owl_pilot_001",
+    "companion_hedgehog_pilot_001",
+    "companion_bear_001"
+   ],
+   "pageMoves": [
+    "tilted",
+    "child_guesses",
+    "friend_try",
+    "trial_1",
+    "trial_2",
+    "child_compares",
+    "balanced",
+    "result"
+   ],
+   "events": "e1 iki uca kozalak · e2 dalı kaydırmak · e3 büyük kozalak iki küçüğe denk",
+   "safety": "Kütük diz boyundan alçak; tırmanma yok."
+  },
+  {
+   "planLabel": "A7",
+   "mode": "adventure",
+   "mechanismKey": "reach-with-stick",
+   "setting": "Eğrelti Kenarı (yeni mekân)",
+   "obstacle": "Bir eşya çalıların altına ya da alçak bir dala kaldı.",
+   "solution": "Deniz içeri girmeden uzun, ucu çatallı doğru dalı seçer, eşyayı kendine doğru çeker.",
+   "allowedCompanionIDs": [
+    "companion_bear_001",
+    "companion_hedgehog_pilot_001",
+    "companion_city_cat_001"
+   ],
+   "pageMoves": [
+    "item_lost",
+    "approach",
+    "friend_tries",
+    "child_picks_stick",
+    "first_pull",
+    "child_changes_stick",
+    "item_back",
+    "return"
+   ],
+   "events": "e1 top · e2 şapka · e3 uçurtma ipi",
+   "safety": "Dikenli bitki yok; Deniz çalının içine girmez."
+  },
+  {
+   "planLabel": "A8",
+   "mode": "adventure",
+   "mechanismKey": "share-the-load",
+   "setting": "Kozalak Tepesi'nden Ağaç Ev'e patika",
+   "obstacle": "Dolu sepet tek başına taşınamayacak kadar hantal.",
+   "solution": "Deniz yükü böler ve kimin neyi taşıyacağını arkadaşın bedenine göre eşleştirir.",
+   "allowedCompanionIDs": [
+    "companion_fox_pilot_001",
+    "companion_bear_001",
+    "companion_owl_pilot_001",
+    "companion_city_cat_001"
+   ],
+   "pageMoves": [
+    "load_full",
+    "lift_try",
+    "friend_tries",
+    "child_splits",
+    "first_piece",
+    "child_matches",
+    "arrival",
+    "closing"
+   ],
+   "events": "e1 kozalak sepeti · e2 piknik eşyaları · e3 resim malzemeleri",
+   "safety": "Yük ağır değil, hantal; düz patika."
+  },
+  {
+   "planLabel": "A9",
+   "mode": "adventure",
+   "mechanismKey": "path-for-small-creature",
+   "setting": "Çiçekli Çayır",
+   "obstacle": "Küçük bir canlı gitmek istediği yere ulaşamıyor.",
+   "solution": "Deniz canlıya dokunmadan dal ya da yaprakla yol yapar, canlının kendisi yürümesini bekler.",
+   "allowedCompanionIDs": [
+    "companion_fox_pilot_001",
+    "companion_hedgehog_pilot_001",
+    "companion_owl_pilot_001"
+   ],
+   "pageMoves": [
+    "creature_noticed",
+    "approach",
+    "friend_idea",
+    "child_picks_material",
+    "path_built",
+    "child_waits",
+    "creature_crosses",
+    "closing"
+   ],
+   "events": "e1 uğur böceği · e2 karınca · e3 salyangoz",
+   "safety": "Canlıya dokunulmaz; su birikintisi yok."
+  }
+ ]
+}

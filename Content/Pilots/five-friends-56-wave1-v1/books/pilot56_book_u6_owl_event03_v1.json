@@ -1,0 +1,850 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u6_owl_event03_v1",
+  "title": "Ay Bizi Görüyor mu?",
+  "context": {
+    "settingName": "Ağaç Ev Odası",
+    "mode": "bedtime",
+    "companionID": "companion_owl_pilot_001",
+    "structure": "U6",
+    "event": "e3",
+    "mechanism": "lights-goodnight-round",
+    "sourceFilename": "bedtime-owl.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u6_owl_event03_v1",
+    "structure": "U6",
+    "event": "e3",
+    "sample": false,
+    "title": "Ay Bizi Görüyor mu?",
+    "pages": [
+      "Ağaç Ev Odası’nda pijama vakti gelmişti. Deniz yorganın altına kaydı. Yıldız pencere yanındaki tüneğindeydi. Perde biraz aralıktı. Gökyüzünde yuvarlak bir ay vardı.",
+      "Masa lambası yanıyordu. Perdeden ay ışığı da giriyordu. Yıldız iki ışığa da baktı. \"Hangisi kalsın?\" diye düşündü Deniz. Biri sarıydı, öteki gümüş.",
+      "\"Hımm… sen ne görüyorsun?\" diye sordu Yıldız. \"Ayı,\" dedi Deniz. \"Ben de,\" dedi Yıldız. \"Ama ay da bizi görüyor mu?\" Deniz gülmeden duramadı.",
+      "Deniz önce masa lambasını söndürdü. Ay ışığı yere uzun bir şerit çizdi. Yıldız’ın gözleri o şeritte parladı. Oda gümüş bir loşluğa büründü.",
+      "Ay ışığı Yıldız'ın göğsündeki tüye düştü. Tüy küçük bir yıldız gibi parladı. Deniz’in yanakları gülümsemeyle kabardı. Yıldız boynunu merakla büktü. \"Sen de yıldız oldun,\" dedi.",
+      "Deniz perdeyi biraz araladı. \"Ay ışığı kalıyor,\" dedi. Yerdeki şerit genişledi. Yıldız ay ışığına doğru başını uzattı. Odayı serin ve sakin bir ışık doldurdu.",
+      "Yıldız tüneğine iyice yerleşti. Ay şeridini kımıldamadan izledi. Deniz de izledi, sonra gözleri ağırlaştı. Ay gökyüzünde yavaş yavaş yükseliyordu, Yıldız da onu izliyordu.",
+      "\"Gece seni sarsın, Deniz,\" diye fısıldadı Yıldız. Deniz’in göz kapakları indi. Ay ışığı odada kaldı. Yıldız'ın tüyü son bir kez parladı."
+    ],
+    "sourceBookID": "pilot56_book_u6_owl_event03_v1"
+  },
+  "inputFileSHA256": "a7dc771d69f2fe43e953b6f2452e61ba64c5c28b225266108dcc1ae72966ec2f",
+  "inputBookPointer": "input/bedtime-owl.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u6_owl_event03_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; kütük/yuva; perde/pencere; tünek; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Ağaç Ev Odası’nda pijama vakti gelmişti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Gökyüzünde yuvarlak bir ay vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "perde/pencere",
+            "evidenceQuotes": [
+              "Yıldız pencere yanındaki tüneğindeydi.",
+              "Perde biraz aralıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tünek",
+            "evidenceQuotes": [
+              "Yıldız pencere yanındaki tüneğindeydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Gökyüzünde yuvarlak bir ay vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Ağaç Ev Odası’nda pijama vakti gelmişti. Deniz yorganın altına kaydı. Yıldız pencere yanındaki tüneğindeydi. Perde biraz aralıktı. Gökyüzünde yuvarlak bir ay vardı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p01",
+            "evidenceText": "Ağaç Ev Odası’nda pijama vakti gelmişti. Deniz yorganın altına kaydı. Yıldız pencere yanındaki tüneğindeydi. Perde biraz aralıktı. Gökyüzünde yuvarlak bir ay vardı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Ağaç Ev Odası’nda pijama vakti gelmişti. Deniz yorganın altına kaydı. Yıldız pencere yanındaki tüneğindeydi. Perde biraz aralıktı. Gökyüzünde yuvarlak bir ay vardı.",
+        "poseAndActionEvidence": [
+          "Ağaç Ev Odası’nda pijama vakti gelmişti.",
+          "Deniz yorganın altına kaydı.",
+          "Yıldız pencere yanındaki tüneğindeydi.",
+          "Perde biraz aralıktı.",
+          "Gökyüzünde yuvarlak bir ay vardı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Ağaç Ev Odası’nda pijama vakti gelmişti. Deniz yorganın altına kaydı. Yıldız pencere yanındaki tüneğindeydi. Perde biraz aralıktı. Gökyüzünde yuvarlak bir ay vardı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p01",
+        "quoteSHA256": "e4831caebc8338aa0ddb83131d440516bc6966ba664a39f1a0f60a6c7b2214a0",
+        "bookID": "pilot56_book_u6_owl_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "e4831caebc8338aa0ddb83131d440516bc6966ba664a39f1a0f60a6c7b2214a0",
+      "text": "Ağaç Ev Odası’nda pijama vakti gelmişti. Deniz yorganın altına kaydı. Yıldız pencere yanındaki tüneğindeydi. Perde biraz aralıktı. Gökyüzünde yuvarlak bir ay vardı.",
+      "sourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p01",
+      "sourcePointer": "input/bedtime-owl.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u6_owl_event03_v1",
+      "rawPageMove": "lights_noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "perde/pencere; lamba/fener/ışık",
+        "propMentions": [
+          {
+            "label": "perde/pencere",
+            "evidenceQuotes": [
+              "Perdeden ay ışığı da giriyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Masa lambası yanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Masa lambası yanıyordu. Perdeden ay ışığı da giriyordu. Yıldız iki ışığa da baktı. \"Hangisi kalsın?\" diye düşündü Deniz. Biri sarıydı, öteki gümüş.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p02",
+            "evidenceText": "Masa lambası yanıyordu. Perdeden ay ışığı da giriyordu. Yıldız iki ışığa da baktı. \"Hangisi kalsın?\" diye düşündü Deniz. Biri sarıydı, öteki gümüş.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Masa lambası yanıyordu. Perdeden ay ışığı da giriyordu. Yıldız iki ışığa da baktı. \"Hangisi kalsın?\" diye düşündü Deniz. Biri sarıydı, öteki gümüş.",
+        "poseAndActionEvidence": [
+          "Masa lambası yanıyordu.",
+          "Perdeden ay ışığı da giriyordu.",
+          "Yıldız iki ışığa da baktı.",
+          "\"Hangisi kalsın?\" diye düşündü Deniz.",
+          "Biri sarıydı, öteki gümüş."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Masa lambası yanıyordu. Perdeden ay ışığı da giriyordu. Yıldız iki ışığa da baktı. \"Hangisi kalsın?\" diye düşündü Deniz. Biri sarıydı, öteki gümüş.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p02",
+        "quoteSHA256": "570f018f0f591c316f5d786b21be5981b689f69cba31fc95b33809e6fd293d61",
+        "bookID": "pilot56_book_u6_owl_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "570f018f0f591c316f5d786b21be5981b689f69cba31fc95b33809e6fd293d61",
+      "text": "Masa lambası yanıyordu. Perdeden ay ışığı da giriyordu. Yıldız iki ışığa da baktı. \"Hangisi kalsın?\" diye düşündü Deniz. Biri sarıydı, öteki gümüş.",
+      "sourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p02",
+      "sourcePointer": "input/bedtime-owl.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u6_owl_event03_v1",
+      "rawPageMove": "friend_preference",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "iz/kum",
+        "propMentions": [
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "\"Ama ay da bizi görüyor mu?\" Deniz gülmeden duramadı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "\"Hımm… sen ne görüyorsun?\" diye sordu Yıldız. \"Ayı,\" dedi Deniz. \"Ben de,\" dedi Yıldız. \"Ama ay da bizi görüyor mu?\" Deniz gülmeden duramadı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p03",
+            "evidenceText": "\"Hımm… sen ne görüyorsun?\" diye sordu Yıldız. \"Ayı,\" dedi Deniz. \"Ben de,\" dedi Yıldız. \"Ama ay da bizi görüyor mu?\" Deniz gülmeden duramadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Hımm… sen ne görüyorsun?\" diye sordu Yıldız. \"Ayı,\" dedi Deniz. \"Ben de,\" dedi Yıldız. \"Ama ay da bizi görüyor mu?\" Deniz gülmeden duramadı.",
+        "poseAndActionEvidence": [
+          "\"Hımm…",
+          "sen ne görüyorsun?\" diye sordu Yıldız.",
+          "\"Ayı,\" dedi Deniz.",
+          "\"Ben de,\" dedi Yıldız.",
+          "\"Ama ay da bizi görüyor mu?\" Deniz gülmeden duramadı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_owl_pilot_001",
+        "quote": "\"Hımm… sen ne görüyorsun?\" diye sordu Yıldız. \"Ayı,\" dedi Deniz. \"Ben de,\" dedi Yıldız. \"Ama ay da bizi görüyor mu?\" Deniz gülmeden duramadı.",
+        "attributionQuote": "Yıldız",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p03",
+        "quoteSHA256": "6fe5cf5a66effd9988b088dc78e16a769bcb95567421b2106df67f9717e6ffd4",
+        "bookID": "pilot56_book_u6_owl_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "6fe5cf5a66effd9988b088dc78e16a769bcb95567421b2106df67f9717e6ffd4",
+      "text": "\"Hımm… sen ne görüyorsun?\" diye sordu Yıldız. \"Ayı,\" dedi Deniz. \"Ben de,\" dedi Yıldız. \"Ama ay da bizi görüyor mu?\" Deniz gülmeden duramadı.",
+      "sourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p03",
+      "sourcePointer": "input/bedtime-owl.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u6_owl_event03_v1",
+      "rawPageMove": "child_orders_lights",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "lamba/fener/ışık; harita/çizim",
+        "propMentions": [
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Deniz önce masa lambasını söndürdü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "harita/çizim",
+            "evidenceQuotes": [
+              "Ay ışığı yere uzun bir şerit çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz önce masa lambasını söndürdü. Ay ışığı yere uzun bir şerit çizdi. Yıldız’ın gözleri o şeritte parladı. Oda gümüş bir loşluğa büründü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p04",
+            "evidenceText": "Deniz önce masa lambasını söndürdü. Ay ışığı yere uzun bir şerit çizdi. Yıldız’ın gözleri o şeritte parladı. Oda gümüş bir loşluğa büründü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz önce masa lambasını söndürdü. Ay ışığı yere uzun bir şerit çizdi. Yıldız’ın gözleri o şeritte parladı. Oda gümüş bir loşluğa büründü.",
+        "poseAndActionEvidence": [
+          "Deniz önce masa lambasını söndürdü.",
+          "Ay ışığı yere uzun bir şerit çizdi.",
+          "Yıldız’ın gözleri o şeritte parladı.",
+          "Oda gümüş bir loşluğa büründü."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz önce masa lambasını söndürdü. Ay ışığı yere uzun bir şerit çizdi. Yıldız’ın gözleri o şeritte parladı. Oda gümüş bir loşluğa büründü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p04",
+        "quoteSHA256": "30c1ab0cc4e2939bd8d8fbd9ff23b5193cf3c9f81c402210a0686d0afbac405a",
+        "bookID": "pilot56_book_u6_owl_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "30c1ab0cc4e2939bd8d8fbd9ff23b5193cf3c9f81c402210a0686d0afbac405a",
+      "text": "Deniz önce masa lambasını söndürdü. Ay ışığı yere uzun bir şerit çizdi. Yıldız’ın gözleri o şeritte parladı. Oda gümüş bir loşluğa büründü.",
+      "sourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p04",
+      "sourcePointer": "input/bedtime-owl.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u6_owl_event03_v1",
+      "rawPageMove": "soft_trial",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tüy",
+        "propMentions": [
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Ay ışığı Yıldız'ın göğsündeki tüye düştü.",
+              "Tüy küçük bir yıldız gibi parladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Ay ışığı Yıldız'ın göğsündeki tüye düştü. Tüy küçük bir yıldız gibi parladı. Deniz’in yanakları gülümsemeyle kabardı. Yıldız boynunu merakla büktü. \"Sen de yıldız oldun,\" dedi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p05",
+            "evidenceText": "Ay ışığı Yıldız'ın göğsündeki tüye düştü. Tüy küçük bir yıldız gibi parladı. Deniz’in yanakları gülümsemeyle kabardı. Yıldız boynunu merakla büktü. \"Sen de yıldız oldun,\" dedi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Ay ışığı Yıldız'ın göğsündeki tüye düştü. Tüy küçük bir yıldız gibi parladı. Deniz’in yanakları gülümsemeyle kabardı. Yıldız boynunu merakla büktü. \"Sen de yıldız oldun,\" dedi.",
+        "poseAndActionEvidence": [
+          "Ay ışığı Yıldız'ın göğsündeki tüye düştü.",
+          "Tüy küçük bir yıldız gibi parladı.",
+          "Deniz’in yanakları gülümsemeyle kabardı.",
+          "Yıldız boynunu merakla büktü.",
+          "\"Sen de yıldız oldun,\" dedi."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Ay ışığı Yıldız'ın göğsündeki tüye düştü. Tüy küçük bir yıldız gibi parladı. Deniz’in yanakları gülümsemeyle kabardı. Yıldız boynunu merakla büktü. \"Sen de yıldız oldun,\" dedi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p05",
+        "quoteSHA256": "9641cc52c4f3c2e1e3db4f871e8308097844aa4505f7e59df611d26bd4c5a3b9",
+        "bookID": "pilot56_book_u6_owl_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "9641cc52c4f3c2e1e3db4f871e8308097844aa4505f7e59df611d26bd4c5a3b9",
+      "text": "Ay ışığı Yıldız'ın göğsündeki tüye düştü. Tüy küçük bir yıldız gibi parladı. Deniz’in yanakları gülümsemeyle kabardı. Yıldız boynunu merakla büktü. \"Sen de yıldız oldun,\" dedi.",
+      "sourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p05",
+      "sourcePointer": "input/bedtime-owl.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u6_owl_event03_v1",
+      "rawPageMove": "night_light_kept",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "perde/pencere; lamba/fener/ışık",
+        "propMentions": [
+          {
+            "label": "perde/pencere",
+            "evidenceQuotes": [
+              "Deniz perdeyi biraz araladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Odayı serin ve sakin bir ışık doldurdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Deniz perdeyi biraz araladı. \"Ay ışığı kalıyor,\" dedi. Yerdeki şerit genişledi. Yıldız ay ışığına doğru başını uzattı. Odayı serin ve sakin bir ışık doldurdu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p06",
+            "evidenceText": "Deniz perdeyi biraz araladı. \"Ay ışığı kalıyor,\" dedi. Yerdeki şerit genişledi. Yıldız ay ışığına doğru başını uzattı. Odayı serin ve sakin bir ışık doldurdu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz perdeyi biraz araladı. \"Ay ışığı kalıyor,\" dedi. Yerdeki şerit genişledi. Yıldız ay ışığına doğru başını uzattı. Odayı serin ve sakin bir ışık doldurdu.",
+        "poseAndActionEvidence": [
+          "Deniz perdeyi biraz araladı.",
+          "\"Ay ışığı kalıyor,\" dedi.",
+          "Yerdeki şerit genişledi.",
+          "Yıldız ay ışığına doğru başını uzattı.",
+          "Odayı serin ve sakin bir ışık doldurdu."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz perdeyi biraz araladı. \"Ay ışığı kalıyor,\" dedi. Yerdeki şerit genişledi. Yıldız ay ışığına doğru başını uzattı. Odayı serin ve sakin bir ışık doldurdu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p06",
+        "quoteSHA256": "bab951bd75e087f6250881e8ca64dc01146ddda3409baaa9cbbf7ff5a3c71bbd",
+        "bookID": "pilot56_book_u6_owl_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "bab951bd75e087f6250881e8ca64dc01146ddda3409baaa9cbbf7ff5a3c71bbd",
+      "text": "Deniz perdeyi biraz araladı. \"Ay ışığı kalıyor,\" dedi. Yerdeki şerit genişledi. Yıldız ay ışığına doğru başını uzattı. Odayı serin ve sakin bir ışık doldurdu.",
+      "sourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p06",
+      "sourcePointer": "input/bedtime-owl.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u6_owl_event03_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tünek",
+        "propMentions": [
+          {
+            "label": "tünek",
+            "evidenceQuotes": [
+              "Yıldız tüneğine iyice yerleşti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "Yıldız tüneğine iyice yerleşti. Ay şeridini kımıldamadan izledi. Deniz de izledi, sonra gözleri ağırlaştı. Ay gökyüzünde yavaş yavaş yükseliyordu, Yıldız da onu izliyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p07",
+            "evidenceText": "Yıldız tüneğine iyice yerleşti. Ay şeridini kımıldamadan izledi. Deniz de izledi, sonra gözleri ağırlaştı. Ay gökyüzünde yavaş yavaş yükseliyordu, Yıldız da onu izliyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yıldız tüneğine iyice yerleşti. Ay şeridini kımıldamadan izledi. Deniz de izledi, sonra gözleri ağırlaştı. Ay gökyüzünde yavaş yavaş yükseliyordu, Yıldız da onu izliyordu.",
+        "poseAndActionEvidence": [
+          "Yıldız tüneğine iyice yerleşti.",
+          "Ay şeridini kımıldamadan izledi.",
+          "Deniz de izledi, sonra gözleri ağırlaştı.",
+          "Ay gökyüzünde yavaş yavaş yükseliyordu, Yıldız da onu izliyordu."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Yıldız tüneğine iyice yerleşti. Ay şeridini kımıldamadan izledi. Deniz de izledi, sonra gözleri ağırlaştı. Ay gökyüzünde yavaş yavaş yükseliyordu, Yıldız da onu izliyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p07",
+        "quoteSHA256": "fc9068fbc3f55b08d425fcf76f112bfbdf5e94275a11febdc58d41c28413b2c2",
+        "bookID": "pilot56_book_u6_owl_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "fc9068fbc3f55b08d425fcf76f112bfbdf5e94275a11febdc58d41c28413b2c2",
+      "text": "Yıldız tüneğine iyice yerleşti. Ay şeridini kımıldamadan izledi. Deniz de izledi, sonra gözleri ağırlaştı. Ay gökyüzünde yavaş yavaş yükseliyordu, Yıldız da onu izliyordu.",
+      "sourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p07",
+      "sourcePointer": "input/bedtime-owl.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u6_owl_event03_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_owl_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_owl_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tüy",
+        "propMentions": [
+          {
+            "label": "tüy",
+            "evidenceQuotes": [
+              "Yıldız'ın tüyü son bir kez parladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_owl_pilot_001"
+            ],
+            "description": "\"Gece seni sarsın, Deniz,\" diye fısıldadı Yıldız. Deniz’in göz kapakları indi. Ay ışığı odada kaldı. Yıldız'ın tüyü son bir kez parladı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p08",
+            "evidenceText": "\"Gece seni sarsın, Deniz,\" diye fısıldadı Yıldız. Deniz’in göz kapakları indi. Ay ışığı odada kaldı. Yıldız'ın tüyü son bir kez parladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Gece seni sarsın, Deniz,\" diye fısıldadı Yıldız. Deniz’in göz kapakları indi. Ay ışığı odada kaldı. Yıldız'ın tüyü son bir kez parladı.",
+        "poseAndActionEvidence": [
+          "\"Gece seni sarsın, Deniz,\" diye fısıldadı Yıldız.",
+          "Deniz’in göz kapakları indi.",
+          "Ay ışığı odada kaldı.",
+          "Yıldız'ın tüyü son bir kez parladı."
+        ],
+        "anatomyAndScale": "Kanatlar; tünekte dengeli ayaklar; dört ayaklı gibi kıvrılmaz.",
+        "signatureIdentity": "gece mavisi tüy ve göğüste yıldız biçimli tüy; kanatlar ve tünekte iki ayak; yuvarlak görünmek dört ayaklı gibi kıvrılmak değildir",
+        "doNotDraw": [
+          "Sönen oyuncak/lamba için uyumak mecazdır. Ay ışığı dış kaynaktır; kapatılan masa lambası/fener/tren ışığıyla karıştırılmaz. e3 gece lambası p1de ayrıca varsa üç kaynaklı süreklilik kontrolü gerekir.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Gece seni sarsın, Deniz,\" diye fısıldadı Yıldız. Deniz’in göz kapakları indi. Ay ışığı odada kaldı. Yıldız'ın tüyü son bir kez parladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p08",
+        "quoteSHA256": "4d41fa61c7589365a6b5d0a4849258077a0a9bd379c04a3d4290a2c672302647",
+        "bookID": "pilot56_book_u6_owl_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "4d41fa61c7589365a6b5d0a4849258077a0a9bd379c04a3d4290a2c672302647",
+      "text": "\"Gece seni sarsın, Deniz,\" diye fısıldadı Yıldız. Deniz’in göz kapakları indi. Ay ışığı odada kaldı. Yıldız'ın tüyü son bir kez parladı.",
+      "sourceID": "p56_wave1_pilot56_book_u6_owl_event03_v1_p08",
+      "sourcePointer": "input/bedtime-owl.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk sırayla hangi ışığın söneceğini seçer, tek bir ışığı kendisi bırakır.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

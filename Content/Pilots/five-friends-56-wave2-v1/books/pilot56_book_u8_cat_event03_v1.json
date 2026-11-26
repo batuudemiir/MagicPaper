@@ -1,0 +1,834 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_u8_cat_event03_v1",
+  "title": "Simit'in Bıyıkları",
+  "context": {
+    "settingName": "Çatı Katı Odası",
+    "mode": "bedtime",
+    "companionID": "companion_city_cat_001",
+    "structure": "U8",
+    "event": "e3",
+    "mechanism": "body-part-rest",
+    "sourceFilename": "bedtime-cat.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_u8_cat_event03_v1",
+    "sourceBookID": "pilot56_book_u8_cat_event03_v1",
+    "structure": "U8",
+    "event": "e3",
+    "sample": false,
+    "title": "Simit'in Bıyıkları",
+    "pages": [
+      "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz yorganının altındaydı. Simit yastığın yanındaki minderde oturuyordu. Uzun bıyıkları ışıkta parlıyordu. Zili sessizdi.",
+      "Deniz’in kaşları kalkık, gözleri kocaman açıktı. Yüzü hâlâ oyundaydı. Simit onun yüzüne yakından baktı. \"Yüzüm uyumak istemiyor,\" dedi Deniz. Burnunu kırıştırdı.",
+      "Simit bıyıklarını öne doğru dikti. \"Bıyıklarım hâlâ uyanık,\" dedi. Bıyıkları Deniz’in yanağını gıdıkladı. Bu Deniz’i çok güldürdü. Simit bıyıklarını sallayıp güldü.",
+      "Deniz kaşlarını kaldırdı. Bir, iki, üç. Sonra bıraktı. Alnı yumuşadı. \"Kaşlarım uyudu,\" dedi. Simit bıyıklarını ileri geri oynattı.",
+      "Simit bıyıklarını yavaşça geri yatırdı. \"Şehirde böyle değil ama,\" dedi. \"Orada bıyıklarım geceleri de çalışır.\" Deniz’in yüzü gülümsemeyle doldu. Simit kulaklarını oynattı. Zili bir kez tın etti.",
+      "Deniz yanaklarını şişirip havayı yavaşça bıraktı. Ağzı, çenesi gevşedi. \"Sıra bitti,\" dedi. Yüzü yastıkta yumuşacıktı. Simit gözlerini yarı yumdu.",
+      "Simit minderinde kıvrıldı. Kuyruğunu yüzüne doladı. Zilini patisiyle susturdu. Bıyıkları da artık kıpırdamıyordu. Deniz de yanaklarını yastığa bıraktı.",
+      "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu."
+    ]
+  },
+  "inputFileSHA256": "8993bd941edd8b4cd92235bc6a288327fd55a67326dee4902eaf34610673aa91",
+  "inputBookPointer": "input/bedtime-cat.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_u8_cat_event03_v1",
+      "rawPageMove": "settled_room",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "minder; yatak/yastık/döşek; tasma/zil; lamba/fener/ışık",
+        "propMentions": [
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Simit yastığın yanındaki minderde oturuyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Simit yastığın yanındaki minderde oturuyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Zili sessizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Çatı Katı Odası’nda gece lambası yanıyordu.",
+              "Uzun bıyıkları ışıkta parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz yorganının altındaydı. Simit yastığın yanındaki minderde oturuyordu. Uzun bıyıkları ışıkta parlıyordu. Zili sessizdi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p01",
+            "evidenceText": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz yorganının altındaydı. Simit yastığın yanındaki minderde oturuyordu. Uzun bıyıkları ışıkta parlıyordu. Zili sessizdi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz yorganının altındaydı. Simit yastığın yanındaki minderde oturuyordu. Uzun bıyıkları ışıkta parlıyordu. Zili sessizdi.",
+        "poseAndActionEvidence": [
+          "Çatı Katı Odası’nda gece lambası yanıyordu.",
+          "Deniz yorganının altındaydı.",
+          "Simit yastığın yanındaki minderde oturuyordu.",
+          "Uzun bıyıkları ışıkta parlıyordu.",
+          "Zili sessizdi."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz yorganının altındaydı. Simit yastığın yanındaki minderde oturuyordu. Uzun bıyıkları ışıkta parlıyordu. Zili sessizdi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p01",
+        "quoteSHA256": "99c32085f7e290e8ae45ecfbf08cdb07823370f7885796f97880ee0ec11276ca",
+        "bookID": "pilot56_book_u8_cat_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "99c32085f7e290e8ae45ecfbf08cdb07823370f7885796f97880ee0ec11276ca",
+      "text": "Çatı Katı Odası’nda gece lambası yanıyordu. Deniz yorganının altındaydı. Simit yastığın yanındaki minderde oturuyordu. Uzun bıyıkları ışıkta parlıyordu. Zili sessizdi.",
+      "sourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p01",
+      "sourcePointer": "input/bedtime-cat.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_u8_cat_event03_v1",
+      "rawPageMove": "body_fidgety",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yağmur/cam/oluk",
+        "propMentions": [
+          {
+            "label": "yağmur/cam/oluk",
+            "evidenceQuotes": [
+              "Deniz’in kaşları kalkık, gözleri kocaman açıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz’in kaşları kalkık, gözleri kocaman açıktı. Yüzü hâlâ oyundaydı. Simit onun yüzüne yakından baktı. \"Yüzüm uyumak istemiyor,\" dedi Deniz. Burnunu kırıştırdı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p02",
+            "evidenceText": "Deniz’in kaşları kalkık, gözleri kocaman açıktı. Yüzü hâlâ oyundaydı. Simit onun yüzüne yakından baktı. \"Yüzüm uyumak istemiyor,\" dedi Deniz. Burnunu kırıştırdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz’in kaşları kalkık, gözleri kocaman açıktı. Yüzü hâlâ oyundaydı. Simit onun yüzüne yakından baktı. \"Yüzüm uyumak istemiyor,\" dedi Deniz. Burnunu kırıştırdı.",
+        "poseAndActionEvidence": [
+          "Deniz’in kaşları kalkık, gözleri kocaman açıktı.",
+          "Yüzü hâlâ oyundaydı.",
+          "Simit onun yüzüne yakından baktı.",
+          "\"Yüzüm uyumak istemiyor,\" dedi Deniz.",
+          "Burnunu kırıştırdı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz’in kaşları kalkık, gözleri kocaman açıktı. Yüzü hâlâ oyundaydı. Simit onun yüzüne yakından baktı. \"Yüzüm uyumak istemiyor,\" dedi Deniz. Burnunu kırıştırdı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p02",
+        "quoteSHA256": "674918843dc4a0d545193cdbc8bf81c4c1408bceccc4e854cb7f089d91e02f3b",
+        "bookID": "pilot56_book_u8_cat_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "674918843dc4a0d545193cdbc8bf81c4c1408bceccc4e854cb7f089d91e02f3b",
+      "text": "Deniz’in kaşları kalkık, gözleri kocaman açıktı. Yüzü hâlâ oyundaydı. Simit onun yüzüne yakından baktı. \"Yüzüm uyumak istemiyor,\" dedi Deniz. Burnunu kırıştırdı.",
+      "sourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p02",
+      "sourcePointer": "input/bedtime-cat.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_u8_cat_event03_v1",
+      "rawPageMove": "friend_shows_own_body",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit bıyıklarını öne doğru dikti. \"Bıyıklarım hâlâ uyanık,\" dedi. Bıyıkları Deniz’in yanağını gıdıkladı. Bu Deniz’i çok güldürdü. Simit bıyıklarını sallayıp güldü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p03",
+            "evidenceText": "Simit bıyıklarını öne doğru dikti. \"Bıyıklarım hâlâ uyanık,\" dedi. Bıyıkları Deniz’in yanağını gıdıkladı. Bu Deniz’i çok güldürdü. Simit bıyıklarını sallayıp güldü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit bıyıklarını öne doğru dikti. \"Bıyıklarım hâlâ uyanık,\" dedi. Bıyıkları Deniz’in yanağını gıdıkladı. Bu Deniz’i çok güldürdü. Simit bıyıklarını sallayıp güldü.",
+        "poseAndActionEvidence": [
+          "Simit bıyıklarını öne doğru dikti.",
+          "\"Bıyıklarım hâlâ uyanık,\" dedi.",
+          "Bıyıkları Deniz’in yanağını gıdıkladı.",
+          "Bu Deniz’i çok güldürdü.",
+          "Simit bıyıklarını sallayıp güldü."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "companion_city_cat_001",
+        "quote": "Simit bıyıklarını öne doğru dikti. \"Bıyıklarım hâlâ uyanık,\" dedi. Bıyıkları Deniz’in yanağını gıdıkladı. Bu Deniz’i çok güldürdü. Simit bıyıklarını sallayıp güldü.",
+        "attributionQuote": "Simit",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p03",
+        "quoteSHA256": "9fac291d203142386d05b9accc3398f7b0fcd827fa8cb3761b3cac94752b11cb",
+        "bookID": "pilot56_book_u8_cat_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "9fac291d203142386d05b9accc3398f7b0fcd827fa8cb3761b3cac94752b11cb",
+      "text": "Simit bıyıklarını öne doğru dikti. \"Bıyıklarım hâlâ uyanık,\" dedi. Bıyıkları Deniz’in yanağını gıdıkladı. Bu Deniz’i çok güldürdü. Simit bıyıklarını sallayıp güldü.",
+      "sourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p03",
+      "sourcePointer": "input/bedtime-cat.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_u8_cat_event03_v1",
+      "rawPageMove": "child_releases_first_part",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "No newly named prop on this page; preserve book context.",
+        "propMentions": [],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz kaşlarını kaldırdı. Bir, iki, üç. Sonra bıraktı. Alnı yumuşadı. \"Kaşlarım uyudu,\" dedi. Simit bıyıklarını ileri geri oynattı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p04",
+            "evidenceText": "Deniz kaşlarını kaldırdı. Bir, iki, üç. Sonra bıraktı. Alnı yumuşadı. \"Kaşlarım uyudu,\" dedi. Simit bıyıklarını ileri geri oynattı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kaşlarını kaldırdı. Bir, iki, üç. Sonra bıraktı. Alnı yumuşadı. \"Kaşlarım uyudu,\" dedi. Simit bıyıklarını ileri geri oynattı.",
+        "poseAndActionEvidence": [
+          "Deniz kaşlarını kaldırdı.",
+          "Bir, iki, üç.",
+          "Sonra bıraktı.",
+          "Alnı yumuşadı.",
+          "\"Kaşlarım uyudu,\" dedi.",
+          "Simit bıyıklarını ileri geri oynattı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kaşlarını kaldırdı. Bir, iki, üç. Sonra bıraktı. Alnı yumuşadı. \"Kaşlarım uyudu,\" dedi. Simit bıyıklarını ileri geri oynattı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p04",
+        "quoteSHA256": "467f7b9cb572ce111bfdd7a5fee1435726d5594238ea636bf0c52b672f8a46d5",
+        "bookID": "pilot56_book_u8_cat_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "467f7b9cb572ce111bfdd7a5fee1435726d5594238ea636bf0c52b672f8a46d5",
+      "text": "Deniz kaşlarını kaldırdı. Bir, iki, üç. Sonra bıraktı. Alnı yumuşadı. \"Kaşlarım uyudu,\" dedi. Simit bıyıklarını ileri geri oynattı.",
+      "sourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p04",
+      "sourcePointer": "input/bedtime-cat.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_u8_cat_event03_v1",
+      "rawPageMove": "soft_smile",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tasma/zil",
+        "propMentions": [
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Zili bir kez tın etti."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit bıyıklarını yavaşça geri yatırdı. \"Şehirde böyle değil ama,\" dedi. \"Orada bıyıklarım geceleri de çalışır.\" Deniz’in yüzü gülümsemeyle doldu. Simit kulaklarını oynattı. Zili bir kez tın etti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p05",
+            "evidenceText": "Simit bıyıklarını yavaşça geri yatırdı. \"Şehirde böyle değil ama,\" dedi. \"Orada bıyıklarım geceleri de çalışır.\" Deniz’in yüzü gülümsemeyle doldu. Simit kulaklarını oynattı. Zili bir kez tın etti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit bıyıklarını yavaşça geri yatırdı. \"Şehirde böyle değil ama,\" dedi. \"Orada bıyıklarım geceleri de çalışır.\" Deniz’in yüzü gülümsemeyle doldu. Simit kulaklarını oynattı. Zili bir kez tın etti.",
+        "poseAndActionEvidence": [
+          "Simit bıyıklarını yavaşça geri yatırdı.",
+          "\"Şehirde böyle değil ama,\" dedi.",
+          "\"Orada bıyıklarım geceleri de çalışır.\" Deniz’in yüzü gülümsemeyle doldu.",
+          "Simit kulaklarını oynattı.",
+          "Zili bir kez tın etti."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Simit bıyıklarını yavaşça geri yatırdı. \"Şehirde böyle değil ama,\" dedi. \"Orada bıyıklarım geceleri de çalışır.\" Deniz’in yüzü gülümsemeyle doldu. Simit kulaklarını oynattı. Zili bir kez tın etti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p05",
+        "quoteSHA256": "a17bc61cb4d54f874b8d35b8467d40bc7ff34082cf5ef78ce240370c78bd6935",
+        "bookID": "pilot56_book_u8_cat_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "a17bc61cb4d54f874b8d35b8467d40bc7ff34082cf5ef78ce240370c78bd6935",
+      "text": "Simit bıyıklarını yavaşça geri yatırdı. \"Şehirde böyle değil ama,\" dedi. \"Orada bıyıklarım geceleri de çalışır.\" Deniz’in yüzü gülümsemeyle doldu. Simit kulaklarını oynattı. Zili bir kez tın etti.",
+      "sourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p05",
+      "sourcePointer": "input/bedtime-cat.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_u8_cat_event03_v1",
+      "rawPageMove": "sequence_done",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "yatak/yastık/döşek",
+        "propMentions": [
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Yüzü yastıkta yumuşacıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Deniz yanaklarını şişirip havayı yavaşça bıraktı. Ağzı, çenesi gevşedi. \"Sıra bitti,\" dedi. Yüzü yastıkta yumuşacıktı. Simit gözlerini yarı yumdu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p06",
+            "evidenceText": "Deniz yanaklarını şişirip havayı yavaşça bıraktı. Ağzı, çenesi gevşedi. \"Sıra bitti,\" dedi. Yüzü yastıkta yumuşacıktı. Simit gözlerini yarı yumdu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yanaklarını şişirip havayı yavaşça bıraktı. Ağzı, çenesi gevşedi. \"Sıra bitti,\" dedi. Yüzü yastıkta yumuşacıktı. Simit gözlerini yarı yumdu.",
+        "poseAndActionEvidence": [
+          "Deniz yanaklarını şişirip havayı yavaşça bıraktı.",
+          "Ağzı, çenesi gevşedi.",
+          "\"Sıra bitti,\" dedi.",
+          "Yüzü yastıkta yumuşacıktı.",
+          "Simit gözlerini yarı yumdu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yanaklarını şişirip havayı yavaşça bıraktı. Ağzı, çenesi gevşedi. \"Sıra bitti,\" dedi. Yüzü yastıkta yumuşacıktı. Simit gözlerini yarı yumdu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p06",
+        "quoteSHA256": "5146848e3b6c569649dcdaef23450207c6d58511cec47307754729e0c9b71b71",
+        "bookID": "pilot56_book_u8_cat_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "5146848e3b6c569649dcdaef23450207c6d58511cec47307754729e0c9b71b71",
+      "text": "Deniz yanaklarını şişirip havayı yavaşça bıraktı. Ağzı, çenesi gevşedi. \"Sıra bitti,\" dedi. Yüzü yastıkta yumuşacıktı. Simit gözlerini yarı yumdu.",
+      "sourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p06",
+      "sourcePointer": "input/bedtime-cat.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_u8_cat_event03_v1",
+      "rawPageMove": "awake_rest",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "minder; yatak/yastık/döşek; tasma/zil; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "minder",
+            "evidenceQuotes": [
+              "Simit minderinde kıvrıldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "yatak/yastık/döşek",
+            "evidenceQuotes": [
+              "Deniz de yanaklarını yastığa bıraktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tasma/zil",
+            "evidenceQuotes": [
+              "Zilini patisiyle susturdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Bıyıkları da artık kıpırdamıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "Simit minderinde kıvrıldı. Kuyruğunu yüzüne doladı. Zilini patisiyle susturdu. Bıyıkları da artık kıpırdamıyordu. Deniz de yanaklarını yastığa bıraktı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p07",
+            "evidenceText": "Simit minderinde kıvrıldı. Kuyruğunu yüzüne doladı. Zilini patisiyle susturdu. Bıyıkları da artık kıpırdamıyordu. Deniz de yanaklarını yastığa bıraktı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Simit minderinde kıvrıldı. Kuyruğunu yüzüne doladı. Zilini patisiyle susturdu. Bıyıkları da artık kıpırdamıyordu. Deniz de yanaklarını yastığa bıraktı.",
+        "poseAndActionEvidence": [
+          "Simit minderinde kıvrıldı.",
+          "Kuyruğunu yüzüne doladı.",
+          "Zilini patisiyle susturdu.",
+          "Bıyıkları da artık kıpırdamıyordu.",
+          "Deniz de yanaklarını yastığa bıraktı."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Simit minderinde kıvrıldı. Kuyruğunu yüzüne doladı. Zilini patisiyle susturdu. Bıyıkları da artık kıpırdamıyordu. Deniz de yanaklarını yastığa bıraktı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p07",
+        "quoteSHA256": "fae36289bfd947a9f3aeae591a998d098eeddeba5512aea3030270c1d9614cde",
+        "bookID": "pilot56_book_u8_cat_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "fae36289bfd947a9f3aeae591a998d098eeddeba5512aea3030270c1d9614cde",
+      "text": "Simit minderinde kıvrıldı. Kuyruğunu yüzüne doladı. Zilini patisiyle susturdu. Bıyıkları da artık kıpırdamıyordu. Deniz de yanaklarını yastığa bıraktı.",
+      "sourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p07",
+      "sourcePointer": "input/bedtime-cat.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_u8_cat_event03_v1",
+      "rawPageMove": "closed_calm",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_city_cat_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 2,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "eyes-closed",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_city_cat_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "sessiz zil; ılık oda",
+        "propMentions": [
+          {
+            "label": "sessiz zil",
+            "evidenceQuotes": [
+              "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          },
+          {
+            "label": "ılık oda",
+            "evidenceQuotes": [
+              "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_city_cat_001"
+            ],
+            "description": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p08",
+            "evidenceText": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+        "poseAndActionEvidence": [
+          "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu."
+        ],
+        "anatomyAndScale": "Kıvrık simit kuyruğu; dört ayak. Ormanın eski sakini değildir.",
+        "signatureIdentity": "kırmızı tasma ve zil, simit gibi kıvrık kuyruk; dört pati; şehir karşılaştırması orman sahnesine şehir nesnesi taşımaz",
+        "doNotDraw": [
+          "Uyuyan eller/ayaklar/yüz/kuyruk beden gevşetme mecazıdır; kişinin fiilen uyuduğu veya tedavi/uyutma sonucu iddia edilmez. Sıkma ve bırakma sırası metindeki beden parçasına göre korunur.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 0,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p08",
+        "quoteSHA256": "c2fad05d59d231cc37b5ec15244f5d33daf1f22f7ebd9581ac84a8db0a6c3211",
+        "bookID": "pilot56_book_u8_cat_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "c2fad05d59d231cc37b5ec15244f5d33daf1f22f7ebd9581ac84a8db0a6c3211",
+      "text": "\"Tatlı uykular, Deniz,\" diye mırladı Simit. Deniz’in kirpikleri yanaklarına indi. Yüzü yumuşacık, oda sessiz ve ılıktı. Zil de artık susmuştu.",
+      "sourceID": "p56_wave2_pilot56_book_u8_cat_event03_v1_p08",
+      "sourcePointer": "input/bedtime-cat.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz bir bölümü önce sıkar, sonra gevşetir; sırayı kendisi söyler, bitirdiğine kendisi karar verir.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

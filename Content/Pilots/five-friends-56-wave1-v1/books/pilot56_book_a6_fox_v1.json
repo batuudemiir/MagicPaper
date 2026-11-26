@@ -1,0 +1,908 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a6_fox_v1",
+  "title": "Tarçın Haritayı Kokluyor",
+  "context": {
+    "settingName": "Fısıldayan Orman",
+    "mode": "adventure",
+    "companionID": "companion_fox_pilot_001",
+    "structure": "A6",
+    "event": "e1",
+    "mechanism": "stick-map-landmarks",
+    "sourceFilename": "adventure-fox.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a6_fox_v1",
+    "structure": "A6",
+    "event": "e1",
+    "sample": true,
+    "title": "Tarçın Haritayı Kokluyor",
+    "pages": [
+      "Fısıldayan Orman’da piknik yeri biraz uzaktaydı. Patikalar birbirine karışıyordu. Deniz ile Tarçın bir çatalda durdu. Ağaçlar her yönde birbirine benziyordu.",
+      "Deniz yolu hatırlamaya çalıştı. \"Önce büyük kaya, sonra eğri ağaç, sonra çalılık,\" dedi. Üç işareti biliyordu. Bu işaretleri daha önce görmüştü.",
+      "Tarçın burnunu kaldırdı. \"Bir koklayalım bakalım,\" dedi. \"Bir işaret daha: piknik yeri reçel kokar!\" Deniz güldü. Deniz bu dördüncü işareti de aklına yazdı.",
+      "Deniz yerden bir dal aldı. Toprağa bir kaya, bir eğri ağaç, bir çalılık çizdi. Sonuna küçük bir reçel kavanozu ekledi.",
+      "Haritayı izleyip büyük kayaya vardılar. Tarçın kayayı kokladı. \"Doğru kaya,\" dedi. \"Yosun kokuyor.\" Kaya tam çizdiği gibi büyük ve yuvarlaktı. Deniz sevindi.",
+      "Deniz durup haritayı hatırladı. \"Şimdi eğri ağaç,\" dedi. Eğri ağacı gördü, sonra çalılığı. Yolu kendisi buluyordu. Kendi çizdiği harita işe yarıyordu.",
+      "Çalılığın arkasında piknik yeri vardı. Tarçın burnunu yukarı uzattı. \"Reçel!\" dedi. Deniz sevindi. Örtünün üstünde gerçekten bir reçel kavanozu duruyordu. Tilkinin burnu yine haklı çıkmıştı.",
+      "Deniz yere çizdiği haritayı düşündü. \"Dönüşte de işaretleri izleriz,\" dedi. Tarçın kuyruğunu salladı. Turkuaz boyunluğu güneşte parladı. Ormanın yolu artık karışık değildi."
+    ],
+    "sourceBookID": "pilot56_book_a6_fox_v1"
+  },
+  "inputFileSHA256": "2472f562b0ad66d85854840664c7f348292d5ce02bcba3073894d1e7d0181d7b",
+  "inputBookPointer": "input/adventure-fox.json#/books/3",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a6_fox_v1",
+      "rawPageMove": "route_unclear",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; kar/battaniye; çatal/kanca dal",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Ağaçlar her yönde birbirine benziyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Patikalar birbirine karışıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çatal/kanca dal",
+            "evidenceQuotes": [
+              "Deniz ile Tarçın bir çatalda durdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Fısıldayan Orman’da piknik yeri biraz uzaktaydı. Patikalar birbirine karışıyordu. Deniz ile Tarçın bir çatalda durdu. Ağaçlar her yönde birbirine benziyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p01",
+            "evidenceText": "Fısıldayan Orman’da piknik yeri biraz uzaktaydı. Patikalar birbirine karışıyordu. Deniz ile Tarçın bir çatalda durdu. Ağaçlar her yönde birbirine benziyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Fısıldayan Orman’da piknik yeri biraz uzaktaydı. Patikalar birbirine karışıyordu. Deniz ile Tarçın bir çatalda durdu. Ağaçlar her yönde birbirine benziyordu.",
+        "poseAndActionEvidence": [
+          "Fısıldayan Orman’da piknik yeri biraz uzaktaydı.",
+          "Patikalar birbirine karışıyordu.",
+          "Deniz ile Tarçın bir çatalda durdu.",
+          "Ağaçlar her yönde birbirine benziyordu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Fısıldayan Orman’da piknik yeri biraz uzaktaydı. Patikalar birbirine karışıyordu. Deniz ile Tarçın bir çatalda durdu. Ağaçlar her yönde birbirine benziyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p01",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p01",
+        "quoteSHA256": "3176c2dc91740b8fe736f4d444c1257b19f9e853e463f2d2b5c278704dd5fbfd",
+        "bookID": "pilot56_book_a6_fox_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "3176c2dc91740b8fe736f4d444c1257b19f9e853e463f2d2b5c278704dd5fbfd",
+      "text": "Fısıldayan Orman’da piknik yeri biraz uzaktaydı. Patikalar birbirine karışıyordu. Deniz ile Tarçın bir çatalda durdu. Ağaçlar her yönde birbirine benziyordu.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_v1_p01",
+      "sourcePointer": "input/adventure-fox.json#/books/3/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a6_fox_v1",
+      "rawPageMove": "landmarks_recalled",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; tahta işaret parçaları",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "\"Önce büyük kaya, sonra eğri ağaç, sonra çalılık,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "Üç işareti biliyordu.",
+              "Bu işaretleri daha önce görmüştü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz yolu hatırlamaya çalıştı. \"Önce büyük kaya, sonra eğri ağaç, sonra çalılık,\" dedi. Üç işareti biliyordu. Bu işaretleri daha önce görmüştü.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p02",
+            "evidenceText": "Deniz yolu hatırlamaya çalıştı. \"Önce büyük kaya, sonra eğri ağaç, sonra çalılık,\" dedi. Üç işareti biliyordu. Bu işaretleri daha önce görmüştü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yolu hatırlamaya çalıştı. \"Önce büyük kaya, sonra eğri ağaç, sonra çalılık,\" dedi. Üç işareti biliyordu. Bu işaretleri daha önce görmüştü.",
+        "poseAndActionEvidence": [
+          "Deniz yolu hatırlamaya çalıştı.",
+          "\"Önce büyük kaya, sonra eğri ağaç, sonra çalılık,\" dedi.",
+          "Üç işareti biliyordu.",
+          "Bu işaretleri daha önce görmüştü."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yolu hatırlamaya çalıştı. \"Önce büyük kaya, sonra eğri ağaç, sonra çalılık,\" dedi. Üç işareti biliyordu. Bu işaretleri daha önce görmüştü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p02",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p02",
+        "quoteSHA256": "e491ee79204a64df910d38511f166eefa3d9a3e13f950110e976fc21560383dc",
+        "bookID": "pilot56_book_a6_fox_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "e491ee79204a64df910d38511f166eefa3d9a3e13f950110e976fc21560383dc",
+      "text": "Deniz yolu hatırlamaya çalıştı. \"Önce büyük kaya, sonra eğri ağaç, sonra çalılık,\" dedi. Üç işareti biliyordu. Bu işaretleri daha önce görmüştü.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_v1_p02",
+      "sourcePointer": "input/adventure-fox.json#/books/3/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a6_fox_v1",
+      "rawPageMove": "friend_adds_landmark",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tahta işaret parçaları",
+        "propMentions": [
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "\"Bir işaret daha: piknik yeri reçel kokar!\" Deniz güldü.",
+              "Deniz bu dördüncü işareti de aklına yazdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Tarçın burnunu kaldırdı. \"Bir koklayalım bakalım,\" dedi. \"Bir işaret daha: piknik yeri reçel kokar!\" Deniz güldü. Deniz bu dördüncü işareti de aklına yazdı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p03",
+            "evidenceText": "Tarçın burnunu kaldırdı. \"Bir koklayalım bakalım,\" dedi. \"Bir işaret daha: piknik yeri reçel kokar!\" Deniz güldü. Deniz bu dördüncü işareti de aklına yazdı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Tarçın burnunu kaldırdı. \"Bir koklayalım bakalım,\" dedi. \"Bir işaret daha: piknik yeri reçel kokar!\" Deniz güldü. Deniz bu dördüncü işareti de aklına yazdı.",
+        "poseAndActionEvidence": [
+          "Tarçın burnunu kaldırdı.",
+          "\"Bir koklayalım bakalım,\" dedi.",
+          "\"Bir işaret daha: piknik yeri reçel kokar!\" Deniz güldü.",
+          "Deniz bu dördüncü işareti de aklına yazdı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_fox_pilot_001",
+        "quote": "Tarçın burnunu kaldırdı. \"Bir koklayalım bakalım,\" dedi. \"Bir işaret daha: piknik yeri reçel kokar!\" Deniz güldü. Deniz bu dördüncü işareti de aklına yazdı.",
+        "attributionQuote": "Tarçın",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p03",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p03",
+        "quoteSHA256": "91d885a362e7ccbdcd2f275d84c8aa137d4095759ab387508bc48c0280e7b5a6",
+        "bookID": "pilot56_book_a6_fox_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "91d885a362e7ccbdcd2f275d84c8aa137d4095759ab387508bc48c0280e7b5a6",
+      "text": "Tarçın burnunu kaldırdı. \"Bir koklayalım bakalım,\" dedi. \"Bir işaret daha: piknik yeri reçel kokar!\" Deniz güldü. Deniz bu dördüncü işareti de aklına yazdı.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_v1_p03",
+      "sourcePointer": "input/adventure-fox.json#/books/3/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a6_fox_v1",
+      "rawPageMove": "child_draws_map",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; ağaç/gövde; toprak; harita/çizim",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz yerden bir dal aldı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "Toprağa bir kaya, bir eğri ağaç, bir çalılık çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "toprak",
+            "evidenceQuotes": [
+              "Toprağa bir kaya, bir eğri ağaç, bir çalılık çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "harita/çizim",
+            "evidenceQuotes": [
+              "Toprağa bir kaya, bir eğri ağaç, bir çalılık çizdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz yerden bir dal aldı. Toprağa bir kaya, bir eğri ağaç, bir çalılık çizdi. Sonuna küçük bir reçel kavanozu ekledi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p04",
+            "evidenceText": "Deniz yerden bir dal aldı. Toprağa bir kaya, bir eğri ağaç, bir çalılık çizdi. Sonuna küçük bir reçel kavanozu ekledi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yerden bir dal aldı. Toprağa bir kaya, bir eğri ağaç, bir çalılık çizdi. Sonuna küçük bir reçel kavanozu ekledi.",
+        "poseAndActionEvidence": [
+          "Deniz yerden bir dal aldı.",
+          "Toprağa bir kaya, bir eğri ağaç, bir çalılık çizdi.",
+          "Sonuna küçük bir reçel kavanozu ekledi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yerden bir dal aldı. Toprağa bir kaya, bir eğri ağaç, bir çalılık çizdi. Sonuna küçük bir reçel kavanozu ekledi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p04",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p04",
+        "quoteSHA256": "7292fb05f1f2f0bf138eb4ac6c5eb0d93ce0ea05d67226c3d8eb65be163a1b03",
+        "bookID": "pilot56_book_a6_fox_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "7292fb05f1f2f0bf138eb4ac6c5eb0d93ce0ea05d67226c3d8eb65be163a1b03",
+      "text": "Deniz yerden bir dal aldı. Toprağa bir kaya, bir eğri ağaç, bir çalılık çizdi. Sonuna küçük bir reçel kavanozu ekledi.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_v1_p04",
+      "sourcePointer": "input/adventure-fox.json#/books/3/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a6_fox_v1",
+      "rawPageMove": "follow_first",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; harita/çizim; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "\"Yosun kokuyor.\" Kaya tam çizdiği gibi büyük ve yuvarlaktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "harita/çizim",
+            "evidenceQuotes": [
+              "Haritayı izleyip büyük kayaya vardılar.",
+              "\"Yosun kokuyor.\" Kaya tam çizdiği gibi büyük ve yuvarlaktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "\"Yosun kokuyor.\" Kaya tam çizdiği gibi büyük ve yuvarlaktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Haritayı izleyip büyük kayaya vardılar. Tarçın kayayı kokladı. \"Doğru kaya,\" dedi. \"Yosun kokuyor.\" Kaya tam çizdiği gibi büyük ve yuvarlaktı. Deniz sevindi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p05",
+            "evidenceText": "Haritayı izleyip büyük kayaya vardılar. Tarçın kayayı kokladı. \"Doğru kaya,\" dedi. \"Yosun kokuyor.\" Kaya tam çizdiği gibi büyük ve yuvarlaktı. Deniz sevindi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Haritayı izleyip büyük kayaya vardılar. Tarçın kayayı kokladı. \"Doğru kaya,\" dedi. \"Yosun kokuyor.\" Kaya tam çizdiği gibi büyük ve yuvarlaktı. Deniz sevindi.",
+        "poseAndActionEvidence": [
+          "Haritayı izleyip büyük kayaya vardılar.",
+          "Tarçın kayayı kokladı.",
+          "\"Doğru kaya,\" dedi.",
+          "\"Yosun kokuyor.\" Kaya tam çizdiği gibi büyük ve yuvarlaktı.",
+          "Deniz sevindi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Haritayı izleyip büyük kayaya vardılar. Tarçın kayayı kokladı. \"Doğru kaya,\" dedi. \"Yosun kokuyor.\" Kaya tam çizdiği gibi büyük ve yuvarlaktı. Deniz sevindi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p05",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p05",
+        "quoteSHA256": "31af0af315ac29269076a6d7870ad8cebbf3ea130a311d3538073612acac2623",
+        "bookID": "pilot56_book_a6_fox_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "31af0af315ac29269076a6d7870ad8cebbf3ea130a311d3538073612acac2623",
+      "text": "Haritayı izleyip büyük kayaya vardılar. Tarçın kayayı kokladı. \"Doğru kaya,\" dedi. \"Yosun kokuyor.\" Kaya tam çizdiği gibi büyük ve yuvarlaktı. Deniz sevindi.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_v1_p05",
+      "sourcePointer": "input/adventure-fox.json#/books/3/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a6_fox_v1",
+      "rawPageMove": "child_checks_map",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "ağaç/gövde; harita/çizim",
+        "propMentions": [
+          {
+            "label": "ağaç/gövde",
+            "evidenceQuotes": [
+              "\"Şimdi eğri ağaç,\" dedi.",
+              "Eğri ağacı gördü, sonra çalılığı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "harita/çizim",
+            "evidenceQuotes": [
+              "Deniz durup haritayı hatırladı.",
+              "Kendi çizdiği harita işe yarıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz durup haritayı hatırladı. \"Şimdi eğri ağaç,\" dedi. Eğri ağacı gördü, sonra çalılığı. Yolu kendisi buluyordu. Kendi çizdiği harita işe yarıyordu.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p06",
+            "evidenceText": "Deniz durup haritayı hatırladı. \"Şimdi eğri ağaç,\" dedi. Eğri ağacı gördü, sonra çalılığı. Yolu kendisi buluyordu. Kendi çizdiği harita işe yarıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz durup haritayı hatırladı. \"Şimdi eğri ağaç,\" dedi. Eğri ağacı gördü, sonra çalılığı. Yolu kendisi buluyordu. Kendi çizdiği harita işe yarıyordu.",
+        "poseAndActionEvidence": [
+          "Deniz durup haritayı hatırladı.",
+          "\"Şimdi eğri ağaç,\" dedi.",
+          "Eğri ağacı gördü, sonra çalılığı.",
+          "Yolu kendisi buluyordu.",
+          "Kendi çizdiği harita işe yarıyordu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz durup haritayı hatırladı. \"Şimdi eğri ağaç,\" dedi. Eğri ağacı gördü, sonra çalılığı. Yolu kendisi buluyordu. Kendi çizdiği harita işe yarıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p06",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p06",
+        "quoteSHA256": "204dd5fed29942635536d950092bbce252b866654b99d070806fc711eec6ebb1",
+        "bookID": "pilot56_book_a6_fox_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "204dd5fed29942635536d950092bbce252b866654b99d070806fc711eec6ebb1",
+      "text": "Deniz durup haritayı hatırladı. \"Şimdi eğri ağaç,\" dedi. Eğri ağacı gördü, sonra çalılığı. Yolu kendisi buluyordu. Kendi çizdiği harita işe yarıyordu.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_v1_p06",
+      "sourcePointer": "input/adventure-fox.json#/books/3/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a6_fox_v1",
+      "rawPageMove": "goal_reached",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "örtü; kar/battaniye",
+        "propMentions": [
+          {
+            "label": "örtü",
+            "evidenceQuotes": [
+              "Örtünün üstünde gerçekten bir reçel kavanozu duruyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Tarçın burnunu yukarı uzattı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Çalılığın arkasında piknik yeri vardı. Tarçın burnunu yukarı uzattı. \"Reçel!\" dedi. Deniz sevindi. Örtünün üstünde gerçekten bir reçel kavanozu duruyordu. Tilkinin burnu yine haklı çıkmıştı.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p07",
+            "evidenceText": "Çalılığın arkasında piknik yeri vardı. Tarçın burnunu yukarı uzattı. \"Reçel!\" dedi. Deniz sevindi. Örtünün üstünde gerçekten bir reçel kavanozu duruyordu. Tilkinin burnu yine haklı çıkmıştı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çalılığın arkasında piknik yeri vardı. Tarçın burnunu yukarı uzattı. \"Reçel!\" dedi. Deniz sevindi. Örtünün üstünde gerçekten bir reçel kavanozu duruyordu. Tilkinin burnu yine haklı çıkmıştı.",
+        "poseAndActionEvidence": [
+          "Çalılığın arkasında piknik yeri vardı.",
+          "Tarçın burnunu yukarı uzattı.",
+          "\"Reçel!\" dedi.",
+          "Deniz sevindi.",
+          "Örtünün üstünde gerçekten bir reçel kavanozu duruyordu.",
+          "Tilkinin burnu yine haklı çıkmıştı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çalılığın arkasında piknik yeri vardı. Tarçın burnunu yukarı uzattı. \"Reçel!\" dedi. Deniz sevindi. Örtünün üstünde gerçekten bir reçel kavanozu duruyordu. Tilkinin burnu yine haklı çıkmıştı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p07",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p07",
+        "quoteSHA256": "c92dcb322e6f52fe0bc227f59e3689a0add1a2f56e89672c97de55e3ec2da6b3",
+        "bookID": "pilot56_book_a6_fox_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "c92dcb322e6f52fe0bc227f59e3689a0add1a2f56e89672c97de55e3ec2da6b3",
+      "text": "Çalılığın arkasında piknik yeri vardı. Tarçın burnunu yukarı uzattı. \"Reçel!\" dedi. Deniz sevindi. Örtünün üstünde gerçekten bir reçel kavanozu duruyordu. Tilkinin burnu yine haklı çıkmıştı.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_v1_p07",
+      "sourcePointer": "input/adventure-fox.json#/books/3/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a6_fox_v1",
+      "rawPageMove": "closed_return",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "tahta işaret parçaları; boyunluk; lamba/fener/ışık; kar/battaniye; harita/çizim; iz/kum",
+        "propMentions": [
+          {
+            "label": "tahta işaret parçaları",
+            "evidenceQuotes": [
+              "\"Dönüşte de işaretleri izleriz,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "Turkuaz boyunluğu güneşte parladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "lamba/fener/ışık",
+            "evidenceQuotes": [
+              "Ormanın yolu artık karışık değildi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Ormanın yolu artık karışık değildi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "harita/çizim",
+            "evidenceQuotes": [
+              "Deniz yere çizdiği haritayı düşündü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "iz/kum",
+            "evidenceQuotes": [
+              "\"Dönüşte de işaretleri izleriz,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Deniz yere çizdiği haritayı düşündü. \"Dönüşte de işaretleri izleriz,\" dedi. Tarçın kuyruğunu salladı. Turkuaz boyunluğu güneşte parladı. Ormanın yolu artık karışık değildi.",
+            "evidenceSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p08",
+            "evidenceText": "Deniz yere çizdiği haritayı düşündü. \"Dönüşte de işaretleri izleriz,\" dedi. Tarçın kuyruğunu salladı. Turkuaz boyunluğu güneşte parladı. Ormanın yolu artık karışık değildi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yere çizdiği haritayı düşündü. \"Dönüşte de işaretleri izleriz,\" dedi. Tarçın kuyruğunu salladı. Turkuaz boyunluğu güneşte parladı. Ormanın yolu artık karışık değildi.",
+        "poseAndActionEvidence": [
+          "Deniz yere çizdiği haritayı düşündü.",
+          "\"Dönüşte de işaretleri izleriz,\" dedi.",
+          "Tarçın kuyruğunu salladı.",
+          "Turkuaz boyunluğu güneşte parladı.",
+          "Ormanın yolu artık karışık değildi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Toprağa çizilen harita yerde kalır; sonraki işaret çizimdeki simge ile gerçek ağaç/kaya/duvar ayrıdır. Hatırlanan çizim elde taşınan kâğıt haritaya dönüştürülmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yere çizdiği haritayı düşündü. \"Dönüşte de işaretleri izleriz,\" dedi. Tarçın kuyruğunu salladı. Turkuaz boyunluğu güneşte parladı. Ormanın yolu artık karışık değildi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p08",
+        "attributionSourceID": "p56_wave1_pilot56_book_a6_fox_v1_p08",
+        "quoteSHA256": "f5bbd8a828287d2edd77c5f38b83c0065045aa4cbe915606a3e327ff9798caff",
+        "bookID": "pilot56_book_a6_fox_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "f5bbd8a828287d2edd77c5f38b83c0065045aa4cbe915606a3e327ff9798caff",
+      "text": "Deniz yere çizdiği haritayı düşündü. \"Dönüşte de işaretleri izleriz,\" dedi. Tarçın kuyruğunu salladı. Turkuaz boyunluğu güneşte parladı. Ormanın yolu artık karışık değildi.",
+      "sourceID": "p56_wave1_pilot56_book_a6_fox_v1_p08",
+      "sourcePointer": "input/adventure-fox.json#/books/3/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Çocuk bildiği üç işareti dalla yere çizer ve haritayı izleyerek yolu bulur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

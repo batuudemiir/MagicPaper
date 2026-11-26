@@ -1,0 +1,923 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_l9_hedgehog_event03_v1",
+  "title": "Kestane Kaç Kozalak",
+  "context": {
+    "settingName": "Kozalak Tepesi",
+    "mode": "learning",
+    "companionID": "companion_hedgehog_pilot_001",
+    "structure": "L9",
+    "event": "e3",
+    "mechanism": "balance-stick",
+    "sourceFilename": "learning-hedgehog.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_l9_hedgehog_event03_v1",
+    "sourceBookID": "pilot56_book_l9_hedgehog_event03_v1",
+    "structure": "L9",
+    "event": "e3",
+    "sample": false,
+    "title": "Kestane Kaç Kozalak",
+    "pages": [
+      "Kozalak Tepesi’nde kozalaklar her yere dağılmıştı. Deniz alçak kütüğün yanına çömeldi. Kestane kozalakların arasında dolaşıyordu. Dikenleri kozalaklara benziyordu.",
+      "Dalın iki ucunda birer küçük kozalak vardı. Dal dengedeydi. Deniz yerde büyük bir kozalak buldu. Kestane ona hayranlıkla baktı. \"Bu büyük kaç küçüğe denk?\" diye merak etti Deniz.",
+      "Kestane top oldu ve kendini kozalakların arasına koydu. \"Bence ben de bir kozalağım,\" dedi. \"Büyük kozalak, bir Kestane'ye denk!\" Deniz elini ağzına kapatıp kıkırdadı.",
+      "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
+      "Deniz öbür uca bir küçük kozalak koydu. Dal biraz kalktı ama yine büyüğün tarafındaydı. \"Küçük bir adım, sonra bir tane daha,\" dedi Kestane.",
+      "Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. \"Bir büyük, iki küçüğe denk!\" dedi. Kestane küçük bir dans etti.",
+      "Deniz kozalakları değiştirdi. Büyüğü öbür uca, iki küçüğü bu uca koydu. Dal yine ortada durdu. \"Yer değişse de denk,\" dedi Deniz. Kestane sevinçle zıpladı.",
+      "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı."
+    ]
+  },
+  "inputFileSHA256": "c11ab0d5e4d32f9cd0fcc294c02496625e0230415a1bc65790d4a4c2e6190487",
+  "inputBookPointer": "input/learning-hedgehog.json#/books/5",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+      "rawPageMove": "tilted",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; kozalak",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Deniz alçak kütüğün yanına çömeldi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Kozalak Tepesi’nde kozalaklar her yere dağılmıştı.",
+              "Kestane kozalakların arasında dolaşıyordu.",
+              "Dikenleri kozalaklara benziyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kozalak Tepesi’nde kozalaklar her yere dağılmıştı. Deniz alçak kütüğün yanına çömeldi. Kestane kozalakların arasında dolaşıyordu. Dikenleri kozalaklara benziyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p01",
+            "evidenceText": "Kozalak Tepesi’nde kozalaklar her yere dağılmıştı. Deniz alçak kütüğün yanına çömeldi. Kestane kozalakların arasında dolaşıyordu. Dikenleri kozalaklara benziyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kozalak Tepesi’nde kozalaklar her yere dağılmıştı. Deniz alçak kütüğün yanına çömeldi. Kestane kozalakların arasında dolaşıyordu. Dikenleri kozalaklara benziyordu.",
+        "poseAndActionEvidence": [
+          "Kozalak Tepesi’nde kozalaklar her yere dağılmıştı.",
+          "Deniz alçak kütüğün yanına çömeldi.",
+          "Kestane kozalakların arasında dolaşıyordu.",
+          "Dikenleri kozalaklara benziyordu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Kozalak Tepesi’nde kozalaklar her yere dağılmıştı. Deniz alçak kütüğün yanına çömeldi. Kestane kozalakların arasında dolaşıyordu. Dikenleri kozalaklara benziyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p01",
+        "quoteSHA256": "8714da89c7b55a708ccc2878f7514f93f3cfb40652e936b48cb007f3d720eba8",
+        "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "8714da89c7b55a708ccc2878f7514f93f3cfb40652e936b48cb007f3d720eba8",
+      "text": "Kozalak Tepesi’nde kozalaklar her yere dağılmıştı. Deniz alçak kütüğün yanına çömeldi. Kestane kozalakların arasında dolaşıyordu. Dikenleri kozalaklara benziyordu.",
+      "sourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p01",
+      "sourcePointer": "input/learning-hedgehog.json#/books/5/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+      "rawPageMove": "child_guesses",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kozalak",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Dalın iki ucunda birer küçük kozalak vardı.",
+              "Dal dengedeydi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Dalın iki ucunda birer küçük kozalak vardı.",
+              "Deniz yerde büyük bir kozalak buldu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Dalın iki ucunda birer küçük kozalak vardı. Dal dengedeydi. Deniz yerde büyük bir kozalak buldu. Kestane ona hayranlıkla baktı. \"Bu büyük kaç küçüğe denk?\" diye merak etti Deniz.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p02",
+            "evidenceText": "Dalın iki ucunda birer küçük kozalak vardı. Dal dengedeydi. Deniz yerde büyük bir kozalak buldu. Kestane ona hayranlıkla baktı. \"Bu büyük kaç küçüğe denk?\" diye merak etti Deniz.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+        "balanceStateFromReviewedContext": {
+          "experimentSetOnly": true,
+          "ambientConesNotCounted": true,
+          "first": {
+            "small": 1
+          },
+          "other": {
+            "small": 1
+          }
+        }
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Dalın iki ucunda birer küçük kozalak vardı. Dal dengedeydi. Deniz yerde büyük bir kozalak buldu. Kestane ona hayranlıkla baktı. \"Bu büyük kaç küçüğe denk?\" diye merak etti Deniz.",
+        "poseAndActionEvidence": [
+          "Dalın iki ucunda birer küçük kozalak vardı.",
+          "Dal dengedeydi.",
+          "Deniz yerde büyük bir kozalak buldu.",
+          "Kestane ona hayranlıkla baktı.",
+          "\"Bu büyük kaç küçüğe denk?\" diye merak etti Deniz."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+          "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Dalın iki ucunda birer küçük kozalak vardı. Dal dengedeydi. Deniz yerde büyük bir kozalak buldu. Kestane ona hayranlıkla baktı. \"Bu büyük kaç küçüğe denk?\" diye merak etti Deniz.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p02",
+        "quoteSHA256": "8f3b191a5b55485fc20106a3c6862490433633cae4bf6756da9b95ce81eda7ac",
+        "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "8f3b191a5b55485fc20106a3c6862490433633cae4bf6756da9b95ce81eda7ac",
+      "text": "Dalın iki ucunda birer küçük kozalak vardı. Dal dengedeydi. Deniz yerde büyük bir kozalak buldu. Kestane ona hayranlıkla baktı. \"Bu büyük kaç küçüğe denk?\" diye merak etti Deniz.",
+      "sourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p02",
+      "sourcePointer": "input/learning-hedgehog.json#/books/5/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+      "rawPageMove": "friend_try",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kozalak; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Kestane top oldu ve kendini kozalakların arasına koydu.",
+              "\"Büyük kozalak, bir Kestane'ye denk!\" Deniz elini ağzına kapatıp kıkırdadı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Kestane top oldu ve kendini kozalakların arasına koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Kestane top oldu ve kendini kozalakların arasına koydu. \"Bence ben de bir kozalağım,\" dedi. \"Büyük kozalak, bir Kestane'ye denk!\" Deniz elini ağzına kapatıp kıkırdadı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p03",
+            "evidenceText": "Kestane top oldu ve kendini kozalakların arasına koydu. \"Bence ben de bir kozalağım,\" dedi. \"Büyük kozalak, bir Kestane'ye denk!\" Deniz elini ağzına kapatıp kıkırdadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Kestane top oldu ve kendini kozalakların arasına koydu. \"Bence ben de bir kozalağım,\" dedi. \"Büyük kozalak, bir Kestane'ye denk!\" Deniz elini ağzına kapatıp kıkırdadı.",
+        "poseAndActionEvidence": [
+          "Kestane top oldu ve kendini kozalakların arasına koydu.",
+          "\"Bence ben de bir kozalağım,\" dedi.",
+          "\"Büyük kozalak, bir Kestane'ye denk!\" Deniz elini ağzına kapatıp kıkırdadı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_hedgehog_pilot_001",
+        "quote": "Kestane top oldu ve kendini kozalakların arasına koydu. \"Bence ben de bir kozalağım,\" dedi. \"Büyük kozalak, bir Kestane'ye denk!\" Deniz elini ağzına kapatıp kıkırdadı.",
+        "attributionQuote": "Kestane",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p03",
+        "quoteSHA256": "9e5c91290e8f558763221989cbc2b9781fc313e51c03f3eddf38a8122540a856",
+        "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "9e5c91290e8f558763221989cbc2b9781fc313e51c03f3eddf38a8122540a856",
+      "text": "Kestane top oldu ve kendini kozalakların arasına koydu. \"Bence ben de bir kozalağım,\" dedi. \"Büyük kozalak, bir Kestane'ye denk!\" Deniz elini ağzına kapatıp kıkırdadı.",
+      "sourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p03",
+      "sourcePointer": "input/learning-hedgehog.json#/books/5/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+      "rawPageMove": "trial_1",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 2,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; iki küçük kozalak daldan kaldırılır; tek uçtaki büyük kozalak",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          },
+          {
+            "label": "iki küçük kozalak daldan kaldırılır",
+            "evidenceQuotes": [
+              "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          },
+          {
+            "label": "tek uçtaki büyük kozalak",
+            "evidenceQuotes": [
+              "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p04",
+            "evidenceText": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction.",
+        "balanceStateFromReviewedContext": {
+          "experimentSetOnly": true,
+          "ambientConesNotCounted": true,
+          "first": {
+            "large": 1
+          },
+          "other": {},
+          "offBeamSmall": 2
+        }
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
+        "poseAndActionEvidence": [
+          "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+          "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p04",
+        "quoteSHA256": "d7630e85395089f0534941b1810a759715876fe3f7d19c254a08fce032db0e66",
+        "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "d7630e85395089f0534941b1810a759715876fe3f7d19c254a08fce032db0e66",
+      "text": "Deniz iki küçük kozalağı da daldan aldı. Bir uca büyüğü koydu. Dal büyüğün tarafına indi. \"Büyük daha ağır,\" dedi Deniz. Kestane düşen ucun yanına koştu.",
+      "sourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p04",
+      "sourcePointer": "input/learning-hedgehog.json#/books/5/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+      "rawPageMove": "trial_2",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kozalak",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Dal biraz kalktı ama yine büyüğün tarafındaydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Deniz öbür uca bir küçük kozalak koydu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz öbür uca bir küçük kozalak koydu. Dal biraz kalktı ama yine büyüğün tarafındaydı. \"Küçük bir adım, sonra bir tane daha,\" dedi Kestane.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p05",
+            "evidenceText": "Deniz öbür uca bir küçük kozalak koydu. Dal biraz kalktı ama yine büyüğün tarafındaydı. \"Küçük bir adım, sonra bir tane daha,\" dedi Kestane.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+        "balanceStateFromReviewedContext": {
+          "experimentSetOnly": true,
+          "ambientConesNotCounted": true,
+          "first": {
+            "large": 1
+          },
+          "other": {
+            "small": 1
+          },
+          "offBeamSmall": 1
+        }
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz öbür uca bir küçük kozalak koydu. Dal biraz kalktı ama yine büyüğün tarafındaydı. \"Küçük bir adım, sonra bir tane daha,\" dedi Kestane.",
+        "poseAndActionEvidence": [
+          "Deniz öbür uca bir küçük kozalak koydu.",
+          "Dal biraz kalktı ama yine büyüğün tarafındaydı.",
+          "\"Küçük bir adım, sonra bir tane daha,\" dedi Kestane."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+          "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz öbür uca bir küçük kozalak koydu. Dal biraz kalktı ama yine büyüğün tarafındaydı. \"Küçük bir adım, sonra bir tane daha,\" dedi Kestane.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p05",
+        "quoteSHA256": "835b6d6a676f62e8462d9516a94ade02ee43d4cc323118f65577d57e6b3c7a93",
+        "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "835b6d6a676f62e8462d9516a94ade02ee43d4cc323118f65577d57e6b3c7a93",
+      "text": "Deniz öbür uca bir küçük kozalak koydu. Dal biraz kalktı ama yine büyüğün tarafındaydı. \"Küçük bir adım, sonra bir tane daha,\" dedi Kestane.",
+      "sourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p05",
+      "sourcePointer": "input/learning-hedgehog.json#/books/5/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+      "rawPageMove": "child_compares",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kozalak",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Dal sallandı ve ortada durdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Deniz öbür uca bir küçük kozalak daha ekledi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. \"Bir büyük, iki küçüğe denk!\" dedi. Kestane küçük bir dans etti.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p06",
+            "evidenceText": "Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. \"Bir büyük, iki küçüğe denk!\" dedi. Kestane küçük bir dans etti.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+        "balanceStateFromReviewedContext": {
+          "experimentSetOnly": true,
+          "ambientConesNotCounted": true,
+          "first": {
+            "large": 1
+          },
+          "other": {
+            "small": 2
+          },
+          "offBeamSmall": 0
+        }
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. \"Bir büyük, iki küçüğe denk!\" dedi. Kestane küçük bir dans etti.",
+        "poseAndActionEvidence": [
+          "Deniz öbür uca bir küçük kozalak daha ekledi.",
+          "Dal sallandı ve ortada durdu.",
+          "\"Bir büyük, iki küçüğe denk!\" dedi.",
+          "Kestane küçük bir dans etti."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+          "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. \"Bir büyük, iki küçüğe denk!\" dedi. Kestane küçük bir dans etti.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p06",
+        "quoteSHA256": "b2179f1543e1bc4c93902c126b2879e73cccf0162ddab5d88fc8eca329be94d0",
+        "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "b2179f1543e1bc4c93902c126b2879e73cccf0162ddab5d88fc8eca329be94d0",
+      "text": "Deniz öbür uca bir küçük kozalak daha ekledi. Dal sallandı ve ortada durdu. \"Bir büyük, iki küçüğe denk!\" dedi. Kestane küçük bir dans etti.",
+      "sourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p06",
+      "sourcePointer": "input/learning-hedgehog.json#/books/5/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+      "rawPageMove": "balanced",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "dal; kozalak",
+        "propMentions": [
+          {
+            "label": "dal",
+            "evidenceQuotes": [
+              "Dal yine ortada durdu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kozalak",
+            "evidenceQuotes": [
+              "Deniz kozalakları değiştirdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz kozalakları değiştirdi. Büyüğü öbür uca, iki küçüğü bu uca koydu. Dal yine ortada durdu. \"Yer değişse de denk,\" dedi Deniz. Kestane sevinçle zıpladı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p07",
+            "evidenceText": "Deniz kozalakları değiştirdi. Büyüğü öbür uca, iki küçüğü bu uca koydu. Dal yine ortada durdu. \"Yer değişse de denk,\" dedi Deniz. Kestane sevinçle zıpladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+        "balanceStateFromReviewedContext": {
+          "experimentSetOnly": true,
+          "ambientConesNotCounted": true,
+          "first": {
+            "small": 2
+          },
+          "other": {
+            "large": 1
+          }
+        }
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kozalakları değiştirdi. Büyüğü öbür uca, iki küçüğü bu uca koydu. Dal yine ortada durdu. \"Yer değişse de denk,\" dedi Deniz. Kestane sevinçle zıpladı.",
+        "poseAndActionEvidence": [
+          "Deniz kozalakları değiştirdi.",
+          "Büyüğü öbür uca, iki küçüğü bu uca koydu.",
+          "Dal yine ortada durdu.",
+          "\"Yer değişse de denk,\" dedi Deniz.",
+          "Kestane sevinçle zıpladı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+          "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kozalakları değiştirdi. Büyüğü öbür uca, iki küçüğü bu uca koydu. Dal yine ortada durdu. \"Yer değişse de denk,\" dedi Deniz. Kestane sevinçle zıpladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 7,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p07",
+        "quoteSHA256": "d5c4919efcb651a637f2fd604a4afffc838100688e6bfc25faf6b028ac1f9efd",
+        "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "d5c4919efcb651a637f2fd604a4afffc838100688e6bfc25faf6b028ac1f9efd",
+      "text": "Deniz kozalakları değiştirdi. Büyüğü öbür uca, iki küçüğü bu uca koydu. Dal yine ortada durdu. \"Yer değişse de denk,\" dedi Deniz. Kestane sevinçle zıpladı.",
+      "sourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p07",
+      "sourcePointer": "input/learning-hedgehog.json#/books/5/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+      "rawPageMove": "result",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_hedgehog_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 2,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_hedgehog_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "üç deney kozalağı; kütük",
+        "propMentions": [
+          {
+            "label": "üç deney kozalağı",
+            "evidenceQuotes": [
+              "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          },
+          {
+            "label": "kütük",
+            "evidenceQuotes": [
+              "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı."
+            ],
+            "interpretation": "Root read current8page context; metaphor/memory/continued item position is explicitly qualified in label; not an unconditional render whitelist."
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_hedgehog_pilot_001"
+            ],
+            "description": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p08",
+            "evidenceText": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur. p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right.",
+        "reviewDeltaDecision": "Current full8page context read; replaced source quote and pose/prop inventory after verified correction.",
+        "balanceStateFromReviewedContext": {
+          "experimentSetOnly": true,
+          "ambientConesNotCounted": true,
+          "experimentSetStored": {
+            "large": 1,
+            "small": 2
+          }
+        }
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
+        "poseAndActionEvidence": [
+          "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı."
+        ],
+        "anatomyAndScale": "Dört kısa ayak; dikenler korunur.",
+        "signatureIdentity": "dikeninde hardal rengi imza yaprak; dört kısa ayak ve korunan dikenler; top olmak kirpinin kıvrılmasıdır",
+        "doNotDraw": [
+          "Dengeyi çocuk denemelerle kurar; dal düşük kütük üstündedir. Konan/çıkarılan kozalağın sayısı ve hangi uçta olduğu ardışık sayfalardan izlenir; sonucu tutturmak için alıntıdaki sayılar değiştirilmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position.",
+          "p4 BOTH small cones removed; p5one small,p6two small opposite one large;p7groups swap;p8experiment set totals3. First/other are relative sides, not invented viewer-left/right."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p08",
+        "quoteSHA256": "0fc21d9273a888026f61e0b98703d3c70bcb7830d7ea339b1680c1eaf978ec60",
+        "bookID": "pilot56_book_l9_hedgehog_event03_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "0fc21d9273a888026f61e0b98703d3c70bcb7830d7ea339b1680c1eaf978ec60",
+      "text": "Deniz kozalakları kütüğün yanına dizdi. Kestane aralarına kıvrıldı. Şimdi orada üç kozalak ve bir kirpi vardı. Deniz gülmeden duramadı. Kestane’nin dikenleri hafifçe kabardı.",
+      "sourceID": "p56_wave2_pilot56_book_l9_hedgehog_event03_v1_p08",
+      "sourcePointer": "input/learning-hedgehog.json#/books/5/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz uçlara kozalak ekleyip çıkararak ya da dalı kaydırarak dengeyi kendisi bulur.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

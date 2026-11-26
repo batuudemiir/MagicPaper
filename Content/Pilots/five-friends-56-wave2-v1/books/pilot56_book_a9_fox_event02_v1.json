@@ -1,0 +1,1069 @@
+{
+  "schema": "magicpaper.p56.wave-source-review.v1",
+  "id": "pilot56_book_a9_fox_event02_v1",
+  "title": "Tarçın ve Karınca",
+  "context": {
+    "settingName": "Çiçekli Çayır",
+    "mode": "adventure",
+    "companionID": "companion_fox_pilot_001",
+    "structure": "A9",
+    "event": "e2",
+    "mechanism": "path-for-small-creature",
+    "sourceFilename": "adventure-fox.json"
+  },
+  "originalInputBook": {
+    "id": "pilot56_book_a9_fox_event02_v1",
+    "sourceBookID": "pilot56_book_a9_fox_event02_v1",
+    "structure": "A9",
+    "event": "e2",
+    "sample": false,
+    "title": "Tarçın ve Karınca",
+    "pages": [
+      "Çiçekli Çayır’ın kenarında büyük, yuvarlak bir taş vardı. Deniz taşın yanına çömeldi. Tarçın da geldi. Turkuaz boyunluğu güneşte parlıyordu.",
+      "Bir karınca bir kırıntı taşıyordu. Yuvası büyük bir taşın öbür yanındaydı. Karınca taşın dibinde bir sağa, bir sola gidiyordu. Taşı aşamıyordu.",
+      "\"Bir koklayalım bakalım,\" dedi Tarçın. Karıncayı kokladı. \"Bu kırıntı ekmek kokuyor! Bir de bana getirsin.\" Deniz yanaklarını şişirip güldü. Karınca kırıntısını hiç bırakmadı.",
+      "Deniz karıncaya dokunmak istemedi. Yerde uzun, yassı bir yaprak buldu. \"Bununla bir rampa yaparım,\" dedi. Yaprağı taşın kenarına yasladı.",
+      "Yaprak taşın tepesine kadar uzanıyordu. Rampa hazırdı. Tarçın burnunu yaprağa yaklaştırmadan dikkatle baktı. \"Karınca yolu,\" diye fısıldadı. Deniz başını sallayıp bekledi.",
+      "Deniz bekledi ve kıpırdamadı. Karınca önce yaprağın ucuna dokundu. Sonra kırıntısıyla birlikte yaprağın üstüne çıktı. Yavaş yavaş yukarı yürüdü.",
+      "Karınca taşın tepesine vardı ve öbür yandan indi. Yuvasının kapısına girdi. \"Kendi taşıdı,\" dedi Deniz. Tarçın kuyruğunu sevinçle salladı.",
+      "Deniz yaprağı yerinde bıraktı. \"Başka karıncalar da kullanır,\" dedi. Tarçın yaprağı son kez kokladı. \"Bu yaprak karınca kokuyor artık,\" dedi. Deniz eğilip kıkırdadı. Tarçın hapşırıp katıldı."
+    ]
+  },
+  "inputFileSHA256": "c3c155bef1642b5c196b7aebb993e7e02021f4123f8d1ff7c11831b7af43abc1",
+  "inputBookPointer": "input/adventure-fox.json#/books/4",
+  "pages": [
+    {
+      "pageNumber": 1,
+      "bookID": "pilot56_book_a9_fox_event02_v1",
+      "rawPageMove": "creature_noticed",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; taş; boyunluk; papatya/çiçek/yonca; taş/çakıl; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’ın kenarında büyük, yuvarlak bir taş vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’ın kenarında büyük, yuvarlak bir taş vardı.",
+              "Deniz taşın yanına çömeldi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "boyunluk",
+            "evidenceQuotes": [
+              "Turkuaz boyunluğu güneşte parlıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "papatya/çiçek/yonca",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’ın kenarında büyük, yuvarlak bir taş vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’ın kenarında büyük, yuvarlak bir taş vardı.",
+              "Deniz taşın yanına çömeldi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Çiçekli Çayır’ın kenarında büyük, yuvarlak bir taş vardı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001"
+            ],
+            "description": "Çiçekli Çayır’ın kenarında büyük, yuvarlak bir taş vardı. Deniz taşın yanına çömeldi. Tarçın da geldi. Turkuaz boyunluğu güneşte parlıyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p01",
+            "evidenceText": "Çiçekli Çayır’ın kenarında büyük, yuvarlak bir taş vardı. Deniz taşın yanına çömeldi. Tarçın da geldi. Turkuaz boyunluğu güneşte parlıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Çiçekli Çayır’ın kenarında büyük, yuvarlak bir taş vardı. Deniz taşın yanına çömeldi. Tarçın da geldi. Turkuaz boyunluğu güneşte parlıyordu.",
+        "poseAndActionEvidence": [
+          "Çiçekli Çayır’ın kenarında büyük, yuvarlak bir taş vardı.",
+          "Deniz taşın yanına çömeldi.",
+          "Tarçın da geldi.",
+          "Turkuaz boyunluğu güneşte parlıyordu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Çiçekli Çayır’ın kenarında büyük, yuvarlak bir taş vardı. Deniz taşın yanına çömeldi. Tarçın da geldi. Turkuaz boyunluğu güneşte parlıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p01",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p01",
+        "quoteSHA256": "7b1ee81867c7362b434b64642f41a1ebf7e2bef502cc21d3d9c39e2bcbba0754",
+        "bookID": "pilot56_book_a9_fox_event02_v1",
+        "pageNumber": 1
+      },
+      "sourceSHA256UTF8": "7b1ee81867c7362b434b64642f41a1ebf7e2bef502cc21d3d9c39e2bcbba0754",
+      "text": "Çiçekli Çayır’ın kenarında büyük, yuvarlak bir taş vardı. Deniz taşın yanına çömeldi. Tarçın da geldi. Turkuaz boyunluğu güneşte parlıyordu.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p01",
+      "sourcePointer": "input/adventure-fox.json#/books/4/pages/0"
+    },
+    {
+      "pageNumber": 2,
+      "bookID": "pilot56_book_a9_fox_event02_v1",
+      "rawPageMove": "approach",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001",
+        "pilot56_book_a9_fox_event02_v1_wildlife_ant"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_fox_event02_v1_wildlife_ant",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; taş; taş/çakıl; kar/battaniye; kuş yuvası/kuş evi",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Yuvası büyük bir taşın öbür yanındaydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Bir karınca bir kırıntı taşıyordu.",
+              "Yuvası büyük bir taşın öbür yanındaydı.",
+              "Karınca taşın dibinde bir sağa, bir sola gidiyordu.",
+              "Taşı aşamıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Bir karınca bir kırıntı taşıyordu.",
+              "Yuvası büyük bir taşın öbür yanındaydı.",
+              "Karınca taşın dibinde bir sağa, bir sola gidiyordu.",
+              "Taşı aşamıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Bir karınca bir kırıntı taşıyordu.",
+              "Karınca taşın dibinde bir sağa, bir sola gidiyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Yuvası büyük bir taşın öbür yanındaydı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001",
+              "pilot56_book_a9_fox_event02_v1_wildlife_ant"
+            ],
+            "description": "Bir karınca bir kırıntı taşıyordu. Yuvası büyük bir taşın öbür yanındaydı. Karınca taşın dibinde bir sağa, bir sola gidiyordu. Taşı aşamıyordu.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p02",
+            "evidenceText": "Bir karınca bir kırıntı taşıyordu. Yuvası büyük bir taşın öbür yanındaydı. Karınca taşın dibinde bir sağa, bir sola gidiyordu. Taşı aşamıyordu.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Bir karınca bir kırıntı taşıyordu. Yuvası büyük bir taşın öbür yanındaydı. Karınca taşın dibinde bir sağa, bir sola gidiyordu. Taşı aşamıyordu.",
+        "poseAndActionEvidence": [
+          "Bir karınca bir kırıntı taşıyordu.",
+          "Yuvası büyük bir taşın öbür yanındaydı.",
+          "Karınca taşın dibinde bir sağa, bir sola gidiyordu.",
+          "Taşı aşamıyordu."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Bir karınca bir kırıntı taşıyordu. Yuvası büyük bir taşın öbür yanındaydı. Karınca taşın dibinde bir sağa, bir sola gidiyordu. Taşı aşamıyordu.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 1,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p02",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p01",
+        "quoteSHA256": "f70f034a52f8641964a447872a3531696fdd6448bd389f223e53f3efc6f2dd4b",
+        "bookID": "pilot56_book_a9_fox_event02_v1",
+        "pageNumber": 2
+      },
+      "sourceSHA256UTF8": "f70f034a52f8641964a447872a3531696fdd6448bd389f223e53f3efc6f2dd4b",
+      "text": "Bir karınca bir kırıntı taşıyordu. Yuvası büyük bir taşın öbür yanındaydı. Karınca taşın dibinde bir sağa, bir sola gidiyordu. Taşı aşamıyordu.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p02",
+      "sourcePointer": "input/adventure-fox.json#/books/4/pages/1"
+    },
+    {
+      "pageNumber": 3,
+      "bookID": "pilot56_book_a9_fox_event02_v1",
+      "rawPageMove": "friend_idea",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001",
+        "pilot56_book_a9_fox_event02_v1_wildlife_ant"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_fox_event02_v1_wildlife_ant",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "kar/battaniye",
+        "propMentions": [
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Karıncayı kokladı.",
+              "Karınca kırıntısını hiç bırakmadı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001",
+              "pilot56_book_a9_fox_event02_v1_wildlife_ant"
+            ],
+            "description": "\"Bir koklayalım bakalım,\" dedi Tarçın. Karıncayı kokladı. \"Bu kırıntı ekmek kokuyor! Bir de bana getirsin.\" Deniz yanaklarını şişirip güldü. Karınca kırıntısını hiç bırakmadı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p03",
+            "evidenceText": "\"Bir koklayalım bakalım,\" dedi Tarçın. Karıncayı kokladı. \"Bu kırıntı ekmek kokuyor! Bir de bana getirsin.\" Deniz yanaklarını şişirip güldü. Karınca kırıntısını hiç bırakmadı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "\"Bir koklayalım bakalım,\" dedi Tarçın. Karıncayı kokladı. \"Bu kırıntı ekmek kokuyor! Bir de bana getirsin.\" Deniz yanaklarını şişirip güldü. Karınca kırıntısını hiç bırakmadı.",
+        "poseAndActionEvidence": [
+          "\"Bir koklayalım bakalım,\" dedi Tarçın.",
+          "Karıncayı kokladı.",
+          "\"Bu kırıntı ekmek kokuyor!",
+          "Bir de bana getirsin.\" Deniz yanaklarını şişirip güldü.",
+          "Karınca kırıntısını hiç bırakmadı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "companion_fox_pilot_001",
+        "quote": "\"Bir koklayalım bakalım,\" dedi Tarçın. Karıncayı kokladı. \"Bu kırıntı ekmek kokuyor! Bir de bana getirsin.\" Deniz yanaklarını şişirip güldü. Karınca kırıntısını hiç bırakmadı.",
+        "attributionQuote": "Tarçın",
+        "attributionPageNumber": 3,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p03",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p03",
+        "quoteSHA256": "e89c7cfd13da9862867067bc70a2f625e33cde828f14cac39b64b91383021b36",
+        "bookID": "pilot56_book_a9_fox_event02_v1",
+        "pageNumber": 3
+      },
+      "sourceSHA256UTF8": "e89c7cfd13da9862867067bc70a2f625e33cde828f14cac39b64b91383021b36",
+      "text": "\"Bir koklayalım bakalım,\" dedi Tarçın. Karıncayı kokladı. \"Bu kırıntı ekmek kokuyor! Bir de bana getirsin.\" Deniz yanaklarını şişirip güldü. Karınca kırıntısını hiç bırakmadı.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p03",
+      "sourcePointer": "input/adventure-fox.json#/books/4/pages/2"
+    },
+    {
+      "pageNumber": 4,
+      "bookID": "pilot56_book_a9_fox_event02_v1",
+      "rawPageMove": "child_picks_material",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001",
+        "pilot56_book_a9_fox_event02_v1_wildlife_ant"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_fox_event02_v1_wildlife_ant",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; taş; taş/çakıl; kar/battaniye; canlı yolu",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Yerde uzun, yassı bir yaprak buldu.",
+              "Yaprağı taşın kenarına yasladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Yaprağı taşın kenarına yasladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Yaprağı taşın kenarına yasladı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Deniz karıncaya dokunmak istemedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "canlı yolu",
+            "evidenceQuotes": [
+              "\"Bununla bir rampa yaparım,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001",
+              "pilot56_book_a9_fox_event02_v1_wildlife_ant"
+            ],
+            "description": "Deniz karıncaya dokunmak istemedi. Yerde uzun, yassı bir yaprak buldu. \"Bununla bir rampa yaparım,\" dedi. Yaprağı taşın kenarına yasladı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p04",
+            "evidenceText": "Deniz karıncaya dokunmak istemedi. Yerde uzun, yassı bir yaprak buldu. \"Bununla bir rampa yaparım,\" dedi. Yaprağı taşın kenarına yasladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz karıncaya dokunmak istemedi. Yerde uzun, yassı bir yaprak buldu. \"Bununla bir rampa yaparım,\" dedi. Yaprağı taşın kenarına yasladı.",
+        "poseAndActionEvidence": [
+          "Deniz karıncaya dokunmak istemedi.",
+          "Yerde uzun, yassı bir yaprak buldu.",
+          "\"Bununla bir rampa yaparım,\" dedi.",
+          "Yaprağı taşın kenarına yasladı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz karıncaya dokunmak istemedi. Yerde uzun, yassı bir yaprak buldu. \"Bununla bir rampa yaparım,\" dedi. Yaprağı taşın kenarına yasladı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 4,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p04",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p04",
+        "quoteSHA256": "74fa9707faf45a75db35e951801187f6ce63942e9e9c5d7d68bb4a8254be3984",
+        "bookID": "pilot56_book_a9_fox_event02_v1",
+        "pageNumber": 4
+      },
+      "sourceSHA256UTF8": "74fa9707faf45a75db35e951801187f6ce63942e9e9c5d7d68bb4a8254be3984",
+      "text": "Deniz karıncaya dokunmak istemedi. Yerde uzun, yassı bir yaprak buldu. \"Bununla bir rampa yaparım,\" dedi. Yaprağı taşın kenarına yasladı.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p04",
+      "sourcePointer": "input/adventure-fox.json#/books/4/pages/3"
+    },
+    {
+      "pageNumber": 5,
+      "bookID": "pilot56_book_a9_fox_event02_v1",
+      "rawPageMove": "path_built",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001",
+        "pilot56_book_a9_fox_event02_v1_wildlife_ant"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_fox_event02_v1_wildlife_ant",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; taş; taş/çakıl; kar/battaniye; canlı yolu",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Yaprak taşın tepesine kadar uzanıyordu.",
+              "Tarçın burnunu yaprağa yaklaştırmadan dikkatle baktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Yaprak taşın tepesine kadar uzanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Yaprak taşın tepesine kadar uzanıyordu."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "\"Karınca yolu,\" diye fısıldadı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "canlı yolu",
+            "evidenceQuotes": [
+              "Rampa hazırdı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001",
+              "pilot56_book_a9_fox_event02_v1_wildlife_ant"
+            ],
+            "description": "Yaprak taşın tepesine kadar uzanıyordu. Rampa hazırdı. Tarçın burnunu yaprağa yaklaştırmadan dikkatle baktı. \"Karınca yolu,\" diye fısıldadı. Deniz başını sallayıp bekledi.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p05",
+            "evidenceText": "Yaprak taşın tepesine kadar uzanıyordu. Rampa hazırdı. Tarçın burnunu yaprağa yaklaştırmadan dikkatle baktı. \"Karınca yolu,\" diye fısıldadı. Deniz başını sallayıp bekledi.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Yaprak taşın tepesine kadar uzanıyordu. Rampa hazırdı. Tarçın burnunu yaprağa yaklaştırmadan dikkatle baktı. \"Karınca yolu,\" diye fısıldadı. Deniz başını sallayıp bekledi.",
+        "poseAndActionEvidence": [
+          "Yaprak taşın tepesine kadar uzanıyordu.",
+          "Rampa hazırdı.",
+          "Tarçın burnunu yaprağa yaklaştırmadan dikkatle baktı.",
+          "\"Karınca yolu,\" diye fısıldadı.",
+          "Deniz başını sallayıp bekledi."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Yaprak taşın tepesine kadar uzanıyordu. Rampa hazırdı. Tarçın burnunu yaprağa yaklaştırmadan dikkatle baktı. \"Karınca yolu,\" diye fısıldadı. Deniz başını sallayıp bekledi.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 5,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p05",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p05",
+        "quoteSHA256": "ca4414334560c3554dbdc08088a2d0cb7a8a116d83a4613255a3bad9bd996a5b",
+        "bookID": "pilot56_book_a9_fox_event02_v1",
+        "pageNumber": 5
+      },
+      "sourceSHA256UTF8": "ca4414334560c3554dbdc08088a2d0cb7a8a116d83a4613255a3bad9bd996a5b",
+      "text": "Yaprak taşın tepesine kadar uzanıyordu. Rampa hazırdı. Tarçın burnunu yaprağa yaklaştırmadan dikkatle baktı. \"Karınca yolu,\" diye fısıldadı. Deniz başını sallayıp bekledi.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p05",
+      "sourcePointer": "input/adventure-fox.json#/books/4/pages/4"
+    },
+    {
+      "pageNumber": 6,
+      "bookID": "pilot56_book_a9_fox_event02_v1",
+      "rawPageMove": "child_waits",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001",
+        "pilot56_book_a9_fox_event02_v1_wildlife_ant"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_fox_event02_v1_wildlife_ant",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "self-propelled-crossing"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; kar/battaniye; top/şapka/uçurtma",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Karınca önce yaprağın ucuna dokundu.",
+              "Sonra kırıntısıyla birlikte yaprağın üstüne çıktı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Karınca önce yaprağın ucuna dokundu.",
+              "Yavaş yavaş yukarı yürüdü."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "top/şapka/uçurtma",
+            "evidenceQuotes": [
+              "Deniz bekledi ve kıpırdamadı."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001",
+              "pilot56_book_a9_fox_event02_v1_wildlife_ant"
+            ],
+            "description": "Deniz bekledi ve kıpırdamadı. Karınca önce yaprağın ucuna dokundu. Sonra kırıntısıyla birlikte yaprağın üstüne çıktı. Yavaş yavaş yukarı yürüdü.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p06",
+            "evidenceText": "Deniz bekledi ve kıpırdamadı. Karınca önce yaprağın ucuna dokundu. Sonra kırıntısıyla birlikte yaprağın üstüne çıktı. Yavaş yavaş yukarı yürüdü.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz bekledi ve kıpırdamadı. Karınca önce yaprağın ucuna dokundu. Sonra kırıntısıyla birlikte yaprağın üstüne çıktı. Yavaş yavaş yukarı yürüdü.",
+        "poseAndActionEvidence": [
+          "Deniz bekledi ve kıpırdamadı.",
+          "Karınca önce yaprağın ucuna dokundu.",
+          "Sonra kırıntısıyla birlikte yaprağın üstüne çıktı.",
+          "Yavaş yavaş yukarı yürüdü."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz bekledi ve kıpırdamadı. Karınca önce yaprağın ucuna dokundu. Sonra kırıntısıyla birlikte yaprağın üstüne çıktı. Yavaş yavaş yukarı yürüdü.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 6,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p06",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p06",
+        "quoteSHA256": "96547b2bdaaa8fda07e0bd6b59e800cbff3ceb4ee5db25bc2fe503cbe4e4c4b8",
+        "bookID": "pilot56_book_a9_fox_event02_v1",
+        "pageNumber": 6
+      },
+      "sourceSHA256UTF8": "96547b2bdaaa8fda07e0bd6b59e800cbff3ceb4ee5db25bc2fe503cbe4e4c4b8",
+      "text": "Deniz bekledi ve kıpırdamadı. Karınca önce yaprağın ucuna dokundu. Sonra kırıntısıyla birlikte yaprağın üstüne çıktı. Yavaş yavaş yukarı yürüdü.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p06",
+      "sourcePointer": "input/adventure-fox.json#/books/4/pages/5"
+    },
+    {
+      "pageNumber": 7,
+      "bookID": "pilot56_book_a9_fox_event02_v1",
+      "rawPageMove": "creature_crosses",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001",
+        "pilot56_book_a9_fox_event02_v1_wildlife_ant"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_fox_event02_v1_wildlife_ant",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "self-propelled-crossing"
+            ]
+          }
+        ],
+        "propDescription": "kütük/yuva; taş; taş/çakıl; kar/battaniye; kuş yuvası/kuş evi; çan/kapı/bank",
+        "propMentions": [
+          {
+            "label": "kütük/yuva",
+            "evidenceQuotes": [
+              "Yuvasının kapısına girdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş",
+            "evidenceQuotes": [
+              "Karınca taşın tepesine vardı ve öbür yandan indi.",
+              "\"Kendi taşıdı,\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "taş/çakıl",
+            "evidenceQuotes": [
+              "Karınca taşın tepesine vardı ve öbür yandan indi.",
+              "\"Kendi taşıdı,\" dedi Deniz."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "Karınca taşın tepesine vardı ve öbür yandan indi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kuş yuvası/kuş evi",
+            "evidenceQuotes": [
+              "Yuvasının kapısına girdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "çan/kapı/bank",
+            "evidenceQuotes": [
+              "Yuvasının kapısına girdi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001",
+              "pilot56_book_a9_fox_event02_v1_wildlife_ant"
+            ],
+            "description": "Karınca taşın tepesine vardı ve öbür yandan indi. Yuvasının kapısına girdi. \"Kendi taşıdı,\" dedi Deniz. Tarçın kuyruğunu sevinçle salladı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p07",
+            "evidenceText": "Karınca taşın tepesine vardı ve öbür yandan indi. Yuvasının kapısına girdi. \"Kendi taşıdı,\" dedi Deniz. Tarçın kuyruğunu sevinçle salladı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Karınca taşın tepesine vardı ve öbür yandan indi. Yuvasının kapısına girdi. \"Kendi taşıdı,\" dedi Deniz. Tarçın kuyruğunu sevinçle salladı.",
+        "poseAndActionEvidence": [
+          "Karınca taşın tepesine vardı ve öbür yandan indi.",
+          "Yuvasının kapısına girdi.",
+          "\"Kendi taşıdı,\" dedi Deniz.",
+          "Tarçın kuyruğunu sevinçle salladı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "pilot56_book_a9_fox_event02_v1_wildlife_ant",
+        "quote": "Karınca taşın tepesine vardı ve öbür yandan indi. Yuvasının kapısına girdi. \"Kendi taşıdı,\" dedi Deniz. Tarçın kuyruğunu sevinçle salladı.",
+        "attributionQuote": "Karınca",
+        "attributionPageNumber": 2,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p07",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p02",
+        "quoteSHA256": "da2850e51cad255707f008d7ed4dd7a1e3fd8203cd0dd705e593c2da32e7819a",
+        "bookID": "pilot56_book_a9_fox_event02_v1",
+        "pageNumber": 7
+      },
+      "sourceSHA256UTF8": "da2850e51cad255707f008d7ed4dd7a1e3fd8203cd0dd705e593c2da32e7819a",
+      "text": "Karınca taşın tepesine vardı ve öbür yandan indi. Yuvasının kapısına girdi. \"Kendi taşıdı,\" dedi Deniz. Tarçın kuyruğunu sevinçle salladı.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p07",
+      "sourcePointer": "input/adventure-fox.json#/books/4/pages/6"
+    },
+    {
+      "pageNumber": 8,
+      "bookID": "pilot56_book_a9_fox_event02_v1",
+      "rawPageMove": "closing",
+      "typedContractApproved": false,
+      "actorIDs": [
+        "child",
+        "companion_fox_pilot_001",
+        "pilot56_book_a9_fox_event02_v1_wildlife_ant"
+      ],
+      "semantics": {
+        "annotationStatus": "source-grounded-wave-review; typed-runtime-contract-not-approved",
+        "metadataRevision": 1,
+        "inventoryScope": "Raw wave scene inventory; actors include continued presence, wildlife only if grounded. No legacy P56 beat coercion.",
+        "subjects": [
+          {
+            "subjectID": "pilot56_synthetic_child_deniz",
+            "presence": "present",
+            "states": [
+              "awake",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "companion_fox_pilot_001",
+            "presence": "present",
+            "states": [
+              "species-anatomy-preserved",
+              "sleep-not-asserted"
+            ]
+          },
+          {
+            "subjectID": "pilot56_book_a9_fox_event02_v1_wildlife_ant",
+            "presence": "present",
+            "states": [
+              "background-wildlife",
+              "not-selectable-main-companion",
+              "independent-creature"
+            ]
+          }
+        ],
+        "propDescription": "yaprak; kar/battaniye",
+        "propMentions": [
+          {
+            "label": "yaprak",
+            "evidenceQuotes": [
+              "Deniz yaprağı yerinde bıraktı.",
+              "Tarçın yaprağı son kez kokladı.",
+              "\"Bu yaprak karınca kokuyor artık,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          },
+          {
+            "label": "kar/battaniye",
+            "evidenceQuotes": [
+              "\"Başka karıncalar da kullanır,\" dedi.",
+              "\"Bu yaprak karınca kokuyor artık,\" dedi."
+            ],
+            "interpretation": "exact lexical mention; current/remembered/intended/imagined/comparison status remains in quoted clause and page temporalNote"
+          }
+        ],
+        "actions": [
+          {
+            "actorSubjectIDs": [
+              "pilot56_synthetic_child_deniz",
+              "companion_fox_pilot_001",
+              "pilot56_book_a9_fox_event02_v1_wildlife_ant"
+            ],
+            "description": "Deniz yaprağı yerinde bıraktı. \"Başka karıncalar da kullanır,\" dedi. Tarçın yaprağı son kez kokladı. \"Bu yaprak karınca kokuyor artık,\" dedi. Deniz eğilip kıkırdadı. Tarçın hapşırıp katıldı.",
+            "evidenceSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p08",
+            "evidenceText": "Deniz yaprağı yerinde bıraktı. \"Başka karıncalar da kullanır,\" dedi. Tarçın yaprağı son kez kokladı. \"Bu yaprak karınca kokuyor artık,\" dedi. Deniz eğilip kıkırdadı. Tarçın hapşırıp katıldı.",
+            "scope": "literal full-page context, not atomic executable action; quoted memory/intention/comparison stays quoted",
+            "atomicActionMappingApproved": false
+          }
+        ],
+        "temporalNote": "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez. Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur."
+      },
+      "artHandoff": {
+        "contentMeaningStatus": "source-grounded-wave-review",
+        "visualIdentityStatus": "not-reviewed-for-this-page",
+        "assetRuleApproval": false,
+        "runtimeArt": null,
+        "actionNeed": "Deniz yaprağı yerinde bıraktı. \"Başka karıncalar da kullanır,\" dedi. Tarçın yaprağı son kez kokladı. \"Bu yaprak karınca kokuyor artık,\" dedi. Deniz eğilip kıkırdadı. Tarçın hapşırıp katıldı.",
+        "poseAndActionEvidence": [
+          "Deniz yaprağı yerinde bıraktı.",
+          "\"Başka karıncalar da kullanır,\" dedi.",
+          "Tarçın yaprağı son kez kokladı.",
+          "\"Bu yaprak karınca kokuyor artık,\" dedi.",
+          "Deniz eğilip kıkırdadı.",
+          "Tarçın hapşırıp katıldı."
+        ],
+        "anatomyAndScale": "Dört ayak; doğal tilki ölçeği.",
+        "signatureIdentity": "turkuaz boyunluk; doğal tilki burnu, kulakları ve kuyruğu; koku benzetmeleri yeni yiyecek/nesne doğurmaz",
+        "doNotDraw": [
+          "Yol dal/yaprakla yapılır. Deniz canlıya dokunmaz, taşımaz; böcek/karınca/salyangoz kendi hareketiyle geçer. Canlı arka plan yaban hayatıdır, altıncı ana arkadaş değildir. Uğur böceği en sonda uçarsa bu önceki kendi yürüyüşünü silmez.",
+          "Koku/şehir/kuzen/dev/uyuyan nesne benzetmesi yeni fiziksel yiyecek, şehir binası, akraba veya dev yaratmaz; niyet, hatıra ve olumsuzlamalar literal alıntıyla korunur.",
+          "No unmentioned additional main friend. Preserve canonical anatomy and every explicit item ownership/position."
+        ]
+      },
+      "intensity": 1,
+      "causalEvidence": {
+        "actorID": "child",
+        "quote": "Deniz yaprağı yerinde bıraktı. \"Başka karıncalar da kullanır,\" dedi. Tarçın yaprağı son kez kokladı. \"Bu yaprak karınca kokuyor artık,\" dedi. Deniz eğilip kıkırdadı. Tarçın hapşırıp katıldı.",
+        "attributionQuote": "Deniz",
+        "attributionPageNumber": 8,
+        "kind": "sourceStatement",
+        "parentSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p08",
+        "attributionSourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p08",
+        "quoteSHA256": "b7860d816198bd6f78d711f3d946afac297b85713abc018cddcd25b539e8fd89",
+        "bookID": "pilot56_book_a9_fox_event02_v1",
+        "pageNumber": 8
+      },
+      "sourceSHA256UTF8": "b7860d816198bd6f78d711f3d946afac297b85713abc018cddcd25b539e8fd89",
+      "text": "Deniz yaprağı yerinde bıraktı. \"Başka karıncalar da kullanır,\" dedi. Tarçın yaprağı son kez kokladı. \"Bu yaprak karınca kokuyor artık,\" dedi. Deniz eğilip kıkırdadı. Tarçın hapşırıp katıldı.",
+      "sourceID": "p56_wave2_pilot56_book_a9_fox_event02_v1_p08",
+      "sourcePointer": "input/adventure-fox.json#/books/4/pages/7"
+    }
+  ],
+  "childAgencyAnnotation": "Deniz canlıya dokunmadan dal ya da yaprakla yol yapar, canlının kendisi yürümesini bekler.",
+  "contentBlockers": [],
+  "runtimeCompatible": false,
+  "typedContractApproved": false,
+  "productionEnabled": false,
+  "artApproved": false
+}

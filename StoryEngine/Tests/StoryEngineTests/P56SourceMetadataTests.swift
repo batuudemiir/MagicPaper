@@ -17,7 +17,8 @@ final class P56SourceMetadataTests: XCTestCase {
     func testAllRuntimeVersionsKeepTheirDistinctReferenceIdentity() throws {
         for (version, digest) in [("five-friends-56-runtime-v1", P56PinnedSource.v1SHA256),
                                   ("five-friends-56-runtime-v2", P56PinnedSource.v2SHA256),
-                                  ("five-friends-56-runtime-v3", P56PinnedSource.sha256)] {
+                                  ("five-friends-56-runtime-v3", P56PinnedSource.v3SHA256),
+                                  ("five-friends-56-runtime-v4", P56PinnedSource.sha256)] {
             let reference = P56SourceReference(packageVersion: version, payloadSHA256: digest)
             let metadata = ContentSourceMetadata(p56: reference)
             XCTAssertEqual(metadata.p56Reference, reference)
