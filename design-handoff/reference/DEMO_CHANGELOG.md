@@ -230,6 +230,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Galeriye 64 px renkli portre ve siyah siluet karşılaştırması eklendi. 20 yeni PNG tam çözünürlükte açıldı. Alfa kanalları, galeri bağlantıları, görsel önizleme ve 21 dosyalık ZIP denetlendi. Uygulama testi ve simülatör çalıştırılmadı.
 - Dosyalar `MagicPaper/Assets.xcassets/CompanionPortraits/` ve `design-handoff/proposals/2026-11-26-cocugun-masal-yolu/` altında.
 
+### 2026-11-26 · codex/karakter-kartlari · Portre ve boy levhası düzeltmeleri
+
+- Tarçın’ın tam gövde portresindeki bacaklar koyu kahveye alındı. Tarçın ve Simit’in baş-omuz portrelerinin sol ve alt kenarına yumuşak alfa geçişi eklendi. Boy levhasında ikisi bel çizgisine hizalandı.
+- Seçim PNG’lerinin üç boyutu, alfa kanalları, boy levhası ve görsel ZIP doğrulandı. Uygulama testi ve simülatör çalıştırılmadı.
+- Asset kataloğu, karakter kartları, ortak levhalar ve Finder kopyası güncellendi.
+
 ### 2026-11-25 · codex/bes-arkadas/entegrasyon@7d1bb4e · B hattı (uygulama entegrasyonu) entegrasyona birleşti
 
 - Codex'in karşı incelemesi (`73578a6`, `B_LINE_REVIEW_ACCEPTANCE.md`) B hattını iç pilot için kabul etti. `19894d6` ucu `codex/bes-arkadas/entegrasyon`'a `--no-ff` ile birleşti: `7d1bb4e`. Birleşme ağacı `19894d6` ile birebir aynı (`git diff --exit-code`). Geçici worktree'de yapıldı, sonra silindi.
