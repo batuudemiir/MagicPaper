@@ -28,4 +28,10 @@ xcodebuild -project MagicPaper.xcodeproj -scheme MagicPaper -destination 'platfo
 
 35 ham .mpart: 51.53MiB; seçim ekranının5PNG kopyası: 8.18MiB. Bunlar kaynak boyutlarıdır; App Store indirilen/kurulu boyut ölçümü değildir. ZIP, galeri ve araştırma görselleri app target’ına eklenmedi.
 
-Push/main merge veya cihaza kurulum yapılmadı. Orijinal çalışma klasöründeki kullanıcı değişikliklerine dokunulmadı.
+İlk entegrasyon tesliminde push/main merge veya cihaza kurulum yapılmamıştı. Orijinal çalışma klasöründeki kullanıcı değişikliklerine dokunulmadı.
+
+## Main birleşimi — 27 Kasım 2026
+
+`main@50d1b110` ile entegrasyon dalı çakışmasız birleşti (`48c5051a`). Main’in eşzamanlı hazırlık ekranı düzeltmeleri korunuyor. Birleşmiş kaynaklardan hazırlanmış bağımsız doğrulama:6test0hata;90kitap/21görselli kitap/42sayfa/30hikâye asset’i. Test edilen production dosyalarının hashleri birleşim sonrasıyla aynı. Kanıt: main-merge-verification.log, main-merge-coverage.json.
+
+Main bu doğrulanmış birleşime fast-forward edilecek. iOS bağımlılık/build/telefon doğrulaması önceki rapordaki gibi açık; push istenmedi ve yapılmadı.

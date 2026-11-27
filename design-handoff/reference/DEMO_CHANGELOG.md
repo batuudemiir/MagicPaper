@@ -140,6 +140,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-27 · main ← codex/v4-story-art-integration@48c5051a · V4 görsel entegrasyonu birleşimi
+
+-35seçili görsel,5arkadaş seçimi kimliği ve30hikâye görselinin kaynak izli bağlantısı main birleşimine alındı; eşzamanlı `main@50d1b110` hazırlık ekranı düzeltmeleri korundu. Çakışma yok.
+- Birleşmiş kaynaklarla6bağımsız test geçti:90kitapta21görselli kitap/42sayfa,30farklı hikâye çizimi. Kaynak dosya hashleri doğrulandı.
+- Eski kitaplar/metinler ve pinler korunuyor. iOS paket indirme engeli sürüyor; gerçek iOS build/UI/telefon doğrulanmadı. Push yapılmadı.
+- Dosyalar: V4 policy/binder/mapper, arkadaş asset kataloğu; birleşim kanıtı `docs/research/v4-art-integration/main-merge-verification.log` ve `main-merge-coverage.json`.
+
+
 ### 2026-11-26 · claude/project-thread-4oo21x · Ana sayfa, Profil ve Kitaplık sadeleşti
 
 - Ne değişti (Batuhan'ın UX notları): ana sayfa, Profil ve menü sayfalarının (`MPSkyPage`) üstündeki mor gök gradienti kalktı; başlıklar düz kâğıtta, koyu yazıyla. İrem'in ana sayfa öğeleri ve dizilimi kaldı (menü, zil, arama, selam, üç bilgi kartı, bu akşamın kartı, "Yeni bir masal yaz", devam eden seri). Selam artık saate göre ("İyi akşamlar, İrem").
