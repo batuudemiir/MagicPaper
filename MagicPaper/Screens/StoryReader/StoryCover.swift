@@ -58,11 +58,16 @@ struct StoryCover: View {
     var accent: Color = MP.C.brand
     /// Generative mosaic cover for text-only stories.
     var mosaicCover: MagicPaperCoverConfiguration? = nil
+    /// Görselli masalın cihazdaki kapak dosyası; yüklenemezse mozaik kalır.
+    var coverFile: String? = nil
     var theme: MP.ReadTheme = .light
     /// "Kim okusun?" (vizyon planı düzen 9, Nosy Crow deseni): okuyucunun
     /// kapağında, ayarlarda değil. `nil` ise seçim gösterilmez (yaratma akışı).
     var listens: Bool? = nil
     var onChooseListening: (Bool) -> Void = { _ in }
+
+    @State private var fileImage: UIImage?
+    @Environment(\.displayScale) private var displayScale
 
     var body: some View {
         ZStack {
@@ -120,6 +125,13 @@ struct StoryCover: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Kapak. \(title). \(footer).")
+        .task(id: coverFile) {
+            guard let coverFile else { return }
+            let loaded = await ReaderImageLoader.shared.image(named: coverFile,
+                                                              targetPixelWidth: 600 * displayScale)
+            guard !Task.isCancelled else { return }
+            fileImage = loaded
+        }
     }
 
     /// Kimin için yazıldığı; Günlük masalları kimse için yazılmadı (ad boş).
@@ -138,7 +150,15 @@ struct StoryCover: View {
     private func artwork(width: CGFloat, height: CGFloat) -> some View {
         let side = min(width * 1.32, height * 0.56)
 
-        if let coverAsset {
+        if let fileImage {
+            Image(uiImage: fileImage)
+                .resizable()
+                .scaledToFill()
+                .frame(width: width, height: side)
+                .clipped()
+                .clipShape(RoundedRectangle(cornerRadius: MP.R.lg, style: .continuous))
+                .accessibilityHidden(true)
+        } else if let coverAsset {
             Self.coverImage(coverAsset)
                 .resizable()
                 .scaledToFill()
@@ -179,6 +199,7 @@ extension StoryCover {
                   symbol: story.symbol,
                   accent: story.accent,
                   mosaicCover: story.mosaicCover,
+                  coverFile: story.coverFile,
                   theme: theme,
                   listens: listens,
                   onChooseListening: onChooseListening)

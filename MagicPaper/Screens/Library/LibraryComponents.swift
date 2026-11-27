@@ -148,3 +148,58 @@ struct LibraryCoverGrid<QuickActions: View>: View {
         .frame(width: coverWidth, alignment: .leading)
     }
 }
+
+/// "Yarım kalanlar" rafının kapağı (26 Kasım 2026): kapak, altında adı ve
+/// ince ilerleme çizgisi. Rozet yok: rafın kendisi "yarım" diyor. Dokununca
+/// kaldığı yerden okuyucu açılır.
+struct LibraryHalfReadCover: View {
+    let item: LibraryItem
+    let width: CGFloat
+    let action: () -> Void
+
+    @Environment(\.mpReaderZoom) private var readerZoom
+    @EnvironmentObject private var app: MPAppState
+
+    var body: some View {
+        Button {
+            app.readerZoomID = item.id
+            MPHaptics.tap()
+            action()
+        } label: {
+            VStack(alignment: .leading, spacing: MPSpacing.sm) {
+                MPBookCover(art: item.art, width: width)
+                    .mpZoomSource(item.id.uuidString, in: readerZoom)
+                ProgressLine(fraction: item.progress)
+                    .frame(height: MPSpacing.xs)
+                if !item.art.showsTitle {
+                    Text(item.title).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.textPrimary)
+                        .lineLimit(2).multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                Text(item.pageLabel).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                    .lineLimit(2).multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .frame(width: width, alignment: .leading)
+        }
+        .buttonStyle(MPPressStyle())
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("\(item.title), \(item.pageLabel)")
+        .accessibilityHint("Kaldığın yerden devam eder")
+        .accessibilityAddTraits(.isButton)
+    }
+
+    private struct ProgressLine: View {
+        let fraction: Double
+        var body: some View {
+            GeometryReader { geo in
+                Capsule().fill(MPColor.ringTrack)
+                    .overlay(alignment: .leading) {
+                        Capsule().fill(MPColor.actionPrimary)
+                            .frame(width: geo.size.width * min(max(fraction, 0.05), 1))
+                    }
+            }
+            .accessibilityHidden(true)
+        }
+    }
+}

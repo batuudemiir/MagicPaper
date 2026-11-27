@@ -21,10 +21,25 @@ enum ReaderPageLayout {
         return max(0, min(width * 0.75, height * fraction))
     }
 
-    /// Two control rows, their spacing and padding; safe-area insets belong to the host.
+    /// Üst kontrollerin (kapat, kalp, Aa) kapladığı yer ve altındaki nefes;
+    /// metin bunun altından başlar. Güvenli alan bunun dışında.
+    /// 26 Kasım 2026: 56 + 24 yerine kontrolün gerçek ölçüsü, metne yer kalsın.
+    static let topChromeClearance: CGFloat = MPSpacing.xxs + MP.S.tapMin + MP.S.x4
+
+    /// Alt kontrol çubuğu, iç boşluğuyla; güvenli alan taşıyıcıya ait.
+    /// Olağan yazıda tek satır (geri · sayfa · ses · ileri; 26 Kasım 2026,
+    /// kompakt okuyucu). En büyük yazı boyutlarında sayfa ve ses satırı ayrı kalır.
     static func bottomChromeClearance(accessibility: Bool, compactHeight: Bool = false) -> CGFloat {
-        let upperRow = accessibility ? (compactHeight ? MPSize.minTouchHero : MP.S.tapMin * 3) : MP.S.tapMin
+        guard accessibility else { return MPSize.minTouchHero + MP.S.x2 * 2 }
+        let upperRow = compactHeight ? MPSize.minTouchHero : MP.S.tapMin * 3
         return upperRow + MPSize.minTouchHero + MP.S.x2 * 2 + MP.S.x1
+    }
+
+    /// Yaprağın güvenli alanı okuyucununkinden kısa kalırsa (sayfa
+    /// denetleyicisi yaprağa iletmezse) eksik kalan kadar. Uzun metin böylece
+    /// sol üstteki kapat düğmesinin altına akmaz.
+    static func missingTopInset(readerSafeTop: CGFloat, pageTop: CGFloat) -> CGFloat {
+        max(0, readerSafeTop - max(pageTop, 0))
     }
 
     static func spotSize(width: CGFloat, height: CGFloat, accessibility: Bool) -> CGSize {
@@ -34,7 +49,7 @@ enum ReaderPageLayout {
 
     /// A scrollable page keeps the normal art footprint even when chrome or large text needs more room.
     static func scrollingSpotSize(width: CGFloat, pageHeight: CGFloat) -> CGSize {
-        let nominalContent = pageHeight - MP.S.navBarHeight - MP.S.x6
+        let nominalContent = pageHeight - topChromeClearance
             - bottomChromeClearance(accessibility: false)
         return spotHeaderSize(width: width, pageHeight: pageHeight,
                               contentHeight: max(nominalContent, MP.S.x10 * 5), accessibility: false)

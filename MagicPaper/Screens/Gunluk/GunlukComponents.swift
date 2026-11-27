@@ -414,8 +414,11 @@ struct GunlukNightZone<Content: View>: View {
 /// Günlük `NavigationStack` içinde durduğu için kök görünümdeki alt bar
 /// boşluğu (`safeAreaInset`) kaydırma alanına ulaşmıyor; sayfalar bu kadar
 /// alt boşlukla biter ki son kart barın altında kalmasın.
+/// iOS 26'da sistemin sekme çubuğu (`ContentView.systemKidTabs`) kendi
+/// boşluğunu her sekmenin kaydırmasına verir; yalnızca nefes payı kalır.
 enum GunlukLayout {
     static var bottomClearance: CGFloat {
+        if #available(iOS 26.0, *) { return MPSpacing.xxxl }
         return MPSize.kidTabBarHeight + MPSize.minTouchKid
     }
 }

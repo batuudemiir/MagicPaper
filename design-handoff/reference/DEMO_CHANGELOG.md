@@ -133,6 +133,25 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · claude/project-thread-4oo21x · Ana sayfa, Profil ve Kitaplık sadeleşti
+
+- Ne değişti (Batuhan'ın UX notları): ana sayfa, Profil ve menü sayfalarının (`MPSkyPage`) üstündeki mor gök gradienti kalktı; başlıklar düz kâğıtta, koyu yazıyla. İrem'in ana sayfa öğeleri ve dizilimi kaldı (menü, zil, arama, selam, üç bilgi kartı, bu akşamın kartı, "Yeni bir masal yaz", devam eden seri). Selam artık saate göre ("İyi akşamlar, İrem").
+- Ana sayfa: bu akşamın kartı boyalı kapak varsa üstünde kapak resmiyle kahraman öğe (`HomeTonightBoard.cover`); altına Ragi'siz "Okuma yolculuğum" kartı (`ReadingJourneyWidget(showsRagi: false)`) ve Masallar'dan "Bu haftanın seçkisi" rafı eklendi.
+- Zil çalışıyor: yalnızca Profil sekmesine geçiyordu; artık "Yenilikler" sheet'ini açar (`HomeNews`, `HomeNewsSheet`, `MPSheetRoute.news`): yeni rozet, günü gelen seri bölümü, son yedi günün yeni Original masalları, haftanın seçkisi. Görülmemiş yenilik varsa zilde marka noktası; liste açılınca söner. Push yok.
+- Kitaplık: "Kaldığın yerden" kartları yerine "Yarım kalanlar" rafı (`LibraryHalfReadCover`, kapağın altında ince ilerleme çizgisi); çipler üçe indi (Tümü · Masallarım · Klasikler, iki tür de varsa; `LibraryFilter.stories`); sıra menüsü kalktı; kapak duvarı iki sütun.
+- `AGENTS.md` tasarım yasası: mor gök istisnası yalnızca gündüz masal sonunda (`endingSky`) kaldı. `homeSky*` tokenları yerinde (testler ve masal sonu okuyor).
+- Bilerek değişmedi: Masallar sekmesi, alt çubuk (ayrı iş kolu), masal sonu.
+- Test: Linux'ta yazıldı; `Scripts/design_law_check.sh` temiz. Derleme, birim testleri ve simülatör görüntüleri Mac'te ayrıca alınacak.
+- Dosyalar: `HomeView.swift`, `MPHomeBoard.swift`, `HomeNews.swift` (yeni), `HomeNewsSheet.swift` (yeni), `MPRouter.swift`, `ContentView.swift`, `KidCornerView.swift`, `MPSkyPage.swift`, `CollectionViews.swift`, `ReadingJourneyWidget.swift`, `LibraryView.swift`, `LibraryComponents.swift`, `LibraryShelfModel.swift`, `LibraryShelfModelTests.swift`, `AGENTS.md`.
+### 2026-11-26 · claude/project-thread-lr0adx, commit bu kayıtla · Kompakt okuyucu, kapak ilk yaprak, uyku modu kapalı
+- Okuyucu: alt kontrol çubuğu olağan yazıda tek satır (geri · sayfa + ilerleme · sesli oku simgesi · ileri); metne ayrılan alan 132 pt yerine 80 pt kaybediyor. En büyük yazı boyutlarında eski iki satır kaldı.
+- Okuyucu: metin üst kontrollerin gerçek ölçüsünün altından başlar (`ReaderPageLayout.topChromeClearance`). Yaprak, okuyucunun üst güvenli alanını modelden alır (`readerSafeTop`); sayfa denetleyicisi güvenli alanı yaprağa iletmezse eksik kalan eklenir, uzun metin sol üstteki kapatın altına akmaz.
+- Okuyucu: kapak her kitabın ilk yaprağı. Rafla aynı sıra: set kapağı (`mpKitCoverAsset`), Günlük kapağı, görselli masalın kendi kapak dosyası, yoksa kâğıt mozaik. Önceden set kapaklı ve görselli masallar doğrudan 1. sayfadan açılıyordu. Kaldığı yerden açılış değişmedi.
+- Uyku modu ("İyi geceler" sonrası sesli okuma) kapalı: `MPFeatures.sleepModeVoiceReady = false`, uzaktan bayrak tek başına açamaz. Cihaz anlatıcısı robot gibi duyuluyor (Batuhan). Kod silinmedi; giriş noktaları mevcut bayrakla gizleniyor, "İyi geceler" okuyucuyu kapatır.
+- Seri masal: "Oku" düğmesi bölüm satırında harf harf alt alta kırılıyordu. Sebep: `MPButton` birincil düğmeye 220 pt taban genişlik veriyordu, küçük boyutta da. Küçük düğmede taban kaldırıldı (tek kullanıcısı bu satır); satırda düğme ve "Yarın" kendi genişliğini korur.
+- Cihaz anlatıcısı kapalı (`MPFeatures.deviceNarration = false`, Batuhan'ın onayıyla): okuyucudaki "Sesli oku", kapaktaki "Kim okusun?" seçimi ("Ragi okusun"), kelime kartındaki dinle düğmesi, ayarlardaki "Sesli okuma" ve "Okuma hızı" gizli; sayfa kendiliğinden okunmaz. Kayıtlı ses (ailenin sesi, stüdyo seslendirmesi) olan sayfada düğme ve okuma yerinde; "Sesli oku" artık stüdyo kaydını da çalar (önce yalnız ailenin sesini).
+- Test: Xcode bu ortamda yok, derleme ve testler çalıştırılmadı; CI (ios-build) koşacak. Testler yeni düzene göre güncellendi (`ReaderPageCompositionTests`, `ReaderStoryMappingTests`, `StalledStoryTests`). `DesignSystemSnapshotTests.testSnapshotReaderPageOnEveryPaper` referansları Mac'te yenilenmeli (metin dikeyde kaydı). Simülatörde görülmedi. `Scripts/design_law_check.sh` temiz.
+- Dosyalar: `StoryReader/ReaderChrome.swift`, `ReaderWordCard.swift`, `MPSheets.swift`, `ReaderPageComposition.swift`, `StoryPageView.swift`, `StoryLeafView.swift`, `StoryReaderModel.swift`, `StoryReaderView.swift`, `ReaderStory.swift`, `StoryCover.swift`, `MPFeatures.swift`, `Pastel/MPButtons.swift`, `Series/SeriesView.swift`.
 ### 2026-11-27 · main, birleştirme commit'i · Hazır mısın? düzeni; açılış beyaz ekran ölçümü
 
 - Ne değişti: `LittleConfirmStep` kartlar ve "Başla" başlığın altındaki boşlukta dikeyde ortada (eskiden sayfanın üstüne yığılıyordu); mod adı kelime ortasından kırılmaz (`LittleCardTitle`: sığarsa tek satır, sığmazsa kelime başına satır, gerekirse küçülür). Dal `codex/bes-arkadas/cocuk-akisi-2` (3c17a8c1, 29e61d1b).

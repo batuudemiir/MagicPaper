@@ -9,6 +9,11 @@ import SwiftUI
 /// menü, sağda bildirim ve arama (`MPCircleButton`), "Merhaba, <ad>" ve üç bilgi kartı (yıldız, okuma günü, masallar). Ortada koyu mor bu
 /// akşamın kartı (Ragi'nin ayakları kartın alt çizgisinde), altında "Yeni bir
 /// masal yaz" liste satırları ve varsa devam eden seri. Gece/gündüz sahnesi yok.
+///
+/// 26 Kasım 2026 (Batuhan): mor gök gradienti kalktı, başlık düz kâğıtta ve
+/// koyu yazıyla; İrem'in öğeleri ve dizilimi kaldı. Bu akşamın kartı boyalı
+/// kapakla kahraman öğe oldu; altına haftanın okuma günleri ve Masallar'dan
+/// haftanın seçkisi eklendi. Zil "Yenilikler" sayfasını açar (`HomeNews`).
 /// Önceki düzenler (sahneli başlık, Okuma köşesi) için git geçmişi.
 ///
 /// Veri `HomeFeedStore`'dan (21 Kasım, A3/A4): selam, bu akşamın durumu, yıldız,
@@ -40,11 +45,14 @@ struct HomeView: View {
             refreshCaches()
             // Sekmeye dönünce: başka sekmedeyken kaçan bir değişim kalmasın.
             feedStore.refresh()
+            refreshNews()
         }
         // Rozet notu bir kez söylenir: ana sayfadan çıkınca düşer.
         .onDisappear { badgeNews.consumeHomeNote(profileManager.currentProfile?.id) }
         .onChange(of: storyManager.stories) { _, _ in refreshCaches() }
-        .onChange(of: profileManager.currentProfile?.id) { _, _ in refreshCaches() }
+        .onChange(of: profileManager.currentProfile?.id) { _, _ in refreshCaches(); refreshNews() }
+        .onChange(of: feed) { _, _ in refreshNews() }
+        .onReceive(app.router.$sheet) { sheet in if sheet == nil { refreshNews() } }
         .onChange(of: profileManager.currentProfile?.age) { _, _ in
             availableModes = Self.modes(for: profileManager.currentProfile)
         }
@@ -55,22 +63,34 @@ struct HomeView: View {
         if modes != availableModes { availableModes = modes }
     }
 
+    /// Dizilim (26 Kasım 2026): başlık ve bilgi kartları · bu akşamın kahraman
+    /// kartı · haftanın okuma günleri · "Yeni bir masal yaz" · devam eden seri ·
+    /// Masallar'dan haftanın seçkisi. Bölümleri boşluk ayırır, panel değil.
     private func content(topInset: CGFloat) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             header(topInset: topInset)
 
             VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
-                HomeTonightBoard(state: feed.tonight, onPrimary: tonightAction)
+                HomeTonightBoard(state: feed.tonight, cover: feed.cover, onPrimary: tonightAction)
                     // Ragi kartın üstüne taşar: bilgi kartlarıyla arasında yer.
                     .padding(.top, typeSize.isAccessibilitySize ? MPSpacing.xl : MPSpacing.xxxl)
                     .homeEntrance(0)
 
-                if !shownModes.isEmpty { modeSection.homeEntrance(1) }
+                if level == .big, let journey {
+                    ReadingJourneyWidget(journey: journey, showsRagi: false) {
+                        if let id = profileManager.currentProfile?.id { app.router.openKidPage(.journey(id)) }
+                    }
+                    .homeEntrance(1)
+                }
+
+                if !shownModes.isEmpty { modeSection.homeEntrance(2) }
 
                 if let child = profileManager.currentProfile?.id, feed.hasSeriesCard {
                     HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
-                        .homeEntrance(2)
+                        .homeEntrance(3)
                 }
+
+                if !weeklyPicks.isEmpty { weeklySection.homeEntrance(4) }
             }
             .padding(.horizontal, MPSpacing.screenH)
         }
@@ -79,61 +99,44 @@ struct HomeView: View {
 
     // MARK: - Başlık
 
-    /// İki kat (24 Kasım 2026): üstte düğmeler ve selam koyu gökte (`homeSkyTop`,
-    /// yazı her kademede ve en büyük yazıda ≥ 4.5:1), altta kâğıda iniş
-    /// (`homeSkyFade`); bilgi kartları varsa inişin önünde. Ekranın tek Ragi'si
-    /// bu akşamın kartında (başlıktaki el sallayan Ragi kalktı).
+    /// Düz kâğıt başlık (26 Kasım 2026, Batuhan: mor gök gradienti kalktı).
+    /// İrem'in öğeleri ve dizilimi aynı: solda menü, sağda zil ve arama,
+    /// altında selam ve üç bilgi kartı. Yazı koyu, zemin sayfanın kendisi.
     private func header(topInset: CGFloat) -> some View {
-        VStack(alignment: .leading, spacing: 0) {
-            VStack(alignment: .leading, spacing: MPSpacing.lg) {
-                HStack(spacing: MPSpacing.sm) {
-                    MPCircleButton(systemImage: "line.3.horizontal", accessibilityLabel: "Menü", action: openMenu)
-                    Spacer(minLength: 0)
-                    MPCircleButton(systemImage: "bell", accessibilityLabel: hasNews ? "Bildirimler, yeni rozet var" : "Bildirimler",
-                                   action: openNews)
-                        .overlay(alignment: .topTrailing) {
-                            // Alt çubuktaki gibi sessiz marka noktası: yeni rozet var.
-                            if hasNews {
-                                Circle().fill(MP.C.brand)
-                                    .frame(width: MP.S.x2 + MP.S.x1, height: MP.S.x2 + MP.S.x1)
-                                    .overlay(Circle().strokeBorder(MPColor.backgroundSurface, lineWidth: 2))
-                                    .offset(x: -MP.S.x1, y: MP.S.x1)
-                                    .accessibilityHidden(true)
-                            }
+        VStack(alignment: .leading, spacing: MPSpacing.lg) {
+            HStack(spacing: MPSpacing.sm) {
+                MPCircleButton(systemImage: "line.3.horizontal", accessibilityLabel: "Menü", action: openMenu)
+                Spacer(minLength: 0)
+                MPCircleButton(systemImage: "bell", accessibilityLabel: news.isEmpty ? "Yenilikler" : "Yenilikler, yeni bir şey var",
+                               action: openNews)
+                    .overlay(alignment: .topTrailing) {
+                        // Sessiz marka noktası: görülmemiş bir yenilik var.
+                        if hasUnseenNews {
+                            Circle().fill(MP.C.brand)
+                                .frame(width: MP.S.x2 + MP.S.x1, height: MP.S.x2 + MP.S.x1)
+                                .overlay(Circle().strokeBorder(MPColor.backgroundSurface, lineWidth: 2))
+                                .offset(x: -MP.S.x1, y: MP.S.x1)
+                                .accessibilityHidden(true)
                         }
-                    MPCircleButton(systemImage: "magnifyingglass", accessibilityLabel: "Masal ara", action: openSearch)
-                }
-
-                VStack(alignment: .leading, spacing: MPSpacing.xs) {
-                    Text("Merhaba, \(activeName)").font(MP.F.displayLG()).foregroundStyle(MP.C.textOnArt)
-                        .lineLimit(2).minimumScaleFactor(0.7)
-                        .accessibilityAddTraits(.isHeader)
-                    if level == .big {
-                        Text(subtitle).mpText(.supporting).fontWeight(.semibold).foregroundStyle(MP.C.textOnArtMuted)
-                            .fixedSize(horizontal: false, vertical: true)
                     }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                MPCircleButton(systemImage: "magnifyingglass", accessibilityLabel: "Masal ara", action: openSearch)
             }
-            .padding(.horizontal, MPSpacing.screenH)
-            .padding(.top, topInset + MPSpacing.xs)
-            .padding(.bottom, MPSpacing.lg)
-            .background(
-                LinearGradient(stops: MP.C.homeSkyTop, startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea(edges: .top)
-            )
 
-            Group {
-                if showsStats {
-                    stats.padding(.bottom, MPSpacing.xs)
-                } else {
-                    Color.clear.frame(height: MPSpacing.xxxl)
+            VStack(alignment: .leading, spacing: MPSpacing.xs) {
+                Text("\(feed.greeting) \(activeName)").font(MP.F.displayLG()).foregroundStyle(MPColor.textPrimary)
+                    .lineLimit(2).minimumScaleFactor(0.7)
+                    .accessibilityAddTraits(.isHeader)
+                if level == .big {
+                    Text(subtitle).mpText(.supporting).fontWeight(.semibold).foregroundStyle(MPColor.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
-            .padding(.horizontal, MPSpacing.screenH)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(LinearGradient(stops: MP.C.homeSkyFade, startPoint: .top, endPoint: .bottom))
+
+            if showsStats { stats }
         }
+        .padding(.horizontal, MPSpacing.screenH)
+        .padding(.top, topInset + MPSpacing.xs)
     }
 
     private var stats: some View {
@@ -155,7 +158,16 @@ struct HomeView: View {
             ? "Bu akşam hangi masalı okuyalım?" : "Bugün hangi masalı okuyalım?"
     }
 
-    private var hasNews: Bool { badgeNews.homeNote(for: profileManager.currentProfile?.id) != nil }
+    /// Zilin listesi ve noktası (`HomeNews`); ana sayfa görünür olunca yenilenir.
+    @State private var news = HomeNews(items: [])
+    @State private var hasUnseenNews = false
+
+    private func refreshNews() {
+        let child = profileManager.currentProfile?.id
+        news = HomeNews.live(childID: child)
+        journey = profileManager.currentProfile.map { ReadingJourney.live(for: $0) }
+        hasUnseenNews = news.hasUnseen(seen: HomeNewsSeen.ids(for: child))
+    }
 
     /// Menü (23 Kasım 2026, `KidMenuSheet`): var olan sayfalar ve okuma yolculuğu.
     private func openMenu() {
@@ -163,10 +175,11 @@ struct HomeView: View {
         app.router.sheet = .menu
     }
 
-    /// Bildirim: yeni rozetler Profil'de.
+    /// Zil: "Yenilikler" sayfası (26 Kasım 2026; önceden yalnızca Profil'e geçiyordu).
     private func openNews() {
         MPHaptics.tap()
-        app.router.openKidCorner()
+        hasUnseenNews = false
+        app.router.sheet = .news
     }
 
     /// Arama Masallar'da odakla açılır.
@@ -230,6 +243,41 @@ struct HomeView: View {
             }
         }
     }
+
+    // MARK: - Okuma günleri
+
+    /// Profil'deki "Okuma yolculuğum" kartı, Ragi'siz (ekranda tek Ragi). Gün
+    /// okunmazsa boş daire; sayaç baskısı ya da "kaçırma" dili yok (CLAUDE.md §7).
+    @State private var journey: ReadingJourney?
+
+    // MARK: - Haftanın seçkisi
+
+    private var weeklyPicks: [ClassicItem] { Array(ClassicsLibrary.shared.weeklyPicks.prefix(6)) }
+
+    /// Masallar'ın seçkisi ana sayfada küçük bir raf; "Tümü" Masallar'ı açar.
+    private var weeklySection: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.md) {
+            MPSectionHeader(title: "Bu haftanın seçkisi", link: ("Tümü", {
+                MPHaptics.tap()
+                app.router.tab = .gunluk
+                app.router.masallarPath = []
+            }))
+            GunlukRow {
+                ForEach(weeklyPicks) { item in
+                    ClassicShelfCard(item: item, width: Self.pickWidth, height: Self.pickWidth * MPBookCover.aspect) {
+                        MPHaptics.tap()
+                        app.router.tab = .gunluk
+                        switch item {
+                        case .tale(let tale): app.router.masallarPath = [.tale(tale.id)]
+                        case .series(let series, _): app.router.masallarPath = [.series(series.id)]
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private static let pickWidth: CGFloat = 112
 }
 
 #Preview("11 · Ana sayfa") {

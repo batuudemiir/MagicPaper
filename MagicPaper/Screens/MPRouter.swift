@@ -125,6 +125,8 @@ enum MPSheetRoute: Identifiable, Equatable {
     case locked(Capability)
     /// Ana sayfanın menüsü (23 Kasım 2026, `KidMenuSheet`).
     case menu
+    /// Ana sayfanın zili: "Yenilikler" (26 Kasım 2026, `HomeNewsSheet`).
+    case news
 
     var id: String {
         switch self {
@@ -133,6 +135,7 @@ enum MPSheetRoute: Identifiable, Equatable {
         case .reminder: return "reminder"
         case .locked(let capability): return "locked-\(capability.rawValue)"
         case .menu: return "menu"
+        case .news: return "news"
         }
     }
 }
