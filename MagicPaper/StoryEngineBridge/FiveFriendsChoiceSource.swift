@@ -113,6 +113,21 @@ struct FiveFriendsChoiceSource: StoryChoiceSource {
         }
     }
 
+    /// Bu istekte motorun çekeceği kitaplar (güvenlik dahil). Paket henüz
+    /// okunmadıysa ya da istek P56'ya gitmiyorsa boş.
+    func pilotBookIDs(mode: StoryMode, companionID: String?, age: Int) -> [String] {
+        guard let p56Mode = P56Mode(rawValue: mode.rawValue) else { return [] }
+        let policy = safety()
+        guard let decision = router.decideIfReady(StoryRuntimeRequest(
+                age: age, mode: mode, companionID: companionID, family: nil,
+                topicID: nil, occasion: nil, safety: policy)),
+              case .p56(let reference) = decision.route,
+              let package = router.package(for: reference) else { return [] }
+        let request = P56Request(childID: "secim-ekrani", name: "Deniz", age: age, seed: 0, mode: p56Mode,
+                                 companionID: companionID, contentSafety: policy)
+        return P56Support.candidates(for: request, package: package).map(\.id)
+    }
+
     // MARK: - Forwarded
 
     func legacyWritableCompanionIDs(mode: StoryMode, age: Int, topicID: String?) -> [String] {

@@ -172,6 +172,20 @@ final class P56CompositionPathTests: XCTestCase {
                       "okuma süresi biten kitap bırakılmış sayılmaz")
     }
 
+    /// Seçim ekranı ipuçları (27 Kasım): tanışılan arkadaşlar ve "hepsi okundu".
+    func testMetFriendsAndReadAllCell() async throws {
+        let manager = manager(enabled: true)
+        let (_, package) = try Self.fixture.get()
+        let story = try await manager.createStory(for: profile, mode: .bedtime, storyIdeaID: nil,
+                                                  companionID: fox, seed: "3")
+        XCTAssertEqual(P56RecentBooks.metCompanionIDs(forChild: profile.id, in: manager.stories), [fox])
+        let cell = package.books.filter { $0.mode == .bedtime && $0.companionID == fox }.map(\.id)
+        let given = try XCTUnwrap(story.origin?.p56BookID)
+        XCTAssertFalse(P56RecentBooks.hasReadAll(cell, recent: [given]))
+        XCTAssertTrue(P56RecentBooks.hasReadAll(cell, recent: cell + ["baska"]))
+        XCTAssertFalse(P56RecentBooks.hasReadAll([], recent: cell), "bilinmeyen hücre okunmuş sayılmaz")
+    }
+
     func testRecentBooksReadOlderStoriesFromTheirTemplate() {
         var page = MagicPaper.StoryPage(id: UUID(), title: "", text: "", imagePrompt: "")
         page.provenance = StoryPageProvenance(p56: .init(

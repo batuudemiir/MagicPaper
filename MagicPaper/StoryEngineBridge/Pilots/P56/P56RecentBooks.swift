@@ -57,6 +57,20 @@ enum P56RecentBooks {
         return score.compactMapValues { $0 > 0 ? 3 : ($0 < 0 ? 1 : nil) }
     }
 
+    /// Bu çocuğun beşliden en az bir masalını aldığı arkadaşlar. Seçim
+    /// ekranı tanışılmamış arkadaşa "Yeni" der (27 Kasım 2026).
+    static func metCompanionIDs(forChild childID: UUID, in stories: [Story]) -> Set<String> {
+        Set(stories.filter { $0.childProfileID == childID && $0.origin?.contentSource?.p56Reference != nil }
+            .compactMap { $0.origin?.companionID })
+    }
+
+    /// Hücredeki her kitap bu çocuğa verilmiş mi? Boş hücre "bilinmiyor"dur,
+    /// okunmuş sayılmaz. Göz atılanlar da verilmiş sayılır: motor onları
+    /// yeniden verir ama çocuk o kitabı görmüştür.
+    static func hasReadAll(_ bookIDs: [String], recent: [String]) -> Bool {
+        !bookIDs.isEmpty && Set(bookIDs).isSubset(of: Set(recent))
+    }
+
     /// Bu çocuğun masalları, en yenisi önce; aynı ana düşenlerde kitaplığın
     /// sırası (en yeni önce) korunur.
     private static func ordered(forChild childID: UUID, in stories: [Story]) -> [Story] {
