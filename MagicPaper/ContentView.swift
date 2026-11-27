@@ -259,6 +259,11 @@ struct ContentView: View {
 
             if #available(iOS 26.0, *) {
                 systemKidTabs
+                // Eski mor Masal yaz dairesi, sistemin dairesinin üstünde (27 Kasım 2026).
+                MPCreateOverTabBar(label: "Masal yaz", onCreate: {
+                    createFromBar = true
+                    app.startStoryCreation()
+                }, zoom: reduceMotion ? nil : createZoom)
             } else {
                 customKidTabs
             }
@@ -278,8 +283,9 @@ struct ContentView: View {
     /// VoiceOver sistemden gelir. "Masal yaz" `.search` rolüyle sistemin ayrı
     /// dairesinde, sekmelerin yanında durur (eski `KidTabBar` düzeni gibi).
     /// Bir yer değil eylem: seçimi hiç tutulmaz, bağlama ona geçmek istediğinde
-    /// masal yazma açılır ve seçili sekme yerinde kalır. Sistem dairesi
-    /// yakınlaşma kaynağı olamadığından masal yazma olağan geçişle açılır.
+    /// masal yazma açılır ve seçili sekme yerinde kalır. Sistem dairesinin
+    /// üstünde eski mor daire durur (`MPCreateOverTabBar`, 27 Kasım 2026);
+    /// ona dokununca masal yazma daireden büyüyerek açılır.
     /// Seçili sekmeye yeniden dokununca bağlama aynı değeri yazar;
     /// `selectKidTab` bunu "başa dön" sayar.
     @available(iOS 26.0, *)
