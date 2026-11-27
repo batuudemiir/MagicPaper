@@ -46,6 +46,11 @@ enum StoryPreparationScript {
     private static let standardScale = 0.9
     /// Kapak bu kadar görünür, sonra masal kendiliğinden açılır.
     static let coverHold = 1.6
+
+    /// Masal ana iş parçacığında kurulur; defter kapağı açılırken kurulursa
+    /// açılış takılır (27 Kasım 2026, Batuhan: "donmalar"). Kurulum kapak
+    /// açıldıktan sonra başlar: `RagiBeat.reveal` + `M.page` (0,52 sn).
+    static let composeDelay = MP.M.RagiBeat.reveal + 0.56
     /// Uyku saatinde her şey biraz daha yavaş.
     static let bedtimeScale = 1.2
 
