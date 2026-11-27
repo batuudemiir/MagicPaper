@@ -140,6 +140,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Test: dalda tam birim paketi 1251 test, 0 hata, 1 atlandı (iPhone 17 Pro sim); son düzeltmeden sonra `LittleFriendFirstTests` 13/0. Ekran: `cocuk-akisi-ekranlar/v2/` SE, 16, Pro Max; açık/koyu/en büyük yazı (ekran tek başına çizildi, üst Geri ve ilerleme çizgisi yok; uygulama yalnız açık temada).
 - Açılış ölçümü (kod değişmedi): iPhone SE simülatöründe ilk açılış ~9,5 sn, bunun ~6 sn'si uygulama kodundan önce (158 MB `MagicPaper.debug.dylib`, -Onone; dyld + objc sınıf kaydı). Sıcak açılışta uygulamanın kendi işi ~0,6 sn (`FirebaseApp.configure` → Auth + anahtar zinciri, ana iş parçacığında); P56 yükü arka planda.
 
+### 2026-11-26 · claude/project-thread-mk1m05 · Kitap oluşturma akışı kısaldı, ses kaydı altyapısı, hareketli "Masal yazılıyor"
+- Okul öncesi "önce arkadaş" yolu tek sayfa: Kim gelsin? → {Arkadaş} ile ne yapalım? → Kitap oluştur. Seçim yapılınca sıradaki soru altta açılır ve sayfa oraya kayar; seçimler yukarıda seçili kalır, dokunarak değişir. Geri adımı yok, sol üstte X (Batuhan, 26 Kasım 2026).
+- Konu adımı ("Nereye gidelim?", "Neyi öğrenelim?") bu yoldan kalktı: istek her zaman beşliye gider, seçilen arkadaş masalda kalır. Ebeveyn akışındaki konu adımı bilerek değişmedi.
+- "Hazır mısın?" sorusu ve "Hazırsan Başla'ya dokun." kalktı; son bölüm tek cümle ("Kestane ile maceraya çıkıyoruz!") ve "Kitap oluştur" düğmesi. "Kitap oluştur" dil kuralının yazılı istisnası (AGENTS.md, allowlist).
+- Ses: her sesli cümle `MPVoiceLine` (dosya adı + metin). `DesignSystem/Sounds/Voice/<ad>.m4a|mp3` pakette varsa o çalar, yoksa cihaz sesi. 29 satırlık liste `docs/SESLENDIRME.md` (ElevenLabs için); arkadaş tanıtımları ve sıra onay bekliyor.
+- 21 · Masal yazılıyor: arkada moda göre süzülen kâğıt yıldızlar, açılan defter kapağı, her adımda çevrilen sayfa, adım noktaları yerine yıldız yolu, dönerek gelen kapak ve gündüz bir kez kâğıt yıldız patlaması. Sıra, süre ve metin (`StoryPreparationScript`) değişmedi. Hareketi Azalt'ta hepsi durur ya da çapraz geçiş.
+- İçinde yerel main'deki iki düzeltme yeniden uygulandı (3c17a8c1 Başla ortası, 29e61d1b kelime kırılmaması); `LittleCardTitle` artık mod kartlarında.
+- Test: Linux'ta tasarım yasası denetimi temiz. Derleme ve birim testleri Mac'te koşulacak (bu kayıt yazılırken koşulmadı).
+
 ### 2026-11-26 · codex/bes-arkadas/claude-uygulama@62e39224 · P56 v4 pininin uygulama tarafı
 - Codex'in motor pini 87c8ea0 (v4, `v3SHA256` tarihsel) hatta birleşti; uygulama paketi v4 baytları (`cmp` eşit, SHA c06a5dfc…), v3 kopyası çıktı.
 - `P56SnapshotStore` v1–v4'ü tanır; testler etkin pini `P56PinnedSource`'tan okur, tarihsel v1/v2/v3 SHA'ları ayrı denetlenir.

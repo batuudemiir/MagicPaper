@@ -102,6 +102,12 @@ final class MPSpeech: NSObject, ObservableObject {
         isPaused = false
     }
 
+    /// Arayüzün sesli cümlesi: stüdyo kaydı pakette varsa o, yoksa cihazın
+    /// sesi aynı cümleyi satırın perdesiyle okur (26 Kasım 2026).
+    func speak(_ line: MPVoiceLine) {
+        speak(line.text, recording: line.recording, pitch: line.pitch)
+    }
+
     /// Ailenin sesiyle kaydedilmiş sayfa. Dosya açılmazsa anlatıcıya kalır.
     private func play(_ file: URL) -> Bool {
         stop()

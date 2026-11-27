@@ -33,35 +33,27 @@ final class LittleFriendFirstTests: XCTestCase {
         return source
     }
 
-    // MARK: - Sıra ve adımlar
+    // MARK: - Sıra ve adımlar (kısaltma: 26 Kasım 2026, Batuhan)
 
-    func testLittleOrderIsFriendModeTopicConfirm() {
-        var path = StoryCreationSteps.LittlePath()
-        XCTAssertEqual(path.step, .friend)
-        XCTAssertEqual(path.chooseFriend(kestane), .show(.mode))
-        XCTAssertEqual(path.chooseMode(.learning, hasTopicStep: true), .show(.topic))
-        XCTAssertEqual(path.labels, ["Kim", "Masal", "Konu", "Hazır"])
-        XCTAssertEqual(path.chooseTopic(nil), .show(.confirm))
-        XCTAssertEqual(path.stepIndex, 3)
-        XCTAssertEqual(path.start(), .begin)
+    /// Kim gelsin? → Ne yapalım? → Kitap oluştur. Konu adımı yok, her modda üç adım.
+    func testLittleOrderIsFriendModeStart() {
+        for mode in StoryMode.allCases {
+            var path = StoryCreationSteps.LittlePath()
+            XCTAssertEqual(path.step, .friend)
+            XCTAssertEqual(path.chooseFriend(kestane), .show(.mode))
+            XCTAssertEqual(path.chooseMode(mode), .show(.start))
+            XCTAssertEqual(path.labels, ["Kim", "Masal", "Kitap"])
+            XCTAssertEqual(path.stepIndex, 2)
+            XCTAssertEqual(path.start(), .begin)
+        }
     }
 
-    /// Uyku öncesinde konu yok: üç adım.
-    func testWithoutTopicTheConfirmFollowsTheMode() {
-        var path = StoryCreationSteps.LittlePath()
-        _ = path.chooseFriend(tarcin)
-        XCTAssertEqual(path.chooseMode(.bedtime, hasTopicStep: false), .show(.confirm))
-        XCTAssertEqual(path.labels, ["Kim", "Masal", "Hazır"])
-        XCTAssertEqual(path.stepIndex, 2)
-    }
-
-    /// Onay adımına kadar masal yazılmaz: yalnızca "Başla" `.begin` verir.
-    func testNoStoryBeforeTheConfirmStep() {
+    /// Son adıma kadar masal yazılmaz: yalnızca "Kitap oluştur" `.begin` verir.
+    func testNoStoryBeforeTheStartStep() {
         var path = StoryCreationSteps.LittlePath()
         var outcomes: [StoryCreationSteps.LittlePath.Outcome] = [path.start()]
         outcomes.append(path.chooseFriend(simit)); outcomes.append(path.start())
-        outcomes.append(path.chooseMode(.adventure, hasTopicStep: true)); outcomes.append(path.start())
-        outcomes.append(path.chooseTopic("x"))
+        outcomes.append(path.chooseMode(.adventure))
         XCTAssertFalse(outcomes.contains(.begin))
         XCTAssertEqual(path.start(), .begin)
     }
@@ -71,27 +63,16 @@ final class LittleFriendFirstTests: XCTestCase {
         var path = StoryCreationSteps.LittlePath()
         XCTAssertEqual(path.back(), .close)
         _ = path.chooseFriend(yildiz)
-        _ = path.chooseMode(.learning, hasTopicStep: true)
-        _ = path.chooseTopic("t")
-        XCTAssertEqual(path.back(), .show(.topic))
+        _ = path.chooseMode(.learning)
         XCTAssertEqual(path.back(), .show(.mode))
         XCTAssertEqual(path.back(), .show(.friend))
         XCTAssertEqual(path.companionID, yildiz)
         XCTAssertEqual(path.mode, .learning)
-        XCTAssertEqual(path.topicID, "t")
         // Aynı arkadaşa yeniden dokunmak seçimleri silmez; başka arkadaş siler.
         _ = path.chooseFriend(yildiz)
         XCTAssertEqual(path.mode, .learning)
         _ = path.chooseFriend(simit)
         XCTAssertNil(path.mode)
-        XCTAssertNil(path.topicID)
-    }
-
-    func testConfirmBackSkipsMissingTopicStep() {
-        var path = StoryCreationSteps.LittlePath()
-        _ = path.chooseFriend(nil)
-        _ = path.chooseMode(.bedtime, hasTopicStep: false)
-        XCTAssertEqual(path.back(), .show(.mode))
     }
 
     /// Sürpriz arkadaş: mod yine sorulur; arkadaşı motor seçer.
@@ -101,8 +82,18 @@ final class LittleFriendFirstTests: XCTestCase {
         XCTAssertNil(path.companionID)
         let anyModes = await source().pilotModes(forCompanionID: nil, age: 5)
         XCTAssertFalse(anyModes.isEmpty)
-        XCTAssertEqual(StoryCreationSteps.littleCast(chosen: nil, topicID: nil, legacyCandidates: [simit]),
-                       .init(companionID: nil, keepsFriend: false))
+    }
+
+    /// Konu sorulmadığı için istek beşliye gider: seçilen arkadaş masalda kalır.
+    func testChosenFriendKeepsTheP56Route() async throws {
+        for friend in [kestane, bogurtlen, tarcin, yildiz, simit] {
+            let modes = await source().pilotModes(forCompanionID: friend, age: 5)
+            let mode = try XCTUnwrap(modes.first, friend)
+            guard case .p56 = await router().decide(StoryRuntimeRequest(age: 5, mode: mode, companionID: friend,
+                                                                  family: nil, topicID: nil, occasion: nil,
+                                                                  safety: nil)).route
+            else { return XCTFail("\(friend) beşliyle yazılmalı") }
+        }
     }
 
     // MARK: - Liste
@@ -157,55 +148,6 @@ final class LittleFriendFirstTests: XCTestCase {
         }
     }
 
-    // MARK: - Konu (K4)
-
-    /// "Fark etmez" ile istek beşliye gider ve arkadaş korunur.
-    func testAnyTopicKeepsTheP56Route() async throws {
-        let cast = StoryCreationSteps.littleCast(chosen: simit, topicID: nil, legacyCandidates: [])
-        XCTAssertEqual(cast, .init(companionID: simit, keepsFriend: true))
-        let simitModes = await source().pilotModes(forCompanionID: simit, age: 5)
-        let mode = try XCTUnwrap(simitModes.first)
-        guard case .p56 = await router().decide(StoryRuntimeRequest(age: 5, mode: mode, companionID: cast.companionID,
-                                                              family: nil, topicID: nil, occasion: nil, safety: nil)).route
-        else { return XCTFail("Fark etmez P56'yı korumalı") }
-    }
-
-    /// Konu seçilince istek eski motora gider; arkadaş eski katalogda bu konuda
-    /// yazılabiliyorsa onunla yazılır, değilse onay ekranı Sürpriz gösterir.
-    func testTopicGoesToLegacyAndKeepsTheFriendOnlyWhenWritable() async throws {
-        var checked = 0
-        for mode in base.availableModes(forAge: 5) {
-            for topic in base.topicChoices(forAge: 5, mode: mode) {
-                guard case .legacy = await router().decide(StoryRuntimeRequest(age: 5, mode: mode, companionID: simit,
-                                                                          family: nil, topicID: topic.id,
-                                                                          occasion: nil, safety: nil)).route
-                else { return XCTFail("konu \(topic.id) eski motora gitmeli") }
-                let legacy = await source().legacyWritableCompanionIDs(mode: mode, age: 5, topicID: topic.id)
-                for friend in [simit, bogurtlen] {
-                    let cast = StoryCreationSteps.littleCast(chosen: friend, topicID: topic.id, legacyCandidates: legacy)
-                    XCTAssertEqual(cast.keepsFriend, legacy.contains(friend))
-                    XCTAssertEqual(cast.companionID, legacy.contains(friend) ? friend : nil)
-                    // Sözün tutulduğunu gerçek yazımla doğrula (her arkadaş için bir örnek).
-                    if cast.keepsFriend, checked < 4 {
-                        let profile = UserProfile(name: "Deniz", age: 5)
-                        let context = StoryContextBuilder().build(
-                            for: profile, library: [], mode: mode, strategy: .direct, storyIdeaID: nil,
-                            companionID: cast.companionID, subOption: topic.id, family: nil, occasion: nil)
-                        let composed = try base.compose(context, seed: "7")
-                        XCTAssertEqual(composed.story.content.companion.id.rawValue, friend,
-                                       "\(friend) \(mode) \(topic.id)")
-                        checked += 1
-                    }
-                }
-            }
-        }
-        XCTAssertGreaterThan(checked, 0, "Simit ya da Böğürtlen en az bir konuda eski motorla yazılabilmeli")
-        XCTAssertEqual(StoryCreationSteps.littleCast(chosen: simit, topicID: "t", legacyCandidates: [tarcin]),
-                       .init(companionID: nil, keepsFriend: false))
-        XCTAssertEqual(StoryCreationSteps.littleCast(chosen: simit, topicID: "t", legacyCandidates: [simit]),
-                       .init(companionID: simit, keepsFriend: true))
-    }
-
     // MARK: - Beşli kapalıyken
 
     /// Bayrak kapalı, beşliyi bilmeyen kaynak ya da yazılamayan yaş: bugünkü sıra.
@@ -227,26 +169,45 @@ final class LittleFriendFirstTests: XCTestCase {
     // MARK: - Ses
 
     func testSpokenLinesAreShort() {
-        var lines = [LittleCreationCopy.friendQuestion, LittleCreationCopy.surpriseIntro,
-                     LittleCreationCopy.startLine, LittleCreationCopy.confirmTitle,
-                     LittleCreationCopy.modeQuestion(friendName: nil)]
-        for id in StoryCreationSteps.littleFriendOrder {
-            lines.append(LittleCreationCopy.intro(for: id, name: "Böğürtlen"))
-            lines.append(LittleCreationCopy.modeQuestion(friendName: "Böğürtlen"))
-            lines.append(LittleCreationCopy.anyTopicLine(friendName: "Böğürtlen") ?? "")
-            for mode in StoryMode.allCases {
-                for keeps in [true, false] {
-                    lines.append(LittleCreationCopy.confirmLine(friendName: "Böğürtlen", keepsFriend: keeps, mode: mode))
-                }
-                lines.append(LittleCreationCopy.confirmLine(friendName: nil, keepsFriend: false, mode: mode))
-            }
-        }
+        var lines = LittleCreationCopy.allLines()
+        lines.append(LittleCreationCopy.intro(for: "x", name: "Böğürtlen"))
+        lines.append(LittleCreationCopy.modeQuestion(friendName: "Böğürtlen"))
         for line in lines {
-            XCTAssertLessThanOrEqual(line.split(separator: " ").count, LittleCreationCopy.maxWords, line)
-            XCTAssertFalse(line.lowercased().contains("yeşil"), "düğme rengi söylenmez")
+            XCTAssertLessThanOrEqual(line.text.split(separator: " ").count, LittleCreationCopy.maxWords, line.text)
+            XCTAssertFalse(line.text.lowercased().contains("yeşil"), "düğme rengi söylenmez")
+            XCTAssertFalse(line.text.contains("Hazır"), "Hazır mısın? sorusu kalktı")
         }
-        XCTAssertNil(LittleCreationCopy.anyTopicLine(friendName: nil))
-        XCTAssertEqual(LittleCreationCopy.confirmLine(friendName: "Simit", keepsFriend: false, mode: .learning),
-                       "Bu konuda yeni bir arkadaş gelecek.")
+    }
+
+    /// Her seslendirme satırının ayrı, kurala uyan bir dosya adı var: 29 kayıt.
+    func testEveryVoiceLineHasAUniqueValidKey() {
+        let lines = LittleCreationCopy.allLines()
+        XCTAssertEqual(lines.count, 29)
+        XCTAssertEqual(Set(lines.map(\.key)).count, lines.count, "dosya adları tekil")
+        for line in lines {
+            XCTAssertTrue(MPVoiceClips.isValidKey(line.key), line.key)
+            XCTAssertTrue(line.key.hasPrefix(LittleCreationCopy.keyPrefix), line.key)
+            XCTAssertFalse(line.key.contains("diger"), "beşlinin her satırı kendi adıyla: \(line.key)")
+        }
+        XCTAssertEqual(LittleCreationCopy.startLine(friendName: "Kestane", companionID: kestane, mode: .adventure),
+                       MPVoiceLine(key: "ses_olustur_basla_kestane_macera", text: "Kestane ile maceraya çıkıyoruz!"))
+        XCTAssertEqual(LittleCreationCopy.intro(for: tarcin, name: "Tarçın").key, "ses_olustur_tanitim_tarcin")
+    }
+
+    /// `docs/SESLENDIRME.md` koddaki listeyle aynı: her satırın adı ve cümlesi orada.
+    func testVoiceScriptDocumentMatchesTheCode() throws {
+        let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
+        let doc = try String(contentsOf: root.appendingPathComponent("docs/SESLENDIRME.md"), encoding: .utf8)
+        for line in LittleCreationCopy.allLines() {
+            XCTAssertTrue(doc.contains("`\(line.key)`"), line.key)
+            XCTAssertTrue(doc.contains(line.text), line.text)
+        }
+    }
+
+    /// Kayıt yoksa satır cihaz sesine kalır: paket boşken adres yok.
+    func testMissingRecordingFallsBackToDeviceVoice() {
+        XCTAssertNil(MPVoiceClips.url(for: "ses_olustur_yok_boyle_bir_dosya"))
+        XCTAssertFalse(MPVoiceClips.isValidKey("ses_oluştur"))
+        XCTAssertFalse(MPVoiceClips.isValidKey(""))
     }
 }
