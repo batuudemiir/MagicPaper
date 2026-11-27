@@ -601,6 +601,8 @@ struct StoryCreationFlow: View {
         phase = .preparing
 
         Task {
+            // Kapak açılışı bitsin, sonra kur (kurulum ana iş parçacığında).
+            try? await Task.sleep(for: .seconds(StoryPreparationScript.composeDelay))
             do {
                 let story = try await storyManager.createStory(
                     for: profile,

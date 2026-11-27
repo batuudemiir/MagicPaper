@@ -31,6 +31,9 @@ struct StoryPreparationView: View {
     var title: String = "Masal yazılıyor"
     var cancelTitle: String = "Vazgeç"
 
+    /// Kapağın ölçüsü: 2:3, en küçük iPhone'a da sığar.
+    private static let coverSize = CGSize(width: 260, height: 390)
+
     @State private var index = 0
     @State private var skipped = false
     @State private var showsSkip = false
@@ -137,18 +140,23 @@ struct StoryPreparationView: View {
     @ViewBuilder
     private var stage: some View {
         if isDone, let story {
-            ZStack {
-                // Gündüz bir kez kâğıt yıldız; uyku vaktinde ve Hareketi Azalt'ta yok.
-                if !reduceMotion && !(facts?.isBedtime ?? false) {
-                    PaperBurst().accessibilityHidden(true)
+            // Kapak ortada, sabit ölçüde (27 Kasım 2026, Batuhan: kapak
+            // ortalanmıyordu). Kâğıt yıldızlar yerleşimi etkilemesin diye arkada.
+            StoryCover(story: story, childName: childName)
+                .frame(width: Self.coverSize.width, height: Self.coverSize.height)
+                .clipShape(RoundedRectangle(cornerRadius: MP.R.card, style: .continuous))
+                .mpShadow(MP.Sh.lifted)
+                .background {
+                    // Gündüz bir kez kâğıt yıldız; uyku vaktinde ve Hareketi Azalt'ta yok.
+                    if !reduceMotion && !(facts?.isBedtime ?? false) {
+                        PaperBurst()
+                            .frame(width: Self.coverSize.width * 2, height: Self.coverSize.height * 1.4)
+                            .allowsHitTesting(false)
+                            .accessibilityHidden(true)
+                    }
                 }
-                StoryCover(story: story, childName: childName)
-                    .aspectRatio(2.0 / 3.0, contentMode: .fit)
-                    .frame(maxHeight: 420)
-                    .clipShape(RoundedRectangle(cornerRadius: MP.R.card, style: .continuous))
-                    .mpShadow(MP.Sh.lifted)
-            }
-            .transition(.coverFlip(reduceMotion: reduceMotion))
+                .frame(maxWidth: .infinity, alignment: .center)
+                .transition(.coverFlip(reduceMotion: reduceMotion))
         } else {
             VStack(spacing: MP.S.x3) {
                 MascotImage(mascot: beat == .reread ? .reading : .pencil, width: 80)
