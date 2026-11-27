@@ -103,6 +103,14 @@ enum LittleCreationCopy {
     /// istisnası: AGENTS.md "Dil").
     static let startButton = "Kitap oluştur"
 
+    /// Henüz tanışılmamış arkadaşın karosunda (27 Kasım 2026). Seslendirilmez:
+    /// ebeveynin göreceği kısa etiket.
+    static let newFriendBadge = "Yeni"
+
+    /// Bu arkadaşla bu moddaki her masal okunduysa mod kartında. Motor en
+    /// uzun süre önce okunanı yeniden verir; ebeveyn bunu bilsin.
+    static let readAllNote = "Hepsini okudunuz, en eskisi yeniden gelir"
+
     // MARK: - Liste
 
     /// Seslendirilecek her satır, kayıt sırasıyla: beşlinin adları sabit

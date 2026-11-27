@@ -42,7 +42,10 @@ public enum P56Support {
         }.sorted { $0.id < $1.id }
     }
 
-    static func candidates(for request: P56Request, package: P56Package) -> [P56Book] {
+    /// The books a request can be given, after the safety policy; what the
+    /// selection draws from. Public so the app can tell a parent when a
+    /// friend's books in a mode have all been read (27 Kasım 2026).
+    public static func candidates(for request: P56Request, package: P56Package) -> [P56Book] {
         let books = baseCandidates(for: request, package: package)
         guard let safety = request.contentSafety else { return books }
         guard let review = package.safetyReview, review.understands(safety) else { return [] }

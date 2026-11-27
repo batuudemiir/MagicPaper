@@ -42,6 +42,8 @@ struct LittleFriendTile: View {
     /// `nil`: Sürpriz karosu.
     let companionID: String?
     var isChosen = false
+    /// Bu çocuğun henüz tanışmadığı arkadaş: köşede "Yeni" (27 Kasım 2026).
+    var isNew = false
     var accessibilityLabel: String? = nil
     let action: () -> Void
 
@@ -73,12 +75,24 @@ struct LittleFriendTile: View {
                 RoundedRectangle(cornerRadius: MPRadius.tile, style: .continuous)
                     .strokeBorder(isChosen ? MPColor.actionPrimary : .clear, lineWidth: 4)
             }
+            .overlay(alignment: .topTrailing) {
+                if isNew {
+                    Text(LittleCreationCopy.newFriendBadge).mpText(.footnote)
+                        .foregroundStyle(MPColor.textPrimary)
+                        .padding(.horizontal, MPSpacing.sm)
+                        .padding(.vertical, MPSpacing.xxs)
+                        .background(Capsule().fill(MPWorldTone.yellow.soft))
+                        .overlay(Capsule().strokeBorder(MPWorldTone.yellow.edge, lineWidth: 1))
+                        .padding(MPSpacing.sm)
+                        .accessibilityHidden(true)
+                }
+            }
             .scaleEffect(isChosen && !reduceMotion ? 1.08 : 1)
             .animation(MP.M.gated(MP.M.spring), value: isChosen)
             .contentShape(Rectangle())
         }
         .buttonStyle(MPPressStyle())
-        .accessibilityLabel(accessibilityLabel ?? name)
+        .accessibilityLabel((accessibilityLabel ?? name) + (isNew ? ", \(LittleCreationCopy.newFriendBadge)" : ""))
         .accessibilityAddTraits(isChosen ? .isSelected : [])
     }
 }
@@ -96,6 +110,11 @@ struct LittleCreationPage: View {
     let friend: CompanionChoice?
     let modes: [StoryMode]
     var emphasized: StoryMode? = nil
+    /// Bu çocuğun henüz masalını almadığı arkadaşlar ("Yeni").
+    var newFriendIDs: Set<String> = []
+    /// Seçilen arkadaşla (Sürpriz'de herhangi biriyle) her kitabı okunmuş
+    /// modlar: kartta ebeveyne kısa not, motor en eski okunanı verir.
+    var readAllModes: Set<StoryMode> = []
     var profiles: [UserProfile] = []
     var authoredBands: [AgeBand] = []
     @Binding var selectedProfileID: UUID?
@@ -174,7 +193,8 @@ struct LittleCreationPage: View {
             LazyVGrid(columns: columns, spacing: MPSpacing.md) {
                 ForEach(StoryCreationSteps.orderedLittleFriends(friends)) { friend in
                     LittleFriendTile(name: friend.name, companionID: friend.id,
-                                     isChosen: isChosenFriend(friend.id)) {
+                                     isChosen: isChosenFriend(friend.id),
+                                     isNew: newFriendIDs.contains(friend.id)) {
                         chooseFriend(friend.id, line: LittleCreationCopy.intro(for: friend.id, name: friend.name))
                     }
                 }
@@ -226,6 +246,11 @@ struct LittleCreationPage: View {
                     if mode == emphasized {
                         Text("Bu akşam").mpText(.footnote).foregroundStyle(MPColor.actionPrimary)
                     }
+                    if readAllModes.contains(mode) {
+                        Text(LittleCreationCopy.readAllNote).mpText(.footnote)
+                            .foregroundStyle(MPColor.textSecondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                 }
                 Spacer(minLength: 0)
                 if isChosen {
@@ -244,7 +269,9 @@ struct LittleCreationPage: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(MPPressStyle())
-        .accessibilityLabel(mode == emphasized ? "\(mode.title), bu akşam için önerilen" : mode.title)
+        .accessibilityLabel([mode.title, mode == emphasized ? "bu akşam için önerilen" : nil,
+                             readAllModes.contains(mode) ? LittleCreationCopy.readAllNote : nil]
+            .compactMap { $0 }.joined(separator: ", "))
         .accessibilityAddTraits(isChosen ? .isSelected : [])
     }
 

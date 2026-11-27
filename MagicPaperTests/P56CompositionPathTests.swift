@@ -137,6 +137,55 @@ final class P56CompositionPathTests: XCTestCase {
         XCTAssertTrue(P56RecentBooks.ids(forChild: other.id, in: manager.stories).isEmpty, "başka çocuğun geçmişi sayılmaz")
     }
 
+    /// Okuma kaydı (27 Kasım): ilk üçte birde kapatılıp bitirilmeyen kitap göz
+    /// atılmış sayılır; bitirilen, kaydı olmayan ya da süre bitimiyle kesilen sayılmaz.
+    func testGlancedBooksAndFriendWeightsComeFromTheReadingRecord() async throws {
+        let manager = manager(enabled: true)
+        var written: [MagicPaper.Story] = []
+        for (index, friend) in [fox, "companion_owl_pilot_001", "companion_bear_001", fox].enumerated() {
+            written.append(try await manager.createStory(for: profile, mode: .learning, storyIdeaID: nil,
+                                                         companionID: friend, seed: String(index * 17)))
+        }
+        func stats(completions: Int, furthest: Int, interrupted: Bool = false) -> StoryUsageStore.Stats {
+            var value = StoryUsageStore.Stats()
+            value.sessions = 1
+            value.completions = completions
+            value.furthestPage = furthest
+            value.lastSessionFinished = completions > 0
+            value.lastSessionInterrupted = interrupted
+            return value
+        }
+        let usage: [UUID: StoryUsageStore.Stats] = [
+            written[0].id: stats(completions: 2, furthest: 7),                    // tilki: iki kez bitti
+            written[1].id: stats(completions: 0, furthest: 0),                    // baykuş: göz attı
+            written[2].id: stats(completions: 0, furthest: 5),                    // ayı: ilerledi, bıraktı
+            // written[3]: kayıt yok, okunmuş sayılır
+        ]
+        let glanced = P56RecentBooks.glancedIDs(forChild: profile.id, in: manager.stories, usage: usage)
+        XCTAssertEqual(glanced, [try XCTUnwrap(written[1].origin?.p56BookID)])
+        let weights = P56RecentBooks.companionWeights(forChild: profile.id, in: manager.stories, usage: usage)
+        XCTAssertEqual(weights, [fox: 3, "companion_bear_001": 1])
+
+        var interrupted = usage
+        interrupted[written[1].id] = stats(completions: 0, furthest: 0, interrupted: true)
+        XCTAssertTrue(P56RecentBooks.glancedIDs(forChild: profile.id, in: manager.stories, usage: interrupted).isEmpty,
+                      "okuma süresi biten kitap bırakılmış sayılmaz")
+    }
+
+    /// Seçim ekranı ipuçları (27 Kasım): tanışılan arkadaşlar ve "hepsi okundu".
+    func testMetFriendsAndReadAllCell() async throws {
+        let manager = manager(enabled: true)
+        let (_, package) = try Self.fixture.get()
+        let story = try await manager.createStory(for: profile, mode: .bedtime, storyIdeaID: nil,
+                                                  companionID: fox, seed: "3")
+        XCTAssertEqual(P56RecentBooks.metCompanionIDs(forChild: profile.id, in: manager.stories), [fox])
+        let cell = package.books.filter { $0.mode == .bedtime && $0.companionID == fox }.map(\.id)
+        let given = try XCTUnwrap(story.origin?.p56BookID)
+        XCTAssertFalse(P56RecentBooks.hasReadAll(cell, recent: [given]))
+        XCTAssertTrue(P56RecentBooks.hasReadAll(cell, recent: cell + ["baska"]))
+        XCTAssertFalse(P56RecentBooks.hasReadAll([], recent: cell), "bilinmeyen hücre okunmuş sayılmaz")
+    }
+
     func testRecentBooksReadOlderStoriesFromTheirTemplate() {
         var page = MagicPaper.StoryPage(id: UUID(), title: "", text: "", imagePrompt: "")
         page.provenance = StoryPageProvenance(p56: .init(

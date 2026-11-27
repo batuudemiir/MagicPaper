@@ -134,6 +134,10 @@ protocol StoryChoiceSource {
     func pilotFriendChoices(age: Int) -> [CompanionChoice]
     /// Bu arkadaşla (`nil`: herhangi biriyle) beşlinin yazabildiği modlar.
     func pilotModes(forCompanionID companionID: String?, age: Int) -> [StoryMode]
+    /// Beşlinin bu modda bu arkadaşla (`nil`: Sürpriz, herhangi biriyle)
+    /// verebileceği kitapların kimlikleri, güvenlik süzgecinden sonra. Boşsa
+    /// bilinmiyor: ekran "hepsi okundu" demez (27 Kasım 2026).
+    func pilotBookIDs(mode: StoryMode, companionID: String?, age: Int) -> [String]
     /// Konu seçilince istek eski motora gider (K4). Eski motorun bu istekte
     /// gerçekten yazabildiği arkadaşlar, ekran süzgeci (`drawable`) olmadan.
     func legacyWritableCompanionIDs(mode: StoryMode, age: Int, topicID: String?) -> [String]
@@ -294,6 +298,7 @@ extension StoryChoiceSource {
     /// Beş arkadaşı bilmeyen kaynak: okul öncesi akış bugünkü sırada.
     func pilotFriendChoices(age: Int) -> [CompanionChoice] { [] }
     func pilotModes(forCompanionID companionID: String?, age: Int) -> [StoryMode] { [] }
+    func pilotBookIDs(mode: StoryMode, companionID: String?, age: Int) -> [String] { [] }
     func legacyWritableCompanionIDs(mode: StoryMode, age: Int, topicID: String?) -> [String] {
         companionChoices(forIdeaID: nil, mode: mode, age: age, topicID: topicID, family: nil).map(\.id)
     }

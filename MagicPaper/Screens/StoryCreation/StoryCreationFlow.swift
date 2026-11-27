@@ -448,6 +448,8 @@ struct StoryCreationFlow: View {
             modes: littleModes,
             emphasized: StoryCreationSteps.emphasizedMode(
                 littleModes, isBedtime: MPBedtime.isBedtime(settings: MPSettingsStore.shared)),
+            newFriendIDs: littleNewFriendIDs,
+            readAllModes: littleReadAllModes,
             profiles: profiles,
             authoredBands: authoredBands,
             selectedProfileID: $chosenProfileID,
@@ -455,6 +457,26 @@ struct StoryCreationFlow: View {
             onChooseMode: { apply(littlePath.chooseMode($0)) },
             onStart: { apply(littlePath.start()) }
         )
+    }
+
+    /// Bu çocuğun beşliden hiç masal almadığı arkadaşlar (27 Kasım 2026).
+    /// Hiç P56 masalı olmayan çocukta rozet yok: herkes yeni, rozet bir şey söylemez.
+    private var littleNewFriendIDs: Set<String> {
+        guard let profile else { return [] }
+        let met = P56RecentBooks.metCompanionIDs(forChild: profile.id, in: storyManager.stories)
+        guard !met.isEmpty else { return [] }
+        return Set(pilotFriends.map(\.id)).subtracting(met)
+    }
+
+    /// Seçilen arkadaşla her kitabı bu çocuğa verilmiş modlar.
+    private var littleReadAllModes: Set<StoryMode> {
+        guard let profile, littlePath.step != .friend else { return [] }
+        let recent = P56RecentBooks.ids(forChild: profile.id, in: storyManager.stories)
+        guard !recent.isEmpty else { return [] }
+        return Set(littleModes.filter { mode in
+            P56RecentBooks.hasReadAll(source.pilotBookIDs(mode: mode, companionID: littlePath.companionID, age: age),
+                                      recent: recent)
+        })
     }
 
     /// Seçilen arkadaş; Sürpriz'de `nil`.
