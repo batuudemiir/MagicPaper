@@ -13,9 +13,9 @@ enum KidTab: Hashable { case home, gunluk, library, corner }
 /// sert kenarlı bir dairede (cam değil; adı VoiceOver'da ve basılı tutunca
 /// okunur). Masal yazma ekranı dairenin içinden büyüyerek açılır (`mpZoomSource`).
 ///
-/// Bütün iOS sürümlerinde bu çubuk: 22 Ekim 2026'daki "iOS 26'da sistemin
-/// `TabView`'ı" kararının yerine geçti, çünkü sistem dairesi marka rengini ve
-/// sert kenarı taşıyamıyor. Kapsülün camı yine sistemin (`mpGlassSurface`).
+/// Yalnızca iOS 26 öncesinde (26 Kasım 2026, Batuhan): iOS 26'da sistemin
+/// Liquid Glass sekme çubuğu kullanılır (`ContentView.systemKidTabs`), "Masal
+/// yaz" orada `.search` rolüyle ayrı dairede. Kapsülün camı `mpGlassSurface`.
 ///
 /// Seçili sekmenin ikonu dolar, ikon ve adı marka renginde olur, arkasında
 /// lavanta bir yastık durur; diğerleri çizgi ve ikincil mürekkepte. Yastık
