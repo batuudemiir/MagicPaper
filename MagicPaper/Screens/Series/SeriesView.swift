@@ -144,11 +144,16 @@ struct SeriesView: View {
                 MPIcon("checkmark.circle", size: 26, weight: .semibold).foregroundStyle(MPColor.statusSuccess)
                     .accessibilityLabel("Okundu")
             case .ready(let id):
-                MPButton(title: "Oku", systemImage: "play.fill", size: .small) {
+                MPButton(title: SeriesCopy.readyAction, systemImage: "play.fill", size: .small) {
                     if let story = library.getStory(id: id) { app.read(story) }
                 }
+                // Düğme kendi genişliğini korur; sıkışan başlık satırı kırılır.
+                .fixedSize()
+                .layoutPriority(1)
             case .tomorrow:
                 Label("Yarın", systemImage: "lock").mpText(.supporting).foregroundStyle(MPColor.textSecondary)
+                    .fixedSize()
+                    .layoutPriority(1)
             case .later:
                 MPIcon("lock", size: 18, weight: .semibold).foregroundStyle(MPColor.textTertiary)
                     .accessibilityLabel("Daha sonra")

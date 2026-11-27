@@ -133,6 +133,15 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · claude/project-thread-lr0adx, commit bu kayıtla · Kompakt okuyucu, kapak ilk yaprak, uyku modu kapalı
+- Okuyucu: alt kontrol çubuğu olağan yazıda tek satır (geri · sayfa + ilerleme · sesli oku simgesi · ileri); metne ayrılan alan 132 pt yerine 80 pt kaybediyor. En büyük yazı boyutlarında eski iki satır kaldı.
+- Okuyucu: metin üst kontrollerin gerçek ölçüsünün altından başlar (`ReaderPageLayout.topChromeClearance`). Yaprak, okuyucunun üst güvenli alanını modelden alır (`readerSafeTop`); sayfa denetleyicisi güvenli alanı yaprağa iletmezse eksik kalan eklenir, uzun metin sol üstteki kapatın altına akmaz.
+- Okuyucu: kapak her kitabın ilk yaprağı. Rafla aynı sıra: set kapağı (`mpKitCoverAsset`), Günlük kapağı, görselli masalın kendi kapak dosyası, yoksa kâğıt mozaik. Önceden set kapaklı ve görselli masallar doğrudan 1. sayfadan açılıyordu. Kaldığı yerden açılış değişmedi.
+- Uyku modu ("İyi geceler" sonrası sesli okuma) kapalı: `MPFeatures.sleepModeVoiceReady = false`, uzaktan bayrak tek başına açamaz. Cihaz anlatıcısı robot gibi duyuluyor (Batuhan). Kod silinmedi; giriş noktaları mevcut bayrakla gizleniyor, "İyi geceler" okuyucuyu kapatır.
+- Seri masal: "Oku" düğmesi bölüm satırında harf harf alt alta kırılıyordu. Sebep: `MPButton` birincil düğmeye 220 pt taban genişlik veriyordu, küçük boyutta da. Küçük düğmede taban kaldırıldı (tek kullanıcısı bu satır); satırda düğme ve "Yarın" kendi genişliğini korur.
+- Cihaz anlatıcısı kapalı (`MPFeatures.deviceNarration = false`, Batuhan'ın onayıyla): okuyucudaki "Sesli oku", kapaktaki "Kim okusun?" seçimi ("Ragi okusun"), kelime kartındaki dinle düğmesi, ayarlardaki "Sesli okuma" ve "Okuma hızı" gizli; sayfa kendiliğinden okunmaz. Kayıtlı ses (ailenin sesi, stüdyo seslendirmesi) olan sayfada düğme ve okuma yerinde; "Sesli oku" artık stüdyo kaydını da çalar (önce yalnız ailenin sesini).
+- Test: Xcode bu ortamda yok, derleme ve testler çalıştırılmadı; CI (ios-build) koşacak. Testler yeni düzene göre güncellendi (`ReaderPageCompositionTests`, `ReaderStoryMappingTests`, `StalledStoryTests`). `DesignSystemSnapshotTests.testSnapshotReaderPageOnEveryPaper` referansları Mac'te yenilenmeli (metin dikeyde kaydı). Simülatörde görülmedi. `Scripts/design_law_check.sh` temiz.
+- Dosyalar: `StoryReader/ReaderChrome.swift`, `ReaderWordCard.swift`, `MPSheets.swift`, `ReaderPageComposition.swift`, `StoryPageView.swift`, `StoryLeafView.swift`, `StoryReaderModel.swift`, `StoryReaderView.swift`, `ReaderStory.swift`, `StoryCover.swift`, `MPFeatures.swift`, `Pastel/MPButtons.swift`, `Series/SeriesView.swift`.
 ### 2026-11-27 · main, birleştirme commit'i · Hazır mısın? düzeni; açılış beyaz ekran ölçümü
 
 - Ne değişti: `LittleConfirmStep` kartlar ve "Başla" başlığın altındaki boşlukta dikeyde ortada (eskiden sayfanın üstüne yığılıyordu); mod adı kelime ortasından kırılmaz (`LittleCardTitle`: sığarsa tek satır, sığmazsa kelime başına satır, gerekirse küçülür). Dal `codex/bes-arkadas/cocuk-akisi-2` (3c17a8c1, 29e61d1b).

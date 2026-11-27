@@ -33,7 +33,7 @@ final class ReaderStoryMappingTests: XCTestCase {
         XCTAssertEqual(page.composition, .spot)
         XCTAssertEqual(page.imageLabel, "Bir filiz.")
         XCTAssertEqual(page.spokenText, "Sayfa 1.")
-        XCTAssertEqual(reader.leafIndex(forPage: 0), 0)
+        XCTAssertEqual(reader.leafIndex(forPage: 0), reader.pageLeafOffset)
         story.pages[0].imageFileName = ""
         story.pages[0].imageUrl = ""
         XCTAssertEqual(ReaderStory(from: story).leaves.compactMap(\.page).first?.composition, .text)
@@ -72,10 +72,12 @@ final class ReaderStoryMappingTests: XCTestCase {
     func testIllustratedStoryPrefersFileNameOverUrl() {
         let story = ReaderFixtures.illustratedStory(pages: 3)
         let reader = ReaderFixtures.reader(story)
-        // Görselli masalın kendi kapağı vardır, kapak yaprağı eklenmez.
+        // Kapak her kitabın ilk yaprağı (26 Kasım 2026); görselli masalda da.
         XCTAssertNil(reader.coverAsset)
-        XCTAssertEqual(reader.leaves[0].page?.imageRef, "page-0.jpg")
-        XCTAssertNotNil(reader.leaves[0].page?.imageLabel)
+        XCTAssertEqual(reader.leaves.first?.isCover, true)
+        let pages = reader.leaves.compactMap(\.page)
+        XCTAssertEqual(pages[0].imageRef, "page-0.jpg")
+        XCTAssertNotNil(pages[0].imageLabel)
     }
 
     func testImageRefFallsBackToUrlWhenFileNameMissing() {
@@ -94,9 +96,10 @@ final class ReaderStoryMappingTests: XCTestCase {
     func testMixedStoryKeepsEachPageIndependent() {
         let reader = ReaderFixtures.reader(ReaderFixtures.mixedStory())
         XCTAssertEqual(reader.pageCount, 3)
-        XCTAssertEqual(reader.leaves[0].page?.imageRef, "a.jpg")
-        XCTAssertNil(reader.leaves[1].page?.imageRef)
-        XCTAssertNil(reader.leaves[2].page?.imageRef, "boş dosya adı görsel değildir")
+        let pages = reader.leaves.compactMap(\.page)
+        XCTAssertEqual(pages[0].imageRef, "a.jpg")
+        XCTAssertNil(pages[1].imageRef)
+        XCTAssertNil(pages[2].imageRef, "boş dosya adı görsel değildir")
     }
 
     /// `imagePrompt` erişilebilirlik etiketi olarak kullanılmaz.
@@ -107,7 +110,7 @@ final class ReaderStoryMappingTests: XCTestCase {
     func testImagePromptIsNeverUsedAsAccessibilityLabel() {
         let story = ReaderFixtures.illustratedStory(pages: 1)
         let reader = ReaderFixtures.reader(story)
-        let label = reader.leaves[0].page?.imageLabel
+        let label = reader.leaves.compactMap(\.page).first?.imageLabel
         XCTAssertNotNil(label)
         XCTAssertFalse(label!.contains("a scene"), "etiket imagePrompt'tan gelmemeli")
         XCTAssertTrue(label!.contains("Çizimli Masal"))
@@ -183,7 +186,7 @@ final class ReaderStoryMappingTests: XCTestCase {
         XCTAssertEqual(decoded.art?.sourceID, "watering-v1")
         XCTAssertEqual(decoded.art?.role, "spot")
         story.pages[0] = decoded
-        let page = try XCTUnwrap(ReaderFixtures.reader(story).leaves.first?.page)
+        let page = try XCTUnwrap(ReaderFixtures.reader(story).leaves.compactMap(\.page).first)
         XCTAssertEqual(page.composition, .spot)
         XCTAssertEqual(page.imageLabel, "Küçük bir sulama kabı.")
     }
@@ -193,7 +196,7 @@ final class ReaderStoryMappingTests: XCTestCase {
         story.pages[0].art = StoryPageArt(role: "future-layout", altText: "Çizim.", sourceID: nil)
         let data = try JSONEncoder().encode(story.pages[0])
         story.pages[0] = try JSONDecoder().decode(StoryPage.self, from: data)
-        XCTAssertEqual(ReaderFixtures.reader(story).leaves.first?.page?.composition, .scene)
+        XCTAssertEqual(ReaderFixtures.reader(story).leaves.compactMap(\.page).first?.composition, .scene)
     }
 
     func testSpotWithoutFileOrDescriptionCannotInventArt() {

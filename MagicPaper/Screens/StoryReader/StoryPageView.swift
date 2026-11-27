@@ -28,6 +28,9 @@ struct StoryPageView: View {
     let accent: Color
     /// Masalın dünya işareti; çağıranların ortak sunum sözleşmesinde kalır.
     let symbol: String
+    /// Okuyucunun üst güvenli alanı (Dynamic Island). Yaprak bunu kendi
+    /// güvenli alanında bulamazsa eksik kalanı ekler (26 Kasım 2026).
+    var readerSafeTop: CGFloat = 0
     @Environment(\.dynamicTypeSize) private var typeSize
     @Environment(\.verticalSizeClass) private var verticalClass
     @Environment(\.horizontalSizeClass) private var sizeClass
@@ -40,6 +43,13 @@ struct StoryPageView: View {
     private var composition: ReaderPageComposition {
         if page.scene == nil, let key = illustrationKey, unavailableImageRef == key { return .text }
         return page.composition
+    }
+
+    /// Metnin üst boşluğu: üst kontroller + yaprağa ulaşmamış güvenli alan.
+    private func topInset(_ geo: GeometryProxy) -> CGFloat {
+        ReaderPageLayout.missingTopInset(readerSafeTop: readerSafeTop,
+                                         pageTop: geo.frame(in: .global).minY)
+            + ReaderPageLayout.topChromeClearance
     }
 
     private var bottomClearance: CGFloat {
@@ -72,8 +82,8 @@ struct StoryPageView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 // Resimsiz sayfada metin üst denetimlerin (kapat, kalp, Aa)
-                // altından başlar; en büyük yazı boyutunda kapatın altına akmaz.
-                .padding(.top, composition == .scene ? 0 : MP.S.navBarHeight + MP.S.x6)
+                // altından başlar; uzun metin kaydırılınca da kapatın altına akmaz.
+                .padding(.top, composition == .scene ? 0 : topInset(geo))
                 .padding(.bottom, bottomClearance)
                 }
             }
@@ -137,7 +147,7 @@ struct StoryPageView: View {
 
     @ViewBuilder
     private func spotHeader(in geo: GeometryProxy) -> some View {
-        let top = MP.S.navBarHeight + MP.S.x6
+        let top = topInset(geo)
         let size = ReaderPageLayout.spotHeaderSize(
             width: max(0, geo.size.width - StoryPageView.gutter * 2),
             pageHeight: geo.size.height,
@@ -155,7 +165,7 @@ struct StoryPageView: View {
 
     /// Illustration and narrative share one scroll container when the reading viewport is constrained.
     private func scrollingSpot(in geo: GeometryProxy) -> some View {
-        let top = MP.S.navBarHeight + MP.S.x6
+        let top = topInset(geo)
         let width = max(0, geo.size.width - StoryPageView.gutter * 2)
         let viewportHeight = max(0, geo.size.height - top - bottomClearance)
         let size = ReaderPageLayout.scrollingSpotSize(width: width, pageHeight: geo.size.height)
@@ -201,7 +211,7 @@ struct StoryPageView: View {
             GeometryReader { right in
                 textColumn(in: right)
                     .padding(.horizontal, StoryPageView.gutter + MP.S.x4)
-                    .padding(.top, MP.S.navBarHeight)
+                    .padding(.top, topInset(geo))
                     .padding(.bottom, bottomClearance)
             }
             .frame(width: half, height: geo.size.height)

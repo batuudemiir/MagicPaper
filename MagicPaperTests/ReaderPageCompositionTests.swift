@@ -22,7 +22,7 @@ final class ReaderPageCompositionTests: XCTestCase {
     }
 
     func testPortraitSpotUsesPageHeightWhileProtectingTextBudget() {
-        let usable = 760 - (MP.S.navBarHeight + MP.S.x6)
+        let usable = 760 - ReaderPageLayout.topChromeClearance
             - ReaderPageLayout.bottomChromeClearance(accessibility: false)
         let size = ReaderPageLayout.spotHeaderSize(width: 393, pageHeight: 760,
                                                     contentHeight: usable, accessibility: false)
@@ -48,7 +48,7 @@ final class ReaderPageCompositionTests: XCTestCase {
             XCTAssertGreaterThan(size.width, 0)
             XCTAssertGreaterThan(size.height, 0)
             XCTAssertLessThanOrEqual(size.width, width)
-            let viewport = height - MP.S.navBarHeight - MP.S.x6
+            let viewport = height - ReaderPageLayout.topChromeClearance
                 - ReaderPageLayout.bottomChromeClearance(accessibility: accessibility, compactHeight: compact)
             let remainder = ReaderPageLayout.spotNarrativeMinimumHeight(viewportHeight: viewport,
                                                                        artHeight: size.height)
@@ -66,10 +66,20 @@ final class ReaderPageCompositionTests: XCTestCase {
         XCTAssertEqual(ReaderPageLayout.spotSize(width: 393, height: -1, accessibility: false), .zero)
     }
 
-    func testTwoRowChromeClearanceIncludesBothControlRows() {
+    func testCompactChromeIsOneRowAndAccessibilityKeepsTwo() {
         let normal = ReaderPageLayout.bottomChromeClearance(accessibility: false)
-        XCTAssertGreaterThanOrEqual(normal, MP.S.tapMin + MPSize.minTouchHero)
-        XCTAssertGreaterThan(ReaderPageLayout.bottomChromeClearance(accessibility: true), normal)
+        XCTAssertGreaterThanOrEqual(normal, MPSize.minTouchHero)
+        XCTAssertLessThan(normal, MP.S.tapMin + MPSize.minTouchHero, "olağan yazıda tek satır")
+        XCTAssertGreaterThanOrEqual(ReaderPageLayout.bottomChromeClearance(accessibility: true),
+                                    MP.S.tapMin + MPSize.minTouchHero)
+    }
+
+    func testTextStartsBelowCloseButtonEvenWithoutPageSafeArea() {
+        XCTAssertGreaterThan(ReaderPageLayout.topChromeClearance, MP.S.tapMin)
+        // Yaprak güvenli alanı aldıysa eksik yok; almadıysa okuyucununki eklenir.
+        XCTAssertEqual(ReaderPageLayout.missingTopInset(readerSafeTop: 59, pageTop: 59), 0)
+        XCTAssertEqual(ReaderPageLayout.missingTopInset(readerSafeTop: 59, pageTop: 0), 59)
+        XCTAssertEqual(ReaderPageLayout.missingTopInset(readerSafeTop: 0, pageTop: 20), 0)
     }
     func testSeekThumbTracksFirstAndLastPageRatherThanCompletionFraction() {
         XCTAssertEqual(ReaderPageLayout.seekFraction(page: 0, count: 8), 0)
