@@ -9,9 +9,8 @@ import StoryEngine
 /// a legacy one: the source stays `.unsupported` for the historical catalog, so
 /// it is never rewritten or continued from a current catalog.
 ///
-/// Page-level P56 provenance is not copied onto the pages; the book is
-/// reconstructable from `origin` (source, structure, companion, seed).
-/// The pages carry no art: P56 artwork is not approved (K-E).
+/// Every page keeps its P56 source chain. New V4 books may receive independently
+/// reviewed app artwork; older books and engine release flags are unchanged.
 enum P56StoryMapper {
     static func story(
         from composed: P56ComposedStory,
@@ -45,7 +44,7 @@ enum P56StoryMapper {
             )
         )
         story.currentProgress = nil
-        return story
+        return P56StoryArtBinder.bind(story, composed: composed)
     }
 
     /// One page as the app keeps it: the composed text and the page's full P56

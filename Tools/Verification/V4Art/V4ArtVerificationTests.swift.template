@@ -1,0 +1,164 @@
+import XCTest
+import Foundation
+import CryptoKit
+import ImageIO
+import StoryEngine
+@testable import MagicPaper
+
+final class V4ArtVerificationTests: XCTestCase {
+    private let root = URL(fileURLWithPath: "__REPOSITORY_ROOT__")
+    private var resources: URL { root.appendingPathComponent("MagicPaper/StoryEngineBridge/StoryArtResources") }
+    private func package(_ version: String = "v4") throws -> P56Package {
+        let path = root.appendingPathComponent("Content/Pilots/five-friends-56-runtime-\(version)/payload.json")
+        let bytes = try Data(contentsOf: path)
+        return try P56PackageLoader.load(payload: bytes, expectedSHA256: P56StoryArtPolicy.digest(bytes))
+    }
+    private func policy() throws -> P56StoryArtPolicy {
+        try XCTUnwrap(P56StoryArtPolicy.load(data: Data(contentsOf: resources.appendingPathComponent("p56-story-art-v4.json")), expectedSHA256: P56StoryArtPolicy.resourceSHA256))
+    }
+    private func compose(_ book: P56Book, package: P56Package, age: Int = 5, name: String = "İrem") throws -> P56ComposedStory {
+        let result = try P56StoryComposer(package: package).compose(.init(
+            childID: "verification-only", name: name, age: age, seed: 17,
+            mode: book.mode, companionID: book.companionID, forcedStructure: book.structureID,
+            recentBookIDs: package.books.filter { $0.id != book.id }.map(\.id)))
+        XCTAssertEqual(result.bookID, book.id)
+        return result
+    }
+    private func bare(_ value: P56ComposedStory) -> MagicPaper.Story {
+        var story = P56StoryMapper.story(from: value, childProfileID: UUID(), strategy: nil)
+        for index in story.pages.indices { story.pages[index].art = nil }
+        return story
+    }
+    private func changed<T: Codable>(_ value: T, _ mutation: (inout [String: Any]) -> Void) throws -> T {
+        var json = try XCTUnwrap(JSONSerialization.jsonObject(with: JSONEncoder().encode(value)) as? [String: Any])
+        mutation(&json)
+        return try JSONDecoder().decode(T.self, from: JSONSerialization.data(withJSONObject: json))
+    }
+
+    func testEveryV4BookKeepsItsTextAndOnlyReviewedArtPersists() throws {
+        let package = try package(), policy = try policy()
+        XCTAssertEqual(package.books.count, 90)
+        XCTAssertEqual(policy.rules.count, 44)
+        var booksWithArt = 0, pagesWithArt = 0, used = Set<String>()
+        let ruledBooks = Set(policy.rules.map(\.bookID))
+        for book in package.books {
+            let composed = try compose(book, package: package)
+            let original = bare(composed)
+            let bound = P56StoryArtBinder.bind(original, composed: composed, policy: policy)
+            XCTAssertEqual(bound.pages.map(\.text), composed.pages.map(\.text), book.id)
+            XCTAssertEqual(bound.origin?.contentSource?.p56Reference, composed.sourceReference)
+            XCTAssertTrue(composed.pages.allSatisfy { !$0.artApproved })
+            let pins = bound.pages.compactMap(\.art)
+            XCTAssertLessThanOrEqual(pins.count, 3, book.id)
+            XCTAssertTrue(pins.allSatisfy { $0.isBundledSpot && $0.bindingPolicyVersion == 4 })
+            XCTAssertEqual(Set(pins.compactMap(\.assetDigest)).count, pins.count)
+            if ruledBooks.contains(book.id) { XCTAssertFalse(pins.isEmpty, book.id) }
+            else { XCTAssertTrue(pins.isEmpty, book.id) }
+            if !pins.isEmpty { booksWithArt += 1 }
+            pagesWithArt += pins.count
+            used.formUnion(pins.compactMap(\.sourceID))
+            let saved = try JSONDecoder().decode(MagicPaper.Story.self, from: JSONEncoder().encode(bound))
+            XCTAssertEqual(saved.pages.compactMap(\.art), pins)
+            XCTAssertEqual(P56StoryArtBinder.bind(saved, composed: composed, policy: nil).pages.compactMap(\.art), pins)
+        }
+        XCTAssertEqual(booksWithArt, ruledBooks.count)
+        XCTAssertEqual(booksWithArt, 21)
+        XCTAssertEqual(used.count, 30, "Every authorized story asset must be reachable; five chooser identities excluded")
+        XCTAssertGreaterThan(pagesWithArt, 0)
+        let report: [String: Any] = ["books":90,"booksWithArt":booksWithArt,"pagesWithArt":pagesWithArt,
+                                  "uniqueUsedAssets":used.count,"ruleCount":policy.rules.count,
+                                  "usedAssetIDs":used.sorted()]
+        try JSONSerialization.data(withJSONObject: report, options: [.prettyPrinted,.sortedKeys])
+            .write(to: URL(fileURLWithPath: "__HARNESS_ROOT__/coverage-result.json"))
+    }
+
+    func testFullSourceAndRenderedMutationsFailClosed() throws {
+        let package = try package(), policy = try policy()
+        let book = try XCTUnwrap(package.books.first { $0.id == policy.rules.first?.bookID })
+        let original = try compose(book, package: package)
+        let mutators: [(inout [String: Any]) -> Void] = [
+            { $0["bookID"] = "wrong" }, { $0["age"] = 7 }, { $0["worldID"] = "wrong" },
+            { $0["discoveryID"] = "wrong" }, { $0["structureID"] = "wrong" },
+            { var source = $0["sourceReference"] as! [String: Any]; source["payloadSHA256"] = String(repeating:"0",count:64); $0["sourceReference"] = source },
+            { var pages = $0["pages"] as! [[String: Any]]; pages[7]["text"] = "changed closing"; $0["pages"] = pages },
+            { var pages = $0["pages"] as! [[String: Any]]; pages[1] = pages[0]; $0["pages"] = pages }
+        ]
+        for mutate in mutators {
+            let altered: P56ComposedStory = try changed(original, mutate)
+            XCTAssertTrue(P56StoryArtBinder.bind(bare(altered), composed: altered, policy: policy).pages.allSatisfy { $0.art == nil })
+        }
+        for key in ["templateID","templateSHA256","parentSourceID","parentSHA256","parentPointer","renderedSHA256","order"] {
+            let altered: P56ComposedStory = try changed(original) { json in
+                var pages = json["pages"] as! [[String: Any]], trace = pages[7]["provenance"] as! [String: Any]
+                if key == "order" { trace[key] = 1 } else { trace[key] = "wrong" }
+                pages[7]["provenance"] = trace; json["pages"] = pages
+            }
+            XCTAssertTrue(P56StoryArtBinder.bind(bare(altered), composed: altered, policy: policy).pages.allSatisfy { $0.art == nil },key)
+        }
+    }
+
+    func testStoredMutationExistingImageryAndBothPreschoolAges() throws {
+        let package = try package(), policy = try policy()
+        let book = try XCTUnwrap(package.books.first { $0.id == policy.rules.first?.bookID })
+        for age in [5,6] {
+            let composed = try compose(book, package: package, age: age, name: age == 5 ? "İrem" : "Ali Can")
+            var story = bare(composed)
+            XCTAssertFalse(P56StoryArtBinder.bind(story, composed: composed, policy: policy).pages.compactMap(\.art).isEmpty)
+            story.pages[7].text += " changed"
+            XCTAssertTrue(P56StoryArtBinder.bind(story, composed: composed, policy: policy).pages.allSatisfy { $0.art == nil })
+            story = bare(composed)
+            for index in story.pages.indices { story.pages[index].imageFileName = "existing.png" }
+            let bound = P56StoryArtBinder.bind(story, composed: composed, policy: policy)
+            XCTAssertTrue(bound.pages.allSatisfy { $0.art == nil && $0.imageFileName == "existing.png" })
+        }
+    }
+
+    func testAll35RawResourcesDecodeAndChecksumResolverUsesSavedPin() throws {
+        let policy = try policy()
+        XCTAssertEqual(policy.assets.count,35)
+        let bundleRoot = URL(fileURLWithPath: "__HARNESS_ROOT__/ArtFixture.bundle")
+        let content = bundleRoot.appendingPathComponent("Contents"), bundleResources = content.appendingPathComponent("Resources")
+        try FileManager.default.createDirectory(at: bundleResources, withIntermediateDirectories: true)
+        let info: [String: Any] = ["CFBundleIdentifier":"test.magicpaper.v4-art","CFBundleName":"ArtFixture","CFBundlePackageType":"BNDL"]
+        try PropertyListSerialization.data(fromPropertyList: info, format:.xml, options:0).write(to:content.appendingPathComponent("Info.plist"))
+        for asset in policy.assets {
+            let data = try Data(contentsOf: resources.appendingPathComponent(asset.fileName))
+            XCTAssertEqual(P56StoryArtPolicy.digest(data),asset.digest)
+            let source = try XCTUnwrap(CGImageSourceCreateWithData(data as CFData,nil),asset.assetID)
+            XCTAssertNotNil(CGImageSourceCreateImageAtIndex(source,0,nil),asset.assetID)
+            try data.write(to:bundleResources.appendingPathComponent(asset.fileName))
+        }
+        let bundle = try XCTUnwrap(Bundle(url:bundleRoot))
+        for asset in policy.assets {
+            XCTAssertNotNil(StorySpotAssetResolver.validatedURL(fileName:asset.fileName,digest:asset.digest,bundle:bundle))
+            XCTAssertNil(StorySpotAssetResolver.validatedURL(fileName:asset.fileName,digest:String(repeating:"0",count:64),bundle:bundle))
+        }
+        XCTAssertNil(StorySpotAssetResolver.validatedURL(fileName:"../escape.mpart",digest:String(repeating:"0",count:64),bundle:bundle))
+    }
+
+    func testPolicyTamperingAndMalformedPersistedPinsFailClosed() throws {
+        let policy = try policy(), package = try package()
+        var data = try Data(contentsOf:resources.appendingPathComponent("p56-story-art-v4.json"));data.append(32)
+        XCTAssertNil(P56StoryArtPolicy.load(data:data,expectedSHA256:P56StoryArtPolicy.resourceSHA256))
+        let book = try XCTUnwrap(package.books.first { $0.id == policy.rules.first?.bookID })
+        let composed = try compose(book,package:package)
+        let art = try XCTUnwrap(P56StoryArtBinder.bind(bare(composed),composed:composed,policy:policy).pages.compactMap(\.art).first)
+        XCTAssertTrue(art.isBundledSpot)
+        for (key,value) in [("catalogVersion","legacy"),("sourceID","legacy"),("assetDigest","bad"),
+                            ("bundledFileName","../v4_bad.mpart"),("authoredSourceFingerprint","bad"),("styleRevision","bad")] {
+            let altered:StoryPageArt = try changed(art) { $0[key] = value }
+            XCTAssertFalse(altered.isBundledSpot,key)
+        }
+        let unknown:StoryPageArt = try changed(art) { $0["bindingPolicyVersion"] = 5 }
+        XCTAssertFalse(unknown.isBundledSpot)
+    }
+
+    func testV1V2V3StayArtFreeThroughV4Binder() throws {
+        let policy = try policy()
+        for version in ["v1","v2","v3"] {
+            let package = try package(version)
+            let composed = try P56StoryComposer(package:package).compose(.init(childID:"legacy",name:"Deniz",age:5,seed:7,mode:.learning))
+            XCTAssertTrue(P56StoryArtBinder.bind(bare(composed),composed:composed,policy:policy).pages.allSatisfy { $0.art == nil })
+        }
+    }
+}

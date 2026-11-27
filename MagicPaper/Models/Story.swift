@@ -352,15 +352,31 @@ struct StoryPageArt: Codable, Equatable {
     }
 
     var isBundledSpot: Bool {
-        guard isSpot, schemaVersion == 1, let bindingPolicyVersion, [1, 2, 3].contains(bindingPolicyVersion),
+        guard isSpot, schemaVersion == 1, let bindingPolicyVersion, [1, 2, 3, 4].contains(bindingPolicyVersion),
               let assetRevision, assetRevision > 0,
               let subjectState, !subjectState.isEmpty, subjectState.allSatisfy({ !$0.isEmpty }),
               let variantIDs, !variantIDs.isEmpty, variantIDs.allSatisfy({ !$0.isEmpty }) else { return false }
+        if bindingPolicyVersion == 4 && !hasValidV4Metadata { return false }
         return [sourceID, assetDigest, styleRevision, bundledFileName, subjectID,
                 authoredSourceFingerprint, catalogVersion].allSatisfy {
             guard let value = $0 else { return false }
             return !value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         }
+    }
+
+    /// V4 pins have their own namespace; merely changing an old policy number
+    /// cannot make an unrelated saved image valid. No current policy is loaded here.
+    private var hasValidV4Metadata: Bool {
+        guard catalogVersion == "five-friends-56-runtime-v4",
+              styleRevision == "magicpaper-gouache-v4-1",
+              sourceID?.hasPrefix("v4_") == true,
+              let file = bundledFileName, file.hasPrefix("v4_"), file.hasSuffix(".mpart"),
+              StorySpotAssetResolver.isSafeFileName(file),
+              let digest = assetDigest, let proof = authoredSourceFingerprint,
+              P56StoryArtPolicy.isDigest(digest), P56StoryArtPolicy.isDigest(proof),
+              variantIDs?.count == 1,
+              variantIDs?.allSatisfy({ $0.hasPrefix("p56_runtime_p56_v4_") }) == true else { return false }
+        return true
     }
 
     var description: String? {

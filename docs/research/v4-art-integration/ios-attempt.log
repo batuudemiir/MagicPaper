@@ -1,0 +1,9 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project MagicPaper.xcodeproj -scheme MagicPaper -destination "platform=iOS Simulator,id=CDD10510-9783-4BB1-9138-76102BF730FF" -derivedDataPath /private/tmp/MagicPaperV4ArtDerived "-only-testing:MagicPaperTests/P56StoryArtPolicyTests" "-only-testing:MagicPaperTests/P56StoryMapperTests" "-only-testing:MagicPaperTests/CompanionPortraitCatalogTests" "-only-testing:MagicPaperTests/WholeBookArtPolicyTests" "-only-testing:MagicPaperTests/ReviewedDiscoveryArtPolicyTests" CODE_SIGNING_ALLOWED=NO test
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+Resolve Package Graph
+
+Fetching from https://github.com/google/GoogleDataTransport.git
