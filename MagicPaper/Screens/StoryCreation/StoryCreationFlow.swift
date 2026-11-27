@@ -46,7 +46,8 @@ struct StoryCreationFlow: View {
         /// modun konusu varken.
         case topic
         case companion
-        /// Okul öncesi "önce arkadaş" yolu (26 Kasım 2026, Batuhan K1-K4):
+        /// Okul öncesi "önce arkadaş" yolu (26 Kasım 2026, Batuhan K1-K4;
+        /// kısaltma aynı gün: Kim → Ne yapalım → Kitap oluştur):
         /// hangi adımda olduğu `littlePath`'te. Yalnızca beşli bu çocuğa
         /// yazabildiğinde; yoksa okul öncesi akış bugünkü `.mode` sırasında.
         case little
@@ -103,8 +104,6 @@ struct StoryCreationFlow: View {
     @State private var littlePath = StoryCreationSteps.LittlePath()
     /// Beşlinin bu çocuğa en az bir modda yazabildiği arkadaşlar; boşsa yol yok.
     @State private var pilotFriends: [CompanionChoice] = []
-    /// Onay ekranında gösterilecek söz: arkadaş masalda olacak mı (K4).
-    @State private var littleCast = StoryCreationSteps.LittleCast(companionID: nil, keepsFriend: false)
 
     /// Bu masalın çocuğu: akışta seçildiyse o, yoksa aktif profil.
     ///
@@ -278,7 +277,8 @@ struct StoryCreationFlow: View {
     private var showsBack: Bool {
         switch phase {
         case .topic, .companion: return true
-        case .little: return littlePath.step != .friend
+        // Okul öncesi yol tek sayfa: seçimler yerinde değişir, geri adımı yok.
+        case .little: return false
         default: return false
         }
     }
@@ -307,7 +307,7 @@ struct StoryCreationFlow: View {
         switch phase {
         case .little:
             MPSpeech.shared.stop()
-            apply(littlePath.back())
+            dismiss()
         case .companion where hasTopicStep && strategy == .direct:
             chosenCompanionID = nil
             chosenTopicID = nil
@@ -439,45 +439,22 @@ struct StoryCreationFlow: View {
 
     // MARK: - Okul öncesi: önce arkadaş (26 Kasım 2026)
 
-    @ViewBuilder
+    /// Tek sayfa: seçim yapılınca sıradaki soru altta açılır (`LittleCreationPage`).
     private var littleContent: some View {
-        switch littlePath.step {
-        case .friend:
-            LittleFriendStep(friends: pilotFriends, profiles: profiles, authoredBands: authoredBands,
-                             selectedProfileID: $chosenProfileID) { id in
-                apply(littlePath.chooseFriend(id))
-            }
-        case .mode:
-            LittleFriendModeStep(
-                friend: littleFriend,
-                modes: littleModes,
-                emphasized: StoryCreationSteps.emphasizedMode(
-                    littleModes, isBedtime: MPBedtime.isBedtime(settings: MPSettingsStore.shared))
-            ) { mode in
-                let topics = source.topicChoices(forAge: age, mode: mode)
-                topicChoices = topics
-                apply(littlePath.chooseMode(mode, hasTopicStep: !topics.isEmpty))
-            }
-        case .topic:
-            if let mode = littlePath.mode {
-                TopicStep(
-                    mode: mode, topics: topicChoices,
-                    lockedTopicIDs: app.isUnlocked(.premiumWorlds) ? [] : Capability.lockedTopicIDs,
-                    spokenLine: [StoryCreationSteps.topicQuestion(for: mode),
-                                 LittleCreationCopy.anyTopicLine(friendName: littleFriend?.name)]
-                        .compactMap { $0 }.joined(separator: " "),
-                    showsLockNote: false
-                ) { topicID in
-                    apply(littlePath.chooseTopic(topicID))
-                }
-            }
-        case .confirm:
-            if let mode = littlePath.mode {
-                LittleConfirmStep(friend: littleFriend, keepsFriend: littleCast.keepsFriend, mode: mode) {
-                    apply(littlePath.start())
-                }
-            }
-        }
+        LittleCreationPage(
+            path: littlePath,
+            friends: pilotFriends,
+            friend: littleFriend,
+            modes: littleModes,
+            emphasized: StoryCreationSteps.emphasizedMode(
+                littleModes, isBedtime: MPBedtime.isBedtime(settings: MPSettingsStore.shared)),
+            profiles: profiles,
+            authoredBands: authoredBands,
+            selectedProfileID: $chosenProfileID,
+            onChooseFriend: { apply(littlePath.chooseFriend($0)) },
+            onChooseMode: { apply(littlePath.chooseMode($0)) },
+            onStart: { apply(littlePath.start()) }
+        )
     }
 
     /// Seçilen arkadaş; Sürpriz'de `nil`.
@@ -497,20 +474,16 @@ struct StoryCreationFlow: View {
         switch outcome {
         case .close:
             dismiss()
-        case .show(let step):
-            if step == .confirm, let mode = littlePath.mode {
-                littleCast = StoryCreationSteps.littleCast(
-                    chosen: littlePath.companionID, topicID: littlePath.topicID,
-                    legacyCandidates: littlePath.topicID == nil ? []
-                        : source.legacyWritableCompanionIDs(mode: mode, age: age, topicID: littlePath.topicID))
-            }
+        case .show:
+            break
         case .begin:
             guard let mode = littlePath.mode else { return }
             MPSpeech.shared.stop()
             chosenMode = mode
             strategy = .direct
-            chosenTopicID = littlePath.topicID
-            chosenCompanionID = littleCast.companionID
+            // Konu sorulmaz: istek beşliye gider, seçilen arkadaş masalda kalır.
+            chosenTopicID = nil
+            chosenCompanionID = littlePath.companionID
             chosenOccasion = nil
             refreshFamilyRelations()
             begin()

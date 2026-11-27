@@ -281,7 +281,7 @@ history: `docs/MagicPaper_Design_System.md`.
 - İkon yalnızca `MPIcon`, boyut `MP.G`'den.
 
 **Dil** (karar: 20 Ekim 2026)
-- Masal **yazılır, hazırlanır, ciltlenir**; "üretilmez", "oluşturulmaz", "generate" edilmez. Profil, PDF, davet ve hesap için "oluştur" serbesttir.
+- Masal **yazılır, hazırlanır, ciltlenir**; "üretilmez", "oluşturulmaz", "generate" edilmez. Profil, PDF, davet ve hesap için "oluştur" serbesttir. Tek istisna okul öncesi akışın son düğmesi "Kitap oluştur" (karar: 26 Kasım 2026, Batuhan; `LittleCreationCopy.startButton`).
 - Hız bir özellik olarak sunulmaz: "saniyeler içinde", "anında", "hızlı" ve "hemen" masal anlatısında geçmez.
 - "Yapay zeka" arayüzde ve masal metninde geçmez.
 

@@ -139,31 +139,13 @@ enum StoryCreationSteps {
         !pilotFriends.isEmpty && !hasPresetFamily
     }
 
-    /// Masalı kim yazacak ve onay ekranı arkadaşı gösterebilir mi (K4).
-    struct LittleCast: Equatable {
-        /// Motora giden arkadaş; `nil` motor seçer.
-        let companionID: String?
-        /// Seçilen arkadaş masalda gerçekten olacak. `false` ise onay ekranı
-        /// portre yerine Sürpriz gösterir.
-        let keepsFriend: Bool
-    }
-
-    /// Konu yoksa istek beşliye gider ve arkadaş korunur. Konu seçildiyse istek
-    /// eski motora düşer (K4): arkadaş eski katalogda bu konuda yazılabiliyorsa
-    /// (`legacyCandidates`) onunla, yoksa motor seçer. Çocuğa tutulmayacak söz
-    /// verilmez.
-    static func littleCast(chosen: String?, topicID: String?, legacyCandidates: [String]) -> LittleCast {
-        guard let chosen else { return LittleCast(companionID: nil, keepsFriend: false) }
-        guard topicID != nil else { return LittleCast(companionID: chosen, keepsFriend: true) }
-        return legacyCandidates.contains(chosen)
-            ? LittleCast(companionID: chosen, keepsFriend: true)
-            : LittleCast(companionID: nil, keepsFriend: false)
-    }
-
     /// Okul öncesi "önce arkadaş" yolu: Kim gelsin? → {Arkadaş} ile ne yapalım?
-    /// → (konu) → Hazır mısın?. Masal yalnızca onaydaki "Başla" ile yazılır.
+    /// → Kitap oluştur (26 Kasım 2026, Batuhan: "kısa ve net"; konu adımı ve
+    /// "Hazır mısın?" sorusu kalktı). Masal yalnızca son ekrandaki "Kitap
+    /// oluştur" ile yazılır. Konu sorulmadığı için istek her zaman beşliye
+    /// gider ve seçilen arkadaş masalda kalır.
     struct LittlePath: Equatable {
-        enum Step: Equatable { case friend, mode, topic, confirm }
+        enum Step: Equatable { case friend, mode, start }
         /// Bir dokunuşun sonucu: bir adım göster, masalı yaz ya da akışı kapat.
         enum Outcome: Equatable { case show(Step), begin, close }
 
@@ -171,61 +153,45 @@ enum StoryCreationSteps {
         /// `nil`: Sürpriz.
         private(set) var companionID: String?
         private(set) var mode: StoryMode?
-        private(set) var topicID: String?
-        private(set) var hasTopicStep = false
 
         init() {}
 
-        /// Adım noktalarının etiketleri; konu adımı yalnızca modun konusu varken.
-        var labels: [String] {
-            hasTopicStep ? ["Kim", "Masal", "Konu", "Hazır"] : ["Kim", "Masal", "Hazır"]
-        }
+        /// Adım çizgilerinin etiketleri.
+        var labels: [String] { ["Kim", "Masal", "Kitap"] }
 
         var stepIndex: Int {
             switch step {
-            case .friend:  return 0
-            case .mode:    return 1
-            case .topic:   return 2
-            case .confirm: return labels.count - 1
+            case .friend: return 0
+            case .mode:   return 1
+            case .start:  return 2
             }
         }
 
         /// Arkadaşa (ya da Sürpriz'e) dokunuş: sıradaki soru mod.
         mutating func chooseFriend(_ id: String?) -> Outcome {
-            if id != companionID { mode = nil; topicID = nil; hasTopicStep = false }
+            if id != companionID { mode = nil }
             companionID = id
             step = .mode
             return .show(step)
         }
 
-        mutating func chooseMode(_ chosen: StoryMode, hasTopicStep topics: Bool) -> Outcome {
-            if chosen != mode { topicID = nil }
+        mutating func chooseMode(_ chosen: StoryMode) -> Outcome {
             mode = chosen
-            hasTopicStep = topics
-            step = topics ? .topic : .confirm
+            step = .start
             return .show(step)
         }
 
-        /// `nil`: "Fark etmez".
-        mutating func chooseTopic(_ id: String?) -> Outcome {
-            guard step == .topic else { return .show(step) }
-            topicID = id
-            step = .confirm
-            return .show(step)
-        }
-
-        /// "Başla": masal yalnızca onay adımında yazılır.
+        /// "Kitap oluştur": masal yalnızca son adımda yazılır.
         func start() -> Outcome {
-            step == .confirm && mode != nil ? .begin : .show(step)
+            step == .start && mode != nil ? .begin : .show(step)
         }
 
         /// Geri seçimleri korur; ilk adımda akışı kapatır.
         mutating func back() -> Outcome {
             switch step {
-            case .friend:  return .close
-            case .mode:    step = .friend
-            case .topic:   step = .mode
-            case .confirm: step = hasTopicStep ? .topic : .mode
+            case .friend: return .close
+            case .mode:   step = .friend
+            case .start:  step = .mode
             }
             return .show(step)
         }
