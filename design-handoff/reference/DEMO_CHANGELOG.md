@@ -180,6 +180,13 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-27 · main@445c0f3 · Alt çubuk, ana sayfa ve akıllı motor main'e alındı
+
+- Batuhan'ın isteğiyle (27 Kasım, "tümünü maine birleştir, telefonda bakarım") üç dal main'e birleşti: `claude/project-thread-ccophg` (PR #10, iOS 26'da mor Masal yaz dairesi geri, sekmeler Liquid Glass), `claude/project-thread-4oo21x` (ana sayfa: boyalı başlık, kapaklı bu akşam kartı, resimli modlar ve raflar) ve `claude/project-thread-6lpubi` (masal motoru okuma geçmişine bakar: göz atma, çeşitlilik, Sürpriz ağırlıkları; seçim ekranında "Yeni" ipucu).
+- Motor dalının ilk commit'i (`recentBookIDs`) V4 dalıyla main'e zaten girmişti; birleşim tabanı o commit alınarak yalnızca sonraki iki commit uygulandı, çakışma kalmadı.
+- Test: çalıştırılmadı (Batuhan'ın isteği). Ana sayfanın ekran görüntüsü alınmadı; birleşik hâl telefonda görülecek.
+- Dosyalar: 17 dosya; `StoryGenerationManager.swift`, `StoryEngineBridge/Pilots/P56/`, `P56StoryComposer.swift`, ana sayfa ve alt çubuk görünümleri, testler.
+
 ### 2026-11-27 · claude/project-thread-4oo21x · Ana sayfa profesyonel düzen
 
 - Ne değişti (Batuhan: "ana sayfada bir şeyler eksik, tam profesyonel bir app gibi görünsün"): başlık yeniden boyalı gündüz/gece manzarası (`HomeHeaderScene`; gradient değil illüstrasyon, ekranın tek Ragi'si orada). Üstte avatar (menüyü açar), saate göre selam ve çocuğun adı, zil (Yenilikler) ve arama; altında yıldız ve okuma günü satırı.
