@@ -320,7 +320,8 @@ extension StoryGenerationManager {
                 if let package = runtime.package(for: source) {
                     do {
                         let story = try p56Writer.write(context: context, mode: mode, strategy: strategy,
-                                                        safety: service.currentSafety, package: package, seed: seed)
+                                                        safety: service.currentSafety, package: package, seed: seed,
+                                                        recentBookIDs: P56RecentBooks.ids(forChild: profile.id, in: stories))
                         lastRuntimeDecision = decision
                         stories.insert(story, at: 0)
                         saveStories()

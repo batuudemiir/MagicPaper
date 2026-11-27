@@ -12,13 +12,21 @@ public struct P56Request: Sendable {
     /// Opaque reference to the caller's canonical CharacterEngine identity; never a new appearance.
     public let characterIdentityReference: String?
     public let contentSafety: ContentSafety?
+    /// Books this child has already been given, most recent first (kitap
+    /// kimlikleri, metin değil). Selection skips them while an unread book is
+    /// left in the cell; when every candidate has been read it takes the one
+    /// read longest ago. Never a support condition: the request is still
+    /// supported with every book read.
+    public let recentBookIDs: [String]
     public init(childID: String, name: String, age: Int, seed: UInt64, mode: P56Mode? = nil,
                 companionID: String? = nil, forcedStructure: String? = nil, contexts: [String] = [],
-                characterIdentityReference: String? = nil, contentSafety: ContentSafety? = nil) {
+                characterIdentityReference: String? = nil, contentSafety: ContentSafety? = nil,
+                recentBookIDs: [String] = []) {
         self.childID = childID; self.name = name; self.age = age; self.seed = seed
         self.mode = mode; self.companionID = companionID; self.forcedStructure = forcedStructure
         self.contexts = contexts; self.characterIdentityReference = characterIdentityReference
         self.contentSafety = contentSafety
+        self.recentBookIDs = recentBookIDs
     }
 }
 
@@ -73,7 +81,8 @@ public struct P56StoryComposer: Sendable {
         let candidates = P56Support.candidates(for: request, package: package)
         guard !candidates.isEmpty else { throw P56Error.unsupported("selection-outside-pilot") }
         // One deterministic draw, no retry or fallback after a validation failure.
-        let book = candidates[Int(P56Selection.mix(request.seed) % UInt64(candidates.count))]
+        let pool = P56Selection.unread(candidates, recent: request.recentBookIDs)
+        let book = pool[Int(P56Selection.mix(request.seed) % UInt64(pool.count))]
         return try composeFixture(book: book, request: request)
     }
 
@@ -172,6 +181,19 @@ public struct P56StoryComposer: Sendable {
 }
 
 enum P56Selection {
+    /// The candidates the child has not been given yet; when none is left,
+    /// only the one read longest ago (the last of them in `recent`). Order is
+    /// kept, so the seeded draw stays deterministic.
+    static func unread(_ candidates: [P56Book], recent: [String]) -> [P56Book] {
+        guard !recent.isEmpty else { return candidates }
+        let read = Set(recent)
+        let fresh = candidates.filter { !read.contains($0.id) }
+        if !fresh.isEmpty { return fresh }
+        let age = Dictionary(recent.enumerated().map { ($1, $0) }, uniquingKeysWith: { first, _ in first })
+        let oldest = candidates.max { (age[$0.id] ?? .max) < (age[$1.id] ?? .max) }
+        return oldest.map { [$0] } ?? candidates
+    }
+
     static func mix(_ seed: UInt64) -> UInt64 {
         var z = seed &+ 0x9e3779b97f4a7c15
         z = (z ^ (z >> 30)) &* 0xbf58476d1ce4e5b9

@@ -8,12 +8,23 @@ public struct ValidationContext: Sendable {
     public let template: ResolvedTemplate
     public let request: StoryRequest
     public let lexicon: DescriptorLexicon
+    /// The story's declared refrain lines (`RefrainSpec.declaredLines`), the
+    /// only repetition a book may carry on purpose. Empty for every story
+    /// without a refrain, which leaves every check exactly as it was.
+    public let declaredRefrains: [String]
 
-    public init(story: Story, template: ResolvedTemplate, request: StoryRequest, lexicon: DescriptorLexicon? = nil) {
+    public init(
+        story: Story,
+        template: ResolvedTemplate,
+        request: StoryRequest,
+        lexicon: DescriptorLexicon? = nil,
+        declaredRefrains: [String] = []
+    ) {
         self.story = story
         self.template = template
         self.request = request
         self.lexicon = lexicon ?? DescriptorLexicon.builtIn(languageCode: request.languageCode)
+        self.declaredRefrains = declaredRefrains
     }
 
     public var rules: ValidationRules { template.template.validationRules }

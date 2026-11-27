@@ -52,7 +52,8 @@ struct PreparationSky: View {
     }
 
     var body: some View {
-        TimelineView(.animation(minimumInterval: MP.M.RagiBeat.frame, paused: reduceMotion)) { context in
+        // Ekranın kendi kare hızıyla: 30 karede süzülme takılıyor gibi görünüyordu.
+        TimelineView(.animation(minimumInterval: nil, paused: reduceMotion)) { context in
             let t = reduceMotion ? 0 : context.date.timeIntervalSince(start) * (isBedtime ? 0.6 : 1)
             Canvas { canvas, size in
                 let count = isBedtime || reduceMotion ? Self.pieces.count / 2 : Self.pieces.count

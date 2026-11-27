@@ -24,7 +24,8 @@ struct P56StoryWriter {
         strategy: StorySelectionStrategy?,
         safety: ContentSafety?,
         package: P56Package,
-        seed: String?
+        seed: String?,
+        recentBookIDs: [String] = []
     ) throws -> Story {
         var contexts: [String] = []
         if context.family != nil { contexts.append("family") }
@@ -38,7 +39,8 @@ struct P56StoryWriter {
             mode: P56Mode(rawValue: mode.rawValue),
             companionID: context.companionID,
             contexts: contexts,
-            contentSafety: safety)
+            contentSafety: safety,
+            recentBookIDs: recentBookIDs)
         let composed = try compose(request, package)
         return P56StoryMapper.story(from: composed, childProfileID: context.childProfileID, strategy: strategy)
     }

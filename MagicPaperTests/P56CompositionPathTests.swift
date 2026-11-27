@@ -119,6 +119,38 @@ final class P56CompositionPathTests: XCTestCase {
     }
 
     /// Codex kapısı: varsayılan profil güvenliğiyle gerçek etkin paket (v3) yazımı, kaydı ve geri okunması.
+    /// Tekrar çözümü (26 Kasım): aynı çocuk aynı arkadaş ve modla yazdıkça hücredeki
+    /// her kitabı tekrarsız alır; kayıt kitap kimliğini taşır.
+    func testSameChildGetsEveryBookInTheCellBeforeARepeat() async throws {
+        let manager = manager(enabled: true)
+        let (_, package) = try Self.fixture.get()
+        let cell = package.books.filter { $0.mode == .learning && $0.companionID == fox }
+        var books: [String] = []
+        for index in 0..<cell.count {
+            let story = try await manager.createStory(for: profile, mode: .learning, storyIdeaID: nil,
+                                                      companionID: fox, seed: String(index * 31))
+            books.append(try XCTUnwrap(story.origin?.p56BookID))
+        }
+        XCTAssertEqual(Set(books).count, cell.count, "hücredeki \(cell.count) kitap tekrarsız: \(books)")
+        XCTAssertEqual(P56RecentBooks.ids(forChild: profile.id, in: manager.stories), books.reversed())
+        let other = UserProfile(name: "Ege", age: 5)
+        XCTAssertTrue(P56RecentBooks.ids(forChild: other.id, in: manager.stories).isEmpty, "başka çocuğun geçmişi sayılmaz")
+    }
+
+    func testRecentBooksReadOlderStoriesFromTheirTemplate() {
+        var page = MagicPaper.StoryPage(id: UUID(), title: "", text: "", imagePrompt: "")
+        page.provenance = StoryPageProvenance(p56: .init(
+            packageVersion: "five-friends-56-runtime-v3", templateID: "p56_runtime_p56_v3_pilot56_book_a1_fox_event02_v1_p01",
+            templateSHA256: "", parentSourceID: "", parentSHA256: "", parentPointer: "", renderedSHA256: "", order: 1))
+        let story = MagicPaper.Story(title: "", childName: "Deniz", childProfileID: profile.id, theme: .custom,
+                                     language: .turkish, pages: [page], origin: StoryOrigin(
+            seed: "1", storyIdeaID: nil, blueprintID: "", settingID: "", companionID: fox, discoveryID: "",
+            fingerprint: "", catalogVersion: "five-friends-56-runtime-v3",
+            contentSource: ContentSourceMetadata(p56: P56SourceReference(packageVersion: "five-friends-56-runtime-v3",
+                                                                          payloadSHA256: P56PinnedSource.v3SHA256))))
+        XCTAssertEqual(P56RecentBooks.bookID(of: story), "pilot56_book_a1_fox_event02_v1")
+    }
+
     func testDefaultSafetyWritesSavesAndReopensTheActiveStory() async throws {
         OfflineStoryService.shared.currentSafety = .mostProtective
         let (reference, _) = try Self.fixture.get()

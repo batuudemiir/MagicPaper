@@ -1,0 +1,58 @@
+// Verification-only facade: unavailable UIKit/SwiftUI app orchestration is not exercised.
+// Production policy, binder, mapper, provenance, saved-art metadata and resolver are copied unchanged.
+import Foundation
+import StoryEngine
+
+enum StoryTheme: String, Codable { case custom }
+enum StoryLanguage: String, Codable { case turkish }
+enum StoryStatus: String, Codable { case completed }
+enum StorySelectionStrategy: String { case direct, surprise }
+enum MP { enum World: String { case whisperingForest = "whispering_forest" } }
+struct ContentSourceMetadata: Codable, Equatable {
+    let p56Reference: P56SourceReference?
+    init(p56: P56SourceReference) { p56Reference = p56 }
+}
+struct StoryOrigin: Codable, Equatable {
+    var seed: String
+    var storyIdeaID: String?
+    var blueprintID: String
+    var settingID: String
+    var companionID: String
+    var discoveryID: String
+    var fingerprint: String
+    var catalogVersion: String
+    var contentSource: ContentSourceMetadata?
+    var worldID: String?
+    var modeID: String?
+    var selectionStrategy: String?
+    var ageBand: String?
+    var p56BookID: String?
+    var familyCharacterID: String? = nil
+    var familyRelation: String? = nil
+    var occasionID: String? = nil
+    var seriesID: String? = nil
+    var seriesEpisode: Int? = nil
+}
+struct Story: Codable {
+    var title: String
+    var childName: String
+    var childProfileID: UUID
+    var theme: StoryTheme
+    var language: StoryLanguage
+    var status: StoryStatus
+    var pages: [StoryPage]
+    var origin: StoryOrigin?
+    var currentProgress: String? = nil
+}
+struct StoryPage: Codable {
+    var id: UUID = UUID()
+    var title: String
+    var text: String
+    var imagePrompt: String
+    var imageFileName: String? = nil
+    var imageUrl: String? = nil
+    var scene: String? = nil
+    var art: StoryPageArt? = nil
+    var provenance: StoryPageProvenance? = nil
+}
+enum StoryMode: String { case bedtime, learning, adventure }
