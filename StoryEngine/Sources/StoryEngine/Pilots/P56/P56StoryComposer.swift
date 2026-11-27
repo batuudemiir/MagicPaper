@@ -18,15 +18,27 @@ public struct P56Request: Sendable {
     /// read longest ago. Never a support condition: the request is still
     /// supported with every book read.
     public let recentBookIDs: [String]
+    /// Of `recentBookIDs`, the books the child shut in their first third and
+    /// never finished: given, but not really read. They come back before any
+    /// book the child did read, after every book never given.
+    public let glancedBookIDs: [String]
+    /// How much this child likes each friend, from how they read: 3 finished
+    /// and re-read, 2 neutral (also every friend not listed), 1 left early.
+    /// Only matters when no friend was chosen ("Sürpriz"): the draw leans
+    /// toward the friends this child reads to the end, never shuts one out.
+    public let companionWeights: [String: Int]
     public init(childID: String, name: String, age: Int, seed: UInt64, mode: P56Mode? = nil,
                 companionID: String? = nil, forcedStructure: String? = nil, contexts: [String] = [],
                 characterIdentityReference: String? = nil, contentSafety: ContentSafety? = nil,
-                recentBookIDs: [String] = []) {
+                recentBookIDs: [String] = [], glancedBookIDs: [String] = [],
+                companionWeights: [String: Int] = [:]) {
         self.childID = childID; self.name = name; self.age = age; self.seed = seed
         self.mode = mode; self.companionID = companionID; self.forcedStructure = forcedStructure
         self.contexts = contexts; self.characterIdentityReference = characterIdentityReference
         self.contentSafety = contentSafety
         self.recentBookIDs = recentBookIDs
+        self.glancedBookIDs = glancedBookIDs
+        self.companionWeights = companionWeights
     }
 }
 
@@ -81,8 +93,10 @@ public struct P56StoryComposer: Sendable {
         let candidates = P56Support.candidates(for: request, package: package)
         guard !candidates.isEmpty else { throw P56Error.unsupported("selection-outside-pilot") }
         // One deterministic draw, no retry or fallback after a validation failure.
-        let pool = P56Selection.unread(candidates, recent: request.recentBookIDs)
-        let book = pool[Int(P56Selection.mix(request.seed) % UInt64(pool.count))]
+        let pool = P56Selection.varied(
+            P56Selection.unread(candidates, recent: request.recentBookIDs, glanced: request.glancedBookIDs),
+            recent: request.recentBookIDs, package: package)
+        let book = P56Selection.draw(pool, seed: request.seed, weights: request.companionWeights)
         return try composeFixture(book: book, request: request)
     }
 
@@ -182,16 +196,58 @@ public struct P56StoryComposer: Sendable {
 
 enum P56Selection {
     /// The candidates the child has not been given yet; when none is left,
-    /// only the one read longest ago (the last of them in `recent`). Order is
-    /// kept, so the seeded draw stays deterministic.
-    static func unread(_ candidates: [P56Book], recent: [String]) -> [P56Book] {
+    /// the ones they only glanced at; when none of those either, only the one
+    /// read longest ago (the last of them in `recent`). Order is kept, so the
+    /// seeded draw stays deterministic.
+    static func unread(_ candidates: [P56Book], recent: [String], glanced: [String] = []) -> [P56Book] {
         guard !recent.isEmpty else { return candidates }
         let read = Set(recent)
         let fresh = candidates.filter { !read.contains($0.id) }
         if !fresh.isEmpty { return fresh }
+        let skimmed = Set(glanced)
+        let again = candidates.filter { skimmed.contains($0.id) }
+        if !again.isEmpty { return again }
         let age = Dictionary(recent.enumerated().map { ($1, $0) }, uniquingKeysWith: { first, _ in first })
         let oldest = candidates.max { (age[$0.id] ?? .max) < (age[$1.id] ?? .max) }
         return oldest.map { [$0] } ?? candidates
+    }
+
+    /// How many of the child's latest books a discovery is kept from coming back.
+    static let discoveryMemory = 6
+
+    /// Variety across friends (27 Kasım 2026): a mode has three plots, each
+    /// told with every friend. Within the pool, the plot of the child's last
+    /// book in this mode is not told again right away, and a discovery from
+    /// their last few books waits. Each rule is a preference: when it would
+    /// empty the pool, it is dropped and the pool stays as it was.
+    static func varied(_ pool: [P56Book], recent: [String], package: P56Package) -> [P56Book] {
+        guard pool.count > 1, !recent.isEmpty, let mode = pool.first?.mode else { return pool }
+        let byID = Dictionary(package.books.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        let given = recent.compactMap { byID[$0] }
+        var result = pool
+        if let lastPlot = given.first(where: { $0.mode == mode })?.structureID {
+            let other = result.filter { $0.structureID != lastPlot }
+            if !other.isEmpty { result = other }
+        }
+        let seen = Set(given.prefix(discoveryMemory).map(\.discoveryID))
+        let newDiscovery = result.filter { !seen.contains($0.discoveryID) }
+        if !newDiscovery.isEmpty { result = newDiscovery }
+        return result
+    }
+
+    /// One seeded pick. With equal weights it is exactly the plain draw, so a
+    /// chosen friend's books are picked as before; otherwise each book counts
+    /// as many times as its friend's weight (at least 1).
+    static func draw(_ pool: [P56Book], seed: UInt64, weights: [String: Int]) -> P56Book {
+        let units = pool.map { max(1, weights[$0.companionID] ?? 2) }
+        let mixed = mix(seed)
+        guard Set(units).count > 1 else { return pool[Int(mixed % UInt64(pool.count))] }
+        var ticket = Int(mixed % UInt64(units.reduce(0, +)))
+        for (book, unit) in zip(pool, units) {
+            if ticket < unit { return book }
+            ticket -= unit
+        }
+        return pool[pool.count - 1]
     }
 
     static func mix(_ seed: UInt64) -> UInt64 {

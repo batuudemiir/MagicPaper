@@ -34,16 +34,20 @@ class StoryGenerationManager: ObservableObject {
     /// Beş arkadaş pilotu (B4): yeni masalı eski motorun mu P56'nın mı yazacağı.
     private let runtime: StoryRuntimeRouter
     private let p56Writer: P56StoryWriter
+    /// How the child read their stories; P56 learns from it (27 Kasım 2026).
+    private let p56Usage: StoryUsageStore
     /// The last `createStory` routing decision, reason code only; nil when the
     /// request had no mode and the router was not asked.
     private(set) var lastRuntimeDecision: StoryRuntimeDecision?
 
     init(library: LibraryShelf, notifications: NotificationCenter = .default,
          runtime: StoryRuntimeRouter = .shared,
-         p56Writer: P56StoryWriter = P56StoryWriter()) {
+         p56Writer: P56StoryWriter = P56StoryWriter(),
+         p56Usage: StoryUsageStore = StoryUsageStore()) {
         self.library = library
         self.runtime = runtime
         self.p56Writer = p56Writer
+        self.p56Usage = p56Usage
         loadStories()
         auditStoriesMissingImageURLs()
         // A background launch on a locked device cannot read the story files
@@ -319,9 +323,16 @@ extension StoryGenerationManager {
             if case .p56(let source) = decision.route {
                 if let package = runtime.package(for: source) {
                     do {
-                        let story = try p56Writer.write(context: context, mode: mode, strategy: strategy,
-                                                        safety: service.currentSafety, package: package, seed: seed,
-                                                        recentBookIDs: P56RecentBooks.ids(forChild: profile.id, in: stories))
+                        // Okuma geçmişi (27 Kasım): okunanlar atlanır, göz atılanlar
+                        // sonra gelir, Sürpriz çocuğun bitirdiği arkadaşlara yaslanır.
+                        let usage = p56Usage.stats(for: profile.id)
+                        let story = try p56Writer.write(
+                            context: context, mode: mode, strategy: strategy,
+                            safety: service.currentSafety, package: package, seed: seed,
+                            recentBookIDs: P56RecentBooks.ids(forChild: profile.id, in: stories),
+                            glancedBookIDs: P56RecentBooks.glancedIDs(forChild: profile.id, in: stories, usage: usage),
+                            companionWeights: P56RecentBooks.companionWeights(forChild: profile.id, in: stories,
+                                                                               usage: usage))
                         lastRuntimeDecision = decision
                         stories.insert(story, at: 0)
                         saveStories()
