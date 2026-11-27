@@ -180,6 +180,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-27 · main@dbc80d4 · Yalnız Mac'te duran üç iş main'e alındı
+
+- Batuhan'ın isteğiyle (27 Kasım) GitHub'da hiç olmayan üç iş önce kendi dallarıyla gönderildi, sonra main'e birleştirildi: `codex/v4-story-art-integration` (V4 çizimleri yeni çevrimdışı masallara bağlı; Codex'in commit'lediği hâli, P56 `recentBookIDs` commit'i dahil), `codex/design-system-catalog` (V4 çizim paketleri, 120 pilot sayfa incelemesi, Kar Tepesi'nin dokuz sayfası, B hattı planı) ve `story-engine/refrain-validator` (ilan edilmiş nakarat tekrar sayılmaz).
+- Çakışmalar: çocuğun masal yolu önerisi (`2026-11-26-cocugun-masal-yolu/`, görseller ve zip), B hattı planı ve `docs/ortak/claude-durum.md` main'de daha yeniydi, main'in sürümü kaldı. Bu günlükte iki tarafın kayıtları birleştirildi.
+- Bilerek dahil edilmeyen: ana klasörde diskte eksik görünen `MagicPaper.xcodeproj` ve üç Swift dosyasının silinmesi (birleşim çalışma kopyasından değil, commit'lerden yapıldı) ve ana klasördeki izlenmeyen pazarlama ve tasarım klasörleri.
+- Test: çalıştırılmadı, uygulama derlenmedi (disk). Nakarat dalının kendi koşusu 1118 test 0 hata; V4 dalını Codex kendi doğruladı. Birleşik hâl simülatörde görülmedi.
+- Dosyalar: 186 dosya (çoğu `design-handoff/proposals/` görselleri); Swift tarafında `StoryEngineBridge/Pilots/P56/`, `StoryEngine/.../Validators/`, `CatalogBlueprint.swift`, `CompanionPortraitCatalog.swift` ve testler.
+
 ### 2026-11-27 · main ← codex/v4-story-art-integration@48c5051a · V4 görsel entegrasyonu birleşimi
 
 -35seçili görsel,5arkadaş seçimi kimliği ve30hikâye görselinin kaynak izli bağlantısı main birleşimine alındı; eşzamanlı `main@50d1b110` hazırlık ekranı düzeltmeleri korundu. Çakışma yok.
