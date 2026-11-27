@@ -12,6 +12,12 @@ import SwiftUI
 /// menüden yeni yazılan ya da ada göre. Ne zaman okunduğu kapağın altında
 /// ("Dün · 4 dk"). Çip ve arama aynı diziyi daraltır.
 ///
+/// Sadeleşme (26 Kasım 2026, Batuhan: "karışık görünüyor, daha basit ve
+/// erişilebilir olsun"): "Kaldığın yerden" kartları yerine tek "Yarım kalanlar"
+/// rafı (kapağın altında ilerleme çizgisi); çipler üçe indi (Tümü · Masallarım
+/// · Klasikler), sıra menüsü kalktı (hep son okunan önde); kapak duvarı iki
+/// sütun, adlar kapağın altında okunur boyda.
+///
 /// Kendi masalına dokununca Masal aksiyonları (17), klasiğe dokununca okuyucu.
 /// İçerik `LibraryShelfModel`'den gelir ve yalnızca veri değişince kurulur.
 struct LibraryView: View {
@@ -27,7 +33,6 @@ struct LibraryView: View {
     @State private var model = LibraryShelfModel.empty
     @State private var query = ""
     @State private var filter: LibraryFilter = .all
-    @State private var sort: LibrarySort = .recent
     @State private var width: CGFloat = 390
     /// Arama kutusu yalnızca büyütece dokununca açılır (Faz 7).
     @State private var searching = false
@@ -61,11 +66,6 @@ struct LibraryView: View {
         .onChange(of: favorites.ids) { _, _ in refresh() }
         .onChange(of: classicProgress.entries) { _, _ in refresh() }
         .onChange(of: profileManager.currentProfile?.id) { _, _ in refresh() }
-    }
-
-    /// Az kitapta gizli; kitap azalırken açık bir arama ya da süzgeç kaybolmaz.
-    private var showsFinding: Bool {
-        LibraryShelfModel.showsFinding(itemCount: model.items.count) || !isBrowsing
     }
 
     /// Süzgeç ve arama yokken öne çıkanlar ("Kaldığın yerden", Serim) görünür.
@@ -138,13 +138,14 @@ struct LibraryView: View {
     /// Yalnızca süzgeçsiz, aramasız görünümde: yarım kalan kitap ve açık seri.
     @ViewBuilder
     private var highlights: some View {
-        // "Kaldığın yerden"in tek evi (Faz 7): en çok üç kitap.
-        let continuing = Array(model.continueItems().prefix(3))
+        // "Kaldığın yerden"in tek evi: yarım kitaplar tek rafta, en çok altı.
+        let continuing = model.continueItems(limit: 6)
         if !continuing.isEmpty {
-            VStack(spacing: MPSpacing.md) {
-                ForEach(continuing) { item in
-                    LibraryContinueCard(item: item, eyebrow: item.id == continuing.first?.id ? "Kaldığın yerden" : nil) {
-                        open(item, continuing: true)
+            VStack(alignment: .leading, spacing: MPSpacing.md) {
+                MPSectionHeader(title: "Yarım kalanlar")
+                GunlukRow {
+                    ForEach(continuing) { item in
+                        LibraryHalfReadCover(item: item, width: Self.halfReadWidth) { open(item, continuing: true) }
                     }
                 }
             }
@@ -161,25 +162,18 @@ struct LibraryView: View {
 
     @ViewBuilder
     private var shelf: some View {
-        let items = model.items(for: filter, query: query, sort: sort)
+        let items = model.items(for: filter, query: query)
         VStack(alignment: .leading, spacing: MPSpacing.md) {
             if searching || !query.isEmpty {
                 LibrarySearchField(text: $query, focused: $searchFocused)
             }
-            if showsFinding { chips }
-            // Bölüm başlığı yok: hangi kitapların göründüğünü seçili çip söyler.
-            HStack(alignment: .firstTextBaseline) {
-                Text("\(items.count) kitap").mpText(.supporting).fontWeight(.bold).monospacedDigit()
-                    .foregroundStyle(MPColor.textSecondary)
-                    .accessibilityAddTraits(.isHeader)
-                Spacer(minLength: MPSpacing.sm)
-                sortMenu
-            }
+            MPSectionHeader(title: "Kitaplarım", note: "\(items.count)", noteSpoken: "\(items.count) kitap")
+            if model.availableFilters.count > 1 { chips }
             if items.isEmpty {
                 noMatch
             } else {
                 LibraryCoverGrid(items: items, pageWidth: width,
-                                 wide: typeSize.isAccessibilitySize,
+                                 wide: true,
                                  open: { open($0) }, menu: { quickActions($0) },
                                  tone: shelfTone)
             }
@@ -206,24 +200,8 @@ struct LibraryView: View {
         return item == .defaultShelf ? nil : item.tone
     }
 
-    /// Küçük sıra menüsü; varsayılan son okunan.
-    private var sortMenu: some View {
-        Menu {
-            Picker("Sırala", selection: $sort) {
-                ForEach(LibrarySort.allCases) { Text($0.title).tag($0) }
-            }
-        } label: {
-            HStack(spacing: MPSpacing.xxs) {
-                Text(sort.title).mpText(.supporting)
-                MPIcon("chevron.down", size: MP.G.xs, weight: .bold).accessibilityHidden(true)
-            }
-            .foregroundStyle(MPColor.actionPrimary)
-            .frame(minHeight: MP.S.tapMin)
-            .contentShape(Rectangle())
-        }
-        .accessibilityLabel("Sıralama: \(sort.title)")
-        .onChange(of: sort) { _, _ in MPHaptics.selection() }
-    }
+    /// "Yarım kalanlar" rafının kapak genişliği.
+    private static let halfReadWidth: CGFloat = 112
 
     /// Süzgeç ya da arama boş döndü. Ragi zaten yukarıda; burada yalnızca söz.
     private var noMatch: some View {

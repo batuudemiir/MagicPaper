@@ -87,12 +87,12 @@ final class LibraryShelfModelTests: XCTestCase {
 
     // MARK: Süzgeçler
 
-    func testFiltersListOnlyNonEmptyCategoriesInFixedOrder() {
+    func testFiltersAreOnlyAllStoriesAndClassics() {
         let half = Self.story("Öğren", mode: "learning")
         let model = Self.model([half, Self.story("Ay", mode: "bedtime")], favorites: [half.id],
                                classics: [Self.classic(1, "Rapunzel")])
-        XCTAssertEqual(model.availableFilters,
-                       [.all, .favorites, .mode(.bedtime), .mode(.learning), .classics])
+        XCTAssertEqual(model.availableFilters, [.all, .stories, .classics])
+        XCTAssertEqual(Self.model([half]).availableFilters, [.all], "tek tür kitap: çip yok")
     }
 
     func testModeFilterExcludesClassics() {

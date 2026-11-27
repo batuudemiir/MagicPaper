@@ -42,6 +42,10 @@ struct HomeStatCard: View {
 /// `TonightState` (widget ve Siri ile aynı kural).
 struct HomeTonightBoard: View {
     let state: TonightState
+    /// Masalın boyalı kapağı (26 Kasım 2026, Batuhan: "ana sayfa gibi duran"
+    /// kahraman öğe). Boyalı kapakta kartın üstü resim olur; başlık kapağında ya
+    /// da kapaksız durumda (uyku, bugün okudun) kart eskisi gibi.
+    var cover: MPBookCover.Art? = nil
     let onPrimary: () -> Void
 
     @Environment(\.dynamicTypeSize) private var typeSize
@@ -50,6 +54,25 @@ struct HomeTonightBoard: View {
     private static let ragiWidth: CGFloat = 112
 
     var body: some View {
+        VStack(spacing: 0) {
+            if let art = paintedCover { artBand(art) }
+            details
+        }
+        .mpEdge(fill: MP.C.homeTonight, edge: MP.C.homeTonightEdge, radius: MPRadius.card, width: MP.E.widthLG)
+        // Ragi yerleşimi büyütmez: ayakları kartın alt çizgisinde, başı yazı
+        // bölümünün üstüne (resim varsa resmin altına) taşar. En büyük yazıda
+        // metne yer kalsın diye çizilmez.
+        .overlay(alignment: .bottomLeading) {
+            if !typeSize.isAccessibilitySize {
+                MascotImage(mascot: mascot, width: Self.ragiWidth)
+                    .offset(x: -MPSpacing.xs)
+                    .allowsHitTesting(false)
+                    .accessibilityHidden(true)
+            }
+        }
+    }
+
+    private var details: some View {
         VStack(alignment: .leading, spacing: MPSpacing.sm) {
             Text(copy.eyebrow).mpText(.footnote).fontWeight(.bold).foregroundStyle(MP.C.textOnArtMuted)
             Text(copy.title).font(MP.F.displaySM()).foregroundStyle(MP.C.textOnArt)
@@ -65,18 +88,32 @@ struct HomeTonightBoard: View {
         .padding(.vertical, MPSpacing.lg)
         .padding(.trailing, MPSpacing.lg)
         .padding(.leading, typeSize.isAccessibilitySize ? MPSpacing.lg : Self.ragiWidth)
-        .mpEdge(fill: MP.C.homeTonight, edge: MP.C.homeTonightEdge, radius: MPRadius.card, width: MP.E.widthLG)
-        // Ragi yerleşimi büyütmez: ayakları kartın alt çizgisinde, başı kartın
-        // üstüne taşar. En büyük yazıda metne yer kalsın diye çizilmez.
-        .overlay(alignment: .bottomLeading) {
-            if !typeSize.isAccessibilitySize {
-                MascotImage(mascot: mascot, width: Self.ragiWidth)
-                    .offset(x: -MPSpacing.xs)
-                    .allowsHitTesting(false)
-                    .accessibilityHidden(true)
-            }
+    }
+
+    /// Yalnızca masal sunan durumlarda ve boyalı kapakta.
+    private var paintedCover: (name: String, focus: ClassicFocus)? {
+        switch state {
+        case .resume, .unread:
+            if case let .image(name, focus)? = cover { return (name, focus) }
+            return nil
+        case .readToday, .bedtime:
+            return nil
         }
     }
+
+    /// Kartın üstündeki resim: kapak sanatı, kartın köşesiyle kırpılır.
+    private func artBand(_ art: (name: String, focus: ClassicFocus)) -> some View {
+        ClassicCoverImage(asset: art.name, focus: art.focus, seed: art.name)
+            .frame(maxWidth: .infinity)
+            .frame(height: Self.artHeight)
+            .clipped()
+            .clipShape(UnevenRoundedRectangle(topLeadingRadius: MPRadius.card, bottomLeadingRadius: 0,
+                                              bottomTrailingRadius: 0, topTrailingRadius: MPRadius.card,
+                                              style: .continuous))
+            .accessibilityHidden(true)
+    }
+
+    private static let artHeight: CGFloat = 168
 
     private var tag: some View {
         // Yalnızca yazı (24 Kasım 2026): dolgulu kutu düğmeye benziyordu.

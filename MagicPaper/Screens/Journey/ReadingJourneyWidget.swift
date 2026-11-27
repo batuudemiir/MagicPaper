@@ -9,6 +9,8 @@ import SwiftUI
 /// işareti değil; "az kaldı", geri sayım ya da kıyas yok.
 struct ReadingJourneyWidget: View {
     let journey: ReadingJourney
+    /// Ana sayfada Ragi bu akşamın kartında; ekranda tek Ragi (26 Kasım 2026).
+    var showsRagi: Bool = true
     let action: () -> Void
 
     @Environment(\.dynamicTypeSize) private var typeSize
@@ -24,7 +26,7 @@ struct ReadingJourneyWidget: View {
                 HStack(alignment: .center, spacing: MPSpacing.md) {
                     // Ekranın tek Ragi'si: el sallayan, çerçevesiz, doğrudan
                     // beyaz kartta (24 Kasım 2026, İrem).
-                    if !typeSize.isAccessibilitySize {
+                    if showsRagi, !typeSize.isAccessibilitySize {
                         MascotImage(mascot: .waving, width: Self.ragiWidth)
                     }
                     VStack(alignment: .leading, spacing: MPSpacing.xxs) {
