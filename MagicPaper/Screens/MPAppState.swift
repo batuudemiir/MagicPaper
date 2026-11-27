@@ -29,6 +29,8 @@ final class MPAppState: ObservableObject {
     @Published var creationFamilyID: UUID?
 
     @Published var showPaywall = false
+    /// "Profilini düzenle" penceresi açık olan çocuk (23 Kasım 2026, `ProfileAvatarPicker`).
+    @Published var avatarPickerProfileID: UUID?
     @Published var readerStory: Story?
     /// Okuyucu kitaplıktaki bu kapaktan açıldı: kapaktan büyüyerek gelir
     /// (Faz 13). Başka yerden açılınca nil, olağan geçiş.
@@ -130,8 +132,23 @@ final class MPAppState: ObservableObject {
         case .unread:
             if let daily = resolved.daily { readOriginal(daily) }
         case .readToday:
-            if !fromSurface { startStoryCreation() }
+            guard !fromSurface else { return }
+            // Bugün okundu: kart her zaman kitaplığa çağırır (24 Kasım 2026,
+            // Batuhan: masal bitirmek bir olay, hemen yenisi önerilmez). Yazmak
+            // isteyen "Masal yaz" dairesini ve mod satırlarını kullanır; ücretsiz
+            // hak bitmişse onlar kilit penceresine gider (21 Kasım, A2).
+            router.tab = .library
         }
+    }
+
+    /// Bugün yeni bir masal yazılabilir mi (ücretsizde günde bir; abonede hep).
+    /// Bu akşamın kartı metnini ve düğmesini buna göre seçer. Karar
+    /// `EntitlementPolicy`'de; bu yalnızca soru.
+    var canWriteNewStoryToday: Bool { Self.canWriteNewStoryToday }
+
+    /// Aynı soru, `MPAppState` örneği olmadan (`HomeFeedStore`).
+    static var canWriteNewStoryToday: Bool {
+        LiveEntitlementService.shared.evaluate(.unlimitedTextStories, usage: .plain).isAllowed
     }
 
     /// 26 · Uyku modu: çocuğun son uyku masalı, yoksa günün masalı; ikisi de
@@ -285,7 +302,22 @@ final class MPAppState: ObservableObject {
     }
 
     func openPaywall() {
+        pendingUnlock = nil
         showPaywall = true
+    }
+
+    /// Paywall'ı açtıran iş (değer önerisi 1, 26 Kasım 2026): ebeveyn Premium
+    /// alınca aynı şeye yeniden dokunmak zorunda kalmasın. Paywall kapanınca
+    /// yetki gerçekten açıldıysa iş kendiliğinden çalışır; satın alma yoksa,
+    /// iptal ya da hata olduysa hiçbir şey olmaz.
+    private var pendingUnlock: (capability: Capability, usage: EntitlementUsage, action: () -> Void)?
+
+    /// `ContentView`'daki Paywall örtüsünün `onDismiss`'i çağırır.
+    func paywallDismissed() {
+        guard let pending = pendingUnlock else { return }
+        pendingUnlock = nil
+        guard isUnlocked(pending.capability, usage: pending.usage) else { return }
+        pending.action()
     }
 
     // MARK: - Yetki kapısı (E7)
@@ -298,6 +330,7 @@ final class MPAppState: ObservableObject {
         if isUnlocked(capability, usage: usage) { action(); return }
         if router.isParentMode {
             openPaywall()
+            pendingUnlock = (capability, usage, action)
         } else if router.sheet == nil {
             router.sheet = .locked(capability)
         } else {

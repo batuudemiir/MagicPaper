@@ -1,0 +1,18 @@
+name: Tasarım yasası
+
+# AGENTS.md > Design law > Doğrulama grep'leri (Scripts/design_law_check.sh).
+# Linux'ta saniyeler sürer; macOS dakikası harcamaz.
+on:
+  push:
+    branches: [ main, irem ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Design law
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash Scripts/design_law_check.sh

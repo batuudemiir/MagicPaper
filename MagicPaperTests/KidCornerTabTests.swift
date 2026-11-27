@@ -1,5 +1,6 @@
 import XCTest
 @testable import MagicPaper
+import StoryEngine
 
 /// 12 · Profil sekmesi (karar 7 Kasım 2026).
 @MainActor
@@ -308,10 +309,36 @@ final class PageStructureCopyTests: XCTestCase {
         XCTAssertEqual(StoryEndingCopy.goodNight(" "), "İyi geceler.")
     }
 
+    /// 26 Kasım 2026: cümle dakika ve "üst üste" değil, haftanın kazançlarını söyler.
     func testOverviewSentence() {
-        XCTAssertEqual(ParentInsight.sentence(stories: 0, minutes: 0, streak: 0), "Bu hafta henüz masal okunmadı.")
-        XCTAssertEqual(ParentInsight.sentence(stories: 4, minutes: 38, streak: 3), "Bu hafta 4 masal, 38 dakika, 3 akşam üst üste.")
-        XCTAssertEqual(ParentInsight.sentence(stories: 1, minutes: 0, streak: 1), "Bu hafta 1 masal.")
+        typealias G = ParentInsight.WeekGains
+        XCTAssertEqual(ParentInsight.sentence(G(evenings: 0, finished: 0, words: [], friends: []), childName: "İrem"),
+                       "Bu hafta henüz masal okunmadı.")
+        XCTAssertEqual(ParentInsight.sentence(G(evenings: 4, finished: 3, words: ["pusula", "fener"], friends: ["Kestane", "Tarçın"]),
+                                              childName: "İrem"),
+                       "Bu hafta 4 akşam masal okudunuz. İrem pusula ve fener kelimeleriyle ilk kez karşılaştı. Masal arkadaşları: Kestane, Tarçın.")
+        XCTAssertEqual(ParentInsight.sentence(G(evenings: 1, finished: 1, words: ["dalga"], friends: []), childName: " "),
+                       "Bu hafta 1 akşam masal okudunuz. Çocuk dalga kelimesiyle ilk kez karşılaştı.")
+        XCTAssertEqual(ParentInsight.sentence(G(evenings: 2, finished: 2, words: ["a", "b", "c", "d", "e"], friends: []), childName: "Can"),
+                       "Bu hafta 2 akşam masal okudunuz. Can a, b ve c gibi 5 kelimeyle ilk kez karşılaştı.")
+    }
+
+    func testOverviewSentenceCarriesNoStreakOrPressure() {
+        let text = ParentInsight.sentence(.init(evenings: 3, finished: 3, words: [], friends: []), childName: "İrem")
+        for word in ["üst üste", "seri", "kaçır", "bozma", "dakika"] {
+            XCTAssertFalse(text.contains(word), word)
+        }
+    }
+
+    /// "Bu akşamın sorusu": açık uçlu, masaldan, sınav değil.
+    func testParentQuestionIsOpenAndUsesTheCompanionOnlyWhenKnown() {
+        XCTAssertEqual(ParentQuestion.question(mode: .adventure, companion: "Kestane"),
+                       "Sen de Kestane ile o yolda olsaydın ne yapardın?")
+        XCTAssertEqual(ParentQuestion.question(mode: .adventure, companion: nil), "Sen o yolda olsaydın ne yapardın?")
+        XCTAssertEqual(ParentQuestion.question(mode: .bedtime, companion: " "), "Masalın en sevdiğin anı hangisiydi?")
+        for mode in [StoryMode.adventure, .learning, .bedtime] {
+            XCTAssertTrue(ParentQuestion.question(mode: mode, companion: "Tarçın").hasSuffix("?"))
+        }
     }
 
     func testOverviewWeekStartsOnMonday() throws {

@@ -157,7 +157,8 @@ final class SpecialDayTests: XCTestCase {
                                            occasion: request)
         var story = OfflineStoryMapper.appStory(
             from: composed.story, childName: "İrem", childProfileID: UUID(), storyIdeaID: nil,
-            catalogVersion: composed.catalogVersion, mode: mode, selectionStrategy: .direct,
+            catalogVersion: composed.catalogVersion, contentSource: composed.contentSource,
+            mode: mode, selectionStrategy: .direct,
             ageBand: service.servedBand(forAge: age), occasion: request)
         story.lastReadPage = story.pages.count - 1
         return (story, composed.story)

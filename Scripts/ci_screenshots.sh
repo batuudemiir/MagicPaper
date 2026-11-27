@@ -15,39 +15,12 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/design-preview/screens/real"
 DERIVED="${DERIVED:-$ROOT/build/screenshots}"
 BUNDLE="com.batu.magicpaper.v1"
-WAIT="${WAIT:-7}"
+WAIT="${WAIT:-10}"  # açılış karşılaması (Batuhan, 21 Kasım) 7 sn'ye sığmıyor
 
 cd "$ROOT"
 
 # --- Depoda olmayan dosyalar ------------------------------------------------
-# Secrets.xcconfig: boş anahtarlar; uygulama boş anahtarı "yok" sayar (APIKeys).
-if [ ! -f MagicPaper/Secrets.xcconfig ]; then
-  printf 'FAL_API_KEY =\nREVENUECAT_API_KEY =\nGOOGLE_REVERSED_CLIENT_ID =\n' > MagicPaper/Secrets.xcconfig
-fi
-# GoogleService-Info.plist: gerçek dosya gizli ayar olarak verilmişse o, yoksa
-# biçimi doğru sahte bir dosya. Sahte dosyayla Firebase ağ çağrıları başarısız
-# olur ama açılış çökmez; ekran görüntüsü için yeterli.
-if [ ! -f MagicPaper/GoogleService-Info.plist ]; then
-  if [ -n "${GOOGLE_SERVICE_INFO_PLIST:-}" ]; then
-    printf '%s' "$GOOGLE_SERVICE_INFO_PLIST" > MagicPaper/GoogleService-Info.plist
-  else
-    cat > MagicPaper/GoogleService-Info.plist <<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0"><dict>
-<key>API_KEY</key><string>AIzaSyA-ci-placeholder-000000000000000</string>
-<key>GCM_SENDER_ID</key><string>123456789012</string>
-<key>BUNDLE_ID</key><string>$BUNDLE</string>
-<key>PROJECT_ID</key><string>magicpaper-ci</string>
-<key>STORAGE_BUCKET</key><string>magicpaper-ci.appspot.com</string>
-<key>GOOGLE_APP_ID</key><string>1:123456789012:ios:0000000000000000000000</string>
-<key>IS_ADS_ENABLED</key><false/><key>IS_ANALYTICS_ENABLED</key><false/>
-<key>IS_APPINVITE_ENABLED</key><false/><key>IS_GCM_ENABLED</key><false/>
-<key>IS_SIGNIN_ENABLED</key><true/>
-</dict></plist>
-EOF
-  fi
-fi
+BUNDLE="$BUNDLE" bash "$ROOT/Scripts/ci_placeholders.sh"
 
 # --- Simülatörler -----------------------------------------------------------
 # $1: cihaz türü desenleri (| ile, sırayla denenir). Önce var olan bir simülatör
@@ -116,6 +89,15 @@ SCREENS=(
   "buyukler-icin|Büyükler için|-mpStartParent YES"
   "ayarlar|Ayarlar|-mpStartParent YES -mpParentTab settings"
   "abonelik|Abonelik (Paywall)|-mpStartParent YES -mpOpenPaywall YES"
+  "profil-avatar|Profilini düzenle (avatar)|-mpStartTab corner -mpOpenAvatarPicker YES"
+  "menu|Menü|-mpStartTab home -mpOpenMenu YES"
+  "okuma-yolculugu|Okuma yolculuğum|-mpStartTab home -mpOpenJourney YES"
+  "rozetlerim|Rozetlerim|-mpStartTab home -mpDemoLibrary YES -mpOpenKidPage badges"
+  "cikartma-albumu|Çıkartma albümüm|-mpStartTab home -mpDemoLibrary YES -mpOpenKidPage stickers"
+  "yeni-kelimeler|Yeni kelimelerim|-mpStartTab home -mpDemoLibrary YES -mpOpenKidPage newWords"
+  "masal-haritam|Masal haritam|-mpStartTab home -mpDemoLibrary YES -mpOpenKidPage storyMap"
+  "masal-ailem|Masal ailem|-mpStartTab home -mpDemoLibrary YES -mpOpenKidPage family"
+  "kitaplik-renklerim|Kitaplık renklerim|-mpStartTab home -mpDemoLibrary YES -mpOpenKidPage decor"
   "tasarim-katalogu|Tasarım sistemi kataloğu|-mpDesignSystemCatalog YES"
 )
 SIZES=("normal|large" "en-buyuk-yazi|accessibility-extra-extra-extra-large")

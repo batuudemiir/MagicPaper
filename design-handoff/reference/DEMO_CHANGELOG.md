@@ -140,6 +140,41 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-26 · claude/project-thread-4oo21x · Ana sayfa, Profil ve Kitaplık sadeleşti
+
+- Ne değişti (Batuhan'ın UX notları): ana sayfa, Profil ve menü sayfalarının (`MPSkyPage`) üstündeki mor gök gradienti kalktı; başlıklar düz kâğıtta, koyu yazıyla. İrem'in ana sayfa öğeleri ve dizilimi kaldı (menü, zil, arama, selam, üç bilgi kartı, bu akşamın kartı, "Yeni bir masal yaz", devam eden seri). Selam artık saate göre ("İyi akşamlar, İrem").
+- Ana sayfa: bu akşamın kartı boyalı kapak varsa üstünde kapak resmiyle kahraman öğe (`HomeTonightBoard.cover`); altına Ragi'siz "Okuma yolculuğum" kartı (`ReadingJourneyWidget(showsRagi: false)`) ve Masallar'dan "Bu haftanın seçkisi" rafı eklendi.
+- Zil çalışıyor: yalnızca Profil sekmesine geçiyordu; artık "Yenilikler" sheet'ini açar (`HomeNews`, `HomeNewsSheet`, `MPSheetRoute.news`): yeni rozet, günü gelen seri bölümü, son yedi günün yeni Original masalları, haftanın seçkisi. Görülmemiş yenilik varsa zilde marka noktası; liste açılınca söner. Push yok.
+- Kitaplık: "Kaldığın yerden" kartları yerine "Yarım kalanlar" rafı (`LibraryHalfReadCover`, kapağın altında ince ilerleme çizgisi); çipler üçe indi (Tümü · Masallarım · Klasikler, iki tür de varsa; `LibraryFilter.stories`); sıra menüsü kalktı; kapak duvarı iki sütun.
+- `AGENTS.md` tasarım yasası: mor gök istisnası yalnızca gündüz masal sonunda (`endingSky`) kaldı. `homeSky*` tokenları yerinde (testler ve masal sonu okuyor).
+- Bilerek değişmedi: Masallar sekmesi, alt çubuk (ayrı iş kolu), masal sonu.
+- Test: Linux'ta yazıldı; `Scripts/design_law_check.sh` temiz. Derleme, birim testleri ve simülatör görüntüleri Mac'te ayrıca alınacak.
+- Dosyalar: `HomeView.swift`, `MPHomeBoard.swift`, `HomeNews.swift` (yeni), `HomeNewsSheet.swift` (yeni), `MPRouter.swift`, `ContentView.swift`, `KidCornerView.swift`, `MPSkyPage.swift`, `CollectionViews.swift`, `ReadingJourneyWidget.swift`, `LibraryView.swift`, `LibraryComponents.swift`, `LibraryShelfModel.swift`, `LibraryShelfModelTests.swift`, `AGENTS.md`.
+### 2026-11-26 · claude/project-thread-lr0adx, commit bu kayıtla · Kompakt okuyucu, kapak ilk yaprak, uyku modu kapalı
+- Okuyucu: alt kontrol çubuğu olağan yazıda tek satır (geri · sayfa + ilerleme · sesli oku simgesi · ileri); metne ayrılan alan 132 pt yerine 80 pt kaybediyor. En büyük yazı boyutlarında eski iki satır kaldı.
+- Okuyucu: metin üst kontrollerin gerçek ölçüsünün altından başlar (`ReaderPageLayout.topChromeClearance`). Yaprak, okuyucunun üst güvenli alanını modelden alır (`readerSafeTop`); sayfa denetleyicisi güvenli alanı yaprağa iletmezse eksik kalan eklenir, uzun metin sol üstteki kapatın altına akmaz.
+- Okuyucu: kapak her kitabın ilk yaprağı. Rafla aynı sıra: set kapağı (`mpKitCoverAsset`), Günlük kapağı, görselli masalın kendi kapak dosyası, yoksa kâğıt mozaik. Önceden set kapaklı ve görselli masallar doğrudan 1. sayfadan açılıyordu. Kaldığı yerden açılış değişmedi.
+- Uyku modu ("İyi geceler" sonrası sesli okuma) kapalı: `MPFeatures.sleepModeVoiceReady = false`, uzaktan bayrak tek başına açamaz. Cihaz anlatıcısı robot gibi duyuluyor (Batuhan). Kod silinmedi; giriş noktaları mevcut bayrakla gizleniyor, "İyi geceler" okuyucuyu kapatır.
+- Seri masal: "Oku" düğmesi bölüm satırında harf harf alt alta kırılıyordu. Sebep: `MPButton` birincil düğmeye 220 pt taban genişlik veriyordu, küçük boyutta da. Küçük düğmede taban kaldırıldı (tek kullanıcısı bu satır); satırda düğme ve "Yarın" kendi genişliğini korur.
+- Cihaz anlatıcısı kapalı (`MPFeatures.deviceNarration = false`, Batuhan'ın onayıyla): okuyucudaki "Sesli oku", kapaktaki "Kim okusun?" seçimi ("Ragi okusun"), kelime kartındaki dinle düğmesi, ayarlardaki "Sesli okuma" ve "Okuma hızı" gizli; sayfa kendiliğinden okunmaz. Kayıtlı ses (ailenin sesi, stüdyo seslendirmesi) olan sayfada düğme ve okuma yerinde; "Sesli oku" artık stüdyo kaydını da çalar (önce yalnız ailenin sesini).
+- Test: Xcode bu ortamda yok, derleme ve testler çalıştırılmadı; CI (ios-build) koşacak. Testler yeni düzene göre güncellendi (`ReaderPageCompositionTests`, `ReaderStoryMappingTests`, `StalledStoryTests`). `DesignSystemSnapshotTests.testSnapshotReaderPageOnEveryPaper` referansları Mac'te yenilenmeli (metin dikeyde kaydı). Simülatörde görülmedi. `Scripts/design_law_check.sh` temiz.
+- Dosyalar: `StoryReader/ReaderChrome.swift`, `ReaderWordCard.swift`, `MPSheets.swift`, `ReaderPageComposition.swift`, `StoryPageView.swift`, `StoryLeafView.swift`, `StoryReaderModel.swift`, `StoryReaderView.swift`, `ReaderStory.swift`, `StoryCover.swift`, `MPFeatures.swift`, `Pastel/MPButtons.swift`, `Series/SeriesView.swift`.
+### 2026-11-27 · main, birleştirme commit'i · Hazır mısın? düzeni; açılış beyaz ekran ölçümü
+
+- Ne değişti: `LittleConfirmStep` kartlar ve "Başla" başlığın altındaki boşlukta dikeyde ortada (eskiden sayfanın üstüne yığılıyordu); mod adı kelime ortasından kırılmaz (`LittleCardTitle`: sığarsa tek satır, sığmazsa kelime başına satır, gerekirse küçülür). Dal `codex/bes-arkadas/cocuk-akisi-2` (3c17a8c1, 29e61d1b).
+- Bilerek değişmeyen: okul öncesi "önce arkadaş" yolunda Masal ailem kişisi isteğe eklenmez (Batuhan: "şimdilik böyle kalsın"; eklenirse istek P56'dan eski motora düşer). Arkadaş tanıtım cümleleri ve sıra onayda, dokunulmadı.
+- Test: dalda tam birim paketi 1251 test, 0 hata, 1 atlandı (iPhone 17 Pro sim); son düzeltmeden sonra `LittleFriendFirstTests` 13/0. Ekran: `cocuk-akisi-ekranlar/v2/` SE, 16, Pro Max; açık/koyu/en büyük yazı (ekran tek başına çizildi, üst Geri ve ilerleme çizgisi yok; uygulama yalnız açık temada).
+- Açılış ölçümü (kod değişmedi): iPhone SE simülatöründe ilk açılış ~9,5 sn, bunun ~6 sn'si uygulama kodundan önce (158 MB `MagicPaper.debug.dylib`, -Onone; dyld + objc sınıf kaydı). Sıcak açılışta uygulamanın kendi işi ~0,6 sn (`FirebaseApp.configure` → Auth + anahtar zinciri, ana iş parçacığında); P56 yükü arka planda.
+
+### 2026-11-26 · claude/project-thread-mk1m05 · Kitap oluşturma akışı kısaldı, ses kaydı altyapısı, hareketli "Masal yazılıyor"
+- Okul öncesi "önce arkadaş" yolu tek sayfa: Kim gelsin? → {Arkadaş} ile ne yapalım? → Kitap oluştur. Seçim yapılınca sıradaki soru altta açılır ve sayfa oraya kayar; seçimler yukarıda seçili kalır, dokunarak değişir. Geri adımı yok, sol üstte X (Batuhan, 26 Kasım 2026).
+- Konu adımı ("Nereye gidelim?", "Neyi öğrenelim?") bu yoldan kalktı: istek her zaman beşliye gider, seçilen arkadaş masalda kalır. Ebeveyn akışındaki konu adımı bilerek değişmedi.
+- "Hazır mısın?" sorusu ve "Hazırsan Başla'ya dokun." kalktı; son bölüm tek cümle ("Kestane ile maceraya çıkıyoruz!") ve "Kitap oluştur" düğmesi. "Kitap oluştur" dil kuralının yazılı istisnası (AGENTS.md, allowlist).
+- Ses: her sesli cümle `MPVoiceLine` (dosya adı + metin). `DesignSystem/Sounds/Voice/<ad>.m4a|mp3` pakette varsa o çalar, yoksa cihaz sesi. 29 satırlık liste `docs/SESLENDIRME.md` (ElevenLabs için); arkadaş tanıtımları ve sıra onay bekliyor.
+- 21 · Masal yazılıyor: arkada moda göre süzülen kâğıt yıldızlar, açılan defter kapağı, her adımda çevrilen sayfa, adım noktaları yerine yıldız yolu, dönerek gelen kapak ve gündüz bir kez kâğıt yıldız patlaması. Sıra, süre ve metin (`StoryPreparationScript`) değişmedi. Hareketi Azalt'ta hepsi durur ya da çapraz geçiş.
+- İçinde yerel main'deki iki düzeltme yeniden uygulandı (3c17a8c1 Başla ortası, 29e61d1b kelime kırılmaması); `LittleCardTitle` artık mod kartlarında.
+- Test: Linux'ta tasarım yasası denetimi temiz. Derleme ve birim testleri Mac'te koşulacak (bu kayıt yazılırken koşulmadı).
+
 ### 2026-11-26 · codex/bes-arkadas/claude-uygulama@62e39224 · P56 v4 pininin uygulama tarafı
 - Codex'in motor pini 87c8ea0 (v4, `v3SHA256` tarihsel) hatta birleşti; uygulama paketi v4 baytları (`cmp` eşit, SHA c06a5dfc…), v3 kopyası çıktı.
 - `P56SnapshotStore` v1–v4'ü tanır; testler etkin pini `P56PinnedSource`'tan okur, tarihsel v1/v2/v3 SHA'ları ayrı denetlenir.
@@ -170,6 +205,44 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 
 ### 2026-11-26 · codex/bes-arkadas/codex-motor@024b8a5 · Onaylı v3 motor pini ve iki dalga hazırlığı
+
+### 2026-11-26 · main, commit bu kayıtla · 5 görüntü testinin referansları yenilendi
+- `DesignSystemSnapshotTests`'te eskimiş 5 test (düğmeler, seçim satırları, kahraman kartı, durum görünümü, beş kâğıtta okuyucu sayfası) iPhone 17 Pro (iOS 27) simülatöründe yeniden kaydedildi; 13 PNG. Bölüm ve sekme başlığı referansları değişmedi.
+- Görülen fark bilinçli tasarım değişiklikleri: örneğin devre dışı düğme sıcak griden soğuk lavanta griye geçmiş. Kod değişmedi.
+- Test: kayıt koşusundan sonra doğrulama koşusu 7 test, 0 hata.
+
+### 2026-11-26 · main@30ab1db7 · Beşli Debug'da açık; tam paket ve iPhone 16 kurulumu
+
+- Ne değişti: beş arkadaş pilotu Debug'da varsayılan açık, `-mpFiveFriendsPilot NO` kapatır, Release kapalı, birim testlerde varsayılan bugünkü akış (919835f1, yeni test `testDebugPilotIsOnByDefaultAndLaunchArgumentWins`). `LittleFriendFirstTests` claude-uygulama'nın async yükleyicisine uyarlandı (30ab1db7); birleşmeden sonra derlenmiyordu.
+- Test: main@30ab1db7 tam birim paketi: 1251 test, 1 atlandı, 13 hata, hepsi `DesignSystemSnapshotTests`'in 5 testinde (bilinen eski görüntüler, başka oturum yeniden kaydedecek). Başka düşen yok; 44 çocuk akışı testi ve `StoryRuntimeRouterTests` geçti.
+- Debug derlemesi Batuhan'ın iPhone 16'sına kuruldu ve açıldı. Push yok. Koyu mod, en büyük yazı, SE ve Pro Max görüntüleri alınmadı.
+
+### 2026-11-26 · main@b6865885 · Karakter kartları ve masal yolu görselleri main'e; son test disk yüzünden düştü
+
+- Ne değişti: `codex/karakter-kartlari` (1b59b69b, içinde `codex/cocugun-masal-yolu-gorselleri` b6d40b4d) main'e `--no-ff` (b6865885); çakışma yalnız bu günlükte. `SpecialDayTests` yardımcısı `contentSource` taşıyor (131bf55f). v3 motor pini 024b8a5 claude-uygulama ile zaten geldi; codex-motor'un v4/Dalga işi alınmadı.
+- Test: b6865885 üzerinde tam paket derlenemedi: "No space left on device" (disk 306 MB). Son geçerli sonuç 6a725c0a'da (1242 test, 5 bilinen DesignSystemSnapshotTests + 1 SpecialDay; 44 çocuk akışı testi 0 hata). Telefona kurulum yapılmadı. Push yok.
+
+### 2026-11-26 · main, birleştirme commit'i · claude-uygulama (v3 + kod düzeltmeleri) main'e alındı (Batuhan isteği)
+
+- Ne değişti: `codex/bes-arkadas/claude-uygulama` (9eee71b3: v3 P56 paketi uygulama tarafı + beşli kod düzeltmeleri) yerel main'e `--no-ff` ile birleşti. Batuhan: "claude-uygulama dalını yerel main'e birleştir" (26 Kasım 2026).
+- Çakışmalar: `StoryChoiceSource.swift` protokol ve eski kaynak: iki taraf da tutuldu (`isReady`/`waitUntilReady` + okul öncesi `pilotFriendChoices`/`pilotModes`/`legacyWritableCompanionIDs`). `MPCompanionPortrait.swift` yalnız yorum. Bu günlük ve `docs/ortak/claude-durum.md`: iki tarafın kayıtları, satır kaybı yok.
+- Önceki birleşmenin (6a725c0a) tam paket sonucu: 1242 test, 1 atlandı, 6 testte 14 hata: `DesignSystemSnapshotTests` 5 (bilinen eski görüntüler) + `SpecialDayTests.testASpecialDayStoryIsNotContinuedAndDoesNotRecall` (test yardımcısı `contentSource` geçmiyordu; entegrasyondaki `seriesAvailable(from:)` artık tarihî kataloğu istiyor; ayrı commit'te test düzeltildi). 44 çocuk akışı testi 0 hata.
+- Push yok; telefona kurulum Batuhan'da (toplu).
+
+### 2026-11-26 · main, birleştirme commit'i · Beş arkadaş entegrasyonu main'e alındı (Batuhan kararı)
+
+- Ne değişti: `codex/bes-arkadas/entegrasyon` (e6580f7: B hattı P56 + okul öncesi "önce arkadaş" akışı) main'e `--no-ff` ile birleşti. Batuhan telefonunda denemek için istedi (26 Kasım 2026). Beş arkadaş yolu bayrakla kapalı; Debug'da `-mpFiveFriendsPilot YES` ile açılır.
+- Çakışmalar elle çözüldü: `TopicStep.swift` kilit notu: entegrasyonun `showsLockNote` anahtarı + main'in "Kilitli olanlar şimdilik kapalı." cümlesi (değer algısı: çocuğa satış yok). `SeriesTests.swift` yalnız yorum, main'inki kaldı. Bu günlük: iki tarafın kayıtları birleştirildi, satır kaybı yok.
+- Bilerek değişmeyen: push yok; Codex'in v3 düzeltme dalı bu birleşmede yok.
+- Test: bu kaydın yazıldığı anda koşulmadı (ortak derleme klasörü başka oturumda, disk %99). Sonuç ayrı kayıtta.
+
+### 2026-11-26 · codex/bes-arkadas/cocuk-akisi@37e135d · Okul öncesi masal yazma: önce arkadaş
+
+- Ne değişti: beş arkadaş pilotu açıkken okul öncesi çocuk (`KidLevel.little`, çocuk modu) masal yazmaya arkadaştan başlıyor: Kim gelsin? (beş gerçek portre + Sürpriz, sabit sıra Kestane, Böğürtlen, Tarçın, Yıldız, Simit; dokununca karo büyür, arkadaş kendini bir cümleyle tanıtır, ~1 sn sonra geçer) → {Arkadaş} ile ne yapalım? (yalnız P56'nın o arkadaşla yazabildiği modlar, akşam uyku başta) → konu (Fark etmez ilk sırada ve sesli, kilit notu yok) → Hazır mısın? (arkadaş + mod, büyük Başla). Masal yalnız Başla ile yazılıyor. Sorular `MPSpeech` ile bir kez okunuyor, sağ üstte 80 pt tekrar düğmesi; geri oku 80 pt. Konu seçilince istek eski motora gidiyor (K4); arkadaş eski katalogda o konuda yazılabiliyorsa korunuyor, yoksa onay ekranı Sürpriz gösteriyor.
+- Kararlar `StoryCreationSteps.LittlePath` / `LittleCast`'te; cümleler `LittleCreationCopy`'de; ekranlar `LittleFriendSteps.swift`. Kaynak protokolüne `pilotFriendChoices`, `pilotModes`, `legacyWritableCompanionIDs` eklendi.
+- Bilerek değişmeyen: ebeveyn modu, büyük kademe, ana sayfadan modla açılış, Masal ailem'le açılış, beşli kapalıyken okul öncesi akış (simülatörde doğrulandı). Hazırlık ekranına dokunulmadı.
+- Test: `LittleFriendFirstTests` (13) + `StoryCreationStepsTests`, `CompanionStepChoicesTests`, `P56CompositionPathTests`, `CompanionPortraitCatalogTests`: 44 test, 0 hata (iPhone 17 Pro simülatörü). Tam test paketi koşulmadı. Simülatörde `-mpDemo YES -mpFiveFriendsPilot YES` ile ekranlar görüldü; koyu mod, en büyük Dynamic Type, iPhone SE ve Pro Max görüntüleri alınmadı.
+- Dosyalar: `StoryCreationSteps.swift`, `StoryCreationFlow.swift`, `TopicStep.swift`, `LittleFriendSteps.swift` (yeni), `LittleCreationCopy.swift` (yeni), `StoryChoiceSource.swift`, `FiveFriendsChoiceSource.swift`, `MPSpeech.swift` (perdeli `speak`), `MPCompanionPortrait.swift` (boyut), `MPLayout.swift` (`kidBackLarge`, `littlePortrait`), `LittleFriendFirstTests.swift` (yeni).
 
 ### 2026-11-26 · codex/bes-arkadas/claude-uygulama@7515b7f + bfde72f · Beşli kod düzeltmeleri ve v3 pininin uygulama tarafı
 - Yönlendirici kilidi: kilit yalnız yükleme durumunu korur, paket kilit dışında okunur; `decide` async, `decideIfReady` beklemez. "Masalda kimler olsun?" ve "Kim gelsin?" beşliyi hemen gösterir; okuma bitmeden seçilirse kısa bekleme (düğmede/ızgarada dönen işaret) ve son listeyle yeniden denetim.
@@ -211,26 +284,35 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Tam kaynak bağlamı/poz/eylem art-handoff.json içinde; atomic/görsel/yayın onayı yok. Dosyalar: yeni iki v3 Content klasörü, P56V3 loader/test/diagnostic, metadata+dispatch, research/v3, plan, Codex durum ve proje hafızası. Main/push/entegrasyon değişmedi.
 
 
-### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · B hattı iç pilot karşı incelemesi kabul
+### 2026-11-26 · codex/karakter-kartlari · Beş arkadaşın karakter kartları
 
-- Claude 19894d6 ucu, cdc40ed entegrasyon tabanına karşı incelendi; kaynak izi, fallback rotası ve arşiv sonucu bulguları kapandı. K-G otomatik recall kararı okundu ve kabul kaydına alındı. İç pilot için birleşme engeli yok; birleştirme Claude hattında.
-- Uygulama v2 kaynak byte'ları ve SHA motorla bağımsız karşılaştırıldı: eşit; diff check temiz. Test/simülatör tekrar çalıştırılmadı. Claude 132/0 (1 skip) ve seçim 8/0 kanıtı bağımsız koşu gibi sunulmadı.
-- Yayın öncesi portre, görsel/editoryal kabul, Release performans ve eski istemci provenance sınırları açık. App kodu, main ve yayın bayrağı değişmedi.
-- Dosyalar: B_LINE_REVIEW_ACCEPTANCE.md ve Codex durum belgesi.
+- Onaylı b6d40b4 kaynağıyla beş özet kart, dönüş/ifade/aksesuar levhaları, paletler, yap ve yapma örnekleri, seçim simgeleri ve mod görselleri hazırlandı. Simit baş-omuz seçimine sol boşluk eklendi.
+- Ortak boy, siyah siluet ve renk levhaları eklendi. Altı üretim kaydına istemler ve ImageGen çıktı kimlikleri yazıldı. Araç sayısal seed sağlamadı.
+- 68 PNG açıldı. Levha boyutları, seçim PNG’lerinin alfa kanalı, beş palet ve güncel ZIP doğrulandı. Bölüm önizlemeleri gözle incelendi. Simülatör ve uygulama testleri çalıştırılmadı.
+- Dosyalar `design-handoff/character-cards/`, Simit baş-omuz asset seti ve görsel ZIP paketi altında.
 
+### 2026-11-26 · codex/karakter-kartlari · Karakter kartları öncesi görsel düzeltmeleri
 
-### 2026-11-25 · codex/bes-arkadas/entegrasyon@cdc40ed · Kabul edilen v2 motoru entegrasyonda
+- Böğürtlen öğrenme görselinde açık patisindeki üç böğürtleni sayıyor. Beş şeffaf baş-omuz görseli 1024 × 1024 px boyutuna getirildi.
+- PNG boyutu, alfa kanalı ve 26 dosyalık ZIP doğrulandı. Uygulama testi ve simülatör çalıştırılmadı.
 
-- Claude 21d4fbd karşı incelemesinin kabulüyle C2 v2/C3 teslimi 455aef9, --no-ff ile cdc40ed'ye birleşti. Birleşme ağacı teslim ağacıyla birebir eşit; çakışma yok. b099d9b, main ve üretim değişmedi.
-- B1 provenance düzeltmesi salt okunur incelendi, önceki HIGH bulgu kod düzeyinde kapandı. Claude'a v2 paket geçişinin önü açıldı; mostProtective altında 15 hücrenin hiçbirinin boş olmadığı mevcut test kanıtıyla yanıtlandı. Fallback final route düzeltmesi hatırlatıldı.
-- Yeni test/build çalıştırılmadı: motorun önceki 65/1 skip/0 hata sonucu geçerli; uygulamanın yeni v2/provenance testleri B7 son kapısında bekleniyor. Dosya: Codex durum belgesi; app dosyaları değiştirilmedi.
+### 2026-11-26 · codex/cocugun-masal-yolu-gorselleri · Son portre ve poz düzeltmeleri
 
+- Böğürtlen’in kapalı gözlü uyuklama ve üç böğürtlen sayma çizimleri ile Yıldız’ın portre ve üç mod çizimindeki yumuşak konturlar güncellendi.
+- Beş baş ve omuz kırpması ayrı asset setlerine eklendi. Galeride “Kim gelsin?” bu portreleri, siyah siluet karşılaştırması tam gövdeleri kullanıyor. ZIP her iki portreyi içeriyor.
+- Şeffaf PNG’ler, 64 px önizleme, galeri bağlantıları ve 26 dosyalık ZIP kontrol edildi. Uygulama testi ve simülatör çalıştırılmadı.
 
-### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · B hattı hedefli karşı incelemesi
+### 2026-11-26 · codex/cocugun-masal-yolu-gorselleri · Beş arkadaş portreleri ve mod çizimleri v2
 
-- Claude uygulama hattının beaf054 ucunda mapper, router, writer, kaynak arşivi ve fallback yolu okundu. Sayfa kaynak izinin kaybı ve yanlış fallback rota kaydı düzeltme olarak raporlandı; v2 paket geçişi, performans ve recall sözleşme sorusu yazıldı.
-- Uygulama kodu değiştirilmedi; test/simülatör çalıştırılmadı. Claude'un 119/0 sonucu bağımsız tekrar doğrulanmış sayılmadı. Birleşme/yayın kabulü verilmedi.
-- Dosyalar: docs/research/five-friends-p56-runtime/v2/B_LINE_REVIEW.md ve docs/ortak/codex-durum.md. Motor teslimi 455aef9, üretim kapalı.
+- Beş portreye v2 asset setleri eklendi. Renkler, imza eşyaları ve siluetler karaktere göre ayrıldı. Galerideki 15 mod görseli yeni poz ve ışıklarla güncellendi. Sürpriz görseli korundu.
+- Galeriye 64 px renkli portre ve siyah siluet karşılaştırması eklendi. 20 yeni PNG tam çözünürlükte açıldı. Alfa kanalları, galeri bağlantıları, görsel önizleme ve 21 dosyalık ZIP denetlendi. Uygulama testi ve simülatör çalıştırılmadı.
+- Dosyalar `MagicPaper/Assets.xcassets/CompanionPortraits/` ve `design-handoff/proposals/2026-11-26-cocugun-masal-yolu/` altında.
+
+### 2026-11-26 · codex/karakter-kartlari · Portre ve boy levhası düzeltmeleri
+
+- Tarçın’ın tam gövde portresindeki bacaklar koyu kahveye alındı. Tarçın ve Simit’in baş-omuz portrelerinin sol ve alt kenarına yumuşak alfa geçişi eklendi. Boy levhasında ikisi bel çizgisine hizalandı.
+- Seçim PNG’lerinin üç boyutu, alfa kanalları, boy levhası ve görsel ZIP doğrulandı. Uygulama testi ve simülatör çalıştırılmadı.
+- Asset kataloğu, karakter kartları, ortak levhalar ve Finder kopyası güncellendi.
 
 ### 2026-11-25 · codex/bes-arkadas/entegrasyon@7d1bb4e · B hattı (uygulama entegrasyonu) entegrasyona birleşti
 
@@ -348,6 +430,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Bilerek değişmeyen: kod, içerik, test. Kod C4 teslimini ve entegrasyon dalını bekliyor.
 - Test çalıştırılmadı, simülatör yok (yalnız belge).
 - Dosyalar: B hattı planı, ortak çalışma planı (sahiplik satırı), `docs/ortak/claude-durum.md`, bu kayıt.
+
 ### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · C2 v2 ve kaynak bağlı güvenlik teslimi
 
 - Ayrı runtime-v2: 90 kitap, 720 sayfa, 15 hücrede 6 kitap; multi-corpus exact kaynak/olay soy zinciri doğrulaması. Etkin sürüm ve pin güncellendi; v1 baytları ve tarihsel referansları korundu.
@@ -431,6 +514,27 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Onaylı grup+marka referanslı built-in image_gen ile5ayrı6görünümlü karakter sayfası; Kestane çiftburun hatası editv2 ile düzeltildi. PNG/tekdosyaHTML/ZIP, tam prompt ve SHA kayıtları character-details klasöründe.5seçiliPNGdecode ve görsel inceleme yapıldı; teknik ortografik model veya runtimeasset onayı değildir. App/motor değişmedi; test/simülatör çalıştırılmadı.
 
 
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · B hattı iç pilot karşı incelemesi kabul
+
+- Claude 19894d6 ucu, cdc40ed entegrasyon tabanına karşı incelendi; kaynak izi, fallback rotası ve arşiv sonucu bulguları kapandı. K-G otomatik recall kararı okundu ve kabul kaydına alındı. İç pilot için birleşme engeli yok; birleştirme Claude hattında.
+- Uygulama v2 kaynak byte'ları ve SHA motorla bağımsız karşılaştırıldı: eşit; diff check temiz. Test/simülatör tekrar çalıştırılmadı. Claude 132/0 (1 skip) ve seçim 8/0 kanıtı bağımsız koşu gibi sunulmadı.
+- Yayın öncesi portre, görsel/editoryal kabul, Release performans ve eski istemci provenance sınırları açık. App kodu, main ve yayın bayrağı değişmedi.
+- Dosyalar: B_LINE_REVIEW_ACCEPTANCE.md ve Codex durum belgesi.
+
+
+### 2026-11-25 · codex/bes-arkadas/entegrasyon@cdc40ed · Kabul edilen v2 motoru entegrasyonda
+
+- Claude 21d4fbd karşı incelemesinin kabulüyle C2 v2/C3 teslimi 455aef9, --no-ff ile cdc40ed'ye birleşti. Birleşme ağacı teslim ağacıyla birebir eşit; çakışma yok. b099d9b, main ve üretim değişmedi.
+- B1 provenance düzeltmesi salt okunur incelendi, önceki HIGH bulgu kod düzeyinde kapandı. Claude'a v2 paket geçişinin önü açıldı; mostProtective altında 15 hücrenin hiçbirinin boş olmadığı mevcut test kanıtıyla yanıtlandı. Fallback final route düzeltmesi hatırlatıldı.
+- Yeni test/build çalıştırılmadı: motorun önceki 65/1 skip/0 hata sonucu geçerli; uygulamanın yeni v2/provenance testleri B7 son kapısında bekleniyor. Dosya: Codex durum belgesi; app dosyaları değiştirilmedi.
+
+
+### 2026-11-25 · codex/bes-arkadas/codex-motor, commit yok · B hattı hedefli karşı incelemesi
+
+- Claude uygulama hattının beaf054 ucunda mapper, router, writer, kaynak arşivi ve fallback yolu okundu. Sayfa kaynak izinin kaybı ve yanlış fallback rota kaydı düzeltme olarak raporlandı; v2 paket geçişi, performans ve recall sözleşme sorusu yazıldı.
+- Uygulama kodu değiştirilmedi; test/simülatör çalıştırılmadı. Claude'un 119/0 sonucu bağımsız tekrar doğrulanmış sayılmadı. Birleşme/yayın kabulü verilmedi.
+- Dosyalar: docs/research/five-friends-p56-runtime/v2/B_LINE_REVIEW.md ve docs/ortak/codex-durum.md. Motor teslimi 455aef9, üretim kapalı.
+
 ### 2026-11-22 · codex/design-system-catalog, commit yok · K0–K1 kaynak koruması ve P56 editoryal korpusu
 
 - Tam kaynak SHA-256/engine davranış kimliği, kayıpsız origin/seri metadata'sı, atomik katalog arşivi, exact tarihsel resolver ve eski istemci sync koruması uygulandı. Kaynak kanıtı olmadan aynı semver güncel kaynak sayılmaz; kayıtlı metin ve hazırlanmış bölümler korunur. Tarihsel doğrulanmış eşlemeler henüz boş, bu kitaplarda yeni devam/yeniden yazım desteklenmiş sayılmıyor.
@@ -482,6 +586,177 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Takıma paylaşılabilir tekdosya HTML,PNG,karakterverisi ve tam prompt kaydı `design-handoff/proposals/2026-11-22-magicpaper-characters/` içinde. HTML beşkart/gömülüresim kontrolü geçti; çizim görsel incelendi. App/motor/karakterseçimi değişmedi; app test/simülatör çalıştırılmadı.
 
 
+### 2026-11-25 · claude/project-thread-7igvjy-tests (PR) · Kırık yedi testin ayıklanması
+
+CI (#1) ilk kez koştu: 1131 test, 7 test kırık (görüntü testleri CI'da atlanıyor). Her biri ayrıldı:
+
+- `InterestProfileTests`: beklenti eski. H2b, Sporlar ve dünya satırları (19 Kasım) listeyi 10'dan 15'e çıkardı (Spor, Meslekler, Tarih, Ülkeler, Şehirler); o günkü test güncellemesi main'e ulaşmamıştı.
+- `SeriesManagerTests.testAModeNoContinuationServesMayNot`: beklenti eski. H4 9-10'a devam ekledi; test artık 9-10'u "var", motorun hiç tanımadığı bandı ("11-12") "yok" diye sınıyor.
+- `LibraryCutoverTests` ×2: test hatası. `JSONEncoder` sözlük anahtar sırasını sabitlemiyor; aynı içerik farklı bayt ("967 bytes ≠ 967 bytes"). Karşılaştırma bayt yerine JSON ağacıyla.
+- `ReadingEventTests.testDeleteProfileReachesTheLiveStores`: test hatası. Boş simülatörde tek profil kalıyordu, `deleteProfile` son profili silmez. Kalan bir kardeş profil eklendi.
+- `IllustratedBookFlowTests.testWithASavedAvatarTheRuleAPagesGetScenes`: seed kayması (ikinci kez): havuz büyüdü, aynı seed çizimi olmayan çarşıya düştü. Varsayılan masalın mekânı ormana sabitlendi.
+- `OriginalPageIllustrationTests`: **gerçek içerik açığı.** Kar Tepesi'ndeki Yeşil Işık (21 Kasım'da yayında) 9 sayfa, hiç sayfa resmi yok; öbür iki Original'in her sayfası resimli. Test artık sabit 2 masal / 7 sayfa / 14 resim yerine yayımlanan üç masalı ve her masalın kendi sayfa sayısını sınıyor; kural ("her sayfanın kendi resmi") aynen duruyor, bu yüzden test resimler gelene ya da Batuhan karar verene kadar kırmızı kalır.
+- Uygulama kodu değişmedi. Test çalıştırılmadı (Linux); doğrulama PR'ın CI koşusu. `DesignSystemSnapshotTests` ×5 (referans görüntüler eski) bu PR'da yok: iPhone 17 Pro'da yeniden kayıt Mac ister.
+- Dosyalar: `MagicPaperTests/{InterestProfileTests,SeriesTests,LibraryCutoverTests,ReadingEventTests,IllustratedBookFlowTests,OriginalPageIllustrationTests}.swift`.
+
+### 2026-11-25 · claude/project-thread-7igvjy (PR) · CI yeniden test koşuyor
+
+- Sorun: `ios-build.yml` `actions/upload-artifact@v3` kullandığı için GitHub işi başlamadan reddediyordu (en az son 15 main koşusu 5 saniyede düştü); test adımı hiç koşmuyordu.
+- `ios-build.yml` yeniden yazıldı: tek iş "Build and Test", `actions/cache@v4`, hata olunca `.xcresult` `upload-artifact@v4` ile indirilebilir. Aynı dalda yeni gönderim eski koşuyu iptal eder. İmzasız Release arşivi ve içi boş `deploy` işi kalktı (yayın Xcode Cloud'dan).
+- `test-build.yml` silindi: var olmayan `develop` / `feature/*` dallarını dinliyordu.
+- Yeni `Scripts/ci_placeholders.sh`: depoda olmayan `Secrets.xcconfig` ve `GoogleService-Info.plist` için boş/sahte dosya (gizli ayar varsa gerçek plist). Ana iş bunlarsız derlenemezdi. `ci_screenshots.sh` aynı bloğu artık bu betikten çağırıyor (davranış aynı).
+- Bilerek değişmedi: testler `TestPlan.xctestplan`'dan (StoryEngine paket testleri dahil); görüntü testleri ve UI testleri CI'da atlanmaya devam ediyor; Xcode Cloud betikleri.
+- Test: yerelde çalıştırılmadı (Linux). Doğrulama PR'ın kendi CI koşusu. Bilinen 12 kırık test (25 hata) bu PR'dan sonra CI'da kırmızı görünecek; ayrı PR'da düzeltilecek.
+- Dosyalar: `.github/workflows/ios-build.yml`, `.github/workflows/test-build.yml` (silindi), `Scripts/ci_placeholders.sh`, `Scripts/ci_screenshots.sh`.
+
+### 2026-11-25 · claude/project-thread-7igvjy-lint (PR) · Tasarım yasası denetimi CI'da
+
+- AGENTS.md'deki altı doğrulama grep'i (renk, gölge, boşluk, font, titreşim, dil) tek betikte: `Scripts/design_law_check.sh`. İsabet varsa satırları yazar, GitHub'da satıra not düşer ve 1 ile çıkar.
+- Bilinçli istisnalar tek listede: `Scripts/design_law_allowlist.txt` (kapak sanatı, `mpShadow`'un kendi gövdesi, geliştirici galerisi, dil grep'inin canlı olmayan üç dosyası).
+- Yeni iş `.github/workflows/design-law.yml`: her PR'da ve `main` / `irem` gönderiminde, `ubuntu-latest` (macOS dakikası harcamaz).
+- Mevcut ihlaller düzeltildi: `MPToast` boşlukları `MP.S`'e (yatay 16 → `x4`, dikey 13 → `x3`: toast 2 pt kısaldı; alttan 96 → `tabBarHeight + x5`, aynı), iki geliştirici önizlemesinde çıplak `.padding`.
+- AGENTS.md Doğrulama bölümüne betik ve CI satırı eklendi.
+- Test: betik Linux'ta koşturuldu: temiz; bilerek ihlal içeren geçici dosyayla üç kuralda yakaladı ve 1 ile çıktı. Uygulama derlenmedi (Linux); `MPToast` değişikliği simülatörde görülmedi.
+- Dosyalar: `Scripts/design_law_check.sh`, `Scripts/design_law_allowlist.txt`, `.github/workflows/design-law.yml`, `AGENTS.md`, `DesignSystem/MPSurfaces.swift`, `Screens/CoverSystem/MagicPaperCoverGalleryPreview.swift`, `Screens/StoryReader/PageTurn/MagicPaperPageTurnPreview.swift`.
+
+### 2026-11-24 · irem-aktarim (dal, bu kayıtla gelen commit) · İrem'in tasarımları uygulamaya aktarıldı
+
+- **Ne:** İrem'in 21-24 Kasım işi (`irem` dalı) inceleme bulgularıyla düzeltilerek `irem-aktarim` dalında. Tasarım belgesi `docs/superpowers/specs/2026-11-24-irem-tasarim-aktarimi-design.md`, plan `docs/superpowers/plans/2026-11-24-irem-tasarim-aktarimi.md`.
+- **Masal sonu:** "Bir masal daha" ve haftalık dakika kartı kalktı; tek eylem "Ana sayfaya dön" (Batuhan: masal bitirmek bir olay). Kazanılanlar `StoryEndingEarned.ids`.
+- **Ana sayfa:** başlık iki kat (`MP.C.homeSkyTop` + `homeSkyFade`): selam her kademede koyu gökte, Küçük kademede okunmuyordu. Başlıktaki el sallayan Ragi kalktı (tek Ragi akşam kartında). Akşam kartı metinleri `HomeTonightCopy`; "Bugün okudun" her zaman kitaplığa çağırır, "Bir tane daha?" yok. "Kısa ve sakin" yalnız yazı. Uyku düğmesi Lucide ay. "Yeni bir masal yaz" başlığındaki artı kalktı.
+- **Menü:** Ragi'siz, soru sheet başlığında (`KidMenuSheet`).
+- **Profil resmi:** Ragi pozları seçiciden çıktı (Batuhan: Ragi maskottur); Tarçın ve Kestane kaldı, eski `ragi-*` seçimi boş resme düşer.
+- **Ekran turu:** menü sayfaları ana sayfa olarak çekiliyordu. Kök neden `ContentView`'da `currentProfile` id'sinin `onChange(initial: true)`'i açılışta yığını boşaltıyordu; artık yalnız çocuk değişince.
+- **Kanun:** AGENTS.md ve kök CLAUDE.md'ye mor gök istisnası ve 24 Kasım kararları.
+- **Bilerek değişmedi:** Paywall yerleşimi, gece masal sonu, İrem'in mantık değişiklikleri (günün masalı her zaman ücretsiz, seri `.locked`, deneme uygunluğu), `Avatars/ragi-*` görselleri (kullanılmıyor, silinmedi), `AfterReader.create` yolu (artık çağıranı yok).
+- **Okuma yolculuğum:** "Okuma zamanı" kartı ve "Bu hafta N dakika" kalktı; `ReadingJourney` artık dakika taşımıyor (son incelemenin önemli bulgusu: çocuğa süre gösteriliyordu). Dakika yalnızca ebeveyn özetinde.
+- **Test:** MagicPaperTests 1138 test, 1 atlandı, 25 hata. Hataların hepsi 12 testte (DesignSystemSnapshot ×5, IllustratedBookFlow, InterestProfile, LibraryCutover ×2, OriginalPageIllustration, ReadingEvent, SeriesManager) ve aynı 12 test aynı 25 hatayla bu işten önceki commit'te (`34293b6`, İrem'in hâli) de başarısız: bu iş yeni hata getirmedi, eski hatalar ayrı turda. Yeni testler (`StoryEndingEarnedTests`, `HomeTonightCopyTests`, `ProfileAvatarTests`, `ReadingJourneyTests`) geçti. Simülatör: `Scripts/ci_screenshots.sh` yerelde, iPhone SE + iPhone 18 Pro Max, normal + en büyük yazı, 68 görüntü, kopya ya da boş yok; ana sayfa, menü, Masal ailem, Okuma yolculuğum, Profil ve menü sayfaları en büyük yazıda gözle bakıldı. Masal sonu turda yok (açılış kancası yok), simülatörde görülmedi. UI testleri koşulmadı. Kod bağımsız bir incelemeden geçti (bir önemli bulgu: Okuma yolculuğum'daki dakika, düzeltildi).
+- **Turda görülüp düzeltilenler:** menü sayfalarının başlığı en büyük yazıda beyaza taşıyordu (`MPSkyPage` iki kat gök); Profil'de "Büyükler için" karosu boştu (`lock.shield` eşlemesiz → Lucide `shield`).
+- **Açık:** `TonightState.readToday(canWrite:)` değeri artık kart tarafından okunmuyor. `AfterReader.create` ve "Önce masal" yolu ölü kod; ayrı turda temizlenmeli.
+- **Dosyalar:** `StoryEndingLeaf.swift`, `StoryLeafView.swift`, `StoryReaderView.swift`, `SeriesEndingSection.swift`, `HomeView.swift`, `MPHomeBoard.swift`, `MPTheme.swift`, `MPAppState.swift`, `KidMenuSheet.swift`, `ProfileAvatar.swift`, `ContentView.swift`, `ReadingJourney.swift`, `ReadingJourneyView.swift`, `AGENTS.md`; testler `StoryEndingEarnedTests`, `HomeTonightCopyTests`, `ProfileAvatarTests`, `ReadingJourneyTests`.
+
+### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Profil: tek Ragi, Okuma yolculuğum kartında
+
+- İrem'in son revizesi: kimlik kartının arkasından bakan el sallayan Ragi kalktı (başlık sıkılaşınca arkada kalıyordu); aynı Ragi çerçevesiz olarak Okuma yolculuğum kartına geçti, okuyan Ragi yüzü kalktı. Ekranda tek Ragi (yasa yeniden uyumlu).
+- Uygulama: `KidCornerView.identityBlock` yalnızca kart (`ragiPeek` kalktı); `ReadingJourneyWidget` solda `MascotImage(.waving)` (kukla hareketiyle, zeminsiz).
+- Önizleme: aynı düzen; kim okuyor ile kart arası 14 px. Headless Edge ile bakıldı. Uygulama testi çalıştırılmadı (Mac).
+
+### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Profil: okuyan Ragi yüzü, daha sıkı başlık
+
+- İrem'in kararı: iki Ragi de kalsın (README madde 13). Okuma yolculuğum kartında sevinçli Ragi ve sarı daire yerine okuyan Ragi'nin yüzü (`Avatars/ragi-reading`), zeminsiz, doğrudan beyaz kartta, daireye kırpılı.
+- "Profil" başlığı ile ilk beyaz kart arası daraldı: Ragi'nin kartın üstünden görünen payı 64 → 44 pt, göğün satır aralığı `lg` → `md`. Önizlemede Ragi uygulamadaki boyuta (96) indi.
+- Not: kartın yüzü `MascotImage` değil, avatar görseli (yüz kırpması); Ragi'nin hareket kuklası bu kartta yok. Yasa notu README madde 13'te.
+- Önizleme headless Edge ile açılıp bakıldı. Uygulama testi çalıştırılmadı (Mac).
+
+### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Profil'de Okuma yolculuğum kartı
+
+- İrem'in isteği: Okuma yolculuğum profilde "Büyükler için"in üstünde, kendi kartında, widget gibi önizlemeyle ve sayfadaki Ragi pozuyla görünsün.
+- Uygulama: `ReadingJourneyWidget` (yeni dosya) `ReadingJourney.live(for:)` ile beslenir; `KidCornerView` okuma günleri ve masallar değişince yeniler. Masal dünyam'daki "Okuma yolculuğum" satırı kalktı (menüde duruyor).
+- Kurallar aynı (ilke 7): okunmayan gün boş daire, "az kaldı" ya da geri sayım yok.
+- Bilinçli istisna: Profil'de iki Ragi (el sallayan + sevinçli). README madde 13.
+- Önizleme: `sayfalar.js` profilinde aynı kart (`pf-jr`), dokununca Okuma yolculuğum açılır. Headless Edge ile bakıldı. Uygulama testi çalıştırılmadı (Mac).
+
+### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Boş profil resmi: kullanıcı kendisi seçer
+
+- İrem'in isteği: varsayılan erkek çocuk büstü profil resmi olmasın; yeni hesaplardaki gibi boş dursun, çocuk kendisi seçsin.
+- Uygulama: `ProfilePhoto` (seçilen avatar ya da lavanta daire + beyaz siluet, siluet boyu `MP.G`'den). Kullanıldığı yerler: Profil kimlik kartı (boşken "+" rozeti ve "Profil resmini seç", seçilince kalem ve "Profilini düzenle"), "Kim okuyor?" çipleri (baş harfli renkli daire ve büst kalktı), Masal ailem kahraman kartı, "Profilini düzenle" penceresinin üst kısmı (seçim yokken).
+- Bilerek değişmeyen: kahraman dolabı ve kitap kahramanı (`HeroAvatarView`); seçilmiş avatarlar aynen.
+- Önizleme: `emptyPhoto()` (`avatar.js`), profil, çip, Masal ailem ve pencerede aynı boş resim. Headless Edge ile profil ve pencere açılıp bakıldı. Uygulama testi çalıştırılmadı (Mac).
+
+### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Masal ailem kahraman kartında avatar kayması
+
+- İrem'in bulduğu hata: önizlemede avatar seçiliyken Masal ailem'in kahraman kartında yüz 104 pt boyutuyla 72 pt'lik daireden taşıyordu. `app.css`: `.sk-av` içindeki yüz 64 pt ve kırpılı. Profil kartındaki seçili avatar da köşeli kare yerine daire (uygulamadaki gibi).
+- Uygulama: `FamilyCharactersView` kahraman kartı baş harf yerine profildeki yüzü gösterir (`HeroAvatarView`, seçilen avatar ya da kahraman; kurulmadıysa eski `MPAvatar`).
+- Önizleme bağlantısı: `&yuz=ragi-happy` avatar seçili başlatır. Headless Edge ile Masal ailem ve Profil avatar seçiliyken bakıldı. Uygulama testi çalıştırılmadı (Mac).
+
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Önizleme: menü sayfaları ve yeni Profil
+
+- İrem'in isteği: önizlemede (`design-preview`) menü sayfaları ve yeni profil de görünsün. Yeni `design-preview/app/sayfalar.js` (yükleme sırasında `yolculuk.js`'ten sonra) ve `app.css`'e `sk-*`, `pf-*` sınıfları.
+- Uygulamadaki `MPSkyPage`/`MPSkyIntro`'nun prototipi: Rozetlerim, Çıkartma albümüm, Yeni kelimelerim (Bu hafta / Tümü çalışır), Masal haritam, Masal ailem (karakter seçilince alt çubuk), Kitaplık renklerim (seç, al, kullan çalışır). Menüdeki satırlar ve profildeki satırlar bu sayfaları açar; geri düğmesi döner.
+- Yeni Profil (`KidCornerView`'un prototipi): gök, kim okuyor, kimlik kartı ve arkasından Ragi, üç bilgi kartı, Büyükler için, açık rozet vitrini ("Tümü"), Masal dünyam. Avatar seçici aynen açılır.
+- Doğrudan bağlantı: `?ekran=profil&sayfa=badges|stickers|words|map|family|decor`. Veriler örnektir.
+- Uygulama kodu bu kayıtta değişmedi (önceki iki kayıtta). Headless Edge ile profil ve altı sayfa açılıp bakıldı; gök kenarındaki sert renk çizgisi düzeltildi.
+
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Profil sekmesi ana sayfa diliyle
+
+- İrem'in isteği: profil diğer sayfalarla bütünlük sağlamıyordu; daha net, erişilebilir ve ana sayfaya uygun olsun, "Büyükler için" kalsın, rozetler Duolingo'daki gibi açık dursun ve "Tümü" Rozetlerim'e gitsin. `Screens/KidCorner/KidCornerView.swift` yeniden yazıldı.
+- Gök: "Profil", "Kim okuyor?" çipleri (seçili beyaz + çerçeve + onay; "Ekle" kesikli beyaz), kimlik kartı (96 pt avatar, kalem, yıldız katı arması; ad, "<kat> katı", "Profilini düzenle"), kartın arkasından el sallayan Ragi (ekranın tek Ragi'si; en büyük yazıda gizli), üç bilgi kartı (Yıldız, Masallarım, Rozetler; `HomeStatCard`).
+- Göğün altı: "Büyükler için" satırı (`HomeListRow`, basılı tutma ipucu), Rozetlerim açık vitrin (3 sütun × 2 sıra, kartsız 80 pt arma yumuşak dairede, ad ve durum yazısı; kilitli gri + kilit + "Kilitli"; sayı baskısı, ilerleme çubuğu, "az kaldı" yok), Masal dünyam (menüyle aynı simge, ton ve sıra; taze çıkartma satırı vurgulu).
+- Kalkan: Ragi'nin balonu (rozet sözü), renkli karolar, "Süsler" adı (artık "Kitaplık renklerim").
+- Test: çalıştırılmadı (Mac). Tasarım yasası grep'leri boş. `[ekran]` turunda "profil" ve "profil-avatar" ekranları çekilir.
+
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Menü sayfaları tek tasarım dilinde
+
+- İrem'in isteği: menüdeki her sayfa uygulamada çalışsın ve bir bütünün parçası olsun. Yeni ortak çatı `DesignSystem/Pastel/MPSkyPage.swift` (`MPSkyPage`, `MPSkyIntro`, `MPSkyLayout`): mor gök durum çubuğunun altına uzanır, geri + beyaz başlık (`displaySM`), göğün altında beyaz tanıtım kartı (sert alt kenar, lavanta), içerik beyaz zeminde, bölümler boşlukla.
+- Bu çatıya geçen yedi sayfa: Okuma yolculuğum (kendi başlığı kalktı), Rozetlerim ("N / 69 rozet" kartta), Çıkartma albümüm, Yeni kelimelerim ("Bu hafta / Tümü" içerikte, hiç kelime yokken gizli), Masal haritam, Masal ailem (kahraman kartı beyaz; alt seçim çubuğu `safeAreaInset`), Kitaplık renklerim (eski başlık "Süsler"; yıldız bakiyesi gökte, alt düğme `safeAreaInset`).
+- Bilerek değişmeyenler: sayfaların işlevi (rozet ve çıkartma pencereleri, ebeveyn kapısı, süs satın alma, kelime dinleme, "Bu karakterle masal yaz"), boş durumlar (`MPStateView`, kartsız), Masal ailem düzenleyicisi. Ebeveyn alanında Masal ailem `MPParentHeader` ile, göksüz ve Ragi'siz.
+- Ekran turu: `-mpOpenKidPage badges|stickers|newWords|storyMap|family|decor` (`MPDebugLaunch.kidPage`), `ci_screenshots.sh`'e altı ekran (demo kitaplıkla).
+- Test: çalıştırılmadı (Mac). Değişen dosyalarda tasarım yasası grep'leri boş. `[ekran]` turu derlemeyi ve görüntüleri doğrular. Prototip (`design-preview`) bu turda güncellenmedi.
+
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Masal sonu yeni gündüz tasarımı uygulamada
+
+- İrem onayladı (prototip `ending.js`); uygulamada `Screens/StoryReader/StoryEndingLeaf.swift` (Batuhan'ın dosyası, README madde 9). Yalnızca gündüz görünümü ve zemini değişti; gece yaprağı, rozet anı (`MPAwardMoment`), seri teklifi, bilgi, künye, ses, titreşim ve sırayla belirme aynen.
+- Gündüz: `MP.C.endingSky` (mor400 → mor500 → mor600) zemin; "Masal bitti!" (`displayXL`); `EndingRays` (16 dilim, dönmez, radyal maskeyle söner) ve sarı parıltı önünde `Mascot.cheer`; "Bravo, <ad>!" ve masalın adı; "Bir masal daha" (`MPButton .secondary`, hero); yatay kayan kazanılanlar (ortadan başlar, `viewAligned`): çıkartma, masalın yeni rozeti, +1 yıldız, haftalık okuma dakikası, yeni kelimeler; Ragi'nin sorusu tek satır; "Ana sayfaya dön" (`MPButton .onArt`; okuyucu kapanır, sekme ana sayfa).
+- Tasarım sistemi: `MPButtonKind.onArt` (renkli/resimli zeminde açık yazılı düğme, `MP.C.textOnArt`), `MP.C.endingSky`. Mor zeminde bilgi, künye ve seri gece temasıyla (`onSky`) okunur.
+- Bugün onaylananların hepsi uygulamada: profil avatarı, yeni manzaralar, yeni ana sayfa, menü, Okuma yolculuğum, masal sonu.
+- Test: çalıştırılmadı (Mac). Tasarım yasası grep'leri boş. `[ekran]` turu derlemeyi doğrular; masal sonu ekran turunda çekilmiyor, cihazda bakılmalı.
+
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Prototip: masal sonu yeni tasarım
+
+- İrem'in isteği (referans: oyunlardaki "Level up" ekranı, bizim dilimizle): `design-preview/app/ending.js`. Mor zemin (palet morları), büyük "Masal bitti!", yavaş dönen yumuşak ışık hüzmeleri ve sıcak parıltı önünde sevinçli Ragi (`mascotCheer`), "Bravo, <ad>!", sarı "Bir masal daha" hapı, yatay kayan kazanılanlar (çıkartma, masalın rozeti ortada, haftalık okuma dakikası, +1 yıldız), en altta "Ana sayfaya dön".
+- Kalabalık olmasın diye kartlar yalnızca simge, başlık ve tek satır; yalnızca kazanılan gösterilir, sayı baskısı ya da "az kaldı" yok. Hareketi Azalt açıkken hüzme dönmez, Ragi zıplamaz.
+- Uygulama kodu değişmedi (masal sonu okuyucunun içinde, Batuhan'ın `StoryEndingLeaf`'i). Tarayıcıda `?ortu=ending` ile bakıldı.
+
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Menü ve "Okuma yolculuğum" uygulamada
+
+- İrem onayladı; prototipteki menü ve okuma yolculuğu SwiftUI'ye. Prototipte yolculuk kartının üstü daraltıldı, haftalık özet uygulamayla aynı cümle ("Bu hafta N gün birlikte okudunuz").
+- Menü: `Screens/Journey/KidMenuSheet.swift`, sistem sheet'i (`MPSheet`, `MPSheetRoute.menu`), Ragi'nin sorusu (`MascotSays`), yedi satır (`HomeListRow`) ve "Büyükler için" (`requestParentMode`). Seçim sheet kapanınca itilir (`closeSheet(then:)`). Ana sayfanın menü düğmesi bunu açar.
+- Okuma yolculuğum: `Screens/Journey/ReadingJourney.swift` (saf model + canlı yükleyici) ve `ReadingJourneyView.swift`; rota `MPKidRoute.journey`. Mor gök, sevinçli Ragi (`Mascot.cheer`), "N gün üst üste", sakin cümle, Pzt–Paz şeridi (okunan gün mor tik, bugün halkalı, okunmayan boş daire, gelecek tarih), okuma zamanı çubukları, yıldız katı (ilerleme yok), yeni kelimeler (Yeni kelimelerim'e gider), son rozet (Rozetlerim'e gider).
+- Altyapı: `MPStreak.daysThisWeek`; `Mascot.cheer` ve kuklası (`RagiRig`, gözler ızgaralı kırpımdan ölçüldü); `HomeListRow` (mod satırı da onu kullanır).
+- CI: `-mpOpenMenu`, `-mpOpenJourney`; ekran listesine "menu" ve "okuma-yolculugu".
+- Test: `ReadingJourneyTests` (hafta, bugün/gelecek, sakin dil, kelimeler, dakikalar); `RagiAndEndingTests` yeni pozun gözlerini de kapsar. **Çalıştırılmadı** (Mac). Tasarım yasası grep'leri boş. `[ekran]` turu derlemeyi doğrular.
+- Batuhan'a (README madde 8): yolculuk başlığı `MPTopBar` değil.
+
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Prototip: menü ve "Okuma yolculuğum"; yeni Ragi pozu
+
+- İrem'in kararı: ana sayfadaki menü düğmesi aşağıdan kayan bir sayfa açar (`design-preview/app/yolculuk.js`): "Nereye gidelim, <ad>?" ve uygulamanın var olan sayfaları liste satırı olarak (Okuma yolculuğum, Rozetlerim, Çıkartma albümüm, Yeni kelimelerim, Masal haritam, Masal ailem, Kitaplık renklerim), en altta "Büyükler için" (ebeveyn kapısı). Ana sayfa satırlarıyla aynı dil.
+- "Okuma yolculuğum" (referans: alışkanlık uygulamasının tracker ekranı, kurallarımıza göre): mor başlık; sıcak ışıkta sevinçli Ragi, "N gün üst üste", "Birlikte okudunuz. Okuma yolculuğunuz devam ediyor."; Pazartesi–Pazar şeridi (okunan gün mor tik, bugün halkalı, okunmayan gün boş daire, gelecek günler tarih; çarpı ya da kırmızı yok); "Bu hafta N masal okundu"; okuma zamanı çubukları, yıldız katı (ilerleme yok), yeni kelimeler, son rozet. "Zayıf", "az kaldı", geri sayım, karşılaştırma yok (AGENTS.md ilke 7).
+- Yeni Ragi pozu `Brand/mascotCheer` (İrem'in gönderdiği, kollar havada): kenardaki düşük saydamlıklı artık pikseller temizlendi, 800 px. Henüz uygulama kodunda kullanılmıyor.
+- Prototip düzeltmesi: itilen sayfalar kendi stil sınıfını alır (`app.js` render).
+- Uygulama kodu değişmedi; tarayıcıda çerçeveli önizlemeyle bakıldı (`?menu=ac`, `?yolculuk=ac`).
+
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Ana sayfa yeni düzen uygulamada (prototipten)
+
+- İrem onayladı ("bayıldım"); revizeler: konuşma balonu kalktı; bu akşamın kartında Ragi'nin ayakları kartın alt çizgisinde; cam düğmeler yerine bizim `MPCircleButton` ailesi (menü, bildirim, arama, artı ayrı lavanta daireler). Cam kalktığı için tasarım yasasıyla o çelişki yok.
+- Uygulama: `HomeView` yeniden yazıldı, yeni bileşenler `DesignSystem/Pastel/MPHomeBoard.swift` (`HomeStatCard`, `HomeTonightBoard`, `HomeModeRow`). Tokenlar `MP.C.homeSky` (mor600 → mor400 %45 → mor100 %75 → mor50 → beyaz; beyaz yazı koyu morun üstünde kalsın diye duraklı), `homeTonight`/`homeTonightEdge` (mor600/mor900), `homeProgressDone`/`homeProgressNow`. Yeni palet rengi yok.
+- Davranış: menü şimdilik sakin bir söz ("Menü çok yakında"), bildirim yeni rozet varsa marka noktası gösterir ve Profil'i açar, arama Masallar'da aramayı açar, artı baştan masal yazar, satırlar modla açar. Bu akşamın kartı dört durumun hepsini (`TonightState`) ve ücretsiz hak bitince "Kitaplığına bak"ı korur. Okul öncesi kademede bilgi kartları ve alt satır yok. En büyük yazıda kartlar alt alta, kartta Ragi çizilmez.
+- `HomeFeed.stories` (Masallarım kartı), `HomeFeedStore` doldurur. `HomeHeaderScene` artık kullanılmıyor (MPHomeChrome'da duruyor).
+- Prototip aynı renklere çekildi (palet tonları, aynı duraklar); bildirim noktası marka moru. Tarayıcıda çerçeveli önizlemeyle bakıldı.
+- Test: çalıştırılmadı (Mac). Tasarım yasası grep'leri boş. `[ekran]` turu derlemeyi ve görüntüyü verir.
+- Batuhan'a (README madde 7): gradient istisnası, ekranda iki Ragi, menü içeriği.
+
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Prototip: ana sayfa yeni yön denemesi
+
+- İrem'in önerisi (alışkanlık uygulaması referansı): yalnızca prototipte, uygulama kodu değişmedi. `design-preview/app/home.js` ana sayfayı geçersiz kılar; eskisi `?anasayfa=eski`.
+- Üst: mor gökten beyaza inen başlık; solda cam menü dairesi, yanında cam bildirim + arama kapsülü, sağda konuşma balonu "Küçük bir masalla başlayalım!" ve el sallayan Ragi; "Merhaba, <ad>" ve "Bu akşam hangi masalı okuyalım?"; üç beyaz bilgi kartı (Yıldız, Okuma gün üst üste, Masallarım).
+- Orta: koyu mor "bu akşamın masalı" kartı (okuyan Ragi, 5 parçalı ilerleme, "Sayfa 3 / 5", "Devam et"); yarım masal yoksa "Uyku masalı yaz".
+- Alt: bizim dilimiz, referansın düzeniyle: "Yeni bir masal yaz" + koyu artı, üç mod liste satırı (karo simge, ad, söz, ok). Gece/gündüz ayrımı yok.
+- Saydamlığı Azalt açıkken cam opak. Tarayıcıda çerçeveli önizlemeyle bakıldı.
+- Uygulamaya geçmeden önce Batuhan'a: başlıktaki mor geçiş (yasa: arayüz yüzeyinde gradient yok) ve üst başlıkta cam (yasa: cam yalnızca yüzen gezinme denetimlerinde; üst başlıklar henüz dahil değil).
+- Dosyalar: `design-preview/app/home.js`, `app.css`, `index.html`. Test yok (prototip).
+
+### 2026-11-23 · irem (dal, bu kayıtla gelen commit) · Profil avatarı; tam boy dolap geri alındı; yeni ana sayfa manzaraları
+
+- İrem'in kararı: tam boy dolap (`c84a5ca`) iptal; `git revert` ile kod, 36 parça, prototip ve arşivlenen paket belgeleri kalktı (derlenmişti, `c84a5ca` turu başarılı). Günlükteki kaydı duruyor.
+- Profil avatarı: Profil'deki kimlik kartına dokununca "Profilini düzenle" zıplayarak açılır (`ProfileAvatarPicker`): seçili yüz ve ad, Ragi · Tarçın · Kestane sekmeleri, renkli yüz karoları (seçilene mor çerçeve, tik, kısa zıplama), tek mor "Kaydet"; karartmaya ya da X'e dokununca kapanır. Hareketi Azalt açıkken zıplama yok, solma. Pencere uygulamanın kökünde, alt çubuğun da üstünde (`MPAppState.avatarPickerProfileID`).
+- 21 yüz `Assets.xcassets/Avatars` (360 × 360, 5 MB): Ragi'nin 15 pozu (`Brand/mascot*`), Tarçın'ın 3 pozu (Batuhan'ın `whole-book-art` kimlik sayfası), Kestane'nin 3 pozu (Batuhan'ın karakter denemesi). Yüzler ızgaralı paftayla ölçülüp kırpıldı; Tarçın ve Kestane'nin beyaz zemini kenardan şeffaflaştırıldı.
+- `HeroLook.avatar` (isteğe bağlı): kayıt, eşitleme, silme aynı yoldan. `HeroAvatarView` avatar varsa onu yuvarlak çizer (Profil, "Kim okuyor?"). Kimlik kartından "Kahramanını giydir / Dolabı aç" satırı kalktı, avatarın köşesinde kalem.
+- Ana sayfa: GPT'nin yeni manzaraları ("Gunduz-Gece-v2", 1536 × 1024, alt kenarı tam #FFF8EE'ye boyalı) `homeSceneDay/Night` olarak (JPEG, kenar rengi ölçüldü). Koddaki geçiş katmanı ve `homeSceneFade`, `homePaperShade` tokenları kalktı; kısa bantta da görsel alttan hizalı.
+- Prototip: `design-preview/app/avatar.js` (aynı liste, Profil'de pencere; `?ekran=profil&avatar=ac`), stiller `app.css`; prototipin sahne geçişi kalktı. Tarayıcıda ekran görüntüsüyle bakıldı.
+- CI: `-mpOpenAvatarPicker`, ekran listesine "profil-avatar".
+- Test: `ProfileAvatarTests` (görseller, kimlikler, kayıt); **çalıştırılmadı** (Mac). Tasarım yasası grep'leri boş. `[ekran]` turu derlemeyi doğrular.
+- Batuhan'a (README madde 6): kendi çizdiğimiz pencere (sheet kuralı), Profil'de iki Ragi, Kestane'nin durumu.
+
 ### 2026-11-22 · main@d21b842 · TestFlight için Release arşivi
 
 - Xcode archive başarılı: MagicPaper-builds/MagicPaper-2026-11-22.xcarchive; gerçek sürüm2.0(2026112201),arm64. Sistem güven deposuyla codesign --verify --deep --strict geçti. Development imzalı arşiv Organizer Distribute App akışında dağıtım için yeniden imzalanır; App Store Connect yüklemesi yapılmadı.
@@ -500,6 +775,55 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 -101seçili test:100geçti/1skip/0hata. Aynı600masalda251pin;240açılış/9orta/2son. Metin ve eski pinler korundu.356kitap hâlâ görselsiz.
 -Kanıt: whole-book-art öneri klasöründe after.json/AFTER_REPORT/VALIDATION ve önizleme. Telefon,VoiceOver ve render eklerinin elle matrisi bekliyor. Başlangıç ölçümü03769ff.
 
+
+### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · Masal dolabım: tam boy kahraman (Dolap paketleri)
+
+- İrem'in iki paketi: "MagicPaper-Tam-Dolap-v2" (asıl sistem) uygulamaya entegre edildi; "MagicPaper-Dolap-Handoff" (v1, sabit yüzlü demo) belgeleriyle arşivlendi, uygulamaya alınmadı (v2 onun tamamlanmış hali; yüzü resimde sabit). Belgeler ve referanslar `design-handoff/dolap/`.
+- Yeni `Screens/Hero/Figure/`: `HeroFigure` (17 yuva, katalog, `secim.js` kuralları), `HeroFigureArt` (`kahraman.js`'in Canvas karşılığı, SVG yol okuyucu), `HeroHairDye` (saç boyası, Core Image), `HeroFigurePalette`, `HeroFigure+Legacy` (eski alanlara yansıma), `HeroStudioView` + `HeroDressingRoom` (insan yeni dolap, hayvan eski dolap).
+- `hero_figure_catalog.json` paketten değiştirilmeden. 36 PNG `Assets.xcassets/HeroFigure`: saç ve şapka tam çözünürlük, giysi ve ayakkabı %65 (11,5 MB → 7 MB, alfa korunarak).
+- `HeroLook.figure` (isteğe bağlı): kayıt, eşitleme ve profil silme aynı yoldan. `HeroAvatarView` tam boy kaydı olan çocuğu aynı kaydın büstüyle çizer. Eski kahraman otomatik dönüştürülmez.
+- Ekran referansa göre (`Dolap-ve-yuz.png`): krem üst bölüm, kemerli prova nişi, "Yüzü gör", alt çizgili üç bölüm, lavanta alt sekmeler, krem zeminli karolar, tek mor "Kahramanımı kaydet". Yeni tokenlar `MP.C.heroNiche` (kagit300).
+- Yönlendirme: `.wardrobe` ve `.bookCharacter` (çocuk ve ebeveyn) `HeroDressingRoom`'a. `HeroWardrobeView`'e iki kanca: `initialKind`, `onChooseChild`.
+- Prototip: `design-preview/dolap/Dolap.html` (paketin stüdyosu, parçaları asset kataloğundan okur); tarayıcıda açılıp bakıldı.
+- CI: `-mpOpenWardrobe` DEBUG kancası, ekran listesine "kahraman-dolabi".
+- Test: `HeroFigureTests` (kontrol.cjs'in kuralları + kayıt, yansıma, yol okuyucu, renk karışımı, boya küpü). **Çalıştırılmadı** (Mac). Tasarım yasası grep'leri yeni dosyalarda boş. `[ekran]` turu derlemeyi doğrular.
+- Batuhan'a: yıldız fiyatı, çizim paleti istisnası, kenar kaydırma onayı (README madde 6).
+
+### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · Ana sayfa sahnesi: yumuşatılmış, sıcak tonlu kenar
+
+- İrem: %86 maskede de gece sahnesinin altında beyaz, sisli bir bant kalıyordu. Neden: lacivert resim yarı saydamken kremle karışınca ara tonlar soğuk griye döner; düz (doğrusal) geçiş bu bölgeyi uzun tutar.
+- Prototipte dört geçiş karşılaştırıldı (düz %86, yumuşatılmış %80 ve %90, sıcak tonlu %84 ve %88). Seçilen: son %12, smootherstep eğrisi, renk `kagit300`'den `kagit100`'e. Bant en ince, ara ton gri değil kâğıt.
+- Saydamlık maskesi yerine resmin üstüne kâğıt rengi geçişi (`MP.C.homeSceneFade`, yeni token `MP.C.homePaperShade` = `kagit300`). Ragi ve başlık üstte, etkilenmez.
+- Dürüst not: gece resmi koyu olduğu için en altta ince açık bir şerit kalır; tamamen yok etmenin yolu çizimin alt kenarının kâğıda erir biçimde boyanmasıdır (illüstrasyon işi).
+- Test: çalıştırılmadı; `[ekran]` turu. Dosyalar: `DesignSystem/MPTheme.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `design-preview/app/app.css`.
+
+### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · Ana sayfa sahnesinin geçişi aşağı alındı
+
+- İrem: gece sahnesinde %74'ten başlayan geçiş resmin alt çeyreğini sisli beyaza boğuyordu. `fadeMask` artık %86'ya kadar dolu, %93'te 0.7, en altta saydam. Prototip aynı (`app.css`), tarayıcıda bakıldı.
+- Test: çalıştırılmadı; `[ekran]` turu. Dosyalar: `DesignSystem/Pastel/MPHomeChrome.swift`, `design-preview/app/app.css`.
+
+### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · Ana sayfa sahnesi kâğıda erir (dalga kalktı)
+
+- İrem'in isteği (TestFlight ekran görüntüsü): başlık sahnesinin alt kenarı dalga kesimi yerine son çeyrekte yumuşakça sayfanın kâğıdına erir; sayfa zemini beyaz yerine sıcak krem.
+- `HomeHeaderScene`: `WaveBottom` kırpması kalktı; manzara katmanına `fadeMask` (%74'ten sonra saydamlaşır). Ragi ve başlık maskenin dışında, silikleşmez. Kısa bant (en büyük yazı) da aynı.
+- Yeni token `MP.C.homePaper` = `Palette.kagit100` (#FFF8EE); `HomeView.pageBackground` bunu okur.
+- Prototip: `.home-scene-art` ayrı katman ve maske, `.layer.home-page` zemini #FFF8EE; tarayıcıda ekran görüntüsüyle bakıldı.
+- Bilerek değişmedi: `WaveBottom` başka ekranlarda (`HomeSky`) duruyor. Gece sahnesi de kreme erir; gerçek uygulamada gece görüntüsüne bakılmalı.
+- Test: çalıştırılmadı; `[ekran]` turu. Dosyalar: `DesignSystem/MPTheme.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `Views/HomeView.swift`, `design-preview/app/app.css`, `design-preview/app/app.js`.
+
+### 2026-11-22 · irem (dal, bu kayıtla gelen commit) · En büyük yazıda SE'de kartın düğmesi (A5 tamamlama)
+
+- `4d0d569` turu: Pro Max en büyük yazıda kısa bant ve düğme ilk ekranda, doğru. SE'de "Kısa, sakin bir masalla günü kapatalım." üç satıra yayılıp "Uyku masalı yaz"ı alt çubuğun arkasına itiyordu.
+- `HomeHeroCard.showsSub`: erişilebilirlik boyutlarında uyku ve "bugün okudun" durumlarının açıklama cümlesi düşer. Yarım masalın sayfası ve günün masalının süresi kalır. Normal boyutlar aynı.
+- Kapak (A6) turda görülemedi: CI saatinde kart uyku durumunda, kapak yok. Batuhan gündüz cihazda bakmalı.
+- `81d741c` (main birleştirmesi) turu elle iptal edilmiş; bu commit'in turu birleşmiş hâli de derler.
+- Test: çalıştırılmadı; `[ekran]` turu. Dosya: `DesignSystem/Pastel/MPHomeChrome.swift`.
+
+### 2026-11-22 · irem (dal, birleştirme commit'i) · Batuhan'ın main'i irem'e alındı
+
+- origin/main'in son 9 commit'i (`856cb88`'e kadar): kaynak izli görsel pilotu, kitap boyunca görsel (`WholeBookArtBinder`, `WholeBookArtPolicy`), Guaj nesne havuzu, okuyucu sayfa düzeni (`ReaderPageComposition`, `StoryPageView`), Release arşiv kaydı (TestFlight 2.0, 2026112201).
+- Çakışma yalnızca bu günlükte: iki tarafın kayıtları da korundu (önce irem'inkiler, sonra main'inkiler). Kod çakışması yok; ana sayfa, paywall ve seri dosyalarımıza main dokunmamış.
+- main'e hiçbir şey gönderilmedi. Test çalıştırılmadı; `[ekran]` turu derlemeyi doğrular.
 
 ### 2026-11-21 · codex/design-system-catalog · Kitap boyunca görsel başlangıç ölçümü
 
@@ -537,6 +861,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Mevcut v1 eşlemesi öncelikli; yeni politika kalan uygun sayfalara uygulanır. Eski çan pinleri korunur. Motor metinleri, kimlikler, seed/seçim, eski kitaplar ve okuyucu düzeni değişmedi. Boş yuva/açık müzik kutusu kapsam dışı; her masalda çizim garantisi yok.
 - Spec ve bağımsız kod incelemesi onaylı. Seçili Xcode: 76 test, 75 başarılı, 1 skip, 0 hata; art/provenance 27/27. Gerçek on nesne fixture'ı, kayıt roundtrip ve 11 reader decode geçti. İlk deneme testlerden önce sandbox önbellek erişiminde durdu; erişimle tekrar başarılı. Önceki seri uygunluğu hatası bu tur çözülmedi veya tekrar sınanmadı. Telefona kurulum/yeni UI matrisi yok.
 - Dosyalar: ReviewedDiscoveryArtPolicy/Binder, StorySpotBinder; ReviewedDiscoveryArtPolicyTests ve StorySpotBindingTests; expansion manifesti; research kararları, spec/plan, teslim raporu ve kaynak doğrulama kaydı, proje hafızası.
+
 ### 2026-11-21 · main, commit bu kayıtla · anlati-provenance, evren-7-yetkiler ve codex/design-system-catalog main'e birleşti
 - Birleşenler (Batuhan'ın isteğiyle, sırayla, `--no-ff`): `anlati-provenance` (71d4893: sayfa kaynak izi, Anlatı planı A0-A8, katmanlı sayfa resmi kararı, pilot çizim listesi), `evren-7-yetkiler` (7fc4231: aynı plan belgelerinin eski kopyaları), `codex/design-system-catalog` (bbbc522: yayımlanmış Original'lara sayfa çizimleri, incelenmiş çan görseli, görsel kaynak denetimi).
 - Çakışma çözümü: `ANLATI_PLANI.md`'de anlati-provenance'ın yeni sürümü kaldı (evren-7'deki A0/A1 öncesi hâli). codex dalı `c742ea7`'yi yama olarak almıştı; çakışan 20 dosyanın (StoryPageProvenance, 18 notice_anomaly şablonu, VisualMeaningTests, GORSEL_ANLAM_SOZLESMESI) codex sürümü `c742ea7` ile birebir aynıydı, bu yüzden anlati-provenance'ın ilerlemiş sürümü (`visualReview: "reviewed"`) kaldı. Günlükte iki tarafın kayıtları tarihe göre birleşti, hiçbiri silinmedi.
@@ -579,6 +904,135 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Masal metni, kimlikler, seed, seçim dağılımı ve eski kitaplar değişmedi. Her kitapta çizim garantisi yok; auto etiketler topluca onaylanmadı.
 - Motor 11 test/0 hata. Uygulama 96 test: 94 başarılı, 1 skip, 1 seri uygunluğu hatası (9–10 öğrenme devamı varsayımı). Yeni art/provenance 22/22 geçti; genel koşu başarısız. Telefona kurulum ve yeni UI matrisi yapılmadı.
 - Etkilenen alanlar: engine provenance/visual şeması ve şablon metadatası; Story/mapper; ReviewedDiscoveryArtPolicy/Binder, StorySpotBinder, art kaynakları ve testler; spec/plan/inceleme kaydı ve REPORT.md. Originals/Classic/ReaderImageLoader değişiklikleri bu işe dahil değil.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa: en büyük yazı düzeni ve kartta kapak (A5, A6)
+
+- A5: erişilebilirlik yazı boyutlarında `HomeHeaderScene(compact:)`: sahne 120 pt'lik bant (manzaranın ortası, Ragi %70 bantta), ad bandın altında kâğıtta (açık yazı yok, kırpılmaz). Selam düşer, rozet notu kalır. Yıldız/gün satırı kartın altına iner. Kartın kapağı düşer. Amaç: SE'de en büyük yazıda kartın düğmesi ilk ekranda. Normal boyutlarda hiçbir şey değişmedi.
+- A6: `HomeFeed.cover` + `HomeHeroCard(art:)`: kapak metnin solunda (66 pt, Kitaplık'ın `MPBookCover`'ı; dar kapakta ad yazılmaz). Yarım masal: Kitaplık'taki kapak ve ilerleme halkası. Günün masalı: boyalı Original kapağı varsa o, yoksa kategorinin renginde simgeli başlık kapağı. Uyku ve "bugün okudun"da kapak yok.
+- Eski `tonightCover` silindi: günün klasiğini günün Original'iyle adından karşılaştırıyordu, hiç eşleşmiyordu; her çizimde `UIImage` da yüklüyordu.
+- Kart içi boşluk korunur (açıklama ile düğme arası 12 pt, önceki gibi).
+- Tasarım yasası grep'leri değişen dosyalarda boş. Test: `HomeFeedTests` +4 (kapak kuralı), **çalıştırılmadı** (Mac). `[ekran]` turunun en büyük yazı görüntüleri A5'i gösterecek.
+- Dosyalar: `DesignSystem/Pastel/MPHomeChrome.swift`, `Views/HomeView.swift`, `Screens/Home/HomeFeed.swift`, `Screens/Home/HomeFeedStore.swift`, `MagicPaperTests/HomeFeedTests.swift`, `docs/ANA_SAYFA_HAZIRLIK.md`.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa canlı veriyi ve saati izler (A3, A4)
+
+- Yeni `Screens/Home/HomeFeed.swift`: ana sayfanın kararları, saf (selam, bu akşamın kartı, gece, yıldız, gün, seri kartı, bir sonraki değişim anı). Görünümdeki `greeting`, `tonight`, `tonightState`, `stars` ve seri sorgusu buraya taşındı.
+- Yeni `Screens/Home/HomeFeedStore.swift`: `StoryGenerationManager`, `ProfileManager`, `MPStreak`, `DailyStoryManager`, `SeriesManager`, `LiveEntitlementService`, `MPSettingsStore`, `.mpFamilyDataChanged` (yıldız), saat değişimi ve öne gelme dinlenir; 80 ms'de toplanır, eşit sonuç yayınlanmaz. Bir sonraki an (yatma saati, 05.00, gece yarısı, 05/11/17/22 selam saatleri, ücretsiz hakkın açılması) beklenip kendiliğinden yenilenir; gün dönünce günün masalı ve seri yeniden seçilir.
+- `HomeView`: veriyi depodan okur; görünüş değişmedi. `TonightState` `Equatable`; `MPAppState.canWriteNewStoryToday` örneksiz de sorulabilir.
+- Gerçek uygulamada `6512652` turu: ana sayfa Batuhan'ın sürümü, iki ekranda doğru.
+- Denetime A7 eklendi (uyku saatinde hak bitmişse "Uyku masalı yaz" penceresi).
+- Test: `HomeFeedTests` 12 test; **çalıştırılmadı** (Mac gerekiyor). `[ekran]` turu derlemeyi doğrular. Saatle değişim simülatörde görülmedi; Batuhan cihazda yatma saatini birkaç dakika sonraya kurup uygulama açıkken denesin.
+- Dosyalar: `Screens/Home/HomeFeed.swift`, `Screens/Home/HomeFeedStore.swift`, `Views/HomeView.swift`, `DesignSystem/Pastel/MPStory.swift`, `Screens/MPAppState.swift`, `MagicPaperTests/HomeFeedTests.swift`, `docs/ANA_SAYFA_HAZIRLIK.md`.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Hak bitince bu akşamın kartı kitaplığa çağırır (ana sayfa A2)
+
+- Sorun: ücretsiz kullanıcı bugün okuduysa ve günün masalını da yazdıysa kartın tek birincil düğmesi "Yeni masal yaz" kilit penceresi açıyordu.
+- `TonightState.readToday(canWrite:)`. Hak yoksa kart: "Bugün okudun" · "Yarın yeni bir masal var" · "Bu akşam kitaplığından bir masal okuyalım." · **Kitaplığına bak** (`books.vertical`). Sayı, saat, geri sayım yok.
+- Karar tek yerde: `MPAppState.canWriteNewStoryToday` (`isUnlocked(.unlimitedTextStories)`); kartın metni ve `openTonight` aynı cevabı okur, hak yoksa Kitaplık sekmesi açılır.
+- Bilerek değişmedi: Masal yaz dairesi ve "Yeni bir masal yaz" karoları kilit penceresine gitmeye devam eder (o pencere zaten sakin ve "Kitaplığa bak" sunuyor). Widget ve Siri yolu aynı.
+- Bilinen açık: uyku saatinde "Uyku masalı yaz" penceresindeki "uyku masalı" seçeneği hak bitmişse yine kilit penceresine gider; ayrı madde olarak denetime eklenecek.
+- Test: birim testi yazılmadı (`MPAppState` tekil servislere bağlı; ana sayfa modeli C1'de test edilecek). `[ekran]` turu derlemeyi doğrular.
+- Dosyalar: `DesignSystem/Pastel/MPStory.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `Screens/MPAppState.swift`, `Views/HomeView.swift`, `MagicPaperTests/DesignSystemSnapshotTests.swift`.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Günün masalı her zaman ücretsiz (ana sayfa A1)
+
+- Sorun: ana sayfa kartındaki günün masalı (Original) çoğu gün ücretsiz vitrinin dışındaydı (uygulamayla gelen 12 masalın 9'u); ücretsiz kullanıcıda "Masalı oku" kilit penceresi açıyordu.
+- `ClassicsLibrary.isInFreeShowcase`: günün Original'i ve Masallar'daki "Günün masalı" klasiği her zaman vitrinde. Karar yine `EntitlementPolicy`'de, ona dokunulmadı.
+- `DailyStoryManager.todaysPick` (`todaysStory ?? dailyStories.first`): kart, widget, uyku modu ve vitrin aynı masalı görür; `MPSurfaceSync`'teki iki tekrar bununla değişti.
+- Testler: `OriginalTalesTests` iki yeni test (günün Original'i ücretsiz, başka Original değil; günün klasiği ücretsiz, vitrin dışı başka klasik değil). **Çalıştırılmadı** (Mac gerekiyor); `[ekran]` turu derlemeyi doğrular.
+- Belgeler: `ANA_SAYFA_HAZIRLIK.md` A1 yapıldı, `PAYWALL_YERLESIM.md` satır 4, README madde 5 (Batuhan'ın onayına).
+- Dosyalar: `Screens/Gunluk/Model/ClassicsLibrary.swift`, `Services/DailyStoryManager.swift`, `StoryEngineBridge/Surfaces/MPSurfaceSync.swift`, `MagicPaperTests/OriginalTalesTests.swift`.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa Batuhan'ın son hâline döndü
+
+- İrem'in kararı: ana sayfanın tasarımı main'deki son hâl (`HomeHeaderScene`, bu akşamın kartı, "Yeni bir masal yaz" karoları, devam eden seri). Okuma köşesi geri alındı.
+- `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`, `DesignSystem/MPTheme.swift` main'den alındı (birebir). Silindi: `MPHomeReadingNook.swift`, `Scenes/homeReadingNook`, `homeWorldLearning`, `homeWorldAdventure`.
+- Prototip: `design-preview/app/home.js` ve Okuma köşesi stilleri silindi; `app.js`'teki eski ana sayfa yeniden görünür.
+- Bilerek değişmedi: Paywall C, seri kartı kilidi, deneme uygunluğu, DEBUG açılış atlama.
+- `docs/ANA_SAYFA_HAZIRLIK.md` Batuhan'ın sürümüne göre yeniden yazıldı (A1–A6, B1–B3, C1–C4); README notu güncellendi.
+- Test: bu commit'le `[ekran]` turu (derleme + görüntü); yerelde test çalıştırılmadı.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa yayına hazırlık denetimi
+
+- Yeni belge `docs/ANA_SAYFA_HAZIRLIK.md`: ana sayfanın kodu, okuduğu servisler ve son ekran turu tarandı; yayını engelleyen 6, görsel 5, mimari 5, küçük 4 madde ve plan.
+- En önemli bulgu: günün masalı ücretsiz kullanıcıda kilide çarpıyor (12 günlük masalın 9'u vitrin dışında). Batuhan'ın kararına README madde 6 olarak yazıldı.
+- Kod değişmedi; test çalıştırılmadı (yalnızca belge).
+- Dosyalar: `docs/ANA_SAYFA_HAZIRLIK.md`, `README.md`, bu günlük.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Gerçek uygulamada Paywall C ve Okuma köşesi doğrulandı; ekran turunda açılış ekranı atlanır
+
+- `8475808` turu: derleme başarılı, 32 görüntü, boş yok. Abonelik ekranı Pro Max ve SE'de C ile aynı (SE'de planlar ilk ekranda). CI'da mağaza ürünü olmadığı için "%N avantajlı", "Ayda ₺X" ve deneme takvimi görünmüyor; beklenen. SE ana sayfası: selam saat çubuğuna yakın, sahnenin üstü ve altı kâğıda eriyor.
+- Pro Max ana sayfa görüntüsü yine açılış ekranında (ilk açılışta 10 sn'de kapanmadı). `MagicPaperApp.showSplash`: DEBUG'da `-mpDemo` ile açılış ekranı atlanır; Release değişmedi. Olası takılma README'de Batuhan'a.
+- Test: bu commit `[ekran]` ile.
+- Dosyalar: `MagicPaper/MagicPaperApp.swift`, `README.md`, bu günlük.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Derleme düzeltmesi: deneme uygunluğu satırı
+
+- `8afd339` turu derlenmedi: `RevenueCatManager.swift:323` `Set(result.filter{…}.map(.key))`. Satırı yazan komut `.key` içindeki ters eğik çizgiyi yutmuştu. Açık tipli `compactMap` ile yeniden yazıldı. Derleme günlüğünde başka hata yoktu (yeni Paywall, seri kilidi derlendi).
+- Test: bu commit `[ekran]` ile yeniden derleniyor.
+- Dosyalar: `MagicPaper/Services/RevenueCatManager.swift`, bu günlük.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Paywall yerleşim haritası; seri kilidi; deneme uygunluğu
+
+- Yeni belge `docs/PAYWALL_YERLESIM.md`: Paywall'a giden 8 yol (kod yerleriyle), çıkmadığı yerler, akış şeması, açık öneriler.
+- Hata düzeltmesi: ücretsiz kullanıcıda Premium seri bölümünün günü geldiğinde ana sayfa kartı sonsuza kadar "N. bölüm yarın" diyordu (bölüm hiç açılmıyordu). `SeriesManager.CardState.locked`: günü gelmiş ama plan açmıyorsa "N. bölüm büyüklerle açılır"; dokununca `app.unlock(.seriesStories, .seriesEpisode(n))` → kilit penceresi → kapı → Paywall. Widget (`MPSurfaceSync`) kilitli bölüm için açılış günü vermez. Gün dolmadan önceki davranış (`SeriesTests` beklentisi) değişmedi.
+- Deneme uygunluğu: `RevenueCatManager` ürünler yüklenince `checkTrialOrIntroDiscountEligibility` sorar; `.ineligible` ürünlerde `freeTrialDays` nil, Paywall "Abone ol" der ve takvimi gizler. "Bilinmiyor"da deneme görünür.
+- Bilerek yapılmadı (Batuhan'ın kararına, belgede): satın almadan sonra işe dönmek, ilk deneyim sonrası ebeveyn tanıtım kartı, günlük limit düğmesinin adı.
+- Test: design law grep'leri boş. Swift yerelde derlenmedi; bu commit `[ekran]` ile derleniyor. Seri kilidi ve deneme uygunluğu simülatörde demo verisiyle tetiklenmiyor (gerçek ürün ve gün geçişi gerekir); elle doğrulanmadı.
+- Dosyalar: `docs/PAYWALL_YERLESIM.md`, `MagicPaper/StoryEngineBridge/SeriesManager.swift`, `MagicPaper/Screens/Series/{SeriesCard,SeriesCopy}.swift`, `MagicPaper/StoryEngineBridge/Surfaces/MPSurfaceSync.swift`, `MagicPaper/Services/RevenueCatManager.swift`, `README.md`, bu günlük.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Okuma köşesi gerçek uygulamada derlendi; ekran beklemesi 10 sn
+
+- `727c2d8` turu: derleme başarılı, 32 görüntü. SE'de yeni ana sayfa (okuma köşesi, davet, düğme) doğru çiziliyor. Pro Max görüntüsü açılış karşılamasında (logo + el sallayan Ragi) kalmış: main'den gelen açılış animasyonu 7 sn'ye sığmıyor. SE'de Profil boş (zamanlama).
+- `Scripts/ci_screenshots.sh`: bekleme 7 → 10 sn.
+- Dosyalar: `Scripts/ci_screenshots.sh`, bu günlük.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Paywall tamamen C; seçenekler kaldırıldı
+
+- İrem: A'nın kapak başlığı beğenilmedi; Paywall prototipteki "C · Sade ve güven" ile birebir. `PaywallView`: başlık "MagicPaper Premium" + "Ritüel ücretsiz kalır. Premium kitaplığı büyütür.", beş kısa fayda (Gün boyu yeni masal, Bütün klasikler ve seriler, Masal ailem, Ailedeki her çocuk, PDF masal kitabı), **yıllık varsayılan** (İrem'in kararı; Batuhan'a README notu). Kapak rafı, `loadCovers`, küçük ekran kısaltması kaldırıldı (SE'de C zaten ilk ekrana sığıyor); `HomeView.shelfItems` yeniden `private`.
+- Prototip: A/B/C seçenekleri, "Paywall seçenekleri" bölümü ve `payA/payB/payC` bağlantıları kaldırıldı; tek Paywall `?ortu=paywall`.
+- Test: prototip Edge'de 440×956 ve 375×667 çekildi; design law grep'leri boş. Swift bu commit'le `[ekran]` turunda derleniyor.
+- Dosyalar: `MagicPaper/Screens/PaywallView.swift`, `MagicPaper/Views/HomeView.swift`, `design-preview/app/{paywall.js,app.js}`, `design-preview/index.html`, `README.md`, bu günlük.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Paywall son tasarımı: C'nin sadeliği + A'nın başlığı
+
+- İrem seçti: prototipteki "C · Sade ve güven" düzeni, başında "A · Kitaplık" başlığı. `PaywallView` yeniden çizildi; Batuhan'ın 20 Kasım tek plan modeli, satın alma, geri yükleme, deneme ve 3.1.2 mantığı korunarak.
+- Düzen: çocuğun kitaplığından iki kapak (`HomeView.shelfItems`, boşsa haftanın seçkisi) ve kesik çizgili boş kapak; "<ad>'in kitaplığı" (`SeriesCopy.genitive`), "Her akşamın masalı bir kitaplığa dönüşsün"; yan yana Yıllık/Aylık kartı (en büyük yazıda alt alta); onay işaretli altı fayda (20 Kasım listesi); deneme takvimi yalnızca mağazada deneme varsa, hatırlatma günü deneme süresinden; güven satırı; yenileme metni. "Planları gör" ara adımı ve Ragi kalktı (satın alma yetişkin ekranı).
+- Dürüstlük: "%N avantajlı" ve "Ayda ₺X" mağaza fiyatından hesaplanır (`RevenueCatManager.priceAmount`, `localizedPricePerMonth`; modülsüz yedek sınıfta da). Ürünler gelmezse rozet görünmez, sabit yüzde yazılmaz.
+- Küçük ekran: yükseklik 700 pt altındaysa kapaklar %75, açıklama cümlesi düşer; iPhone SE'de planlar ve fiyatlar ilk ekranda (prototipte ölçüldü).
+- Bilerek değişmedi: varsayılan dönem aylık (yıllık varsayılan Batuhan'ın kararını bekliyor), deneme uygunluğu kontrolü (ayrı iş).
+- Prototip: Büyükler için → Abonelik artık son tasarımı açar (`?ortu=paywall`); A/B/C seçenekleri karşılaştırma için duruyor.
+- Test: design law grep'leri boş; `Image(systemName:)` yerine `MPIcon`. Swift yerelde derlenmedi; bu commit `[ekran]` ile derlenip Abonelik ekranı çekiliyor.
+- Dosyalar: `MagicPaper/Screens/PaywallView.swift`, `MagicPaper/Services/RevenueCatManager.swift`, `MagicPaper/Views/HomeView.swift` (`shelfItems` paylaşıldı), `design-preview/app/{paywall.js,app.css}`, `README.md`, bu günlük.
+
+### 2026-11-21 · irem@916e8bb · Prototip: ana sayfa avatarı anonim
+
+- İrem: ana sayfanın köşesindeki avatar prototipte şimdilik görselsiz; lavanta daire içinde kişi simgesi. SwiftUI'da çocuğun kahraman avatarı (`HeroAvatarView`) kalıyor.
+- Test: yok (yalnızca prototip). Dosyalar: `design-preview/app/{home.js,app.css}`, bu günlük.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Okuma köşesi sahnesinin üstü de erir
+
+- İrem: sahnenin üst kenarı (kırpılan yaprak, perde, kemer) keskin çizgiyle bitiyordu. `HomeReadingNook` maskesi üstte de %16 boyunca kâğıda erir (alttaki gibi). Prototipte aynısı.
+- Test: prototip Edge'de çekildi; Swift bu commit'le `[ekran]` turunda.
+- Dosyalar: `MagicPaper/DesignSystem/Pastel/MPHomeReadingNook.swift`, `design-preview/app/app.css`, bu günlük.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa: selam tepeye yakın, sahne altına girer
+
+- İrem: telefonun üstü boş duruyordu (selam ile saat çubuğu arası ve selamla sahne arası). Selamın üst boşluğu `lg` → `xxs`; okuma köşesi sahnesi `-md` ile selamın altına girer, başlık önde (`zIndex`). Sahnenin üst kenarı kâğıda eridiği için çizgi yok. Prototipte aynısı.
+- Prototip: ilk açılışta yazılan adın ilk harfi Türkçe kurala göre büyür (gerçek uygulamada klavye zaten `.words`).
+- Test: prototip Edge'de çekildi. Swift bu commit'le `[ekran]` turunda derleniyor.
+- Dosyalar: `MagicPaper/Views/HomeView.swift`, `design-preview/app/{app.css,os.js}`, bu günlük.
+
+### 2026-11-21 · irem (dal, bu kayıtla gelen commit) · Ana sayfa "Okuma köşesi"; main irem'e alındı
+
+- Batuhan'ın main'i (20-21 Kasım: abonelik yetkileri, tek plan, okuyucu düzeni, Originals, yeni dünyalar) `irem`'e birleşti (f6b38f6), çakışma yok. Ana sayfanın kullandığı API'ler birleşmeden sonra yerinde doğrulandı.
+- Ana sayfa GPT teslimine göre yeniden kuruldu (İrem): selam + kahraman avatarı (dokununca Profil), okuma köşesi sahnesi (alt kenarı illüstrasyon maskesiyle kâğıda erir; küçük ekranda yükseklik ekranın %46'sıyla sınırlı), "Bu akşam" daveti (`TonightState`'in dört durumu, tek birincil düğme), "Başka bir dünya seç" (davet uykuysa Uyku öncesi tekrarlanmaz; en büyük yazıda tek sütun), "Kitaplığından" (`LibraryShelfModel` ile en çok iki kitap, davetteki kitap tekrarlanmaz; yarım kitap kaldığı sayfadan), "Masal bul" (Masallar'da arama; altında ilk Original ya da haftanın seçkisi), kaydırınca üstte "Ana sayfa".
+- Yeni: `DesignSystem/Pastel/MPHomeReadingNook.swift` (HomeReadingNook, HomeTonightInvite, HomeWorldTile, HomeShelfBook, HomeFindField, HomePickRow); `MP.C.homePaper` = `kagit50` (sahnenin kenar rengi); görseller `Scenes/homeReadingNook` (WebP'den JPEG), `homeWorldLearning` ve `homeWorldAdventure` (WebP'den PNG, düz zemin saydam yapıldı).
+- Kaldırılan: `HomeHeaderScene` ve ona bağlı `showsScene`/`onArt` parametreleri; HomeView'daki eski kart, mod şeridi, yıldız satırı ve beyaz zemin.
+- Bilerek değişmedi: alt çubuk ("Masal yaz" dairesi duruyor), mod adları ("Yeni şeyler öğrenelim"), `HomeHeroCard` (testlerde ve önizlemede kullanılıyor). Kurallarla çakışan noktalar README notunda Batuhan'ın onayına.
+- Prototip: `design-preview/app/home.js` aynı düzende.
+- Test: design law grep'leri değişen dosyalarda boş. Swift yerelde derlenmedi; bu commit `[ekran]` ile GitHub'ın Mac'inde derlenip çekiliyor.
+- Dosyalar: `MagicPaper/Views/HomeView.swift`, `MagicPaper/DesignSystem/Pastel/{MPHomeReadingNook,MPHomeChrome}.swift`, `MagicPaper/DesignSystem/MPTheme.swift`, `MagicPaper/Assets.xcassets/Scenes/home{ReadingNook,WorldLearning,WorldAdventure}.imageset`, `design-preview/app/{home.js,app.css,index.html}`, `README.md`, bu günlük.
 
 ### 2026-11-20 · anlati-provenance, commit bu kayıtla · Sayfa kaynak izi ve satırlarda görsel anlam
 
@@ -1917,6 +2371,7 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Bilerek değişmeyenler: altın karartması (`MPArtHero`), sayfa noktaları, kendiliğinden geçiş, sahnenin yuvarlak alt köşeleri ve sert alt kenarı.
 - Doğrulama: derleme yeşil. iPhone 17 Pro simülatöründe açık temada görüldü: başlık kremde, sahne temiz, raf kapıları kıvrımın üstünde. Testler çalıştırılmadı. Koyu tema, en büyük yazı ve iPhone SE görülmedi. Design law grep'leri bu dosyada boş.
 - Dosya: `MagicPaper/Screens/Gunluk/GunlukHeader.swift`.
+
 ### 2026-11-11 · main, commit bu kayıtla · Ana sayfa kıvrımı: üç mod alt çubuğun üstünde
 
 - **Sorun:** simülatörde (iPhone 17 Pro, 402 × 874 pt) "Maceraya çıkalım" alt çubuğun altında kalıyordu, "Yeni şeyler öğrenelim" de yarıya kadar. `HomeHeroCard.sceneHeight = 180` tanımlıydı ama hiç kullanılmıyordu: sahne tam genişlikte doğal oranında çiziliyor, ~203 pt oluyordu.
@@ -2954,6 +3409,7 @@ Batuhan üç açık kararı ürünün vizyonuna göre vermemi istedi. Üçü de 
 - **Bilerek değişmeyen:** motor havuzu (süzgeç yalnızca ekranda), `CompanionStep.symbol(forType:)` eşlemesi, B2 sahne kütüphanesi, ilgi eşiği, kayıtlı profiller, üç ulaşılamayan uyku blueprint'i (düzeltmesi uyku arkı oturumunun).
 - **Test:** uygulama demeti `xcodebuild -scheme MagicPaper -only-testing:MagicPaperTests test` (iPhone 17 Pro simülatörü) → **753 test, 0 hata, 1 atlanan.** Tur başındaki beş kırmızı vakanın beşi kapandı. Motor demeti bu turda yeniden çalıştırılmadı (değişen dosyalar uygulama katmanında). Simülatörde ekran görüntüsü alınmadı.
 - **Dosyalar:** `MagicPaper/Screens/StoryCreation/StoryCreationFlow.swift`, `StoryCreationSteps.swift`, `StoryIdeaStep.swift` (silindi), `MagicPaper/StoryEngineBridge/StoryIdeaStepAccess.swift` (silindi), `StoryChoiceSource.swift`, `MagicPaper/Views/SettingsView.swift`, `MagicPaperTests/CompanionSymbolTests.swift`, `IllustratedBookFlowTests.swift`, `InterestProfileTests.swift`, `SceneLibraryTests.swift`, `StoryCreationStepsTests.swift`, `StoryModeFlowTests.swift`.
+
 ### 2026-10-21 · main, commit yok · Kelime planı: kitapokur incelemesi
 
 - `ka1nsha/kitapokur` (İngilizce PDF'lerden kelime öğreten okuyucu) incelendi. Repo'da lisans yok: kod alınmaz, yalnız yaklaşım ve eşik fikirleri.
@@ -2985,6 +3441,7 @@ Batuhan üç açık kararı ürünün vizyonuna göre vermemi istedi. Üçü de 
 - **Düzeltilen test kusuru:** deniz testi `XCTAssertEqual(sea.count, 1)` deyip `sea[0]` indeksliyordu; önerme değişince boş diziyi indeksleyip bütün demeti çökertti ve o çalıştırmada bilinen 10 hatanın hiçbiri koşamadı. Kırılan test yalnızca kendi sonucunu bozmalı.
 - Test: paket 844 test. Taban 837/18 (10 vaka) idi; şimdi bilinen 10'dan **ikisi düzeldi** (`testContentSelectionStillFollowsCatalogOrder`, `testAskingForAnExplainedDiscoveryIsRefusedWithItsReason`) ve tek yeni kırmızı bilerek bırakılan blueprint alarmı. `validate_beat_corpus.py` tabanıyla birebir aynı (12 sorun). Uygulama hedefi çalıştırılmadı; simülatörde ve telefonda görülmedi.
 - Etkilenen: `templates/offline/v2/shared_content_library_v2.json`, `Content/variation_baseline.json`, `CatalogIntegrity.swift`, `Offline/VariationReport.swift` (yeni), ve test dosyaları (`VariationBaselineTests` yeni, `CatalogLoadingTests`, `InterestCatalogTests`, `OfflineDeterminismTests`, `StoryTopicTests`, `UsageLearningTests`), bu dosya.
+
 ### 2026-10-21 · main@f23fa25 · Alt çubuk: şeffaf kutu gitti, Apple ölçüsü, cam Masal yaz dairesi
 
 - Hata: çubuğun arkasında tam genişlikte şeffaf bir kutu görünüyordu. Kaynağı iOS 26'nın `safeAreaBar`'ı: çubuğun arkasına kaydırma kenarı efekti çiziyordu. `mpFloatingBar` artık her sürümde `safeAreaInset`; arkada kutu yok.
@@ -3378,6 +3835,7 @@ Batuhan üç açık kararı ürünün vizyonuna göre vermemi istedi. Üçü de 
 - Bilerek yapılmadı: 1. adım (hangi çocuk) ekranı, alt kategori adımının arayüzü, ve sekiz konunun içeriği. Uygulama hedefi testleri çalıştırılmadı — değişen kodun hiçbiri uygulama hedefinde değil.
 - Test: motor 795 test / 18 hata — bilinen 10 vakanın aynısı, bugün `refrain-deneyi` HEAD'inde ölçülen tabanla birebir; yeni hata yok. 15 yeni test (13 konu + 1 katalog alanı koruması + 1 alt seçenek sözleşmesi).
 - Etkilenen: `StoryEngine/Sources/StoryEngine/Content/StoryTopic.swift` (yeni), `ContentCatalog.swift`, `ContentCatalogLoader.swift`, `CatalogIntegrity.swift`, `Offline/OfflineSelection.swift`, `Offline/BlueprintSelector.swift`, `Resources/blueprints/pilot_library_v1.json`, `Tests/StoryEngineTests/StoryTopicTests.swift` (yeni), `CatalogMergeTests.swift`, `InterestCatalogTests.swift`, `ModeBandCoverageTests.swift`, bu dosya.
+
 ### 2026-10-16 · main@7bbb3ce · Masal atölyesi: "Masal yazılıyor" ekranı
 - 21 · Masal yazılıyor ve 10 · İlk masal artık bir masal defteri. Adımlar: kadro etiketleri (çocuk, "kirpi Kestane", Masal ailem), yaşa uygunluk, mod dokunuşu, masalın gerçek ilk cümlesi harf harf mürekkeple, "Ragi masalı bir kez daha okuyor", sonra kapak ve "İrem'in 3. masalı hazır." künyesi. Yüzdeli halka kalktı.
 - Süre: ilk masal ~10 sn, 2.-3. masal ~8 sn, sonra ~5 sn; uyku saatinde x1,3. İlk masal atlanamaz; sonra 2 sn (4. masaldan itibaren 1 sn) içinde "Hemen aç" çıkar. Reduce Motion açıkken adımlar aynı sırayla çapraz geçişle gelir, cümle bütün halde belirir.
@@ -3427,6 +3885,7 @@ Batuhan üç açık kararı ürünün vizyonuna göre vermemi istedi. Üçü de 
 - Değişmeyen: veriler ve işlevler (profil değiştirme, kilit, Ekle, rozet kuralı, bağlantılar).
 - Simülatörde görüldü (iPhone 18 Pro Max, gündüz). Test çalıştırılmadı (görünüm değişikliği); derleme temiz.
 - Dosyalar: `Screens/KidCorner/KidCornerView.swift`, `DesignSystem/Pastel/MPCards.swift`, `DesignSystem/Pastel/MPHomeChrome.swift`.
+
 ### 2026-10-16 · main@b997fcb (push yok) · Masal atölyesi planı
 - Yeni belge `docs/MASAL_ATOLYESI_PLANI.md`: "Masal yazılıyor" ekranının (21 ve 10 · İlk masal) yeniden tasarımı için plan. Ekran, motorun gerçekten yaptığı işi ve ailenin kendi seçimlerini gösteren bir masal defterine dönüşüyor: kadro, yaşa uygunluk, mod dokunuşu, masalın gerçek ilk cümlesinin mürekkeple yazılması, okuma kontrolü, ciltleme ve "Ela'nın 12. masalı" künyesi. Süreler ilk masalda ~10 sn, sonra kısalıyor ve "Hemen aç" ile atlanabiliyor.
 - Bilerek değişmedi: kod yazılmadı. `StoryPreparationView`, `Story` modeli ve motor aynı. Beş karar Batuhan'da (süreler, `MP.M.ink` sabiti, ilk cümlenin gösterilmesi, künyenin yeri, yüzdeli halkanın kaldırılması).
@@ -3539,6 +3998,7 @@ Batuhan üç açık kararı ürünün vizyonuna göre vermemi istedi. Üçü de 
 - Bilerek değişmeyen: gece modunda saat yazısının rengi (açık kalan), açılıştaki ~6 sn beyaz ekran (demo açılışı, ana sayfa dışı), en büyük yazı boyutunda çip ikonlarının küçük kalması.
 - `main` bu dala birleştirildi (Liquid Glass, Günlük). Test: `StarCountTests` + `KidCornerTabTests` 19/0; tam test takımı çalıştırılmadı.
 - Dosyalar: `Views/HomeView.swift`, `DesignSystem/Pastel/MPHomeChrome.swift` (yalnızca yorum).
+
 ### 2026-10-15 · main (faz-20-gunluk ileri sarıldı, push yok) · Günlük denetimi ve yeni düzen main'de
 
 - `faz-20-gunluk` dalının 15 Ekim işleri main'e alındı: Günlük denetimi (kenardan geri, durum çubuğu zemini, sekmeye dokununca başa dönüş, tekrar ve boşluk düzeltmeleri), vitrin altının yeni düzeni (raf kapıları, simgeli bölümler) ve sayfa sonundaki gece bölgesi.
@@ -3738,6 +4198,7 @@ Batuhan "Günlük'te düzeltilecek bir şey var mı" diye sordu. Kendi simülat�
 - Bilerek değişmedi: ebeveyn `TabView`'ı (sistem camını zaten alıyor), üst başlıklar, `MPModeSwitch`, kullanılmayan `MPTabBar`, `ContentView` yerleşimi.
 - Test: uygulama testleri 692 geçti, 0 hata. Tasarım yasası denetimleri yeni kodda boş. Simülatör (iPhone 17 Pro, iOS 27): Ana sayfa ve Kitaplık, normal ve en büyük Dynamic Type; etiketler kesilmiyor. iOS 17.6 yedek yolu, koyu görünüm (uygulama yalnızca açık), küçük ekran ve VoiceOver simülatörde bakılmadı.
 - Etkilenen: `MPNavigationChrome.swift`, `MPTheme.swift`, `MPGlass.swift` (yeni), `docs/LIQUID_GLASS_TAB_BAR_PLAN.md` (yeni), `docs/MagicPaper_Design_System.md`, `CLAUDE.md` (kökte, repo dışında).
+
 ### 2026-10-14 · main@b321c1e · Ana sayfa: aşağı çekerken yalnızca manzara yakınlaşır
 - Sayfa en üstteyken aşağı çekince başlık, çipler ve kartlar yerinden oynamaz; içerik çekilen mesafe kadar geri tutulur, manzara köy hizasından yerinde yakınlaşır.
 - Kaydırma ölçüsü içerikten değil ayrı görünmez bir işaretten okunur (önceki denemede içerik sabitlemesi ölçümü sıfırlıyordu).

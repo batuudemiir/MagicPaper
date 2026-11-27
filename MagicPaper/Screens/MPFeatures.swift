@@ -9,9 +9,21 @@ import Foundation
 /// "İyi geceler" okuyucuyu kapatır, `magicpaper://sleep` bu akşamın
 /// masalına düşer.
 enum MPFeatures {
-    /// Faz 11 (11 Kasım 2026, `docs/VIZYON_PLANI.md`): uyku kapısı açıldı,
-    /// varsayılan açık. İmzalı içerik akışı yine kapatabilir (`MPRemoteFlags`).
-    static var sleepMode: Bool { MPRemoteFlags.value(.sleepMode, default: true) }
+    /// Faz 11 (11 Kasım 2026, `docs/VIZYON_PLANI.md`): uyku kapısı açıldı.
+    /// 26 Kasım 2026 (Batuhan): yeniden kapalı. Uyku modu masalı cihazın
+    /// anlatıcısıyla okuyor ve ses robot gibi; stüdyo seslendirmesi gelene
+    /// kadar giriş noktaları gizli. Kod duruyor: sesler hazır olunca
+    /// `sleepModeVoiceReady` açılır, imzalı akış (`MPRemoteFlags`) yine kapatabilir.
+    static let sleepModeVoiceReady = false
+
+    /// Cihazın anlatıcısıyla sesli okuma (okuyucuda "Sesli oku", kapakta
+    /// "Ragi okusun", kelime kartında dinle, ayarlarda "Sesli okuma").
+    /// 26 Kasım 2026 (Batuhan): kapalı, ses robot gibi. Kayıtlı ses (ailenin
+    /// sesi, stüdyo seslendirmesi) olan sayfada okuma yine çalışır.
+    static let deviceNarration = false
+    static var sleepMode: Bool {
+        sleepModeVoiceReady && MPRemoteFlags.value(.sleepMode, default: true)
+    }
 }
 
 /// Uzaktan bayraklar (Faz 6): imzalı içerik akışından (`ContentFeed.flags`) gelir,

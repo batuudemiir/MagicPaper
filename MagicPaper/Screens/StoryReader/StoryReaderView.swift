@@ -92,6 +92,7 @@ struct StoryReaderView: View {
                 theme: theme,
                 isFavorite: favorites.contains(story.id),
                 isSpeaking: speech.isSpeaking && !speech.isPaused,
+                canSpeak: canSpeakPage,
                 familyVoice: familyRecording != nil,
                 // Masal sonu tam ekran bir an: yalnızca kapat kalır.
                 showsSecondary: model.controlsVisible && !isOnEnding,
@@ -123,6 +124,17 @@ struct StoryReaderView: View {
             .zIndex(1)
         }
         .background(theme.paper.ignoresSafeArea())
+        // Üst güvenli alan yapraklara modelden ulaşır: sayfa denetleyicisi
+        // yaprağa iletmezse metin kapat düğmesinin altına akıyordu.
+        .background {
+            GeometryReader { proxy in
+                Color.clear
+                    .onAppear { model.readerSafeTop = proxy.safeAreaInsets.top }
+                    .onChange(of: proxy.safeAreaInsets.top) { _, top in model.readerSafeTop = top }
+            }
+            .ignoresSafeArea()
+            .accessibilityHidden(true)
+        }
         .animation(MP.M.gated(MP.M.easeOut), value: model.controlsVisible)
         .animation(MP.M.gated(MP.M.base), value: theme)
         .statusBarHidden(!model.controlsVisible)
@@ -139,7 +151,8 @@ struct StoryReaderView: View {
                         .onTapGesture { words.selected = nil }
                         .accessibilityHidden(true)
                     ReaderWordCard(word: word, theme: theme,
-                                   onSpeak: { speech.speak("\(word.term). \(word.meaning)") },
+                                   onSpeak: MPFeatures.deviceNarration
+                                       ? { speech.speak("\(word.term). \(word.meaning)") } : nil,
                                    onClose: { words.selected = nil })
                         // "Meraklı parmak": rozet masal sonunda verilir.
                         .onAppear { markWordCardOpened() }
@@ -231,10 +244,6 @@ struct StoryReaderView: View {
             story: story,
             model: model,
             onClose: close,
-            onAnother: {
-                app.afterReader = .create
-                close()
-            },
             onGoodNight: {
                 app.sayGoodNight(after: story)
                 close()
@@ -505,9 +514,21 @@ struct StoryReaderView: View {
     /// Ailenin sesi yoksa masalın stüdyo seslendirmesi, o da yoksa cihazın anlatıcısı.
     private func speakPage(_ text: String) {
         let family = familyRecording
-        let studio = family == nil ? model.currentPage.flatMap { MPNarration.audio(story.id, page: $0.index) } : nil
-        speech.speak(text, recording: family ?? studio)
+        let recorded = recordedAudio
+        // Cihaz anlatıcısı kapalıyken (`MPFeatures.deviceNarration`) kayıtsız sayfa sessiz kalır.
+        guard recorded != nil || MPFeatures.deviceNarration else { return }
+        speech.speak(text, recording: recorded)
         if family != nil { heardFamilyVoice = true }
+    }
+
+    /// Bu sayfanın kayıtlı sesi: ailenin sesi, yoksa stüdyo seslendirmesi.
+    private var recordedAudio: URL? {
+        familyRecording ?? model.currentPage.flatMap { MPNarration.audio(story.id, page: $0.index) }
+    }
+
+    /// Sesli oku düğmesi: kayıtlı ses varsa ya da cihaz anlatıcısı açıksa.
+    private var canSpeakPage: Bool {
+        MPFeatures.deviceNarration || recordedAudio != nil || speech.isSpeaking
     }
 
     private func markWordCardOpened() {
@@ -540,9 +561,10 @@ struct StoryReaderView: View {
     }
 
     private func toggleSpeech() {
-        let recording = familyRecording
+        let recording = recordedAudio
+        guard recording != nil || MPFeatures.deviceNarration || speech.isSpeaking else { return }
         speech.toggle(model.currentPage?.spokenText ?? "", recording: recording)
-        if recording != nil, speech.isSpeaking { heardFamilyVoice = true }
+        if familyRecording != nil, speech.isSpeaking { heardFamilyVoice = true }
         scheduleAutoHide()
     }
 }

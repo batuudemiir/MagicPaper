@@ -116,6 +116,11 @@ class DailyStoryManager: ObservableObject {
         return todaysStory
     }
 
+    /// Bugün gösterilen masal: seçilmişse günün masalı, yoksa akışın ilki.
+    /// Ana sayfa kartı, widget, uyku modu ve ücretsiz vitrin (`ClassicsLibrary`)
+    /// aynı masalı görsün diye tek yerde (21 Kasım 2026).
+    var todaysPick: DailyStory? { todaysStory ?? dailyStories.first }
+
     /// "Tüm verileri sil": what was read, and today's choice.
     func eraseReadingState() {
         Self.eraseAll(in: defaults)

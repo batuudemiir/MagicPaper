@@ -93,6 +93,8 @@ struct LibraryItem: Identifiable, Equatable {
 /// Kitaplığın süzgeci: çipler ve rafların "Tümü" bağlantısı.
 enum LibraryFilter: Hashable, Identifiable {
     case all
+    /// Çocuğun kendi yazdığı masallar (26 Kasım 2026: çipler üçe indi).
+    case stories
     case favorites
     case mode(StoryMode)
     case classics
@@ -102,6 +104,7 @@ enum LibraryFilter: Hashable, Identifiable {
     var title: String {
         switch self {
         case .all: return "Tümü"
+        case .stories: return "Masallarım"
         case .favorites: return "Favoriler"
         case .mode(let mode): return mode.title
         case .classics: return "Klasikler"
@@ -117,6 +120,7 @@ enum LibraryFilter: Hashable, Identifiable {
     func admits(_ item: LibraryItem) -> Bool {
         switch self {
         case .all: return true
+        case .stories: return item.kind == .story
         case .favorites: return item.isFavorite
         case .mode(let mode): return item.kind == .story && item.mode == mode
         case .classics: return item.kind == .classic
@@ -162,11 +166,13 @@ struct LibraryShelfModel: Equatable {
         Array(items.filter(\.isPartlyRead).prefix(limit))
     }
 
-    /// Çiplerde gösterilecek süzgeçler: içi dolu olanlar, sabit sırada.
-    /// "Tümü" her zaman başta.
+    /// Çiplerde gösterilecek süzgeçler (26 Kasım 2026, Batuhan: kitaplık
+    /// karışık görünüyordu): yalnızca "Tümü · Masallarım · Klasikler", ikisi de
+    /// doluysa. Tek tür kitap varsa çip yok, yalnızca "Tümü". Mod ve favori
+    /// süzgeçleri kalktı; mod kapağın renginden ve simgesinden belli.
     var availableFilters: [LibraryFilter] {
-        let candidates: [LibraryFilter] = [.favorites] + StoryMode.displayOrder.map { .mode($0) } + [.classics]
-        return [.all] + candidates.filter { filter in items.contains(where: filter.admits) }
+        guard storyCount > 0, classicCount > 0 else { return [.all] }
+        return [.all, .stories, .classics]
     }
 
     /// Göreli gün adı: Bugün · Dün · "3 gün önce" · "12 Ekim" (başka yılsa yılıyla).

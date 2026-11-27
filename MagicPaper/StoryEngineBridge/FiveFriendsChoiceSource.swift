@@ -92,7 +92,32 @@ struct FiveFriendsChoiceSource: StoryChoiceSource {
         }
     }
 
+    // MARK: - Okul öncesi: önce arkadaş (26 Kasım 2026)
+
+    /// Mod bilinmeden kurulan liste: P56'nın en az bir modda gerçekten
+    /// yazabildiği arkadaşlar. Her mod ayrı sorulur, birleşim alınır.
+    func pilotFriendChoices(age: Int) -> [CompanionChoice] {
+        var seen = Set<String>()
+        return base.availableModes(forAge: age).flatMap { mode in
+            p56Choices(ideaID: nil, mode: mode, age: age, topicID: nil, family: nil) ?? []
+        }.filter { seen.insert($0.id).inserted }
+    }
+
+    /// Bu arkadaşla (`nil`: Sürpriz, herhangi biriyle) P56'nın yazabildiği modlar.
+    func pilotModes(forCompanionID companionID: String?, age: Int) -> [StoryMode] {
+        base.availableModes(forAge: age).filter { mode in
+            guard let ids = p56Choices(ideaID: nil, mode: mode, age: age, topicID: nil, family: nil)?.map(\.id)
+            else { return false }
+            guard let companionID else { return !ids.isEmpty }
+            return ids.contains(companionID)
+        }
+    }
+
     // MARK: - Forwarded
+
+    func legacyWritableCompanionIDs(mode: StoryMode, age: Int, topicID: String?) -> [String] {
+        base.legacyWritableCompanionIDs(mode: mode, age: age, topicID: topicID)
+    }
 
     func authoredBands() -> [AgeBand] { base.authoredBands() }
     func availableModes(forAge age: Int) -> [StoryMode] { base.availableModes(forAge: age) }

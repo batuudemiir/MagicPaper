@@ -28,8 +28,8 @@ struct SeriesEndingSection: View {
                     .font(MP.F.bodySM())
                     .foregroundStyle(theme.muted)
                     .fixedSize(horizontal: false, vertical: true)
-                // Masal sonunun birincil eylemi "Bir masal daha"; devam ettir
-                // yumuşak düğme (ekranda tek birincil buton).
+                // Devam ettir yumuşak düğme: masal sonunda yeni bir şey başlatmak
+                // öne çıkmaz (24 Kasım 2026, "Bir masal daha" kalktı).
                 MPButton(title: SeriesCopy.continueButton, systemImage: "sparkles", kind: .secondary, fullWidth: true) {
                     start()
                 }

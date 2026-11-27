@@ -126,6 +126,17 @@ protocol StoryChoiceSource {
     var isReady: Bool { get }
     /// Returns once `isReady`, without blocking the main thread.
     func waitUntilReady() async
+
+    // Okul öncesi "önce arkadaş" akışı (26 Kasım 2026, Batuhan K1-K4).
+
+    /// Beş arkadaş pilotunun modsuz listesi: en az bir modda yazılabilenler.
+    /// Boşsa okul öncesi akış bugünkü sırada (mod → konu → kimler) kalır.
+    func pilotFriendChoices(age: Int) -> [CompanionChoice]
+    /// Bu arkadaşla (`nil`: herhangi biriyle) beşlinin yazabildiği modlar.
+    func pilotModes(forCompanionID companionID: String?, age: Int) -> [StoryMode]
+    /// Konu seçilince istek eski motora gider (K4). Eski motorun bu istekte
+    /// gerçekten yazabildiği arkadaşlar, ekran süzgeci (`drawable`) olmadan.
+    func legacyWritableCompanionIDs(mode: StoryMode, age: Int, topicID: String?) -> [String]
 }
 
 /// The source the creation flow uses. The one place that names a provider.
@@ -242,6 +253,11 @@ extension OfflineStoryService: StoryChoiceSource {
     func familyAnimalKindChoices() -> [FamilyAnimalKindChoice] {
         familyAnimalKinds().map { FamilyAnimalKindChoice(id: $0.id.rawValue, name: $0.name) }
     }
+
+    func legacyWritableCompanionIDs(mode: StoryMode, age: Int, topicID: String?) -> [String] {
+        companionCandidates(forIdeaID: nil, mode: mode, age: age, topicID: topicID, family: nil)
+            .map(\.id.rawValue)
+    }
 }
 
 extension StoryIdeaChoice {
@@ -275,4 +291,10 @@ extension StoryChoiceSource {
     /// The catalog is read before the flow opens: always ready.
     var isReady: Bool { true }
     func waitUntilReady() async {}
+    /// Beş arkadaşı bilmeyen kaynak: okul öncesi akış bugünkü sırada.
+    func pilotFriendChoices(age: Int) -> [CompanionChoice] { [] }
+    func pilotModes(forCompanionID companionID: String?, age: Int) -> [StoryMode] { [] }
+    func legacyWritableCompanionIDs(mode: StoryMode, age: Int, topicID: String?) -> [String] {
+        companionChoices(forIdeaID: nil, mode: mode, age: age, topicID: topicID, family: nil).map(\.id)
+    }
 }

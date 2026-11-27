@@ -40,6 +40,10 @@ final class StoryReaderModel: ObservableObject {
     /// Kontroller görünür mü (§10).
     @Published var controlsVisible: Bool = true
 
+    /// Okuyucunun üst güvenli alanı. Yapraklar UIKit'te taşındığı için değer
+    /// olarak verilemez; buradan okunur (`StoryLeafView`'ın gerekçesi).
+    @Published var readerSafeTop: CGFloat = 0
+
     /// Masal bir kez sonuna kadar gidildi mi?
     @Published private(set) var hasReachedEnding: Bool = false
 

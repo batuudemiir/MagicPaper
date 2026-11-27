@@ -54,7 +54,9 @@ struct WorldTile: View {
 }
 // MARK: Home hero ("Bu akşamın masalı"): 4 states, see docs/SCREENS.md › Ana sayfa
 
-enum TonightState { case resume(progress: Double, title: String, meta: String), unread(title: String, meta: String), readToday, bedtime(time: String) }
+/// `readToday(canWrite:)`: bugün okundu; `canWrite` false ise ücretsiz günün masalı
+/// da yazıldı, kart yeni masal yerine kitaplığa çağırır (21 Kasım 2026, ANA_SAYFA_HAZIRLIK A2).
+enum TonightState: Equatable { case resume(progress: Double, title: String, meta: String), unread(title: String, meta: String), readToday(canWrite: Bool), bedtime(time: String) }
 
 struct TonightHeroCard: View {
     let state: TonightState

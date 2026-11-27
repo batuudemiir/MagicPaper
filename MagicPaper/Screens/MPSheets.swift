@@ -217,16 +217,21 @@ struct ReaderSettingsSheet: View {
                 }
             }
 
-            group("Okuma hızı") {
-                MPSegmented(options: MPSpeechRate.allCases.map { ($0, $0.label) },
-                            selection: Binding(get: { settings.speechRate },
-                                               set: { settings.speechRate = $0 }))
+            if MPFeatures.deviceNarration {
+                group("Okuma hızı") {
+                    MPSegmented(options: MPSpeechRate.allCases.map { ($0, $0.label) },
+                                selection: Binding(get: { settings.speechRate },
+                                                   set: { settings.speechRate = $0 }))
+                }
             }
 
             MPGroupedList(area: .kid) {
-                toggleRow(icon: "speaker.wave.2", tone: .sky, title: "Sesli okuma",
-                          subtitle: "Sayfa açılınca kendiliğinden okunur", isOn: $settings.readAloud)
-                MPRowDivider(area: .kid)
+                // Cihaz anlatıcısı kapalıyken gizli (`MPFeatures.deviceNarration`).
+                if MPFeatures.deviceNarration {
+                    toggleRow(icon: "speaker.wave.2", tone: .sky, title: "Sesli okuma",
+                              subtitle: "Sayfa açılınca kendiliğinden okunur", isOn: $settings.readAloud)
+                    MPRowDivider(area: .kid)
+                }
                 toggleRow(icon: "sparkles", tone: .lav, title: "Dokunsal geri bildirim",
                           subtitle: "Sayfa çevrilince hafif bir dokunuş", isOn: $settings.haptics)
                 MPRowDivider(area: .kid)

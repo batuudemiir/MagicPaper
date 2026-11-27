@@ -101,6 +101,7 @@ class RevenueCatManager: ObservableObject {
                 
                 if let offerings = offerings {
                     self?.offerings = offerings
+                    self?.refreshTrialEligibility(offerings)
                     logger.debug("✅ RevenueCat offerings loaded: \(offerings.all.count) offerings")
                     
                     if let current = offerings.current {
@@ -296,12 +297,50 @@ class RevenueCatManager: ObservableObject {
         getPackage(for: tier, period: period) != nil
     }
 
-    /// Ürünün mağazada tanımlı ücretsiz deneme süresi (gün). Deneme yoksa `nil`:
-    /// Paywall "ücretsiz dene" sözünü yalnızca gerçekten varsa verir (19 Kasım 2026).
-    /// Not: kullanıcının denemeye hâlâ uygun olup olmadığı burada sorulmaz.
+    /// Mağaza fiyatının sayısal değeri: Paywall yıllığın aylığa göre avantajını
+    /// sabit yazmaz, gerçek fiyattan hesaplar (21 Kasım 2026).
+    func priceAmount(for tier: SubscriptionManager.SubscriptionTier,
+                     period: BillingPeriod) -> Decimal? {
+        getPackage(for: tier, period: period)?.storeProduct.price
+    }
+
+    /// Ürünün aylık karşılığı, yerelleştirilmiş ("₺83,25"). Yıllık kartta.
+    func localizedPricePerMonth(for tier: SubscriptionManager.SubscriptionTier,
+                                period: BillingPeriod) -> String? {
+        getPackage(for: tier, period: period)?.storeProduct.localizedPricePerMonth
+    }
+
+    /// Bir tutarı ürünün kendi mağaza para birimiyle yazar ("₺789"). Paywall
+    /// yıllık avantajı yüzdenin yanında tutar olarak da gösterir (26 Kasım 2026).
+    func localizedAmount(_ amount: Decimal, for tier: SubscriptionManager.SubscriptionTier,
+                         period: BillingPeriod) -> String? {
+        getPackage(for: tier, period: period)?.storeProduct.priceFormatter?
+            .string(from: NSDecimalNumber(decimal: amount))
+    }
+
+    /// Denemeye uygun olmayan ürünler: Apple aynı abonelik grubunda daha önce
+    /// deneme ya da tanıtım fiyatı kullanmış hesaba yeniden deneme vermez
+    /// (21 Kasım 2026). "Bilinmiyor" cevabında deneme gösterilmeye devam eder;
+    /// gerçek fiyat zaten Apple'ın ödeme penceresinde yazar.
+    @Published private(set) var trialIneligible: Set<String> = []
+
+    private func refreshTrialEligibility(_ offerings: Offerings) {
+        let ids = offerings.current?.availablePackages.map { $0.storeProduct.productIdentifier } ?? []
+        guard !ids.isEmpty else { return }
+        Purchases.shared.checkTrialOrIntroDiscountEligibility(productIdentifiers: ids) { [weak self] result in
+            let ineligible: Set<String> = Set(result.compactMap { id, eligibility in eligibility.status == .ineligible ? id : nil })
+            DispatchQueue.main.async { self?.trialIneligible = ineligible }
+        }
+    }
+
+    /// Ürünün mağazada tanımlı ücretsiz deneme süresi (gün). Deneme yoksa ya da
+    /// bu hesap denemeye uygun değilse `nil`: Paywall "ücretsiz dene" sözünü
+    /// yalnızca gerçekten verilecekse verir (19 ve 21 Kasım 2026).
     func freeTrialDays(for tier: SubscriptionManager.SubscriptionTier,
                        period: BillingPeriod) -> Int? {
-        guard let intro = getPackage(for: tier, period: period)?.storeProduct.introductoryDiscount,
+        guard let product = getPackage(for: tier, period: period)?.storeProduct,
+              !trialIneligible.contains(product.productIdentifier),
+              let intro = product.introductoryDiscount,
               intro.paymentMode == .freeTrial else { return nil }
         let length = intro.subscriptionPeriod.value
         switch intro.subscriptionPeriod.unit {
@@ -366,6 +405,15 @@ class RevenueCatManager: ObservableObject {
 
     func freeTrialDays(for tier: SubscriptionManager.SubscriptionTier,
                        period: BillingPeriod) -> Int? { nil }
+
+    func priceAmount(for tier: SubscriptionManager.SubscriptionTier,
+                     period: BillingPeriod) -> Decimal? { nil }
+
+    func localizedAmount(_ amount: Decimal, for tier: SubscriptionManager.SubscriptionTier,
+                         period: BillingPeriod) -> String? { nil }
+
+    func localizedPricePerMonth(for tier: SubscriptionManager.SubscriptionTier,
+                                period: BillingPeriod) -> String? { nil }
 
     /// Gerçek sınıftaki eşlemenin aynısı; testler modül olmadan da derlensin.
     static func tier(forActiveSubscriptions ids: Set<String>) -> SubscriptionManager.SubscriptionTier {

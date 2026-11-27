@@ -103,4 +103,97 @@ enum StoryCreationSteps {
         guard let preset, available.contains(preset) else { return .mode }
         return .companion(preset)
     }
+
+    // MARK: - Okul öncesi: önce arkadaş (26 Kasım 2026, Batuhan K1-K4)
+
+    /// Okul öncesi ızgarasının sabit sırası. Son seçilen öne alınmaz: çocuk
+    /// arkadaşını yerinden tanır (`cocuk-akisi-is-tanimi.md`).
+    static let littleFriendOrder = [
+        "companion_hedgehog_pilot_001",  // Kestane
+        "companion_bear_001",            // Böğürtlen
+        "companion_fox_pilot_001",       // Tarçın
+        "companion_owl_pilot_001",       // Yıldız
+        "companion_city_cat_001",        // Simit
+    ]
+
+    /// Beş arkadaş ızgarası en çok beş arkadaş + Sürpriz: altı karo.
+    static let littleFriendLimit = 5
+
+    /// Kaynağın verdiği arkadaşlar, ızgaranın sabit sırasıyla; sırada olmayan
+    /// (olmaması gerekir) sona, geldiği sırayla.
+    static func orderedLittleFriends(_ friends: [CompanionChoice]) -> [CompanionChoice] {
+        func rank(_ id: String) -> Int { littleFriendOrder.firstIndex(of: id) ?? littleFriendOrder.count }
+        return Array(friends.enumerated()
+            .sorted { (rank($0.element.id), $0.offset) < (rank($1.element.id), $1.offset) }
+            .map(\.element)
+            .prefix(littleFriendLimit))
+    }
+
+    /// Okul öncesi akış "önce arkadaş" sırasıyla mı açılır?
+    ///
+    /// Yalnızca beş arkadaş bu çocuğa en az bir modda yazabiliyorsa (bayrak
+    /// açık, yaş ve güvenlik uygun). Masal ailem'den biriyle açılan akış
+    /// bugünkü sırada kalır: aile isteği P56'ya gidemez, beşliyi göstermek
+    /// tutulmayacak bir söz olurdu.
+    static func littleUsesFriendFirst(pilotFriends: [CompanionChoice], hasPresetFamily: Bool) -> Bool {
+        !pilotFriends.isEmpty && !hasPresetFamily
+    }
+
+    /// Okul öncesi "önce arkadaş" yolu: Kim gelsin? → {Arkadaş} ile ne yapalım?
+    /// → Kitap oluştur (26 Kasım 2026, Batuhan: "kısa ve net"; konu adımı ve
+    /// "Hazır mısın?" sorusu kalktı). Masal yalnızca son ekrandaki "Kitap
+    /// oluştur" ile yazılır. Konu sorulmadığı için istek her zaman beşliye
+    /// gider ve seçilen arkadaş masalda kalır.
+    struct LittlePath: Equatable {
+        enum Step: Equatable { case friend, mode, start }
+        /// Bir dokunuşun sonucu: bir adım göster, masalı yaz ya da akışı kapat.
+        enum Outcome: Equatable { case show(Step), begin, close }
+
+        private(set) var step: Step = .friend
+        /// `nil`: Sürpriz.
+        private(set) var companionID: String?
+        private(set) var mode: StoryMode?
+
+        init() {}
+
+        /// Adım çizgilerinin etiketleri.
+        var labels: [String] { ["Kim", "Masal", "Kitap"] }
+
+        var stepIndex: Int {
+            switch step {
+            case .friend: return 0
+            case .mode:   return 1
+            case .start:  return 2
+            }
+        }
+
+        /// Arkadaşa (ya da Sürpriz'e) dokunuş: sıradaki soru mod.
+        mutating func chooseFriend(_ id: String?) -> Outcome {
+            if id != companionID { mode = nil }
+            companionID = id
+            step = .mode
+            return .show(step)
+        }
+
+        mutating func chooseMode(_ chosen: StoryMode) -> Outcome {
+            mode = chosen
+            step = .start
+            return .show(step)
+        }
+
+        /// "Kitap oluştur": masal yalnızca son adımda yazılır.
+        func start() -> Outcome {
+            step == .start && mode != nil ? .begin : .show(step)
+        }
+
+        /// Geri seçimleri korur; ilk adımda akışı kapatır.
+        mutating func back() -> Outcome {
+            switch step {
+            case .friend: return .close
+            case .mode:   step = .friend
+            case .start:  step = .mode
+            }
+            return .show(step)
+        }
+    }
 }

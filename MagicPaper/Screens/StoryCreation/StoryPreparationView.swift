@@ -12,6 +12,10 @@ import SwiftUI
 /// Kapak kısa görünür, sonra masal kendiliğinden açılır; "Sonra oku" kitaplıkta
 /// bırakır. VoiceOver açıkken kendiliğinden açılmaz: duyuruyu kesmesin.
 /// Reduce Motion açıkken adımlar aynı sırayla, hareket yerine çapraz geçişle gelir.
+///
+/// Hareketli sahne (26 Kasım 2026, Batuhan): arkada moda göre süzülen kâğıt
+/// yıldızlar, açılan defter kapağı, her adımda çevrilen sayfa, ilerleyen yıldız
+/// yolu ve dönerek gelen kapak (`PreparationMotion.swift`).
 struct StoryPreparationView: View {
 
     let childName: String
@@ -26,6 +30,9 @@ struct StoryPreparationView: View {
     /// 10 · İlk masal: "Elif'in ilk masalı yazılıyor", "Sonra oku".
     var title: String = "Masal yazılıyor"
     var cancelTitle: String = "Vazgeç"
+
+    /// Kapağın ölçüsü: 2:3, en küçük iPhone'a da sığar.
+    private static let coverSize = CGSize(width: 260, height: 390)
 
     @State private var index = 0
     @State private var skipped = false
@@ -56,43 +63,13 @@ struct StoryPreparationView: View {
     }
 
     var body: some View {
-        GeometryReader { geo in
-            ScrollView {
-                VStack(spacing: MP.S.x5) {
-                    Spacer(minLength: MP.S.x3)
-
-                    Text(isDone ? (steps.last?.line ?? "Masal hazır.") : title)
-                        .mpText(.page).foregroundStyle(MPColor.textPrimary)
-                        .multilineTextAlignment(.center)
-                        .accessibilityAddTraits(.isHeader)
-                        .contentTransition(.opacity)
-
-                    stage
-
-                    if !isDone {
-                        Text(step?.line ?? waitingLine)
-                            .mpText(.cardTitle).foregroundStyle(MPColor.textSecondary)
-                            .multilineTextAlignment(.center)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .id(index)
-                            .transition(.opacity)
-                            .accessibilityHidden(true)
-
-                        StepDots(count: max(steps.count - 1, 1), current: min(index, max(steps.count - 2, 0)))
-                    }
-
-                    Spacer(minLength: MP.S.x5)
-
-                    actions
-                }
-                .padding(.horizontal, MPSpacing.screenH + MPSpacing.lg)
-                .padding(.bottom, MPSpacing.lg)
-                .frame(maxWidth: .infinity, minHeight: geo.size.height)
-            }
-            .scrollBounceBehavior(.basedOnSize)
+        ZStack {
+            PreparationSky(mode: facts?.mode, isBedtime: facts?.isBedtime ?? false)
+                .ignoresSafeArea()
+            page
         }
         .animation(MP.M.base, value: index)
-        .animation(MP.M.base, value: isDone)
+        .animation(MP.M.gated(MP.M.page) ?? MP.M.base, value: isDone)
         .animation(MP.M.base, value: showsSkip)
         .onChange(of: isDone) { _, done in
             guard done else { return }
@@ -117,6 +94,45 @@ struct StoryPreparationView: View {
         }
     }
 
+    private var page: some View {
+        GeometryReader { geo in
+            ScrollView {
+                VStack(spacing: MP.S.x5) {
+                    Spacer(minLength: MP.S.x3)
+
+                    Text(isDone ? (steps.last?.line ?? "Masal hazır.") : title)
+                        .mpText(.page).foregroundStyle(MPColor.textPrimary)
+                        .multilineTextAlignment(.center)
+                        .accessibilityAddTraits(.isHeader)
+                        .contentTransition(.opacity)
+
+                    stage
+
+                    if !isDone {
+                        Text(step?.line ?? waitingLine)
+                            .mpText(.cardTitle).foregroundStyle(MPColor.textSecondary)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .id(index)
+                            .transition(.opacity)
+                            .accessibilityHidden(true)
+
+                        StarPath(count: max(steps.count - 1, 1), current: min(index, max(steps.count - 2, 0)))
+                            .frame(maxWidth: MPSize.minTouchHero * 3)
+                    }
+
+                    Spacer(minLength: MP.S.x5)
+
+                    actions
+                }
+                .padding(.horizontal, MPSpacing.screenH + MPSpacing.lg)
+                .padding(.bottom, MPSpacing.lg)
+                .frame(maxWidth: .infinity, minHeight: geo.size.height)
+            }
+            .scrollBounceBehavior(.basedOnSize)
+        }
+    }
+
     // MARK: - Sahne
 
     /// Defter; kapağa gelince masalın kendi kapağı. Ragi defterin üstünde,
@@ -124,12 +140,23 @@ struct StoryPreparationView: View {
     @ViewBuilder
     private var stage: some View {
         if isDone, let story {
+            // Kapak ortada, sabit ölçüde (27 Kasım 2026, Batuhan: kapak
+            // ortalanmıyordu). Kâğıt yıldızlar yerleşimi etkilemesin diye arkada.
             StoryCover(story: story, childName: childName)
-                .aspectRatio(2.0 / 3.0, contentMode: .fit)
-                .frame(maxHeight: 420)
+                .frame(width: Self.coverSize.width, height: Self.coverSize.height)
                 .clipShape(RoundedRectangle(cornerRadius: MP.R.card, style: .continuous))
                 .mpShadow(MP.Sh.lifted)
-                .transition(.opacity)
+                .background {
+                    // Gündüz bir kez kâğıt yıldız; uyku vaktinde ve Hareketi Azalt'ta yok.
+                    if !reduceMotion && !(facts?.isBedtime ?? false) {
+                        PaperBurst()
+                            .frame(width: Self.coverSize.width * 2, height: Self.coverSize.height * 1.4)
+                            .allowsHitTesting(false)
+                            .accessibilityHidden(true)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+                .transition(.coverFlip(reduceMotion: reduceMotion))
         } else {
             VStack(spacing: MP.S.x3) {
                 MascotImage(mascot: beat == .reread ? .reading : .pencil, width: 80)
@@ -141,6 +168,9 @@ struct StoryPreparationView: View {
                     childColor: childColor,
                     inkDuration: min(MP.M.inkDuration, (step?.hold ?? MP.M.inkDuration) * 0.85)
                 )
+                .modifier(PageTurn(trigger: index))
+                .modifier(NotebookCoverOpening(tone: facts?.mode?.tone ?? .lav,
+                                               symbol: facts?.mode?.symbol ?? "book.closed"))
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(step?.line ?? waitingLine)
             }
@@ -192,24 +222,6 @@ struct StoryPreparationView: View {
         showsSkip = false
         index = max(steps.count - 1, 0)
         if story != nil { onRead() }
-    }
-}
-
-/// Sakin ilerleme: kaç adım olduğunu ve nerede olunduğunu gösterir, ne yüzde
-/// ne süre söyler. Bilgi ayrıca durum cümlesinde; noktalar süs.
-private struct StepDots: View {
-    let count: Int
-    let current: Int
-
-    var body: some View {
-        HStack(spacing: MP.S.x2) {
-            ForEach(0..<count, id: \.self) { i in
-                Capsule()
-                    .fill(i <= current ? MP.C.brand : MP.C.borderHairline)
-                    .frame(width: i == current ? MP.S.x5 : MP.S.x2, height: MP.S.x2)
-            }
-        }
-        .accessibilityHidden(true)
     }
 }
 

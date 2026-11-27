@@ -3,8 +3,9 @@ import SwiftUI
 /// "Devam eden seri" satırı: Ana sayfa (11), FAZ 13. Kartı ve başlığı
 /// ana sayfanın `HomeSection`'ı çizer; burada yalnızca satır var.
 ///
-/// İki sakin durum: bölüm hazır, ya da bir sonraki bölüm öncekinden sonraki
-/// gün açılır. Geri sayım yok, saat yok, "kaçırma" yok: kart ailenin bir
+/// Üç sakin durum: bölüm hazır, bir sonraki bölüm öncekinden sonraki gün
+/// açılır, ya da günü geldiği halde plan açmıyor ("büyüklerle açılır": kilit
+/// penceresi → ebeveyn kapısı → Paywall; 21 Kasım 2026). Geri sayım yok, saat yok, "kaçırma" yok: kart ailenin bir
 /// sonraki bölümü bulduğu yer, geri gelmek için bir sebep değil.
 struct SeriesCard: View {
 
@@ -32,6 +33,18 @@ struct SeriesCard: View {
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(SeriesCopy.waitingAccessibility(episode, title))
                 .accessibilityHint(SeriesCopy.waitingNote)
+        case .locked(let episode, let title):
+            Button {
+                MPHaptics.tap()
+                app.unlock(.seriesStories, usage: .seriesEpisode(episode)) { openSeries() }
+            } label: {
+                row(title: title, subtitle: SeriesCopy.lockedTitle(episode), showsChevron: true)
+            }
+            .buttonStyle(MPPressStyle())
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(SeriesCopy.lockedAccessibility(episode, title))
+            .accessibilityHint(SeriesCopy.lockedHint)
+            .accessibilityAddTraits(.isButton)
         case nil:
             EmptyView()
         }

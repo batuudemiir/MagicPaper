@@ -10,6 +10,17 @@ struct HeroAvatarView: View {
     var backdrop: Color? = nil
 
     var body: some View {
+        // Profil avatarı seçildiyse (23 Kasım 2026, `ProfileAvatar`) büstün
+        // yerine o yüz, yuvarlak ve kendi renginde.
+        if let avatar = ProfileAvatar.named(look.avatar) {
+            ProfileAvatarFace(avatar: avatar, circle: true)
+                .aspectRatio(1, contentMode: .fit)
+        } else {
+            bust
+        }
+    }
+
+    private var bust: some View {
         Canvas { ctx, size in
             let s = min(size.width / HeroCanvas.width, size.height / HeroCanvas.height)
             ctx.translateBy(x: (size.width - HeroCanvas.width * s) / 2,

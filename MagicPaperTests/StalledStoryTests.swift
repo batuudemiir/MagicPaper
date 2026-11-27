@@ -66,7 +66,7 @@ final class StalledStoryTests: XCTestCase {
     func testCompletedIllustratedStoryIsUnchanged() {
         let s = ReaderFixtures.illustratedStory(pages: 2)
         XCTAssertTrue(s.isIllustrated)
-        XCTAssertEqual(ReaderFixtures.reader(s).leaves[0].page?.imageRef, "page-0.jpg")
+        XCTAssertEqual(ReaderFixtures.reader(s).leaves.compactMap(\.page).first?.imageRef, "page-0.jpg")
     }
 
     func testStalledStoryIsResumableWhenPartlyRead() {

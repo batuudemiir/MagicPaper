@@ -10,6 +10,20 @@ Yalnız Claude yazar. En yeni kayıt en üstte. Plan: [ortak çalışma planı](
 - Uygulama testleri etkin pini `P56PinnedSource` üstünden okur. Seçili 9 suite, 78 test, 0 hata.
 - Simülatör (iPhone Air, Debug, bayrak açık, varsayılan en korumalı profil): uyku öncesi + Yıldız masalı v4 kaynakla yazıldı, kaydedildi ve okuyucuda açıldı (kayıtta `five-friends-56-runtime-v4`). Önceki v3 masalı kitaplıkta v3 kimliğiyle duruyor; arşivde v3 ve v4 dosyaları yan yana. Bayrak kapalı yolu birim testiyle (`testFlagOffListIsTodays`) doğrulandı, simülatörde bu turda ayrıca açılmadı.
 
+## 2026-11-26 · codex/bes-arkadas/entegrasyon@28e1107 · Okul öncesi akış birleşti (Batuhan kararı)
+
+- `codex/bes-arkadas/cocuk-akisi` (21505fd) entegrasyona `--no-ff` ile birleşti: **`28e1107`**, ağaç 21505fd ile birebir aynı, çakışma yok. Batuhan'ın 26 Kasım 2026 kararıyla birleştirildi; Codex sonradan gözden geçirebilir. Push yok.
+- Sırada: entegrasyonun main'e alınması ve Batuhan'ın telefonunda deneme (Batuhan istedi); beş arkadaş düzeltme dalı da aynı birleşmeye girecek.
+
+## 2026-11-26 · codex/bes-arkadas/cocuk-akisi@37e135d · Okul öncesi akış: önce arkadaş
+
+- Yeni dal `codex/bes-arkadas/cocuk-akisi` (`claude-uygulama` c67bba6'dan), worktree `~/MagicPaper-worktrees/cocuk-akisi`. Push ve birleştirme yok.
+- İş tanımı `cocuk-akisi-is-tanimi.md` (K1-K4) uygulandı: little + beşli açıkken arkadaş → mod → (konu) → onay; masal yalnız Başla ile yazılıyor. Beşli kapalıyken, ebeveyn modunda, büyük kademede ve ana sayfa preset açılışında akış değişmedi.
+- Motor sözleşmesine dokunulmadı. Modsuz liste için `FiveFriendsChoiceSource` her modu ayrı sorup birleşim alıyor (yeni `pilotFriendChoices`), arkadaşa göre modlar `pilotModes`. Konu seçilince yönlendirici `topic` bağlamıyla eski motoru seçiyor; seçilen arkadaş yalnız eski motorun o konudaki adaylarındaysa (`legacyWritableCompanionIDs`, ekran süzgeci olmadan) iletiliyor. Beş kimliğin hepsi eski katalogda var (`pilot_library_v1`, `shared_content_library`); test en az bir konuda Simit ya da Böğürtlen ile gerçek eski motor yazımını doğruluyor. Örnek: Simit + Macera + "Denizin altı" eski motorda yok → onay ekranı Sürpriz, masal penguen Pofuduk ile yazıldı.
+- Hazırlık ekranı: Ragi var, beşli yok; yalnız seçilen arkadaşın adı bir çipte. Ragi ve beşli aynı karede değil. Değiştirmedim.
+- Test: 44 test 0 hata (5 sınıf). Tam paket koşulmadı.
+- Açık: (1) Kanonik sıra iş tanımındaki sıra (Kestane, Böğürtlen, Tarçın, Yıldız, Simit); motorun `companionIDs` sırası farklı (Tarçın önce). (2) İş tanımındaki "yeşil düğmeye dokun" cümlesi düğme mor olduğu için "Başla'ya dokun" yapıldı. (3) Tanıtım cümleleri benim taslağım, Batuhan/İrem onayı gerekir. (4) Beşli yolunda Masal ailem karoları yok (en çok altı karo).
+
 ## 2026-11-26 · codex/bes-arkadas/claude-uygulama · v3 uygulama tarafı tamam; kod düzeltmeleri
 
 **v3 (Batuhan onayı "geçir"; senin motor pinin `024b8a5` hatta birleşti):**

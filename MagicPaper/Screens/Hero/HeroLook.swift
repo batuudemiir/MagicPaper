@@ -132,15 +132,22 @@ struct HeroLook: Codable, Equatable, Hashable {
     var headwearColor: Int = 6
     var top: Top = .tshirt
     var topColor: Int = 0
+    /// Profil avatarı (23 Kasım 2026, `ProfileAvatar`): Ragi'nin ya da bir
+    /// masal arkadaşının yüzü. Seçildiyse profilde ve "Kim okuyor?"da büstün
+    /// yerine o yüz görünür; masal görsellerindeki çocuk kimliği yukarıdaki
+    /// alanlardan gelmeye devam eder.
+    var avatar: String? = nil
 
     static let standard = HeroLook()
 
     init(kind: Kind = .child, skin: Int = 1, fur: Int = 0, hair: Hair = .short, hairColor: Int = 1,
          eyes: Eyes = .round, mouth: Mouth = .smile, freckles: Bool = false, glasses: Glasses = .none,
-         headwear: Headwear = .none, headwearColor: Int = 6, top: Top = .tshirt, topColor: Int = 0) {
+         headwear: Headwear = .none, headwearColor: Int = 6, top: Top = .tshirt, topColor: Int = 0,
+         avatar: String? = nil) {
         self.kind = kind; self.skin = skin; self.fur = fur; self.hair = hair; self.hairColor = hairColor
         self.eyes = eyes; self.mouth = mouth; self.freckles = freckles; self.glasses = glasses
         self.headwear = headwear; self.headwearColor = headwearColor; self.top = top; self.topColor = topColor
+        self.avatar = avatar
     }
 
     /// Eksik ya da tanınmayan alan varsayılana düşer: yeni bir parça eklenince
@@ -161,6 +168,7 @@ struct HeroLook: Codable, Equatable, Hashable {
         headwearColor = (try? c.decodeIfPresent(Int.self, forKey: .headwearColor)) ?? d.headwearColor
         top = (try? c.decodeIfPresent(Top.self, forKey: .top)) ?? d.top
         topColor = (try? c.decodeIfPresent(Int.self, forKey: .topColor)) ?? d.topColor
+        avatar = (try? c.decodeIfPresent(String.self, forKey: .avatar)) ?? nil
     }
 
     /// Örnek kahramanlar: vitrin, önizleme, ilk açılış.

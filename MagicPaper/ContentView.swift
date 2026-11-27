@@ -18,6 +18,9 @@ struct ContentView: View {
     @ObservedObject private var surfaceRouter = MPSurfaceRouter.shared
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// Profil sekmesinin sessiz noktası (iOS 26 sistem çubuğu; eskisi `KidTabBar`'da).
+    @ObservedObject private var stickerNews = MPStickerNews.shared
+    @ObservedObject private var badgeNews = MPBadgeNews.shared
     /// Masal yaz dairesinden masal yazma ekranına yakınlaşma.
     @Namespace private var createZoom
     /// Kitaplıktaki kapaktan okuyucuya yakınlaşma (Faz 13).
@@ -57,6 +60,26 @@ struct ContentView: View {
                 }
                 if let route = MPDebugLaunch.parentRoute { app.router.parentRoute = route }
                 if MPDebugLaunch.opensPaywall { app.openPaywall() }
+                if MPDebugLaunch.opensAvatarPicker, let id = profileManager.currentProfile?.id {
+                    app.router.tab = .corner
+                    app.avatarPickerProfileID = id
+                }
+                if MPDebugLaunch.opensMenu { app.router.sheet = .menu }
+                if MPDebugLaunch.opensJourney, let id = profileManager.currentProfile?.id {
+                    app.router.openKidPage(.journey(id))
+                }
+                if let page = MPDebugLaunch.kidPage, let id = profileManager.currentProfile?.id {
+                    let route: MPKidRoute? = switch page {
+                    case "badges": .badges(id)
+                    case "stickers": .stickers(id)
+                    case "newWords": .newWords(id)
+                    case "storyMap": .storyMap(id)
+                    case "family": .familyCharacters(id)
+                    case "decor": .decor(id)
+                    default: nil
+                    }
+                    if let route { app.router.openKidPage(route) }
+                }
             }
             #endif
             .task {
@@ -83,8 +106,11 @@ struct ContentView: View {
             .onChange(of: profileManager.currentProfile?.safety) { _, _ in
                 OfflineStoryService.shared.currentSafety = profileManager.currentProfile?.effectiveSafety
             }
-            .onChange(of: profileManager.currentProfile?.id, initial: true) { _, id in
-                app.router.closePagesOfPreviousChild()
+            .onChange(of: profileManager.currentProfile?.id, initial: true) { previous, id in
+                // Yalnızca çocuk gerçekten değişince: ilk çağrıda (initial) önceki
+                // çocuk yok. Açılışta itilmiş sayfayı silmesin (24 Kasım 2026: ekran
+                // turunda menü sayfaları bu yüzden ana sayfa olarak çekiliyordu).
+                if previous != id { app.router.closePagesOfPreviousChild() }
                 MPStreak.shared.activate(profileID: id)
             // İçerik güvenliği (FAZ 17) çocuk başına: her sorgu ve masal bunu okur.
             OfflineStoryService.shared.currentSafety = profileManager.currentProfile?.effectiveSafety
@@ -169,7 +195,7 @@ struct ContentView: View {
                     .mpZoomDestination(story.id.uuidString,
                                        in: app.readerZoomID == story.id && !reduceMotion ? readerZoom : nil)
             }
-            .fullScreenCover(isPresented: $app.showPaywall) {
+            .fullScreenCover(isPresented: $app.showPaywall, onDismiss: { app.paywallDismissed() }) {
                 PaywallView().environmentObject(app)
             }
             .fullScreenCover(isPresented: $app.router.showGate, onDismiss: { app.router.gateDismissed() }) {
@@ -212,6 +238,13 @@ struct ContentView: View {
                     .transition(reduceMotion ? .opacity : .move(edge: .bottom))
                     .zIndex(1)
             }
+
+            // Profil avatarı: alt çubuğun da üstünde, zıplayarak açılır (23 Kasım 2026).
+            if let id = app.avatarPickerProfileID,
+               let profile = profileManager.profiles.first(where: { $0.id == id }) {
+                ProfileAvatarPicker(profile: profile) { app.avatarPickerProfileID = nil }
+                    .zIndex(2)
+            }
         }
         .animation(reduceMotion ? MP.M.easeOut : MP.M.base, value: app.router.isParentMode)
     }
@@ -224,12 +257,72 @@ struct ContentView: View {
         ZStack(alignment: .bottom) {
             MPColor.backgroundKid.ignoresSafeArea()
 
-            customKidTabs
+            if #available(iOS 26.0, *) {
+                systemKidTabs
+            } else {
+                customKidTabs
+            }
         }
     }
 
-    /// Bütün sürümlerde kendi yüzen çubuğumuz (`KidTabBar`; 13 Kasım 2026:
-    /// "Masal yaz" ortada ve kapsülün içinde, sistemin `TabView`'ı bunu yapamıyor).
+    /// Alt çubuğun yuvası: dört sekme ve "Masal yaz".
+    private enum KidTabSlot: Hashable {
+        case tab(KidTab)
+        case create
+    }
+
+    /// iOS 26: sistemin Liquid Glass sekme çubuğu (26 Kasım 2026, Batuhan:
+    /// "drag to select değil, liquid glass uygula").
+    ///
+    /// Cam, mercek, sürükleyerek seçme, basılı tutunca büyük içerik ve
+    /// VoiceOver sistemden gelir. "Masal yaz" `.search` rolüyle sistemin ayrı
+    /// dairesinde, sekmelerin yanında durur (eski `KidTabBar` düzeni gibi).
+    /// Bir yer değil eylem: seçimi hiç tutulmaz, bağlama ona geçmek istediğinde
+    /// masal yazma açılır ve seçili sekme yerinde kalır. Sistem dairesi
+    /// yakınlaşma kaynağı olamadığından masal yazma olağan geçişle açılır.
+    /// Seçili sekmeye yeniden dokununca bağlama aynı değeri yazar;
+    /// `selectKidTab` bunu "başa dön" sayar.
+    @available(iOS 26.0, *)
+    private var systemKidTabs: some View {
+        TabView(selection: Binding<KidTabSlot>(
+            get: { .tab(app.router.tab.kidTab) },
+            set: { next in
+                switch next {
+                case .tab(let tab): selectKidTab(tab)
+                case .create:
+                    MPHaptics.selection()
+                    app.startStoryCreation()
+                }
+            }
+        )) {
+            Tab("Ana sayfa", systemImage: "house", value: KidTabSlot.tab(.home)) {
+                KidTabStack(tab: .home) { HomeView() }
+            }
+            Tab("Masallar", systemImage: "book", value: KidTabSlot.tab(.gunluk)) {
+                GunlukView()
+            }
+            Tab("Kitaplık", systemImage: "books.vertical", value: KidTabSlot.tab(.library)) {
+                KidTabStack(tab: .library) { LibraryView() }
+            }
+            Tab("Profil", systemImage: "person.crop.circle", value: KidTabSlot.tab(.corner)) {
+                KidTabStack(tab: .corner) { KidCornerView() }
+            }
+            // Taze çıkartma ya da yeni rozet: Profil'de bir kez sessiz nokta.
+            .badge(hasCornerNews ? Text("") : nil)
+            Tab("Masal yaz", systemImage: "wand.and.sparkles", value: KidTabSlot.create, role: .search) {
+                MPColor.backgroundKid.ignoresSafeArea()
+            }
+        }
+        .tint(MP.C.brand)
+    }
+
+    /// Taze çıkartma ya da yeni rozet/kat (`KidTabBar.cornerNews` ile aynı kural).
+    private var hasCornerNews: Bool {
+        let child = profileManager.currentProfile?.id
+        return stickerNews.isFresh(child) || badgeNews.hasDot(child)
+    }
+
+    /// iOS 26 öncesi: kendi yüzen çubuğumuz (`KidTabBar`, cam `mpGlassSurface`).
     private var customKidTabs: some View {
         // Sekmeler yumuşak bir kayma ve solmayla değişir; Reduce Motion'da
         // yalnızca solma.
@@ -283,6 +376,10 @@ struct ContentView: View {
             ReminderSheet(childName: profileManager.currentProfile?.name ?? "")
         case .locked(let capability):
             MPLockedSheet(capability: capability)
+        case .menu:
+            KidMenuSheet()
+        case .news:
+            HomeNewsSheet()
         }
     }
 }
@@ -351,6 +448,8 @@ struct KidPageView: View {
             if let profile = profile(id) { StoryMapView(profile: profile) }
         case .badges(let id):
             if let profile = profile(id) { BadgesView(profile: profile) }
+        case .journey(let id):
+            if let profile = profile(id) { ReadingJourneyView(profile: profile) }
         }
     }
 
@@ -385,8 +484,14 @@ private struct ParentTabStack<Root: View>: View {
 private extension View {
     /// Kendi alt çubuğumuzun boşluğu yığının içine ulaşmaz (`GunlukLayout`);
     /// itilen sayfanın alt düğmesi çubuğun altında kalmasın.
+    /// iOS 26'da sistemin sekme çubuğu boşluğunu kendisi verir.
+    @ViewBuilder
     func kidTabBarClearance() -> some View {
-        safeAreaPadding(.bottom, MPSize.kidTabBarHeight)
+        if #available(iOS 26.0, *) {
+            self
+        } else {
+            safeAreaPadding(.bottom, MPSize.kidTabBarHeight)
+        }
     }
 }
 

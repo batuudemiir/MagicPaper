@@ -24,38 +24,33 @@ struct NewWordsView: View {
     var body: some View {
         let words = all
         let shown = thisWeekOnly ? MPVocabulary.collectedThisWeek(words) : words
-        VStack(spacing: 0) {
-            MPTopBar(title: "Yeni kelimelerim",
-                     subtitle: words.isEmpty ? nil : "\(words.count) kelime topladın",
-                     onBack: close) { EmptyView() }
-                .padding(.horizontal, MPSpacing.screenH)
-
-            HStack(spacing: MPSpacing.sm) {
-                MPChip(title: "Bu hafta", isSelected: thisWeekOnly) { thisWeekOnly = true }
-                MPChip(title: "Tümü", isSelected: !thisWeekOnly) { thisWeekOnly = false }
-                Spacer(minLength: 0)
+        // Menü sayfalarının ortak çatısı (23 Kasım 2026): mor gök, beyaz tanıtım
+        // kartı; boş durumda kart yok, Ragi `MPStateView`'da.
+        MPSkyPage(title: "Yeni kelimelerim", onBack: close) {
+            if !shown.isEmpty {
+                MPSkyIntro(mascot: .reading,
+                           headline: "\(words.count) kelime topladın",
+                           message: "Hangisini hatırlıyorsun? Dokun, birlikte dinleyelim.", tone: .sky)
             }
-            .padding(.horizontal, MPSpacing.xl)
-            .padding(.vertical, MPSpacing.md)
+        } content: {
+            if !words.isEmpty {
+                HStack(spacing: MPSpacing.sm) {
+                    MPChip(title: "Bu hafta", isSelected: thisWeekOnly) { thisWeekOnly = true }
+                    MPChip(title: "Tümü", isSelected: !thisWeekOnly) { thisWeekOnly = false }
+                    Spacer(minLength: 0)
+                }
+            }
 
             if shown.isEmpty {
                 empty(hasAny: !words.isEmpty)
             } else {
-                ScrollView(showsIndicators: false) {
-                    LazyVStack(spacing: MPSpacing.md) {
-                        // Boş hâldeki Ragi dolu listede de küçük kalır (23 Ekim 2026).
-                        MascotSays(mascot: .reading, text: "Hangisini hatırlıyorsun? Dokun, birlikte dinleyelim.",
-                                   mascotWidth: 56)
-                        ForEach(Array(shown.enumerated()), id: \.element.id) { index, item in
-                            card(item, tone: Self.tones[index % Self.tones.count])
-                        }
+                LazyVStack(spacing: MPSpacing.md) {
+                    ForEach(Array(shown.enumerated()), id: \.element.id) { index, item in
+                        card(item, tone: Self.tones[index % Self.tones.count])
                     }
-                    .padding(.horizontal, MPSpacing.xl)
-                    .padding(.bottom, MPSpacing.xxxl)
                 }
             }
         }
-        .background(MPColor.backgroundSurface.ignoresSafeArea())
         .onDisappear { if speakingID != nil { speech.stop() } }
     }
 

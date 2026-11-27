@@ -164,10 +164,15 @@ final class InterestProfileTests: XCTestCase {
     ///
     /// H1 (17 Kasım 2026, `docs/HAVUZ_PLANI.md`): 3-4'e sakin macera yazıldı ve
     /// liste beşten ona çıktı. Bu bir ürün etkisi: ebeveyn daha çok kelime görür.
+    ///
+    /// H2b, Sporlar ve dünya satırları (19 Kasım 2026, Batuhan; günlükte "Spor
+    /// ve Meslekler her banda girdi", "ulaşılabilir ilgi listesi (Tarih, Ülkeler,
+    /// Şehirler)") listeyi on beşe çıkardı. Beklenti o gün güncellenmişti ama
+    /// main'e ulaşmadı; CI 25 Kasım'da yakaladı.
     func testTheServiceOffersWhatReachesEveryBand() {
         let offered = OfflineStoryService.shared.interestChoices()
-        XCTAssertEqual(offered.map(\.id), ["animals", "space", "sea", "music", "magic", "nature", "robots", "science", "sky", "treasure"])
-        XCTAssertEqual(offered.map(\.name), ["Hayvanlar", "Uzay", "Deniz", "Müzik", "Sihir", "Doğa", "Robotlar", "Bilim", "Gökyüzü", "Hazine"])
+        XCTAssertEqual(offered.map(\.id), ["animals", "space", "sea", "music", "magic", "nature", "robots", "sports", "jobs", "science", "history", "country", "city", "sky", "treasure"])
+        XCTAssertEqual(offered.map(\.name), ["Hayvanlar", "Uzay", "Deniz", "Müzik", "Sihir", "Doğa", "Robotlar", "Spor", "Meslekler", "Bilim", "Tarih", "Ülkeler", "Şehirler", "Gökyüzü", "Hazine"])
         XCTAssertTrue(StoryChoiceSources.current.interestChoices() == offered)
     }
 

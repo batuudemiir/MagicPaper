@@ -46,6 +46,11 @@ struct StoryCreationFlow: View {
         /// modun konusu varken.
         case topic
         case companion
+        /// Okul öncesi "önce arkadaş" yolu (26 Kasım 2026, Batuhan K1-K4;
+        /// kısaltma aynı gün: Kim → Ne yapalım → Kitap oluştur):
+        /// hangi adımda olduğu `littlePath`'te. Yalnızca beşli bu çocuğa
+        /// yazabildiğinde; yoksa okul öncesi akış bugünkü `.mode` sırasında.
+        case little
         /// 21 · Masal yazılıyor; masal hazır olunca aynı ekranda "Masalı oku".
         case preparing
         /// Okuyucu akışın *içinde* açılır.
@@ -95,6 +100,10 @@ struct StoryCreationFlow: View {
     /// Relations the chosen mode can carry for this child, computed once per
     /// mode rather than on every redraw: it walks every blueprint.
     @State private var familyRelations: Set<FamilyRelationKind> = []
+    /// Okul öncesi "önce arkadaş" yolu ve onu besleyen listeler.
+    @State private var littlePath = StoryCreationSteps.LittlePath()
+    /// Beşlinin bu çocuğa en az bir modda yazabildiği arkadaşlar; boşsa yol yok.
+    @State private var pilotFriends: [CompanionChoice] = []
 
     /// Bu masalın çocuğu: akışta seçildiyse o, yoksa aktif profil.
     ///
@@ -171,14 +180,31 @@ struct StoryCreationFlow: View {
         .onAppear {
             reloadFamily()
             refreshFamilyRelations()
+            enterLittleFriendFirstIfPossible()
         }
         .onChange(of: chosenMode) { _, _ in refreshFamilyRelations() }
         .onChange(of: chosenProfileID) { _, _ in
             chosenFamilyID = nil
             reloadFamily()
             refreshFamilyRelations()
+            if phase == .little { phase = .mode }
             if phase == .mode && !supportsChosenChild { phase = .unsupportedAge }
+            enterLittleFriendFirstIfPossible()
         }
+    }
+
+    /// Okul öncesi çocuk, ilk adımda ve beşli ona yazabiliyorsa "önce arkadaş"
+    /// yoluna geçer. Ana sayfadan modla açılış (`preset`) ve ebeveyn alanı
+    /// bugünkü gibi kalır: onlar `.mode`'dan açılmaz ya da `level` büyük.
+    private func enterLittleFriendFirstIfPossible() {
+        guard phase == .mode, level == .little else { return }
+        pilotFriends = source.pilotFriendChoices(age: age)
+        guard StoryCreationSteps.littleUsesFriendFirst(pilotFriends: pilotFriends,
+                                                       hasPresetFamily: chosenFamilyID != nil) else { return }
+        littlePath = StoryCreationSteps.LittlePath()
+        var transaction = Transaction()
+        transaction.disablesAnimations = true
+        withTransaction(transaction) { phase = .little }
     }
 
     /// A mode change can make the chosen character's relation unavailable.
@@ -208,7 +234,7 @@ struct StoryCreationFlow: View {
     /// ekranlarının kendi düzeni var.
     private var showsHeader: Bool {
         switch phase {
-        case .child, .mode, .topic, .companion: return true
+        case .child, .mode, .topic, .companion, .little: return true
         // Açıklama ekranının kendi kapatma düğmesi var; adım noktaları ise
         // yanlış olurdu, çünkü bu bir adım değil, akışın durduğu yer.
         default: return false
@@ -236,7 +262,10 @@ struct StoryCreationFlow: View {
             }
             HStack {
                 MPCircleButton(systemImage: showsBack ? "chevron.left" : "xmark",
-                               accessibilityLabel: showsBack ? "Geri" : "Kapat", action: goBack)
+                               accessibilityLabel: showsBack ? "Geri" : "Kapat",
+                               // Okul öncesi yolda geri oku büyük: en az 2×2 cm.
+                               size: phase == .little ? MPSize.kidBackLarge : MPSize.circleButton,
+                               action: goBack)
                 Spacer(minLength: 0)
             }
         }
@@ -248,6 +277,8 @@ struct StoryCreationFlow: View {
     private var showsBack: Bool {
         switch phase {
         case .topic, .companion: return true
+        // Okul öncesi yol tek sayfa: seçimler yerinde değişir, geri adımı yok.
+        case .little: return false
         default: return false
         }
     }
@@ -255,7 +286,9 @@ struct StoryCreationFlow: View {
     /// Konu adımı bu modda var mı: noktalar ve "Geri" buna göre.
     private var hasTopicStep: Bool { !topicChoices.isEmpty }
 
-    private var stepLabels: [String] { StoryCreationSteps.stepLabels(hasTopicStep: hasTopicStep) }
+    private var stepLabels: [String] {
+        phase == .little ? littlePath.labels : StoryCreationSteps.stepLabels(hasTopicStep: hasTopicStep)
+    }
 
     /// Nokta sırası etiket listesinden türetiliyor, elle sayılmıyor: iki yerde
     /// ayrı ayrı sayılsaydı bir adım eklendiğinde biri güncellenir öbürü
@@ -265,12 +298,16 @@ struct StoryCreationFlow: View {
         case .mode:      return stepLabels.firstIndex(of: "Masal")
         case .topic:     return stepLabels.firstIndex(of: "Konu")
         case .companion: return stepLabels.count - 1
+        case .little:    return littlePath.stepIndex
         default:         return nil
         }
     }
 
     private func goBack() {
         switch phase {
+        case .little:
+            MPSpeech.shared.stop()
+            dismiss()
         case .companion where hasTopicStep && strategy == .direct:
             chosenCompanionID = nil
             chosenTopicID = nil
@@ -372,6 +409,8 @@ struct StoryCreationFlow: View {
                 chosenCompanionID = companionID
                 begin()
             }
+        case .little:
+            littleContent
         case .preparing:
             StoryPreparationView(
                 childName: profile?.name ?? "",
@@ -390,10 +429,64 @@ struct StoryCreationFlow: View {
                 .transition(.opacity)
         case .failed:
             StoryCreationFailureView(
-                onRetry: { resetToModes() },
+                // "Tekrar dene" okul öncesi çocuğu yine arkadaştan başlatır.
+                onRetry: { resetToModes(); enterLittleFriendFirstIfPossible() },
                 onClose: { dismiss() },
                 message: (failureReason ?? .general).message
             )
+        }
+    }
+
+    // MARK: - Okul öncesi: önce arkadaş (26 Kasım 2026)
+
+    /// Tek sayfa: seçim yapılınca sıradaki soru altta açılır (`LittleCreationPage`).
+    private var littleContent: some View {
+        LittleCreationPage(
+            path: littlePath,
+            friends: pilotFriends,
+            friend: littleFriend,
+            modes: littleModes,
+            emphasized: StoryCreationSteps.emphasizedMode(
+                littleModes, isBedtime: MPBedtime.isBedtime(settings: MPSettingsStore.shared)),
+            profiles: profiles,
+            authoredBands: authoredBands,
+            selectedProfileID: $chosenProfileID,
+            onChooseFriend: { apply(littlePath.chooseFriend($0)) },
+            onChooseMode: { apply(littlePath.chooseMode($0)) },
+            onStart: { apply(littlePath.start()) }
+        )
+    }
+
+    /// Seçilen arkadaş; Sürpriz'de `nil`.
+    private var littleFriend: CompanionChoice? {
+        littlePath.companionID.flatMap { id in pilotFriends.first { $0.id == id } }
+    }
+
+    /// Beşlinin bu arkadaşla yazabildiği modlar; boşsa (olmaması gerekir) bandın modları.
+    private var littleModes: [StoryMode] {
+        let modes = source.pilotModes(forCompanionID: littlePath.companionID, age: age)
+            .filter(allowedModes.contains)
+        return modes.isEmpty ? allowedModes : modes
+    }
+
+    /// Yolun her dokunuşu buradan geçer: adım değişir, masal yalnızca `.begin`'de yazılır.
+    private func apply(_ outcome: StoryCreationSteps.LittlePath.Outcome) {
+        switch outcome {
+        case .close:
+            dismiss()
+        case .show:
+            break
+        case .begin:
+            guard let mode = littlePath.mode else { return }
+            MPSpeech.shared.stop()
+            chosenMode = mode
+            strategy = .direct
+            // Konu sorulmaz: istek beşliye gider, seçilen arkadaş masalda kalır.
+            chosenTopicID = nil
+            chosenCompanionID = littlePath.companionID
+            chosenOccasion = nil
+            refreshFamilyRelations()
+            begin()
         }
     }
 
@@ -508,6 +601,8 @@ struct StoryCreationFlow: View {
         phase = .preparing
 
         Task {
+            // Kapak açılışı bitsin, sonra kur (kurulum ana iş parçacığında).
+            try? await Task.sleep(for: .seconds(StoryPreparationScript.composeDelay))
             do {
                 let story = try await storyManager.createStory(
                     for: profile,

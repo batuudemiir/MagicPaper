@@ -8,8 +8,18 @@ import SwiftUI
 /// Gündüz bir başarı anı: Ragi sevinçle zıplar, arkasında kâğıt yıldızlar bir kez
 /// patlar, kısa ses ve tek titreşim; kazanılanlar (ilk kez bitiyorsa yıldız, üst üste
 /// günler, yeni kelimeler, rozet) tek tek sesle belirir. Sonra Ragi'nin balonu bir soru
-/// sorar ("Birlikte konuşalım", puansız). Yollar: "Bir masal daha", "Bitir". FAZ 13:
+/// sorar ("Birlikte konuşalım", puansız). Tek yol: "Ana sayfaya dön". FAZ 13:
 /// seri devam ettirilebiliyorsa "Devam ettir" burada. Künye kazanılanların altında.
+///
+/// 23 Kasım 2026 (İrem, yeni gündüz tasarımı; prototip `design-preview/app/ending.js`):
+/// mor zemin (`MP.C.endingSky`), "Masal bitti!", ışık hüzmeleri önünde sevinçli Ragi
+/// (`Mascot.cheer`), "Bravo, <ad>!", yatay kayan kazanılanlar
+/// (çıkartma, masalın rozeti, yıldız, kelimeler), Ragi'nin sorusu tek
+/// satır, en altta "Ana sayfaya dön" ("Bitir"in yerine). Rozet anı, gece yaprağı, seri,
+/// bilgi ve künye aynen; gece yaprağı değişmedi.
+///
+/// 24 Kasım 2026 (Batuhan): "Bir masal daha" ve haftalık dakika kartı kalktı. Masal
+/// bitirmek bir olay; hemen yenisi önerilmez, çocuğa okuma süresi gösterilmez.
 ///
 /// Uyku vaktinde bir kitabın son sayfası kadar sade: uyuyan Ragi, "Son", "İyi geceler,
 /// <ad>." ve varsa tek satır rozet. Ses, titreşim, patlama ve soru yok; "İyi geceler"
@@ -22,9 +32,9 @@ struct StoryEndingLeaf: View {
     /// Okuyucu sonraki yaprağı önceden çizebilir; kutlama yaprak gerçekten açılınca başlar.
     let isCurrent: Bool
     let onClose: () -> Void
-    var onAnother: () -> Void = {}
     var onGoodNight: () -> Void = {}
 
+    @EnvironmentObject private var app: MPAppState
     @StateObject private var streak = MPStreak.shared
     @StateObject private var news = MPBadgeNews.shared
     @StateObject private var settings = MPSettingsStore.shared
@@ -40,7 +50,13 @@ struct StoryEndingLeaf: View {
 
     var body: some View {
         ZStack {
-            ReaderPaper(theme: theme)
+            // Gündüz mor zemin (23 Kasım 2026, İrem'in yeni masal sonu); gece kâğıt.
+            if isBedtime {
+                ReaderPaper(theme: theme)
+            } else {
+                LinearGradient(stops: MP.C.endingSky, startPoint: .top, endPoint: .bottom)
+                    .ignoresSafeArea()
+            }
             ViewThatFits(in: .vertical) {
                 column
                 ScrollView(showsIndicators: false) { column }
@@ -106,27 +122,35 @@ struct StoryEndingLeaf: View {
 
     /// Masal okuyucu açılmadan önce bitmemişse yıldız yenidir (karar 13 Ekim:
     /// her biten masal bir yıldız). Tekrar okumada yıldız sözü verilmez.
+    ///
+    /// 23 Kasım 2026 (İrem, yeni masal sonu): sıra çıkartma, masalın rozeti,
+    /// yıldız, yeni kelimeler; yatay kayar, ortadan
+    /// başlar. Rozet gündüz tam ekran anda söylendiyse de burada küçük kartıyla
+    /// durur (kazanılanların hepsi bir arada). Üst üste günler Okuma yolculuğum'da.
     private var earned: [Earned] {
-        var items: [Earned] = []
-        if !story.isFinished {
-            // Faz 9: masalın çıkartması albüme girer (okumaya yakın ödül), sonra yıldız.
-            items.append(.init(id: "sticker", icon: "star", tone: .lav, value: "Çıkartma", label: "albümüne eklendi"))
-            items.append(.init(id: "star", icon: "star.fill", tone: .yellow, value: "+1",
-                               label: starScore.map { "yıldız · toplam \($0)" } ?? "yıldız"))
-        }
-        if streak.currentStreak > 0 {
-            items.append(.init(id: "streak", icon: "flame", tone: .peach, value: "\(streak.currentStreak) gün",
-                               label: streak.currentStreak > 1 ? "üst üste" : "okuma günü"))
-        }
         let others = StoryGenerationManager.shared.stories.filter {
             $0.id != story.id && $0.childProfileID == story.childProfileID
         }
         let words = MPVocabulary.newWordCount(in: story, comparedTo: others)
-        if words > 0 {
-            items.append(.init(id: "words", icon: "book.closed", tone: .mint, value: "\(words)", label: "yeni kelime"))
-        }
-        // Rozet ve kat gündüz tam ekran anda söylendi; burada tekrar edilmez (R4).
-        return items
+        let badge = news.fresh.first
+        return StoryEndingEarned.ids(isFinished: story.isFinished, hasBadge: badge != nil, newWords: words)
+            .compactMap { id -> Earned? in
+                switch id {
+                case "sticker":
+                    // Faz 9: masalın çıkartması albüme girer (okumaya yakın ödül).
+                    return .init(id: id, icon: "star", tone: .lav, value: "Çıkartma", label: "albümüne eklendi")
+                case "badge":
+                    guard let badge else { return nil }
+                    return .init(id: id, icon: badge.icon, tone: badge.tone, value: badge.title, label: "yeni rozet")
+                case "star":
+                    return .init(id: id, icon: "star.fill", tone: .yellow, value: "+1",
+                                 label: starScore.map { "yıldız · toplam \($0)" } ?? "yıldız")
+                case "words":
+                    return .init(id: id, icon: "book.closed", tone: .sky, value: "\(words)", label: "yeni kelime")
+                default:
+                    return nil
+                }
+            }
     }
 
     private var question: String? { StoryTalkPrompts.questions(for: story).first }
@@ -166,57 +190,47 @@ struct StoryEndingLeaf: View {
 
     // MARK: - Gündüz
 
+    /// 23 Kasım 2026 (İrem; referans: oyunlardaki "Level up" ekranı, prototip
+    /// `design-preview/app/ending.js`): mor zeminde "Masal bitti!", ışık hüzmeleri
+    /// ve sıcak parıltı önünde sevinçli Ragi, "Bravo, <ad>!",
+    /// yatay kayan kazanılanlar, Ragi'nin sorusu, bilgi, künye, seri ve en altta
+    /// "Ana sayfaya dön". Yazılar `MP.C.textOnArt`; kâğıt dili bileşenler gece
+    /// temasıyla (`onSky`) okunur kalır.
     private var dayColumn: some View {
         VStack(spacing: MPSpacing.lg) {
             Spacer(minLength: MP.S.navBarHeight)
 
-            ZStack {
-                Circle().fill(MPWorldTone.yellow.soft)
-                    .frame(width: 230, height: 230)
-                    .scaleEffect(revealed > 0 ? 1 : 0.4)
-                    .opacity(revealed > 0 ? 1 : 0)
-                    .accessibilityHidden(true)
-                if burst && !reduceMotion { PaperBurst().accessibilityHidden(true) }
-                MascotImage(mascot: .happy, width: 180, act: isCurrent ? .cheer : .still)
-                    .scaleEffect(revealed > 0 || reduceMotion ? 1 : 0.7)
-                    .opacity(revealed > 0 ? 1 : 0)
-            }
-            .frame(height: 230)
-            .overlay(alignment: .topTrailing) {
-                if !typeSize.isAccessibilitySize { bubble.frame(maxWidth: 190, alignment: .trailing)
-                    .offset(x: MPSpacing.sm, y: -MPSpacing.md) }
-            }
+            Text("Masal bitti!").font(MP.F.displayXL()).foregroundStyle(MP.C.textOnArt)
+                .multilineTextAlignment(.center)
+                .opacity(revealed > 0 ? 1 : 0)
+                .accessibilityAddTraits(.isHeader)
 
-            // En büyük yazıda balon Ragi'nin üstüne değil altına: başlığı örtmesin.
-            if typeSize.isAccessibilitySize { bubble }
+            hero
 
             VStack(spacing: MPSpacing.xs) {
-                Text(StoryEndingCopy.bravo(story.childName)).mpText(.cover).foregroundStyle(theme.foreground)
+                Text(StoryEndingCopy.bravo(story.childName)).mpText(.cover).foregroundStyle(MP.C.textOnArt)
                     .multilineTextAlignment(.center)
                     .accessibilityAddTraits(.isHeader)
                 Text("\(story.title) masalını bitirdin.")
-                    .mpText(.body).foregroundStyle(theme.muted)
+                    .mpText(.supporting).foregroundStyle(MP.C.textOnArtMuted)
                     .multilineTextAlignment(.center)
             }
             .opacity(revealed > 0 ? 1 : 0)
 
             earnedRow
 
+            if let question, revealed >= earned.count + 2 { talkLine(question) }
+
             // Faz 21: masalın tek gerçek bilgisi, yalnızca gündüz.
             if let fact = story.fact { factLeaf(fact) }
 
             if StoryColophon.hasDedication(story) { colophon }
 
-            SeriesEndingSection(story: story, theme: theme, accent: accent)
+            SeriesEndingSection(story: story, theme: onSky, accent: MP.C.textOnArt)
 
             Spacer(minLength: MPSpacing.md)
 
-            VStack(spacing: MPSpacing.xs) {
-                MPButton(title: "Bir masal daha", systemImage: "wand.and.sparkles", size: .hero, fullWidth: true,
-                         action: onAnother)
-                    .padding(.horizontal, MPSpacing.lg)
-                MPButton(title: "Bitir", kind: .ghost, action: onClose)
-            }
+            MPButton(title: "Ana sayfaya dön", systemImage: "house", kind: .onArt, action: goHome)
         }
         .frame(maxWidth: 560)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -224,35 +238,80 @@ struct StoryEndingLeaf: View {
         .padding(.bottom, MPSpacing.xl)
     }
 
-    /// Önce "Harika bir masaldı!", kazanılanlar bitince Ragi'nin sorusu (Birlikte konuşalım).
-    private var bubble: some View {
-        let asks = revealed >= earned.count + 2 && question != nil
-        let text = asks ? question ?? "" : "Harika bir masaldı!"
-        return SpeechBubble(text: text, style: asks ? .supporting : .cardTitle)
-            .fixedSize(horizontal: false, vertical: true)
+    /// Mor zemindeki kâğıt dili bileşenler (bilgi, künye, seri) gece temasının
+    /// açık yazısıyla okunur; gece masal sonu okuyucunun kendi teması.
+    private var onSky: MP.ReadTheme { isBedtime ? theme : .night }
+
+    /// Ragi ve arkasındaki ışık: hüzmeler ve sıcak parıltı yerleşimi büyütmez.
+    private var hero: some View {
+        ZStack {
+            if burst && !reduceMotion { PaperBurst().accessibilityHidden(true) }
+            MascotImage(mascot: .cheer, width: MPSize.minTouchHero * 3, act: isCurrent ? .cheer : .still)
+                .scaleEffect(revealed > 0 || reduceMotion ? 1 : 0.7)
+                .opacity(revealed > 0 ? 1 : 0)
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: MPSize.minTouchHero * 3 + MPSpacing.xl)
+        .background {
+            ZStack {
+                EndingRays().fill(MP.C.textOnArt.opacity(0.1))
+                    .frame(width: MPSize.minTouchHero * 7, height: MPSize.minTouchHero * 7)
+                    .mask(RadialGradient(colors: [MP.C.textOnArt, MP.C.textOnArt.opacity(0)],
+                                         center: .center, startRadius: MPSize.minTouchHero,
+                                         endRadius: MPSize.minTouchHero * 3.3))
+                Circle()
+                    .fill(RadialGradient(colors: [MPWorldTone.yellow.soft.opacity(0.75), MPWorldTone.yellow.soft.opacity(0)],
+                                         center: .center, startRadius: MPSpacing.lg, endRadius: MPSize.minTouchHero * 1.8))
+                    .frame(width: MPSize.minTouchHero * 3.6, height: MPSize.minTouchHero * 3.6)
+            }
+            .scaleEffect(revealed > 0 || reduceMotion ? 1 : 0.4)
             .opacity(revealed > 0 ? 1 : 0)
-            .contentTransition(.opacity)
-            .animation(MP.M.gated(MP.M.base), value: asks)
-            .accessibilityLabel(asks ? "Birlikte konuşalım: \(text)" : text)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
+        }
+        .accessibilityHidden(true)
     }
 
+    /// Ragi'nin sorusu (Birlikte konuşalım, puansız): kazanılanlar bitince tek satır.
+    private func talkLine(_ text: String) -> some View {
+        Text(text).mpText(.supporting).fontWeight(.semibold).foregroundStyle(MP.C.textOnArt)
+            .multilineTextAlignment(.center)
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(.horizontal, MPSpacing.lg)
+            .padding(.vertical, MPSpacing.sm)
+            .background(MP.C.textOnArt.opacity(0.14), in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+            .transition(.opacity)
+            .accessibilityLabel("Birlikte konuşalım: \(text)")
+    }
+
+    /// Okuyucu kapanır, çocuk ana sayfada.
+    private func goHome() {
+        app.router.tab = .home
+        onClose()
+    }
+
+    /// Yatay kayar, ortadan başlar (referanstaki gibi iki yanda kartlar görünür).
     @ViewBuilder
     private var earnedRow: some View {
         let items = earned
         if !items.isEmpty {
-            // Az öğe ortada sıkı durur; dört öğe ve en büyük yazıda iki sütun.
-            let columns = typeSize.isAccessibilitySize || items.count > 3 ? 2 : items.count
-            LazyVGrid(columns: Array(repeating: GridItem(columns > 1 || items.count > 1 ? .flexible() : .fixed(132),
-                                                         spacing: MPSpacing.sm), count: columns),
-                      spacing: MPSpacing.sm) {
-                ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
-                    let shown = revealed >= index + 2
-                    tile(item, shown: shown)
-                        .opacity(shown ? 1 : 0)
-                        .scaleEffect(shown || reduceMotion ? 1 : 0.6)
-                        .offset(y: shown || reduceMotion ? 0 : MPSpacing.md)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: MPSpacing.sm) {
+                    ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
+                        let shown = revealed >= index + 2
+                        tile(item, shown: shown)
+                            .frame(width: MPSize.minTouchHero * 2)
+                            .opacity(shown ? 1 : 0)
+                            .scaleEffect(shown || reduceMotion ? 1 : 0.6)
+                            .offset(y: shown || reduceMotion ? 0 : MPSpacing.md)
+                    }
                 }
+                .scrollTargetLayout()
             }
+            .scrollTargetBehavior(.viewAligned)
+            .defaultScrollAnchor(.center)
+            .contentMargins(.horizontal, MPSpacing.xl, for: .scrollContent)
+            .padding(.horizontal, -StoryPageView.gutter)
         }
     }
 
@@ -273,15 +332,18 @@ struct StoryEndingLeaf: View {
                 }
             }
             .accessibilityHidden(true)
-            Text(item.value).mpText(.section).foregroundStyle(MPColor.textPrimary)
+            Text(item.value).mpText(.cardTitle).foregroundStyle(MP.C.textOnArt)
                 .multilineTextAlignment(.center).lineLimit(2).minimumScaleFactor(0.8)
-            Text(item.label).mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+            Text(item.label).mpText(.footnote).foregroundStyle(MP.C.textOnArtMuted)
                 .multilineTextAlignment(.center)
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, minHeight: MPSize.minTouchHero * 2)
         .padding(.vertical, MPSpacing.md)
         .padding(.horizontal, MPSpacing.xs)
-        .mpKidSurface(item.tone.soft, edge: item.tone.edge)
+        // Mor zeminde açık, yarı saydam kart: kâğıt değil gök (23 Kasım 2026).
+        .background(MP.C.textOnArt.opacity(0.14), in: RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous)
+            .strokeBorder(MP.C.textOnArt.opacity(0.22), lineWidth: 1))
         .accessibilityElement(children: .combine)
     }
 
@@ -358,16 +420,16 @@ struct StoryEndingLeaf: View {
         VStack(spacing: MP.S.x2) {
             Text("Bunu biliyor muydun?")
                 .font(MP.F.labelSM(.semibold))
-                .foregroundStyle(theme.muted)
+                .foregroundStyle(onSky.muted)
             Text(fact.statement)
                 .mpText(.supporting)
-                .foregroundStyle(theme.foreground)
+                .foregroundStyle(onSky.foreground)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
             if let source = fact.sourceName {
                 Text("Kaynak: \(source)")
                     .font(MP.F.caption())
-                    .foregroundStyle(theme.muted)
+                    .foregroundStyle(onSky.muted)
                     .multilineTextAlignment(.center)
             }
         }
@@ -381,7 +443,7 @@ struct StoryEndingLeaf: View {
         let ordinal = StoryColophon.ordinal(of: story, among: StoryGenerationManager.shared.stories)
         return Text(StoryColophon.colophon(childName: story.childName, ordinal: ordinal))
             .font(MP.F.labelSM(.semibold))
-            .foregroundStyle(theme.muted)
+            .foregroundStyle(onSky.muted)
             .multilineTextAlignment(.center)
     }
 }
@@ -389,7 +451,7 @@ struct StoryEndingLeaf: View {
 /// Masal sonunda Ragi'nin arkasından bir kez fırlayan kâğıt yıldızlar ve kâğıt
 /// parçaları. Parıltı değil, kâğıt: marka tonlarında, yerçekimiyle düşer, söner.
 /// Sonsuz değil; bir kez oynar ve çizim durur.
-private struct PaperBurst: View {
+struct PaperBurst: View {
     @State private var start = Date()
 
     private struct Piece {
@@ -466,5 +528,39 @@ enum StoryEndingCopy {
     static func goodNight(_ name: String) -> String {
         let n = name.trimmingCharacters(in: .whitespaces)
         return n.isEmpty ? "İyi geceler." : "İyi geceler, \(n)."
+    }
+}
+
+/// Masal sonunda Ragi'nin arkasındaki ışık hüzmeleri (23 Kasım 2026): merkezden
+/// çıkan eşit dilimler. Dönmez; maskeyle kenara doğru söner. Süs.
+struct EndingRays: Shape {
+    var count = 16
+
+    func path(in rect: CGRect) -> Path {
+        let center = CGPoint(x: rect.midX, y: rect.midY)
+        let radius = max(rect.width, rect.height) / 2
+        let step = 2 * Double.pi / Double(count)
+        var p = Path()
+        for i in 0..<count {
+            let start = Double(i) * step
+            p.move(to: center)
+            p.addArc(center: center, radius: radius, startAngle: .radians(start),
+                     endAngle: .radians(start + step * 0.42), clockwise: false)
+            p.closeSubpath()
+        }
+        return p
+    }
+}
+
+/// Masal sonunda kazanılanların sırası (24 Kasım 2026): çıkartma, masalın rozeti,
+/// yıldız, yeni kelimeler. Okuma süresi burada yok; o ebeveynin özetinde.
+enum StoryEndingEarned {
+    static func ids(isFinished: Bool, hasBadge: Bool, newWords: Int) -> [String] {
+        var ids: [String] = []
+        if !isFinished { ids.append("sticker") }
+        if hasBadge { ids.append("badge") }
+        if !isFinished { ids.append("star") }
+        if newWords > 0 { ids.append("words") }
+        return ids
     }
 }

@@ -49,6 +49,7 @@ Where an older doc disagrees with that plan, the plan wins.
 - Parent account: Google + Apple sign-in, required in onboarding.
 - Action color #6A47B8. Fonts: Baloo 2 + Nunito.
 - Mascot: raccoon "Ragi".
+- Masal sonu ve profil resmi (karar: 24 Kasım 2026, Batuhan; İrem'in 21-24 Kasım tasarımlarının aktarımı): masal sonunda tek eylem "Ana sayfaya dön"; "Bir masal daha" yok, çocuğa okuma süresi gösterilmez, ana sayfanın akşam kartı okunduktan sonra yeni masal önermez (masal bitirmek bir olay). Profil resmi masal arkadaşlarının yüzlerinden (Tarçın, Kestane); Ragi maskottur, profil resmi olmaz.
 
 ---
 
@@ -237,7 +238,7 @@ history: `docs/MagicPaper_Design_System.md`.
 - Sistemin imzası sert alt kenar: `mpEdge`. Kart derinliği gölgeden gelmez. Dokunulan kart ve birincil düğme kenar taşır.
 - Düğme yalnızca `MPButton` ve `MPCircleButton` (karar: 7 Kasım 2026): `primary` 56 pt, ekranda bir tane, basınca yüzü kenarın üstüne iner (`MPPressStyle.onEdge`); `secondary` lavanta 52; `ghost` 48; `danger` yalnızca ebeveyn alanı; `outline` yalnızca giriş sağlayıcısı. Devre dışı düz gri ve kenarsız, saydamlık yok.
 - Gölge yalnızca `mpShadow(MP.Sh.*)`; çıplak `.shadow(...)` yok.
-- Gradient arayüz yüzeyinde ve butonda yok. Yalnızca malzeme taklidinde: kâğıt gölgelemesi, sayfa kıvrımı, kapak sanatı, parlaklık maskesi — ve illüstrasyon üstü metnin karartması (`MP.Scrim`, yalnızca `MPArtHero`; metin `MP.C.textOnArt*`).
+- Gradient arayüz yüzeyinde ve butonda yok. Yalnızca malzeme taklidinde: kâğıt gölgelemesi, sayfa kıvrımı, kapak sanatı, parlaklık maskesi — ve illüstrasyon üstü metnin karartması (`MP.Scrim`, yalnızca `MPArtHero`; metin `MP.C.textOnArt*`). Tek arayüz istisnası gündüz masal sonunun mor zemini (`MP.C.endingSky`; karar: 24 Kasım 2026); yazı her zaman koyu durağın üstünde, ≥ 4.5:1. Ana sayfa başlığı, Profil ve menü sayfalarının (`MPSkyPage`) tepesi düz kâğıttır, koyu yazıyla (karar: 26 Kasım 2026, Batuhan: mor gök gradienti kötü duruyordu; İrem'in öğeleri ve dizilimi kaldı).
 - Cam (Liquid Glass) yalnızca içeriğin üstünde yüzen gezinme kontrollerinde: alt sekme çubuğu ve okuyucunun yüzen kontrolleri: kapat, favori/ayarlar kapsülü, alt çubuk ve sayfa kaydırıcısı (karar: 21 Ekim 2026). Yalnızca sistemin `glassEffect`'i, ayarı `MP.Glass`'tan; elle yapılmış cam taklidi yok. Çocuk alanının alt çubuğu bütün sürümlerde kendi çubuğumuz (`KidTabBar`; karar: 13 Kasım 2026, Batuhan, 22 Ekim'deki "iOS 26'da sistemin `TabView`'ı" kararının yerine): dört sekme cam kapsülde, "Masal yaz" yanında ayrı, marka renginde sert kenarlı dairede (cam değil), seçilmez, masal yazmayı açar; sürükleyerek seçme bizde, lavanta seçim yastığı parmağı izleyerek kayar. Kart, sayfa, sheet ve içerik butonu cam olmaz. iOS 26 öncesi yedek `.ultraThinMaterial` + `MP.C.edgeGlass`; Saydamlığı Azalt açıkken opak `MP.C.surfaceCard`. Üst başlıklar henüz bu kurala dahil değil.
 
 **Hareket**
@@ -280,7 +281,7 @@ history: `docs/MagicPaper_Design_System.md`.
 - İkon yalnızca `MPIcon`, boyut `MP.G`'den.
 
 **Dil** (karar: 20 Ekim 2026)
-- Masal **yazılır, hazırlanır, ciltlenir**; "üretilmez", "oluşturulmaz", "generate" edilmez. Profil, PDF, davet ve hesap için "oluştur" serbesttir.
+- Masal **yazılır, hazırlanır, ciltlenir**; "üretilmez", "oluşturulmaz", "generate" edilmez. Profil, PDF, davet ve hesap için "oluştur" serbesttir. Tek istisna okul öncesi akışın son düğmesi "Kitap oluştur" (karar: 26 Kasım 2026, Batuhan; `LittleCreationCopy.startButton`).
 - Hız bir özellik olarak sunulmaz: "saniyeler içinde", "anında", "hızlı" ve "hemen" masal anlatısında geçmez.
 - "Yapay zeka" arayüzde ve masal metninde geçmez.
 
@@ -294,6 +295,8 @@ grep -rn "fixedSize:" --include='*.swift' MagicPaper
 grep -rn -e "UIImpactFeedbackGenerator" -e "sensoryFeedback" --include='*.swift' MagicPaper | grep -v MPHaptics.swift
 grep -rnE "\"[^\"]*([Üü]ret|[Oo]luştur|saniyeler içinde|anında|[Yy]apay zeka)[^\"]*\"" --include='*.swift' MagicPaper | grep -v -e "///" -e "#Preview" -e "print(" -e "logger\." -e "[Pp]rofil" -e PDF -e "[Dd]avet" -e hesab
 ```
+
+Bu altı kontrol tek komutta: `Scripts/design_law_check.sh` (bilinçli istisnalar `Scripts/design_law_allowlist.txt`). GitHub her PR'da ve `main` / `irem` gönderiminde aynı betiği koşar (`.github/workflows/design-law.yml`); ihlal PR'ı kırmızı yapar ve satırı gösterir (karar: 25 Kasım 2026, Batuhan).
 
 Dil grep'inin bilinen, canlı olmayan isabetleri (20 Ekim 2026): `Story.swift`'teki `displayName`'ler, `MPMascot` katalog notu, örnek masal metinleri ve `ClassicsCatalog` doğrulama mesajı.
 

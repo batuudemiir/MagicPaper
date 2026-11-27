@@ -22,6 +22,14 @@ struct TopicStep: View {
               count: typeSize.isAccessibilitySize ? 1 : 2)
     }
 
+    private var anyTopicTile: some View {
+        LittleChoiceTile(title: "Fark etmez", systemImage: "sparkles", tone: .gray,
+                         accessibilityLabel: "Fark etmez, konuyu biz seçeriz") {
+            MPHaptics.selection()
+            onChoose(nil)
+        }
+    }
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: MPSpacing.xxl) {
@@ -34,23 +42,19 @@ struct TopicStep: View {
                                          systemImage: locked ? "lock.fill" : topic.symbol,
                                          tone: mode.tone,
                                          accessibilityLabel: locked
-                                             ? "\(topic.name), büyüklerle açılır" : topic.name) {
+                                             ? "\(topic.name), şimdilik kapalı" : topic.name) {
                             MPHaptics.selection()
                             onChoose(topic.id)
                         }
                         .disabled(locked)
                         .opacity(locked ? 0.45 : 1)
                     }
-                    LittleChoiceTile(title: "Fark etmez", systemImage: "sparkles", tone: .gray,
-                                     accessibilityLabel: "Fark etmez, konuyu biz seçeriz") {
-                        MPHaptics.selection()
-                        onChoose(nil)
-                    }
+                    anyTopicTile
                 }
 
                 // Kimler adımındaki Masal ailem deseni: kapalı karo soluk, altında tek not.
                 if topics.contains(where: { lockedTopicIDs.contains($0.id) }) {
-                    Text("Kilitli olanlar büyüklerle açılır.")
+                    Text("Kilitli olanlar şimdilik kapalı.")
                         .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }

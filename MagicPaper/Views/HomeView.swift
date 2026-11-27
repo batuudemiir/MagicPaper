@@ -2,56 +2,57 @@ import SwiftUI
 
 /// 11 · Ana sayfa (`AnaSayfa`).
 ///
-/// Tek soru: "Bu akşam ne okuyoruz?" (karar 7 Kasım 2026). Sıra: çocuğun başlığı,
-/// bu akşamın kartı (4 durum), yeni masal için üç mod, varsa devam eden seri.
-/// Günün masalı ayrı bölüm değil: bu akşamın kartında ve Masallar'da.
+/// Tek soru: "Bu akşam ne okuyoruz?" (karar 7 Kasım 2026).
 ///
-/// Yenileme (13 Ekim 2026): illüstrasyonlu başlık sahnesi (uyku saatinde gece),
-/// sahnenin kenarında yıldız ve seri çipleri, sert alt kenarlı kartlar
-/// (`MPHomeChrome.swift`).
+/// 23 Kasım 2026 (İrem, yeni düzen; prototip `design-preview/app/home.js`,
+/// bileşenler `MPHomeBoard.swift`): üstte mor gökten beyaza inen başlık; solda
+/// menü, sağda bildirim ve arama (`MPCircleButton`), "Merhaba, <ad>" ve üç bilgi kartı (yıldız, okuma günü, masallar). Ortada koyu mor bu
+/// akşamın kartı (Ragi'nin ayakları kartın alt çizgisinde), altında "Yeni bir
+/// masal yaz" liste satırları ve varsa devam eden seri. Gece/gündüz sahnesi yok.
 ///
-/// 22 Ekim 2026 (Batuhan onayı): iOS düzeni. Düz beyaz sayfa, sola yaslı büyük
-/// başlık ve altında tek satır yıldız/seri; tam genişlik sahne bu akşamın
-/// kartının içine taşındı (Ragi orada, ekranın tek maskotu). Modlar resimli
-/// kartlar yerine masal yazma adımlarıyla aynı satırlar. 7 Kasım 2026: bölümler
-/// panelsiz, lavanta (`cardSoft`) yalnızca bu akşamın kartında.
+/// 26 Kasım 2026 (Batuhan): mor gök gradienti kalktı, başlık düz kâğıtta ve
+/// koyu yazıyla; İrem'in öğeleri ve dizilimi kaldı. Bu akşamın kartı boyalı
+/// kapakla kahraman öğe oldu; altına haftanın okuma günleri ve Masallar'dan
+/// haftanın seçkisi eklendi. Zil "Yenilikler" sayfasını açar (`HomeNews`).
+/// Önceki düzenler (sahneli başlık, Okuma köşesi) için git geçmişi.
 ///
-/// 14 Kasım 2026 (Batuhan): iki kademe (`KidLevel`). Okul öncesi çocukta selam
-/// ve yıldız satırı yok, mod karoları büyük; sayfa ad, bu akşamın kartı ve üç
-/// karodan ibaret. Masallar önizlemesi iki kademede de kalktı: keşfin yeri
-/// Masallar sekmesi.
-///
-/// 19 Kasım 2026 (İrem, tasarım): tam genişlik sahne sayfanın tepesine döndü
-/// (`HomeHeaderScene`), selam ve ad sahnenin üstünde; 22 Ekim'deki "sahne bu
-/// akşamın kartında" düzeninin yerine. Kart artık sahnesiz, Ragi başlıkta.
+/// Veri `HomeFeedStore`'dan (21 Kasım, A3/A4): selam, bu akşamın durumu, yıldız,
+/// gün, masal sayısı ve seri kartı; saat ve kaynaklar değişince yenilenir.
 struct HomeView: View {
     @EnvironmentObject private var app: MPAppState
     @EnvironmentObject private var settings: MPSettingsStore
     @ObservedObject private var profileManager = ProfileManager.shared
     @ObservedObject private var storyManager = StoryGenerationManager.shared
-    /// Rozet planı R4: yeni rozet ya da kat, selamın üst satırında bir kez.
+    /// Rozet planı R4: yeni rozet ya da kat; bildirim noktası ve başlıkta bir kez.
     @ObservedObject private var badgeNews = MPBadgeNews.shared
-    @StateObject private var streak = MPStreak.shared
+    /// Ekranın kararları ve canlı verisi (`HomeFeed`).
+    @StateObject private var feedStore = HomeFeedStore()
+    private var feed: HomeFeed { feedStore.feed }
+
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
-        // Sahne saat çubuğunun altına uzanır (19 Kasım 2026): kaydırma üst güvenli
-        // alanı yok sayar, başlık güvenli alanın altından başlar.
+        // Başlığın göğü saat çubuğunun altına uzanır: kaydırma üst güvenli alanı
+        // yok sayar, düğmeler güvenli alanın altından başlar.
         GeometryReader { geo in
             MPTabScroll(tab: .home) {
                 content(topInset: geo.safeAreaInsets.top)
             }
             .ignoresSafeArea(edges: .top)
         }
-        // Saat çubuğunun altında şerit yok: içerik iOS'un standart davranışıyla
-        // altından akar. Beyaz şerit renkli kartların üstünde blok gibi
-        // görünüyordu (Batuhan, 16 Ekim).
-        .background(pageBackground.ignoresSafeArea())
-        // Pahalı hesaplar kaydırma sırasında değil, veri değişince yapılır.
-        .onAppear(perform: refreshCaches)
+        .background(MPColor.backgroundSurface.ignoresSafeArea())
+        .onAppear {
+            refreshCaches()
+            // Sekmeye dönünce: başka sekmedeyken kaçan bir değişim kalmasın.
+            feedStore.refresh()
+            refreshNews()
+        }
         // Rozet notu bir kez söylenir: ana sayfadan çıkınca düşer.
         .onDisappear { badgeNews.consumeHomeNote(profileManager.currentProfile?.id) }
         .onChange(of: storyManager.stories) { _, _ in refreshCaches() }
-        .onChange(of: profileManager.currentProfile?.id) { _, _ in refreshCaches() }
+        .onChange(of: profileManager.currentProfile?.id) { _, _ in refreshCaches(); refreshNews() }
+        .onChange(of: feed) { _, _ in refreshNews() }
+        .onReceive(app.router.$sheet) { sheet in if sheet == nil { refreshNews() } }
         .onChange(of: profileManager.currentProfile?.age) { _, _ in
             availableModes = Self.modes(for: profileManager.currentProfile)
         }
@@ -60,132 +61,152 @@ struct HomeView: View {
     private func refreshCaches() {
         let modes = Self.modes(for: profileManager.currentProfile)
         if modes != availableModes { availableModes = modes }
-        stars = profileManager.currentProfile.map { MPStars.score(for: $0, stories: storyManager.stories) } ?? 0
     }
 
+    /// Dizilim (26 Kasım 2026): başlık ve bilgi kartları · bu akşamın kahraman
+    /// kartı · haftanın okuma günleri · "Yeni bir masal yaz" · devam eden seri ·
+    /// Masallar'dan haftanın seçkisi. Bölümleri boşluk ayırır, panel değil.
     private func content(topInset: CGFloat) -> some View {
-        VStack(alignment: .leading, spacing: MPSpacing.xl) {
-            // 19 Kasım 2026 (İrem): selam ve ad tam genişlik sahnenin üstünde
-            // (`HomeHeaderScene`); ekranın tek Ragi'si orada, kart sahnesiz.
-            HomeHeaderScene(isNight: isNight, topInset: topInset) {
-                // Yıldız ve gün başlığın sağında (13 Kasım 2026); en büyük yazı
-                // boyutlarında ad daralmasın diye eski yerinde, başlığın altında.
-                VStack(alignment: .leading, spacing: 0) {
-                    // Rozet notu iki kademede de bir kez; selam yalnızca okuyan çocukta.
-                    MPKidTabHeader(title: activeName,
-                                   eyebrow: badgeNews.homeNote(for: profileManager.currentProfile?.id)
-                                       ?? (level == .little ? nil : greeting),
-                                   onArt: isNight) {
-                        if showsStats, !typeSize.isAccessibilitySize { statLine(compact: true) }
-                    }
-                    if showsStats, typeSize.isAccessibilitySize { statLine(compact: false) }
-                }
-            }
+        VStack(alignment: .leading, spacing: 0) {
+            header(topInset: topInset)
 
             VStack(alignment: .leading, spacing: MPSpacing.xxxl) {
-                HomeHeroCard(state: tonightState, isNight: isNight, cover: tonightCover,
-                             showsScene: false, onPrimary: tonightAction)
+                HomeTonightBoard(state: feed.tonight, cover: feed.cover, onPrimary: tonightAction)
+                    // Ragi kartın üstüne taşar: bilgi kartlarıyla arasında yer.
+                    .padding(.top, typeSize.isAccessibilitySize ? MPSpacing.xl : MPSpacing.xxxl)
                     .homeEntrance(0)
 
-                // Modlar kartın hemen altında, kıvrımın üstünde (Faz 7): seri kartı
-                // onları aşağı itiyordu.
-                if !shownModes.isEmpty { modeStrip.homeEntrance(1) }
-
-                if let child = profileManager.currentProfile?.id,
-                   SeriesManager.shared.cardState(for: child) != nil {
-                    HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
-                        .homeEntrance(2)
+                if level == .big, let journey {
+                    ReadingJourneyWidget(journey: journey, showsRagi: false) {
+                        if let id = profileManager.currentProfile?.id { app.router.openKidPage(.journey(id)) }
+                    }
+                    .homeEntrance(1)
                 }
+
+                if !shownModes.isEmpty { modeSection.homeEntrance(2) }
+
+                if let child = profileManager.currentProfile?.id, feed.hasSeriesCard {
+                    HomeSection(title: "Devam eden seri") { SeriesCard(childID: child) }
+                        .homeEntrance(3)
+                }
+
+                if !weeklyPicks.isEmpty { weeklySection.homeEntrance(4) }
             }
             .padding(.horizontal, MPSpacing.screenH)
         }
         .padding(.bottom, GunlukLayout.bottomClearance)
     }
 
-    @Environment(\.dynamicTypeSize) private var typeSize
+    // MARK: - Başlık
+
+    /// Düz kâğıt başlık (26 Kasım 2026, Batuhan: mor gök gradienti kalktı).
+    /// İrem'in öğeleri ve dizilimi aynı: solda menü, sağda zil ve arama,
+    /// altında selam ve üç bilgi kartı. Yazı koyu, zemin sayfanın kendisi.
+    private func header(topInset: CGFloat) -> some View {
+        VStack(alignment: .leading, spacing: MPSpacing.lg) {
+            HStack(spacing: MPSpacing.sm) {
+                MPCircleButton(systemImage: "line.3.horizontal", accessibilityLabel: "Menü", action: openMenu)
+                Spacer(minLength: 0)
+                MPCircleButton(systemImage: "bell", accessibilityLabel: news.isEmpty ? "Yenilikler" : "Yenilikler, yeni bir şey var",
+                               action: openNews)
+                    .overlay(alignment: .topTrailing) {
+                        // Sessiz marka noktası: görülmemiş bir yenilik var.
+                        if hasUnseenNews {
+                            Circle().fill(MP.C.brand)
+                                .frame(width: MP.S.x2 + MP.S.x1, height: MP.S.x2 + MP.S.x1)
+                                .overlay(Circle().strokeBorder(MPColor.backgroundSurface, lineWidth: 2))
+                                .offset(x: -MP.S.x1, y: MP.S.x1)
+                                .accessibilityHidden(true)
+                        }
+                    }
+                MPCircleButton(systemImage: "magnifyingglass", accessibilityLabel: "Masal ara", action: openSearch)
+            }
+
+            VStack(alignment: .leading, spacing: MPSpacing.xs) {
+                Text("\(feed.greeting) \(activeName)").font(MP.F.displayLG()).foregroundStyle(MPColor.textPrimary)
+                    .lineLimit(2).minimumScaleFactor(0.7)
+                    .accessibilityAddTraits(.isHeader)
+                if level == .big {
+                    Text(subtitle).mpText(.supporting).fontWeight(.semibold).foregroundStyle(MPColor.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            if showsStats { stats }
+        }
+        .padding(.horizontal, MPSpacing.screenH)
+        .padding(.top, topInset + MPSpacing.xs)
+    }
+
+    private var stats: some View {
+        let layout = typeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(spacing: MPSpacing.sm))
+            : AnyLayout(HStackLayout(alignment: .top, spacing: MPSpacing.sm))
+        return layout {
+            HomeStatCard(systemImage: "star.fill", tone: .yellow, label: "Yıldız", value: "\(feed.stars)", unit: "yıldız")
+            HomeStatCard(systemImage: "flame.fill", tone: .peach, label: "Okuma", value: "\(feed.streak)", unit: "gün üst üste")
+            HomeStatCard(systemImage: "book.fill", tone: .lav, label: "Masallarım", value: "\(feed.stories)", unit: "masal")
+        }
+        .fixedSize(horizontal: false, vertical: true)
+    }
+
+    /// Selamın altı: yeni rozet notu bir kez, yoksa saate göre soru.
+    private var subtitle: String {
+        if let note = badgeNews.homeNote(for: profileManager.currentProfile?.id) { return note }
+        return feed.greeting == "İyi akşamlar," || feed.greeting == "İyi geceler,"
+            ? "Bu akşam hangi masalı okuyalım?" : "Bugün hangi masalı okuyalım?"
+    }
+
+    /// Zilin listesi ve noktası (`HomeNews`); ana sayfa görünür olunca yenilenir.
+    @State private var news = HomeNews(items: [])
+    @State private var hasUnseenNews = false
+
+    private func refreshNews() {
+        let child = profileManager.currentProfile?.id
+        news = HomeNews.live(childID: child)
+        journey = profileManager.currentProfile.map { ReadingJourney.live(for: $0) }
+        hasUnseenNews = news.hasUnseen(seen: HomeNewsSeen.ids(for: child))
+    }
+
+    /// Menü (23 Kasım 2026, `KidMenuSheet`): var olan sayfalar ve okuma yolculuğu.
+    private func openMenu() {
+        MPHaptics.tap()
+        app.router.sheet = .menu
+    }
+
+    /// Zil: "Yenilikler" sayfası (26 Kasım 2026; önceden yalnızca Profil'e geçiyordu).
+    private func openNews() {
+        MPHaptics.tap()
+        hasUnseenNews = false
+        app.router.sheet = .news
+    }
+
+    /// Arama Masallar'da odakla açılır.
+    private func openSearch() {
+        MPHaptics.tap()
+        app.router.tab = .gunluk
+        app.router.masallarPath = [.search]
+    }
 
     /// Açık çocuğun kademesi; profil yokken okuyan çocuğun düzeni.
     private var level: KidLevel { profileManager.currentProfile?.kidLevel ?? .big }
 
-    /// Okul öncesi çocuk sayıyı okuyamaz: yıldız ve gün satırı Profil'de kalır.
+    /// Okul öncesi çocuk sayıyı okuyamaz: bilgi kartları Profil'de kalır.
     private var showsStats: Bool { level == .big }
-
-    /// Satır Odam'a götürür: yıldız ve serinin ayrıntısı orada.
-    /// Sıfırlar yazılmaz: "0 gün üst üste" kimseye bir şey söylemez.
-    @ViewBuilder
-    private func statLine(compact: Bool) -> some View {
-        if stars > 0 || streak.currentStreak > 0 {
-            Button { MPHaptics.tap(); app.router.openKidCorner() } label: {
-                HomeStatLine(stars: stars, streak: streak.currentStreak, compact: compact, onArt: isNight)
-            }
-            .buttonStyle(MPPressStyle())
-            .accessibilityHint("Profili açar")
-        }
-    }
-
-    /// Uyku saatinde kartın sahnesi geceye döner; sayfa açık kalır.
-    private var isNight: Bool {
-        if case .bedtime = tonightState { return true }
-        return false
-    }
-
-    /// Her sabah 1, sonuna kadar okunan her masal 1 (`MPStars`).
-    @State private var stars = 0
-
-    // MARK: - Başlık
 
     private var activeName: String {
         profileManager.currentProfile?.name ?? "Arkadaşım"
     }
 
-    /// Saate göre selam: akşam açılan bir masal uygulamasına "günaydın"
-    /// demek, ürünün ne için var olduğunu bilmemek olurdu.
-    private var greeting: String {
-        switch Calendar.current.component(.hour, from: Date()) {
-        case 5..<11:  return "Günaydın,"
-        case 11..<17: return "İyi günler,"
-        case 17..<22: return "İyi akşamlar,"
-        default:      return "İyi geceler,"
-        }
-    }
-
     // MARK: - Bu akşamın masalı
-
-    /// Kural `MPTonight`'ta (SCREENS.md 11): widget ve Siri de aynı masalı
-    /// seçer. Görünüm yalnızca metne çevirir.
-    private var tonight: MPTonightSource.Resolved { MPTonightSource.current(settings: settings) }
-
-    private var tonightState: TonightState {
-        switch tonight.tonight() {
-        case .bedtime(let bedtime):
-            return .bedtime(time: bedtime.clockLabel)
-        case .resume(let resume):
-            return .resume(progress: resume.progress, title: resume.title,
-                           meta: "Sayfa \(resume.page) / \(resume.pageCount)")
-        case .unread(let daily):
-            return .unread(title: daily.title, meta: "\(daily.minutes) dakika")
-        case .readToday:
-            return .readToday
-        }
-    }
-
-    /// Okunmamış günün masalı bir klasikse kapağı sahneye konur. Yarım kalan
-    /// masalın kapağı `MPTonight`'ta taşınmıyor; o durumda sahne kapaksız.
-    private var tonightCover: (asset: String, focus: ClassicFocus)? {
-        guard case .unread(let title, _) = tonightState,
-              let tale = classics.todaysTale, tale.title == title,
-              UIImage(named: tale.cover) != nil else { return nil }
-        return (tale.cover, tale.coverFocus)
-    }
 
     private func tonightAction() {
         MPHaptics.tap()
         app.openTonight()
     }
 
-    private var classics: ClassicsLibrary { .shared }
-
-    // MARK: - Mod şeridi
+    // MARK: - Yeni bir masal yaz
 
     /// Yaşa uygun modlar. Motor bütün kataloğu güvenlik kurallarına karşı
     /// tarar (yüzlerce ms): gövdede hesaplanınca her yeniden çizim, kaydırma
@@ -207,57 +228,56 @@ struct HomeView: View {
         StoryCreationSteps.shownModes(availableModes, emphasized: emphasizedMode)
     }
 
-    /// Masal yaratmaya giriş (13 Kasım 2026, Batuhan): yan yana üç karo, öne
-    /// çıkan mod "Bu akşam" etiketli. Karo akışı o modla, ikinci adımdan açar.
-    /// En büyük yazı boyutlarında 22 Ekim'in satırları: karoya ad sığmaz.
-    private var modeStrip: some View {
-        HomeSection(title: "Yeni bir masal yaz") {
-            if typeSize.isAccessibilitySize { modeRows } else { modeTiles }
-        }
-    }
-
-    private var modeTiles: some View {
-        HStack(alignment: .top, spacing: MPSpacing.sm) {
-            ForEach(shownModes, id: \.self) { mode in
-                HomeModeTile(title: mode.title, systemImage: mode.symbol, tone: mode.tone,
-                             badge: mode == emphasizedMode ? "Bu akşam" : nil, fillHeight: true,
-                             large: level == .little) {
-                    MPHaptics.tap()
-                    app.startStoryCreation(mode: mode)
-                }
-                .accessibilityLabel(mode == emphasizedMode ? "\(mode.title), bu akşam için önerilen" : mode.title)
-                .accessibilityHint("Masalda kimlerin olacağını seçmeye geçer")
-            }
-        }
-        .fixedSize(horizontal: false, vertical: true)
-        // Etiket karonun üst kenarına biner: başlığa değmesin.
-        .padding(.top, emphasizedMode == nil ? 0 : MPSpacing.xs)
-    }
-
-    private var modeRows: some View {
-            VStack(spacing: 0) {
-                ForEach(Array(shownModes.enumerated()), id: \.element) { index, mode in
-                    if index > 0 { MPRowDivider(area: .kid) }
-                    Button {
+    /// Başlık, altında modlar liste satırı olarak.
+    private var modeSection: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.md) {
+            // "+" kalktı (24 Kasım 2026): "Masal yaz" dairesi ve mod satırları aynı işi yapıyor.
+            MPSectionHeader(title: "Yeni bir masal yaz")
+            VStack(spacing: MPSpacing.sm) {
+                ForEach(shownModes, id: \.self) { mode in
+                    HomeModeRow(mode: mode, emphasized: mode == emphasizedMode) {
                         MPHaptics.tap()
                         app.startStoryCreation(mode: mode)
-                    } label: {
-                        MPListRow(systemImage: mode.symbol, tone: mode.tone, title: mode.title,
-                                  subtitle: mode == emphasizedMode ? "Bu akşam için önerilen" : mode.promise)
-                            .frame(minHeight: MPSize.minTouchHero)
                     }
-                    .buttonStyle(MPPressStyle(.highlight))
-                    .accessibilityElement(children: .combine)
-                    .accessibilityLabel(mode == emphasizedMode ? "\(mode.title), bu akşam için önerilen" : mode.title)
-                    .accessibilityHint("Masalda kimlerin olacağını seçmeye geçer")
                 }
             }
-            // Satırın kendi boşluğu sayfa kenarıyla hizalansın: panel yok.
-            .padding(.horizontal, -MPSpacing.md)
+        }
     }
 
-    /// Sayfa zemini beyaz (15 Ekim, Apple düzeni); lavanta yalnızca bu akşamın kartında.
-    private var pageBackground: Color { MPColor.backgroundSurface }
+    // MARK: - Okuma günleri
+
+    /// Profil'deki "Okuma yolculuğum" kartı, Ragi'siz (ekranda tek Ragi). Gün
+    /// okunmazsa boş daire; sayaç baskısı ya da "kaçırma" dili yok (CLAUDE.md §7).
+    @State private var journey: ReadingJourney?
+
+    // MARK: - Haftanın seçkisi
+
+    private var weeklyPicks: [ClassicItem] { Array(ClassicsLibrary.shared.weeklyPicks.prefix(6)) }
+
+    /// Masallar'ın seçkisi ana sayfada küçük bir raf; "Tümü" Masallar'ı açar.
+    private var weeklySection: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.md) {
+            MPSectionHeader(title: "Bu haftanın seçkisi", link: ("Tümü", {
+                MPHaptics.tap()
+                app.router.tab = .gunluk
+                app.router.masallarPath = []
+            }))
+            GunlukRow {
+                ForEach(weeklyPicks) { item in
+                    ClassicShelfCard(item: item, width: Self.pickWidth, height: Self.pickWidth * MPBookCover.aspect) {
+                        MPHaptics.tap()
+                        app.router.tab = .gunluk
+                        switch item {
+                        case .tale(let tale): app.router.masallarPath = [.tale(tale.id)]
+                        case .series(let series, _): app.router.masallarPath = [.series(series.id)]
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private static let pickWidth: CGFloat = 112
 }
 
 #Preview("11 · Ana sayfa") {

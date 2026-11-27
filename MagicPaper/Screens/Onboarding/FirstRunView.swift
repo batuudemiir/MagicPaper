@@ -104,7 +104,7 @@ struct ReminderPrePrompt: View {
                 Text("Masal saatini hatırlatalım mı?")
                     .mpText(.page).foregroundStyle(MPColor.textPrimary)
                     .accessibilityAddTraits(.isHeader)
-                Text("Her akşam seçtiğin saatte tek bir hatırlatma. Başka bildirim göndermeyiz.")
+                Text("Her akşam aynı saatte bir masal, uyku öncesi rutininizin parçası olsun. Seçtiğin saatte tek bir hatırlatma; başka bildirim göndermeyiz.")
                     .mpText(.body).foregroundStyle(MPColor.textSecondary)
             }
             .multilineTextAlignment(.center)

@@ -23,14 +23,15 @@ struct StoryLeafView: View {
     private var theme: MP.ReadTheme { settings.readingTheme(chosen: app.readTheme) }
 
     let onClose: () -> Void
-    var onAnother: () -> Void = {}
     var onGoodNight: () -> Void = {}
 
     var body: some View {
         switch leaf {
         case .cover:
+            // "Kim okusun?" yalnızca okunacak bir ses varsa: cihaz anlatıcısı
+            // kapalıyken (`MPFeatures.deviceNarration`) kayıtlı ses gerekir.
             StoryCover(story: model.story, theme: theme,
-                       listens: app.readerShouldSpeak(settings: settings)) { listen in
+                       listens: canListen ? app.readerShouldSpeak(settings: settings) : nil) { listen in
                 MPHaptics.selection()
                 app.readerVoiceChoice = listen
                 // Ayarın kendisi değişmez: seçim bu okumaya ait.
@@ -54,7 +55,8 @@ struct StoryLeafView: View {
                 // 23); çekilince sayfanın altında sessiz künye.
                 showsFolio: !model.controlsVisible,
                 accent: model.story.accent,
-                symbol: model.story.symbol
+                symbol: model.story.symbol,
+                readerSafeTop: model.readerSafeTop
             )
         case .ending:
             StoryEndingLeaf(
@@ -63,10 +65,13 @@ struct StoryLeafView: View {
                 accent: model.story.accent,
                 isCurrent: model.leafIndex == index,
                 onClose: onClose,
-                onAnother: onAnother,
                 onGoodNight: onGoodNight
             )
         }
+    }
+
+    private var canListen: Bool {
+        MPFeatures.deviceNarration || MPNarration.audio(model.story.id, page: 0) != nil
     }
 
     private var leaf: ReaderLeaf {

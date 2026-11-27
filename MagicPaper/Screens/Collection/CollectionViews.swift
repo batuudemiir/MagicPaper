@@ -60,41 +60,36 @@ struct StickerAlbumView: View {
 
     var body: some View {
         let all = stickers
-        ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: MPSpacing.xxl) {
-                MPTopBar(title: "Çıkartma albümüm",
-                         subtitle: all.isEmpty ? nil : "\(all.count) çıkartma",
-                         onBack: { app.router.closeKidPage() }) { EmptyView() }
-
-                if all.isEmpty {
-                    MPStateView(mascot: .reading, title: "Albümün henüz boş",
-                                message: "İlk masalı bitirince ilk çıkartman gelir.") {
-                        MPButton(title: "Masal yaz", systemImage: "wand.and.sparkles") { app.startStoryCreation() }
-                    }
-                } else {
-                    MascotSays(mascot: .happy, text: "Her bitirdiğin masal buraya bir çıkartma bırakır.", mascotWidth: 64)
-                    ForEach(Array(MPStickerAlbum.byMonth(all).enumerated()), id: \.offset) { index, group in
-                        VStack(alignment: .leading, spacing: MPSpacing.lg) {
-                            MPSectionHeader(title: group.title)
-                            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md),
-                                                     count: typeSize.isAccessibilitySize ? 2 : 3),
-                                      spacing: MPSpacing.xl) {
-                                ForEach(group.stickers) { sticker in
-                                    Button { MPHaptics.tap(); opened = sticker } label: { cell(sticker) }
-                                        .buttonStyle(MPPressStyle())
-                                        .accessibilityLabel("\(sticker.title) çıkartması")
-                                }
-                                if index == 0 { nextSlot }
+        // Menü sayfalarının ortak çatısı (23 Kasım 2026): mor gök, beyaz tanıtım kartı.
+        MPSkyPage(title: "Çıkartma albümüm", onBack: { app.router.closeKidPage() }) {
+            if !all.isEmpty {
+                MPSkyIntro(mascot: .happy, headline: "\(all.count) çıkartma",
+                           message: "Her bitirdiğin masal buraya bir çıkartma bırakır.", tone: .pink)
+            }
+        } content: {
+            if all.isEmpty {
+                MPStateView(mascot: .reading, title: "Albümün henüz boş",
+                            message: "İlk masalı bitirince ilk çıkartman gelir.") {
+                    MPButton(title: "Masal yaz", systemImage: "wand.and.sparkles") { app.startStoryCreation() }
+                }
+            } else {
+                ForEach(Array(MPStickerAlbum.byMonth(all).enumerated()), id: \.offset) { index, group in
+                    VStack(alignment: .leading, spacing: MPSpacing.lg) {
+                        MPSectionHeader(title: group.title)
+                        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md),
+                                                 count: typeSize.isAccessibilitySize ? 2 : 3),
+                                  spacing: MPSpacing.xl) {
+                            ForEach(group.stickers) { sticker in
+                                Button { MPHaptics.tap(); opened = sticker } label: { cell(sticker) }
+                                    .buttonStyle(MPPressStyle())
+                                    .accessibilityLabel("\(sticker.title) çıkartması")
                             }
+                            if index == 0 { nextSlot }
                         }
                     }
                 }
             }
-            .padding(.horizontal, MPSpacing.screenH)
-            .padding(.top, MPSpacing.lg)
-            .padding(.bottom, GunlukLayout.bottomClearance)
         }
-        .background(MPColor.backgroundSurface.ignoresSafeArea())
         // Düzen 10: albüm açılınca Odam'daki taze çıkartma noktası kalkar.
         .onAppear { MPStickerNews.shared.clear(profile.id) }
         .sheet(item: $opened, onDismiss: {
@@ -186,47 +181,48 @@ struct DecorShopView: View {
     private var balance: Int { wallet.balance(earned: earned) }
 
     var body: some View {
-        VStack(spacing: 0) {
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: MPSpacing.xxl) {
-                    MPTopBar(title: "Süsler", onBack: { app.router.closeKidPage() }) {
-                        HStack(spacing: MPSpacing.xxs) {
-                            MPStarMark(size: 18).accessibilityHidden(true)
-                            Text("\(balance)").mpText(.cardTitle).monospacedDigit()
-                        }
-                        .foregroundStyle(MPColor.textPrimary)
-                        .accessibilityElement(children: .combine)
-                        .accessibilityLabel("\(balance) yıldızın var")
-                    }
-
-                    VStack(alignment: .leading, spacing: MPSpacing.sm) {
-                        Text("Kitaplığının rengi").mpText(.section).foregroundStyle(MPColor.textPrimary)
-                        ShelfPreview(tone: selected.tone)
-                    }
-
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md), count: 3),
-                              spacing: MPSpacing.md) {
-                        ForEach(MPDecor.catalog) { item in
-                            Button { MPHaptics.selection(); selected = item } label: { tile(item) }
-                                .buttonStyle(MPPressStyle())
-                                .accessibilityLabel(accessibility(item))
-                                .accessibilityAddTraits(item == selected ? .isSelected : [])
-                        }
-                    }
-
-                    Text("Yıldızlar yalnızca okuyarak kazanılır: her sabah 1, her masal 1. Aldığın süs hep senin.")
-                        .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-                .padding(.horizontal, MPSpacing.screenH)
-                .padding(.top, MPSpacing.lg)
-                .padding(.bottom, MPSpacing.xl)
+        // Menü sayfalarının ortak çatısı (23 Kasım 2026); menüdeki adıyla
+        // "Kitaplık renklerim". Bu sayfanın Ragi'si tanıtım kartında.
+        MPSkyPage(title: "Kitaplık renklerim", bottomPadding: MPSpacing.xl,
+                  onBack: { app.router.closeKidPage() }) {
+            HStack(spacing: MPSpacing.xxs) {
+                MPStarMark(size: 18).accessibilityHidden(true)
+                Text("\(balance)").mpText(.cardTitle).monospacedDigit()
             }
+            .foregroundStyle(MPColor.textPrimary)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("\(balance) yıldızın var")
+        } hero: {
+            MPSkyIntro(mascot: .happy, headline: "Kitaplığını süsle",
+                       message: "Okudukça kazandığın yıldızlarla kitaplığına renk seç.", tone: selected.tone)
+        } content: {
+            VStack(alignment: .leading, spacing: MPSpacing.sm) {
+                MPSectionHeader(title: "Kitaplığının rengi")
+                ShelfPreview(tone: selected.tone)
+            }
+
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: MPSpacing.md), count: 3),
+                      spacing: MPSpacing.md) {
+                ForEach(MPDecor.catalog) { item in
+                    Button { MPHaptics.selection(); selected = item } label: { tile(item) }
+                        .buttonStyle(MPPressStyle())
+                        .accessibilityLabel(accessibility(item))
+                        .accessibilityAddTraits(item == selected ? .isSelected : [])
+                }
+            }
+
+            Text("Yıldızlar yalnızca okuyarak kazanılır: her sabah 1, her masal 1. Aldığın süs hep senin.")
+                .mpText(.footnote).foregroundStyle(MPColor.textSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .safeAreaInset(edge: .bottom, spacing: 0) {
             footer
                 .padding(.horizontal, MPSpacing.screenH)
+                .padding(.top, MPSpacing.md)
                 .padding(.bottom, GunlukLayout.bottomClearance)
+                .frame(maxWidth: .infinity)
+                .background(MPColor.backgroundSurface)
         }
-        .background(MPColor.backgroundSurface.ignoresSafeArea())
         .onAppear {
             wallet = MPStarWalletStore().wallet(for: profile.id)
             selected = wallet.equippedItem(.shelf)

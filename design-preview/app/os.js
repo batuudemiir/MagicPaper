@@ -71,7 +71,7 @@ Object.assign(ACTIONS, {
   obColor: (i) => { OS.form.color = +i; render(); },
   obSignIn: () => { toast("Prototip: giriş yapılmış sayıldı"); setTimeout(obNext, 500); },
   obProfileDone: () => {
-    CHILD = OS.form.name.trim();
+    CHILD = OS.form.name.trim().replace(/^./, (c) => c.toLocaleUpperCase("tr"));
     S.onboarded = true;
     S.library = []; S.stars = 0; S.finished = 0; S.tab = "home";
     S.modal = { view: "prep", firstRun: true, mode: "bedtime", comp: "kaplumbağa", fam: [], step: 0, title: `${CHILD} ve Uykucu Kaplumbağa` };

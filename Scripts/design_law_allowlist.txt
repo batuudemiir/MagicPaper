@@ -1,0 +1,23 @@
+# Tasarım yasası denetiminin bilinen, bilinçli istisnaları (Scripts/design_law_check.sh).
+# Biçim: <kural> <dosya yolu>   (dosyanın o kuraldaki bütün isabetleri sayılmaz)
+# Yeni satır eklemeden önce AGENTS.md "Design law" bölümüne bak; istisna orada
+# yazılı değilse önce kural kararı verilir, sonra buraya eklenir.
+
+# Kapak sanatı kendi paletini ve malzeme gölgesini taşır (AGENTS.md: MagicPaperCoverColor istisnası).
+renk MagicPaper/Screens/CoverSystem/MagicPaperCoverView.swift
+golge MagicPaper/Screens/CoverSystem/MagicPaperCoverView.swift
+
+# Yalnızca geliştirici galerisi: kullanıcı görmez.
+golge MagicPaper/Screens/CoverSystem/MagicPaperCoverGalleryPreview.swift
+
+# Dil grep'inin canlı olmayan isabetleri (AGENTS.md, 20 Ekim 2026):
+# Story.swift'teki displayName'ler, MPMascot katalog notu, ClassicsCatalog doğrulama mesajı.
+dil MagicPaper/Models/Story.swift
+dil MagicPaper/DesignSystem/Pastel/MPMascot.swift
+dil MagicPaper/Screens/Gunluk/Model/ClassicsCatalog.swift
+
+# mpShadow'un kendi gövdesi (tek kaynak).
+golge MagicPaper/DesignSystem/MPTheme.swift
+
+# "Kitap oluştur" düğmesi: Batuhan'ın sözü (26 Kasım 2026), dil kuralının istisnası (AGENTS.md "Dil").
+dil MagicPaper/Screens/StoryCreation/LittleCreationCopy.swift
