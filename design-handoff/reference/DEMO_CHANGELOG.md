@@ -4,6 +4,46 @@
 - Yeni P56 mapper çağrısında bütün kitap/kaynak/metin SHA doğrulanır; policy4 kararı StoryPage.art ile kalıcıdır. Eski kitap/pin, motor/metin/seed/seçim değişmedi. Reader mevcut yerel resolver/spot düzenini kullanır.
 - Gerçek motor ve production bridge koduyla macOS facade doğrulaması:6test0hata;90kitap taramasında21kitap42görselli sayfa ve30farklı hikâye asset’i seçiliyor. Tüm35ham görselin SHA/decode kontrolü geçti. Statik incelemede kalan blocker yok.
 - Gerçek iOS testi paket indirmesinde24dakika ilerlemediği için durduruldu; app Bundle.main, SwiftUI ekranları ve telefon kurulumu doğrulanmadı. Tam rapor/kanıt: `docs/research/v4-art-integration/REPORT.md`. Push/main merge yapılmadı; asıl checkout’un silinmiş dosyalarına dokunulmadı.
+## 27 Kasım 2026 — V4 en yaygın nesneler: 20 görsellik paket
+
+- 90 kitap/720 sayfada isim biçimi filtresiyle nesne yaygınlığı çıkarıldı; dalmak/dal, yuvarlanmak/yuva ve taşımak/taş gibi otomatik etiket hataları sıralamada kullanılmadı. Bu sözcüksel öncelik hesabı gerçek motor olasılığı veya sahnede varlık/yayın onayı değildir.
+- Yaprak43, örtü31, yatak/yastık/döşek29, dal20, minder18 kitapta geçiyor. Paket9yeni+11yeniden kullanılan çizimden oluşuyor; sıklık grupları görsel kapsama sayısı değildir.
+- Yerleşik imagegen ve onaylı referansla yeni yapraklar, yastık, döşek, dal, gövde/toprak, kök, yuvarlak ve uzamış damla üretildi. Tüm yeni çizimler görüldü;20PNG decode/alfa/SHA ve ZIP bütünlüğü doğrulandı.
+- Galeri/ZIP/rapor: `2026-11-27-v4-high-frequency-objects/`. Beyaz/gece tarayıcı kompoziti ve küçük okuyucu boyutu bekliyor. App/motor/metin değişmedi; test/build/simülatör çalıştırılmadı.
+
+## 27 Kasım 2026 — Tarçın V4 altı hikâye pozu
+
+- Minderde uyanık dinlenme, minder üzerinde kuyruk, patiler arasında burun, taş yanında oturma, taşı ve çiçeği koklama için altı ayrı PNG üretildi; kaynak sayfa/SHA manifesti ve ZIP eklendi.
+- Yerleşik imagegen ile V4 kimlik, onaylı marka ve nesne referansları kullanıldı; tam promptlar kayıtlı. Altı görsel tek tek incelendi; PNG decode/alfa, tekil kaynak bağlantıları ve ZIP bütünlüğü doğrulandı.
+- Galeri: `2026-11-26-v4-art-library/tarcin-pose-package-v1/index.html`. Beyaz/gece tarayıcı kompoziti ve küçük okuyucu boyutu bekliyor; kuyruk hareketi statik kareden kanıtlanmış sayılmadı.
+- App/motor/metin/eski görseller değişmedi; runtime eşleşmesi yok. Test/build/simülatör çalıştırılmadı.
+
+## 27 Kasım 2026 — V4 15 görsellik nesne paketi
+
+- Pilot metinlerinden seçilen 15 nesne/mekân durumu ayrı PNG dosyaları, kaynak SHA listeli manifest, beyaz/gece HTML galerisi ve paylaşılabilir ZIP olarak paketlendi.
+- Bu tur 13 yeni durum çizimi üretildi; önceki yaprak/dal iki durumu pakete dahil. Düz örtünün desen/bakış farkı aynı katlı örtü referansıyla v2’de düzeltildi; reddedilen v1 saklandı.
+- Yerleşik imagegen, onaylı marka ve gerekli nesne/çanta referansları kullanıldı; tam prompt ve üretim kayıtları mevcut. 15 PNG decode/alfa/SHA, kaynak adayları ve ZIP bütünlük kontrolü geçti.
+- Tarayıcı beyaz/gece kompoziti incelenmedi; uygulama/motor/metin değişmedi. Build/test/simülatör çalıştırılmadı. Paket inceleme adaylarıdır; runtime kapsamı veya yayın onayı değildir.
+
+## 27 Kasım 2026 — V4 15 kitaplık sayfa incelemesi ve ilk nesne durumları
+
+- 120 sayfa elle okunup kaynak/template SHA taşıyan planlama notlarına işlendi: 45 aday an, 35 farklı ihtiyaç; henüz runtime kapsaması değil. 75 sayfa ilk pilotta metin.
+- Uyku aksesuar konumları, anı/benzetme/niyet ayrımı ve nesne önce/sonra durumları kayıtlı. Kalan V4 yapıları bu pilot sayısına dahil değil.
+- Yaprak/dal boşluk ve temas çizimleri yerleşik imagegen ile üretildi. Kopuk dal içeren temas v1 reddedildi; aynı nesne referansıyla v2 düzeltildi. Kaynak ve prompt kayıtları korundu.
+- İnceleme galerisi: `2026-11-26-v4-art-library/V4-Pilot-Sayfalar.html`; üretim kuyruğu ve yeniden üretilebilir inceleme betiği eklendi. Veri SHA/sayı kontrolleri geçti; build/test/simülatör ve tarayıcı kompozit kontrolü yapılmadı. App/motor/metin değişmedi.
+
+## 26 Kasım 2026 — Beş arkadaş V4 kimlik çizimleri
+
+- Yerleşik imagegen ile onaylı marka ve tekil karakter referanslarından beş ayrı V4 PNG üretildi; imza aksesuarları, Yıldız’ın gece mavisi tüyleri ve Böğürtlen’in pati lekesi eklendi.
+- Kimlik/gövde/aksesuar görselleri tek tek incelendi; dosyalarda alfa kanalı doğrulandı. Beyaz/gece inceleme galerisi hazır; tarayıcıdaki kompozit görünüm henüz elle doğrulanmadı.
+- Promptlar, kaynak yolları ve SHA değerleri `2026-11-26-v4-art-library/GENERATION_RECORD.json` içinde. Eski görseller korunuyor; app/runtime eşleşmesi değişmedi. Test/build/simülatör çalıştırılmadı.
+
+## 26 Kasım 2026 — V4 görsel havuzu kaynak envanteri ve onaylı plan
+
+- V4 imza ayrıntıları için kullanıcı onayı kaydedildi; 90 kitap/720 sayfa/25 keşif ve 15 inceleme kitabı kaynak manifestine alındı.
+- Payload SHA ve 720 template SHA doğrulandı. Semantik adaylar yayın yetkisine çevrilmedi; runtime/metin/asset değişmedi.
+- Plan: `docs/superpowers/plans/2026-11-26-v4-art-library.md`; envanter: `design-handoff/proposals/2026-11-26-v4-art-library/`.
+- Build/test/simülatör çalıştırılmadı. Yeni çizim üretimi ve sayfa bazında elle inceleme sırada.
 
 # MagicPaper demo ekranları · CLAUDE.md
 
@@ -429,6 +469,11 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Batuhan'a bilgi: `bes-arkadas` dalındaki `b099d9b` ("Kadro beş arkadaşa indi") main'de değil ve K-F/K-B ile çelişebilir; main'de entegrasyon tabanında olmayan 63 commit var.
 - Bilerek değişmeyen: uygulama ve motor kodu. Test çalıştırılmadı (Codex'in 43/0'ı onun kanıtı), simülatör yok.
 - Dosyalar: `docs/ortak/claude-durum.md`, `docs/superpowers/plans/2026-11-25-bes-arkadas-b-hatti-uygulama.md`, bu kayıt.
+### 2026-11-26 · codex/design-system-catalog · Çocuğun masal yolu görselleri
+
+- Beş arkadaşın uyku, macera ve öğrenme pozları ile Sürpriz kartı için 16 şeffaf PNG hazırlandı. HTML önizlemesi mevcut beş portreyi de gösteriyor.
+- 16 PNG tam çözünürlükte açıldı, alfa kanalları, galeri bağlantıları ve ZIP bütünlüğü kontrol edildi. Küçük boy görseller incelendi. Uygulama testi ve simülatör çalıştırılmadı.
+- Dosyalar: `design-handoff/proposals/2026-11-26-cocugun-masal-yolu/` ve bu günlük.
 
 ### 2026-11-25 · codex/design-system-catalog, plan commit'i · Beş arkadaş B hattı (Claude) TDD planı
 
