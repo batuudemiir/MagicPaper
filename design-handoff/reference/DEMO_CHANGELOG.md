@@ -1,3 +1,10 @@
+## 27 Kasım 2026 — V4 en yaygın nesneler: 20 görsellik paket
+
+- 90 kitap/720 sayfada isim biçimi filtresiyle nesne yaygınlığı çıkarıldı; dalmak/dal, yuvarlanmak/yuva ve taşımak/taş gibi otomatik etiket hataları sıralamada kullanılmadı. Bu sözcüksel öncelik hesabı gerçek motor olasılığı veya sahnede varlık/yayın onayı değildir.
+- Yaprak43, örtü31, yatak/yastık/döşek29, dal20, minder18 kitapta geçiyor. Paket9yeni+11yeniden kullanılan çizimden oluşuyor; sıklık grupları görsel kapsama sayısı değildir.
+- Yerleşik imagegen ve onaylı referansla yeni yapraklar, yastık, döşek, dal, gövde/toprak, kök, yuvarlak ve uzamış damla üretildi. Tüm yeni çizimler görüldü;20PNG decode/alfa/SHA ve ZIP bütünlüğü doğrulandı.
+- Galeri/ZIP/rapor: `2026-11-27-v4-high-frequency-objects/`. Beyaz/gece tarayıcı kompoziti ve küçük okuyucu boyutu bekliyor. App/motor/metin değişmedi; test/build/simülatör çalıştırılmadı.
+
 ## 27 Kasım 2026 — Tarçın V4 altı hikâye pozu
 
 - Minderde uyanık dinlenme, minder üzerinde kuyruk, patiler arasında burun, taş yanında oturma, taşı ve çiçeği koklama için altı ayrı PNG üretildi; kaynak sayfa/SHA manifesti ve ZIP eklendi.
