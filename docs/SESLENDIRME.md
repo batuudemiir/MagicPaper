@@ -58,4 +58,6 @@ Okul öncesi "önce arkadaş" akışında sesle okunan her cümle. Yeni akış t
 | 28 | `ses_olustur_basla_simit_ogrenme` | Ragi | Simit ile yeni şeyler öğreniyoruz! |
 | 29 | `ses_olustur_basla_surpriz` | Ragi | Sürpriz bir arkadaş gelecek! |
 
+Kayıt durumu (27 Kasım 2026): Ragi'nin 24 satırı (1-7, 13, 14-29) ElevenLabs "Çağlayan" sesiyle tek kayıttan kesildi ve klasörde. Beş arkadaş tanıtımı (8-12) kayıt bekliyor; o satırlar şimdilik cihaz sesiyle okunur.
+
 Not: Bir arkadaş her modda yazamayabilir (o mod kartı ekranda çıkmaz); dosyanın fazla olması sorun değil.
