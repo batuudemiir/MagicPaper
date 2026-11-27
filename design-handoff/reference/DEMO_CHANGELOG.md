@@ -180,6 +180,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-27 · claude/project-thread-4oo21x · Ana sayfa profesyonel düzen
+
+- Ne değişti (Batuhan: "ana sayfada bir şeyler eksik, tam profesyonel bir app gibi görünsün"): başlık yeniden boyalı gündüz/gece manzarası (`HomeHeaderScene`; gradient değil illüstrasyon, ekranın tek Ragi'si orada). Üstte avatar (menüyü açar), saate göre selam ve çocuğun adı, zil (Yenilikler) ve arama; altında yıldız ve okuma günü satırı.
+- Bu akşamın kartı Ragi'siz ve kapaklı (`HomeTonightCard`, tek birincil düğme). Altında resimli üç mod karosu (`HomeModeArtTile`, kullanılmayan `Scenes/mode-*` çizimleri); büyük yazıda liste satırları kalır.
+- Yeni raflar: "Yarım kalanlar" (kitaplıktan, bu akşamın kartındaki masal tekrar edilmez), "Bu haftanın seçkisi" ve MagicPaper Originals (Masallar'ın rafları, "Tümü" Masallar'da açar). Okuma yolculuğu kartı en altta. Üç bilgi kartı kaldırıldı (bilgiler başlık satırında).
+- Test: `Scripts/design_law_check.sh` temiz; Mac derlemesi ve ekran görüntüleri bu kayıttan sonra.
+- Dosyalar: `MagicPaper/Views/HomeView.swift`, `MagicPaper/DesignSystem/Pastel/MPHomeBoard.swift`.
+
 ### 2026-11-27 · main@dbc80d4 · Yalnız Mac'te duran üç iş main'e alındı
 
 - Batuhan'ın isteğiyle (27 Kasım) GitHub'da hiç olmayan üç iş önce kendi dallarıyla gönderildi, sonra main'e birleştirildi: `codex/v4-story-art-integration` (V4 çizimleri yeni çevrimdışı masallara bağlı; Codex'in commit'lediği hâli, P56 `recentBookIDs` commit'i dahil), `codex/design-system-catalog` (V4 çizim paketleri, 120 pilot sayfa incelemesi, Kar Tepesi'nin dokuz sayfası, B hattı planı) ve `story-engine/refrain-validator` (ilan edilmiş nakarat tekrar sayılmaz).

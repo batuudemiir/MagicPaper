@@ -244,3 +244,101 @@ struct HomeListRow: View {
         .accessibilityHint(hint ?? "")
     }
 }
+
+// MARK: - Bu akşamın kartı (27 Kasım 2026)
+
+/// Ana sayfanın kahraman kartı (27 Kasım 2026, Batuhan: "tam profesyonel bir
+/// uygulama ana sayfası"). Ragi başlığın manzarasında olduğu için kart Ragi'siz:
+/// solda masalın kapağı, sağda üst yazı, ad ve bilgi; altta ekranın tek birincil
+/// düğmesi (`MPButton(size: .hero)`). Metinler `HomeTonightCopy`'den: masal
+/// okunduysa kart yeni masal önermez, kitaplığa çağırır (24 Kasım kararı).
+struct HomeTonightCard: View {
+    let state: TonightState
+    var cover: MPBookCover.Art? = nil
+    let onPrimary: () -> Void
+
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    private static let coverWidth: CGFloat = 96
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: MPSpacing.lg) {
+            HStack(alignment: .top, spacing: MPSpacing.lg) {
+                if let cover, !typeSize.isAccessibilitySize {
+                    MPBookCover(art: cover, badge: badge, width: Self.coverWidth)
+                } else if !typeSize.isAccessibilitySize {
+                    MPIconTile(systemImage: copy.icon, tone: .lav, size: MPSize.iconTile)
+                }
+                VStack(alignment: .leading, spacing: MPSpacing.xs) {
+                    Text(copy.eyebrow).mpText(.footnote).fontWeight(.bold).foregroundStyle(MPColor.actionPrimary)
+                    Text(copy.title).mpText(.section).foregroundStyle(MPColor.textPrimary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibilityAddTraits(.isHeader)
+                    Text(copy.tag).mpText(.supporting).foregroundStyle(MPColor.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            MPButton(title: copy.button, systemImage: copy.icon, size: .hero, fullWidth: true, action: onPrimary)
+        }
+        .padding(MPSpacing.lg)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .mpKidSurface(MPColor.backgroundSurface, edge: MPWorldTone.lav.edge)
+    }
+
+    private var badge: MPBookCover.Badge? {
+        if case .resume(let progress, _, _) = state, progress > 0 { return .progress(progress) }
+        return nil
+    }
+
+    private var copy: HomeTonightCopy { .make(state) }
+}
+
+// MARK: - Mod karosu (27 Kasım 2026)
+
+/// "Yeni bir masal yaz"ın resimli karosu: modun illüstrasyonu (`Scenes/mode-*`,
+/// yatak, filiz, çadır), altında adı. Üçü yan yana; en büyük yazıda liste
+/// satırına (`HomeModeRow`) döner. Okumayan çocuk modu resminden tanır.
+struct HomeModeArtTile: View {
+    let mode: StoryMode
+    var emphasized: Bool = false
+    var isNight: Bool = false
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: MPSpacing.sm) {
+                Image(asset).resizable().aspectRatio(contentMode: .fit)
+                    .frame(height: Self.artHeight)
+                    .accessibilityHidden(true)
+                Text(mode.shortTitle).mpText(.supporting).fontWeight(.bold).foregroundStyle(MPColor.textPrimary)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .padding(.vertical, MPSpacing.md)
+            .padding(.horizontal, MPSpacing.xs)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .mpKidSurface(mode.tone.soft, edge: mode.tone.edge)
+            .overlay {
+                if emphasized {
+                    RoundedRectangle(cornerRadius: MPRadius.card, style: .continuous)
+                        .strokeBorder(MPColor.actionPrimary, lineWidth: 2)
+                }
+            }
+        }
+        .buttonStyle(MPPressStyle())
+        .accessibilityLabel(emphasized ? "\(mode.title), bu akşam için önerilen" : mode.title)
+        .accessibilityHint("Masalda kimlerin olacağını seçmeye geçer")
+    }
+
+    private static let artHeight: CGFloat = 64
+
+    private var asset: String {
+        switch mode {
+        case .bedtime: return isNight ? "Scenes/mode-bedtime-night" : "Scenes/mode-bedtime"
+        case .learning: return "Scenes/mode-learning"
+        case .adventure: return "Scenes/mode-adventure"
+        }
+    }
+}
