@@ -1,3 +1,10 @@
+## 27 Kasım 2026 — V4 görseller uygulama bağlayıcısına eklendi
+
+- İzole `codex/v4-story-art-integration` dalı güncel V4 uygulama tabanından açıldı.35seçili görsel paketli;5kimlik yeni asset adlarıyla arkadaş seçimine,30hikâye görseli44tam-kaynak kurala bağlı. Reddedilen çizimler dışarıda.
+- Yeni P56 mapper çağrısında bütün kitap/kaynak/metin SHA doğrulanır; policy4 kararı StoryPage.art ile kalıcıdır. Eski kitap/pin, motor/metin/seed/seçim değişmedi. Reader mevcut yerel resolver/spot düzenini kullanır.
+- Gerçek motor ve production bridge koduyla macOS facade doğrulaması:6test0hata;90kitap taramasında21kitap42görselli sayfa ve30farklı hikâye asset’i seçiliyor. Tüm35ham görselin SHA/decode kontrolü geçti. Statik incelemede kalan blocker yok.
+- Gerçek iOS testi paket indirmesinde24dakika ilerlemediği için durduruldu; app Bundle.main, SwiftUI ekranları ve telefon kurulumu doğrulanmadı. Tam rapor/kanıt: `docs/research/v4-art-integration/REPORT.md`. Push/main merge yapılmadı; asıl checkout’un silinmiş dosyalarına dokunulmadı.
+
 # MagicPaper demo ekranları · CLAUDE.md
 
 Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.md gibi çalışır: canvas'ın ne olduğunu, nasıl kurulduğunu, hangi kurallara uyduğunu ve her güncellemede neyin değiştiğini tutar.
@@ -132,6 +139,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 - Basılı kitap fiyatı belirlenmedi (ekranda "fiyat ve teslimat bir sonraki adımda" yazıyor).
 
 ## Değişiklik günlüğü
+
+### 2026-11-27 · main ← codex/v4-story-art-integration@48c5051a · V4 görsel entegrasyonu birleşimi
+
+-35seçili görsel,5arkadaş seçimi kimliği ve30hikâye görselinin kaynak izli bağlantısı main birleşimine alındı; eşzamanlı `main@50d1b110` hazırlık ekranı düzeltmeleri korundu. Çakışma yok.
+- Birleşmiş kaynaklarla6bağımsız test geçti:90kitapta21görselli kitap/42sayfa,30farklı hikâye çizimi. Kaynak dosya hashleri doğrulandı.
+- Eski kitaplar/metinler ve pinler korunuyor. iOS paket indirme engeli sürüyor; gerçek iOS build/UI/telefon doğrulanmadı. Push yapılmadı.
+- Dosyalar: V4 policy/binder/mapper, arkadaş asset kataloğu; birleşim kanıtı `docs/research/v4-art-integration/main-merge-verification.log` ve `main-merge-coverage.json`.
+
 
 ### 2026-11-26 · claude/project-thread-4oo21x · Ana sayfa, Profil ve Kitaplık sadeleşti
 

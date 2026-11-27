@@ -6,11 +6,11 @@ import XCTest
 @MainActor
 final class CompanionPortraitCatalogTests: XCTestCase {
     private let portraits = [
-        ("companion_fox_pilot_001", "companion_portrait_tarcin_v1", "Tarçın"),
-        ("companion_hedgehog_pilot_001", "companion_portrait_kestane_v1", "Kestane"),
-        ("companion_owl_pilot_001", "companion_portrait_yildiz_v1", "Yıldız"),
-        ("companion_city_cat_001", "companion_portrait_simit_v1", "Simit"),
-        ("companion_bear_001", "companion_portrait_bogurtlen_v1", "Böğürtlen")
+        ("companion_fox_pilot_001", "companion_portrait_tarcin_v4", "Tarçın"),
+        ("companion_hedgehog_pilot_001", "companion_portrait_kestane_v4", "Kestane"),
+        ("companion_owl_pilot_001", "companion_portrait_yildiz_v4", "Yıldız"),
+        ("companion_city_cat_001", "companion_portrait_simit_v4", "Simit"),
+        ("companion_bear_001", "companion_portrait_bogurtlen_v4", "Böğürtlen")
     ]
 
     func testOnlyCanonicalIdentitiesResolveToDistinctDecodablePortraits() throws {
