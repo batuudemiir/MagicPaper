@@ -186,7 +186,7 @@ final class ReaderStoryMappingTests: XCTestCase {
         XCTAssertEqual(decoded.art?.sourceID, "watering-v1")
         XCTAssertEqual(decoded.art?.role, "spot")
         story.pages[0] = decoded
-        let page = try XCTUnwrap(ReaderFixtures.reader(story).leaves.first?.page)
+        let page = try XCTUnwrap(ReaderFixtures.reader(story).leaves.compactMap(\.page).first)
         XCTAssertEqual(page.composition, .spot)
         XCTAssertEqual(page.imageLabel, "Küçük bir sulama kabı.")
     }
@@ -196,7 +196,7 @@ final class ReaderStoryMappingTests: XCTestCase {
         story.pages[0].art = StoryPageArt(role: "future-layout", altText: "Çizim.", sourceID: nil)
         let data = try JSONEncoder().encode(story.pages[0])
         story.pages[0] = try JSONDecoder().decode(StoryPage.self, from: data)
-        XCTAssertEqual(ReaderFixtures.reader(story).leaves.first?.page?.composition, .scene)
+        XCTAssertEqual(ReaderFixtures.reader(story).leaves.compactMap(\.page).first?.composition, .scene)
     }
 
     func testSpotWithoutFileOrDescriptionCannotInventArt() {
