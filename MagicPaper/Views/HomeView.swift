@@ -124,10 +124,15 @@ struct HomeView: View {
         .padding(.horizontal, MPSpacing.screenH)
         .padding(.top, topInset + MPSpacing.xs)
         .padding(.bottom, MPSpacing.xs)
-        .background(
+        .frame(maxWidth: .infinity, alignment: .leading)
+        // Gök sabit boyda (28 Kasım 2026): küçük yaş düzeninde bilgi kartları
+        // yokken başlık kısalıyor, gök sıkışıp "Merhaba" beyaza karışıyordu.
+        // Gök başlığın altına da uzanır; sonraki kartlar onun önünde çizilir.
+        .background(alignment: .top) {
             LinearGradient(stops: MP.C.homeSky, startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea(edges: .top)
-        )
+                .frame(height: topInset + MPSkyLayout.homeSkyHeight)
+                .accessibilityHidden(true)
+        }
     }
 
     private var stats: some View {

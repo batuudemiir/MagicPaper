@@ -133,6 +133,14 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-28 · irem (dal, bu kayıtla gelen commit) · Ekran turunun gösterdiği üç hata
+
+- `b083d81` ekran turundan (görüntüler `design-preview/screens/real`) bulunanlar:
+- Ana sayfa: küçük yaş düzeninde (3–6, bilgi kartları gizli) başlık kısalınca gök sıkışıyor, "Merhaba, <ad>" beyaz zemine karışıp okunmuyordu. Gök artık sabit boyda (`MPSkyLayout.homeSkyHeight` 320 + güvenli alan), başlığın altına uzanır. Büyük düzende görünüm hemen hemen aynı.
+- Ekran turu: Okuma yolculuğum ve altı menü sayfası ana sayfa olarak çekiliyordu; profilin ilk `onChange`'i (`initial: true`) DEBUG kancasının açtığı sayfayı kapatıyordu. Kanca sayfayı 0,6 sn sonra açar (yalnızca DEBUG).
+- Profil: "Büyükler için" satırının simgesi (`lock.shield`) ikon haritasında yoktu, kare boş çıkıyordu; `lock` (menüdeki gibi).
+- Test çalıştırılmadı (Mac). `[ekran]` turu üçünü de doğrulayacak.
+
 ### 2026-11-24 · irem (dal, bu kayıtla gelen commit) · Profil: tek Ragi, Okuma yolculuğum kartında
 
 - İrem'in son revizesi: kimlik kartının arkasından bakan el sallayan Ragi kalktı (başlık sıkılaşınca arkada kalıyordu); aynı Ragi çerçevesiz olarak Okuma yolculuğum kartına geçti, okuyan Ragi yüzü kalktı. Ekranda tek Ragi (yasa yeniden uyumlu).

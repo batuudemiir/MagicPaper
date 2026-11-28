@@ -62,20 +62,28 @@ struct ContentView: View {
                     app.avatarPickerProfileID = id
                 }
                 if MPDebugLaunch.opensMenu { app.router.sheet = .menu }
-                if MPDebugLaunch.opensJourney, let id = profileManager.currentProfile?.id {
-                    app.router.openKidPage(.journey(id))
-                }
-                if let page = MPDebugLaunch.kidPage, let id = profileManager.currentProfile?.id {
-                    let route: MPKidRoute? = switch page {
-                    case "badges": .badges(id)
-                    case "stickers": .stickers(id)
-                    case "newWords": .newWords(id)
-                    case "storyMap": .storyMap(id)
-                    case "family": .familyCharacters(id)
-                    case "decor": .decor(id)
-                    default: nil
+                // Sayfa kancaları bir an sonra: profilin ilk `onChange`'i
+                // (`initial: true`) yolları temizliyor, açılan sayfayı kapatıyordu
+                // (28 Kasım 2026, ekran turunda bu sayfalar ana sayfa çıkıyordu).
+                if let id = profileManager.currentProfile?.id {
+                    var routes: [MPKidRoute] = []
+                    if MPDebugLaunch.opensJourney { routes.append(.journey(id)) }
+                    switch MPDebugLaunch.kidPage {
+                    case "badges": routes.append(.badges(id))
+                    case "stickers": routes.append(.stickers(id))
+                    case "newWords": routes.append(.newWords(id))
+                    case "storyMap": routes.append(.storyMap(id))
+                    case "family": routes.append(.familyCharacters(id))
+                    case "decor": routes.append(.decor(id))
+                    default: break
                     }
-                    if let route { app.router.openKidPage(route) }
+                    let pending = routes
+                    if !pending.isEmpty {
+                        Task { @MainActor in
+                            try? await Task.sleep(for: .milliseconds(600))
+                            pending.forEach { app.router.openKidPage($0) }
+                        }
+                    }
                 }
             }
             #endif

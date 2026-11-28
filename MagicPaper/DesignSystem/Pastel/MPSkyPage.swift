@@ -86,6 +86,9 @@ enum MPSkyLayout {
     /// Göğün durum çubuğunun altındaki boyu: başlık satırı koyu morda, tanıtım
     /// kartının alt yarısı beyaza sönmüş zeminde.
     static let skyHeight: CGFloat = 240
+    /// Ana sayfanın göğü: selam her yaş düzeninde koyu morda kalır, bilgi
+    /// kartlarının alt yarısı beyaza sönmüş zeminde.
+    static let homeSkyHeight: CGFloat = 320
 }
 
 /// Göğün altındaki beyaz tanıtım kartı: Ragi yumuşak bir dairede, kısa başlık
