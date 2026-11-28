@@ -133,6 +133,12 @@ Bu dosya, MagicPaper Kids demo canvas'ının hafızası. Kaynak koddaki CLAUDE.m
 
 ## Değişiklik günlüğü
 
+### 2026-11-28 · irem (dal, bu kayıtla gelen commit) · ChatGPT için tasarım dili paketi
+
+- İrem'in isteği: tasarım dilini bir arkadaşın ChatGPT'sine tanıtmak için zip. Masaüstüne `MagicPaper_Tasarim_Dili.zip` (28 MB, 82 dosya); depoya eklenmedi.
+- İçerik: `00_BENI_OKU.md` (ChatGPT Projesi / Özel GPT'ye yükleme ve yapıştırılacak talimat metni), `01_TASARIM_DILI.md` (dilin tek sayfa özeti ve 23–28 Kasım kararları), `02_kurallar/` (AGENTS.md, MARKA, RAGI, SES_VE_SOZ, SAYFA_MIMARISI, ROZET_PLANI, tasarım sistemi, ekranlar, gezinme, ikonlar, seri sistemi), `03_tokenlar_kod/` (MPTheme, MPColor, MPLayout, MPButtons, MPCards, MPIcon, MPSkyPage, MPHomeBoard, ReadingJourneyWidget), `04_gorseller/` (Ragi pozları, avatarlar), `05_ekranlar/` (prototipten 13 güncel ekran, uygulamadan 7 ekran).
+- Paket yalnızca tasarım bilgisi; belgeler e-posta, anahtar ve şifre için tarandı, bulunmadı.
+
 ### 2026-11-28 · irem (dal, bu kayıtla gelen commit) · Ekran turunun gösterdiği üç hata
 
 - `b083d81` ekran turundan (görüntüler `design-preview/screens/real`) bulunanlar:
